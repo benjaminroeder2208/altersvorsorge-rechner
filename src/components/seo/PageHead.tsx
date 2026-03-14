@@ -6,6 +6,7 @@ interface PageHeadProps {
   path: string;
   ogTitle?: string;
   ogDescription?: string;
+  robots?: string;
   jsonLd?: Record<string, unknown>[];
 }
 
@@ -13,7 +14,7 @@ const BASE = "https://altersvorsorge-rechner.com";
 const OG_IMAGE = `${BASE}/og-default.jpg`;
 const SITE_NAME = "altersvorsorge-rechner.com";
 
-const PageHead = ({ title, description, path, ogTitle, ogDescription, jsonLd }: PageHeadProps) => {
+const PageHead = ({ title, description, path, ogTitle, ogDescription, robots = "index,follow", jsonLd }: PageHeadProps) => {
   const url = `${BASE}${path}`;
   const ogt = ogTitle || title;
   const ogd = ogDescription || description;
@@ -22,6 +23,7 @@ const PageHead = ({ title, description, path, ogTitle, ogDescription, jsonLd }: 
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="robots" content={robots} />
       <link rel="canonical" href={url} />
 
       {/* Open Graph */}
