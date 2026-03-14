@@ -11,6 +11,8 @@ import AuszahlungPage from "./pages/AuszahlungPage";
 import GesetzPage from "./pages/GesetzPage";
 import VsRiesterPage from "./pages/VsRiesterPage";
 import VsEtfPage from "./pages/VsEtfPage";
+import ImpressumPage from "./pages/ImpressumPage";
+import DatenschutzPage from "./pages/DatenschutzPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +32,8 @@ const App = () => (
             <Route path="/altersvorsorgedepot-gesetz" element={<GesetzPage />} />
             <Route path="/altersvorsorgedepot-vs-riester" element={<VsRiesterPage />} />
             <Route path="/altersvorsorgedepot-vs-etf-sparplan" element={<VsEtfPage />} />
+            <Route path="/impressum" element={<ImpressumPage />} />
+            <Route path="/datenschutz" element={<DatenschutzPage />} />
             <Route path="/altersvorsorgedepot-rechner" element={<Navigate to="/" replace />} />
             <Route path="/altersvorsorgedepot-gesetzesentwurf" element={<Navigate to="/altersvorsorgedepot-gesetz" replace />} />
             <Route path="*" element={<NotFound />} />
