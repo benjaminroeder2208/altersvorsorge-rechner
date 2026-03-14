@@ -12,9 +12,9 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        Das Altersvorsorgedepot
+        Altersvorsorgedepot
         <br />
-        einfach erklärt
+        Rechner
       </motion.h1>
 
       <motion.p
@@ -23,9 +23,8 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        Die Bundesregierung plant eine grundlegende Reform der privaten Altersvorsorge.
-        Ein zentraler Baustein: das Altersvorsorgedepot — ein staatlich gefördertes Depot
-        für langfristigen Vermögensaufbau mit Fonds und ETFs.
+        Simulieren Sie, wie sich monatliche Beiträge in einem staatlich geförderten
+        Altersvorsorgedepot langfristig entwickeln können.
       </motion.p>
 
       <motion.div
@@ -41,7 +40,7 @@ const HeroSection = () => (
           Jetzt berechnen
         </a>
         <a
-          href="#was-ist"
+          href="#mehr"
           className="inline-flex items-center gap-2 px-6 py-4 text-muted-foreground font-medium text-base transition-colors hover:text-foreground"
         >
           Mehr erfahren

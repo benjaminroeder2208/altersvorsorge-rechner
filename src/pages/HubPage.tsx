@@ -4,6 +4,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 const HubPage = () => (
   <ContentPageLayout
     title="Das Altersvorsorgedepot einfach erklärt"
+    breadcrumbLabel="Überblick"
     relatedLinks={[
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
       { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung erklärt" },
@@ -21,7 +22,7 @@ const HubPage = () => (
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
         Die Beiträge werden staatlich gefördert. Mit dem{" "}
-        <Link to="/altersvorsorgedepot-rechner" className="text-primary font-medium hover:underline">
+        <Link to="/" className="text-primary font-medium hover:underline">
           Altersvorsorgedepot Rechner
         </Link>{" "}
         können Sie berechnen, wie sich das Depot über die Jahre entwickeln könnte.

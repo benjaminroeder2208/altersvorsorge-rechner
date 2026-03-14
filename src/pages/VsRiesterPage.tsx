@@ -4,6 +4,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 const VsRiesterPage = () => (
   <ContentPageLayout
     title="Altersvorsorgedepot vs Riester"
+    breadcrumbLabel="vs. Riester"
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
@@ -43,7 +44,7 @@ const VsRiesterPage = () => (
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
         Vergleichen Sie die mögliche Entwicklung mit dem{" "}
-        <Link to="/altersvorsorgedepot-rechner" className="text-primary font-medium hover:underline">
+        <Link to="/" className="text-primary font-medium hover:underline">
           Altersvorsorgedepot Rechner
         </Link>.
       </p>

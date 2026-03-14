@@ -1,31 +1,79 @@
 import { Link } from "react-router-dom";
 
+const sections = [
+  {
+    title: "Rechner",
+    links: [
+      { to: "/", label: "Altersvorsorgedepot Rechner" },
+    ],
+  },
+  {
+    title: "Altersvorsorgedepot",
+    links: [
+      { to: "/altersvorsorgedepot", label: "Überblick" },
+      { to: "/altersvorsorgedepot-foerderung", label: "Förderung" },
+      { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung" },
+      { to: "/altersvorsorgedepot-gesetz", label: "Gesetzentwurf" },
+    ],
+  },
+  {
+    title: "Vergleiche",
+    links: [
+      { to: "/altersvorsorgedepot-vs-riester", label: "vs. Riester" },
+      { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "vs. ETF-Sparplan" },
+    ],
+  },
+  {
+    title: "Informationen",
+    links: [
+      { to: "#faq", label: "FAQ", isAnchor: true },
+      { to: "/impressum", label: "Impressum" },
+      { to: "/datenschutz", label: "Datenschutz" },
+    ],
+  },
+];
+
 const FooterSection = () => (
-  <footer className="py-12 border-t border-border">
+  <footer className="py-16 border-t border-border bg-secondary/30">
     <div className="container max-w-5xl mx-auto px-6">
-      <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-8">
-        <div>
-          <Link to="/altersvorsorgedepot-rechner" className="font-semibold text-sm tracking-tight">
-            altersvorsorge-depot.com
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        {sections.map((section) => (
+          <div key={section.title}>
+            <p className="font-semibold text-sm mb-4">{section.title}</p>
+            <ul className="space-y-2.5">
+              {section.links.map((link) => (
+                <li key={link.to}>
+                  {"isAnchor" in link ? (
+                    <a
+                      href={link.to}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.to}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-border text-sm text-muted-foreground">
+        <div className="flex items-center gap-2">
+          <Link to="/" className="font-semibold text-foreground text-sm">
+            altersvorsorge-rechner.com
           </Link>
-          <p className="text-xs text-muted-foreground mt-1">Informationen zum geplanten Altersvorsorgedepot</p>
         </div>
-        <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground">
-          <Link to="/altersvorsorgedepot" className="hover:text-foreground transition-colors">Überblick</Link>
-          <Link to="/altersvorsorgedepot-foerderung" className="hover:text-foreground transition-colors">Förderung</Link>
-          <Link to="/altersvorsorgedepot-auszahlung" className="hover:text-foreground transition-colors">Auszahlung</Link>
-          <Link to="/altersvorsorgedepot-vs-riester" className="hover:text-foreground transition-colors">vs. Riester</Link>
-          <Link to="/altersvorsorgedepot-vs-etf-sparplan" className="hover:text-foreground transition-colors">vs. ETF-Sparplan</Link>
-          <Link to="/altersvorsorgedepot-gesetz" className="hover:text-foreground transition-colors">Gesetzentwurf</Link>
-        </div>
+        <p>© {new Date().getFullYear()} altersvorsorge-rechner.com</p>
       </div>
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-border text-sm text-muted-foreground">
-        <p>© {new Date().getFullYear()} altersvorsorge-depot.com</p>
-        <div className="flex gap-8">
-          <a href="#" className="hover:text-foreground transition-colors">Impressum</a>
-          <a href="#" className="hover:text-foreground transition-colors">Datenschutz</a>
-        </div>
-      </div>
+
       <div className="mt-6 text-xs text-muted-foreground/60 text-center max-w-2xl mx-auto leading-relaxed">
         Alle Angaben basieren auf dem aktuellen Stand des Gesetzgebungsverfahrens und stellen keine Anlageberatung dar.
       </div>
