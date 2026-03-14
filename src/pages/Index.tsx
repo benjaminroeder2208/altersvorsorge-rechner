@@ -1,14 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/landing/Navbar";
+import HeroSection from "@/components/landing/HeroSection";
+import ProblemSection from "@/components/landing/ProblemSection";
+import ApproachSection from "@/components/landing/ApproachSection";
+import CalculatorPreview from "@/components/landing/CalculatorPreview";
+import ScenarioSection from "@/components/landing/ScenarioSection";
+import TrustSection from "@/components/landing/TrustSection";
+import WaitlistSection from "@/components/landing/WaitlistSection";
+import FaqSection from "@/components/landing/FaqSection";
+import FooterSection from "@/components/landing/FooterSection";
 
-const Index = () => {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
-  );
-};
+const Index = () => (
+  <>
+    <Navbar />
+    <main>
+      <HeroSection />
+      <ProblemSection />
+      <ApproachSection />
+      <CalculatorPreview />
+      <ScenarioSection />
+      <TrustSection />
+      <WaitlistSection />
+      <FaqSection />
+      <FooterSection />
+    </main>
+  </>
+);
 
 export default Index;
