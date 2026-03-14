@@ -17,25 +17,26 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<RechnerPage />} />
-          <Route path="/altersvorsorgedepot" element={<HubPage />} />
-          <Route path="/altersvorsorgedepot-foerderung" element={<FoerderungPage />} />
-          <Route path="/altersvorsorgedepot-auszahlung" element={<AuszahlungPage />} />
-          <Route path="/altersvorsorgedepot-gesetz" element={<GesetzPage />} />
-          <Route path="/altersvorsorgedepot-vs-riester" element={<VsRiesterPage />} />
-          <Route path="/altersvorsorgedepot-vs-etf-sparplan" element={<VsEtfPage />} />
-          {/* legacy redirects */}
-          <Route path="/altersvorsorgedepot-rechner" element={<Navigate to="/" replace />} />
-          <Route path="/altersvorsorgedepot-gesetzesentwurf" element={<Navigate to="/altersvorsorgedepot-gesetz" replace />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <HelmetProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<RechnerPage />} />
+            <Route path="/altersvorsorgedepot" element={<HubPage />} />
+            <Route path="/altersvorsorgedepot-foerderung" element={<FoerderungPage />} />
+            <Route path="/altersvorsorgedepot-auszahlung" element={<AuszahlungPage />} />
+            <Route path="/altersvorsorgedepot-gesetz" element={<GesetzPage />} />
+            <Route path="/altersvorsorgedepot-vs-riester" element={<VsRiesterPage />} />
+            <Route path="/altersvorsorgedepot-vs-etf-sparplan" element={<VsEtfPage />} />
+            <Route path="/altersvorsorgedepot-rechner" element={<Navigate to="/" replace />} />
+            <Route path="/altersvorsorgedepot-gesetzesentwurf" element={<Navigate to="/altersvorsorgedepot-gesetz" replace />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 
