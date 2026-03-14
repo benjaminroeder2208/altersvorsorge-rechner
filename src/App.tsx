@@ -21,8 +21,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/altersvorsorgedepot-rechner" replace />} />
-          <Route path="/altersvorsorgedepot-rechner" element={<RechnerPage />} />
+          <Route path="/" element={<RechnerPage />} />
           <Route path="/altersvorsorgedepot" element={<HubPage />} />
           <Route path="/altersvorsorgedepot-foerderung" element={<FoerderungPage />} />
           <Route path="/altersvorsorgedepot-auszahlung" element={<AuszahlungPage />} />
@@ -30,6 +29,7 @@ const App = () => (
           <Route path="/altersvorsorgedepot-vs-riester" element={<VsRiesterPage />} />
           <Route path="/altersvorsorgedepot-vs-etf-sparplan" element={<VsEtfPage />} />
           {/* legacy redirects */}
+          <Route path="/altersvorsorgedepot-rechner" element={<Navigate to="/" replace />} />
           <Route path="/altersvorsorgedepot-gesetzesentwurf" element={<Navigate to="/altersvorsorgedepot-gesetz" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -4,6 +4,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 const VsEtfPage = () => (
   <ContentPageLayout
     title="Altersvorsorgedepot vs ETF Sparplan"
+    breadcrumbLabel="ETF Vergleich"
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
@@ -42,7 +43,7 @@ const VsEtfPage = () => (
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
         Simulieren Sie den Unterschied mit dem{" "}
-        <Link to="/altersvorsorgedepot-rechner" className="text-primary font-medium hover:underline">
+        <Link to="/" className="text-primary font-medium hover:underline">
           Altersvorsorgedepot Rechner
         </Link>.
       </p>

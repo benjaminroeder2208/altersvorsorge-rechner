@@ -1,9 +1,17 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 interface RelatedLink {
   to: string;
@@ -12,22 +20,36 @@ interface RelatedLink {
 
 interface Props {
   title: string;
+  breadcrumbLabel: string;
   children: ReactNode;
   relatedLinks?: RelatedLink[];
 }
 
-const ContentPageLayout = ({ title, children, relatedLinks }: Props) => (
+const ContentPageLayout = ({ title, breadcrumbLabel, children, relatedLinks }: Props) => (
   <>
     <Navbar />
     <main className="pt-24 pb-20">
       <article className="container max-w-2xl mx-auto px-6">
-        <Link
-          to="/altersvorsorgedepot-rechner"
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-10"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Zurück zum Rechner
-        </Link>
+        {/* Breadcrumb */}
+        <Breadcrumb className="mb-8">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/">Home</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/altersvorsorgedepot">Altersvorsorgedepot</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{breadcrumbLabel}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
         <AnimatedSection>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-6" style={{ letterSpacing: "-0.02em" }}>
@@ -43,10 +65,10 @@ const ContentPageLayout = ({ title, children, relatedLinks }: Props) => (
         <div className="mt-16 p-6 bg-secondary rounded-2xl text-center">
           <p className="font-semibold mb-2">Jetzt berechnen</p>
           <p className="text-sm text-muted-foreground mb-4">
-            Simulieren Sie Ihr mögliches Altersvorsorgedepot mit dem Rechner.
+            Mit unserem Altersvorsorgedepot Rechner können Sie berechnen, wie sich monatliche Beiträge langfristig entwickeln.
           </p>
           <Link
-            to="/altersvorsorgedepot-rechner"
+            to="/"
             className="inline-flex items-center px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
           >
             Altersvorsorgedepot Rechner starten

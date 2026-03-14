@@ -4,6 +4,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 const GesetzPage = () => (
   <ContentPageLayout
     title="Gesetzentwurf zum Altersvorsorgedepot erklärt"
+    breadcrumbLabel="Gesetzentwurf"
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
@@ -43,7 +44,7 @@ const GesetzPage = () => (
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
         Nutzen Sie den{" "}
-        <Link to="/altersvorsorgedepot-rechner" className="text-primary font-medium hover:underline">
+        <Link to="/" className="text-primary font-medium hover:underline">
           Altersvorsorgedepot Rechner
         </Link>{" "}
         um die mögliche Entwicklung auf Basis des aktuellen Entwurfs zu simulieren.
