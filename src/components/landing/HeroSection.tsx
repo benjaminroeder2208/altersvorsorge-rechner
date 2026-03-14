@@ -35,16 +35,16 @@ const HeroSection = () => (
         transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <a
-          href="#was-ist"
+          href="#rechner"
           className="inline-flex items-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base transition-all duration-200 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/20"
         >
-          Was ist das Altersvorsorgedepot?
+          Jetzt berechnen
         </a>
         <a
-          href="#rechner"
+          href="#was-ist"
           className="inline-flex items-center gap-2 px-6 py-4 text-muted-foreground font-medium text-base transition-colors hover:text-foreground"
         >
-          Zum Rechner
+          Mehr erfahren
           <ArrowDown className="w-4 h-4" />
         </a>
       </motion.div>
