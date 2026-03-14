@@ -24,6 +24,8 @@ interface Props {
   breadcrumbLabel: string;
   path: string;
   description: string;
+  ogTitle?: string;
+  ogDescription?: string;
   children: ReactNode;
   relatedLinks?: RelatedLink[];
 }
