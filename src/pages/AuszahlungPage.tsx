@@ -39,7 +39,7 @@ const AuszahlungPage = () => (
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
         Berechnen Sie Ihr mögliches Altersvorsorgedepot mit dem{" "}
-        <Link to="/altersvorsorgedepot-rechner" className="text-primary font-medium hover:underline">
+        <Link to="/" className="text-primary font-medium hover:underline">
           Rechner
         </Link>.
       </p>

@@ -49,7 +49,7 @@ const FoerderungPage = () => (
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
         Mit dem{" "}
-        <Link to="/altersvorsorgedepot-rechner" className="text-primary font-medium hover:underline">
+        <Link to="/" className="text-primary font-medium hover:underline">
           Altersvorsorgedepot Rechner
         </Link>{" "}
         können Sie berechnen, wie sich die staatliche Förderung auf Ihre Altersvorsorge auswirkt.
