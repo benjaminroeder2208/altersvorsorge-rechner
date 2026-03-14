@@ -24,7 +24,10 @@ const HeroSection = () => (
         transition={{ duration: 1, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
       >
         Mit der geplanten Reform der privaten Altersvorsorge könnte ein neues Modell entstehen:
-        ein staatlich gefördertes Altersvorsorgedepot mit stärkerem Fokus auf langfristigen Vermögensaufbau.
+        das Altersvorsorgedepot.
+        <br className="hidden md:block" />
+        <br className="hidden md:block" />
+        Ein staatlich gefördertes Depot für langfristigen Vermögensaufbau.
       </motion.p>
 
       <motion.div

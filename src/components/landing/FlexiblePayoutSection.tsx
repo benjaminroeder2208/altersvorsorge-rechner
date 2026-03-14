@@ -1,24 +1,35 @@
 import AnimatedSection from "./AnimatedSection";
+import { TrendingUp, Wallet } from "lucide-react";
 
-const options = [
-  { title: "Lebenslange Renten", desc: "Klassische Verrentung für dauerhafte Absicherung." },
-  { title: "Auszahlungspläne", desc: "Flexible Entnahmen über einen festgelegten Zeitraum." },
-  { title: "Teilweise Kapitalentnahmen", desc: "Zugriff auf Teile des Kapitals bei Bedarf." },
+const phases = [
+  {
+    icon: TrendingUp,
+    title: "Ansparphase",
+    desc: "Während des Berufslebens wird Kapital aufgebaut.",
+  },
+  {
+    icon: Wallet,
+    title: "Auszahlungsphase",
+    desc: "Im Ruhestand erfolgt die Auszahlung des angesparten Vermögens.",
+  },
 ];
 
 const FlexiblePayoutSection = () => (
   <section className="section-padding bg-secondary">
     <div className="container max-w-5xl mx-auto px-6">
       <AnimatedSection className="text-center mb-20">
-        <h2 className="heading-section">Mehr Flexibilität im Ruhestand.</h2>
+        <h2 className="heading-section">Die zwei Phasen der Altersvorsorge</h2>
       </AnimatedSection>
 
-      <div className="space-y-4 max-w-3xl mx-auto">
-        {options.map((o, i) => (
-          <AnimatedSection key={o.title} delay={i * 0.1}>
-            <div className="glass-card p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4">
-              <h3 className="text-lg font-semibold md:w-1/3">{o.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed md:w-2/3">{o.desc}</p>
+      <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {phases.map((p, i) => (
+          <AnimatedSection key={p.title} delay={i * 0.12}>
+            <div className="glass-card p-10 h-full text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-6">
+                <p.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{p.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{p.desc}</p>
             </div>
           </AnimatedSection>
         ))}
