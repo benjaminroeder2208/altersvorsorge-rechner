@@ -4,6 +4,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 const AuszahlungPage = () => (
   <ContentPageLayout
     title="Wie funktioniert die Auszahlung beim Altersvorsorgedepot?"
+    breadcrumbLabel="Auszahlung"
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
