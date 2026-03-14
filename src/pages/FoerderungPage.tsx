@@ -4,6 +4,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 const FoerderungPage = () => (
   <ContentPageLayout
     title="Wie hoch ist die Förderung beim Altersvorsorgedepot?"
+    breadcrumbLabel="Förderung"
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung erklärt" },
