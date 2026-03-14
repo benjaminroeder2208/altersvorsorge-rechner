@@ -8,25 +8,29 @@ import {
 
 const faqs = [
   {
-    q: "Was ist ein Altersvorsorge-Depot?",
-    a: "Ein Altersvorsorge-Depot ist ein speziell für die Altersvorsorge konzipiertes Wertpapierdepot, in dem Sie langfristig in ETFs und andere Anlageformen investieren können — mit steuerlichen Vorteilen und staatlicher Förderung.",
+    q: "Was ist das Altersvorsorgedepot?",
+    a: "Das Altersvorsorgedepot ist ein im Gesetzentwurf vorgesehenes Modell für die private Altersvorsorge. Es ermöglicht renditeorientierte Investitionen in Fonds oder ETFs — ohne die bisher übliche Beitragsgarantie.",
   },
   {
-    q: "Wie funktionieren ETF-Investments?",
-    a: "ETFs (Exchange Traded Funds) bilden Indizes wie den MSCI World ab und ermöglichen Ihnen, mit einem einzigen Produkt in Tausende von Unternehmen weltweit zu investieren — kostengünstig und transparent.",
+    q: "Ist das Gesetz bereits beschlossen?",
+    a: "Nein. Der Gesetzentwurf befindet sich noch im parlamentarischen Verfahren. Änderungen im Laufe des Gesetzgebungsprozesses sind möglich.",
   },
   {
-    q: "Welche Rendite ist realistisch?",
-    a: "Historisch haben globale Aktienmärkte langfristig durchschnittlich 7–8 % Rendite pro Jahr erzielt. Vergangene Ergebnisse sind keine Garantie für zukünftige Renditen.",
+    q: "Was unterscheidet das Modell von Riester?",
+    a: "Im Gegensatz zu Riester-Produkten soll das Altersvorsorgedepot ohne verpflichtende Beitragsgarantie auskommen und stärker auf Kapitalmarktrenditen setzen. Die Förderstruktur soll vereinfacht werden.",
+  },
+  {
+    q: "Wer kann geförderte Beiträge leisten?",
+    a: "Die genauen Fördervoraussetzungen werden im finalen Gesetz festgelegt. Der aktuelle Entwurf sieht eine breite Zugänglichkeit für förderberechtigte Personen vor.",
   },
   {
     q: "Wann wird der Rechner verfügbar sein?",
-    a: "Wir arbeiten intensiv an der Fertigstellung. Tragen Sie sich in die Warteliste ein, um als Erster informiert zu werden, sobald der Rechner online geht.",
+    a: "Der Rechner befindet sich in der Entwicklung. Sobald belastbare Rahmenbedingungen aus dem Gesetzgebungsverfahren vorliegen, wird er veröffentlicht.",
   },
 ];
 
 const FaqSection = () => (
-  <section className="section-padding bg-secondary">
+  <section id="faq" className="section-padding">
     <div className="container max-w-2xl mx-auto px-6">
       <AnimatedSection className="text-center mb-16">
         <h2 className="heading-section">Häufig gestellte Fragen</h2>
