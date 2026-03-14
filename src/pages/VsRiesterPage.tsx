@@ -3,10 +3,12 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const VsRiesterPage = () => (
   <ContentPageLayout
-    title="Altersvorsorgedepot vs Riester"
+    title="Altersvorsorgedepot vs Riester – Die wichtigsten Unterschiede"
     breadcrumbLabel="vs. Riester"
     path="/altersvorsorgedepot-vs-riester"
-    description="Altersvorsorgedepot vs Riester-Rente: Kosten, Rendite und Förderung im Vergleich."
+    description="Wie unterscheidet sich das Altersvorsorgedepot von Riester? Ein Vergleich von Förderung, Renditechancen, Flexibilität und Struktur."
+    ogTitle="Altersvorsorgedepot vs Riester"
+    ogDescription="Förderung, Renditechancen und Flexibilität im Vergleich: Altersvorsorgedepot oder Riester?"
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },

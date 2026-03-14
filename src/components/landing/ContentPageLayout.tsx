@@ -24,13 +24,15 @@ interface Props {
   breadcrumbLabel: string;
   path: string;
   description: string;
+  ogTitle?: string;
+  ogDescription?: string;
   children: ReactNode;
   relatedLinks?: RelatedLink[];
 }
 
 const BASE = "https://altersvorsorge-rechner.com";
 
-const ContentPageLayout = ({ title, breadcrumbLabel, path, description, children, relatedLinks }: Props) => {
+const ContentPageLayout = ({ title, breadcrumbLabel, path, description, ogTitle, ogDescription, children, relatedLinks }: Props) => {
   const url = `${BASE}${path}`;
 
   const jsonLd = [
@@ -68,7 +70,7 @@ const ContentPageLayout = ({ title, breadcrumbLabel, path, description, children
 
   return (
     <>
-      <PageHead title={title} description={description} path={path} jsonLd={jsonLd} />
+      <PageHead title={title} description={description} path={path} ogTitle={ogTitle} ogDescription={ogDescription} jsonLd={jsonLd} />
       <Navbar />
       <main className="pt-24 pb-20">
         <article className="container max-w-2xl mx-auto px-6">

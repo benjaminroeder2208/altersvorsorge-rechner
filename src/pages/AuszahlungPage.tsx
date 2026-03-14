@@ -3,10 +3,12 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const AuszahlungPage = () => (
   <ContentPageLayout
-    title="Wie funktioniert die Auszahlung beim Altersvorsorgedepot?"
+    title="Altersvorsorgedepot Auszahlung – So könnte die Auszahlungsphase funktionieren"
     breadcrumbLabel="Auszahlung"
     path="/altersvorsorgedepot-auszahlung"
-    description="Wie die Auszahlung beim Altersvorsorgedepot funktioniert: Auszahlungsphase, Renteneintritt und Kapitalentnahme."
+    description="Wie funktioniert die Auszahlung beim Altersvorsorgedepot? Erfahren Sie mehr über Rentenbeginn, Auszahlungspläne und mögliche Kapitalentnahmen."
+    ogTitle="Altersvorsorgedepot Auszahlung"
+    ogDescription="Rentenbeginn, Auszahlungsplan und Kapitalentnahme beim geplanten Altersvorsorgedepot verständlich erklärt."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },

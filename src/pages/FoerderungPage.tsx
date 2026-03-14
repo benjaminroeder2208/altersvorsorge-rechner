@@ -3,10 +3,12 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const FoerderungPage = () => (
   <ContentPageLayout
-    title="Wie hoch ist die Förderung beim Altersvorsorgedepot?"
+    title="Altersvorsorgedepot Förderung – Wie hoch ist die staatliche Förderung?"
     breadcrumbLabel="Förderung"
     path="/altersvorsorgedepot-foerderung"
-    description="Grundzulage, Kinderzulage und Steuervorteile beim geplanten Altersvorsorgedepot im Überblick."
+    description="Wie hoch ist die Förderung beim Altersvorsorgedepot? Erfahren Sie, wie Grundzulage, Kinderzulage und steuerliche Vorteile im Gesetzentwurf vorgesehen sind."
+    ogTitle="Altersvorsorgedepot Förderung"
+    ogDescription="Grundzulage, Kinderzulage und steuerliche Vorteile beim geplanten Altersvorsorgedepot verständlich erklärt."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung erklärt" },

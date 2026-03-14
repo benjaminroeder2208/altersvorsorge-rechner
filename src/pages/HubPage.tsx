@@ -3,10 +3,12 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const HubPage = () => (
   <ContentPageLayout
-    title="Das Altersvorsorgedepot einfach erklärt"
+    title="Altersvorsorgedepot einfach erklärt"
     breadcrumbLabel="Überblick"
     path="/altersvorsorgedepot"
-    description="Das Altersvorsorgedepot einfach erklärt: Funktionsweise, Förderung, Auszahlung und Vergleiche im Überblick."
+    description="Was ist das Altersvorsorgedepot? Hier erfahren Sie, wie das geplante Modell funktioniert, wie die Förderung gedacht ist und welche Auszahlungsoptionen vorgesehen sind."
+    ogTitle="Altersvorsorgedepot einfach erklärt"
+    ogDescription="Das geplante Altersvorsorgedepot verständlich erklärt – von Förderung bis Auszahlung."
     relatedLinks={[
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
       { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung erklärt" },

@@ -3,10 +3,12 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const VsEtfPage = () => (
   <ContentPageLayout
-    title="Altersvorsorgedepot vs ETF Sparplan"
+    title="Altersvorsorgedepot vs ETF Sparplan – Was ist der Unterschied?"
     breadcrumbLabel="ETF Vergleich"
     path="/altersvorsorgedepot-vs-etf-sparplan"
-    description="Altersvorsorgedepot vs ETF-Sparplan: Rendite, Flexibilität und steuerliche Unterschiede im Vergleich."
+    description="Altersvorsorgedepot oder ETF Sparplan? Erfahren Sie, wie sich Förderung, Flexibilität und steuerliche Behandlung unterscheiden könnten."
+    ogTitle="Altersvorsorgedepot vs ETF Sparplan"
+    ogDescription="Förderung, Flexibilität und Steuern im Vergleich: Altersvorsorgedepot oder ETF Sparplan?"
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },

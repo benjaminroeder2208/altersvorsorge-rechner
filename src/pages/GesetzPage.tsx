@@ -6,7 +6,9 @@ const GesetzPage = () => (
     title="Gesetzentwurf zum Altersvorsorgedepot erklärt"
     breadcrumbLabel="Gesetzentwurf"
     path="/altersvorsorgedepot-gesetz"
-    description="Aktueller Stand des Gesetzentwurfs zum Altersvorsorgedepot: Zeitplan, Reform und politische Diskussion."
+    description="Wie ist der aktuelle Stand beim Altersvorsorgedepot? Hier finden Sie eine verständliche Einordnung des Gesetzentwurfs und der geplanten Reform."
+    ogTitle="Gesetzentwurf zum Altersvorsorgedepot erklärt"
+    ogDescription="Der aktuelle Stand der Reform der privaten Altersvorsorge verständlich zusammengefasst."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
