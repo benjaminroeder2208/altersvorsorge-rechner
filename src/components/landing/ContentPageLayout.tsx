@@ -26,6 +26,7 @@ interface Props {
   description: string;
   ogTitle?: string;
   ogDescription?: string;
+  robots?: string;
   children: ReactNode;
   relatedLinks?: RelatedLink[];
 }
