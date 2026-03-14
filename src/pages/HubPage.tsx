@@ -5,6 +5,8 @@ const HubPage = () => (
   <ContentPageLayout
     title="Das Altersvorsorgedepot einfach erklärt"
     breadcrumbLabel="Überblick"
+    path="/altersvorsorgedepot"
+    description="Das Altersvorsorgedepot einfach erklärt: Funktionsweise, Förderung, Auszahlung und Vergleiche im Überblick."
     relatedLinks={[
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
       { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung erklärt" },

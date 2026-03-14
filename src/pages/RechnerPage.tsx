@@ -4,6 +4,7 @@ import CalculatorPreview from "@/components/landing/CalculatorPreview";
 import FaqSection from "@/components/landing/FaqSection";
 import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
+import PageHead from "@/components/seo/PageHead";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
@@ -15,15 +16,109 @@ const topicLinks = [
   { to: "/altersvorsorgedepot-vs-riester", label: "Vergleich mit Riester", desc: "Die wichtigsten Unterschiede zum bisherigen Riester-Modell." },
 ];
 
+const homepageJsonLd = [
+  {
+    "@type": "WebPage",
+    name: "Altersvorsorgedepot Rechner",
+    url: "https://altersvorsorge-rechner.com/",
+    description: "Rechner zur Simulation eines möglichen Altersvorsorgedepots auf Basis des aktuellen Gesetzentwurfs.",
+  },
+  {
+    "@type": "SoftwareApplication",
+    name: "Altersvorsorgedepot Rechner",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    url: "https://altersvorsorge-rechner.com/",
+    description: "Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des aktuellen Gesetzentwurfs.",
+    featureList: [
+      "Simulation monatlicher Beiträge",
+      "Berücksichtigung staatlicher Förderung",
+      "Schätzung der Kapitalentwicklung",
+      "Schätzung der Auszahlungsphase",
+    ],
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "EUR",
+    },
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Was ist das Altersvorsorgedepot?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Das Altersvorsorgedepot ist ein im aktuellen Gesetzentwurf vorgesehenes Modell für die private Altersvorsorge. Es ermöglicht renditeorientierte Investitionen in Fonds oder ETFs — ohne die bisher bei Riester-Produkten übliche Beitragsgarantie. Die Beiträge werden staatlich gefördert.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Ist das Gesetz bereits beschlossen?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Nein. Der Gesetzentwurf befindet sich noch im parlamentarischen Verfahren. Alle auf dieser Seite dargestellten Informationen basieren auf dem aktuellen Entwurf und können sich im Laufe des Gesetzgebungsprozesses ändern.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Was unterscheidet das Altersvorsorgedepot von Riester?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Der wichtigste Unterschied: Beim Altersvorsorgedepot entfällt die verpflichtende Beitragsgarantie. Dadurch können die Beiträge vollständig am Kapitalmarkt angelegt werden, was langfristig höhere Renditechancen ermöglicht. Zudem soll die Förderstruktur vereinfacht und die Kosten durch einen Effektivkostendeckel begrenzt werden.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Wer kann geförderte Beiträge leisten?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Die genauen Fördervoraussetzungen werden im finalen Gesetz festgelegt. Der aktuelle Entwurf sieht eine breite Zugänglichkeit vor, ähnlich dem bisherigen Riester-System. Grundsätzlich sollen rentenversicherungspflichtig Beschäftigte und weitere Personengruppen förderberechtigt sein.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Wie hoch ist die maximale Förderung?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Die Grundzulage beträgt im Entwurf bis zu 35 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen 1.200 € und 1.800 €. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Was passiert mit dem Geld bei schlechter Marktentwicklung?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Da keine Beitragsgarantie vorgesehen ist, kann der Depotwert zwischenzeitlich auch unter die Summe der eingezahlten Beiträge fallen. Bei langfristiger Anlage über 20 oder mehr Jahre haben breit gestreute Aktienportfolios historisch betrachtet positive Renditen erzielt — eine Garantie dafür gibt es allerdings nicht.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Wann wird der Rechner verfügbar sein?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Der auf dieser Seite dargestellte Rechner bietet bereits eine vereinfachte Simulation auf Basis des aktuellen Gesetzentwurfs. Sobald das Gesetz verabschiedet ist, werden die Berechnungen an die finalen Regelungen angepasst.",
+        },
+      },
+    ],
+  },
+];
+
 const RechnerPage = () => (
   <>
+    <PageHead
+      title="Altersvorsorgedepot Rechner – Simulation auf Basis des Gesetzentwurfs"
+      description="Simulieren Sie Ihr mögliches Altersvorsorgedepot: Monatliche Beiträge, staatliche Förderung und Kapitalentwicklung berechnen – basierend auf dem aktuellen Gesetzentwurf."
+      path="/"
+      jsonLd={homepageJsonLd}
+    />
     <Navbar />
     <main>
       <HeroSection />
       <CalculatorPreview />
 
-      {/* Topic links section */}
-      <section className="section-padding">
+      <section id="mehr" className="section-padding">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-10">
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Mehr zum Altersvorsorgedepot</h2>

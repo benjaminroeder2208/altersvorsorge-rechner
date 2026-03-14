@@ -5,6 +5,8 @@ const VsRiesterPage = () => (
   <ContentPageLayout
     title="Altersvorsorgedepot vs Riester"
     breadcrumbLabel="vs. Riester"
+    path="/altersvorsorgedepot-vs-riester"
+    description="Altersvorsorgedepot vs Riester-Rente: Kosten, Rendite und Förderung im Vergleich."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },

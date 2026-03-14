@@ -5,6 +5,8 @@ const FoerderungPage = () => (
   <ContentPageLayout
     title="Wie hoch ist die Förderung beim Altersvorsorgedepot?"
     breadcrumbLabel="Förderung"
+    path="/altersvorsorgedepot-foerderung"
+    description="Grundzulage, Kinderzulage und Steuervorteile beim geplanten Altersvorsorgedepot im Überblick."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung erklärt" },

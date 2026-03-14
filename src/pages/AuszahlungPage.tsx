@@ -5,6 +5,8 @@ const AuszahlungPage = () => (
   <ContentPageLayout
     title="Wie funktioniert die Auszahlung beim Altersvorsorgedepot?"
     breadcrumbLabel="Auszahlung"
+    path="/altersvorsorgedepot-auszahlung"
+    description="Wie die Auszahlung beim Altersvorsorgedepot funktioniert: Auszahlungsphase, Renteneintritt und Kapitalentnahme."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
