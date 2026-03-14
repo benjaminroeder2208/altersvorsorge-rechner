@@ -22,7 +22,8 @@ const Navbar = () => {
       <div className="container max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <span className="font-semibold text-sm tracking-tight">altersvorsorge-depot.com</span>
         <div className="flex items-center gap-6">
-          <a href="#modell" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">Das Modell</a>
+          <a href="#was-ist" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">Überblick</a>
+          <a href="#rechner" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">Rechner</a>
           <a href="#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">FAQ</a>
         </div>
       </div>
