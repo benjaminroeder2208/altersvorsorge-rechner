@@ -70,7 +70,7 @@ const ContentPageLayout = ({ title, breadcrumbLabel, path, description, ogTitle,
 
   return (
     <>
-      <PageHead title={title} description={description} path={path} jsonLd={jsonLd} />
+      <PageHead title={title} description={description} path={path} ogTitle={ogTitle} ogDescription={ogDescription} jsonLd={jsonLd} />
       <Navbar />
       <main className="pt-24 pb-20">
         <article className="container max-w-2xl mx-auto px-6">
