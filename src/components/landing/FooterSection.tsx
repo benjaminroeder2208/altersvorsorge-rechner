@@ -5,15 +5,18 @@ const FooterSection = () => (
     <div className="container max-w-5xl mx-auto px-6">
       <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-8">
         <div>
-          <span className="font-semibold text-sm tracking-tight">altersvorsorge-depot.com</span>
+          <Link to="/altersvorsorgedepot-rechner" className="font-semibold text-sm tracking-tight">
+            altersvorsorge-depot.com
+          </Link>
           <p className="text-xs text-muted-foreground mt-1">Informationen zum geplanten Altersvorsorgedepot</p>
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted-foreground">
+          <Link to="/altersvorsorgedepot" className="hover:text-foreground transition-colors">Überblick</Link>
           <Link to="/altersvorsorgedepot-foerderung" className="hover:text-foreground transition-colors">Förderung</Link>
           <Link to="/altersvorsorgedepot-auszahlung" className="hover:text-foreground transition-colors">Auszahlung</Link>
           <Link to="/altersvorsorgedepot-vs-riester" className="hover:text-foreground transition-colors">vs. Riester</Link>
           <Link to="/altersvorsorgedepot-vs-etf-sparplan" className="hover:text-foreground transition-colors">vs. ETF-Sparplan</Link>
-          <Link to="/altersvorsorgedepot-gesetzesentwurf" className="hover:text-foreground transition-colors">Gesetzentwurf</Link>
+          <Link to="/altersvorsorgedepot-gesetz" className="hover:text-foreground transition-colors">Gesetzentwurf</Link>
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-border text-sm text-muted-foreground">
