@@ -32,7 +32,7 @@ interface Props {
 
 const BASE = "https://altersvorsorge-rechner.com";
 
-const ContentPageLayout = ({ title, breadcrumbLabel, path, description, children, relatedLinks }: Props) => {
+const ContentPageLayout = ({ title, breadcrumbLabel, path, description, ogTitle, ogDescription, children, relatedLinks }: Props) => {
   const url = `${BASE}${path}`;
 
   const jsonLd = [
