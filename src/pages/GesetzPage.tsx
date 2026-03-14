@@ -5,6 +5,8 @@ const GesetzPage = () => (
   <ContentPageLayout
     title="Gesetzentwurf zum Altersvorsorgedepot erklärt"
     breadcrumbLabel="Gesetzentwurf"
+    path="/altersvorsorgedepot-gesetz"
+    description="Aktueller Stand des Gesetzentwurfs zum Altersvorsorgedepot: Zeitplan, Reform und politische Diskussion."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },

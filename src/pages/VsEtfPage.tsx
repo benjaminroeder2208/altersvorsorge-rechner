@@ -5,6 +5,8 @@ const VsEtfPage = () => (
   <ContentPageLayout
     title="Altersvorsorgedepot vs ETF Sparplan"
     breadcrumbLabel="ETF Vergleich"
+    path="/altersvorsorgedepot-vs-etf-sparplan"
+    description="Altersvorsorgedepot vs ETF-Sparplan: Rendite, Flexibilität und steuerliche Unterschiede im Vergleich."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
