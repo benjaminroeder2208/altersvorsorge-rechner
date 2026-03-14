@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 const HeroSection = () => (
-  <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
     <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 
     <div className="container relative z-10 text-center max-w-4xl mx-auto px-6 py-32">
@@ -12,9 +12,9 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        Die nächste Generation
+        Das Altersvorsorgedepot
         <br />
-        der privaten Altersvorsorge
+        einfach erklärt
       </motion.h1>
 
       <motion.p
@@ -23,11 +23,9 @@ const HeroSection = () => (
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        Mit der geplanten Reform der privaten Altersvorsorge könnte ein neues Modell entstehen:
-        das Altersvorsorgedepot.
-        <br className="hidden md:block" />
-        <br className="hidden md:block" />
-        Ein staatlich gefördertes Depot für langfristigen Vermögensaufbau.
+        Die Bundesregierung plant eine grundlegende Reform der privaten Altersvorsorge.
+        Ein zentraler Baustein: das Altersvorsorgedepot — ein staatlich gefördertes Depot
+        für langfristigen Vermögensaufbau mit Fonds und ETFs.
       </motion.p>
 
       <motion.div
@@ -37,16 +35,16 @@ const HeroSection = () => (
         transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <a
-          href="#modell"
+          href="#was-ist"
           className="inline-flex items-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base transition-all duration-200 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/20"
         >
-          So funktioniert das Modell
+          Was ist das Altersvorsorgedepot?
         </a>
         <a
-          href="#realitaet"
+          href="#rechner"
           className="inline-flex items-center gap-2 px-6 py-4 text-muted-foreground font-medium text-base transition-colors hover:text-foreground"
         >
-          Mehr erfahren
+          Zum Rechner
           <ArrowDown className="w-4 h-4" />
         </a>
       </motion.div>
@@ -57,7 +55,7 @@ const HeroSection = () => (
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.6 }}
       >
-        Basierend auf dem aktuellen Gesetzentwurf zur Reform der steuerlich geförderten privaten Altersvorsorge.
+        Stand: aktueller Gesetzentwurf zur Reform der steuerlich geförderten privaten Altersvorsorge. Änderungen im Gesetzgebungsverfahren sind möglich.
       </motion.p>
     </div>
   </section>
