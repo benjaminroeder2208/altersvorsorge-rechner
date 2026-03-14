@@ -20,13 +20,11 @@ const Navbar = () => {
       }`}
     >
       <div className="container max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <span className="font-semibold text-sm tracking-tight">altersvorsorge-rechner.com</span>
-        <a
-          href="#waitlist"
-          className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-        >
-          Frühzugang
-        </a>
+        <span className="font-semibold text-sm tracking-tight">altersvorsorge-depot.com</span>
+        <div className="flex items-center gap-6">
+          <a href="#modell" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">Das Modell</a>
+          <a href="#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block">FAQ</a>
+        </div>
       </div>
     </motion.nav>
   );
