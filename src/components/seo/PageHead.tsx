@@ -6,6 +6,7 @@ interface PageHeadProps {
   path: string;
   ogTitle?: string;
   ogDescription?: string;
+  robots?: string;
   jsonLd?: Record<string, unknown>[];
 }
 
