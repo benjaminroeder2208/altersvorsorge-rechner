@@ -15,6 +15,14 @@ import {
 
 const articles = [
   {
+    slug: "/blog/rentenlucke-mit-30-40-50",
+    title: "Rentenlücke mit 30, 40 oder 50: Was du jetzt noch tun kannst",
+    description:
+      "Zu spät für die Altersvorsorge? Drei konkrete Szenarien mit echten Zahlen zeigen, was mit 30, 40 und 50 Jahren noch möglich ist — und wie das Altersvorsorgedepot ab 2027 hilft.",
+    readingTime: "8 Min.",
+    tag: "Ratgeber",
+  },
+  {
     slug: "/blog/altersvorsorgedepot-2027",
     title: "Altersvorsorgedepot 2027: Alles, was du wissen musst",
     description:
