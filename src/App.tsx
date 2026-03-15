@@ -16,6 +16,7 @@ import DatenschutzPage from "./pages/DatenschutzPage";
 import NotFound from "./pages/NotFound";
 import BlogAltersvorsorgedepot2027 from "./pages/BlogAltersvorsorgedepot2027";
 import BlogVsEtf from "./pages/BlogVsEtf";
+import BlogRentenluecke from "./pages/BlogRentenluecke";
 import BlogIndexPage from "./pages/BlogIndexPage";
 import ScrollToHash from "./components/ScrollToHash";
 
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/altersvorsorgedepot-2027" element={<BlogAltersvorsorgedepot2027 />} />
             <Route path="/blog/altersvorsorgedepot-vs-etf-sparplan" element={<BlogVsEtf />} />
+            <Route path="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" element={<BlogRentenluecke />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
