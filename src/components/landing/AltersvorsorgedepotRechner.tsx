@@ -517,6 +517,9 @@ const AltersvorsorgedepotRechner = () => {
                   </p>
                 </div>
 
+                {/* Lead capture module */}
+                <LeadCaptureCard inputs={inputs} result={r} />
+
                 {/* Return assumption selector */}
                 <div className="mb-12">
                   <p className="text-sm font-medium text-muted-foreground mb-2">Renditeannahme</p>
