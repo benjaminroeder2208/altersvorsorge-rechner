@@ -26,7 +26,7 @@ const sections = [
   {
     title: "Informationen",
     links: [
-      { to: "#faq", label: "FAQ", isAnchor: true },
+      { to: "/#faq", label: "FAQ", isAnchor: true },
       { to: "/impressum", label: "Impressum" },
       { to: "/datenschutz", label: "Datenschutz" },
     ],
