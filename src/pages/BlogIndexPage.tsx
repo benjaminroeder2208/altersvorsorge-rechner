@@ -14,6 +14,14 @@ const articles = [
     readingTime: "8 Min.",
     tag: "Ratgeber",
   },
+  {
+    slug: "/blog/altersvorsorgedepot-vs-etf-sparplan",
+    title: "Altersvorsorgedepot oder ETF-Sparplan? So triffst du die richtige Entscheidung",
+    description:
+      "Beide investieren in ETFs — aber nur einer wird staatlich gefördert. Wir zeigen den konkreten Unterschied in Zahlen und helfen dir, die richtige Wahl zu treffen.",
+    readingTime: "7 Min.",
+    tag: "Vergleich",
+  },
 ];
 
 const jsonLd = [
