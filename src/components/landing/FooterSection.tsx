@@ -29,8 +29,6 @@ const sections = [
     links: [
       { to: "/blog", label: "Blog" },
       { to: "/#faq", label: "FAQ", isAnchor: true },
-      { to: "/impressum", label: "Impressum" },
-      { to: "/datenschutz", label: "Datenschutz" },
     ],
   },
 ];
