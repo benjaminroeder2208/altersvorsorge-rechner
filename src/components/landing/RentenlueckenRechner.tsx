@@ -106,11 +106,11 @@ const RentenlueckenRechner = () => {
               if (netto > v - 100) setNetto(Math.max(v - 100, 1000));
             }}
             min={1500}
-            max={10000}
+            max={15000}
             step={100}
           />
           <div className="flex justify-between text-xs text-muted-foreground mt-1">
-            <span>1.500 €</span><span>10.000 €</span>
+            <span>1.500 €</span><span>15.000 €</span>
           </div>
           <p className="text-xs text-muted-foreground mt-2">für Rentenberechnung</p>
         </div>
