@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound";
 import BlogAltersvorsorgedepot2027 from "./pages/BlogAltersvorsorgedepot2027";
 import BlogVsEtf from "./pages/BlogVsEtf";
 import BlogRentenluecke from "./pages/BlogRentenluecke";
+import BlogRentenlueckeMit30_40_50 from "./pages/BlogRentenlueckeMit30_40_50";
 import BlogIndexPage from "./pages/BlogIndexPage";
 import RentenlueckenRechnerPage from "./pages/RentenlueckenRechnerPage";
 import ScrollToHash from "./components/ScrollToHash";
