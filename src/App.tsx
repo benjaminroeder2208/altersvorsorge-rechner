@@ -43,6 +43,7 @@ const App = () => (
             <Route path="/datenschutz" element={<DatenschutzPage />} />
             <Route path="/altersvorsorgedepot-rechner" element={<Navigate to="/" replace />} />
             <Route path="/altersvorsorgedepot-gesetzesentwurf" element={<Navigate to="/altersvorsorgedepot-gesetz" replace />} />
+            <Route path="/rentenluecken-rechner" element={<RentenlueckenRechnerPage />} />
             <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/altersvorsorgedepot-2027" element={<BlogAltersvorsorgedepot2027 />} />
             <Route path="/blog/altersvorsorgedepot-vs-etf-sparplan" element={<BlogVsEtf />} />
