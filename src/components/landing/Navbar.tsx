@@ -58,7 +58,7 @@ const Navbar = () => {
             </Link>
           ))}
           <a
-            href={location.pathname === "/" ? "#faq" : "/altersvorsorgedepot-faq"}
+            href={location.pathname === "/" ? "#faq" : "/#faq"}
             className="px-3 py-1.5 rounded-full text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             FAQ
