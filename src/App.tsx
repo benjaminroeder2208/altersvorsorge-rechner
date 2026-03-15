@@ -14,6 +14,7 @@ import VsEtfPage from "./pages/VsEtfPage";
 import ImpressumPage from "./pages/ImpressumPage";
 import DatenschutzPage from "./pages/DatenschutzPage";
 import NotFound from "./pages/NotFound";
+import ScrollToHash from "./components/ScrollToHash";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+          <BrowserRouter>
+            <ScrollToHash />
           <Routes>
             <Route path="/" element={<RechnerPage />} />
             <Route path="/altersvorsorgedepot" element={<HubPage />} />
