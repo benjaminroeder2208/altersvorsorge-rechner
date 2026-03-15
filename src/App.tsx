@@ -15,6 +15,7 @@ import ImpressumPage from "./pages/ImpressumPage";
 import DatenschutzPage from "./pages/DatenschutzPage";
 import NotFound from "./pages/NotFound";
 import BlogAltersvorsorgedepot2027 from "./pages/BlogAltersvorsorgedepot2027";
+import BlogIndexPage from "./pages/BlogIndexPage";
 import ScrollToHash from "./components/ScrollToHash";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/datenschutz" element={<DatenschutzPage />} />
             <Route path="/altersvorsorgedepot-rechner" element={<Navigate to="/" replace />} />
             <Route path="/altersvorsorgedepot-gesetzesentwurf" element={<Navigate to="/altersvorsorgedepot-gesetz" replace />} />
+            <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/altersvorsorgedepot-2027" element={<BlogAltersvorsorgedepot2027 />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
