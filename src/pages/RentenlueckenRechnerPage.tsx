@@ -82,10 +82,50 @@ const RentenlueckenRechnerPage = () => (
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-16 p-5 bg-secondary rounded-xl">
-          <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-            Vereinfachte Berechnung auf Basis des aktuellen Gesetzentwurfs zur Reform der privaten Altersvorsorge. Alle Berechnungen basieren auf vereinfachten Annahmen (Rendite 7 % p.a., pauschale Abzüge). Tatsächliche Renten- und Steuerwerte können erheblich abweichen. Diese Seite stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-          </p>
+        <div className="mt-16 p-5 bg-secondary rounded-xl space-y-4">
+          <p className="text-sm font-semibold text-foreground">Hinweise zur Berechnung</p>
+
+          <div className="space-y-3 text-[0.8rem] text-muted-foreground/70 italic leading-relaxed">
+            <div>
+              <p className="not-italic font-medium text-muted-foreground mb-1">Grundlage und Aktualität</p>
+              <p>Diese Berechnung basiert auf dem Gesetzentwurf zur Reform der steuerlich geförderten privaten Altersvorsorge in der zum Zeitpunkt der Erstellung verfügbaren Fassung. Das Altersvorsorgedepot ist noch nicht in Kraft — der geplante Start ist der 1. Januar 2027. Änderungen im Gesetzgebungsverfahren können dazu führen, dass einzelne Förderbedingungen, Zulagenhöhen oder steuerliche Regelungen im finalen Gesetz abweichen.</p>
+            </div>
+
+            <div>
+              <p className="not-italic font-medium text-muted-foreground mb-1">Rentenberechnung</p>
+              <p>Die gesetzliche Rente wird vereinfacht auf Basis von Entgeltpunkten geschätzt. Als Bezugsgröße dient der Durchschnittslohn 2024 (45.358 € brutto/Jahr). Der aktuelle Rentenpunktwert beträgt 39,32 € pro Monat. Die Anzahl der angerechneten Einzahljahre wird pauschal geschätzt: verbleibende Jahre bis zum Rentenalter 67 zuzüglich 10 Jahren, maximal 45 Jahre. Tatsächliche Rentenhöhen hängen von der individuellen Erwerbsbiografie, Lücken im Versicherungsverlauf (z.&nbsp;B. durch Elternzeit, Studium, Selbstständigkeit oder Arbeitslosigkeit), freiwilligen Zusatzbeiträgen und künftigen Rentenanpassungen ab. Auf die Bruttorente werden pauschal 13 % für Kranken- und Pflegeversicherungsbeiträge abgezogen — der tatsächliche Abzug variiert je nach Krankenkasse und individuellem Beitragssatz.</p>
+            </div>
+
+            <div>
+              <p className="not-italic font-medium text-muted-foreground mb-1">Einkommensbasis und Bedarfsberechnung</p>
+              <p>Der monatliche Bedarf im Alter wird auf Basis des vom Nutzer eingegebenen Nettogehalts berechnet. Das eingegebene Bruttogehalt dient ausschließlich der Rentenberechnung. Die tatsächliche Steuer- und Abgabenlast hängt von Steuerklasse, Familienstand, Kinderfreibeträgen, weiteren Einkünften und dem jeweiligen Grenzsteuersatz ab und kann erheblich vom eingegebenen Wert abweichen.</p>
+            </div>
+
+            <div>
+              <p className="not-italic font-medium text-muted-foreground mb-1">Kapitalbedarf und Entnahmephase</p>
+              <p>Der benötigte Kapitalbedarf wird als gleichmäßige Entnahme der monatlichen Rentenlücke über 18 Jahre (Alter 67 bis 85) berechnet. Eine Verzinsung des Kapitals während der Entnahmephase wird nicht berücksichtigt — die tatsächlich benötigte Kapitalsumme wäre bei laufender Verzinsung geringer. Auszahlungsmodelle des Altersvorsorgedepots (z.&nbsp;B. Teilverrentung, lebenslange Rente, flexible Entnahme) können die tatsächlichen monatlichen Beträge erheblich beeinflussen. Eine Lebenserwartung über 85 Jahre ist nicht berücksichtigt.</p>
+            </div>
+
+            <div>
+              <p className="not-italic font-medium text-muted-foreground mb-1">Sparrate und Renditeannahme</p>
+              <p>Die monatlich notwendige Sparrate wird mit der Rentenbarwertformel berechnet. Als Renditeannahme werden 7 % p.a. zugrunde gelegt — ein historisch plausibler Richtwert für breit gestreute Aktienportfolios, jedoch keine Prognose und keine Garantie. Die tatsächliche Wertentwicklung hängt von der gewählten Anlageform, der Marktentwicklung, den anfallenden Kosten und dem konkreten Investitionszeitpunkt ab. Kapitalanlagen bergen Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals. Frühere Wertentwicklungen sind kein verlässlicher Indikator für künftige Ergebnisse.</p>
+            </div>
+
+            <div>
+              <p className="not-italic font-medium text-muted-foreground mb-1">Förderberechnung</p>
+              <p>Der Vorteil durch das Altersvorsorgedepot wird vereinfacht mit einem pauschalen Förderbonus von 35 % auf den Eigenbeitrag dargestellt. Die tatsächliche Förderstruktur ist gestaffelt: 35 % Grundzulage auf Eigenbeiträge bis 1.200 € pro Jahr, 20 % auf Beiträge zwischen 1.200 € und 1.800 € pro Jahr. Hinzu kommt eine Kinderzulage von bis zu 300 € pro Kind und Jahr sowie ein Steuervorteil durch den Sonderausgabenabzug, dessen Höhe vom individuellen Grenzsteuersatz abhängt. Der tatsächliche Fördervorteil kann je nach persönlicher Situation höher oder niedriger ausfallen als dargestellt.</p>
+            </div>
+
+            <div>
+              <p className="not-italic font-medium text-muted-foreground mb-1">Inflation</p>
+              <p>Inflation ist in dieser Berechnung nicht berücksichtigt. Die dargestellten Beträge sind nominale Werte. Die reale Kaufkraft des angesparten Kapitals und der monatlichen Auszahlung wird durch Inflation gemindert.</p>
+            </div>
+
+            <div>
+              <p className="not-italic font-medium text-muted-foreground mb-1">Kein Ersatz für individuelle Beratung</p>
+              <p>Diese Simulation dient ausschließlich der ersten Orientierung und stellt keine Anlageberatung, Steuerberatung oder Rechtsberatung dar. Für eine individuelle Einschätzung empfehlen wir die Beratung durch einen zugelassenen Finanz- oder Steuerberater sowie die persönliche Renteninformation der Deutschen Rentenversicherung.</p>
+            </div>
+          </div>
         </div>
       </div>
     </main>
