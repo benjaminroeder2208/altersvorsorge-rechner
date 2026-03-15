@@ -96,7 +96,7 @@ const Navbar = () => {
             </Link>
           ))}
           <a
-            href="#faq"
+            href="/#faq"
             className="block px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             FAQ
