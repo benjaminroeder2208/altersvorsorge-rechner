@@ -71,6 +71,10 @@ const FooterSection = () => (
             altersvorsorge-rechner.com
           </Link>
         </div>
+        <div className="flex items-center gap-4">
+          <Link to="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
+          <Link to="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
+        </div>
         <p>© {new Date().getFullYear()} altersvorsorge-rechner.com</p>
       </div>
 
