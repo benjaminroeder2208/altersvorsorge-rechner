@@ -11,7 +11,12 @@ const fmt = (n: number) =>
 const RentenlueckenRechner = () => {
   const [alter, setAlter] = useState(35);
   const [brutto, setBrutto] = useState(3500);
+  const [netto, setNetto] = useState(2300);
   const [bedarf, setBedarf] = useState(75);
+
+  // Clamp netto when brutto changes
+  const nettoMax = brutto - 100;
+  const clampedNetto = Math.min(netto, nettoMax);
 
   const result = useMemo(() => {
     const durchschnittslohn = 45358;
@@ -20,8 +25,7 @@ const RentenlueckenRechner = () => {
     const entgeltpunkte = ((brutto * 12) / durchschnittslohn) * jahreEinzahlung;
     const renteMonatBrutto = entgeltpunkte * rentenpunktWert;
     const renteMonatNetto = renteMonatBrutto * 0.87;
-    const nettoHeute = brutto * 0.72;
-    const bedarfMonat = nettoHeute * (bedarf / 100);
+    const bedarfMonat = clampedNetto * (bedarf / 100);
     const luecke = Math.max(bedarfMonat - renteMonatNetto, 0);
     const kapitalbedarf = luecke * 12 * 18;
     const r = 0.07 / 12;
@@ -30,6 +34,7 @@ const RentenlueckenRechner = () => {
     const sparMitFoerderung = n > 0 ? (kapitalbedarf * r) / ((Math.pow(1 + r, n) - 1) * 1.35) : 0;
     const deckung = bedarfMonat > 0 ? (renteMonatNetto / bedarfMonat) * 100 : 100;
     const jahre = 67 - alter;
+    const nettoquote = brutto > 0 ? Math.round((clampedNetto / brutto) * 100) : 0;
 
     return {
       renteMonatNetto,
@@ -40,8 +45,9 @@ const RentenlueckenRechner = () => {
       sparMitFoerderung,
       deckung: Math.min(deckung, 100),
       jahre,
+      nettoquote,
     };
-  }, [alter, brutto, bedarf]);
+  }, [alter, brutto, clampedNetto, bedarf]);
 
   const deckungColor =
     result.deckung >= 75
@@ -61,10 +67,10 @@ const RentenlueckenRechner = () => {
     <div className="space-y-10">
       {/* Inputs */}
       <div className="space-y-8">
-        {/* Alter */}
+        {/* GRUPPE 1 — Alter */}
         <div>
           <div className="flex justify-between items-baseline mb-3">
-            <label className="text-sm font-medium text-foreground">Alter</label>
+            <label className="text-sm font-medium text-foreground">Dein aktuelles Alter</label>
             <span className="text-2xl font-bold text-foreground">{alter} Jahre</span>
           </div>
           <Slider
@@ -77,17 +83,28 @@ const RentenlueckenRechner = () => {
           <div className="flex justify-between text-xs text-muted-foreground mt-1">
             <span>20</span><span>60</span>
           </div>
+          <p className="text-xs text-muted-foreground mt-2">{result.jahre} Jahre bis zur Rente</p>
         </div>
 
-        {/* Bruttogehalt */}
+        {/* Separator — Einkommen */}
+        <div className="flex items-center gap-3">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Einkommen</span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        {/* GRUPPE 2 — Bruttogehalt */}
         <div>
           <div className="flex justify-between items-baseline mb-3">
-            <label className="text-sm font-medium text-foreground">Bruttogehalt</label>
+            <label className="text-sm font-medium text-foreground">Bruttogehalt pro Monat</label>
             <span className="text-2xl font-bold text-foreground">{fmt(brutto)} €</span>
           </div>
           <Slider
             value={[brutto]}
-            onValueChange={([v]) => setBrutto(v)}
+            onValueChange={([v]) => {
+              setBrutto(v);
+              if (netto > v - 100) setNetto(Math.max(v - 100, 1000));
+            }}
             min={1500}
             max={10000}
             step={100}
@@ -95,9 +112,41 @@ const RentenlueckenRechner = () => {
           <div className="flex justify-between text-xs text-muted-foreground mt-1">
             <span>1.500 €</span><span>10.000 €</span>
           </div>
+          <p className="text-xs text-muted-foreground mt-2">für Rentenberechnung</p>
         </div>
 
-        {/* Bedarf */}
+        {/* Nettogehalt */}
+        <div>
+          <div className="flex justify-between items-baseline mb-3">
+            <label className="text-sm font-medium text-foreground">Nettogehalt pro Monat</label>
+            <span className="text-2xl font-bold text-foreground">{fmt(clampedNetto)} €</span>
+          </div>
+          <Slider
+            value={[clampedNetto]}
+            onValueChange={([v]) => setNetto(v)}
+            min={1000}
+            max={nettoMax}
+            step={100}
+          />
+          <div className="flex justify-between text-xs text-muted-foreground mt-1">
+            <span>1.000 €</span><span>{fmt(nettoMax)} €</span>
+          </div>
+          <p className="text-xs text-muted-foreground mt-2">tatsächlich auf dem Konto</p>
+          <div className="mt-3 p-3 rounded-lg border border-primary/20 bg-primary/5">
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              💡 Du findest dein Nettoeinkommen auf deiner Gehaltsabrechnung unter „Auszahlungsbetrag".
+            </p>
+          </div>
+        </div>
+
+        {/* Separator — Bedarf im Alter */}
+        <div className="flex items-center gap-3">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Bedarf im Alter</span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        {/* GRUPPE 3 — Bedarf */}
         <div>
           <div className="flex justify-between items-baseline mb-3">
             <label className="text-sm font-medium text-foreground">Gewünschter Rentenbedarf</label>
@@ -113,11 +162,12 @@ const RentenlueckenRechner = () => {
           <div className="flex justify-between text-xs text-muted-foreground mt-1">
             <span>50 % des Nettos</span><span>100 %</span>
           </div>
+          <p className="text-xs text-muted-foreground mt-2">= {fmt(result.bedarfMonat)} €/Monat</p>
         </div>
       </div>
 
       {/* Result cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <Card className="border-border">
           <CardContent className="p-4 text-center">
             <p className="text-xs text-muted-foreground mb-1">Geschätzte gesetzliche Rente</p>
@@ -129,7 +179,7 @@ const RentenlueckenRechner = () => {
           <CardContent className="p-4 text-center">
             <p className="text-xs text-muted-foreground mb-1">Dein monatlicher Bedarf</p>
             <p className="text-2xl font-bold text-foreground">{fmt(result.bedarfMonat)} €</p>
-            <p className="text-xs text-muted-foreground">{bedarf} % des heutigen Nettos</p>
+            <p className="text-xs text-muted-foreground">{bedarf} % des Nettos</p>
           </CardContent>
         </Card>
         <Card className={`border-2 ${result.luecke > 0 ? "border-red-300 bg-red-50/50" : "border-green-300 bg-green-50/50"}`}>
@@ -139,6 +189,13 @@ const RentenlueckenRechner = () => {
               {result.luecke > 0 ? `${fmt(result.luecke)} €` : "0 €"}
             </p>
             <p className="text-xs text-muted-foreground">pro Monat</p>
+          </CardContent>
+        </Card>
+        <Card className="border-border">
+          <CardContent className="p-4 text-center">
+            <p className="text-xs text-muted-foreground mb-1">Deine Nettoquote</p>
+            <p className="text-2xl font-bold text-foreground">{result.nettoquote} %</p>
+            <p className="text-xs text-muted-foreground">Netto vom Brutto — {fmt(brutto - clampedNetto)} €/Monat Abzüge</p>
           </CardContent>
         </Card>
       </div>
