@@ -5,6 +5,7 @@ const sections = [
     title: "Rechner",
     links: [
       { to: "/", label: "Altersvorsorgedepot Rechner" },
+      { to: "/rentenluecken-rechner", label: "Rentenlückenrechner" },
     ],
   },
   {
