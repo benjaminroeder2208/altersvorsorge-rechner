@@ -75,7 +75,6 @@ function calculate(inputs: Inputs) {
 
   const berufseinsteiger = currentAge < 25;
   const annualSubsidy = grundzulage + totalKinderzulage;
-  const annualFunding = annualSubsidy + taxBenefit;
 
   // Growth simulation
   const chartData: ChartDataPoint[] = [];
@@ -120,7 +119,6 @@ function calculate(inputs: Inputs) {
     grundzulage,
     totalKinderzulage,
     taxBenefit,
-    annualFunding,
     totalContributions,
     totalSubsidies,
     totalTaxBenefit,
@@ -165,6 +163,12 @@ const AnimatedNumber = ({ value, suffix = "" }: { value: number; suffix?: string
   return <>{fmt(display)}{suffix}</>;
 };
 
+/* ─────────────── helper text component ─────────────── */
+
+const InfoText = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
+  <p className={`text-xs text-muted-foreground/70 leading-relaxed ${className}`}>{children}</p>
+);
+
 /* ─────────────── chart tooltip ─────────────── */
 
 const StackedTooltip = ({ active, payload, label }: any) => {
@@ -173,7 +177,7 @@ const StackedTooltip = ({ active, payload, label }: any) => {
   if (!point) return null;
 
   return (
-    <div className="bg-background border border-border rounded-xl p-4 shadow-lg min-w-[180px]">
+    <div className="bg-background border border-border rounded-xl p-4 shadow-lg min-w-[200px]">
       <p className="text-xs text-muted-foreground mb-3 font-medium">Alter {label}</p>
       <div className="space-y-1.5">
         {[
@@ -190,10 +194,13 @@ const StackedTooltip = ({ active, payload, label }: any) => {
           </div>
         ))}
         <div className="pt-2 mt-2 border-t border-border flex items-center justify-between">
-          <span className="text-xs font-semibold">Gesamt</span>
+          <span className="text-xs font-semibold">Gesamtvermögen</span>
           <span className="text-sm font-bold tabular-nums">{fmtEur(point.total)}</span>
         </div>
       </div>
+      <p className="text-[10px] text-muted-foreground/50 mt-3 leading-tight">
+        Vereinfachte Simulation auf Basis Ihrer Eingaben.
+      </p>
     </div>
   );
 };
@@ -254,431 +261,522 @@ const AltersvorsorgedepotRechner = () => {
   };
 
   return (
-    <section id="rechner" className="section-padding">
-      <div className="container max-w-3xl mx-auto px-6">
+    <>
+      <section id="rechner" className="section-padding">
+        <div className="container max-w-3xl mx-auto px-6">
 
-        {/* Step indicator */}
-        <div className="flex items-center justify-center gap-2 mb-16">
-          {[1, 2, 3].map((s) => (
-            <div
-              key={s}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                s === step ? "w-10 bg-primary" : s < step ? "w-6 bg-primary/40" : "w-6 bg-border"
-              }`}
-            />
-          ))}
-        </div>
+          {/* Step indicator */}
+          <div className="flex items-center justify-center gap-2 mb-16">
+            {[1, 2, 3].map((s) => (
+              <div
+                key={s}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  s === step ? "w-10 bg-primary" : s < step ? "w-6 bg-primary/40" : "w-6 bg-border"
+                }`}
+              />
+            ))}
+          </div>
 
-        <AnimatePresence mode="wait">
-          {/* ── STEP 1: Contribution ── */}
-          {step === 1 && (
-            <motion.div
-              key="step1"
-              variants={stepVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.4 }}
-              className="text-center"
-            >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
-                Wie viel möchten Sie monatlich
-                <br className="hidden md:block" />
-                für Ihre Altersvorsorge investieren?
-              </h2>
-              <p className="text-muted-foreground text-lg mb-16">
-                Der Staat könnte Ihre Einzahlung zusätzlich fördern.
-              </p>
+          <AnimatePresence mode="wait">
+            {/* ── STEP 1: Contribution ── */}
+            {step === 1 && (
+              <motion.div
+                key="step1"
+                variants={stepVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.4 }}
+                className="text-center"
+              >
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
+                  Wie viel möchten Sie monatlich
+                  <br className="hidden md:block" />
+                  {" "}für Ihre Altersvorsorge investieren?
+                </h2>
+                <p className="text-muted-foreground text-lg mb-16 max-w-xl mx-auto">
+                  Je höher Ihr monatlicher Beitrag, desto stärker kann der langfristige Vermögensaufbau ausfallen.
+                </p>
 
-              {/* Large value display */}
-              <p className="text-6xl md:text-8xl font-bold tracking-tight mb-10" style={{ letterSpacing: "-0.03em" }}>
-                <AnimatedNumber value={inputs.monthlyContribution} suffix=" €" />
-              </p>
+                {/* Large value display */}
+                <p className="text-6xl md:text-8xl font-bold tracking-tight mb-10" style={{ letterSpacing: "-0.03em" }}>
+                  <AnimatedNumber value={inputs.monthlyContribution} suffix=" €" />
+                </p>
 
-              {/* Slider */}
-              <div className="max-w-lg mx-auto mb-4">
-                <input
-                  type="range"
-                  min={10} max={600} step={10}
-                  value={inputs.monthlyContribution}
-                  onChange={(e) => set("monthlyContribution", Number(e.target.value))}
-                  className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer accent-primary
-                    [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6
-                    [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary
-                    [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer"
-                />
-                <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                  <span>10 €</span>
-                  <span>600 €</span>
+                {/* Slider */}
+                <div className="max-w-lg mx-auto mb-4">
+                  <input
+                    type="range"
+                    min={10} max={600} step={10}
+                    value={inputs.monthlyContribution}
+                    onChange={(e) => set("monthlyContribution", Number(e.target.value))}
+                    className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer accent-primary
+                      [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6
+                      [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary
+                      [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer"
+                  />
+                  <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                    <span>10 €</span>
+                    <span>600 €</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Annual contribution */}
-              <p className="text-sm text-muted-foreground mt-6">
-                Jährlicher Eigenbeitrag: <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution * 12)}</span>
-              </p>
-
-              <button
-                onClick={() => setStep(2)}
-                className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
-              >
-                Weiter
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </motion.div>
-          )}
-
-          {/* ── STEP 2: Income ── */}
-          {step === 2 && (
-            <motion.div
-              key="step2"
-              variants={stepVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.4 }}
-            >
-              <button
-                onClick={() => setStep(1)}
-                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Zurück
-              </button>
-
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
-                Wie hoch ist Ihr Bruttojahreseinkommen?
-              </h2>
-              <p className="text-muted-foreground text-lg mb-12">
-                Ihr Einkommen beeinflusst den geschätzten Steuervorteil.
-              </p>
-
-              <div className="grid grid-cols-2 gap-3 max-w-xl">
-                {INCOME_BANDS.map((band, i) => (
-                  <button
-                    key={i}
-                    onClick={() => set("incomeBand", i)}
-                    className={`rounded-2xl p-5 text-left transition-all border ${
-                      inputs.incomeBand === i
-                        ? "border-primary bg-primary/5 ring-1 ring-primary/20"
-                        : "border-border bg-background hover:bg-secondary"
-                    }`}
-                  >
-                    <span className={`text-sm font-semibold ${inputs.incomeBand === i ? "text-primary" : "text-foreground"}`}>
-                      {band.label}
-                    </span>
-                  </button>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setStep(3)}
-                className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
-              >
-                Weiter
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </motion.div>
-          )}
-
-          {/* ── STEP 3: Personal data ── */}
-          {step === 3 && (
-            <motion.div
-              key="step3"
-              variants={stepVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.4 }}
-            >
-              <button
-                onClick={() => setStep(2)}
-                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Zurück
-              </button>
-
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
-                Ein paar Angaben zu Ihrer Situation
-              </h2>
-              <p className="text-muted-foreground text-lg mb-12">
-                Damit wir die staatliche Förderung berechnen können.
-              </p>
-
-              <div className="space-y-4 max-w-xl">
-                <StepperCard
-                  label="Geburtsjahr"
-                  value={inputs.birthYear}
-                  min={1955}
-                  max={CURRENT_YEAR - 18}
-                  onChange={(v) => set("birthYear", v)}
-                />
-                <StepperCard
-                  label="Kinder"
-                  value={inputs.children}
-                  min={0}
-                  max={6}
-                  onChange={(v) => set("children", v)}
-                />
-                <StepperCard
-                  label="Renteneintritt"
-                  value={inputs.retirementAge}
-                  min={65}
-                  max={70}
-                  onChange={(v) => set("retirementAge", v)}
-                />
-              </div>
-
-              <button
-                onClick={() => setStep(4)}
-                className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
-              >
-                Ergebnis anzeigen
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </motion.div>
-          )}
-
-          {/* ── STEP 4: Results ── */}
-          {step === 4 && (
-            <motion.div
-              key="step4"
-              variants={stepVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.5 }}
-            >
-              <button
-                onClick={() => setStep(3)}
-                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Angaben ändern
-              </button>
-
-              {/* Primary results */}
-              <div className="text-center mb-16">
-                <p className="text-sm font-medium text-primary uppercase tracking-widest mb-6">
-                  Kapital zum Rentenbeginn
+                {/* Annual contribution */}
+                <p className="text-sm text-muted-foreground mt-6">
+                  Jährlicher Eigenbeitrag: <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution * 12)}</span>
                 </p>
-                <p className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.03em" }}>
-                  <AnimatedNumber value={Math.round(r.capitalWithFunding)} suffix=" €" />
-                </p>
-                <p className="text-muted-foreground text-lg mb-8">
-                  bei {fmtEur(inputs.monthlyContribution)} monatlich über {r.yearsToRetirement} Jahre
+                <InfoText className="mt-2 max-w-sm mx-auto">
+                  Dieser Wert ergibt sich aus Ihrem monatlichen Beitrag hochgerechnet auf ein Jahr.
+                </InfoText>
+
+                <button
+                  onClick={() => setStep(2)}
+                  className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
+                >
+                  Weiter
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+            )}
+
+            {/* ── STEP 2: Income ── */}
+            {step === 2 && (
+              <motion.div
+                key="step2"
+                variants={stepVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.4 }}
+                className="text-center"
+              >
+                <button
+                  onClick={() => setStep(1)}
+                  className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Zurück
+                </button>
+
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
+                  Wie hoch ist Ihr Bruttojahreseinkommen?
+                </h2>
+                <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
+                  Das Einkommen beeinflusst in dieser Simulation die geschätzten steuerlichen Vorteile.
                 </p>
 
-                <div className="inline-block bg-secondary rounded-2xl px-8 py-5">
-                  <p className="text-3xl md:text-4xl font-bold tabular-nums">
-                    <AnimatedNumber value={Math.round(r.monthlyPayout)} suffix=" €" />
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">monatliche Auszahlung bis 85</p>
-                </div>
-              </div>
-
-              {/* Result interpretation */}
-              <div className="max-w-xl mx-auto mb-20 p-6 bg-secondary/50 rounded-2xl">
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Wenn Sie monatlich <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution)}</span> investieren,
-                  könnte Ihr Altersvorsorgedepot bis zum Rentenbeginn mit <span className="font-semibold text-foreground">{inputs.retirementAge}</span> auf
-                  etwa <span className="font-semibold text-foreground">{fmtEur(Math.round(r.capitalWithFunding))}</span> anwachsen.
-                  Das entspricht einer möglichen monatlichen Auszahlung von
-                  etwa <span className="font-semibold text-foreground">{fmtEur(Math.round(r.monthlyPayout))}</span> bis
-                  zum Alter von 85 Jahren.
-                </p>
-              </div>
-
-              {/* Return assumption selector */}
-              <div className="mb-8">
-                <p className="text-sm font-medium text-muted-foreground mb-3">Renditeannahme</p>
-                <div className="inline-flex bg-secondary rounded-full p-1">
-                  {RETURN_OPTIONS.map((opt) => (
+                <div className="grid grid-cols-2 gap-3 max-w-xl mx-auto">
+                  {INCOME_BANDS.map((band, i) => (
                     <button
-                      key={opt.value}
-                      onClick={() => set("returnRate", opt.value)}
-                      className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                        inputs.returnRate === opt.value
-                          ? "bg-primary text-primary-foreground shadow-sm"
-                          : "text-muted-foreground hover:text-foreground"
+                      key={i}
+                      onClick={() => set("incomeBand", i)}
+                      className={`rounded-2xl p-5 text-center transition-all border ${
+                        inputs.incomeBand === i
+                          ? "border-primary bg-primary/5 ring-1 ring-primary/20"
+                          : "border-border bg-background hover:bg-secondary"
                       }`}
                     >
-                      {opt.label}
+                      <span className={`text-sm font-semibold ${inputs.incomeBand === i ? "text-primary" : "text-foreground"}`}>
+                        {band.label}
+                      </span>
                     </button>
                   ))}
                 </div>
-              </div>
 
-              {/* Stacked area chart */}
-              <div className="mb-20">
-                <h3 className="text-xl font-bold mb-1">Kapitalentwicklung bis zum Rentenbeginn</h3>
-                <p className="text-sm text-muted-foreground mb-8">Aufschlüsselung nach Eigenbeiträgen, Zulagen und Kapitalerträgen</p>
+                <InfoText className="mt-6 max-w-sm mx-auto">
+                  Die steuerliche Wirkung wird vereinfacht dargestellt.
+                </InfoText>
 
-                <div className="h-[300px] md:h-[360px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={r.chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                      <defs>
-                        <linearGradient id="gradContributions" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="hsl(240, 1%, 44%)" stopOpacity={0.2} />
-                          <stop offset="100%" stopColor="hsl(240, 1%, 44%)" stopOpacity={0.03} />
-                        </linearGradient>
-                        <linearGradient id="gradSubsidies" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="hsl(216, 100%, 34%)" stopOpacity={0.25} />
-                          <stop offset="100%" stopColor="hsl(216, 100%, 34%)" stopOpacity={0.03} />
-                        </linearGradient>
-                        <linearGradient id="gradGains" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="hsl(174, 60%, 45%)" stopOpacity={0.3} />
-                          <stop offset="100%" stopColor="hsl(174, 60%, 45%)" stopOpacity={0.03} />
-                        </linearGradient>
-                      </defs>
-                      <XAxis
-                        dataKey="age"
-                        tick={{ fill: "hsl(240, 1%, 44%)", fontSize: 12 }}
-                        axisLine={false} tickLine={false}
-                        interval="preserveStartEnd"
-                      />
-                      <YAxis
-                        tick={{ fill: "hsl(240, 1%, 44%)", fontSize: 12 }}
-                        axisLine={false} tickLine={false}
-                        tickFormatter={(v) => v >= 1000 ? `${Math.round(v / 1000)}k` : fmt(v)}
-                        width={50}
-                      />
-                      <Tooltip content={<StackedTooltip />} />
-                      <Area
-                        type="monotone"
-                        dataKey="contributions"
-                        name="Eigenbeiträge"
-                        stackId="1"
-                        stroke="hsl(240, 1%, 44%)"
-                        fill="url(#gradContributions)"
-                        strokeWidth={0}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="subsidies"
-                        name="Zulagen"
-                        stackId="1"
-                        stroke="hsl(216, 100%, 34%)"
-                        fill="url(#gradSubsidies)"
-                        strokeWidth={0}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="gains"
-                        name="Kapitalerträge"
-                        stackId="1"
-                        stroke="hsl(174, 60%, 45%)"
-                        fill="url(#gradGains)"
-                        strokeWidth={2}
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
+                <button
+                  onClick={() => setStep(3)}
+                  className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
+                >
+                  Weiter
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+            )}
+
+            {/* ── STEP 3: Personal data ── */}
+            {step === 3 && (
+              <motion.div
+                key="step3"
+                variants={stepVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.4 }}
+                className="text-center"
+              >
+                <button
+                  onClick={() => setStep(2)}
+                  className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Zurück
+                </button>
+
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
+                  Ein paar Angaben zu Ihrer Situation
+                </h2>
+                <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
+                  Ihre Angaben bestimmen die Ansparphase bis zum Rentenbeginn.
+                </p>
+
+                <div className="space-y-4 max-w-xl mx-auto">
+                  <StepperCard
+                    label="Geburtsjahr"
+                    value={inputs.birthYear}
+                    min={1955}
+                    max={CURRENT_YEAR - 18}
+                    onChange={(v) => set("birthYear", v)}
+                  />
+                  <StepperCard
+                    label="Kinder"
+                    value={inputs.children}
+                    min={0}
+                    max={6}
+                    onChange={(v) => set("children", v)}
+                  />
+                  <StepperCard
+                    label="Renteneintritt"
+                    value={inputs.retirementAge}
+                    min={65}
+                    max={70}
+                    onChange={(v) => set("retirementAge", v)}
+                  />
                 </div>
 
-                {/* Chart legend */}
-                <div className="flex items-center justify-center gap-6 mt-4">
-                  {[
-                    { label: "Eigenbeiträge", color: "bg-muted-foreground/30" },
-                    { label: "Zulagen", color: "bg-primary/60" },
-                    { label: "Kapitalerträge", color: "bg-[hsl(174,60%,45%)]" },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-center gap-2">
-                      <div className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
-                      <span className="text-xs text-muted-foreground">{item.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                <InfoText className="mt-6 max-w-sm mx-auto">
+                  Kinder können in dieser Simulation zusätzliche Zulagen beeinflussen.
+                </InfoText>
 
-              {/* Contribution breakdown */}
-              <div className="mb-20">
-                <h3 className="text-xl font-bold mb-8 text-center">Zusammensetzung Ihres Kapitals</h3>
-                <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
-                  {[
-                    { label: "Eigenbeiträge", value: r.totalContributions, color: "text-foreground" },
-                    { label: "Staatliche Zulagen", value: r.totalSubsidies, color: "text-primary" },
-                    { label: "Steuervorteile", value: r.totalTaxBenefit, color: "text-primary" },
-                  ].map((item) => (
-                    <div key={item.label} className="bg-secondary rounded-2xl p-6 text-center">
-                      <p className="text-sm text-muted-foreground mb-3">{item.label}</p>
-                      <p className={`text-2xl font-bold tabular-nums ${item.color}`}>
-                        <AnimatedNumber value={Math.round(item.value)} suffix=" €" />
-                      </p>
-                    </div>
-                  ))}
+                <button
+                  onClick={() => setStep(4)}
+                  className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
+                >
+                  Ergebnis anzeigen
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+            )}
+
+            {/* ── STEP 4: Results ── */}
+            {step === 4 && (
+              <motion.div
+                key="step4"
+                variants={stepVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+                className="text-center"
+              >
+                <button
+                  onClick={() => setStep(3)}
+                  className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Angaben ändern
+                </button>
+
+                {/* Primary results */}
+                <div className="mb-12">
+                  <p className="text-sm font-medium text-primary uppercase tracking-widest mb-6">
+                    Kapital zum Rentenbeginn
+                  </p>
+                  <p className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.03em" }}>
+                    <AnimatedNumber value={Math.round(r.capitalWithFunding)} suffix=" €" />
+                  </p>
+                  <p className="text-muted-foreground text-lg mb-8">
+                    bei {fmtEur(inputs.monthlyContribution)} monatlich über {r.yearsToRetirement} Jahre
+                  </p>
+
+                  <div className="inline-block bg-secondary rounded-2xl px-8 py-5">
+                    <p className="text-3xl md:text-4xl font-bold tabular-nums">
+                      <AnimatedNumber value={Math.round(r.monthlyPayout)} suffix=" €" />
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-1">monatliche Auszahlung bis 85</p>
+                  </div>
                 </div>
 
-                {/* Funding advantage */}
-                <div className="mt-6 text-center">
-                  <p className="text-sm text-muted-foreground">Ihr Vorteil durch Förderung</p>
-                  <p className="text-3xl font-bold text-primary tabular-nums mt-1">
-                    +<AnimatedNumber value={Math.round(r.capitalWithFunding - r.capitalWithout)} suffix=" €" />
+                <InfoText className="max-w-md mx-auto mb-16">
+                  Die monatliche Auszahlung wird in dieser Simulation vereinfacht bis zum Alter von 85 Jahren dargestellt.
+                </InfoText>
+
+                {/* Result interpretation */}
+                <div className="max-w-xl mx-auto mb-20 p-6 bg-secondary/50 rounded-2xl">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Wenn Sie monatlich <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution)}</span> investieren,
+                    könnte Ihr Altersvorsorgedepot bis zum Rentenbeginn mit <span className="font-semibold text-foreground">{inputs.retirementAge}</span> auf
+                    etwa <span className="font-semibold text-foreground">{fmtEur(Math.round(r.capitalWithFunding))}</span> anwachsen.
+                    Das entspricht einer möglichen monatlichen Auszahlung von
+                    etwa <span className="font-semibold text-foreground">{fmtEur(Math.round(r.monthlyPayout))}</span> bis
+                    zum Alter von 85 Jahren.
                   </p>
                 </div>
-              </div>
 
-              {/* Comparison cards */}
-              <div className="mb-20">
-                <h3 className="text-xl font-bold mb-8 text-center">Vergleich</h3>
-                <div className="grid sm:grid-cols-3 gap-4">
-                  {[
-                    { title: "Altersvorsorgedepot", capital: r.capitalWithFunding, monthly: r.monthlyPayout, highlight: true },
-                    { title: "Normales Depot", capital: r.capitalWithout, monthly: r.monthlyPayoutWithout, highlight: false },
-                    { title: "Sparkonto (2 %)", capital: r.capitalSavings, monthly: r.monthlyPayoutSavings, highlight: false },
-                  ].map((c) => (
-                    <div
-                      key={c.title}
-                      className={`rounded-2xl p-6 transition-shadow ${
-                        c.highlight
-                          ? "bg-primary/5 ring-1 ring-primary/15"
-                          : "bg-secondary"
-                      }`}
-                    >
-                      <p className={`text-sm font-medium mb-5 ${c.highlight ? "text-primary" : "text-muted-foreground"}`}>
-                        {c.title}
-                      </p>
-                      <p className="text-2xl font-bold tabular-nums mb-0.5">
-                        <AnimatedNumber value={Math.round(c.capital)} suffix=" €" />
-                      </p>
-                      <p className="text-xs text-muted-foreground">Kapital zum Rentenbeginn</p>
-                      <div className="mt-4 pt-4 border-t border-border">
-                        <p className="text-lg font-semibold tabular-nums">
-                          <AnimatedNumber value={Math.round(c.monthly)} suffix=" € / Monat" />
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-0.5">Auszahlung bis 85</p>
-                      </div>
-                    </div>
-                  ))}
+                {/* Return assumption selector */}
+                <div className="mb-12">
+                  <p className="text-sm font-medium text-muted-foreground mb-2">Renditeannahme</p>
+                  <InfoText className="mb-4 max-w-sm mx-auto">
+                    Die Renditeannahme ist eine vereinfachte Szenario-Auswahl und keine Prognose.
+                  </InfoText>
+                  <div className="inline-flex bg-secondary rounded-full p-1">
+                    {RETURN_OPTIONS.map((opt) => (
+                      <button
+                        key={opt.value}
+                        onClick={() => set("returnRate", opt.value)}
+                        className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                          inputs.returnRate === opt.value
+                            ? "bg-primary text-primary-foreground shadow-sm"
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Disclaimer */}
-              <div className="text-center max-w-xl mx-auto space-y-2">
-                <p className="text-xs text-muted-foreground/60 leading-relaxed">
-                  Diese Simulation basiert auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge.
-                  Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt.
-                  Sie stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-                </p>
-                <p className="text-xs text-muted-foreground/60 leading-relaxed">
-                  Kapitalanlagen bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
-                </p>
-              </div>
+                {/* Stacked area chart */}
+                <div className="mb-20">
+                  <h3 className="text-xl font-bold mb-1">Kapitalentwicklung bis zum Rentenbeginn</h3>
+                  <InfoText className="mb-8 max-w-md mx-auto">
+                    Die Darstellung zeigt die simulierte Entwicklung bis zum Rentenbeginn auf Basis Ihrer Angaben.
+                  </InfoText>
 
-              {/* Restart */}
-              <div className="text-center mt-12">
-                <button
-                  onClick={() => setStep(1)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
-                >
-                  Neue Berechnung starten
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </section>
+                  <div className="h-[300px] md:h-[360px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <AreaChart data={r.chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                        <defs>
+                          <linearGradient id="gradContributions" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="hsl(240, 1%, 44%)" stopOpacity={0.2} />
+                            <stop offset="100%" stopColor="hsl(240, 1%, 44%)" stopOpacity={0.03} />
+                          </linearGradient>
+                          <linearGradient id="gradSubsidies" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="hsl(216, 100%, 34%)" stopOpacity={0.25} />
+                            <stop offset="100%" stopColor="hsl(216, 100%, 34%)" stopOpacity={0.03} />
+                          </linearGradient>
+                          <linearGradient id="gradGains" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="hsl(174, 60%, 45%)" stopOpacity={0.3} />
+                            <stop offset="100%" stopColor="hsl(174, 60%, 45%)" stopOpacity={0.03} />
+                          </linearGradient>
+                        </defs>
+                        <XAxis
+                          dataKey="age"
+                          tick={{ fill: "hsl(240, 1%, 44%)", fontSize: 12 }}
+                          axisLine={false} tickLine={false}
+                          interval="preserveStartEnd"
+                        />
+                        <YAxis
+                          tick={{ fill: "hsl(240, 1%, 44%)", fontSize: 12 }}
+                          axisLine={false} tickLine={false}
+                          tickFormatter={(v) => v >= 1000 ? `${Math.round(v / 1000)}k` : fmt(v)}
+                          width={50}
+                        />
+                        <Tooltip content={<StackedTooltip />} />
+                        <Area
+                          type="monotone"
+                          dataKey="contributions"
+                          name="Eigenbeiträge"
+                          stackId="1"
+                          stroke="hsl(240, 1%, 44%)"
+                          fill="url(#gradContributions)"
+                          strokeWidth={0}
+                        />
+                        <Area
+                          type="monotone"
+                          dataKey="subsidies"
+                          name="Zulagen"
+                          stackId="1"
+                          stroke="hsl(216, 100%, 34%)"
+                          fill="url(#gradSubsidies)"
+                          strokeWidth={0}
+                        />
+                        <Area
+                          type="monotone"
+                          dataKey="gains"
+                          name="Kapitalerträge"
+                          stackId="1"
+                          stroke="hsl(174, 60%, 45%)"
+                          fill="url(#gradGains)"
+                          strokeWidth={2}
+                        />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  {/* Chart legend */}
+                  <div className="flex items-center justify-center gap-6 mt-4">
+                    {[
+                      { label: "Eigenbeiträge", color: "bg-muted-foreground/30" },
+                      { label: "Zulagen", color: "bg-primary/60" },
+                      { label: "Kapitalerträge", color: "bg-[hsl(174,60%,45%)]" },
+                    ].map((item) => (
+                      <div key={item.label} className="flex items-center gap-2">
+                        <div className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
+                        <span className="text-xs text-muted-foreground">{item.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Contribution breakdown */}
+                <div className="mb-20">
+                  <h3 className="text-xl font-bold mb-8">Zusammensetzung Ihres Kapitals</h3>
+                  <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                    {[
+                      { label: "Eigenbeiträge", value: r.totalContributions, color: "text-foreground" },
+                      { label: "Staatliche Zulagen", value: r.totalSubsidies, color: "text-primary" },
+                      { label: "Steuervorteile", value: r.totalTaxBenefit, color: "text-primary" },
+                    ].map((item) => (
+                      <div key={item.label} className="bg-secondary rounded-2xl p-6">
+                        <p className="text-sm text-muted-foreground mb-3">{item.label}</p>
+                        <p className={`text-2xl font-bold tabular-nums ${item.color}`}>
+                          <AnimatedNumber value={Math.round(item.value)} suffix=" €" />
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <InfoText className="mt-6 max-w-md mx-auto">
+                    Die Zusammensetzung zeigt, wie sich Eigenbeiträge, staatliche Zulagen und Kapitalerträge ergänzen können.
+                  </InfoText>
+
+                  {/* Funding advantage */}
+                  <div className="mt-8">
+                    <p className="text-sm text-muted-foreground">Ihr Vorteil durch Förderung</p>
+                    <p className="text-3xl font-bold text-primary tabular-nums mt-1">
+                      +<AnimatedNumber value={Math.round(r.capitalWithFunding - r.capitalWithout)} suffix=" €" />
+                    </p>
+                    <InfoText className="mt-2 max-w-xs mx-auto">
+                      Diese Darstellung basiert auf den Annahmen des aktuellen Gesetzentwurfs.
+                    </InfoText>
+                  </div>
+                </div>
+
+                {/* Comparison cards */}
+                <div className="mb-20">
+                  <h3 className="text-xl font-bold mb-8">Vergleich</h3>
+                  <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                    {[
+                      { title: "Altersvorsorgedepot", capital: r.capitalWithFunding, monthly: r.monthlyPayout, highlight: true },
+                      { title: "Normales Depot", capital: r.capitalWithout, monthly: r.monthlyPayoutWithout, highlight: false },
+                      { title: "Sparkonto (2 %)", capital: r.capitalSavings, monthly: r.monthlyPayoutSavings, highlight: false },
+                    ].map((c) => (
+                      <div
+                        key={c.title}
+                        className={`rounded-2xl p-6 transition-shadow ${
+                          c.highlight
+                            ? "bg-primary/5 ring-1 ring-primary/15"
+                            : "bg-secondary"
+                        }`}
+                      >
+                        <p className={`text-sm font-medium mb-5 ${c.highlight ? "text-primary" : "text-muted-foreground"}`}>
+                          {c.title}
+                        </p>
+                        <p className="text-2xl font-bold tabular-nums mb-0.5">
+                          <AnimatedNumber value={Math.round(c.capital)} suffix=" €" />
+                        </p>
+                        <p className="text-xs text-muted-foreground">Kapital zum Rentenbeginn</p>
+                        <div className="mt-4 pt-4 border-t border-border">
+                          <p className="text-lg font-semibold tabular-nums">
+                            <AnimatedNumber value={Math.round(c.monthly)} suffix=" € / Monat" />
+                          </p>
+                          <p className="text-xs text-muted-foreground mt-0.5">Auszahlung bis 85</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <InfoText className="mt-6 max-w-md mx-auto">
+                    Der Vergleich soll die Wirkung von Förderung und langfristiger Kapitalanlage verdeutlichen.
+                  </InfoText>
+                </div>
+
+                {/* Disclaimer */}
+                <div className="max-w-xl mx-auto space-y-2">
+                  <p className="text-xs text-muted-foreground/60 leading-relaxed">
+                    Diese Simulation basiert auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge.
+                    Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt.
+                    Sie stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
+                  </p>
+                  <p className="text-xs text-muted-foreground/60 leading-relaxed">
+                    Kapitalanlagen bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
+                  </p>
+                  <InfoText className="max-w-xs mx-auto">
+                    Die genaue Ausgestaltung hängt vom finalen Gesetz ab.
+                  </InfoText>
+                </div>
+
+                {/* Restart */}
+                <div className="mt-12">
+                  <button
+                    onClick={() => setStep(1)}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+                  >
+                    Neue Berechnung starten
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* ── FOOTNOTES SECTION ── */}
+      {step === 4 && (
+        <section className="bg-secondary py-24 md:py-32">
+          <div className="container max-w-3xl mx-auto px-6 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
+              Fußnoten und Hinweise
+            </h2>
+            <p className="text-muted-foreground text-base mb-16 max-w-xl mx-auto">
+              Weitere Erläuterungen zur Simulation, zu Annahmen und zum aktuellen Gesetzentwurf.
+            </p>
+
+            <div className="text-left max-w-2xl mx-auto space-y-6 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                Die dargestellten Berechnungen basieren auf dem Gesetzentwurf zur Reform der geförderten privaten Altersvorsorge
+                in der zum Zeitpunkt der Erstellung verfügbaren Fassung. Änderungen im Gesetzgebungsverfahren können dazu führen,
+                dass einzelne Förderbedingungen, Zulagenhöhen oder steuerliche Regelungen im finalen Gesetz abweichen.
+              </p>
+              <p>
+                Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) dienen ausschließlich der
+                Veranschaulichung und stellen keine Prognose dar. Die tatsächliche Wertentwicklung hängt von der gewählten
+                Anlageform, der Marktentwicklung und den anfallenden Kosten ab.
+              </p>
+              <p>
+                Die steuerlichen Vorteile werden auf Basis vereinfachter Grenzsteuersätze geschätzt. Die tatsächliche steuerliche
+                Wirkung kann je nach individueller Situation, Familienstand, weiteren Einkünften und geltenden Freibeträgen
+                erheblich abweichen. Eine individuelle steuerliche Beratung wird empfohlen.
+              </p>
+              <p>
+                Die Grundzulage wird gemäß dem Entwurf mit 35 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen
+                1.200 € und 1.800 € jährlich berechnet. Die Kinderzulage beträgt bis zu 25 % des Eigenbeitrags, maximal 300 €
+                pro Kind und Jahr. Eine Mindestsparleistung von 120 € pro Jahr ist Voraussetzung für die Förderung.
+              </p>
+              <p>
+                Die monatliche Auszahlung wird vereinfacht als gleichmäßige Entnahme des angesparten Kapitals bis zum Alter von
+                85 Jahren berechnet. In der Praxis können Auszahlungsmodelle (z. B. Teilverrentung, flexible Entnahme oder
+                lebenslange Rente) die tatsächlichen monatlichen Beträge erheblich beeinflussen.
+              </p>
+              <p>
+                Der Vergleich mit einem ungeförderten Depot und einem Sparkonto dient ausschließlich der Veranschaulichung.
+                Das Sparkonto wird mit einer pauschalen Verzinsung von 2 % p.a. simuliert. Inflation, Steuern auf Erträge und
+                individuelle Kosten sind in keiner der Varianten berücksichtigt.
+              </p>
+              <p>
+                Kapitalanlagen bergen Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals.
+                Frühere Wertentwicklungen sind kein verlässlicher Indikator für künftige Ergebnisse.
+                Diese Simulation stellt keine Anlageberatung, Steuerberatung oder Rechtsberatung dar.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 };
 
