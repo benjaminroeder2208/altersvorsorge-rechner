@@ -14,7 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      calculator_results: {
+        Row: {
+          birth_year: number
+          capital_gains: number
+          children: number
+          created_at: string
+          id: string
+          income_bracket: string
+          monthly_contribution: number
+          monthly_payout: number
+          own_contributions: number
+          retirement_age: number
+          return_assumption: number
+          subsidies: number
+          tax_benefits: number
+          total_capital: number
+          user_id: string | null
+        }
+        Insert: {
+          birth_year: number
+          capital_gains: number
+          children?: number
+          created_at?: string
+          id?: string
+          income_bracket: string
+          monthly_contribution: number
+          monthly_payout: number
+          own_contributions: number
+          retirement_age?: number
+          return_assumption?: number
+          subsidies: number
+          tax_benefits: number
+          total_capital: number
+          user_id?: string | null
+        }
+        Update: {
+          birth_year?: number
+          capital_gains?: number
+          children?: number
+          created_at?: string
+          id?: string
+          income_bracket?: string
+          monthly_contribution?: number
+          monthly_payout?: number
+          own_contributions?: number
+          retirement_age?: number
+          return_assumption?: number
+          subsidies?: number
+          tax_benefits?: number
+          total_capital?: number
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
