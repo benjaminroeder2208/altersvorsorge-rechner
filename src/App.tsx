@@ -14,6 +14,7 @@ import VsEtfPage from "./pages/VsEtfPage";
 import ImpressumPage from "./pages/ImpressumPage";
 import DatenschutzPage from "./pages/DatenschutzPage";
 import NotFound from "./pages/NotFound";
+import BlogAltersvorsorgedepot2027 from "./pages/BlogAltersvorsorgedepot2027";
 import ScrollToHash from "./components/ScrollToHash";
 
 const queryClient = new QueryClient();
