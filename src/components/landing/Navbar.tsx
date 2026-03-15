@@ -8,6 +8,7 @@ const navLinks = [
   { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot" },
   { to: "/altersvorsorgedepot-foerderung", label: "Förderung" },
   { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "Vergleich" },
+  { to: "/blog/altersvorsorgedepot-2027", label: "Blog" },
 ];
 
 const Navbar = () => {
