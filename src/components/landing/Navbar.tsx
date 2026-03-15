@@ -5,9 +5,9 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { to: "/", label: "Rechner" },
+  { to: "/rentenluecken-rechner", label: "Rentenlücke" },
   { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot" },
   { to: "/altersvorsorgedepot-foerderung", label: "Förderung" },
-  { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "Vergleich" },
   { to: "/blog", label: "Blog" },
 ];
 
