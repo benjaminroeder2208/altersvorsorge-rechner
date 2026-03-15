@@ -8,7 +8,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { ArrowRight, ChevronLeft } from "lucide-react";
+import { ArrowRight, ChevronLeft, Check, Mail } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 /* ─────────────── helpers ─────────────── */
 
