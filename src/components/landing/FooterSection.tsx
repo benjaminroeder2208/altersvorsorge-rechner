@@ -29,8 +29,6 @@ const sections = [
     links: [
       { to: "/blog", label: "Blog" },
       { to: "/#faq", label: "FAQ", isAnchor: true },
-      { to: "/impressum", label: "Impressum" },
-      { to: "/datenschutz", label: "Datenschutz" },
     ],
   },
 ];
@@ -72,6 +70,10 @@ const FooterSection = () => (
           <Link to="/" className="font-semibold text-foreground text-sm">
             altersvorsorge-rechner.com
           </Link>
+        </div>
+        <div className="flex items-center gap-4">
+          <Link to="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
+          <Link to="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
         </div>
         <p>© {new Date().getFullYear()} altersvorsorge-rechner.com</p>
       </div>
