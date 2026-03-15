@@ -45,6 +45,7 @@ const App = () => (
             <Route path="/blog" element={<BlogIndexPage />} />
             <Route path="/blog/altersvorsorgedepot-2027" element={<BlogAltersvorsorgedepot2027 />} />
             <Route path="/blog/altersvorsorgedepot-vs-etf-sparplan" element={<BlogVsEtf />} />
+            <Route path="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" element={<BlogRentenluecke />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

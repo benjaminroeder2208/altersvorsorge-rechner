@@ -22,6 +22,14 @@ const articles = [
     readingTime: "7 Min.",
     tag: "Vergleich",
   },
+  {
+    slug: "/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst",
+    title: "Rentenlücke: Was sie ist, wie groß sie wirklich ist — und was du tun kannst",
+    description:
+      "Die gesetzliche Rente reicht für die meisten nicht. Wir zeigen konkret, wie groß die Rentenlücke ist — und wie du sie mit dem Altersvorsorgedepot ab 2027 schließen kannst.",
+    readingTime: "8 Min.",
+    tag: "Ratgeber",
+  },
 ];
 
 const jsonLd = [
