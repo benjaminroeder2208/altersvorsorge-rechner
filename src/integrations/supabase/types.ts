@@ -68,6 +68,45 @@ export type Database = {
         }
         Relationships: []
       }
+      simulation_leads: {
+        Row: {
+          birth_year: number
+          calculated_capital: number
+          children: number
+          created_at: string
+          email: string
+          id: string
+          monthly_contribution: number
+          monthly_payout: number
+          retirement_age: number
+          return_assumption: number
+        }
+        Insert: {
+          birth_year: number
+          calculated_capital: number
+          children?: number
+          created_at?: string
+          email: string
+          id?: string
+          monthly_contribution: number
+          monthly_payout: number
+          retirement_age?: number
+          return_assumption?: number
+        }
+        Update: {
+          birth_year?: number
+          calculated_capital?: number
+          children?: number
+          created_at?: string
+          email?: string
+          id?: string
+          monthly_contribution?: number
+          monthly_payout?: number
+          retirement_age?: number
+          return_assumption?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

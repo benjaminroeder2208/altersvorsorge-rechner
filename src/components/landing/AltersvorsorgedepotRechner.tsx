@@ -8,7 +8,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { ArrowRight, ChevronLeft } from "lucide-react";
+import { ArrowRight, ChevronLeft, Check, Mail } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 /* ─────────────── helpers ─────────────── */
 
@@ -232,6 +233,88 @@ const StepperCard = ({
     </div>
   </div>
 );
+
+/* ─────────────── lead capture card ─────────────── */
+
+const LeadCaptureCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType<typeof calculate> }) => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || status === "sending" || status === "sent") return;
+
+    setStatus("sending");
+    try {
+      const { error } = await supabase.from("simulation_leads").insert({
+        email,
+        monthly_contribution: inputs.monthlyContribution,
+        birth_year: inputs.birthYear,
+        children: inputs.children,
+        retirement_age: inputs.retirementAge,
+        return_assumption: inputs.returnRate * 100,
+        calculated_capital: Math.round(result.capitalWithFunding),
+        monthly_payout: Math.round(result.monthlyPayout),
+      });
+      if (error) throw error;
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
+  };
+
+  return (
+    <div className="max-w-lg mx-auto mb-20">
+      <div className="bg-background border border-border rounded-2xl p-8 shadow-sm text-center">
+        <div className="flex items-center justify-center gap-2 mb-3">
+          <Mail className="w-4 h-4 text-muted-foreground" />
+          <h3 className="text-lg font-semibold">Simulation speichern</h3>
+        </div>
+        <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
+          Möchten Sie Ihre Simulation später erneut aufrufen?
+          Wir senden Ihnen Ihr Ergebnis einfach per E-Mail.
+        </p>
+
+        {status === "sent" ? (
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 text-primary font-medium text-sm">
+              <Check className="w-4 h-4" />
+              Ergebnis gesendet
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Wir haben Ihnen Ihre Simulation per E-Mail geschickt.
+            </p>
+            <InfoText className="max-w-xs mx-auto">
+              Speichern Sie die E-Mail, um Ihre Simulation später erneut aufzurufen.
+            </InfoText>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Ihre E-Mail-Adresse"
+              className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
+            />
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="w-full px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-60"
+            >
+              {status === "sending" ? "Wird gesendet…" : status === "error" ? "Fehler – erneut versuchen" : "Ergebnis per E-Mail senden"}
+            </button>
+            <InfoText>
+              Ihre E-Mail wird nur verwendet, um Ihnen das Ergebnis zu senden.
+            </InfoText>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+};
 
 /* ─────────────── main component ─────────────── */
 
@@ -515,6 +598,9 @@ const AltersvorsorgedepotRechner = () => {
                     zum Alter von 85 Jahren.
                   </p>
                 </div>
+
+                {/* Lead capture module */}
+                <LeadCaptureCard inputs={inputs} result={r} />
 
                 {/* Return assumption selector */}
                 <div className="mb-12">
