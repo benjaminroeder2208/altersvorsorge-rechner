@@ -31,10 +31,6 @@ const faqs = [
     q: "Was passiert mit dem Geld bei schlechter Marktentwicklung?",
     a: "Da keine Beitragsgarantie vorgesehen ist, kann der Depotwert zwischenzeitlich auch unter die Summe der eingezahlten Beiträge fallen. Bei langfristiger Anlage über 20 oder mehr Jahre haben breit gestreute Aktienportfolios historisch betrachtet positive Renditen erzielt — eine Garantie dafür gibt es allerdings nicht.",
   },
-  {
-    q: "Wann wird der Rechner verfügbar sein?",
-    a: "Der auf dieser Seite dargestellte Rechner bietet bereits eine vereinfachte Simulation auf Basis des aktuellen Gesetzentwurfs. Sobald das Gesetz verabschiedet ist, werden die Berechnungen an die finalen Regelungen angepasst.",
-  },
 ];
 
 const FaqSection = () => (
