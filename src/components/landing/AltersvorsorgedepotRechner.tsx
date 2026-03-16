@@ -265,8 +265,11 @@ const LeadCaptureCard = ({ inputs, result }: { inputs: Inputs; result: ReturnTyp
   };
 
   return (
-    <div className="max-w-lg mx-auto mb-20">
-      <div className="bg-background border border-border rounded-2xl p-8 shadow-sm text-center">
+    <div className="max-w-lg mx-auto mb-20 group/coming" title="Diese Funktion wird bald verfügbar sein.">
+      <div className="relative bg-background border border-border rounded-2xl p-8 shadow-sm text-center opacity-50 pointer-events-none select-none">
+        <span className="absolute top-3 right-3 inline-flex items-center rounded-full border border-border bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+          Demnächst verfügbar
+        </span>
         <div className="flex items-center justify-center gap-2 mb-3">
           <Mail className="w-4 h-4 text-muted-foreground" />
           <h3 className="text-lg font-semibold">Simulation speichern</h3>
@@ -276,41 +279,24 @@ const LeadCaptureCard = ({ inputs, result }: { inputs: Inputs; result: ReturnTyp
           Wir senden Ihnen Ihr Ergebnis einfach per E-Mail.
         </p>
 
-        {status === "sent" ? (
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 text-primary font-medium text-sm">
-              <Check className="w-4 h-4" />
-              Ergebnis gesendet
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Wir haben Ihnen Ihre Simulation per E-Mail geschickt.
-            </p>
-            <InfoText className="max-w-xs mx-auto">
-              Speichern Sie die E-Mail, um Ihre Simulation später erneut aufzurufen.
-            </InfoText>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Ihre E-Mail-Adresse"
-              className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
-            />
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="w-full px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-60"
-            >
-              {status === "sending" ? "Wird gesendet…" : status === "error" ? "Fehler – erneut versuchen" : "Ergebnis per E-Mail senden"}
-            </button>
-            <InfoText>
-              Ihre E-Mail wird nur verwendet, um Ihnen das Ergebnis zu senden.
-            </InfoText>
-          </form>
-        )}
+        <div className="space-y-4">
+          <input
+            type="email"
+            disabled
+            placeholder="Ihre E-Mail-Adresse"
+            className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground/50 cursor-not-allowed"
+          />
+          <button
+            type="button"
+            disabled
+            className="w-full px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm opacity-60 cursor-not-allowed"
+          >
+            Ergebnis per E-Mail senden
+          </button>
+          <InfoText>
+            Ihre E-Mail wird nur verwendet, um Ihnen das Ergebnis zu senden.
+          </InfoText>
+        </div>
       </div>
     </div>
   );
