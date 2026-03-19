@@ -15,6 +15,14 @@ import {
 
 const articles = [
   {
+    slug: "/blog/altersvorsorgedepot-vs-riester",
+    title: "Altersvorsorgedepot vs. Riester: Die wichtigsten Unterschiede",
+    description:
+      "Riester war die Hoffnung — das Altersvorsorgedepot ist der Neustart. Wir zeigen die wichtigsten Unterschiede, was mit bestehenden Riester-Verträgen passiert und für wen sich was lohnt.",
+    readingTime: "8 Min.",
+    tag: "Vergleich",
+  },
+  {
     slug: "/blog/rentenlucke-mit-30-40-50",
     title: "Rentenlücke mit 30, 40 oder 50: Was du jetzt noch tun kannst",
     description:
