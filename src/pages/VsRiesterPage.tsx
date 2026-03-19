@@ -10,6 +10,7 @@ const VsRiesterPage = () => (
     ogTitle="Altersvorsorgedepot vs Riester"
     ogDescription="Förderung, Renditechancen und Flexibilität im Vergleich: Altersvorsorgedepot oder Riester?"
     relatedLinks={[
+      { to: "/blog/altersvorsorgedepot-vs-riester", label: "Blog: Altersvorsorgedepot vs. Riester — ausführlicher Vergleich" },
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
       { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
       { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "Vergleich mit ETF-Sparplan" },
