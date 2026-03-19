@@ -20,6 +20,9 @@ import BlogRentenluecke from "./pages/BlogRentenluecke";
 import BlogRentenlueckeMit30_40_50 from "./pages/BlogRentenlueckeMit30_40_50";
 import BlogVsRiester from "./pages/BlogVsRiester";
 import BlogIndexPage from "./pages/BlogIndexPage";
+import BlogZinseszins from "./pages/BlogZinseszins";
+import BlogBav from "./pages/BlogBav";
+import BlogSelbststaendige from "./pages/BlogSelbststaendige";
 import RentenlueckenRechnerPage from "./pages/RentenlueckenRechnerPage";
 import ScrollToHash from "./components/ScrollToHash";
 
@@ -52,6 +55,9 @@ const App = () => (
             <Route path="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" element={<BlogRentenluecke />} />
             <Route path="/blog/rentenlucke-mit-30-40-50" element={<BlogRentenlueckeMit30_40_50 />} />
             <Route path="/blog/altersvorsorgedepot-vs-riester" element={<BlogVsRiester />} />
+            <Route path="/blog/zinseszins-frueh-starten" element={<BlogZinseszins />} />
+            <Route path="/blog/betriebliche-altersvorsorge" element={<BlogBav />} />
+            <Route path="/blog/altersvorsorge-selbststaendige" element={<BlogSelbststaendige />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

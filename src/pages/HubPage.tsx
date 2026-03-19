@@ -10,11 +10,11 @@ const HubPage = () => (
     ogTitle="Altersvorsorgedepot einfach erklärt"
     ogDescription="Das geplante Altersvorsorgedepot verständlich erklärt – von Förderung bis Auszahlung."
     relatedLinks={[
-      { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
-      { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung erklärt" },
-      { to: "/altersvorsorgedepot-gesetz", label: "Der Gesetzentwurf" },
-      { to: "/altersvorsorgedepot-vs-riester", label: "Vergleich mit Riester" },
-      { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "Vergleich mit ETF-Sparplan" },
+      { to: "/blog/altersvorsorgedepot-2027", label: "Altersvorsorgedepot 2027: Alles was du wissen musst" },
+      { to: "/altersvorsorgedepot-foerderung", label: "Wie hoch ist die staatliche Förderung?" },
+      { to: "/altersvorsorgedepot-vs-riester", label: "Altersvorsorgedepot vs. Riester" },
+      { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "Altersvorsorgedepot vs. ETF-Sparplan" },
+      { to: "/blog/altersvorsorgedepot-vs-riester", label: "Ratgeber: Altersvorsorgedepot vs. Riester" },
     ]}
   >
     <section>

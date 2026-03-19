@@ -139,6 +139,48 @@ const RechnerPage = () => (
         </div>
       </section>
 
+      {/* Unsere Ratgeber */}
+      <section className="section-padding">
+        <div className="container max-w-4xl mx-auto px-6">
+          <AnimatedSection className="mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Unsere Ratgeber</h2>
+            <p className="text-muted-foreground mt-2">Fundierte Artikel rund um Altersvorsorge und Rente.</p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Link to="/blog/altersvorsorgedepot-2027" className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors">
+                <div>
+                  <p className="font-semibold text-sm mb-1">Altersvorsorgedepot 2027 erklärt</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">Alles zum neuen Altersvorsorgedepot: Förderung, Funktionsweise, Start 2027.</p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+              </Link>
+              <Link to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors">
+                <div>
+                  <p className="font-semibold text-sm mb-1">Was ist die Rentenlücke?</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">Wie groß die Lücke wirklich ist — und was du dagegen tun kannst.</p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+              </Link>
+              <Link to="/rentenluecken-rechner" className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors">
+                <div>
+                  <p className="font-semibold text-sm mb-1">Rentenlückenrechner</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">Berechne deine persönliche Rentenlücke in 30 Sekunden.</p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+              </Link>
+              <Link to="/blog" className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors">
+                <div>
+                  <p className="font-semibold text-sm mb-1">Alle Ratgeber →</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">Alle Artikel zu Altersvorsorge, Rente und Förderung.</p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+              </Link>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       <FaqSection />
       <FooterSection />
     </main>

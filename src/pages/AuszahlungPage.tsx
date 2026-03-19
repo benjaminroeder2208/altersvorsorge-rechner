@@ -10,9 +10,9 @@ const AuszahlungPage = () => (
     ogTitle="Altersvorsorgedepot Auszahlung"
     ogDescription="Rentenbeginn, Auszahlungsplan und Kapitalentnahme beim geplanten Altersvorsorgedepot verständlich erklärt."
     relatedLinks={[
-      { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
-      { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
-      { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "Vergleich mit ETF-Sparplan" },
+      { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot einfach erklärt" },
+      { to: "/altersvorsorgedepot-foerderung", label: "Wie hoch ist die staatliche Förderung?" },
+      { to: "/rentenluecken-rechner", label: "Wie groß ist meine Rentenlücke?" },
     ]}
   >
     <p className="text-muted-foreground leading-relaxed">

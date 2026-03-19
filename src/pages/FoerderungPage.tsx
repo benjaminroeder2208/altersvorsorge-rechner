@@ -10,9 +10,9 @@ const FoerderungPage = () => (
     ogTitle="Altersvorsorgedepot Förderung"
     ogDescription="Grundzulage, Kinderzulage und steuerliche Vorteile beim geplanten Altersvorsorgedepot verständlich erklärt."
     relatedLinks={[
-      { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
-      { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung erklärt" },
-      { to: "/altersvorsorgedepot-vs-riester", label: "Vergleich mit Riester" },
+      { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot einfach erklärt" },
+      { to: "/altersvorsorgedepot-auszahlung", label: "So funktioniert die Auszahlung" },
+      { to: "/blog/altersvorsorgedepot-2027", label: "Ratgeber: Altersvorsorgedepot 2027" },
     ]}
   >
     <p className="text-muted-foreground leading-relaxed">

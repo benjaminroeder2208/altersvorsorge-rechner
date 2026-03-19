@@ -23,6 +23,30 @@ const articles = [
     tag: "Vergleich",
   },
   {
+    slug: "/blog/zinseszins-frueh-starten",
+    title: "Früh starten oder spät starten? Der Zinseszins-Effekt in Zahlen",
+    description:
+      "Was bringt es wirklich, früh mit der Altersvorsorge anzufangen? Wir zeigen den Zinseszins-Effekt an konkreten Zahlen — und warum 10 Jahre Unterschied über 100.000 € ausmachen können.",
+    readingTime: "7 Min.",
+    tag: "Ratgeber",
+  },
+  {
+    slug: "/blog/betriebliche-altersvorsorge",
+    title: "Betriebliche Altersvorsorge (bAV): Lohnt sie sich wirklich?",
+    description:
+      "Die bAV ist oft der einfachste Weg zur Altersvorsorge — weil der Chef mitbezahlt. Wir erklären, wie sie funktioniert, was sie kostet und wann sie sich lohnt.",
+    readingTime: "7 Min.",
+    tag: "Ratgeber",
+  },
+  {
+    slug: "/blog/altersvorsorge-selbststaendige",
+    title: "Altersvorsorge für Selbstständige: Was wirklich funktioniert",
+    description:
+      "Selbstständige haben keine gesetzliche Rente — oder nur eine sehr kleine. Wir zeigen, welche Optionen es gibt, was das Altersvorsorgedepot ab 2027 bringt und wie du die Rentenlücke schließt.",
+    readingTime: "8 Min.",
+    tag: "Ratgeber",
+  },
+  {
     slug: "/blog/rentenlucke-mit-30-40-50",
     title: "Rentenlücke mit 30, 40 oder 50: Was du jetzt noch tun kannst",
     description:

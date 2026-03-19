@@ -10,9 +10,8 @@ const VsEtfPage = () => (
     ogTitle="Altersvorsorgedepot vs ETF Sparplan"
     ogDescription="Förderung, Flexibilität und Steuern im Vergleich: Altersvorsorgedepot oder ETF Sparplan?"
     relatedLinks={[
-      { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
-      { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
-      { to: "/altersvorsorgedepot-vs-riester", label: "Vergleich mit Riester" },
+      { to: "/blog/altersvorsorgedepot-vs-etf-sparplan", label: "Ausführlicher Ratgeber: Altersvorsorgedepot vs. ETF-Sparplan" },
+      { to: "/altersvorsorgedepot-vs-riester", label: "Altersvorsorgedepot vs. Riester" },
     ]}
   >
     <p className="text-muted-foreground leading-relaxed">
