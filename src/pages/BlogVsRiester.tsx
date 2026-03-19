@@ -380,8 +380,8 @@ const BlogVsRiester = () => {
                     <span>Altersvorsorgedepot oder ETF-Sparplan?</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
-                  <Link to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Rentenlücke: Was sie ist und was du tun kannst</span>
+                  <Link to="/altersvorsorgedepot-foerderung" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Förderung im Detail</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
                 </div>

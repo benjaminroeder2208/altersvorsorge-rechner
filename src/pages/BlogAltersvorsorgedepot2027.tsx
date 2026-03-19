@@ -505,12 +505,26 @@ const BlogAltersvorsorgedepot2027 = () => {
                 ))}
               </Accordion>
 
-              {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge. Änderungen im Gesetzgebungsverfahren sind möglich. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-                </p>
+              {/* Related */}
+              <div className="mt-12">
+                <p className="text-sm font-semibold mb-4">Weiterführende Artikel</p>
+                <div className="space-y-2">
+                  <Link to="/blog/altersvorsorgedepot-vs-etf-sparplan" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot oder ETF-Sparplan?</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/altersvorsorgedepot-vs-riester" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot vs. Riester: Die wichtigsten Unterschiede</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/altersvorsorgedepot-foerderung" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Förderung im Detail</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                </div>
               </div>
+
+              {/* Disclaimer */}
             </article>
           </div>
         </div>

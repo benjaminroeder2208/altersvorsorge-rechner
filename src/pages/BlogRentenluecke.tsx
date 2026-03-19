@@ -322,12 +322,16 @@ const BlogRentenluecke = () => {
               <div className="mt-12">
                 <p className="text-sm font-semibold mb-4">Weiterführende Artikel</p>
                 <div className="space-y-2">
-                  <Link to="/blog/altersvorsorgedepot-2027" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Altersvorsorgedepot 2027: Alles, was du wissen musst</span>
+                  <Link to="/blog/rentenlucke-mit-30-40-50" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Rentenlücke mit 30, 40 oder 50</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
-                  <Link to="/blog/altersvorsorgedepot-vs-etf-sparplan" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Altersvorsorgedepot oder ETF-Sparplan?</span>
+                  <Link to="/rentenluecken-rechner" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Rentenlückenrechner</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/altersvorsorgedepot-2027" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot 2027: Alles, was du wissen musst</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
                 </div>
