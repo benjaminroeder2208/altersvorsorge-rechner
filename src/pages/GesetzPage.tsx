@@ -10,9 +10,9 @@ const GesetzPage = () => (
     ogTitle="Gesetzentwurf zum Altersvorsorgedepot erklärt"
     ogDescription="Der aktuelle Stand der Reform der privaten Altersvorsorge verständlich zusammengefasst."
     relatedLinks={[
-      { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot im Überblick" },
-      { to: "/altersvorsorgedepot-foerderung", label: "Förderung im Detail" },
-      { to: "/altersvorsorgedepot-vs-riester", label: "Vergleich mit Riester" },
+      { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot einfach erklärt" },
+      { to: "/blog/altersvorsorgedepot-2027", label: "Ratgeber: Altersvorsorgedepot 2027" },
+      { to: "/altersvorsorgedepot-foerderung", label: "Wie hoch ist die Förderung?" },
     ]}
   >
     <p className="text-muted-foreground leading-relaxed">

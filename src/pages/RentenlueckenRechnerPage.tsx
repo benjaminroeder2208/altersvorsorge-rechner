@@ -81,6 +81,27 @@ const RentenlueckenRechnerPage = () => (
           </Link>
         </div>
 
+        {/* Weiterführende Artikel */}
+        <div className="mt-12">
+          <p className="text-sm font-semibold mb-4">Weiterführende Artikel</p>
+          <div className="space-y-2">
+            <Link to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+              <span>Was ist die Rentenlücke? Ratgeber</span>
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+            </Link>
+            <Link to="/blog/rentenlucke-mit-30-40-50" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+              <span>Rentenlücke mit 30, 40 oder 50</span>
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+            </Link>
+          </div>
+          <Link
+            to="/"
+            className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
+          >
+            Altersvorsorgedepot detailliert berechnen →
+          </Link>
+        </div>
+
         {/* Disclaimer */}
         <div className="mt-16 p-5 bg-secondary rounded-xl space-y-4">
           <p className="text-sm font-semibold text-foreground">Hinweise zur Berechnung</p>

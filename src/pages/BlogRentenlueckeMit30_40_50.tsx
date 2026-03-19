@@ -399,12 +399,12 @@ const BlogRentenlueckeMit30_40_50 = () => {
                     <span>Rentenlücke: Was sie ist und was du tun kannst</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
-                  <Link to="/blog/altersvorsorgedepot-2027" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Altersvorsorgedepot 2027: Alles, was du wissen musst</span>
+                  <Link to="/blog/zinseszins-frueh-starten" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Früh starten vs. spät starten: Der Zinseszins-Effekt</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
-                  <Link to="/blog/altersvorsorgedepot-vs-etf-sparplan" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Altersvorsorgedepot oder ETF-Sparplan?</span>
+                  <Link to="/rentenluecken-rechner" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Rentenlückenrechner</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
                 </div>

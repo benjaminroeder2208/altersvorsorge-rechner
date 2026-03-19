@@ -399,8 +399,12 @@ const BlogVsEtf = () => {
                     <span>Altersvorsorgedepot 2027: Alles, was du wissen musst</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
-                  <Link to="/altersvorsorgedepot-vs-riester" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Altersvorsorgedepot vs. Riester</span>
+                  <Link to="/blog/zinseszins-frueh-starten" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Früh starten vs. spät starten: Der Zinseszins-Effekt</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/rentenluecken-rechner" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Rentenlückenrechner</span>
                     <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
                   </Link>
                 </div>
