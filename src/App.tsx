@@ -38,6 +38,7 @@ const App = () => (
         <Sonner />
           <BrowserRouter>
             <ScrollToHash />
+            <ChatWidgetWrapper />
           <Routes>
             <Route path="/" element={<RechnerPage />} />
             <Route path="/altersvorsorgedepot" element={<HubPage />} />
