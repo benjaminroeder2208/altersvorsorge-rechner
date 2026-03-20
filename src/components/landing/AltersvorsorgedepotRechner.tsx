@@ -8,8 +8,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { ArrowRight, ChevronLeft, Check, Mail } from "lucide-react";
+import { ArrowRight, ChevronLeft, Check, Mail, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import KiAuswertungModal from "./KiAuswertungModal";
 
 /* ─────────────── helpers ─────────────── */
 
@@ -306,6 +307,7 @@ const LeadCaptureCard = ({ inputs, result }: { inputs: Inputs; result: ReturnTyp
 
 const AltersvorsorgedepotRechner = () => {
   const [step, setStep] = useState(1);
+  const [kiModalOpen, setKiModalOpen] = useState(false);
   const [inputs, setInputs] = useState<Inputs>({
     monthlyContribution: 150,
     incomeBand: 2,
@@ -584,6 +586,35 @@ const AltersvorsorgedepotRechner = () => {
                     zum Alter von 85 Jahren.
                   </p>
                 </div>
+
+                {/* KI-Auswertung button */}
+                <div className="max-w-lg mx-auto mb-12">
+                  <button
+                    onClick={() => setKiModalOpen(true)}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity shadow-lg"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    KI-Auswertung ansehen
+                  </button>
+                </div>
+
+                {/* KI-Auswertung Modal */}
+                <KiAuswertungModal
+                  open={kiModalOpen}
+                  onClose={() => setKiModalOpen(false)}
+                  data={{
+                    birth_year: inputs.birthYear,
+                    monthly_contribution: inputs.monthlyContribution,
+                    monthly_payout: Math.round(r.monthlyPayout),
+                    total_capital: Math.round(r.capitalWithFunding),
+                    subsidies: Math.round(r.totalSubsidies),
+                    tax_benefits: Math.round(r.totalTaxBenefit),
+                    retirement_age: inputs.retirementAge,
+                    return_assumption: inputs.returnRate * 100,
+                    children: inputs.children,
+                    income_bracket: INCOME_BANDS[inputs.incomeBand].label,
+                  }}
+                />
 
                 {/* Lead capture module */}
                 <LeadCaptureCard inputs={inputs} result={r} />
