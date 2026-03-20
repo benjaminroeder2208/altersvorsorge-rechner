@@ -26,6 +26,7 @@ import BlogSelbststaendige from "./pages/BlogSelbststaendige";
 import RentenlueckenRechnerPage from "./pages/RentenlueckenRechnerPage";
 import UnsubscribePage from "./pages/UnsubscribePage";
 import ScrollToHash from "./components/ScrollToHash";
+import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
         <Sonner />
           <BrowserRouter>
             <ScrollToHash />
+            <ChatWidgetWrapper />
           <Routes>
             <Route path="/" element={<RechnerPage />} />
             <Route path="/altersvorsorgedepot" element={<HubPage />} />

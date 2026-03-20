@@ -569,7 +569,18 @@ const AltersvorsorgedepotRechner = () => {
                 </InfoText>
 
                 <button
-                  onClick={() => setStep(4)}
+                  onClick={() => {
+                    setStep(4);
+                    window.__calculatorContext = {
+                      monthly_contribution: inputs.monthlyContribution,
+                      total_capital: Math.round(r.capitalWithFunding),
+                      monthly_payout: Math.round(r.monthlyPayout),
+                      retirement_age: inputs.retirementAge,
+                      birth_year: inputs.birthYear,
+                      children: inputs.children,
+                      subsidies: Math.round(r.totalSubsidies),
+                    };
+                  }}
                   className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
                 >
                   Ergebnis anzeigen
