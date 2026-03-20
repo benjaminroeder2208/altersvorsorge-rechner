@@ -7,38 +7,38 @@ import PageHead from "@/components/seo/PageHead";
 import RentenlueckenRechner from "@/components/landing/RentenlueckenRechner";
 import { Badge } from "@/components/ui/badge";
 import {
-  Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from
+"@/components/ui/breadcrumb";
 
 const BASE = "https://altersvorsorge-rechner.com";
 const PATH = "/rentenluecken-rechner";
 
 const jsonLd = [
-  {
-    "@type": "WebApplication",
-    name: "Rentenlückenrechner",
-    url: `${BASE}${PATH}`,
-    description: "Berechne deine persönliche Rentenlücke in 30 Sekunden.",
-    applicationCategory: "FinanceApplication",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-  },
-  {
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` },
-      { "@type": "ListItem", position: 2, name: "Rentenlückenrechner", item: `${BASE}${PATH}` },
-    ],
-  },
-];
+{
+  "@type": "WebApplication",
+  name: "Rentenlückenrechner",
+  url: `${BASE}${PATH}`,
+  description: "Berechne deine persönliche Rentenlücke in 30 Sekunden.",
+  applicationCategory: "FinanceApplication",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" }
+},
+{
+  "@type": "BreadcrumbList",
+  itemListElement: [
+  { "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` },
+  { "@type": "ListItem", position: 2, name: "Rentenlückenrechner", item: `${BASE}${PATH}` }]
 
-const RentenlueckenRechnerPage = () => (
-  <>
+}];
+
+
+const RentenlueckenRechnerPage = () =>
+<>
     <PageHead
-      title="Rentenlückenrechner — Rentenlücke kostenlos berechnen"
-      description="Berechne deine persönliche Rentenlücke in 30 Sekunden. Wie viel fehlt dir monatlich im Ruhestand — und was musst du heute zurücklegen, um die Lücke zu schließen?"
-      path={PATH}
-      jsonLd={jsonLd}
-    />
+    title="Rentenlückenrechner — Rentenlücke kostenlos berechnen"
+    description="Berechne deine persönliche Rentenlücke in 30 Sekunden. Wie viel fehlt dir monatlich im Ruhestand — und was musst du heute zurücklegen, um die Lücke zu schließen?"
+    path={PATH}
+    jsonLd={jsonLd} />
+  
     <Navbar />
 
     <main className="pt-24 pb-20">
@@ -74,9 +74,9 @@ const RentenlueckenRechnerPage = () => (
             Die Rentenlücke ist für die meisten Berufstätigen in Deutschland real — sie liegt häufig zwischen 800 und 1.600 € pro Monat. Ab 2027 bietet das neue Altersvorsorgedepot eine staatlich geförderte Möglichkeit, diese Lücke gezielt zu schließen. Wer früh anfängt, braucht weniger monatlichen Eigenbeitrag — der Zinseszins und die Förderung arbeiten für dich.
           </p>
           <Link
-            to="/altersvorsorgedepot"
-            className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:underline"
-          >
+          to="/altersvorsorgedepot"
+          className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:underline">
+          
             Mehr zum Altersvorsorgedepot erfahren <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -94,12 +94,12 @@ const RentenlueckenRechnerPage = () => (
               <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
             </Link>
           </div>
-          <Link
-            to="/"
-            className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
-          >
-            Altersvorsorgedepot detailliert berechnen →
-          </Link>
+          
+
+
+
+
+        
         </div>
 
         {/* Disclaimer */}
@@ -152,7 +152,7 @@ const RentenlueckenRechnerPage = () => (
     </main>
 
     <FooterSection />
-  </>
-);
+  </>;
+
 
 export default RentenlueckenRechnerPage;
