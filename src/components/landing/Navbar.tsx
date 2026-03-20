@@ -42,8 +42,8 @@ const Navbar = () => {
         scrolled ? "shadow-sm border-b border-border/50" : ""
       }`}
     >
-      <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link to="/" className="font-semibold text-sm tracking-tight">
+      <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-3">
+        <Link to="/" className="font-semibold text-sm tracking-tight shrink-0">
           altersvorsorge-rechner.com
         </Link>
 
