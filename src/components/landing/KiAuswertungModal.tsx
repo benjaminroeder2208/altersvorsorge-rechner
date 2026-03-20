@@ -151,6 +151,10 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || leadStatus === "sending" || leadStatus === "sent") return;
+    if (!dsgvoAccepted) {
+      setDsgvoError(true);
+      return;
+    }
     setLeadStatus("sending");
     try {
       const { error: dbError } = await supabase.from("simulation_leads").insert({
@@ -164,6 +168,18 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
         children: data.children,
       });
       if (dbError) throw dbError;
+
+      // Trigger immediate results email
+      supabase.functions.invoke("send-lead-email", {
+        body: {
+          email,
+          total_capital: Math.round(data.total_capital),
+          monthly_payout: Math.round(data.monthly_payout),
+          subsidies: Math.round(data.subsidies),
+          monthly_contribution: data.monthly_contribution,
+        },
+      }).catch(() => {});
+
       setLeadStatus("sent");
     } catch {
       setLeadStatus("error");
