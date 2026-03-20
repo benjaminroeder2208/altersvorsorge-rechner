@@ -36,6 +36,13 @@ const sections = [
 const FooterSection = () =>
 <footer className="py-16 border-t border-border bg-secondary/30">
     <div className="container max-w-5xl mx-auto px-6">
+      <div className="max-w-xl mx-auto mb-10 pb-8 border-b border-border">
+        <p className="text-sm font-medium text-muted-foreground/80 mb-2">Wer wir sind</p>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          altersvorsorge-rechner.com wurde von einem unabhängigen Team aus Finanz- und Technik-Enthusiasten entwickelt. Unser Ziel: Altersvorsorge verständlich machen — ohne Bankberater-Sprache, ohne Produktverkauf, ohne versteckte Interessen. Alle Inhalte und Rechner sind kostenlos und werbefrei. Wir verdienen kein Geld durch Produktempfehlungen oder Provisionen.
+        </p>
+      </div>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
         {sections.map((section) =>
       <div key={section.title}>
