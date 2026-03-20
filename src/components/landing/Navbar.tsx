@@ -70,6 +70,22 @@ const Navbar = () => {
           </a>
         </div>
 
+        {/* Sticky CTA */}
+        <Link
+          to="/"
+          onClick={(e) => {
+            if (location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className={`shrink-0 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-opacity duration-200 hover:opacity-90 active:scale-[0.97] ${
+            showCta ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          Jetzt berechnen →
+        </Link>
+
         {/* Mobile toggle */}
         <button
           className="sm:hidden p-2 text-muted-foreground"
