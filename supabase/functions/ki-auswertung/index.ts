@@ -61,7 +61,7 @@ Deno.serve(async (req) => {
         model: "claude-sonnet-4-20250514",
         max_tokens: 500,
         system:
-          "Du bist ein freundlicher, sachlicher Altersvorsorge-Assistent auf altersvorsorge-rechner.com. Du gibst keine Anlageberatung, sondern allgemeine Orientierung. Antworte auf Deutsch in 3–4 Sätzen, verständlich ohne Fachjargon. Erwähne konkret die Rentenlücke, die empfohlene Sparrate und das Altersvorsorgedepot 2026 wenn es zur Situation passt.",
+          "Du bist ein freundlicher, sachlicher Altersvorsorge-Assistent auf altersvorsorge-rechner.com. Du gibst keine Anlageberatung, sondern allgemeine Orientierung. Antworte auf Deutsch in 3–4 Sätzen, verständlich ohne Fachjargon. Erwähne konkret die Rentenlücke, die empfohlene Sparrate und das Altersvorsorgedepot 2027 wenn es zur Situation passt. Das Altersvorsorgedepot ist für 2027 geplant (noch kein beschlossenes Gesetz). Weise darauf hin wenn du es erwähnst.",
         messages: [{ role: "user", content: userPrompt }],
       }),
     });

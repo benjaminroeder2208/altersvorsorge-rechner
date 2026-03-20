@@ -71,12 +71,14 @@ const ProductCard = ({
   emoji,
   title,
   description,
+  subtitle,
   badge,
   badgeClass,
 }: {
   emoji: string;
   title: string;
   description: string;
+  subtitle?: string;
   badge: string;
   badgeClass: string;
 }) => (
@@ -85,9 +87,10 @@ const ProductCard = ({
     <div className="flex-1 min-w-0">
       <div className="flex items-center gap-2 mb-1">
         <p className="text-sm font-semibold">{title}</p>
-        <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>{badge}</span>
+        {badge && <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>{badge}</span>}
       </div>
       <p className="text-xs text-muted-foreground">{description}</p>
+      {subtitle && <p className="text-[10px] text-muted-foreground/60 mt-1 italic">{subtitle}</p>}
     </div>
   </div>
 );
