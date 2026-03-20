@@ -101,6 +101,8 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
   const [analyse, setAnalyse] = useState("");
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
+  const [dsgvoAccepted, setDsgvoAccepted] = useState(false);
+  const [dsgvoError, setDsgvoError] = useState(false);
   const [leadStatus, setLeadStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const scrollRef = useRef<HTMLDivElement>(null);
 
