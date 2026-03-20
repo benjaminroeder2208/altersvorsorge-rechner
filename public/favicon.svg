@@ -1,9 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect x="0" y="0" width="32" height="32" rx="6" fill="#1B4FD8"/>
-  <rect x="3" y="20" width="4" height="9" rx="1" fill="rgba(255,255,255,0.35)"/>
-  <rect x="9" y="15" width="4" height="14" rx="1" fill="rgba(255,255,255,0.5)"/>
-  <rect x="15" y="10" width="4" height="19" rx="1" fill="rgba(255,255,255,0.7)"/>
-  <rect x="21" y="4" width="4" height="25" rx="1" fill="white"/>
-  <polyline points="5,18 11,13 17,8 23,3" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="23" cy="3" r="1.8" fill="white"/>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="7" fill="#1B4FD8"/>
+  <path d="M16,3 L27,8 L27,22 L16,22 L5,22 L5,8 Z" fill="white" fill-opacity="0.12" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="16" y1="19" x2="16" y2="9" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round"/>
+  <polyline points="10,14 16,8 22,14" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

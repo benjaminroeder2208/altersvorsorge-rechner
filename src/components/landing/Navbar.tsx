@@ -43,8 +43,14 @@ const Navbar = () => {
       }`}
     >
       <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-3">
-        <Link to="/" className="font-semibold text-sm tracking-tight shrink-0">
-          altersvorsorge-rechner.com
+        <Link to="/" className="shrink-0 flex items-center">
+          <svg width="160" height="36" viewBox="0 0 160 36" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18,2 L32,8 L32,26 L18,26 L4,26 L4,8 Z" fill="#1B4FD8" fillOpacity="0.08" stroke="#1B4FD8" strokeWidth="1.8" strokeLinejoin="round"/>
+            <line x1="18" y1="22" x2="18" y2="9" stroke="#F59E0B" strokeWidth="2.6" strokeLinecap="round"/>
+            <polyline points="12,15 18,8 24,15" fill="none" stroke="#F59E0B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/>
+            <text x="42" y="17" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="500" fill="currentColor" letterSpacing="-0.3">altersvorsorge</text>
+            <text x="42" y="29" fontFamily="system-ui, sans-serif" fontSize="10" fontWeight="400" fill="#9CA3AF" letterSpacing="0.2">rechner.com</text>
+          </svg>
         </Link>
 
         {/* Desktop nav */}
