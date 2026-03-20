@@ -55,7 +55,7 @@ const DatenschutzPage = () => (
     </section>
 
     <section>
-      <h2 className="text-xl font-bold mb-3">6. Ihre Rechte</h2>
+      <h2 className="text-xl font-bold mb-3">7. Ihre Rechte</h2>
       <p className="text-muted-foreground leading-relaxed">
         Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf Datenübertragbarkeit. Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: benjamin@kontakt-2.de
       </p>
