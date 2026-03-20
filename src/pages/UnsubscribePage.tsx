@@ -17,12 +17,10 @@ const UnsubscribePage = () => {
 
     setStatus("loading");
     try {
-      const { error } = await supabase.from("suppressed_emails").insert({
-        email,
-        reason: "unsubscribe",
+      const { error } = await supabase.functions.invoke("handle-unsubscribe", {
+        body: { email },
       });
-      // unique constraint or already exists is fine
-      if (error && !error.message.includes("duplicate")) throw error;
+      if (error) throw error;
       setStatus("done");
     } catch {
       setStatus("error");
