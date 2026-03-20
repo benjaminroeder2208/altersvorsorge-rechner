@@ -33,7 +33,7 @@ const GesetzPage = () => (
     <section>
       <h2 className="text-xl font-bold mb-3">Zeitplan der Einführung</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Das Gesetz soll voraussichtlich 2026 in Kraft treten. Der genaue Zeitpunkt hängt vom parlamentarischen Verfahren ab.
+        Das Gesetz soll voraussichtlich ab 2027 (geplant) in Kraft treten. Der genaue Zeitpunkt hängt vom parlamentarischen Verfahren ab. Angaben basieren auf dem aktuellen Gesetzentwurf. Änderungen möglich.
       </p>
     </section>
 

@@ -71,12 +71,14 @@ const ProductCard = ({
   emoji,
   title,
   description,
+  subtitle,
   badge,
   badgeClass,
 }: {
   emoji: string;
   title: string;
   description: string;
+  subtitle?: string;
   badge: string;
   badgeClass: string;
 }) => (
@@ -85,9 +87,10 @@ const ProductCard = ({
     <div className="flex-1 min-w-0">
       <div className="flex items-center gap-2 mb-1">
         <p className="text-sm font-semibold">{title}</p>
-        <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>{badge}</span>
+        {badge && <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>{badge}</span>}
       </div>
       <p className="text-xs text-muted-foreground">{description}</p>
+      {subtitle && <p className="text-[10px] text-muted-foreground/60 mt-1 italic">{subtitle}</p>}
     </div>
   </div>
 );
@@ -276,9 +279,10 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                   />
                   <ProductCard
                     emoji="🏛️"
-                    title="Altersvorsorgedepot (2026)"
-                    description="Bis zu 3.000 € staatliche Förderung/Jahr"
-                    badge="Neu ab 2026"
+                    title="Altersvorsorgedepot (2027)"
+                    description="Bis zu 540 € Grundzulage + 300 € je Kind/Jahr"
+                    subtitle="Angaben basieren auf dem aktuellen Gesetzentwurf. Änderungen möglich."
+                    badge="Geplant ab 2027"
                     badgeClass="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
                   />
                   <ProductCard
