@@ -48,6 +48,13 @@ const DatenschutzPage = () => (
     </section>
 
     <section>
+      <h2 className="text-xl font-bold mb-3">6. Updates zum Altersvorsorgedepot</h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Wenn Sie sich über das Newsletter-Widget oder das KI-Auswertungs-Modal für Updates zum Altersvorsorgedepot anmelden, wird Ihre E-Mail-Adresse gespeichert und für gelegentliche Informationen zum Stand des Gesetzgebungsverfahrens und dessen Auswirkungen auf Ihre persönliche Altersvorsorge verwendet. Der Versand erfolgt über den Dienst Resend (Resend Inc., USA). Sie können sich jederzeit abmelden — ein entsprechender Link ist in jeder E-Mail enthalten. Nach Abmeldung wird Ihre Adresse in einer Sperrliste geführt, um weiteren Versand zu unterbinden. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO (Einwilligung durch aktives Setzen der Checkbox).
+      </p>
+    </section>
+
+    <section>
       <h2 className="text-xl font-bold mb-3">6. Ihre Rechte</h2>
       <p className="text-muted-foreground leading-relaxed">
         Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf Datenübertragbarkeit. Zur Ausübung Ihrer Rechte wenden Sie sich bitte an: benjamin@kontakt-2.de
