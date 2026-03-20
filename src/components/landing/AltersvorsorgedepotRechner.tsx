@@ -307,6 +307,7 @@ const LeadCaptureCard = ({ inputs, result }: { inputs: Inputs; result: ReturnTyp
 
 const AltersvorsorgedepotRechner = () => {
   const [step, setStep] = useState(1);
+  const [kiModalOpen, setKiModalOpen] = useState(false);
   const [inputs, setInputs] = useState<Inputs>({
     monthlyContribution: 150,
     incomeBand: 2,
