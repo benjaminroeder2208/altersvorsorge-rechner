@@ -122,6 +122,60 @@ const RechnerPage = () => (
       <HeroSection />
       <CalculatorPreview />
 
+      {/* Comparison table */}
+      <section className="section-padding bg-secondary">
+        <div className="container max-w-4xl mx-auto px-6">
+          <AnimatedSection className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Früh starten lohnt sich — in Zahlen</h2>
+            <p className="text-muted-foreground mt-2">Was 10 Jahre Unterschied wirklich bedeuten</p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.1}>
+            <div className="overflow-x-auto -mx-2">
+              <table className="w-full text-sm border-collapse min-w-[480px]">
+                <thead>
+                  <tr>
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground" />
+                    <th className="py-3 px-4 font-semibold text-primary-foreground bg-primary rounded-t-xl text-center">Mit 25 starten</th>
+                    <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 35 starten</th>
+                    <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 45 starten</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { label: "Monatlicher Beitrag", values: ["150 €", "150 €", "150 €"] },
+                    { label: "Ansparzeit bis 67", values: ["42 Jahre", "32 Jahre", "22 Jahre"] },
+                    { label: "Eingezahltes Kapital", values: ["75.600 €", "57.600 €", "39.600 €"] },
+                    { label: "Kapital mit 67 (7 % p.a.)", values: ["~538.000 €", "~255.000 €", "~113.000 €"] },
+                    { label: "Monatliche Zusatzrente", values: ["~2.490 €", "~1.183 €", "~523 €"] },
+                  ].map((row, i) => (
+                    <tr key={row.label} className={i % 2 === 0 ? "bg-background" : ""}>
+                      <td className="py-3 px-4 font-medium text-muted-foreground">{row.label}</td>
+                      <td className="py-3 px-4 text-center font-semibold bg-primary/5 tabular-nums">{row.values[0]}</td>
+                      <td className="py-3 px-4 text-center tabular-nums">{row.values[1]}</td>
+                      <td className="py-3 px-4 text-center tabular-nums">{row.values[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="text-center mt-8">
+              <Link
+                to="/"
+                onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity active:scale-[0.97]"
+              >
+                Meine persönlichen Zahlen berechnen <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <p className="text-xs text-muted-foreground/60 text-center mt-6 max-w-md mx-auto leading-relaxed">
+              Berechnung bei 7 % Rendite p.a., vereinfacht ohne Inflation und Kosten. Keine Anlageberatung.
+            </p>
+          </AnimatedSection>
+        </div>
+      </section>
       <section id="mehr" className="section-padding">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-10">
