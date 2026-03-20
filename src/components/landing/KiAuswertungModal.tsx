@@ -180,6 +180,11 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
         },
       }).catch(() => {});
 
+      // Schedule follow-up emails (day 3 + day 7)
+      supabase.functions.invoke("schedule-followup-emails", {
+        body: { email },
+      }).catch(() => {});
+
       setLeadStatus("sent");
     } catch {
       setLeadStatus("error");

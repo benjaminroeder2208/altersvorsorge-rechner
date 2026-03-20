@@ -277,6 +277,11 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         },
       }).catch(() => {});
 
+      // Schedule follow-up emails (day 3 + day 7)
+      supabase.functions.invoke("schedule-followup-emails", {
+        body: { email },
+      }).catch(() => {});
+
       setStatus("sent");
     } catch {
       setStatus("error");
