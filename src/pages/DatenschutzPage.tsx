@@ -65,7 +65,7 @@ const DatenschutzPage = () => (
     </section>
 
     <section>
-      <h2 className="text-xl font-bold mb-3">7. Änderungen</h2>
+      <h2 className="text-xl font-bold mb-3">8. Änderungen</h2>
       <p className="text-muted-foreground leading-relaxed">
         Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.
       </p>
