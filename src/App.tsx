@@ -24,6 +24,7 @@ import BlogZinseszins from "./pages/BlogZinseszins";
 import BlogBav from "./pages/BlogBav";
 import BlogSelbststaendige from "./pages/BlogSelbststaendige";
 import RentenlueckenRechnerPage from "./pages/RentenlueckenRechnerPage";
+import UnsubscribePage from "./pages/UnsubscribePage";
 import ScrollToHash from "./components/ScrollToHash";
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/blog/zinseszins-frueh-starten" element={<BlogZinseszins />} />
             <Route path="/blog/betriebliche-altersvorsorge" element={<BlogBav />} />
             <Route path="/blog/altersvorsorge-selbststaendige" element={<BlogSelbststaendige />} />
+            <Route path="/unsubscribe" element={<UnsubscribePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
