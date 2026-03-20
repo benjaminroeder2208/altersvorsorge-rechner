@@ -83,7 +83,7 @@ const Navbar = () => {
             showCta ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          Jetzt berechnen →
+          Berechnen →
         </Link>
 
         {/* Mobile toggle */}
