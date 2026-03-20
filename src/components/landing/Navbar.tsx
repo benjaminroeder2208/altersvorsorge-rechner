@@ -13,11 +13,15 @@ const navLinks = [
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [showCta, setShowCta] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
+    const handler = () => {
+      setScrolled(window.scrollY > 20);
+      setShowCta(window.scrollY > 300);
+    };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -34,12 +38,12 @@ const Navbar = () => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-xl ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-xl ${
         scrolled ? "shadow-sm border-b border-border/50" : ""
       }`}
     >
-      <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link to="/" className="font-semibold text-sm tracking-tight">
+      <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-3">
+        <Link to="/" className="font-semibold text-sm tracking-tight shrink-0">
           altersvorsorge-rechner.com
         </Link>
 
@@ -65,6 +69,22 @@ const Navbar = () => {
             FAQ
           </a>
         </div>
+
+        {/* Sticky CTA */}
+        <Link
+          to="/"
+          onClick={(e) => {
+            if (location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className={`shrink-0 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-opacity duration-200 hover:opacity-90 active:scale-[0.97] ${
+            showCta ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          Jetzt berechnen →
+        </Link>
 
         {/* Mobile toggle */}
         <button
