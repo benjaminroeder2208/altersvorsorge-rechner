@@ -59,6 +59,7 @@ const App = () => (
             <Route path="/blog/zinseszins-frueh-starten" element={<BlogZinseszins />} />
             <Route path="/blog/betriebliche-altersvorsorge" element={<BlogBav />} />
             <Route path="/blog/altersvorsorge-selbststaendige" element={<BlogSelbststaendige />} />
+            <Route path="/unsubscribe" element={<UnsubscribePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
