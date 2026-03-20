@@ -105,6 +105,15 @@ const homepageJsonLd = [
       },
     ],
   },
+  {
+    "@type": "Organization",
+    name: "altersvorsorge-rechner.com",
+    url: "https://altersvorsorge-rechner.com",
+    description: "Unabhängiges Team aus Finanz- und Technik-Enthusiasten. Kostenlose, werbefreie Tools und Ratgeber rund um Altersvorsorge in Deutschland.",
+    foundingDate: "2026",
+    areaServed: "DE",
+    inLanguage: "de",
+  },
 ];
 
 const RechnerPage = () => (
