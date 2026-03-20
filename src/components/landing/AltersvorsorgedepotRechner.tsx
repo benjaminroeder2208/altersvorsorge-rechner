@@ -657,8 +657,8 @@ const AltersvorsorgedepotRechner = () => {
                   }}
                 />
 
-                {/* Lead capture module */}
-                <LeadCaptureCard inputs={inputs} result={r} />
+                {/* Newsletter signup */}
+                <NewsletterCard inputs={inputs} result={r} />
 
                 {/* Return assumption selector */}
                 <div className="mb-12">
