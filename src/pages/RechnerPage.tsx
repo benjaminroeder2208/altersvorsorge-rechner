@@ -18,6 +18,16 @@ const topicLinks = [
 
 const homepageJsonLd = [
   {
+    "@type": "WebSite",
+    name: "altersvorsorge-rechner.com",
+    url: "https://altersvorsorge-rechner.com",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://altersvorsorge-rechner.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  },
+  {
     "@type": "WebPage",
     name: "Altersvorsorgedepot Rechner",
     url: "https://altersvorsorge-rechner.com/",
