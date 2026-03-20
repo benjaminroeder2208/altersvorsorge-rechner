@@ -236,15 +236,21 @@ const StepperCard = ({
   </div>
 );
 
-/* ─────────────── lead capture card ─────────────── */
+/* ─────────────── newsletter signup card ─────────────── */
 
-const LeadCaptureCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType<typeof calculate> }) => {
+const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType<typeof calculate> }) => {
   const [email, setEmail] = useState("");
+  const [dsgvoAccepted, setDsgvoAccepted] = useState(false);
+  const [dsgvoError, setDsgvoError] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || status === "sending" || status === "sent") return;
+    if (!dsgvoAccepted) {
+      setDsgvoError(true);
+      return;
+    }
 
     setStatus("sending");
     try {
@@ -259,6 +265,18 @@ const LeadCaptureCard = ({ inputs, result }: { inputs: Inputs; result: ReturnTyp
         monthly_payout: Math.round(result.monthlyPayout),
       });
       if (error) throw error;
+
+      // Trigger immediate results email
+      supabase.functions.invoke("send-lead-email", {
+        body: {
+          email,
+          total_capital: Math.round(result.capitalWithFunding),
+          monthly_payout: Math.round(result.monthlyPayout),
+          subsidies: Math.round(result.totalSubsidies),
+          monthly_contribution: inputs.monthlyContribution,
+        },
+      }).catch(() => {});
+
       setStatus("sent");
     } catch {
       setStatus("error");
@@ -267,38 +285,60 @@ const LeadCaptureCard = ({ inputs, result }: { inputs: Inputs; result: ReturnTyp
   };
 
   return (
-    <div className="max-w-lg mx-auto mb-20 group/coming" title="Diese Funktion wird bald verfügbar sein.">
-      <div className="relative bg-background border border-border rounded-2xl p-8 shadow-sm text-center opacity-50 pointer-events-none select-none">
-        <span className="absolute top-3 right-3 inline-flex items-center rounded-full border border-border bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
-          Demnächst verfügbar
-        </span>
+    <div className="max-w-lg mx-auto mb-20">
+      <div className="bg-background border border-border rounded-2xl p-8 shadow-sm text-center">
         <div className="flex items-center justify-center gap-2 mb-3">
-          <Mail className="w-4 h-4 text-muted-foreground" />
-          <h3 className="text-lg font-semibold">Simulation speichern</h3>
+          <Mail className="w-4 h-4 text-primary" />
+          <h3 className="text-lg font-semibold">Auf dem Laufenden bleiben</h3>
         </div>
         <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
-          Möchten Sie Ihre Simulation später erneut aufrufen?
-          Wir senden Ihnen Ihr Ergebnis einfach per E-Mail.
+          Wir informieren dich wenn das Altersvorsorgedepot beschlossen wird — und was das konkret für dich bedeutet.
         </p>
 
-        <div className="space-y-4">
-          <input
-            type="email"
-            disabled
-            placeholder="Ihre E-Mail-Adresse"
-            className="w-full px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground/50 cursor-not-allowed"
-          />
-          <button
-            type="button"
-            disabled
-            className="w-full px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm opacity-60 cursor-not-allowed"
-          >
-            Ergebnis per E-Mail senden
-          </button>
-          <InfoText>
-            Ihre E-Mail wird nur verwendet, um Ihnen das Ergebnis zu senden.
-          </InfoText>
-        </div>
+        {status === "sent" ? (
+          <div className="flex items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium py-3">
+            <Check className="w-4 h-4" /> Eingetragen ✓ — wir melden uns sobald es Neuigkeiten gibt.
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex gap-2">
+              <input
+                type="email"
+                required
+                placeholder="Deine E-Mail-Adresse"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+              <button
+                type="submit"
+                disabled={status === "sending" || !dsgvoAccepted}
+                className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
+              >
+                {status === "sending" ? "..." : "Jetzt informieren"}
+              </button>
+            </div>
+            <div className="flex items-start gap-2 text-left">
+              <Checkbox
+                id="dsgvo-newsletter"
+                checked={dsgvoAccepted}
+                onCheckedChange={(v) => { setDsgvoAccepted(!!v); setDsgvoError(false); }}
+                className={`mt-0.5 ${dsgvoError ? "border-destructive ring-1 ring-destructive" : ""}`}
+              />
+              <label htmlFor="dsgvo-newsletter" className="text-[11px] text-muted-foreground leading-relaxed cursor-pointer">
+                Ich stimme der Verarbeitung meiner E-Mail-Adresse gemäß der{" "}
+                <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Datenschutzerklärung</a>{" "}
+                zu. Die Adresse wird ausschließlich zur Zusendung meiner Auswertung und gelegentlicher Updates verwendet.
+              </label>
+            </div>
+            {dsgvoError && (
+              <p className="text-[11px] text-destructive text-left">Bitte stimme der Datenschutzerklärung zu.</p>
+            )}
+            {status === "error" && (
+              <p className="text-xs text-destructive">Fehler beim Speichern. Bitte versuche es erneut.</p>
+            )}
+          </form>
+        )}
       </div>
     </div>
   );
