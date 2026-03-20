@@ -39,7 +39,7 @@ const FooterSection = () =>
       <div className="max-w-xl mx-auto mb-10 pb-8 border-b border-border text-center">
         <p className="font-semibold text-sm mb-4">Wer wir sind</p>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          altersvorsorge-rechner.com wurde von einem unabhängigen Team aus Finanz- und Technik-Enthusiasten entwickelt. Unser Ziel: Altersvorsorge verständlich machen — ohne Bankberater-Sprache, ohne Produktverkauf, ohne versteckte Interessen. Alle Inhalte und Rechner sind kostenlos und werbefrei. Wir verdienen kein Geld durch Produktempfehlungen oder Provisionen.
+          altersvorsorge-rechner.com wurde von einem unabhängigen Team aus Finanz- und Technik-Enthusiasten entwickelt. Unser Ziel: Altersvorsorge verständlich machen — ohne Bankberater-Sprache. Alle Inhalte und Rechner sind kostenlos. 
         </p>
       </div>
 
