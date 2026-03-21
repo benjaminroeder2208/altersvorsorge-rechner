@@ -3,7 +3,7 @@ import React from "react";
 import { AuswertungPDF, type AuswertungData } from "@/components/pdf/AuswertungPDF";
 
 export async function generatePDFBase64(data: AuswertungData): Promise<string> {
-  const element = React.createElement(AuswertungPDF, { data });
+  const element = React.createElement(AuswertungPDF, { data }) as any;
   const blob = await pdf(element).toBlob();
 
   return new Promise((resolve, reject) => {
