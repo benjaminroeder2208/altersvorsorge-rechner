@@ -35,7 +35,7 @@ const faqItems = [
   },
   {
     q: "Lohnt sich das Altersvorsorgedepot für Selbstständige?",
-    a: "Wenn Selbstständige förderberechtigt werden, ja — besonders für alle, die ohnehin langfristig investieren wollen. Die Förderung von bis zu 540 € Grundzulage plus Steuervorteil ist auch für Selbstständige attraktiv. Die finale Regelung steht noch aus.",
+    a: "Wenn Selbstständige förderberechtigt werden, ja — besonders für alle, die ohnehin langfristig investieren wollen. Die Förderung von bis zu 480 € Grundzulage (ab 2029: 540 €) plus Steuervorteil ist auch für Selbstständige attraktiv. Die finale Regelung steht noch aus.",
   },
   {
     q: "Was ist mit der Künstlersozialkasse (KSK)?",
@@ -207,7 +207,7 @@ const BlogSelbststaendige = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Bis zu 540 € + Steuervorteil</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Bis zu 480 € + Steuervorteil (ab 2029: 540 €)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlage in ETFs</TableCell><TableCell>✅ Ja</TableCell><TableCell>✅ Ja</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>✅ Jederzeit</TableCell><TableCell>⚠️ Gebunden bis 65</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Steuer auf Erträge</TableCell><TableCell>Abgeltungsteuer</TableCell><TableCell>Nachgelagert</TableCell></TableRow>

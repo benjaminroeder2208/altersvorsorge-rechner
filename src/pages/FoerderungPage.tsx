@@ -25,7 +25,7 @@ const FoerderungPage = () => (
     <section>
       <h2 className="text-xl font-bold mb-3">Grundzulage</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Die Grundzulage beträgt laut aktuellem Entwurf bis zu 35 % auf Eigenbeiträge bis 1.200 € pro Jahr und 20 % auf Beiträge zwischen 1.200 € und 1.800 €.
+        Die Grundzulage beträgt laut aktuellem Entwurf 30 % auf Eigenbeiträge bis 1.200 € pro Jahr und 20 % auf weitere 600 €.
       </p>
       <ul className="mt-3 space-y-2">
         <li className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -34,7 +34,11 @@ const FoerderungPage = () => (
         </li>
         <li className="flex items-start gap-2 text-sm text-muted-foreground">
           <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-          Maximale Grundzulage: ca. 540 € pro Jahr
+          Maximale Grundzulage: bis zu 480 € pro Jahr
+        </li>
+        <li className="flex items-start gap-2 text-sm text-muted-foreground">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+          Ab 2029 steigt die Grundzulage auf bis zu 540 € pro Jahr
         </li>
       </ul>
     </section>

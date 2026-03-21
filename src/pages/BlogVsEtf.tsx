@@ -36,7 +36,7 @@ const faqItems = [
   },
   {
     q: "Lohnt sich das Depot auch bei hohem Einkommen?",
-    a: "Ja, auch bei hohen Einkommen lohnt sich die Förderung. Der Steuervorteil durch den Sonderausgabenabzug fällt sogar höher aus. Allerdings ist die Förderquote relativ zum Gesamtvermögen bei sehr hohen Einkommen kleiner — wer 10.000 € im Monat verdient, für den sind 540 € Grundzulage weniger transformativ als für jemanden mit 3.000 € Monatsgehalt.",
+    a: "Ja, auch bei hohen Einkommen lohnt sich die Förderung. Der Steuervorteil durch den Sonderausgabenabzug fällt sogar höher aus. Allerdings ist die Förderquote relativ zum Gesamtvermögen bei sehr hohen Einkommen kleiner — wer 10.000 € im Monat verdient, für den sind 480 € Grundzulage weniger transformativ als für jemanden mit 3.000 € Monatsgehalt.",
   },
   {
     q: "Was passiert mit meinem bestehenden ETF-Sparplan, wenn das Depot kommt?",
@@ -268,7 +268,7 @@ const BlogVsEtf = () => {
 
               <SectionH3>Förderung</SectionH3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Nur das Altersvorsorgedepot bekommt staatliche Zulagen. Der Staat zahlt dir bis zu <strong className="text-foreground">35 % auf deine ersten 1.200 € Eigenbeitrag</strong> pro Jahr direkt dazu — plus bis zu 300 € pro Kind. Obendrauf kommt der Steuervorteil durch den Sonderausgabenabzug. Ein normaler ETF-Sparplan bekommt nichts davon.
+                Nur das Altersvorsorgedepot bekommt staatliche Zulagen. Der Staat zahlt dir bis zu <strong className="text-foreground">30 % auf deine ersten 1.200 € Eigenbeitrag</strong> pro Jahr direkt dazu — plus bis zu 300 € pro Kind. Obendrauf kommt der Steuervorteil durch den Sonderausgabenabzug. Ein normaler ETF-Sparplan bekommt nichts davon.
               </p>
 
               <SectionH3>Flexibilität</SectionH3>

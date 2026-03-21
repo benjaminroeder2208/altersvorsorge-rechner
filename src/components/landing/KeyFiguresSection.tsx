@@ -16,11 +16,11 @@ const cards = [
     sub: "des letzten Bruttogehalts — netto oft noch weniger",
   },
   {
-    value: "540 €",
+    value: "480 €",
     valueColor: "#F59E0B",
     accentColor: "#F59E0B",
     label: "Staatliche Förderung pro Jahr",
-    sub: "durch das geplante Altersvorsorgedepot ab 2027",
+    sub: "durch das geplante Altersvorsorgedepot ab 2027 (ab 2029: bis zu 540 €)",
   },
 ];
 

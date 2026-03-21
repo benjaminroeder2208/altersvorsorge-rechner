@@ -195,7 +195,7 @@ const BlogVsRiester = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell className="font-medium">Grundzulage</TableCell><TableCell>175 €/Jahr (fix)</TableCell><TableCell>35 % auf bis zu 1.200 € + 20 % auf bis zu 600 €</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Grundzulage</TableCell><TableCell>175 €/Jahr (fix)</TableCell><TableCell>30 % auf bis zu 1.200 € + 20 % auf bis zu 600 €</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Kinderzulage</TableCell><TableCell>300 €/Kind (ab 2008)</TableCell><TableCell>bis zu 300 €/Kind</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Eigenbeitrag für volle Förderung</TableCell><TableCell>4 % des Vorjahresbruttos (mind. 60 €)</TableCell><TableCell>1.800 €/Jahr (150 €/Monat)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Beitragsgarantie</TableCell><TableCell>✅ Ja — 100 %</TableCell><TableCell>❌ Nein</TableCell></TableRow>
@@ -222,7 +222,7 @@ const BlogVsRiester = () => {
               <div className="text-base leading-relaxed text-muted-foreground space-y-2">
                 <p>Beim Altersvorsorgedepot ist die Förderung <strong className="text-foreground">prozentual auf den Eigenbeitrag</strong> ausgelegt:</p>
                 <ul className="list-disc pl-6 space-y-1">
-                  <li><strong className="text-foreground">35 %</strong> auf die ersten 1.200 € Eigenbeitrag pro Jahr</li>
+                  <li><strong className="text-foreground">30 %</strong> auf die ersten 1.200 € Eigenbeitrag pro Jahr</li>
                   <li><strong className="text-foreground">20 %</strong> auf weitere 600 € Eigenbeitrag (bis 1.800 € gesamt)</li>
                   <li>Kinderzulage: bis zu <strong className="text-foreground">300 € pro Kind</strong></li>
                 </ul>
@@ -241,13 +241,13 @@ const BlogVsRiester = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Erforderlicher Eigenbeitrag</TableCell><TableCell>~1.365 €/Jahr</TableCell><TableCell>1.800 €/Jahr</TableCell></TableRow>
-                    <TableRow><TableCell>Grundzulage</TableCell><TableCell>175 €</TableCell><TableCell>540 €</TableCell></TableRow>
+                    <TableRow><TableCell>Grundzulage</TableCell><TableCell>175 €</TableCell><TableCell>480 €</TableCell></TableRow>
                     <TableRow><TableCell>Kinderzulage</TableCell><TableCell>300 €</TableCell><TableCell>300 €</TableCell></TableRow>
                     <TableRow><TableCell>Steuervorteil (geschätzt, ~30 %)</TableCell><TableCell>~350 €</TableCell><TableCell>~530 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Gesamtförderung</TableCell>
                       <TableCell className="font-bold">~825 €</TableCell>
-                      <TableCell className="font-bold text-primary">~1.370 €</TableCell>
+                      <TableCell className="font-bold text-primary">~1.310 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
@@ -278,7 +278,7 @@ const BlogVsRiester = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Eingezahltes Eigenkapital</TableCell><TableCell>54.000 €</TableCell><TableCell>54.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>Staatliche Förderung (kumuliert)</TableCell><TableCell>~24.750 €</TableCell><TableCell>~40.500 €</TableCell></TableRow>
+                    <TableRow><TableCell>Staatliche Förderung (kumuliert)</TableCell><TableCell>~24.750 €</TableCell><TableCell>~38.400 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital zum Rentenbeginn (geschätzt)</TableCell>
                       <TableCell className="font-bold">~130.000 €</TableCell>
