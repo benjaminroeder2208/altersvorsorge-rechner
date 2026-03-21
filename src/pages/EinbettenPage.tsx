@@ -121,7 +121,7 @@ const EinbettenPage = () => (
                 <CopyButton text={EMBED_CODE_CUSTOM} />
               </div>
               <p className="text-xs text-muted-foreground/60 mt-3">
-                Ersetze DEINBLOGNAME durch den Namen deiner Website — so siehst du in unserem Dashboard welche Leads von dir kommen.
+                Ersetze DEINBLOGNAME durch den Namen deiner Website — sobald unser Dashboard live ist, kannst du sehen welche Leads von dir kommen.
               </p>
             </div>
           </div>
