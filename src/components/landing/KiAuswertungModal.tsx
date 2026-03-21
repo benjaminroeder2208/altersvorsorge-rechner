@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, Loader2, Check, TrendingDown, PiggyBank, Target, Clock } from "lucide-react";
+import { X, Sparkles, Loader2, Check, TrendingDown, PiggyBank, Target, Clock, Mail } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 
