@@ -66,6 +66,11 @@ const App = () => (
             <Route path="/blog/zinseszins-frueh-starten" element={<BlogZinseszins />} />
             <Route path="/blog/betriebliche-altersvorsorge" element={<BlogBav />} />
             <Route path="/blog/altersvorsorge-selbststaendige" element={<BlogSelbststaendige />} />
+            <Route path="/blog/altersvorsorge-berufseinsteiger" element={<BlogBerufseinsteiger />} />
+            <Route path="/blog/riester-kuendigen" element={<BlogRiesterKuendigen />} />
+            <Route path="/blog/etf-sparplan-steuern" element={<BlogEtfSteuern />} />
+            <Route path="/blog/rentenpunkte-kaufen" element={<BlogRentenpunkteKaufen />} />
+            <Route path="/blog/ruerup-rente" element={<BlogRuerupRente />} />
             <Route path="/unsubscribe" element={<UnsubscribePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

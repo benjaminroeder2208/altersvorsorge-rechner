@@ -15,6 +15,46 @@ import {
 
 const articles = [
   {
+    slug: "/blog/altersvorsorge-berufseinsteiger",
+    title: "Altersvorsorge mit 20: Warum jetzt der beste Zeitpunkt ist — und wie du startest",
+    description:
+      "Mit 20 fühlt sich die Rente abstrakt an. Aber kein Berufstätiger hat mehr Zeit als du gerade — und Zeit ist das einzige was du später nicht kaufen kannst.",
+    readingTime: "8 Min.",
+    tag: "Ratgeber",
+  },
+  {
+    slug: "/blog/riester-kuendigen",
+    title: "Riester kündigen: Wann es sich lohnt und was du wirklich verlierst",
+    description:
+      "Kündigen klingt verlockend — kostet aber fast immer mehr als es bringt. Wir zeigen die vier Alternativen und wann eine Kündigung trotzdem sinnvoll ist.",
+    readingTime: "8 Min.",
+    tag: "Ratgeber",
+  },
+  {
+    slug: "/blog/etf-sparplan-steuern",
+    title: "ETF Sparplan Steuern: Was du wirklich zahlen musst — und wie du es optimierst",
+    description:
+      "Steuern können einen erheblichen Teil der ETF-Rendite auffressen — wenn man sie nicht versteht. Wir erklären Abgeltungsteuer, Vorabpauschale und den Steuerstundungseffekt.",
+    readingTime: "7 Min.",
+    tag: "Ratgeber",
+  },
+  {
+    slug: "/blog/rentenpunkte-kaufen",
+    title: "Rentenpunkte kaufen: Lohnt es sich wirklich?",
+    description:
+      "Wer freiwillig in die gesetzliche Rente einzahlt, kann seine Rente erhöhen. Aber die Rendite-Rechnung ist ernüchternd — wir zeigen die Zahlen ehrlich.",
+    readingTime: "7 Min.",
+    tag: "Ratgeber",
+  },
+  {
+    slug: "/blog/ruerup-rente",
+    title: "Rürup Rente: Für wen sie sich wirklich lohnt — und für wen nicht",
+    description:
+      "Für Selbstständige und Gutverdiener das stärkste Steuersparinstrument. Für alle anderen oft eine teure Falle. Der Unterschied liegt im Einkommen.",
+    readingTime: "8 Min.",
+    tag: "Ratgeber",
+  },
+  {
     slug: "/blog/altersvorsorgedepot-vs-riester",
     title: "Altersvorsorgedepot vs. Riester: Die wichtigsten Unterschiede",
     description:
