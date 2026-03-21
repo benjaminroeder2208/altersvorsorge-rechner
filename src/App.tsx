@@ -32,6 +32,8 @@ import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
 import BlogRuerupRente from "./pages/BlogRuerupRente";
 import BlogPortfolio from "./pages/BlogPortfolio";
 import ConfirmPage from "./pages/ConfirmPage";
+import EmbedPage from "./pages/EmbedPage";
+import EinbettenPage from "./pages/EinbettenPage";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 
@@ -76,6 +78,8 @@ const App = () => (
             <Route path="/blog/altersvorsorge-portfolio" element={<BlogPortfolio />} />
             <Route path="/unsubscribe" element={<UnsubscribePage />} />
             <Route path="/confirm" element={<ConfirmPage />} />
+            <Route path="/embed" element={<EmbedPage />} />
+            <Route path="/einbetten" element={<EinbettenPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

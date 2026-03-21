@@ -164,6 +164,7 @@ export type Database = {
           confirmed: boolean
           created_at: string
           email: string
+          embed_source: string | null
           id: string
           monthly_contribution: number
           monthly_payout: number
@@ -180,6 +181,7 @@ export type Database = {
           confirmed?: boolean
           created_at?: string
           email: string
+          embed_source?: string | null
           id?: string
           monthly_contribution: number
           monthly_payout: number
@@ -196,6 +198,7 @@ export type Database = {
           confirmed?: boolean
           created_at?: string
           email?: string
+          embed_source?: string | null
           id?: string
           monthly_contribution?: number
           monthly_payout?: number
