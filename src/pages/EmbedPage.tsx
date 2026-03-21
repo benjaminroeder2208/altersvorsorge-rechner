@@ -6,6 +6,7 @@ import {
 import { ArrowRight, ChevronLeft, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
+import { captureChart, generatePDFBase64 } from "@/utils/generatePDF";
 import PageHead from "@/components/seo/PageHead";
 
 /* ─── helpers ─── */
@@ -184,6 +185,20 @@ const EmbedPage = () => {
     setEmailStatus("sending");
     try {
       const confirmToken = crypto.randomUUID();
+      const chartImg = await captureChart("embed-chart-capture").catch(() => "");
+      const pdfBase64 = await generatePDFBase64({
+        monthly_contribution: inputs.monthlyContribution,
+        total_capital: Math.round(r.capitalWithFunding),
+        monthly_payout: Math.round(r.monthlyPayout),
+        subsidies: Math.round(r.totalSubsidies),
+        capital_without: Math.round(r.capitalWithout),
+        payout_without: Math.round(r.monthlyPayoutWithout),
+        capital_savings: Math.round(r.capitalSavings),
+        payout_savings: Math.round(r.monthlyPayoutSavings),
+        retirement_age: inputs.retirementAge,
+        birth_year: inputs.birthYear,
+        chart_image: chartImg,
+      }).catch(() => null);
       const { error } = await supabase.from("simulation_leads").insert({
         email,
         monthly_contribution: inputs.monthlyContribution,
@@ -196,6 +211,7 @@ const EmbedPage = () => {
         total_subsidies: Math.round(r.totalSubsidies),
         confirmation_token: confirmToken,
         embed_source: utmSource,
+        pdf_base64: pdfBase64,
       } as any);
       if (error) throw error;
       supabase.functions.invoke("send-confirmation-email", { body: { email, token: confirmToken } }).catch(() => {});
@@ -321,7 +337,7 @@ const EmbedPage = () => {
               </div>
 
               {/* Mini chart */}
-              <div className="h-[180px] mb-6">
+              <div id="embed-chart-capture" className="h-[180px] mb-6">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={r.chartData} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
                     <defs>

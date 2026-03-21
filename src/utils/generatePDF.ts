@@ -17,8 +17,8 @@ export async function generatePDFBase64(data: AuswertungData): Promise<string> {
   });
 }
 
-export async function captureChart(): Promise<string> {
-  const el = document.getElementById("pdf-chart-capture");
+export async function captureChart(elementId = "pdf-chart-capture"): Promise<string> {
+  const el = document.getElementById(elementId);
   if (!el) return "";
 
   const html2canvas = (await import("html2canvas")).default;
