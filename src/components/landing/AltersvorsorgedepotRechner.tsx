@@ -264,6 +264,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         return_assumption: inputs.returnRate * 100,
         calculated_capital: Math.round(result.capitalWithFunding),
         monthly_payout: Math.round(result.monthlyPayout),
+        total_subsidies: Math.round(result.totalSubsidies),
         confirmation_token: confirmToken,
       });
       if (error) throw error;

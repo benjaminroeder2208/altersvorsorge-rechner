@@ -169,6 +169,7 @@ export type Database = {
           monthly_payout: number
           retirement_age: number
           return_assumption: number
+          total_subsidies: number
         }
         Insert: {
           birth_year: number
@@ -183,6 +184,7 @@ export type Database = {
           monthly_payout: number
           retirement_age?: number
           return_assumption?: number
+          total_subsidies?: number
         }
         Update: {
           birth_year?: number
@@ -197,6 +199,7 @@ export type Database = {
           monthly_payout?: number
           retirement_age?: number
           return_assumption?: number
+          total_subsidies?: number
         }
         Relationships: []
       }
