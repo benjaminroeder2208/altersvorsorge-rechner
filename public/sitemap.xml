@@ -88,4 +88,10 @@
     <loc>https://altersvorsorge-rechner.com/blog/ruerup-rente</loc>
     <lastmod>2026-03-21</lastmod>
   </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/einbetten</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

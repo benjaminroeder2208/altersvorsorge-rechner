@@ -28,6 +28,7 @@ const sections = [
   title: "Informationen",
   links: [
   { to: "/blog", label: "Blog" },
+  { to: "/einbetten", label: "Rechner einbetten" },
   { to: "/#faq", label: "FAQ", isAnchor: true }]
 
 }];
