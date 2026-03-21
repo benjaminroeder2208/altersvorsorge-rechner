@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
+import { ArrowRight, Calculator, ChevronDown, AlertTriangle } from "lucide-react";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
@@ -35,7 +36,7 @@ const faqItems = [
   },
   {
     q: "Lohnt sich das Altersvorsorgedepot für Selbstständige?",
-    a: "Wenn Selbstständige förderberechtigt werden, ja — besonders für alle, die ohnehin langfristig investieren wollen. Die Förderung von bis zu 480 € Grundzulage (ab 2029: 540 €) plus Steuervorteil ist auch für Selbstständige attraktiv. Die finale Regelung steht noch aus.",
+    a: "Nur wenn du freiwillig in der gesetzlichen Rentenversicherung versichert bist — dann bist du förderberechtigt und kannst Zulagen und Sonderausgabenabzug nutzen. Ohne GRV-Mitgliedschaft kannst du das Depot zwar als ungeförderten Sparvertrag nutzen, erhältst aber keine staatliche Förderung. Für die meisten Selbstständigen bleiben Rürup und ETF-Sparplan die attraktiveren Instrumente.",
   },
   {
     q: "Was ist mit der Künstlersozialkasse (KSK)?",
@@ -50,7 +51,7 @@ const jsonLd = [
     description: "Selbstständige haben keine gesetzliche Rente — oder nur eine sehr kleine. Wir zeigen, welche Optionen es gibt, was das Altersvorsorgedepot ab 2027 bringt und wie du die Rentenlücke schließt.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-19",
-    dateModified: "2026-03-19",
+    dateModified: "2026-03-21",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -131,11 +132,22 @@ const BlogSelbststaendige = () => {
                 <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
                   Altersvorsorge für Selbstständige: Was wirklich funktioniert
                 </h1>
-                <div className="flex items-center gap-3 text-sm text-muted-foreground mb-8">
+                <div className="flex items-center gap-3 text-sm text-muted-foreground mb-6">
                   <span>ca. 8 Min. Lesezeit</span>
                   <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
                   <span>Stand: 2026</span>
                 </div>
+
+                <Alert className="mb-8 border-yellow-300 bg-yellow-50 dark:bg-yellow-950/30 dark:border-yellow-700">
+                  <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+                  <AlertTitle className="text-yellow-800 dark:text-yellow-300 font-semibold">Wichtiger Hinweis zur Förderberechtigung</AlertTitle>
+                  <AlertDescription className="text-yellow-700 dark:text-yellow-400/90 text-sm leading-relaxed space-y-2 mt-1">
+                    <p>Die staatliche Förderung des Altersvorsorgedepots (Zulage + Sonderausgabenabzug nach § 10a EStG) steht grundsätzlich nur Pflichtversicherten in der gesetzlichen Rentenversicherung zu — also Arbeitnehmerinnen und Arbeitnehmern sowie bestimmten Beamten.</p>
+                    <p><strong>Selbstständige sind in der Regel nicht direkt förderberechtigt</strong>, es sei denn, sie sind freiwillig in der gesetzlichen Rentenversicherung versichert.</p>
+                    <p>Selbstständige können das Altersvorsorgedepot zwar als ungeförderten Sparvertrag nutzen, erhalten aber keine staatlichen Zulagen und keinen Sonderausgabenabzug. Für Selbstständige bleiben Rürup (Basisrente) und der klassische ETF-Sparplan die steuerlich attraktiveren Hauptinstrumente.</p>
+                    <p className="text-xs text-yellow-600 dark:text-yellow-500 mt-1">Rechtsgrundlage: § 79, § 10a EStG (Gesetzentwurf Drucksache 21/4088)</p>
+                  </AlertDescription>
+                </Alert>
               </AnimatedSection>
 
               <Collapsible open={tocOpen} onOpenChange={setTocOpen} className="lg:hidden mb-10">
@@ -153,7 +165,7 @@ const BlogSelbststaendige = () => {
               {/* Intro */}
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Selbstständige stehen beim Thema Altersvorsorge vor einer besonderen Herausforderung: Keine automatischen Rentenversicherungsbeiträge, keine bAV vom Arbeitgeber, kein Sicherheitsnetz. Wer selbst nicht vorsorgt, hat im Alter oft fast nichts.</p>
-                <p>Gleichzeitig gibt es für Selbstständige mehr Optionen als viele denken — und ab 2027 kommt mit dem <Link to="/altersvorsorgedepot" className="text-primary font-medium hover:underline">Altersvorsorgedepot</Link> ein neues, potenziell attraktives Instrument dazu.</p>
+                <p>Gleichzeitig gibt es für Selbstständige mehr Optionen als viele denken — und ab 2027 kommt mit dem <Link to="/altersvorsorgedepot" className="text-primary font-medium hover:underline">Altersvorsorgedepot</Link> ein neues Instrument dazu, das allerdings nur für freiwillig GRV-versicherte Selbstständige staatlich gefördert wird.</p>
               </div>
 
               <CtaBlock to="/rentenluecken-rechner">Wie groß ist deine Rentenlücke? Jetzt berechnen.</CtaBlock>
@@ -192,18 +204,18 @@ const BlogSelbststaendige = () => {
               <p className="text-base leading-relaxed text-muted-foreground">Viele Selbstständige setzen auf Immobilien als Altersvorsorge — selbstgenutzt oder als Renditeobjekt. Das kann sinnvoll sein, hat aber Klumpenrisiken (zu viel Vermögen in einer Anlage) und hohe Transaktionskosten.</p>
 
               <SectionH3>5. Altersvorsorgedepot ab 2027</SectionH3>
-              <p className="text-base leading-relaxed text-muted-foreground">Hier ist noch nicht abschließend geregelt, welche Selbstständigen förderberechtigt sein werden. Der aktuelle Gesetzentwurf sieht einen breiten Förderberechtigtenkreis vor — die genauen Regelungen für Selbstständige ohne Rentenversicherungspflicht sind noch offen.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Das Altersvorsorgedepot bietet staatliche Förderung (Zulagen + Sonderausgabenabzug) — allerdings nur für Pflichtversicherte und freiwillig Versicherte in der gesetzlichen Rentenversicherung. Selbstständige ohne GRV-Mitgliedschaft können das Depot als ungeförderten Sparvertrag nutzen, erhalten aber keine Zulagen. Für die meisten Selbstständigen ist daher Rürup steuerlich attraktiver.</p>
 
               {/* AVD für Selbstständige */}
-              <SectionH2 id="avd-bedeutung">Was das Altersvorsorgedepot für Selbstständige bedeuten könnte</SectionH2>
-              <p className="text-base leading-relaxed text-muted-foreground mb-4">Wenn Selbstständige förderberechtigt werden — was im aktuellen Entwurf diskutiert wird — wäre das eine erhebliche Verbesserung gegenüber dem Status quo:</p>
+              <SectionH2 id="avd-bedeutung">Was das Altersvorsorgedepot für Selbstständige bedeutet</SectionH2>
+              <p className="text-base leading-relaxed text-muted-foreground mb-4">Die staatliche Förderung (Zulagen + Sonderausgabenabzug) des Altersvorsorgedepots steht nur GRV-Versicherten zu. Als freiwillig GRV-versicherter Selbstständiger kannst du die Förderung nutzen — hier der Vergleich:</p>
               <div className="overflow-x-auto -mx-6 px-6 my-4">
                 <Table>
                   <TableHeader>
                     <TableRow>
                       <TableHead className="min-w-[140px]" />
                       <TableHead className="min-w-[140px]">ETF-Sparplan (heute)</TableHead>
-                      <TableHead className="min-w-[200px]">Altersvorsorgedepot (ab 2027)</TableHead>
+                      <TableHead className="min-w-[200px]">Altersvorsorgedepot (ab 2027) *</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -214,14 +226,15 @@ const BlogSelbststaendige = () => {
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-base leading-relaxed text-muted-foreground">Für Selbstständige, die ohnehin langfristig für die Rente sparen wollen, könnte das Altersvorsorgedepot den ETF-Sparplan in vielen Fällen ersetzen — sofern die Förderung zugänglich wird.</p>
+              <p className="text-xs text-muted-foreground/70 italic mt-1 mb-2">* Staatliche Förderung nur für freiwillig GRV-Versicherte. Ohne GRV-Mitgliedschaft kann das Depot als ungeförderter Sparvertrag genutzt werden.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Für freiwillig GRV-versicherte Selbstständige, die ohnehin langfristig für die Rente sparen wollen, kann das Altersvorsorgedepot den ETF-Sparplan ergänzen oder teilweise ersetzen.</p>
 
               {/* Strategie */}
               <SectionH2 id="strategie">Die optimale Strategie für Selbstständige</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Es gibt keine Einheitslösung — aber eine bewährte Grundstruktur:</p>
                 <p><strong className="text-foreground">Fundament: Mindestabsicherung sicherstellen</strong><br />Freiwillige gesetzliche Rentenversicherung oder Rürup prüfen — besonders für die Erwerbsminderungsabsicherung und steuerliche Optimierung in Jahren mit hohem Einkommen.</p>
-                <p><strong className="text-foreground">Wachstum: Kapitalmarkt nutzen</strong><br />ETF-Sparplan oder (ab 2027) Altersvorsorgedepot für den Aufbau von Vermögen mit langfristiger Perspektive.</p>
+                <p><strong className="text-foreground">Wachstum: Kapitalmarkt nutzen</strong><br />ETF-Sparplan oder (ab 2027, als freiwillig GRV-Versicherter) Altersvorsorgedepot für den Aufbau von Vermögen mit langfristiger Perspektive.</p>
                 <p><strong className="text-foreground">Flexibilität: Liquiditätspuffer halten</strong><br />Selbstständige brauchen mehr Liquiditätsreserven als Angestellte. Nicht alles in gebundene Produkte stecken — ein flexibler ETF-Sparplan als Puffer ist sinnvoll.</p>
               </div>
 
@@ -237,12 +250,13 @@ const BlogSelbststaendige = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Rürup-Rente</TableCell><TableCell>300 €</TableCell><TableCell>Steueroptimierung, Basisabsicherung</TableCell></TableRow>
-                    <TableRow><TableCell>Altersvorsorgedepot (ab 2027)</TableCell><TableCell>150 €</TableCell><TableCell>Staatliche Förderung mitnehmen</TableCell></TableRow>
+                    <TableRow><TableCell>Altersvorsorgedepot (ab 2027) *</TableCell><TableCell>150 €</TableCell><TableCell>Staatliche Förderung mitnehmen</TableCell></TableRow>
                     <TableRow><TableCell>ETF-Sparplan</TableCell><TableCell>200 €</TableCell><TableCell>Flexibler Puffer & Wachstum</TableCell></TableRow>
                     <TableRow className="bg-primary/5"><TableCell className="font-semibold">Gesamt</TableCell><TableCell className="font-bold text-primary">650 €</TableCell><TableCell className="font-semibold">Diversifizierte Altersvorsorge</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
+              <p className="text-xs text-muted-foreground/70 italic mt-1">* Staatliche Förderung nur bei freiwilliger GRV-Mitgliedschaft. Ohne GRV: ungeförderter Sparvertrag.</p>
 
               <CtaBlock>Berechne, wie viel Kapital du bis zur Rente aufbauen kannst.</CtaBlock>
 
@@ -252,7 +266,7 @@ const BlogSelbststaendige = () => {
                 <p><strong className="text-foreground">Schritt 1: Rentenlücke realistisch einschätzen.</strong> Als Selbstständiger ist die Lücke oft größer als bei Angestellten — weil kaum gesetzliche Rente kommt. Unser <Link to="/rentenluecken-rechner" className="text-primary font-medium hover:underline">Rentenlückenrechner</Link> gibt dir eine erste Orientierung.</p>
                 <p><strong className="text-foreground">Schritt 2: Steuerliche Optimierung prüfen.</strong> Besonders in einkommensstarken Jahren kann die Rürup-Rente Sinn machen — der Steuervorteil finanziert einen Teil der Einzahlung.</p>
                 <p><strong className="text-foreground">Schritt 3: Flexibilität nicht vergessen.</strong> Nicht alles in illiquide Produkte stecken. Ein ETF-Sparplan als Puffer ist für Selbstständige oft wichtiger als für Angestellte.</p>
-                <p><strong className="text-foreground">Schritt 4: Altersvorsorgedepot im Blick behalten.</strong> Die Förderberechtigungsregeln für Selbstständige werden im Laufe des Gesetzgebungsverfahrens klarer. Es lohnt sich, die Entwicklung zu verfolgen.</p>
+                <p><strong className="text-foreground">Schritt 4: Altersvorsorgedepot prüfen.</strong> Die staatliche Förderung steht nur GRV-Versicherten zu. Wenn du freiwillig versichert bist, kann sich das Altersvorsorgedepot lohnen. Ohne GRV-Mitgliedschaft bleiben Rürup und ETF-Sparplan die besseren Optionen.</p>
               </div>
 
               {/* FAQ */}
@@ -288,7 +302,7 @@ const BlogSelbststaendige = () => {
               {/* Disclaimer */}
               <div className="mt-16 p-5 bg-secondary rounded-xl">
                 <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Die Förderberechtigungsregeln für Selbstständige beim Altersvorsorgedepot sind noch nicht abschließend geregelt — Änderungen im Gesetzgebungsverfahren sind möglich. Für individuelle Entscheidungen empfehlen wir die Beratung durch einen Steuerberater oder unabhängigen Finanzberater.
+                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Die staatliche Förderung des Altersvorsorgedepots (Zulagen + Sonderausgabenabzug) steht nach aktuellem Gesetzentwurf nur GRV-Versicherten zu. Selbstständige ohne GRV-Mitgliedschaft sind nicht förderberechtigt. Für individuelle Entscheidungen empfehlen wir die Beratung durch einen Steuerberater oder unabhängigen Finanzberater.
                 </p>
               </div>
             </article>
