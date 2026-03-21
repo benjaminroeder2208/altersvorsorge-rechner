@@ -338,6 +338,10 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
                 {status === "sending" ? "..." : "PDF anfordern →"}
               </button>
             </div>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+              <FileText className="w-3.5 h-3.5 text-primary shrink-0" />
+              <span>Enthält: Kennzahlen · Chart · Vergleich Depot vs. ETF vs. Sparkonto</span>
+            </div>
             <div className="flex items-start gap-2 text-left">
               <Checkbox
                 id="dsgvo-newsletter"
