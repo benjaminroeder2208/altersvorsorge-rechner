@@ -25,7 +25,6 @@ Deno.serve(async (req) => {
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Find lead by token
     const { data: lead, error: findError } = await supabase
       .from("simulation_leads")
       .select("*")
@@ -45,7 +44,6 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Check 48h expiry
     const createdAt = new Date(lead.created_at).getTime();
     const now = Date.now();
     if (now - createdAt > 48 * 60 * 60 * 1000) {
@@ -55,7 +53,6 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Confirm
     const { error: updateError } = await supabase
       .from("simulation_leads")
       .update({ confirmed: true })
@@ -63,10 +60,8 @@ Deno.serve(async (req) => {
 
     if (updateError) throw updateError;
 
-    // Trigger send-lead-email
     const resendKey = Deno.env.get("RESEND_API_KEY");
     if (resendKey) {
-      // Call send-lead-email
       await supabase.functions.invoke("send-lead-email", {
         body: {
           email: lead.email,
@@ -75,18 +70,24 @@ Deno.serve(async (req) => {
           subsidies: Math.round(lead.total_subsidies ?? 0),
           monthly_contribution: lead.monthly_contribution,
           pdf_base64: lead.pdf_base64 ?? null,
+          embed_source: lead.embed_source ?? null,
         },
-      }).catch((e: unknown) => console.error("send-lead-email error:", e));
+      }).catch((e: unknown) =>
+        console.error("send-lead-email error:", e));
 
-      // Schedule follow-ups
       await supabase.functions.invoke("schedule-followup-emails", {
-        body: { email: lead.email },
-      }).catch((e: unknown) => console.error("schedule-followup error:", e));
+        body: {
+          email: lead.email,
+          embed_source: lead.embed_source ?? null,
+        },
+      }).catch((e: unknown) =>
+        console.error("schedule-followup error:", e));
     }
 
-    return new Response(JSON.stringify({ status: "confirmed", email: lead.email }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ status: "confirmed", email: lead.email }),
+      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
   } catch (err) {
     console.error("confirm-email error:", err);
     return new Response(JSON.stringify({ error: "Internal error" }), {
