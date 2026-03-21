@@ -335,7 +335,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
                 disabled={status === "sending" || !dsgvoAccepted}
                 className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
               >
-                {status === "sending" ? "..." : "Jetzt informieren"}
+                {status === "sending" ? "..." : "PDF anfordern →"}
               </button>
             </div>
             <div className="flex items-start gap-2 text-left">
