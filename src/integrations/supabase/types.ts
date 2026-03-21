@@ -160,6 +160,8 @@ export type Database = {
           birth_year: number
           calculated_capital: number
           children: number
+          confirmation_token: string | null
+          confirmed: boolean
           created_at: string
           email: string
           id: string
@@ -172,6 +174,8 @@ export type Database = {
           birth_year: number
           calculated_capital: number
           children?: number
+          confirmation_token?: string | null
+          confirmed?: boolean
           created_at?: string
           email: string
           id?: string
@@ -184,6 +188,8 @@ export type Database = {
           birth_year?: number
           calculated_capital?: number
           children?: number
+          confirmation_token?: string | null
+          confirmed?: boolean
           created_at?: string
           email?: string
           id?: string

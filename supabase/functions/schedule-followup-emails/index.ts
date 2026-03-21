@@ -12,23 +12,29 @@ const fmt = (v: number) =>
 
 const BASE = "https://altersvorsorge-rechner.com";
 
-function unsubLink(email: string) {
-  return `${BASE}/unsubscribe?email=${encodeURIComponent(email)}`;
-}
-
 function footerHtml(email: string) {
+  const unsub = `${BASE}/unsubscribe?email=${encodeURIComponent(email)}`;
   return `
     <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
-    <p style="font-size:11px;color:#999;line-height:1.5;">
-      Diese E-Mail dient der allgemeinen Information und stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-      Für individuelle Entscheidungen empfehlen wir die Beratung durch einen zugelassenen Finanzberater.
-    </p>
-    <p style="font-size:11px;color:#999;">
-      altersvorsorge-rechner.com · Benjamin Röder · Offenbach am Main
-    </p>
-    <p style="font-size:11px;color:#999;">
-      <a href="${unsubLink(email)}" style="color:#999;text-decoration:underline;">Abmelden</a>
-    </p>`;
+    <table style="width:100%;text-align:center;">
+      <tr>
+        <td>
+          <p style="font-size:12px;color:#6B7280;margin:0 0 8px;">
+            <a href="${BASE}" style="color:#6B7280;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
+            &nbsp;·&nbsp;
+            <a href="${BASE}/impressum" style="color:#6B7280;text-decoration:none;">Impressum</a>
+            &nbsp;·&nbsp;
+            <a href="${BASE}/datenschutz" style="color:#6B7280;text-decoration:none;">Datenschutz</a>
+          </p>
+          <p style="font-size:11px;color:#9CA3AF;margin:0 0 8px;">
+            <a href="${unsub}" style="color:#9CA3AF;text-decoration:underline;">Von diesem Newsletter abmelden</a>
+          </p>
+          <p style="font-size:10px;color:#D1D5DB;margin:0;">
+            Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Keine Anlageberatung.
+          </p>
+        </td>
+      </tr>
+    </table>`;
 }
 
 function wrapHtml(body: string, email: string) {
@@ -178,7 +184,7 @@ Deno.serve(async (req) => {
     const day3 = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
     const day7 = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-    // Schedule Mail 1 (Day 3) via Resend scheduled send
+    // Schedule Mail 1 (Day 3)
     const res1 = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -199,7 +205,7 @@ Deno.serve(async (req) => {
       console.error("Resend schedule mail 1 error:", res1.status, await res1.text());
     }
 
-    // Schedule Mail 2 (Day 7) via Resend scheduled send
+    // Schedule Mail 2 (Day 7)
     const res2 = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {

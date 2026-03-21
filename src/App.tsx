@@ -30,6 +30,7 @@ import BlogRiesterKuendigen from "./pages/BlogRiesterKuendigen";
 import BlogEtfSteuern from "./pages/BlogEtfSteuern";
 import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
 import BlogRuerupRente from "./pages/BlogRuerupRente";
+import ConfirmPage from "./pages/ConfirmPage";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 
@@ -72,6 +73,7 @@ const App = () => (
             <Route path="/blog/rentenpunkte-kaufen" element={<BlogRentenpunkteKaufen />} />
             <Route path="/blog/ruerup-rente" element={<BlogRuerupRente />} />
             <Route path="/unsubscribe" element={<UnsubscribePage />} />
+            <Route path="/confirm" element={<ConfirmPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
