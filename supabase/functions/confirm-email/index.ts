@@ -74,6 +74,7 @@ Deno.serve(async (req) => {
           monthly_payout: Math.round(lead.monthly_payout),
           subsidies: Math.round(lead.total_subsidies ?? 0),
           monthly_contribution: lead.monthly_contribution,
+          pdf_base64: lead.pdf_base64 ?? null,
         },
       }).catch((e: unknown) => console.error("send-lead-email error:", e));
 
