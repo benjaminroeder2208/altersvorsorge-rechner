@@ -308,11 +308,11 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
     <div className="max-w-lg mx-auto mb-20">
       <div className="bg-background border border-border rounded-2xl p-8 shadow-sm text-center">
         <div className="flex items-center justify-center gap-2 mb-3">
-          <Mail className="w-4 h-4 text-primary" />
-          <h3 className="text-lg font-semibold">Auf dem Laufenden bleiben</h3>
+          <FileText className="w-4 h-4 text-primary" />
+          <h3 className="text-lg font-semibold">Deine persönliche PDF-Auswertung</h3>
         </div>
         <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
-          Wir informieren dich wenn das Altersvorsorgedepot beschlossen wird — und was das konkret für dich bedeutet.
+          Gib deine E-Mail ein und erhalte deine persönliche Auswertung als PDF — mit deinen Kennzahlen, Kapitalentwicklungs-Chart und Vergleich. Kostenlos, kein Newsletter.
         </p>
 
         {status === "sent" ? (
