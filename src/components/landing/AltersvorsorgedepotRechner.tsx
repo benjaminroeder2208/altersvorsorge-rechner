@@ -254,6 +254,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
 
     setStatus("sending");
     try {
+      const confirmToken = crypto.randomUUID();
       const { error } = await supabase.from("simulation_leads").insert({
         email,
         monthly_contribution: inputs.monthlyContribution,
@@ -263,23 +264,13 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         return_assumption: inputs.returnRate * 100,
         calculated_capital: Math.round(result.capitalWithFunding),
         monthly_payout: Math.round(result.monthlyPayout),
+        confirmation_token: confirmToken,
       });
       if (error) throw error;
 
-      // Trigger immediate results email
-      supabase.functions.invoke("send-lead-email", {
-        body: {
-          email,
-          total_capital: Math.round(result.capitalWithFunding),
-          monthly_payout: Math.round(result.monthlyPayout),
-          subsidies: Math.round(result.totalSubsidies),
-          monthly_contribution: inputs.monthlyContribution,
-        },
-      }).catch(() => {});
-
-      // Schedule follow-up emails (day 3 + day 7)
-      supabase.functions.invoke("schedule-followup-emails", {
-        body: { email },
+      // Send confirmation email (DOI)
+      supabase.functions.invoke("send-confirmation-email", {
+        body: { email, token: confirmToken },
       }).catch(() => {});
 
       setStatus("sent");
