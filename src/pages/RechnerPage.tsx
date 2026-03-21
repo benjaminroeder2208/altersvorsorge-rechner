@@ -93,7 +93,7 @@ const homepageJsonLd = [
         name: "Wie hoch ist die maximale Förderung?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Die Grundzulage beträgt im Entwurf bis zu 35 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen 1.200 € und 1.800 €. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.",
+          text: "Die Grundzulage beträgt im Entwurf 30 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen 1.200 € und 1.800 € — maximal 480 € pro Jahr (ab 2029: 35 %, dann max. 540 €). Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.",
         },
       },
       {
