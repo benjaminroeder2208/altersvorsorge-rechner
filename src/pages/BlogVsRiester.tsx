@@ -241,7 +241,7 @@ const BlogVsRiester = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Erforderlicher Eigenbeitrag</TableCell><TableCell>~1.365 €/Jahr</TableCell><TableCell>1.800 €/Jahr</TableCell></TableRow>
-                    <TableRow><TableCell>Grundzulage</TableCell><TableCell>175 €</TableCell><TableCell>540 €</TableCell></TableRow>
+                    <TableRow><TableCell>Grundzulage</TableCell><TableCell>175 €</TableCell><TableCell>480 €</TableCell></TableRow>
                     <TableRow><TableCell>Kinderzulage</TableCell><TableCell>300 €</TableCell><TableCell>300 €</TableCell></TableRow>
                     <TableRow><TableCell>Steuervorteil (geschätzt, ~30 %)</TableCell><TableCell>~350 €</TableCell><TableCell>~530 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
