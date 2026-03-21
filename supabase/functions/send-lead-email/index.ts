@@ -9,6 +9,31 @@ const corsHeaders = {
 const fmt = (v: number) =>
   v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
+function footerHtml(email: string) {
+  const unsub = `https://altersvorsorge-rechner.com/unsubscribe?email=${encodeURIComponent(email)}`;
+  return `
+    <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
+    <table style="width:100%;text-align:center;">
+      <tr>
+        <td>
+          <p style="font-size:12px;color:#6B7280;margin:0 0 8px;">
+            <a href="https://altersvorsorge-rechner.com" style="color:#6B7280;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
+            &nbsp;·&nbsp;
+            <a href="https://altersvorsorge-rechner.com/impressum" style="color:#6B7280;text-decoration:none;">Impressum</a>
+            &nbsp;·&nbsp;
+            <a href="https://altersvorsorge-rechner.com/datenschutz" style="color:#6B7280;text-decoration:none;">Datenschutz</a>
+          </p>
+          <p style="font-size:11px;color:#9CA3AF;margin:0 0 8px;">
+            <a href="${unsub}" style="color:#9CA3AF;text-decoration:underline;">Von diesem Newsletter abmelden</a>
+          </p>
+          <p style="font-size:10px;color:#D1D5DB;margin:0;">
+            Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Keine Anlageberatung.
+          </p>
+        </td>
+      </tr>
+    </table>`;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -75,15 +100,7 @@ Deno.serve(async (req) => {
       Erneut berechnen →
     </a>
 
-    <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
-    <p style="font-size:11px;color:#999;line-height:1.5;">
-      Diese Berechnung dient der allgemeinen Information und stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-      Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Für individuelle Entscheidungen empfehlen wir die Beratung
-      durch einen zugelassenen Finanzberater.
-    </p>
-    <p style="font-size:11px;color:#999;">
-      altersvorsorge-rechner.com · Benjamin Röder · Offenbach am Main
-    </p>
+    ${footerHtml(email)}
   </div>
 </body>
 </html>`;
