@@ -32,6 +32,8 @@ import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
 import BlogRuerupRente from "./pages/BlogRuerupRente";
 import BlogPortfolio from "./pages/BlogPortfolio";
 import ConfirmPage from "./pages/ConfirmPage";
+import EmbedPage from "./pages/EmbedPage";
+import EinbettenPage from "./pages/EinbettenPage";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 
