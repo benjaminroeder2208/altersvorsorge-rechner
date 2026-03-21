@@ -1,0 +1,1 @@
+ALTER TABLE public.simulation_leads ADD COLUMN total_subsidies numeric NOT NULL DEFAULT 0;
