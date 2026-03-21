@@ -48,7 +48,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { email, total_capital, monthly_payout, subsidies, monthly_contribution } = await req.json();
+    const { email, total_capital, monthly_payout, subsidies, monthly_contribution, pdf_base64 } = await req.json();
 
     if (!email) {
       return new Response(JSON.stringify({ error: "Email required" }), {
@@ -96,6 +96,10 @@ Deno.serve(async (req) => {
       </p>
     </div>
 
+    ${pdf_base64 ? `<p style="font-size:14px;line-height:1.6;margin:0 0 24px;color:#333;">
+      📎 <strong>Deine ausführliche PDF-Auswertung</strong> findest du im Anhang dieser E-Mail.
+    </p>` : ''}
+
     <a href="https://altersvorsorge-rechner.com/rechner" style="display:inline-block;background:#1B4FD8;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;">
       Erneut berechnen →
     </a>
@@ -104,6 +108,17 @@ Deno.serve(async (req) => {
   </div>
 </body>
 </html>`;
+
+    // Build attachments array
+    const attachments = pdf_base64
+      ? [
+          {
+            filename: "altersvorsorge-auswertung.pdf",
+            content: pdf_base64,
+            content_type: "application/pdf",
+          },
+        ]
+      : [];
 
     // Send results email to user
     const userMailRes = await fetch("https://api.resend.com/emails", {
@@ -118,6 +133,7 @@ Deno.serve(async (req) => {
         to: [email],
         subject: "Deine Altersvorsorge-Auswertung",
         html: htmlBody,
+        attachments,
       }),
     });
 

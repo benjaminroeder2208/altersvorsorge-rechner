@@ -167,6 +167,7 @@ export type Database = {
           id: string
           monthly_contribution: number
           monthly_payout: number
+          pdf_base64: string | null
           retirement_age: number
           return_assumption: number
           total_subsidies: number
@@ -182,6 +183,7 @@ export type Database = {
           id?: string
           monthly_contribution: number
           monthly_payout: number
+          pdf_base64?: string | null
           retirement_age?: number
           return_assumption?: number
           total_subsidies?: number
@@ -197,6 +199,7 @@ export type Database = {
           id?: string
           monthly_contribution?: number
           monthly_payout?: number
+          pdf_base64?: string | null
           retirement_age?: number
           return_assumption?: number
           total_subsidies?: number
