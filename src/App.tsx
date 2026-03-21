@@ -73,6 +73,7 @@ const App = () => (
             <Route path="/blog/etf-sparplan-steuern" element={<BlogEtfSteuern />} />
             <Route path="/blog/rentenpunkte-kaufen" element={<BlogRentenpunkteKaufen />} />
             <Route path="/blog/ruerup-rente" element={<BlogRuerupRente />} />
+            <Route path="/blog/altersvorsorge-portfolio" element={<BlogPortfolio />} />
             <Route path="/unsubscribe" element={<UnsubscribePage />} />
             <Route path="/confirm" element={<ConfirmPage />} />
             <Route path="*" element={<NotFound />} />
