@@ -18,6 +18,13 @@ import {
 
 const articles = [
   {
+    slug: "/blog/altersvorsorge-portfolio",
+    title: "Wie sieht ein gutes Altersvorsorge-Portfolio aus? Drei Beispiele für verschiedene Lebenssituationen",
+    description: "ETF-Sparplan, Altersvorsorgedepot, bAV oder Rürup — was gehört in welchem Verhältnis in dein Portfolio? Drei konkrete Beispiele mit echten Zahlen.",
+    readingTime: "9 Min.",
+    tag: "Vorsorge-Strategien",
+  },
+  {
     slug: "/blog/altersvorsorgedepot-2027",
     title: "Altersvorsorgedepot 2027: Alles, was du wissen musst",
     description: "Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Förderung, Funktionsweise, für wen es sich lohnt.",
