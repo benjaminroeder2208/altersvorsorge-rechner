@@ -36,7 +36,7 @@ const faqItems = [
   },
   {
     q: "Lohnt sich das Depot auch bei hohem Einkommen?",
-    a: "Ja, auch bei hohen Einkommen lohnt sich die Förderung. Der Steuervorteil durch den Sonderausgabenabzug fällt sogar höher aus. Allerdings ist die Förderquote relativ zum Gesamtvermögen bei sehr hohen Einkommen kleiner — wer 10.000 € im Monat verdient, für den sind 540 € Grundzulage weniger transformativ als für jemanden mit 3.000 € Monatsgehalt.",
+    a: "Ja, auch bei hohen Einkommen lohnt sich die Förderung. Der Steuervorteil durch den Sonderausgabenabzug fällt sogar höher aus. Allerdings ist die Förderquote relativ zum Gesamtvermögen bei sehr hohen Einkommen kleiner — wer 10.000 € im Monat verdient, für den sind 480 € Grundzulage weniger transformativ als für jemanden mit 3.000 € Monatsgehalt.",
   },
   {
     q: "Was passiert mit meinem bestehenden ETF-Sparplan, wenn das Depot kommt?",
