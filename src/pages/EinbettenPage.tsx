@@ -77,7 +77,7 @@ const EinbettenPage = () => (
               Den Altersvorsorge-Rechner kostenlos einbetten
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Biete deinen Lesern einen echten Mehrwert — mit dem meistgenutzten Altersvorsorge-Rechner Deutschlands. Kostenlos, ohne Registrierung, in 2 Minuten eingebettet.
+              Biete deinen Lesern echten Mehrwert — ganz einfach indem du diesen Rechner direkt auf deiner Seite einbindest. Kostenlos, ohne Registrierung, in 2 Minuten eingebettet.
             </p>
           </div>
         </AnimatedSection>
