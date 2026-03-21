@@ -247,7 +247,7 @@ const BlogVsRiester = () => {
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Gesamtförderung</TableCell>
                       <TableCell className="font-bold">~825 €</TableCell>
-                      <TableCell className="font-bold text-primary">~1.370 €</TableCell>
+                      <TableCell className="font-bold text-primary">~1.310 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
