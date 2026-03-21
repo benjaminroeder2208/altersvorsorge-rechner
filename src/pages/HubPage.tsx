@@ -44,7 +44,7 @@ const HubPage = () => (
       </p>
       <ul className="mt-3 space-y-2">
         {[
-          "Grundzulage: bis zu 35 % auf Beiträge bis 1.200 €",
+          "Grundzulage: 30 % auf die ersten 1.200 € + 20 % auf weitere 600 € (max. 480 €/Jahr ab 2027)",
           "Kinderzulage: bis zu 300 € pro Kind und Jahr",
           "Steuervorteil durch Sonderausgabenabzug",
         ].map((b) => (

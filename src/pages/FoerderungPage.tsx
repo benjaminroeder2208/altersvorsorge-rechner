@@ -34,7 +34,11 @@ const FoerderungPage = () => (
         </li>
         <li className="flex items-start gap-2 text-sm text-muted-foreground">
           <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-          Maximale Grundzulage: ca. 540 € pro Jahr
+          Maximale Grundzulage: bis zu 480 € pro Jahr
+        </li>
+        <li className="flex items-start gap-2 text-sm text-muted-foreground">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+          Ab 2029 steigt die Grundzulage auf bis zu 540 € pro Jahr
         </li>
       </ul>
     </section>

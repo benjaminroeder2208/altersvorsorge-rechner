@@ -240,7 +240,7 @@ const BlogBerufseinsteiger = () => {
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Das <Link to="/blog/altersvorsorgedepot-2027" className="text-primary font-medium hover:underline">Altersvorsorgedepot</Link> kombiniert die Flexibilität eines ETF-Sparplans mit <strong className="text-foreground">staatlicher Förderung</strong>:</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Grundzulage bis zu <strong className="text-foreground">540 €/Jahr</strong></li>
+                  <li>Grundzulage bis zu <strong className="text-foreground">480 €/Jahr (ab 2029: 540 €)</strong></li>
                   <li>Volle ETF-Auswahl, keine Beitragsgarantie</li>
                   <li>Steuerlicher Sonderausgabenabzug</li>
                 </ul>

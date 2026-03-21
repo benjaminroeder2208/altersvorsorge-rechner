@@ -278,7 +278,7 @@ const BlogVsRiester = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Eingezahltes Eigenkapital</TableCell><TableCell>54.000 €</TableCell><TableCell>54.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>Staatliche Förderung (kumuliert)</TableCell><TableCell>~24.750 €</TableCell><TableCell>~40.500 €</TableCell></TableRow>
+                    <TableRow><TableCell>Staatliche Förderung (kumuliert)</TableCell><TableCell>~24.750 €</TableCell><TableCell>~38.400 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital zum Rentenbeginn (geschätzt)</TableCell>
                       <TableCell className="font-bold">~130.000 €</TableCell>

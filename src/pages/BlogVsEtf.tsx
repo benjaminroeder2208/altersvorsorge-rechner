@@ -268,7 +268,7 @@ const BlogVsEtf = () => {
 
               <SectionH3>Förderung</SectionH3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Nur das Altersvorsorgedepot bekommt staatliche Zulagen. Der Staat zahlt dir bis zu <strong className="text-foreground">35 % auf deine ersten 1.200 € Eigenbeitrag</strong> pro Jahr direkt dazu — plus bis zu 300 € pro Kind. Obendrauf kommt der Steuervorteil durch den Sonderausgabenabzug. Ein normaler ETF-Sparplan bekommt nichts davon.
+                Nur das Altersvorsorgedepot bekommt staatliche Zulagen. Der Staat zahlt dir bis zu <strong className="text-foreground">30 % auf deine ersten 1.200 € Eigenbeitrag</strong> pro Jahr direkt dazu — plus bis zu 300 € pro Kind. Obendrauf kommt der Steuervorteil durch den Sonderausgabenabzug. Ein normaler ETF-Sparplan bekommt nichts davon.
               </p>
 
               <SectionH3>Flexibilität</SectionH3>
