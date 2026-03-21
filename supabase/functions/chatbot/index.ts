@@ -21,7 +21,7 @@ ALTERSVORSORGEDEPOT:
 - Besteuerung nachgelagert (im Alter)
 
 FÖRDERUNG:
-- Grundzulage: 35% auf Eigenbeiträge bis 1.200€/Jahr (max. 420€) + 20% auf 1.200-1.800€/Jahr (max. 120€) = max. 540€ Grundzulage/Jahr
+- Grundzulage: 30% auf Eigenbeiträge bis 1.200€/Jahr (max. 360€) + 20% auf 1.200-1.800€/Jahr (max. 120€) = max. 480€ Grundzulage/Jahr (ab 2029 steigt der Satz auf 35%, dann max. 540€)
 - Kinderzulage: bis zu 300€ pro kindergeldberechtigtem Kind/Jahr (25% des Eigenbeitrags, max. 300€)
 - Steuervorteil: Eigenbeiträge + Zulagen als Sonderausgaben absetzbar
 - Beispiel 35J., 1 Kind, 30% Steuersatz, 1.800€ Eigenbeitrag: ~1.370€ Gesamtförderung/Jahr
