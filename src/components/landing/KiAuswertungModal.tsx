@@ -322,8 +322,8 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                   </p>
 
                   {leadStatus === "sent" ? (
-                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
-                      <Check className="w-4 h-4" /> Gespeichert ✓
+                    <div className="flex items-center gap-2 text-primary text-sm font-medium">
+                      <Mail className="w-4 h-4" /> Fast geschafft! Bitte bestätige deine E-Mail-Adresse.
                     </div>
                   ) : (
                     <form onSubmit={handleLeadSubmit} className="space-y-3">
