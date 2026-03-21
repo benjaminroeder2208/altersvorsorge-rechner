@@ -1,6 +1,7 @@
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import CalculatorPreview from "@/components/landing/CalculatorPreview";
+import KeyFiguresSection from "@/components/landing/KeyFiguresSection";
 import FaqSection from "@/components/landing/FaqSection";
 import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
@@ -129,6 +130,7 @@ const RechnerPage = () => (
     <Navbar />
     <main>
       <HeroSection />
+      <KeyFiguresSection />
       <CalculatorPreview />
 
       {/* Comparison table */}
