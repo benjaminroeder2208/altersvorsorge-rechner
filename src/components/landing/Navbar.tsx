@@ -44,7 +44,7 @@ const Navbar = () => {
     >
       <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-3">
         <Link to="/" className="shrink-0 flex items-center" aria-label="altersvorsorge-rechner.com">
-          <svg width="148" height="32" viewBox="0 0 148 32" xmlns="http://www.w3.org/2000/svg">
+          <svg width="132" height="28" viewBox="0 0 148 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M3,30 C7,24 11,17 18,11 L18,30 Z" fill="#1B4FD8" fillOpacity="0.07"/>
             <path d="M3,30 C7,24 11,17 18,11" fill="none" stroke="#1B4FD8" strokeWidth="2" strokeLinecap="round"/>
             <path d="M18,11 C21,7 24,5 29,2" fill="none" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" strokeDasharray="2.5,2"/>
