@@ -157,6 +157,7 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
     }
     setLeadStatus("sending");
     try {
+      const confirmToken = crypto.randomUUID();
       const { error: dbError } = await supabase.from("simulation_leads").insert({
         email,
         birth_year: data.birth_year,
@@ -166,23 +167,13 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
         retirement_age: data.retirement_age,
         return_assumption: data.return_assumption,
         children: data.children,
+        confirmation_token: confirmToken,
       });
       if (dbError) throw dbError;
 
-      // Trigger immediate results email
-      supabase.functions.invoke("send-lead-email", {
-        body: {
-          email,
-          total_capital: Math.round(data.total_capital),
-          monthly_payout: Math.round(data.monthly_payout),
-          subsidies: Math.round(data.subsidies),
-          monthly_contribution: data.monthly_contribution,
-        },
-      }).catch(() => {});
-
-      // Schedule follow-up emails (day 3 + day 7)
-      supabase.functions.invoke("schedule-followup-emails", {
-        body: { email },
+      // Send confirmation email (DOI)
+      supabase.functions.invoke("send-confirmation-email", {
+        body: { email, token: confirmToken },
       }).catch(() => {});
 
       setLeadStatus("sent");
