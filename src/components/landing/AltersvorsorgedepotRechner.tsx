@@ -317,7 +317,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
 
         {status === "sent" ? (
           <div className="flex items-center justify-center gap-2 text-primary text-sm font-medium py-3">
-            <Mail className="w-4 h-4" /> Fast geschafft! Bitte bestätige deine E-Mail-Adresse. Wir haben dir eine Bestätigungsmail gesendet.
+            <FileText className="w-4 h-4" /> Fast geschafft! Wir haben dir eine Bestätigungsmail gesendet. Nach der Bestätigung erhältst du dein PDF sofort.
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
