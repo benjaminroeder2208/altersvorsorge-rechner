@@ -337,7 +337,7 @@ const EmbedPage = () => {
               </div>
 
               {/* Mini chart */}
-              <div className="h-[180px] mb-6">
+              <div id="embed-chart-capture" className="h-[180px] mb-6">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={r.chartData} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
                     <defs>
