@@ -12,6 +12,7 @@ import { ArrowRight, ChevronLeft, Check, Mail, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
+import { generatePDFBase64, captureChart } from "@/utils/generatePDF";
 
 /* ─────────────── helpers ─────────────── */
 
