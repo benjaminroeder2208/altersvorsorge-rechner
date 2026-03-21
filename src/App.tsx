@@ -25,6 +25,11 @@ import BlogBav from "./pages/BlogBav";
 import BlogSelbststaendige from "./pages/BlogSelbststaendige";
 import RentenlueckenRechnerPage from "./pages/RentenlueckenRechnerPage";
 import UnsubscribePage from "./pages/UnsubscribePage";
+import BlogBerufseinsteiger from "./pages/BlogBerufseinsteiger";
+import BlogRiesterKuendigen from "./pages/BlogRiesterKuendigen";
+import BlogEtfSteuern from "./pages/BlogEtfSteuern";
+import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
+import BlogRuerupRente from "./pages/BlogRuerupRente";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 
