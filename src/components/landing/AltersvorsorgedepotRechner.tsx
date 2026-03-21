@@ -66,7 +66,7 @@ function calculate(inputs: Inputs) {
 
   // Grundzulage
   const grundzulage = annualOwn >= 120
-    ? Math.min(annualOwn, 1200) * 0.35 + Math.min(Math.max(annualOwn - 1200, 0), 600) * 0.20
+    ? Math.min(annualOwn, 1200) * 0.30 + Math.min(Math.max(annualOwn - 1200, 0), 600) * 0.20
     : 0;
 
   // Kinderzulage
