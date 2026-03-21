@@ -932,7 +932,7 @@ const AltersvorsorgedepotRechner = () => {
                 erheblich abweichen. Eine individuelle steuerliche Beratung wird empfohlen.
               </p>
               <p>
-                Die Grundzulage wird gemäß dem Entwurf mit 35 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen
+                Die Grundzulage wird gemäß dem Entwurf mit 30 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen
                 1.200 € und 1.800 € jährlich berechnet. Die Kinderzulage beträgt bis zu 25 % des Eigenbeitrags, maximal 300 €
                 pro Kind und Jahr. Eine Mindestsparleistung von 120 € pro Jahr ist Voraussetzung für die Förderung.
               </p>
