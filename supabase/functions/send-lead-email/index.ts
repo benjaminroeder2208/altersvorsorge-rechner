@@ -91,8 +91,8 @@ Deno.serve(async (req) => {
 
     <div style="background:#eef2ff;border-radius:12px;padding:20px;margin:0 0 24px;">
       <p style="font-size:14px;line-height:1.6;margin:0;color:#333;">
-        <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot soll ab 2027 starten und bietet bis zu 540 € Grundzulage
-        plus 300 € je Kind pro Jahr. Die Angaben basieren auf dem aktuellen Gesetzentwurf — Änderungen sind möglich.
+         <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot soll ab 2027 starten und bietet bis zu 480 € Grundzulage
+         plus 300 € je Kind pro Jahr (ab 2029: bis zu 540 € Grundzulage). Die Angaben basieren auf dem aktuellen Gesetzentwurf — Änderungen sind möglich.
       </p>
     </div>
 
