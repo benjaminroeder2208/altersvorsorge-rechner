@@ -12,7 +12,7 @@ ALTERSVORSORGEDEPOT:
 - Geplanter Start: 1. Januar 2027 (noch kein beschlossenes Gesetz, Änderungen möglich)
 - Kein Garantiezwang (größter Unterschied zu Riester)
 - Vollständige ETF/Fonds-Investition möglich
-- Geplanter Effektivkostendeckel
+- Geplanter Effektivkostendeckel: 1,5% p.a. — aber NUR für das Standardprodukt (Standarddepot Altersvorsorge, § 1 Abs. 1c AltZertG). Beim regulären Depot ohne Standardprodukt-Zertifizierung kein gesetzlicher Kostendeckel.
 - Mindestbeitrag für Förderung: 120€/Jahr (10€/Monat)
 - Maximaler Eigenbeitrag für volle Förderung: 1.800€/Jahr (150€/Monat)
 - Auszahlung frühestens ab 65 Jahren
