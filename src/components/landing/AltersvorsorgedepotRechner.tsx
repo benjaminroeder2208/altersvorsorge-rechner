@@ -8,7 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { ArrowRight, ChevronLeft, Check, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronLeft, Check, Mail, Sparkles, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
