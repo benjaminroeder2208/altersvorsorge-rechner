@@ -43,7 +43,7 @@ const HeroSection = () => (
           style={{ letterSpacing: "-0.02em" }}
         >
           Wie entwickelt sich{" "}
-          <span className="block">dein Altersvorsorge{"\u00AD"}depot?</span>
+          <span className="block">ein Altersvorsorge{"\u00AD"}depot?</span>
         </motion.h1>
 
         {/* Subtitle */}
