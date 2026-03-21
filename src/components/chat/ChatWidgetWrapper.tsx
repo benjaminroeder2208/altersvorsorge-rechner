@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import ChatWidget from "./ChatWidget";
 
-const HIDDEN_ROUTES = ["/impressum", "/datenschutz"];
+const HIDDEN_ROUTES = ["/impressum", "/datenschutz", "/embed"];
 
 const ChatWidgetWrapper = () => {
   const { pathname } = useLocation();
