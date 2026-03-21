@@ -306,8 +306,8 @@ const BlogAltersvorsorgedepot2027 = () => {
                       <TableCell className="text-right">1.800 €</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Grundzulage (35 % auf 1.200 € + 20 % auf 600 €)</TableCell>
-                      <TableCell className="text-right font-semibold">540 €</TableCell>
+                       <TableCell>Grundzulage (30 % auf 1.200 € + 20 % auf 600 €)</TableCell>
+                       <TableCell className="text-right font-semibold">480 €</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Steuervorteil (geschätzt, ~30 % Grenzsteuersatz)</TableCell>
