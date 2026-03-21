@@ -72,7 +72,7 @@ Deno.serve(async (req) => {
           email: lead.email,
           total_capital: Math.round(lead.calculated_capital),
           monthly_payout: Math.round(lead.monthly_payout),
-          subsidies: 0, // not stored in leads table
+          subsidies: Math.round(lead.total_subsidies ?? 0),
           monthly_contribution: lead.monthly_contribution,
         },
       }).catch((e: unknown) => console.error("send-lead-email error:", e));

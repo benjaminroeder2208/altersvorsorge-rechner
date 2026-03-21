@@ -167,6 +167,7 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
         retirement_age: data.retirement_age,
         return_assumption: data.return_assumption,
         children: data.children,
+        total_subsidies: Math.round(data.subsidies),
         confirmation_token: confirmToken,
       });
       if (dbError) throw dbError;
