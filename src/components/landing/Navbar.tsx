@@ -44,18 +44,16 @@ const Navbar = () => {
     >
       <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-3">
         <Link to="/" className="shrink-0 flex items-center">
-          <svg width="155" height="36" viewBox="0 0 155 36" xmlns="http://www.w3.org/2000/svg">
-            <g transform="scale(0.85) translate(1, 2)">
-              <path d="M4,34 C8,28 14,20 22,13 L22,34 Z" fill="#1B4FD8" fillOpacity="0.07"/>
-              <path d="M4,34 C8,28 14,20 22,13" fill="none" stroke="#1B4FD8" strokeWidth="2.2" strokeLinecap="round"/>
-              <path d="M22,13 C26,8 30,5 36,2" fill="none" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" strokeDasharray="2.5,2"/>
-              <circle cx="4" cy="34" r="2" fill="#1B4FD8" opacity="0.3"/>
-              <circle cx="13" cy="24" r="2.5" fill="#1B4FD8" opacity="0.6"/>
-              <circle cx="22" cy="13" r="3" fill="#1B4FD8"/>
-              <circle cx="36" cy="2" r="5" fill="#F59E0B" opacity="0.2"/>
-              <circle cx="36" cy="2" r="3" fill="#F59E0B"/>
-              <line x1="4" y1="34" x2="40" y2="34" stroke="#1B4FD8" strokeWidth="1.2" strokeLinecap="round" opacity="0.2"/>
-            </g>
+          <svg width="172" height="36" viewBox="0 0 172 36" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4,34 C8,28 14,20 22,13 L22,34 Z" fill="#1B4FD8" fillOpacity="0.07"/>
+            <path d="M4,34 C8,28 14,20 22,13" fill="none" stroke="#1B4FD8" strokeWidth="2.2" strokeLinecap="round"/>
+            <path d="M22,13 C26,8 30,5 36,2" fill="none" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" strokeDasharray="2.5,2"/>
+            <circle cx="4" cy="34" r="2" fill="#1B4FD8" opacity="0.3"/>
+            <circle cx="13" cy="24" r="2.5" fill="#1B4FD8" opacity="0.6"/>
+            <circle cx="22" cy="13" r="3" fill="#1B4FD8"/>
+            <circle cx="36" cy="2" r="5" fill="#F59E0B" opacity="0.2"/>
+            <circle cx="36" cy="2" r="3" fill="#F59E0B"/>
+            <line x1="4" y1="34" x2="40" y2="34" stroke="#1B4FD8" strokeWidth="1.2" strokeLinecap="round" opacity="0.2"/>
             <text x="50" y="18" fontFamily="system-ui, sans-serif" fontSize="15" fontWeight="500" fill="currentColor" letterSpacing="-0.3">altersvorsorge</text>
             <text x="50" y="31" fontFamily="system-ui, sans-serif" fontSize="10" fontWeight="400" fill="#9CA3AF" letterSpacing="0.2">rechner.com</text>
           </svg>
