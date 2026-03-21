@@ -130,6 +130,7 @@ const RechnerPage = () => (
     <Navbar />
     <main>
       <HeroSection />
+      <KeyFiguresSection />
       <CalculatorPreview />
 
       {/* Comparison table */}
