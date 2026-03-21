@@ -255,6 +255,27 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
 
     setStatus("sending");
     try {
+      // Generate PDF
+      let pdfBase64 = "";
+      try {
+        const chartImg = await captureChart();
+        pdfBase64 = await generatePDFBase64({
+          monthly_contribution: inputs.monthlyContribution,
+          total_capital: Math.round(result.capitalWithFunding),
+          monthly_payout: Math.round(result.monthlyPayout),
+          subsidies: Math.round(result.totalSubsidies),
+          capital_without: Math.round(result.capitalWithout),
+          payout_without: Math.round(result.monthlyPayoutWithout),
+          capital_savings: Math.round(result.capitalSavings),
+          payout_savings: Math.round(result.monthlyPayoutSavings),
+          retirement_age: inputs.retirementAge,
+          birth_year: inputs.birthYear,
+          chart_image: chartImg,
+        });
+      } catch (pdfErr) {
+        console.error("PDF generation failed:", pdfErr);
+      }
+
       const confirmToken = crypto.randomUUID();
       const { error } = await supabase.from("simulation_leads").insert({
         email,
@@ -267,7 +288,8 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         monthly_payout: Math.round(result.monthlyPayout),
         total_subsidies: Math.round(result.totalSubsidies),
         confirmation_token: confirmToken,
-      });
+        pdf_base64: pdfBase64 || null,
+      } as any);
       if (error) throw error;
 
       // Send confirmation email (DOI)
