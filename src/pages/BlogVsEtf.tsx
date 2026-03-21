@@ -260,7 +260,7 @@ const BlogVsEtf = () => {
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>✅ Ja — Zulagen + Steuervorteile</TableCell><TableCell>❌ Nein</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>⚠️ Gebunden bis 65</TableCell><TableCell>✅ Jederzeit verfügbar</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Besteuerung</TableCell><TableCell>Nachgelagert (im Alter)</TableCell><TableCell>Abgeltungsteuer laufend</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>✅ Geplant</TableCell><TableCell>❌ Abhängig vom Anbieter</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>✅ Beim Standardprodukt (max. 1,5 % p.a.)</TableCell><TableCell>❌ Abhängig vom Anbieter</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlage in ETFs</TableCell><TableCell>✅ Voll möglich</TableCell><TableCell>✅ Voll möglich</TableCell></TableRow>
                   </TableBody>
                 </Table>
@@ -283,7 +283,7 @@ const BlogVsEtf = () => {
 
               <SectionH3>Kosten</SectionH3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Riester-Produkte waren berüchtigt für hohe Gebühren. Beim Altersvorsorgedepot ist laut aktuellem Gesetzentwurf ein <strong className="text-foreground">Effektivkostendeckel</strong> geplant, der die Gesamtkosten begrenzt. Beim ETF-Sparplan hängen die Kosten vom Anbieter und den gewählten ETFs ab — günstige Neobroker bieten hier sehr attraktive Konditionen.
+                Riester-Produkte waren berüchtigt für hohe Gebühren. Beim Altersvorsorgedepot ist laut aktuellem Gesetzentwurf ein <strong className="text-foreground">Effektivkostendeckel von maximal 1,5 % p.a.</strong> vorgesehen — dieser gilt allerdings nur für das Standardprodukt (Standarddepot Altersvorsorge, § 1 Abs. 1c AltZertG). Für andere Depot-Varianten ohne Standardprodukt-Zertifizierung gilt dieser Deckel nicht. Beim ETF-Sparplan hängen die Kosten vom Anbieter und den gewählten ETFs ab — günstige Neobroker bieten hier sehr attraktive Konditionen.
               </p>
 
               {/* Förderbonus */}
