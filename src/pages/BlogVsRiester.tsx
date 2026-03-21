@@ -195,7 +195,7 @@ const BlogVsRiester = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell className="font-medium">Grundzulage</TableCell><TableCell>175 €/Jahr (fix)</TableCell><TableCell>35 % auf bis zu 1.200 € + 20 % auf bis zu 600 €</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Grundzulage</TableCell><TableCell>175 €/Jahr (fix)</TableCell><TableCell>30 % auf bis zu 1.200 € + 20 % auf bis zu 600 €</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Kinderzulage</TableCell><TableCell>300 €/Kind (ab 2008)</TableCell><TableCell>bis zu 300 €/Kind</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Eigenbeitrag für volle Förderung</TableCell><TableCell>4 % des Vorjahresbruttos (mind. 60 €)</TableCell><TableCell>1.800 €/Jahr (150 €/Monat)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Beitragsgarantie</TableCell><TableCell>✅ Ja — 100 %</TableCell><TableCell>❌ Nein</TableCell></TableRow>
