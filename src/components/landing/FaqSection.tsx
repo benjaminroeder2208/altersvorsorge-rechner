@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: "Was unterscheidet das Altersvorsorgedepot von Riester?",
-    a: "Der wichtigste Unterschied: Beim Altersvorsorgedepot entfällt die verpflichtende Beitragsgarantie. Dadurch können die Beiträge vollständig am Kapitalmarkt angelegt werden, was langfristig höhere Renditechancen ermöglicht. Zudem soll die Förderstruktur vereinfacht und die Kosten durch einen Effektivkostendeckel begrenzt werden.",
+    a: "Der wichtigste Unterschied: Beim Altersvorsorgedepot entfällt die verpflichtende Beitragsgarantie. Dadurch können die Beiträge vollständig am Kapitalmarkt angelegt werden, was langfristig höhere Renditechancen ermöglicht. Zudem soll die Förderstruktur vereinfacht werden. Beim Standardprodukt (Standarddepot Altersvorsorge) sind die Kosten gesetzlich auf maximal 1,5 % p.a. Effektivkosten begrenzt — für andere Depot-Varianten ohne Standardprodukt-Zertifizierung gilt dieser Deckel nicht.",
   },
   {
     q: "Wer kann geförderte Beiträge leisten?",

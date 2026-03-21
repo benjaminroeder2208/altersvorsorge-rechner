@@ -35,7 +35,7 @@ RENTENLÜCKE:
 VERGLEICHE:
 Depot vs. Riester:
 - Riester: 175€ Grundzulage fix, Beitragsgarantie, oft hohe Kosten, manueller Antrag
-- Depot: prozentuale Förderung, kein Garantiezwang, Kostendeckel, automatischer Antrag
+- Depot: prozentuale Förderung, kein Garantiezwang, Kostendeckel nur beim Standardprodukt (1,5% p.a.), automatischer Antrag
 - Riester lohnt noch: günstige Altverträge, Wohn-Riester, kurz vor Rente
 - Nicht überstürzt kündigen — Zulagen müssen zurückgezahlt werden
 

@@ -200,7 +200,7 @@ const BlogVsRiester = () => {
                     <TableRow><TableCell className="font-medium">Eigenbeitrag für volle Förderung</TableCell><TableCell>4 % des Vorjahresbruttos (mind. 60 €)</TableCell><TableCell>1.800 €/Jahr (150 €/Monat)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Beitragsgarantie</TableCell><TableCell>✅ Ja — 100 %</TableCell><TableCell>❌ Nein</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlage in ETFs</TableCell><TableCell>⚠️ Begrenzt</TableCell><TableCell>✅ Voll möglich</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Geplant</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Beim Standardprodukt (max. 1,5 % p.a.)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Zulagenantrag</TableCell><TableCell>Manuell / via Anbieter</TableCell><TableCell>Automatisch (geplant)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Besteuerung</TableCell><TableCell>Nachgelagert</TableCell><TableCell>Nachgelagert</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Mindesteinzahlung</TableCell><TableCell>60 €/Jahr</TableCell><TableCell>120 €/Jahr</TableCell></TableRow>
