@@ -30,6 +30,7 @@ import BlogRiesterKuendigen from "./pages/BlogRiesterKuendigen";
 import BlogEtfSteuern from "./pages/BlogEtfSteuern";
 import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
 import BlogRuerupRente from "./pages/BlogRuerupRente";
+import ConfirmPage from "./pages/ConfirmPage";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 
