@@ -271,10 +271,11 @@ const BlogAltersvorsorgedepot2027 = () => {
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Der Staat zahlt dir einen direkten Zuschuss auf deine Einzahlungen:</p>
                 <ul className="list-disc pl-6 space-y-1">
-                  <li><strong className="text-foreground">35 %</strong> auf Eigenbeiträge bis <strong className="text-foreground">1.200 € pro Jahr</strong></li>
-                  <li><strong className="text-foreground">20 %</strong> auf Beiträge zwischen <strong className="text-foreground">1.200 € und 1.800 € pro Jahr</strong></li>
-                </ul>
-                <p>Das bedeutet: Wer den maximalen Eigenbeitrag von 1.800 € ausschöpft, bekommt bis zu <strong className="text-foreground">420 € Grundzulage</strong> vom Staat dazu.</p>
+                   <li><strong className="text-foreground">30 %</strong> auf Eigenbeiträge bis <strong className="text-foreground">1.200 € pro Jahr</strong></li>
+                   <li><strong className="text-foreground">20 %</strong> auf Beiträge zwischen <strong className="text-foreground">1.200 € und 1.800 € pro Jahr</strong></li>
+                 </ul>
+                 <p>Das bedeutet: Wer den maximalen Eigenbeitrag von 1.800 € ausschöpft, bekommt bis zu <strong className="text-foreground">480 € Grundzulage</strong> vom Staat dazu.</p>
+                 <p>Ab 2029 steigt der Fördersatz auf 35 % — dann sind bis zu 540 € Grundzulage pro Jahr möglich.</p>
               </div>
 
               <SectionH3>2. Kinderzulage</SectionH3>
