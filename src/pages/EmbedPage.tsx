@@ -6,6 +6,7 @@ import {
 import { ArrowRight, ChevronLeft, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
+import { captureChart, generatePDFBase64 } from "@/utils/generatePDF";
 import PageHead from "@/components/seo/PageHead";
 
 /* ─── helpers ─── */
