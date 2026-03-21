@@ -49,9 +49,9 @@ const Navbar = () => {
           aria-label="altersvorsorge-rechner.com"
         >
           <svg
-            width="152"
+            width="160"
             height="24"
-            viewBox="0 0 152 24"
+            viewBox="0 0 160 24"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
