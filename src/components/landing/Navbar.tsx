@@ -43,19 +43,69 @@ const Navbar = () => {
       }`}
     >
       <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-3">
-        <Link to="/" className="shrink-0 flex items-center" aria-label="altersvorsorge-rechner.com">
-          <svg width="132" height="28" viewBox="0 0 148 32" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3,30 C7,24 11,17 18,11 L18,30 Z" fill="#1B4FD8" fillOpacity="0.07"/>
-            <path d="M3,30 C7,24 11,17 18,11" fill="none" stroke="#1B4FD8" strokeWidth="2" strokeLinecap="round"/>
-            <path d="M18,11 C21,7 24,5 29,2" fill="none" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" strokeDasharray="2.5,2"/>
-            <circle cx="3" cy="30" r="1.8" fill="#1B4FD8" fillOpacity="0.3"/>
-            <circle cx="11" cy="20" r="2.2" fill="#1B4FD8" fillOpacity="0.65"/>
-            <circle cx="18" cy="11" r="2.8" fill="#1B4FD8"/>
-            <circle cx="29" cy="2" r="4.5" fill="#F59E0B" fillOpacity="0.2"/>
-            <circle cx="29" cy="2" r="2.8" fill="#F59E0B"/>
-            <line x1="3" y1="30" x2="33" y2="30" stroke="#1B4FD8" strokeWidth="1.2" strokeLinecap="round" strokeOpacity="0.2"/>
-            <text x="40" y="15" fontFamily="system-ui, sans-serif" fontSize="13" fontWeight="500" fill="currentColor" style={{letterSpacing: "-0.3px"}}>altersvorsorge</text>
-            <text x="40" y="27" fontFamily="system-ui, sans-serif" fontSize="9.5" fontWeight="400" fill="#9CA3AF" style={{letterSpacing: "0.2px"}}>rechner.com</text>
+        <Link
+          to="/"
+          className="shrink-0 flex items-center"
+          aria-label="altersvorsorge-rechner.com"
+        >
+          <svg
+            width="152"
+            height="24"
+            viewBox="0 0 152 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2,22 C5,17 9,12 15,7 L15,22 Z"
+              fill="#1B4FD8"
+              fillOpacity="0.08"
+            />
+            <path
+              d="M2,22 C5,17 9,12 15,7"
+              fill="none"
+              stroke="#1B4FD8"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+            <path
+              d="M15,7 C18,4 20,3 23,1"
+              fill="none"
+              stroke="#F59E0B"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeDasharray="2,1.8"
+            />
+            <circle cx="2" cy="22" r="1.4" fill="#1B4FD8" fillOpacity="0.3" />
+            <circle cx="9" cy="14" r="1.7" fill="#1B4FD8" fillOpacity="0.65" />
+            <circle cx="15" cy="7" r="2.2" fill="#1B4FD8" />
+            <circle cx="23" cy="1" r="3.5" fill="#F59E0B" fillOpacity="0.2" />
+            <circle cx="23" cy="1" r="2.2" fill="#F59E0B" />
+            <line
+              x1="2" y1="22" x2="26" y2="22"
+              stroke="#1B4FD8"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeOpacity="0.2"
+            />
+            <text
+              x="34" y="13"
+              fontFamily="system-ui, sans-serif"
+              fontSize="13"
+              fontWeight="500"
+              fill="currentColor"
+              style={{ letterSpacing: "-0.3px" }}
+            >
+              altersvorsorge
+            </text>
+            <text
+              x="34" y="25"
+              fontFamily="system-ui, sans-serif"
+              fontSize="9.5"
+              fontWeight="400"
+              fill="#9CA3AF"
+              style={{ letterSpacing: "0.2px" }}
+            >
+              rechner.com
+            </text>
           </svg>
         </Link>
 
