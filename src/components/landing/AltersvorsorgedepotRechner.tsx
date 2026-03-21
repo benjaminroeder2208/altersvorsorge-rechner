@@ -8,7 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { ArrowRight, ChevronLeft, Check, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronLeft, Check, Mail, Sparkles, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
@@ -308,16 +308,16 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
     <div className="max-w-lg mx-auto mb-20">
       <div className="bg-background border border-border rounded-2xl p-8 shadow-sm text-center">
         <div className="flex items-center justify-center gap-2 mb-3">
-          <Mail className="w-4 h-4 text-primary" />
-          <h3 className="text-lg font-semibold">Auf dem Laufenden bleiben</h3>
+          <FileText className="w-4 h-4 text-primary" />
+          <h3 className="text-lg font-semibold">Deine persönliche PDF-Auswertung</h3>
         </div>
         <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
-          Wir informieren dich wenn das Altersvorsorgedepot beschlossen wird — und was das konkret für dich bedeutet.
+          Gib deine E-Mail ein und erhalte deine persönliche Auswertung als PDF — mit deinen Kennzahlen, Kapitalentwicklungs-Chart und Vergleich. Kostenlos, kein Newsletter.
         </p>
 
         {status === "sent" ? (
           <div className="flex items-center justify-center gap-2 text-primary text-sm font-medium py-3">
-            <Mail className="w-4 h-4" /> Fast geschafft! Bitte bestätige deine E-Mail-Adresse. Wir haben dir eine Bestätigungsmail gesendet.
+            <FileText className="w-4 h-4" /> Fast geschafft! Wir haben dir eine Bestätigungsmail gesendet. Nach der Bestätigung erhältst du dein PDF sofort.
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -335,8 +335,12 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
                 disabled={status === "sending" || !dsgvoAccepted}
                 className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
               >
-                {status === "sending" ? "..." : "Jetzt informieren"}
+                {status === "sending" ? "..." : "PDF anfordern →"}
               </button>
+            </div>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+              <FileText className="w-3.5 h-3.5 text-primary shrink-0" />
+              <span>Enthält: Kennzahlen · Chart · Vergleich Depot vs. ETF vs. Sparkonto</span>
             </div>
             <div className="flex items-start gap-2 text-left">
               <Checkbox
