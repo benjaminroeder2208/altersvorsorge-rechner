@@ -48,58 +48,62 @@ const s = StyleSheet.create({
   },
   header: {
     backgroundColor: PRIMARY,
-    padding: 32,
-    paddingBottom: 24,
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   headerLogo: {
-    fontSize: 10,
+    fontSize: 9,
     color: "rgba(255,255,255,0.7)",
-    marginBottom: 12,
+    marginBottom: 8,
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
     color: "#ffffff",
-    marginBottom: 6,
+    marginBottom: 4,
   },
   headerDate: {
-    fontSize: 9,
+    fontSize: 8,
     color: "rgba(255,255,255,0.6)",
   },
   body: {
-    padding: 32,
+    padding: 30,
   },
   sectionTitle: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "bold",
     color: "#1a1a2e",
-    marginBottom: 12,
-    marginTop: 20,
+    marginBottom: 8,
+    marginTop: 12,
   },
   grid: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 10,
-    marginBottom: 20,
+    gap: 8,
+    marginBottom: 12,
   },
   card: {
     width: "48%",
     backgroundColor: LIGHT_BG,
     borderRadius: 8,
-    padding: 14,
+    padding: 10,
+    minHeight: 50,
   },
   cardHighlight: {
     width: "48%",
     backgroundColor: "#EEF3FF",
     borderRadius: 8,
-    padding: 14,
+    padding: 10,
+    minHeight: 50,
     borderWidth: 1,
     borderColor: PRIMARY,
   },
   cardLabel: {
-    fontSize: 9,
+    fontSize: 8,
     color: MUTED,
-    marginBottom: 4,
+    marginBottom: 3,
   },
   cardValue: {
     fontSize: 18,
@@ -114,8 +118,8 @@ const s = StyleSheet.create({
   explanationBox: {
     backgroundColor: LIGHT_BG,
     borderRadius: 8,
-    padding: 14,
-    marginBottom: 20,
+    padding: 10,
+    marginBottom: 12,
   },
   explanationText: {
     fontSize: 10,
@@ -124,24 +128,24 @@ const s = StyleSheet.create({
   },
   chartImage: {
     width: "100%",
-    height: 180,
-    marginBottom: 20,
+    height: 160,
+    marginBottom: 12,
     borderRadius: 6,
   },
   table: {
-    marginBottom: 20,
+    marginBottom: 12,
   },
   tableRow: {
     flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: BORDER,
-    paddingVertical: 8,
+    paddingVertical: 6,
   },
   tableHeader: {
     flexDirection: "row",
     borderBottomWidth: 2,
     borderBottomColor: PRIMARY,
-    paddingVertical: 8,
+    paddingVertical: 6,
   },
   tableCell: {
     width: "25%",
@@ -162,12 +166,12 @@ const s = StyleSheet.create({
   },
   productRow: {
     flexDirection: "row",
-    paddingVertical: 8,
+    paddingVertical: 5,
     borderBottomWidth: 1,
     borderBottomColor: BORDER,
   },
   productName: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: "bold",
     color: "#1a1a2e",
     width: "40%",
@@ -180,13 +184,13 @@ const s = StyleSheet.create({
   footer: {
     position: "absolute",
     bottom: 20,
-    left: 32,
-    right: 32,
+    left: 30,
+    right: 30,
   },
   footerLine: {
     borderTopWidth: 1,
     borderTopColor: BORDER,
-    paddingTop: 10,
+    paddingTop: 8,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -198,7 +202,7 @@ const s = StyleSheet.create({
     fontSize: 7,
     color: "#9CA3AF",
     lineHeight: 1.5,
-    marginTop: 8,
+    marginTop: 6,
     maxWidth: "90%",
   },
 });
@@ -206,7 +210,7 @@ const s = StyleSheet.create({
 export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
   const foerderProzent =
     data.total_capital > 0
-      ? ((data.subsidies / data.total_capital) * 100).toFixed(1)
+      ? ((data.subsidies / data.total_capital) * 100).toFixed(1).replace('.', ',')
       : "0";
 
   const today = new Date().toLocaleDateString("de-DE", {
@@ -276,7 +280,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
 
           {/* Section 4: Comparison */}
           <Text style={s.sectionTitle}>Vergleich</Text>
-          <View style={s.table}>
+          <View style={s.table} wrap={false}>
             <View style={s.tableHeader}>
               <Text style={s.tableCellHeader}></Text>
               <Text style={s.tableCellHighlight}>Altersvorsorgedepot</Text>
@@ -309,7 +313,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
 
           {/* Section 5: Product Options */}
           <Text style={s.sectionTitle}>Produktoptionen</Text>
-          <View>
+          <View wrap={false}>
             <View style={s.productRow}>
               <Text style={s.productName}>ETF-Sparplan (Weltportfolio)</Text>
               <Text style={s.productDesc}>
