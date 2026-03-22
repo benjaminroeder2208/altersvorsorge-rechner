@@ -373,7 +373,7 @@ const BlogPortfolio = () => {
 
               <SectionH3>Schritt 2 — Altersvorsorgedepot ab 2027</SectionH3>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Ob Selbstständige vollständig förderberechtigt sind, ist noch nicht final geregelt. Wenn ja: 150 €/Monat für die staatliche Förderung — die Grundzulage allein macht 540 €/Jahr aus.</p>
+                <p>Ob Selbstständige vollständig förderberechtigt sind, ist noch nicht final geregelt. Wenn ja: 150 €/Monat für die staatliche Förderung — die Grundzulage allein macht 480 €/Jahr aus (ab 2029: 540 €).</p>
               </div>
 
               <SectionH3>Schritt 3 — ETF-Sparplan als Liquiditätspuffer</SectionH3>
