@@ -13,6 +13,17 @@ import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
 import { generatePDFBase64, captureChart } from "@/utils/generatePDF";
+import {
+  berechneGrundzulage,
+  MINDESTEIGENBEITRAG,
+  MAX_EIGENANTEIL_GEFOERDERT,
+  KINDERZULAGE_PRO_KIND,
+  GRUNDZULAGE_SATZ_AB_2027,
+  ZUSATZZULAGE_SATZ,
+  GRUNDZULAGE_BASIS_MAX,
+  ZUSATZZULAGE_BASIS_MAX,
+  GRUNDZULAGE_SATZ_AB_2029,
+} from "@/lib/foerderung";
 
 /* ─────────────── helpers ─────────────── */
 
