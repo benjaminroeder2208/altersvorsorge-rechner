@@ -75,21 +75,7 @@ function calculate(inputs: Inputs) {
   const yearsToRetirement = Math.max(retirementAge - currentAge, 0);
   const annualOwn = monthlyContribution * 12;
 
-  // Grundzulage
-  const grundzulage = annualOwn >= MINDESTEIGENBEITRAG
-    ? berechneGrundzulage(annualOwn)
-    : 0;
-
-  // Kinderzulage
-  const kinderzulagePerChild = annualOwn >= MINDESTEIGENBEITRAG ? Math.min(annualOwn * 0.25, KINDERZULAGE_PRO_KIND) : 0;
-  const totalKinderzulage = children * kinderzulagePerChild;
-
-  // Tax benefit
-  const marginalTaxRate = INCOME_BANDS[incomeBand].taxRate;
-  const taxBenefit = Math.min(annualOwn, MAX_EIGENANTEIL_GEFOERDERT) * marginalTaxRate * 0.7;
-
   const berufseinsteiger = currentAge < 25;
-  const annualSubsidy = grundzulage + totalKinderzulage;
 
   // Growth simulation
   const chartData: ChartDataPoint[] = [];
