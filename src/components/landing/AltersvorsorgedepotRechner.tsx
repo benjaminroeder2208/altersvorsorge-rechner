@@ -826,6 +826,11 @@ const AltersvorsorgedepotRechner = () => {
                         <p className={`text-2xl font-bold tabular-nums ${item.color}`}>
                           <AnimatedNumber value={Math.round(item.value)} suffix=" €" />
                         </p>
+                        {item.label === "Staatliche Zulagen" && (
+                          <p className="text-[11px] text-muted-foreground/60 mt-2 leading-snug">
+                            Summe aller staatlichen Grundzulagen (und ggf. Kinderzulagen) über die gesamte Ansparzeit — direkt in Ihr Depot eingezahlt, unabhängig von Ihrem Einkommen.
+                          </p>
+                        )}
                         {item.label === "Steuervorteile" && (
                           <p className="text-[11px] text-muted-foreground/60 mt-2 leading-snug">
                             Geschätzter kumulierter Steuervorteil durch den Sonderausgabenabzug, basierend auf Ihrer Einkommensklasse. Individuelle Abweichungen sind möglich.
@@ -833,6 +838,58 @@ const AltersvorsorgedepotRechner = () => {
                         )}
                       </div>
                     ))}
+                  </div>
+
+                  <div className="mt-6 bg-background border border-border rounded-2xl p-6 max-w-2xl mx-auto text-left">
+                    <div className="flex items-center justify-between flex-wrap gap-4">
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">
+                          Eingezahltes Kapital gesamt
+                        </p>
+                        <p className="text-xl font-bold tabular-nums">
+                          <AnimatedNumber
+                            value={Math.round(r.totalContributions + r.totalSubsidies)}
+                            suffix=" €"
+                          />
+                        </p>
+                        <p className="text-[11px] text-muted-foreground/60 mt-1 leading-snug">
+                          Eigenbeiträge + Staatliche Zulagen
+                        </p>
+                      </div>
+                      <div className="text-muted-foreground/40 text-2xl font-light">+</div>
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">
+                          Wertentwicklung (Kapitalerträge)
+                        </p>
+                        <p className="text-xl font-bold tabular-nums text-[hsl(174,60%,38%)]">
+                          <AnimatedNumber
+                            value={Math.round(r.capitalWithFunding - r.totalContributions - r.totalSubsidies)}
+                            suffix=" €"
+                          />
+                        </p>
+                        <p className="text-[11px] text-muted-foreground/60 mt-1 leading-snug">
+                          Simulierte Erträge bei {Math.round(inputs.returnRate * 100)} % p.a.
+                        </p>
+                      </div>
+                      <div className="text-muted-foreground/40 text-2xl font-light">=</div>
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">
+                          Kapital zum Rentenbeginn
+                        </p>
+                        <p className="text-xl font-bold tabular-nums text-primary">
+                          <AnimatedNumber
+                            value={Math.round(r.capitalWithFunding)}
+                            suffix=" €"
+                          />
+                        </p>
+                        <p className="text-[11px] text-muted-foreground/60 mt-1 leading-snug">
+                          Entspricht dem oben angezeigten Gesamtkapital
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-muted-foreground/50 mt-5 leading-snug border-t border-border pt-4">
+                      Kapitalerträge sind keine Garantie. Die Simulation basiert auf vereinfachten Annahmen ohne Inflation, Kosten oder Steuern auf Erträge. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
+                    </p>
                   </div>
 
                   <InfoText className="mt-6 max-w-md mx-auto">
