@@ -7,16 +7,16 @@ const ease = [0.25, 0.1, 0.25, 1] as const;
 const anim = (delay: number) => ({
   initial: { opacity: 0, y: 20 } as const,
   animate: { opacity: 1, y: 0 } as const,
-  transition: { duration: 0.6, delay, ease },
+  transition: { duration: 0.6, delay, ease }
 });
 
-const HeroSection = () => (
-  <section className="relative min-h-[auto] md:min-h-[90vh] flex items-center overflow-hidden bg-background">
+const HeroSection = () =>
+<section className="relative min-h-[auto] md:min-h-[90vh] flex items-center overflow-hidden bg-background">
     {/* Right blue tint — desktop only */}
     <div
-      className="absolute top-0 right-0 bottom-0 w-1/2 hidden md:block"
-      style={{ background: "#EEF3FF" }}
-    />
+    className="absolute top-0 right-0 bottom-0 w-1/2 hidden md:block"
+    style={{ background: "#EEF3FF" }} />
+  
 
     <div className="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center py-20 md:py-0 px-6">
       {/* Left column — Text */}
@@ -24,24 +24,24 @@ const HeroSection = () => (
         {/* Badge */}
         <motion.div {...anim(0.1)} className="mb-6">
           <span
-            className="inline-block px-4 py-1.5 rounded-full text-[11px] font-medium uppercase tracking-widest"
-            style={{
-              background: "#EEF3FF",
-              border: "1px solid #BFDBFE",
-              color: "#1B4FD8",
-              letterSpacing: "0.05em",
-            }}
-          >
-            ✦ Mit KI-Auswertung &amp; Experten-Chat
+          className="inline-block px-4 py-1.5 rounded-full text-[11px] font-medium uppercase tracking-widest"
+          style={{
+            background: "#EEF3FF",
+            border: "1px solid #BFDBFE",
+            color: "#1B4FD8",
+            letterSpacing: "0.05em"
+          }}>
+          
+            ✦ Mit KI-Auswertung & PDF-Auswertung
           </span>
         </motion.div>
 
         {/* H1 */}
         <motion.h1
-          {...anim(0.3)}
-          className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6"
-          style={{ letterSpacing: "-0.02em" }}
-        >
+        {...anim(0.3)}
+        className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6"
+        style={{ letterSpacing: "-0.02em" }}>
+        
           <span className="text-foreground">150 € im Monat.</span>
           <br />
           <span style={{ color: "#1B4FD8" }} className="font-bold">255.000 € im Alter.</span>
@@ -49,33 +49,32 @@ const HeroSection = () => (
 
         {/* Subtitle */}
         <motion.p
-          {...anim(0.5)}
-          className="text-base text-muted-foreground mb-10 max-w-lg"
-          style={{ lineHeight: 1.7 }}
-        >
-          So viel könnte ein 35-Jähriger mit 150 € monatlich aufbauen — mit
-          staatlicher Förderung. Berechne jetzt deine persönliche
-          Altersvorsorge: mit KI-Analyse individueller Auswertung als PDF.
-          Kostenlos und unabhängig.
+        {...anim(0.5)}
+        className="text-base text-muted-foreground mb-10 max-w-lg"
+        style={{ lineHeight: 1.7 }}>
+        
+          So viel könnte ein 35-Jähriger mit 150 € monatlich bis zur Rente
+          aufbauen — mit staatlicher Förderung, KI-Analyse und persönlichem
+          Experten-Chat. Kostenlos und unabhängig.
         </motion.p>
 
         {/* CTAs */}
         <motion.div
-          {...anim(0.7)}
-          className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10"
-        >
+        {...anim(0.7)}
+        className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
+        
           <a
-            href="#rechner"
-            className="inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-medium text-base transition-opacity hover:opacity-90"
-            style={{ background: "#1B4FD8" }}
-          >
+          href="#rechner"
+          className="inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-medium text-base transition-opacity hover:opacity-90"
+          style={{ background: "#1B4FD8" }}>
+          
             Jetzt berechnen
           </a>
           <a
-            href="#vergleich"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-base transition-colors"
-            style={{ color: "#1B4FD8" }}
-          >
+          href="#vergleich"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-base transition-colors"
+          style={{ color: "#1B4FD8" }}>
+          
             Mehr erfahren
             <ArrowDown className="w-4 h-4" />
           </a>
@@ -83,11 +82,11 @@ const HeroSection = () => (
 
         {/* Disclaimer */}
         <motion.p
-          className="text-xs text-muted-foreground/50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
+        className="text-xs text-muted-foreground/50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}>
+        
           Stand: aktueller Gesetzentwurf. Änderungen möglich.
         </motion.p>
       </div>
@@ -97,7 +96,7 @@ const HeroSection = () => (
         <HeroIllustration />
       </div>
     </div>
-  </section>
-);
+  </section>;
+
 
 export default HeroSection;
