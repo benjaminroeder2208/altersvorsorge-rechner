@@ -256,6 +256,12 @@ const BlogVsRiester = () => {
                 Bei sehr ähnlichem Eigenbeitrag bekommt dieselbe Person beim Altersvorsorgedepot rund <strong className="text-foreground">550 € mehr Förderung pro Jahr</strong> — allein durch die attraktivere Grundzulagenstruktur.
               </p>
 
+              <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">Wichtig — maximal 2 geförderte Verträge:</strong> Ab dem dritten zertifizierten Altersvorsorgevertrag werden Beiträge steuerlich nicht mehr als Altersvorsorgebeiträge anerkannt (§ 82 Abs. 5 EStG). Wer also z.B. bereits einen Riester-Vertrag hat und ein Altersvorsorgedepot eröffnet, nutzt bereits beide möglichen geförderten Slots.
+                </p>
+              </div>
+
               {/* Beitragsgarantie */}
               <SectionH2 id="beitragsgarantie">Beitragsgarantie: Sicherheit oder Renditefalle?</SectionH2>
               <p className="text-base leading-relaxed text-muted-foreground mb-4">Die 100%-Beitragsgarantie bei Riester klingt auf den ersten Blick beruhigend. In der Praxis war sie einer der Hauptgründe für die schlechte Performance vieler Verträge.</p>
