@@ -509,7 +509,7 @@ const AltersvorsorgedepotRechner = () => {
                   Wie hoch ist Ihr Bruttojahreseinkommen?
                 </h2>
                 <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
-                  Das Einkommen beeinflusst in dieser Simulation die geschätzten steuerlichen Vorteile.
+                  Wir nutzen Ihr Einkommen ausschließlich zur Schätzung Ihrer Steuerersparnis durch den Sonderausgabenabzug — nicht zur Berechnung der Zulagen. Zulagen erhält jede förderberechtigte Person unabhängig vom Einkommen.
                 </p>
 
                 <div className="grid grid-cols-2 gap-3 max-w-xl mx-auto">
