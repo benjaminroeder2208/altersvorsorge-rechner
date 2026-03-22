@@ -13,6 +13,17 @@ import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
 import { generatePDFBase64, captureChart } from "@/utils/generatePDF";
+import {
+  berechneGrundzulage,
+  MINDESTEIGENBEITRAG,
+  MAX_EIGENANTEIL_GEFOERDERT,
+  KINDERZULAGE_PRO_KIND,
+  GRUNDZULAGE_SATZ_AB_2027,
+  ZUSATZZULAGE_SATZ,
+  GRUNDZULAGE_BASIS_MAX,
+  ZUSATZZULAGE_BASIS_MAX,
+  GRUNDZULAGE_SATZ_AB_2029,
+} from "@/lib/foerderung";
 
 /* ─────────────── helpers ─────────────── */
 
@@ -65,17 +76,17 @@ function calculate(inputs: Inputs) {
   const annualOwn = monthlyContribution * 12;
 
   // Grundzulage
-  const grundzulage = annualOwn >= 120
-    ? Math.min(annualOwn, 1200) * 0.30 + Math.min(Math.max(annualOwn - 1200, 0), 600) * 0.20
+  const grundzulage = annualOwn >= MINDESTEIGENBEITRAG
+    ? berechneGrundzulage(annualOwn)
     : 0;
 
   // Kinderzulage
-  const kinderzulagePerChild = annualOwn >= 120 ? Math.min(annualOwn * 0.25, 300) : 0;
+  const kinderzulagePerChild = annualOwn >= MINDESTEIGENBEITRAG ? Math.min(annualOwn * 0.25, KINDERZULAGE_PRO_KIND) : 0;
   const totalKinderzulage = children * kinderzulagePerChild;
 
   // Tax benefit
   const marginalTaxRate = INCOME_BANDS[incomeBand].taxRate;
-  const taxBenefit = Math.min(annualOwn, 1800) * marginalTaxRate * 0.7;
+  const taxBenefit = Math.min(annualOwn, MAX_EIGENANTEIL_GEFOERDERT) * marginalTaxRate * 0.7;
 
   const berufseinsteiger = currentAge < 25;
   const annualSubsidy = grundzulage + totalKinderzulage;
@@ -932,9 +943,9 @@ const AltersvorsorgedepotRechner = () => {
                 erheblich abweichen. Eine individuelle steuerliche Beratung wird empfohlen.
               </p>
               <p>
-                Die Grundzulage wird gemäß dem Entwurf mit 30 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen
-                1.200 € und 1.800 € jährlich berechnet (ab 2029 steigt der Satz auf 35 %). Die Kinderzulage beträgt bis zu 25 % des Eigenbeitrags, maximal 300 €
-                pro Kind und Jahr. Eine Mindestsparleistung von 120 € pro Jahr ist Voraussetzung für die Förderung.
+                Die Grundzulage wird gemäß dem Entwurf mit {GRUNDZULAGE_SATZ_AB_2027 * 100} % auf Eigenbeiträge bis {fmt(GRUNDZULAGE_BASIS_MAX)} € und {ZUSATZZULAGE_SATZ * 100} % auf Beiträge zwischen
+                {" "}{fmt(GRUNDZULAGE_BASIS_MAX)} € und {fmt(ZUSATZZULAGE_BASIS_MAX)} € jährlich berechnet (ab 2029 steigt der Satz auf {GRUNDZULAGE_SATZ_AB_2029 * 100} %). Die Kinderzulage beträgt bis zu 25 % des Eigenbeitrags, maximal {KINDERZULAGE_PRO_KIND} €
+                pro Kind und Jahr. Eine Mindestsparleistung von {MINDESTEIGENBEITRAG} € pro Jahr ist Voraussetzung für die Förderung.
               </p>
               <p>
                 Die monatliche Auszahlung wird vereinfacht als gleichmäßige Entnahme des angesparten Kapitals bis zum Alter von
