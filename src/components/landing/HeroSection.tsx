@@ -32,18 +32,19 @@ const HeroSection = () => (
               letterSpacing: "0.05em",
             }}
           >
-            ✦ Mit KI-Auswertung &amp; KI-Chat
+            ✦ Mit KI-Auswertung &amp; Experten-Chat
           </span>
         </motion.div>
 
         {/* H1 */}
         <motion.h1
           {...anim(0.3)}
-          className="text-[2rem] md:text-[3rem] font-semibold text-foreground leading-tight mb-6"
+          className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6"
           style={{ letterSpacing: "-0.02em" }}
         >
-          Wie entwickelt sich{" "}
-          <span className="block">ein Altersvorsorge{"\u00AD"}depot?</span>
+          <span className="text-foreground">150 € im Monat.</span>
+          <br />
+          <span style={{ color: "#1B4FD8" }} className="font-bold">255.000 € im Alter.</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -52,9 +53,9 @@ const HeroSection = () => (
           className="text-base text-muted-foreground mb-10 max-w-lg"
           style={{ lineHeight: 1.7 }}
         >
-          Jetzt simulieren — mit staatlicher Förderung, Auszahlbetrag ab
-          Rentenbeginn und Vergleich zu einem normalen Depot und Sparkonto.
-          Kostenlos und unabhängig.
+          So viel könnte ein 35-Jähriger mit 150 € monatlich bis zur Rente
+          aufbauen — mit staatlicher Förderung, KI-Analyse und persönlichem
+          Experten-Chat. Kostenlos und unabhängig.
         </motion.p>
 
         {/* CTAs */}
@@ -70,7 +71,7 @@ const HeroSection = () => (
             Jetzt berechnen
           </a>
           <a
-            href="#mehr"
+            href="#vergleich"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-base transition-colors"
             style={{ color: "#1B4FD8" }}
           >
