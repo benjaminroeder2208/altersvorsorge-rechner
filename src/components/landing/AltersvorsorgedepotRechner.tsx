@@ -14,7 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
 import { generatePDFBase64, captureChart } from "@/utils/generatePDF";
 import {
-  berechneGrundzulage,
+  berechneGesamtfoerderung,
   MINDESTEIGENBEITRAG,
   MAX_EIGENANTEIL_GEFOERDERT,
   KINDERZULAGE_PRO_KIND,
