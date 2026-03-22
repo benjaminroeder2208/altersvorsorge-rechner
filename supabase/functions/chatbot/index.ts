@@ -26,6 +26,7 @@ FÖRDERUNG:
 - Kinderzulage: bis zu 300€ pro kindergeldberechtigtem Kind/Jahr (25% der Beiträge bis 1.800€/Jahr, max. 300€). Die volle Kinderzulage von 300€ wird erst ab einem Eigenbeitrag von 1.200€/Jahr (100€/Monat) erreicht.
 - Steuervorteil: Eigenbeiträge + Zulagen als Sonderausgaben absetzbar
 - Beispiel 35J., 1 Kind, 30% Steuersatz, 1.800€ Eigenbeitrag: ~1.310€ Gesamtförderung/Jahr
+- Mittelbar berechtigte Ehegatten: Grundzulage max. 175€/Jahr (§ 84 Satz 3). Berechnung basiert auf Beiträgen des direkt förderberechtigten Ehegatten. Voraussetzung: Mindestbeitrag 120€/Jahr in den eigenen Vertrag.
 
 RENTENLÜCKE:
 - Gesetzliche Rente: ca. 48-50% des letzten Brutto (netto ca. 40-45% des Nettos)
