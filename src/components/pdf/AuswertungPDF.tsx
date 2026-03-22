@@ -27,6 +27,7 @@ export interface AuswertungData {
   retirement_age: number;
   birth_year: number;
   chart_image?: string;
+  return_assumption?: number;
 }
 
 const s = StyleSheet.create({
