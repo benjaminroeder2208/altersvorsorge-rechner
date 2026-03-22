@@ -32,7 +32,7 @@ const AuszahlungPage = () => (
     <section>
       <h2 className="text-xl font-bold mb-3">Renteneintritt</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Der frühestmögliche Auszahlungsbeginn liegt bei 65 Jahren. Je später der Renteneintritt, desto höher fällt die monatliche Auszahlung aus.
+        Der frühestmögliche Auszahlungsbeginn liegt bei 65 Jahren — spätestens muss die Auszahlungsphase mit Vollendung des 70. Lebensjahres beginnen (§ 1 AltZertG). Ausnahme: Ein Beginn vor 65 ist möglich, wenn bereits eine gesetzliche Altersrente gezahlt wird. Je später der Renteneintritt, desto höher fällt die monatliche Auszahlung aus.
       </p>
     </section>
 
@@ -47,6 +47,15 @@ const AuszahlungPage = () => (
           Rechner
         </Link>.
       </p>
+    </section>
+
+    <section>
+      <h2 className="text-xl font-bold mb-3">Wichtig zu wissen</h2>
+      <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">Maximal 2 geförderte Verträge:</strong> Ab dem dritten zertifizierten Altersvorsorgevertrag werden Beiträge steuerlich nicht mehr als Altersvorsorgebeiträge anerkannt (§ 82 Abs. 5 EStG). Wer also z.B. bereits einen Riester-Vertrag hat und ein Altersvorsorgedepot eröffnet, nutzt bereits beide möglichen geförderten Slots.
+        </p>
+      </div>
     </section>
   </ContentPageLayout>
 );

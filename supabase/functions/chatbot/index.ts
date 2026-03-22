@@ -15,14 +15,15 @@ ALTERSVORSORGEDEPOT:
 - Geplanter Effektivkostendeckel: 1,5% p.a. — aber NUR für das Standardprodukt (Standarddepot Altersvorsorge, § 1 Abs. 1c AltZertG). Beim regulären Depot ohne Standardprodukt-Zertifizierung kein gesetzlicher Kostendeckel.
 - Mindestbeitrag für Förderung: 120€/Jahr (10€/Monat)
 - Maximaler Eigenbeitrag für volle Förderung: 1.800€/Jahr (150€/Monat)
-- Auszahlung frühestens ab 65 Jahren
+- Auszahlung frühestens ab 65 Jahren — spätestens muss die Auszahlungsphase mit Vollendung des 70. Lebensjahres beginnen (§ 1 AltZertG). Ausnahme: Beginn vor 65 möglich, wenn bereits eine gesetzliche Altersrente gezahlt wird.
 - 30% Einmalentnahme zu Beginn möglich, restliche 70% als monatliche Rente bis mind. 85
 - Zulagenantrag soll automatisch erfolgen
 - Besteuerung nachgelagert (im Alter)
+- Maximal 2 geförderte Verträge: Ab dem dritten zertifizierten Altersvorsorgevertrag werden Beiträge nicht mehr als Altersvorsorgebeiträge anerkannt (§ 82 Abs. 5 EStG)
 
 FÖRDERUNG:
 - Grundzulage: 30% auf Eigenbeiträge bis 1.200€/Jahr (max. 360€) + 20% auf 1.200-1.800€/Jahr (max. 120€) = max. 480€ Grundzulage/Jahr (ab 2029 steigt der Satz auf 35%, dann max. 540€)
-- Kinderzulage: bis zu 300€ pro kindergeldberechtigtem Kind/Jahr (25% des Eigenbeitrags, max. 300€)
+- Kinderzulage: bis zu 300€ pro kindergeldberechtigtem Kind/Jahr (25% der Beiträge bis 1.800€/Jahr, max. 300€). Die volle Kinderzulage von 300€ wird erst ab einem Eigenbeitrag von 1.200€/Jahr (100€/Monat) erreicht.
 - Steuervorteil: Eigenbeiträge + Zulagen als Sonderausgaben absetzbar
 - Beispiel 35J., 1 Kind, 30% Steuersatz, 1.800€ Eigenbeitrag: ~1.310€ Gesamtförderung/Jahr
 
