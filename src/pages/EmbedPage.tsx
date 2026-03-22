@@ -8,6 +8,11 @@ import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import { captureChart, generatePDFBase64 } from "@/utils/generatePDF";
 import PageHead from "@/components/seo/PageHead";
+import {
+  berechneGrundzulage,
+  MINDESTEIGENBEITRAG,
+  KINDERZULAGE_PRO_KIND,
+} from "@/lib/foerderung";
 
 /* ─── helpers ─── */
 const fmt = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
