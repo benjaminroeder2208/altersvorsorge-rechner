@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { captureChart, generatePDFBase64 } from "@/utils/generatePDF";
 import PageHead from "@/components/seo/PageHead";
 import {
-  berechneGrundzulage,
+  berechneGesamtfoerderung,
   MINDESTEIGENBEITRAG,
   KINDERZULAGE_PRO_KIND,
 } from "@/lib/foerderung";
