@@ -845,8 +845,11 @@ const AltersvorsorgedepotRechner = () => {
                     <p className="text-3xl font-bold text-primary tabular-nums mt-1">
                       +<AnimatedNumber value={Math.round(r.capitalWithFunding - r.capitalWithout)} suffix=" €" />
                     </p>
-                    <InfoText className="mt-2 max-w-xs mx-auto">
-                      Diese Darstellung basiert auf den Annahmen des aktuellen Gesetzentwurfs.
+                    <InfoText className="mt-2 max-w-md mx-auto">
+                      Dieser Betrag zeigt, wie viel mehr Kapital zum Rentenbeginn durch staatliche Förderung entsteht — im Vergleich zu identischen Einzahlungen ohne Förderung (z. B. in ein normales Depot).
+                    </InfoText>
+                    <InfoText className="mt-2 max-w-md mx-auto">
+                      Enthält Zulagen und Steuervorteile, die über die gesamte Laufzeit mitwachsen. Basiert auf dem aktuellen Gesetzentwurf — Änderungen möglich.
                     </InfoText>
                   </div>
                 </div>
