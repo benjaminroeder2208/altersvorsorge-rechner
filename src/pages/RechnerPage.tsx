@@ -150,7 +150,7 @@ const RechnerPage = () => (
                     <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 25 starten</th>
                     <th className="py-3 px-4 font-semibold text-center relative" style={{ background: "#1B4FD8", color: "white", borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
                       <span className="inline-block px-3 py-0.5 rounded-full text-xs font-medium mb-1" style={{ background: "rgba(255,255,255,0.2)", color: "white" }}>
-                        Dein Beispiel
+                        Das Beispiel
                       </span>
                       <br />
                       Mit 35 starten
