@@ -14,7 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
 import { generatePDFBase64, captureChart } from "@/utils/generatePDF";
 import {
-  berechneGrundzulage,
+  berechneGesamtfoerderung,
   MINDESTEIGENBEITRAG,
   MAX_EIGENANTEIL_GEFOERDERT,
   KINDERZULAGE_PRO_KIND,
@@ -75,21 +75,15 @@ function calculate(inputs: Inputs) {
   const yearsToRetirement = Math.max(retirementAge - currentAge, 0);
   const annualOwn = monthlyContribution * 12;
 
-  // Grundzulage
-  const grundzulage = annualOwn >= MINDESTEIGENBEITRAG
-    ? berechneGrundzulage(annualOwn)
-    : 0;
-
-  // Kinderzulage
-  const kinderzulagePerChild = annualOwn >= MINDESTEIGENBEITRAG ? Math.min(annualOwn * 0.25, KINDERZULAGE_PRO_KIND) : 0;
-  const totalKinderzulage = children * kinderzulagePerChild;
-
   // Tax benefit
   const marginalTaxRate = INCOME_BANDS[incomeBand].taxRate;
   const taxBenefit = Math.min(annualOwn, MAX_EIGENANTEIL_GEFOERDERT) * marginalTaxRate * 0.7;
 
   const berufseinsteiger = currentAge < 25;
-  const annualSubsidy = grundzulage + totalKinderzulage;
+
+  // Derived values for display
+  const grundzulage = berechneGesamtfoerderung(annualOwn, 0, 2027);
+  const totalKinderzulage = berechneGesamtfoerderung(annualOwn, children, 2027) - grundzulage;
 
   // Growth simulation
   const chartData: ChartDataPoint[] = [];
@@ -101,7 +95,8 @@ function calculate(inputs: Inputs) {
 
   for (let y = 0; y < yearsToRetirement; y++) {
     const age = currentAge + y + 1;
-    const yearSubsidy = annualSubsidy + (y === 0 && berufseinsteiger ? 200 : 0);
+    const calendarYear = 2027 + y;
+    const yearSubsidy = berechneGesamtfoerderung(annualOwn, children, calendarYear) + (y === 0 && berufseinsteiger ? 200 : 0);
 
     totalContributions += annualOwn;
     totalSubsidies += yearSubsidy;
