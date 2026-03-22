@@ -134,7 +134,7 @@ const RechnerPage = () => (
       <CalculatorPreview />
 
       {/* Comparison table */}
-      <section className="section-padding bg-secondary">
+      <section id="vergleich" className="section-padding bg-secondary">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Früh starten lohnt sich — in Zahlen</h2>
@@ -147,8 +147,14 @@ const RechnerPage = () => (
                 <thead>
                   <tr>
                     <th className="text-left py-3 px-4 font-medium text-muted-foreground" />
-                    <th className="py-3 px-4 font-semibold text-primary-foreground bg-primary rounded-t-xl text-center">Mit 25 starten</th>
-                    <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 35 starten</th>
+                    <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 25 starten</th>
+                    <th className="py-3 px-4 font-semibold text-center relative" style={{ background: "#1B4FD8", color: "white", borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
+                      <span className="inline-block px-3 py-0.5 rounded-full text-xs font-medium mb-1" style={{ background: "rgba(255,255,255,0.2)", color: "white" }}>
+                        Dein Beispiel
+                      </span>
+                      <br />
+                      Mit 35 starten
+                    </th>
                     <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 45 starten</th>
                   </tr>
                 </thead>
@@ -162,8 +168,8 @@ const RechnerPage = () => (
                   ].map((row, i) => (
                     <tr key={row.label} className={i % 2 === 0 ? "bg-background" : ""}>
                       <td className="py-3 px-4 font-medium text-muted-foreground">{row.label}</td>
-                      <td className="py-3 px-4 text-center font-semibold bg-primary/5 tabular-nums">{row.values[0]}</td>
-                      <td className="py-3 px-4 text-center tabular-nums">{row.values[1]}</td>
+                      <td className="py-3 px-4 text-center tabular-nums">{row.values[0]}</td>
+                      <td className="py-3 px-4 text-center font-medium tabular-nums" style={{ background: "#EEF3FF", color: "#1B4FD8" }}>{row.values[1]}</td>
                       <td className="py-3 px-4 text-center tabular-nums">{row.values[2]}</td>
                     </tr>
                   ))}
@@ -181,11 +187,8 @@ const RechnerPage = () => (
               </Link>
             </div>
 
-            <p className="text-xs text-muted-foreground/60 text-center mt-6 max-w-md mx-auto leading-relaxed">
-              Berechnung bei 7 % Rendite p.a. — dieser Wert orientiert sich am historischen Durchschnitt breit gestreuter Aktienindizes (z.&nbsp;B. MSCI World) über lange Zeiträume. Er ist keine Prognose und kann in einzelnen Zeiträumen erheblich abweichen, auch ins Negative.
-            </p>
-            <p className="text-xs text-muted-foreground/50 text-center mt-2 max-w-md mx-auto leading-relaxed">
-              Kapitalanlagen in Fonds und ETFs unterliegen Marktschwankungen. Im ungünstigen Fall kann der Wert der Anlage sinken — auch unter den eingezahlten Betrag. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Die Darstellung vereinfacht und berücksichtigt weder Inflation, Kosten noch Steuern. Keine Anlageberatung.
+            <p className="text-xs text-muted-foreground text-center mt-6 max-w-[400px] mx-auto leading-relaxed">
+              Berechnung bei 150 € / Monat, Renteneintritt mit 67, 7 % Rendite p.a. — vereinfacht ohne Inflation und Kosten. Keine Anlageberatung.
             </p>
           </AnimatedSection>
         </div>
