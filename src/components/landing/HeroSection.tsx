@@ -53,9 +53,10 @@ const HeroSection = () => (
           className="text-base text-muted-foreground mb-10 max-w-lg"
           style={{ lineHeight: 1.7 }}
         >
-          So viel könnte ein 35-Jähriger mit 150 € monatlich bis zur Rente
-          aufbauen — mit staatlicher Förderung, KI-Analyse und persönlichem
-          Experten-Chat. Kostenlos und unabhängig.
+          So viel könnte ein 35-Jähriger mit 150 € monatlich aufbauen — mit
+          staatlicher Förderung. Berechne jetzt deine persönliche
+          Altersvorsorge: mit KI-Analyse individueller Auswertung als PDF.
+          Kostenlos und unabhängig.
         </motion.p>
 
         {/* CTAs */}
