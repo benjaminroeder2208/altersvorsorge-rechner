@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, Loader2, Check, TrendingDown, PiggyBank, Target, Clock, Mail } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { Checkbox } from "@/components/ui/checkbox";
+import { X, Sparkles, Loader2, Check, TrendingDown, PiggyBank, Target, Clock } from "lucide-react";
+
+
 import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, KINDERZULAGE_PRO_KIND } from "@/lib/foerderung";
 
 const fmt = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
@@ -101,10 +101,6 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
   const [loading, setLoading] = useState(false);
   const [analyse, setAnalyse] = useState("");
   const [error, setError] = useState("");
-  const [email, setEmail] = useState("");
-  const [dsgvoAccepted, setDsgvoAccepted] = useState(false);
-  const [dsgvoError, setDsgvoError] = useState(false);
-  const [leadStatus, setLeadStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const typewriterText = useTypewriter(analyse);
@@ -147,43 +143,6 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [open, onClose]);
-
-  // Lead capture submit
-  const handleLeadSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || leadStatus === "sending" || leadStatus === "sent") return;
-    if (!dsgvoAccepted) {
-      setDsgvoError(true);
-      return;
-    }
-    setLeadStatus("sending");
-    try {
-      const confirmToken = crypto.randomUUID();
-      const { error: dbError } = await supabase.from("simulation_leads").insert({
-        email,
-        birth_year: data.birth_year,
-        monthly_contribution: data.monthly_contribution,
-        monthly_payout: Math.round(data.monthly_payout),
-        calculated_capital: Math.round(data.total_capital),
-        retirement_age: data.retirement_age,
-        return_assumption: data.return_assumption,
-        children: data.children,
-        total_subsidies: Math.round(data.subsidies),
-        confirmation_token: confirmToken,
-      });
-      if (dbError) throw dbError;
-
-      // Send confirmation email (DOI)
-      supabase.functions.invoke("send-confirmation-email", {
-        body: { email, token: confirmToken },
-      }).catch(() => {});
-
-      setLeadStatus("sent");
-    } catch {
-      setLeadStatus("error");
-      setTimeout(() => setLeadStatus("idle"), 3000);
-    }
-  };
 
   if (!open) return null;
 
@@ -309,64 +268,6 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                     badge=""
                     badgeClass=""
                   />
-                </div>
-              )}
-
-              {/* Separator */}
-              {!loading && <div className="border-t border-border" />}
-
-              {/* Lead capture */}
-              {!loading && (
-                <div>
-                  <p className="text-sm font-semibold mb-1">Diese Auswertung speichern</p>
-                  <p className="text-xs text-muted-foreground mb-4">
-                    Trag deine E-Mail ein — kein Newsletter, nur deine Auswertung.
-                  </p>
-
-                  {leadStatus === "sent" ? (
-                    <div className="flex items-center gap-2 text-primary text-sm font-medium">
-                      <Mail className="w-4 h-4" /> Fast geschafft! Bitte bestätige deine E-Mail-Adresse.
-                    </div>
-                  ) : (
-                    <form onSubmit={handleLeadSubmit} className="space-y-3">
-                      <div className="flex gap-2">
-                        <input
-                          type="email"
-                          required
-                          placeholder="Deine E-Mail-Adresse"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="flex-1 px-4 py-2.5 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        />
-                        <button
-                          type="submit"
-                          disabled={leadStatus === "sending" || !dsgvoAccepted}
-                          className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
-                        >
-                          {leadStatus === "sending" ? "..." : "Speichern"}
-                        </button>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <Checkbox
-                          id="dsgvo-modal"
-                          checked={dsgvoAccepted}
-                          onCheckedChange={(v) => { setDsgvoAccepted(!!v); setDsgvoError(false); }}
-                          className={dsgvoError ? "border-destructive ring-1 ring-destructive" : ""}
-                        />
-                        <label htmlFor="dsgvo-modal" className="text-[11px] text-muted-foreground leading-relaxed cursor-pointer">
-                          Ich stimme der Verarbeitung meiner E-Mail-Adresse gemäß der{" "}
-                          <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Datenschutzerklärung</a>{" "}
-                          zu. Die Adresse wird ausschließlich zur Zusendung meiner Auswertung und gelegentlicher Updates verwendet.
-                        </label>
-                      </div>
-                      {dsgvoError && (
-                        <p className="text-[11px] text-destructive">Bitte stimme der Datenschutzerklärung zu.</p>
-                      )}
-                    </form>
-                  )}
-                  {leadStatus === "error" && (
-                    <p className="text-xs text-destructive mt-2">Fehler beim Speichern. Bitte versuche es erneut.</p>
-                  )}
                 </div>
               )}
 
