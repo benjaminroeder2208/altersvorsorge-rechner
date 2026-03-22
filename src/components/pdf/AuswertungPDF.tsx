@@ -85,6 +85,7 @@ const s = StyleSheet.create({
 });
 
 export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
+  const rendite = ((data.return_assumption ?? 0.07) * 100).toFixed(0);
   const foerderProzent =
     data.total_capital > 0 ? ((data.subsidies / data.total_capital) * 100).toFixed(1).replace(".", ",") : "0";
 
