@@ -334,6 +334,9 @@ const EmbedPage = () => {
                 <div className="bg-gray-50 rounded-xl p-4">
                   <p className="text-xs text-gray-500 mb-1">Staatliche Förderung</p>
                   <p className="text-lg font-bold" style={{ color: primaryColor }}>{fmtEur(Math.round(r.totalSubsidies))}</p>
+                  <p className="text-[10px] text-gray-400 mt-1 leading-snug">
+                    Summe aller Grundzulagen über die Ansparzeit. Unabhängig vom Einkommen — direkt ins Depot.
+                  </p>
                 </div>
                 <div className="bg-gray-50 rounded-xl p-4">
                   <p className="text-xs text-gray-500 mb-1">Eigenbeiträge gesamt</p>
