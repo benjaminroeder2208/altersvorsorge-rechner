@@ -25,6 +25,13 @@ const articles = [
     tag: "Vorsorge-Strategien",
   },
   {
+    slug: "/blog/was-darf-ins-altersvorsorgedepot",
+    title: "Was darf ins Altersvorsorgedepot? Die erlaubten Anlageformen im Überblick",
+    description: "Welche Fonds, ETFs und Wertpapiere sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut Gesetzentwurf (§ 1 Abs. 1b AltZertG) klar erklärt.",
+    readingTime: "6 Min.",
+    tag: "Altersvorsorgedepot",
+  },
+  {
     slug: "/blog/altersvorsorgedepot-2027",
     title: "Altersvorsorgedepot 2027: Alles, was du wissen musst",
     description: "Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Förderung, Funktionsweise, für wen es sich lohnt.",
