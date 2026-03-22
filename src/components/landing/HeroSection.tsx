@@ -53,13 +53,15 @@ const HeroSection = () =>
         className="text-base text-muted-foreground mb-10 max-w-lg"
         style={{ lineHeight: 1.7 }}>
         
-          So viel könnte ein 35-Jähriger mit 150 € monatlich aufbauen — mit staatlicher Förderung. Berechne jetzt deine persönliche Altersvorsorge: mit KI-Analyse und individueller Auswertung als PDF. Kostenlos und unabhängig.
-        </motion.p>
+          So viel Kapital könnte ein 35-Jähriger mit 150 € monatlich aufbauen — plus staatliche Förderung des geplanten Altersvorsorgedepots. Jetzt persönliche Altersvorsorge berechnen: mit KI-Analyse und individueller Auswertung als PDF. Kostenlos und unabhängig.
+        
+
+      
+      
+      </motion.p>
 
         {/* CTAs */}
-        <motion.div
-        {...anim(0.7)}
-        className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
+        <motion.div {...anim(0.7)} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
         
           <a
           href="#rechner"
