@@ -509,7 +509,7 @@ const AltersvorsorgedepotRechner = () => {
                   Wie hoch ist Ihr Bruttojahreseinkommen?
                 </h2>
                 <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
-                  Das Einkommen beeinflusst in dieser Simulation die geschätzten steuerlichen Vorteile.
+                  Wir nutzen Ihr Einkommen ausschließlich zur Schätzung Ihrer Steuerersparnis durch den Sonderausgabenabzug — nicht zur Berechnung der Zulagen. Zulagen erhält jede förderberechtigte Person unabhängig vom Einkommen.
                 </p>
 
                 <div className="grid grid-cols-2 gap-3 max-w-xl mx-auto">
@@ -530,8 +530,8 @@ const AltersvorsorgedepotRechner = () => {
                   ))}
                 </div>
 
-                <InfoText className="mt-6 max-w-sm mx-auto">
-                  Die steuerliche Wirkung wird vereinfacht dargestellt.
+                <InfoText className="mt-6 max-w-md mx-auto">
+                  Der Sonderausgabenabzug ermöglicht es, Eigenbeiträge und Zulagen bis zu 1.800 €/Jahr in der Steuererklärung geltend zu machen. Je höher Ihr Grenzsteuersatz, desto größer die zusätzliche Steuerersparnis — diese ist jedoch immer eine Schätzung und individuell verschieden.
                 </InfoText>
 
                 <button
@@ -826,6 +826,11 @@ const AltersvorsorgedepotRechner = () => {
                         <p className={`text-2xl font-bold tabular-nums ${item.color}`}>
                           <AnimatedNumber value={Math.round(item.value)} suffix=" €" />
                         </p>
+                        {item.label === "Steuervorteile" && (
+                          <p className="text-[11px] text-muted-foreground/60 mt-2 leading-snug">
+                            Geschätzter kumulierter Steuervorteil durch den Sonderausgabenabzug, basierend auf Ihrer Einkommensklasse. Individuelle Abweichungen sind möglich.
+                          </p>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -840,8 +845,11 @@ const AltersvorsorgedepotRechner = () => {
                     <p className="text-3xl font-bold text-primary tabular-nums mt-1">
                       +<AnimatedNumber value={Math.round(r.capitalWithFunding - r.capitalWithout)} suffix=" €" />
                     </p>
-                    <InfoText className="mt-2 max-w-xs mx-auto">
-                      Diese Darstellung basiert auf den Annahmen des aktuellen Gesetzentwurfs.
+                    <InfoText className="mt-2 max-w-md mx-auto">
+                      Dieser Betrag zeigt, wie viel mehr Kapital zum Rentenbeginn durch staatliche Förderung entsteht — im Vergleich zu identischen Einzahlungen ohne Förderung (z. B. in ein normales Depot).
+                    </InfoText>
+                    <InfoText className="mt-2 max-w-md mx-auto">
+                      Enthält Zulagen und Steuervorteile, die über die gesamte Laufzeit mitwachsen. Basiert auf dem aktuellen Gesetzentwurf — Änderungen möglich.
                     </InfoText>
                   </div>
                 </div>
