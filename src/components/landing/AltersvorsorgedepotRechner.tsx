@@ -76,17 +76,17 @@ function calculate(inputs: Inputs) {
   const annualOwn = monthlyContribution * 12;
 
   // Grundzulage
-  const grundzulage = annualOwn >= 120
-    ? Math.min(annualOwn, 1200) * 0.30 + Math.min(Math.max(annualOwn - 1200, 0), 600) * 0.20
+  const grundzulage = annualOwn >= MINDESTEIGENBEITRAG
+    ? berechneGrundzulage(annualOwn)
     : 0;
 
   // Kinderzulage
-  const kinderzulagePerChild = annualOwn >= 120 ? Math.min(annualOwn * 0.25, 300) : 0;
+  const kinderzulagePerChild = annualOwn >= MINDESTEIGENBEITRAG ? Math.min(annualOwn * 0.25, KINDERZULAGE_PRO_KIND) : 0;
   const totalKinderzulage = children * kinderzulagePerChild;
 
   // Tax benefit
   const marginalTaxRate = INCOME_BANDS[incomeBand].taxRate;
-  const taxBenefit = Math.min(annualOwn, 1800) * marginalTaxRate * 0.7;
+  const taxBenefit = Math.min(annualOwn, MAX_EIGENANTEIL_GEFOERDERT) * marginalTaxRate * 0.7;
 
   const berufseinsteiger = currentAge < 25;
   const annualSubsidy = grundzulage + totalKinderzulage;
