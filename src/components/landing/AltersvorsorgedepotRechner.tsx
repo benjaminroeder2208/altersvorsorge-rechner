@@ -332,7 +332,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
                 required
@@ -344,7 +344,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
               <button
                 type="submit"
                 disabled={status === "sending" || !dsgvoAccepted}
-                className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
+                className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap"
               >
                 {status === "sending" ? "..." : "PDF anfordern →"}
               </button>
