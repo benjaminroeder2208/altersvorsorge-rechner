@@ -71,7 +71,7 @@ const HeroIllustration = () => (
       <rect x="20" y="210" width="150" height="72" rx="12" fill="white" stroke="#E5E7EB" strokeWidth="1" />
       <rect x="20" y="210" width="4" height="72" rx="2" fill="#1B4FD8" />
       <text x="36" y="230" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">KAPITAL MIT 67</text>
-      <text x="36" y="252" fontSize="14" fontWeight="700" fill="#1B4FD8" fontFamily="system-ui">255.570 €</text>
+      <text x="36" y="252" fontSize="14" fontWeight="700" fill="#1B4FD8" fontFamily="system-ui">255.000 €</text>
       <text x="36" y="270" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">bei 150 € / Monat</text>
     </motion.g>
 
