@@ -530,8 +530,8 @@ const AltersvorsorgedepotRechner = () => {
                   ))}
                 </div>
 
-                <InfoText className="mt-6 max-w-sm mx-auto">
-                  Die steuerliche Wirkung wird vereinfacht dargestellt.
+                <InfoText className="mt-6 max-w-md mx-auto">
+                  Der Sonderausgabenabzug ermöglicht es, Eigenbeiträge und Zulagen bis zu 1.800 €/Jahr in der Steuererklärung geltend zu machen. Je höher Ihr Grenzsteuersatz, desto größer die zusätzliche Steuerersparnis — diese ist jedoch immer eine Schätzung und individuell verschieden.
                 </InfoText>
 
                 <button
