@@ -144,43 +144,6 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
     return () => window.removeEventListener("keydown", handler);
   }, [open, onClose]);
 
-  // Lead capture submit
-  const handleLeadSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || leadStatus === "sending" || leadStatus === "sent") return;
-    if (!dsgvoAccepted) {
-      setDsgvoError(true);
-      return;
-    }
-    setLeadStatus("sending");
-    try {
-      const confirmToken = crypto.randomUUID();
-      const { error: dbError } = await supabase.from("simulation_leads").insert({
-        email,
-        birth_year: data.birth_year,
-        monthly_contribution: data.monthly_contribution,
-        monthly_payout: Math.round(data.monthly_payout),
-        calculated_capital: Math.round(data.total_capital),
-        retirement_age: data.retirement_age,
-        return_assumption: data.return_assumption,
-        children: data.children,
-        total_subsidies: Math.round(data.subsidies),
-        confirmation_token: confirmToken,
-      });
-      if (dbError) throw dbError;
-
-      // Send confirmation email (DOI)
-      supabase.functions.invoke("send-confirmation-email", {
-        body: { email, token: confirmToken },
-      }).catch(() => {});
-
-      setLeadStatus("sent");
-    } catch {
-      setLeadStatus("error");
-      setTimeout(() => setLeadStatus("idle"), 3000);
-    }
-  };
-
   if (!open) return null;
 
   return (
