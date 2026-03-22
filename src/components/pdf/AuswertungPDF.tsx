@@ -75,7 +75,6 @@ const s = StyleSheet.create({
   productRow: { flexDirection: "row", paddingVertical: 5, borderBottomWidth: 1, borderBottomColor: BORDER },
   productName: { fontSize: 9, fontWeight: "bold", color: "#1a1a2e", width: "40%" },
   productDesc: { fontSize: 9, color: MUTED, width: "60%" },
-  footer: { position: "absolute", bottom: 20, left: 30, right: 30 },
   footerText: { fontSize: 8, color: "#9CA3AF", textAlign: "center" },
   // Page 2 styles
   p2SectionTitle: { fontSize: 13, fontWeight: "bold", color: "#111", marginBottom: 10 },
