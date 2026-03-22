@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Loader2, Check, TrendingDown, PiggyBank, Target, Clock, Mail } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
+import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, KINDERZULAGE_PRO_KIND } from "@/lib/foerderung";
 
 const fmt = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 const fmtEur = (v: number) => `${fmt(v)} €`;
