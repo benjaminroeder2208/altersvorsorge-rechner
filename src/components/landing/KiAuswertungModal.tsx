@@ -271,64 +271,6 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                 </div>
               )}
 
-              {/* Separator */}
-              {!loading && <div className="border-t border-border" />}
-
-              {/* Lead capture */}
-              {!loading && (
-                <div>
-                  <p className="text-sm font-semibold mb-1">Diese Auswertung speichern</p>
-                  <p className="text-xs text-muted-foreground mb-4">
-                    Trag deine E-Mail ein — kein Newsletter, nur deine Auswertung.
-                  </p>
-
-                  {leadStatus === "sent" ? (
-                    <div className="flex items-center gap-2 text-primary text-sm font-medium">
-                      <Mail className="w-4 h-4" /> Fast geschafft! Bitte bestätige deine E-Mail-Adresse.
-                    </div>
-                  ) : (
-                    <form onSubmit={handleLeadSubmit} className="space-y-3">
-                      <div className="flex gap-2">
-                        <input
-                          type="email"
-                          required
-                          placeholder="Deine E-Mail-Adresse"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="flex-1 px-4 py-2.5 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        />
-                        <button
-                          type="submit"
-                          disabled={leadStatus === "sending" || !dsgvoAccepted}
-                          className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
-                        >
-                          {leadStatus === "sending" ? "..." : "Speichern"}
-                        </button>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <Checkbox
-                          id="dsgvo-modal"
-                          checked={dsgvoAccepted}
-                          onCheckedChange={(v) => { setDsgvoAccepted(!!v); setDsgvoError(false); }}
-                          className={dsgvoError ? "border-destructive ring-1 ring-destructive" : ""}
-                        />
-                        <label htmlFor="dsgvo-modal" className="text-[11px] text-muted-foreground leading-relaxed cursor-pointer">
-                          Ich stimme der Verarbeitung meiner E-Mail-Adresse gemäß der{" "}
-                          <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Datenschutzerklärung</a>{" "}
-                          zu. Die Adresse wird ausschließlich zur Zusendung meiner Auswertung und gelegentlicher Updates verwendet.
-                        </label>
-                      </div>
-                      {dsgvoError && (
-                        <p className="text-[11px] text-destructive">Bitte stimme der Datenschutzerklärung zu.</p>
-                      )}
-                    </form>
-                  )}
-                  {leadStatus === "error" && (
-                    <p className="text-xs text-destructive mt-2">Fehler beim Speichern. Bitte versuche es erneut.</p>
-                  )}
-                </div>
-              )}
-
               {/* Disclaimer */}
               {!loading && (
                 <p className="text-[11px] text-muted-foreground/50 leading-relaxed">
