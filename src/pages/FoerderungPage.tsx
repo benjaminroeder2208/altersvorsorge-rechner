@@ -60,6 +60,13 @@ const FoerderungPage = () => (
     </section>
 
     <section>
+      <h2 className="text-xl font-bold mb-3">Förderung für Ehepaare</h2>
+      <p className="text-muted-foreground leading-relaxed">
+        <strong className="text-foreground">Mittelbar förderberechtigte Ehegatten:</strong> Ist nur ein Ehegatte direkt förderberechtigt (z.B. Arbeitnehmer), kann der andere Ehegatte (z.B. nicht berufstätiger Partner) ebenfalls einen Altersvorsorgedepot-Vertrag eröffnen und erhält eine abgeleitete Grundzulage — allerdings maximal 175 €/Jahr (§ 84 Satz 3). Voraussetzung: Mindestbeitrag von 120 €/Jahr in den eigenen Vertrag.
+      </p>
+    </section>
+
+    <section>
       <h2 className="text-xl font-bold mb-3">Steuerliche Förderung</h2>
       <p className="text-muted-foreground leading-relaxed">
         Eigenbeiträge und Zulagen können bis zu einem Höchstbetrag als Sonderausgaben geltend gemacht werden. Der tatsächliche Vorteil hängt vom persönlichen Steuersatz ab.
