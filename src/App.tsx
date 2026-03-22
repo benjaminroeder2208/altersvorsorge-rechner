@@ -31,6 +31,7 @@ import BlogEtfSteuern from "./pages/BlogEtfSteuern";
 import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
 import BlogRuerupRente from "./pages/BlogRuerupRente";
 import BlogPortfolio from "./pages/BlogPortfolio";
+import BlogWasDarfInsDepot from "./pages/BlogWasDarfInsDepot";
 import ConfirmPage from "./pages/ConfirmPage";
 import EmbedPage from "./pages/EmbedPage";
 import EinbettenPage from "./pages/EinbettenPage";
