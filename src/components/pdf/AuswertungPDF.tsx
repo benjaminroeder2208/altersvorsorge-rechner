@@ -214,8 +214,8 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
               Inflation: Die Berechnungen sind nominal — Kaufkraftverlust durch Inflation ist nicht berücksichtigt. Bei
               einer angenommenen Inflation von 2 % p.a. entspricht die reale Kaufkraft der berechneten Beträge etwa
               60–70 % des nominalen Wertes.{"\n\n"}
-              Vergleich: „Normales Depot" wurde mit gleicher Rendite (7 % p.a.) aber ohne staatliche Förderung
-              berechnet. „Sparkonto" wurde mit 2 % p.a. berechnet.
+               Vergleich: „Normales Depot" wurde mit gleicher Rendite ({rendite} % p.a.) aber ohne staatliche Förderung
+               berechnet. „Sparkonto" wurde mit 2 % p.a. berechnet.
             </Text>
           </View>
 
