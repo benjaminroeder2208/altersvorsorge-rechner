@@ -60,10 +60,10 @@ function calculate(inputs: Inputs) {
   const yearsToRetirement = Math.max(retirementAge - currentAge, 0);
   const annualOwn = monthlyContribution * 12;
 
-  const grundzulage = annualOwn >= 120
-    ? Math.min(annualOwn, 1200) * 0.35 + Math.min(Math.max(annualOwn - 1200, 0), 600) * 0.20
+  const grundzulage = annualOwn >= MINDESTEIGENBEITRAG
+    ? berechneGrundzulage(annualOwn)
     : 0;
-  const kinderzulagePerChild = annualOwn >= 120 ? Math.min(annualOwn * 0.25, 300) : 0;
+  const kinderzulagePerChild = annualOwn >= MINDESTEIGENBEITRAG ? Math.min(annualOwn * 0.25, KINDERZULAGE_PRO_KIND) : 0;
   const totalKinderzulage = children * kinderzulagePerChild;
   const berufseinsteiger = currentAge < 25;
   const annualSubsidy = grundzulage + totalKinderzulage;
