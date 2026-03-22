@@ -188,7 +188,7 @@ const RechnerPage = () => (
             </div>
 
             <p className="text-xs text-muted-foreground text-center mt-6 max-w-[400px] mx-auto leading-relaxed">
-              Berechnung bei 150 € / Monat, Renteneintritt mit 67, 7 % Rendite p.a. — vereinfacht ohne Inflation und Kosten. Keine Anlageberatung.
+              Berechnung bei 150 € / Monat, Renteneintritt mit 67, 7 % Rendite p.a. — dieser Wert orientiert sich am historischen Durchschnitt breit gestreuter Aktienindizes (z.&nbsp;B. MSCI World) über lange Zeiträume. Er ist keine Prognose und kann in einzelnen Zeiträumen erheblich abweichen, auch ins Negative. Kapitalanlagen in Fonds und ETFs unterliegen Marktschwankungen. Im ungünstigen Fall kann der Wert der Anlage sinken — auch unter den eingezahlten Betrag. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Die Darstellung vereinfacht und berücksichtigt weder Inflation, Kosten noch Steuern. Keine Anlageberatung.
             </p>
           </AnimatedSection>
         </div>
