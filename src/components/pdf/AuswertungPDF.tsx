@@ -27,6 +27,7 @@ export interface AuswertungData {
   retirement_age: number;
   birth_year: number;
   chart_image?: string;
+  return_assumption?: number;
 }
 
 const s = StyleSheet.create({
@@ -74,7 +75,6 @@ const s = StyleSheet.create({
   productRow: { flexDirection: "row", paddingVertical: 5, borderBottomWidth: 1, borderBottomColor: BORDER },
   productName: { fontSize: 9, fontWeight: "bold", color: "#1a1a2e", width: "40%" },
   productDesc: { fontSize: 9, color: MUTED, width: "60%" },
-  footer: { position: "absolute", bottom: 20, left: 30, right: 30 },
   footerText: { fontSize: 8, color: "#9CA3AF", textAlign: "center" },
   // Page 2 styles
   p2SectionTitle: { fontSize: 13, fontWeight: "bold", color: "#111", marginBottom: 10 },
@@ -85,6 +85,7 @@ const s = StyleSheet.create({
 });
 
 export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
+  const rendite = ((data.return_assumption ?? 0.07) * 100).toFixed(0);
   const foerderProzent =
     data.total_capital > 0 ? ((data.subsidies / data.total_capital) * 100).toFixed(1).replace(".", ",") : "0";
 
@@ -186,7 +187,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
           </View>
         </View>
 
-        <View style={s.footer}>
+        <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#E5E7EB" }}>
           <Text style={s.footerText}>altersvorsorge-rechner.com · Seite 1/2 · Rechtliche Hinweise siehe Seite 2</Text>
         </View>
       </Page>
@@ -199,7 +200,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
             <Text style={s.p2SectionTitleBlue}>Wie wurde berechnet?</Text>
             <Text style={s.p2Text}>
               Die Berechnungen basieren auf folgenden Annahmen:{"\n\n"}
-              Rendite: Es wurde eine vereinfachte Rendite von 7 % p.a. angenommen. Diese entspricht in etwa der
+              Rendite: Es wurde eine vereinfachte Rendite von {rendite} % p.a. angenommen. Diese entspricht in etwa der
               historischen Durchschnittsrendite eines breit gestreuten Aktien-ETF (z. B. MSCI World) über lange
               Zeiträume. Die tatsächliche Rendite kann höher oder niedriger ausfallen und ist nicht garantiert.{"\n\n"}
               Beiträge: Die monatlichen Eigenbeiträge werden als konstant über die gesamte Laufzeit angenommen.
@@ -213,8 +214,8 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
               Inflation: Die Berechnungen sind nominal — Kaufkraftverlust durch Inflation ist nicht berücksichtigt. Bei
               einer angenommenen Inflation von 2 % p.a. entspricht die reale Kaufkraft der berechneten Beträge etwa
               60–70 % des nominalen Wertes.{"\n\n"}
-              Vergleich: „Normales Depot" wurde mit gleicher Rendite (7 % p.a.) aber ohne staatliche Förderung
-              berechnet. „Sparkonto" wurde mit 2 % p.a. berechnet.
+               Vergleich: „Normales Depot" wurde mit gleicher Rendite ({rendite} % p.a.) aber ohne staatliche Förderung
+               berechnet. „Sparkonto" wurde mit 2 % p.a. berechnet.
             </Text>
           </View>
 
@@ -254,7 +255,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
           </View>
         </View>
 
-        <View style={s.footer}>
+        <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#E5E7EB" }}>
           <Text style={s.footerText}>altersvorsorge-rechner.com · Seite 2/2</Text>
         </View>
       </Page>

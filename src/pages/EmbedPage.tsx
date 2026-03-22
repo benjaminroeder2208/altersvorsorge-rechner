@@ -203,6 +203,7 @@ const EmbedPage = () => {
         retirement_age: inputs.retirementAge,
         birth_year: inputs.birthYear,
         chart_image: chartImg,
+        return_assumption: inputs.returnRate,
       }).catch(() => null);
       const { error } = await supabase.from("simulation_leads").insert({
         email,
