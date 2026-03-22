@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, GRUNDZULAGE_SATZ_AB_2027 } from "@/lib/foerderung";
 
 const faqs = [
   {
@@ -25,7 +26,7 @@ const faqs = [
   },
   {
     q: "Wie hoch ist die maximale Förderung?",
-    a: "Die Grundzulage beträgt im Entwurf 30 % auf Eigenbeiträge bis 1.200 € und 20 % auf weitere 600 €. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug. Maximale Grundzulage: max. 480 €/Jahr (ab 2029: 540 €/Jahr).",
+    a: `Die Grundzulage beträgt im Entwurf ${GRUNDZULAGE_SATZ_AB_2027 * 100} % auf Eigenbeiträge bis 1.200 € und 20 % auf weitere 600 €. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug. Maximale Grundzulage: max. ${MAX_GRUNDZULAGE_AB_2027} €/Jahr (ab 2029: ${MAX_GRUNDZULAGE_AB_2029} €/Jahr).`,
   },
   {
     q: "Was passiert mit dem Geld bei schlechter Marktentwicklung?",

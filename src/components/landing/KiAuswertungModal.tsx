@@ -297,7 +297,7 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                   <ProductCard
                     emoji="🏛️"
                     title="Altersvorsorgedepot (2027)"
-                    description="Bis zu 480 € Grundzulage + 300 € je Kind/Jahr (ab 2029: 540 €)"
+                    description={`Bis zu ${MAX_GRUNDZULAGE_AB_2027} € Grundzulage + ${KINDERZULAGE_PRO_KIND} € je Kind/Jahr (ab 2029: ${MAX_GRUNDZULAGE_AB_2029} €)`}
                     subtitle="Angaben basieren auf dem aktuellen Gesetzentwurf. Änderungen möglich."
                     badge="Geplant ab 2027"
                     badgeClass="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"

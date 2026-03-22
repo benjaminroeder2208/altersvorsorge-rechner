@@ -1,4 +1,5 @@
 import AnimatedSection from "./AnimatedSection";
+import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029 } from "@/lib/foerderung";
 
 const cards = [
   {
@@ -16,11 +17,11 @@ const cards = [
     sub: "des letzten Bruttogehalts — netto oft noch weniger",
   },
   {
-    value: "480 €",
+    value: `${MAX_GRUNDZULAGE_AB_2027} €`,
     valueColor: "#F59E0B",
     accentColor: "#F59E0B",
     label: "Staatliche Förderung pro Jahr",
-    sub: "durch das geplante Altersvorsorgedepot ab 2027 (ab 2029: bis zu 540 €)",
+    sub: `durch das geplante Altersvorsorgedepot ab 2027 (ab 2029: bis zu ${MAX_GRUNDZULAGE_AB_2029} €)`,
   },
 ];
 
