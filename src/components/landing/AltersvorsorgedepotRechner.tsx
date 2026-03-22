@@ -826,6 +826,11 @@ const AltersvorsorgedepotRechner = () => {
                         <p className={`text-2xl font-bold tabular-nums ${item.color}`}>
                           <AnimatedNumber value={Math.round(item.value)} suffix=" €" />
                         </p>
+                        {item.label === "Steuervorteile" && (
+                          <p className="text-[11px] text-muted-foreground/60 mt-2 leading-snug">
+                            Geschätzter kumulierter Steuervorteil durch den Sonderausgabenabzug, basierend auf Ihrer Einkommensklasse. Individuelle Abweichungen sind möglich.
+                          </p>
+                        )}
                       </div>
                     ))}
                   </div>
