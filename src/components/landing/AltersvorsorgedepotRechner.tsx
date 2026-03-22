@@ -282,6 +282,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
           retirement_age: inputs.retirementAge,
           birth_year: inputs.birthYear,
           chart_image: chartImg,
+          return_assumption: inputs.returnRate,
         });
       } catch (pdfErr) {
         console.error("PDF generation failed:", pdfErr);

@@ -255,7 +255,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
           </View>
         </View>
 
-        <View style={s.footer}>
+        <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#E5E7EB" }}>
           <Text style={s.footerText}>altersvorsorge-rechner.com · Seite 2/2</Text>
         </View>
       </Page>
