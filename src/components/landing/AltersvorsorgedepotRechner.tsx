@@ -87,7 +87,8 @@ function calculate(inputs: Inputs) {
 
   for (let y = 0; y < yearsToRetirement; y++) {
     const age = currentAge + y + 1;
-    const yearSubsidy = annualSubsidy + (y === 0 && berufseinsteiger ? 200 : 0);
+    const calendarYear = 2027 + y;
+    const yearSubsidy = berechneGesamtfoerderung(annualOwn, children, calendarYear) + (y === 0 && berufseinsteiger ? 200 : 0);
 
     totalContributions += annualOwn;
     totalSubsidies += yearSubsidy;
