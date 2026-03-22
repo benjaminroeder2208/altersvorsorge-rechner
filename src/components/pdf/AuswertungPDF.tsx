@@ -200,7 +200,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
             <Text style={s.p2SectionTitleBlue}>Wie wurde berechnet?</Text>
             <Text style={s.p2Text}>
               Die Berechnungen basieren auf folgenden Annahmen:{"\n\n"}
-              Rendite: Es wurde eine vereinfachte Rendite von 7 % p.a. angenommen. Diese entspricht in etwa der
+              Rendite: Es wurde eine vereinfachte Rendite von {rendite} % p.a. angenommen. Diese entspricht in etwa der
               historischen Durchschnittsrendite eines breit gestreuten Aktien-ETF (z. B. MSCI World) über lange
               Zeiträume. Die tatsächliche Rendite kann höher oder niedriger ausfallen und ist nicht garantiert.{"\n\n"}
               Beiträge: Die monatlichen Eigenbeiträge werden als konstant über die gesamte Laufzeit angenommen.
