@@ -113,8 +113,13 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const validBrackets = ["bis_30k", "30k_50k", "50k_70k", "70k_100k", "ueber_100k"];
-    if (typeof income_bracket !== "string" || !validBrackets.includes(income_bracket)) {
+    const validBrackets = [
+      "bis 17.000 €",
+      "17.000 – 37.000 €",
+      "37.000 – 57.000 €",
+      "über 57.000 €",
+    ];
+    if (typeof income_bracket !== "string" || income_bracket.length > 50) {
       return new Response(JSON.stringify({ error: "Invalid income_bracket" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
