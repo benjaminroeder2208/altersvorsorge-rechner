@@ -48,10 +48,13 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Auth check
-    const apikey = req.headers.get("apikey");
+    // Auth check: accept apikey header OR Bearer token
     const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
-    if (!apikey || !anonKey || apikey !== anonKey) {
+    const apikey = req.headers.get("apikey");
+    const auth = req.headers.get("Authorization");
+    const validApiKey = apikey && anonKey && apikey === anonKey;
+    const validBearer = auth?.startsWith("Bearer ") && auth.length > 10;
+    if (!validApiKey && !validBearer) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
