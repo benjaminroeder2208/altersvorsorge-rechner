@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
-const curvePath = "M 40 280 C 80 260, 120 220, 160 200 S 240 140, 280 110 S 340 50, 380 30";
-const areaPath = `${curvePath} L 380 300 L 40 300 Z`;
+const curvePath = "M 40 280 C 80 260, 120 220, 160 200 S 220 150, 240 140";
+const areaPath = `${curvePath} L 240 300 L 40 300 Z`;
 
 const HeroIllustration = () => (
   <svg viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
