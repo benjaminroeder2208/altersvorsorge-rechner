@@ -728,7 +728,7 @@ const AltersvorsorgedepotRechner = () => {
                     retirement_age: inputs.retirementAge,
                     return_assumption: inputs.returnRate * 100,
                     children: inputs.children,
-                    income_bracket: INCOME_BANDS[inputs.incomeBand].key,
+                    income_bracket: INCOME_BANDS[inputs.incomeBand].label,
                   }}
                 />
 
