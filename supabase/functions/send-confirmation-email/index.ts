@@ -1,4 +1,15 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "jsr:@supabase/supabase-js@2";
+
+const rateLimitMap = new Map<string, number[]>();
+function checkRateLimit(ip: string, maxReqs = 5, windowMs = 60_000): boolean {
+  const now = Date.now();
+  const timestamps = (rateLimitMap.get(ip) ?? []).filter(t => now - t < windowMs);
+  if (timestamps.length >= maxReqs) return false;
+  timestamps.push(now);
+  rateLimitMap.set(ip, timestamps);
+  return true;
+}
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
