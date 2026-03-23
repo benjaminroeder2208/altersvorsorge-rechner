@@ -66,7 +66,7 @@ const s = StyleSheet.create({
   explanationBox: { backgroundColor: LIGHT_BG, borderRadius: 8, padding: 8, marginBottom: 8 },
   explanationText: { fontSize: 10, color: "#333", lineHeight: 1.6 },
   chartImage: { width: "100%", height: 130, marginBottom: 8, borderRadius: 6 },
-  table: { marginBottom: 12 },
+  table: { marginBottom: 8 },
   tableRow: { flexDirection: "row", borderBottomWidth: 1, borderBottomColor: BORDER, paddingVertical: 6 },
   tableHeader: { flexDirection: "row", borderBottomWidth: 2, borderBottomColor: PRIMARY, paddingVertical: 6 },
   tableCell: { width: "25%", fontSize: 9, color: "#333" },
