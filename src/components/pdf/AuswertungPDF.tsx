@@ -65,7 +65,7 @@ const s = StyleSheet.create({
   cardValueBlue: { fontSize: 18, fontWeight: "bold", color: PRIMARY },
   explanationBox: { backgroundColor: LIGHT_BG, borderRadius: 8, padding: 8, marginBottom: 8 },
   explanationText: { fontSize: 10, color: "#333", lineHeight: 1.6 },
-  chartImage: { width: "100%", height: 160, marginBottom: 12, borderRadius: 6 },
+  chartImage: { width: "100%", height: 130, marginBottom: 8, borderRadius: 6 },
   table: { marginBottom: 12 },
   tableRow: { flexDirection: "row", borderBottomWidth: 1, borderBottomColor: BORDER, paddingVertical: 6 },
   tableHeader: { flexDirection: "row", borderBottomWidth: 2, borderBottomColor: PRIMARY, paddingVertical: 6 },
