@@ -63,7 +63,7 @@ const s = StyleSheet.create({
   cardLabel: { fontSize: 8, color: MUTED, marginBottom: 3 },
   cardValue: { fontSize: 18, fontWeight: "bold", color: "#1a1a2e" },
   cardValueBlue: { fontSize: 18, fontWeight: "bold", color: PRIMARY },
-  explanationBox: { backgroundColor: LIGHT_BG, borderRadius: 8, padding: 10, marginBottom: 12 },
+  explanationBox: { backgroundColor: LIGHT_BG, borderRadius: 8, padding: 8, marginBottom: 8 },
   explanationText: { fontSize: 10, color: "#333", lineHeight: 1.6 },
   chartImage: { width: "100%", height: 160, marginBottom: 12, borderRadius: 6 },
   table: { marginBottom: 12 },
