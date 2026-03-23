@@ -72,21 +72,6 @@ const HeroIllustration = () => (
       transition={{ delay: 1.6, duration: 0.4 }}
     />
 
-    {/* Connector line: blue curve → Kapital card */}
-    <motion.line
-      x1="120" y1="230" x2="170" y2="246"
-      stroke="#1B4FD8" strokeWidth="1.5" strokeDasharray="3,2" opacity="0"
-      initial={{ opacity: 0 }} animate={{ opacity: 0.5 }}
-      transition={{ delay: 1.3, duration: 0.5 }}
-    />
-
-    {/* Connector line: amber dot → Förderung card */}
-    <motion.line
-      x1="240" y1="140" x2="260" y2="136"
-      stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="3,2" opacity="0"
-      initial={{ opacity: 0 }} animate={{ opacity: 0.7 }}
-      transition={{ delay: 1.5, duration: 0.5 }}
-    />
 
     {/* Data card 1 — bottom left */}
     <motion.g
