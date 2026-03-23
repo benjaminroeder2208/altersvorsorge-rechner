@@ -51,6 +51,32 @@ const FoerderungPage = () => (
     </section>
 
     <section>
+      <h2 className="text-xl font-bold mb-3">Berufseinsteiger-Bonus</h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Wer zu Beginn des Beitragsjahres das 25. Lebensjahr noch
+        nicht vollendet hat, erhält einmalig einen zusätzlichen
+        Bonus von 200 € auf die Grundzulage (§ 84 Satz 2 EStG).
+        Der Bonus wird automatisch gewährt — ein gesonderter
+        Antrag ist nicht erforderlich.
+      </p>
+      <ul className="mt-3 space-y-2">
+        <li className="flex items-start gap-2 text-sm text-muted-foreground">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+          Einmalig — nicht jedes Jahr
+        </li>
+        <li className="flex items-start gap-2 text-sm text-muted-foreground">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+          Automatisch, kein Antrag nötig
+        </li>
+        <li className="flex items-start gap-2 text-sm text-muted-foreground">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+          Nur für direkt Förderberechtigte (§ 79 Satz 1 EStG),
+          nicht für mittelbar berechtigte Ehegatten
+        </li>
+      </ul>
+    </section>
+
+    <section>
       <h2 className="text-xl font-bold mb-3">Wichtig zu wissen</h2>
       <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
         <p className="text-sm text-muted-foreground leading-relaxed">

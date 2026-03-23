@@ -278,6 +278,17 @@ const BlogAltersvorsorgedepot2027 = () => {
                  <p>Ab 2029 steigt der Fördersatz auf 35 % — dann sind bis zu 540 € Grundzulage pro Jahr möglich.</p>
               </div>
 
+              <SectionH3>1b. Berufseinsteiger-Bonus</SectionH3>
+              <p className="text-base leading-relaxed text-muted-foreground">
+                Wer zu Beginn des Beitragsjahres noch keine 25 Jahre alt
+                ist, bekommt im ersten Förderjahr einmalig{" "}
+                <strong className="text-foreground">+200 € extra</strong>{" "}
+                auf die Grundzulage (§ 84 Satz 2 EStG). Der Bonus wird
+                automatisch gewährt und muss nicht beantragt werden.
+                Wer also mit 22 einsteigt, bekommt im ersten Jahr statt
+                bis zu 480 € bis zu 680 € Grundzulage.
+              </p>
+
               <SectionH3>2. Kinderzulage</SectionH3>
               <p className="text-base leading-relaxed text-muted-foreground">
                 Für jedes kindergeldberechtigte Kind gibt es eine zusätzliche Zulage von bis zu <strong className="text-foreground">300 € pro Jahr</strong>. Wer zwei Kinder hat, kann also bis zu 600 € extra erhalten — obendrauf auf die Grundzulage.
