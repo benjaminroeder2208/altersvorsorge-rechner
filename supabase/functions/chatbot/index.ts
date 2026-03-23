@@ -26,7 +26,7 @@ FÖRDERUNG:
 - Grundzulage ab 2029: 35% auf Eigenbeiträge bis 1.200€/Jahr (max. 420€) + 20% auf 1.200-1.800€/Jahr (max. 120€) = max. 540€/Jahr
 - Kinderzulage: bis zu 300€ pro kindergeldberechtigtem Kind/Jahr (25% der Beiträge bis 1.800€/Jahr, max. 300€). Die volle Kinderzulage von 300€ wird erst ab einem Eigenbeitrag von 1.200€/Jahr (100€/Monat) erreicht.
 - Steuervorteil: Eigenbeiträge + Zulagen als Sonderausgaben absetzbar
-- Beispiel 35J., 1 Kind, 30% Steuersatz, 1.800€ Eigenbeitrag: ~1.310€ Gesamtförderung/Jahr
+- Beispiel 35J., 1 Kind, 30% Steuersatz, 1.800€ Eigenbeitrag ab 2027: 480€ + 300€ = 780€ Zulagen + Steuervorteil ~378€ = ~1.158€/Jahr. Ab 2029: 540€ + 300€ = 840€ Zulagen + ~378€ = ~1.218€/Jahr
 - Mittelbar berechtigte Ehegatten: Grundzulage max. 175€/Jahr (§ 84 Satz 3). Berechnung basiert auf Beiträgen des direkt förderberechtigten Ehegatten. Voraussetzung: Mindestbeitrag 120€/Jahr in den eigenen Vertrag.
 
 RENTENLÜCKE:
