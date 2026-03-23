@@ -300,9 +300,13 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
       if (error) throw error;
 
       // Send confirmation email (DOI)
-      supabase.functions.invoke("send-confirmation-email", {
+      const { data: confirmationData, error: confirmationError } = await supabase.functions.invoke("send-confirmation-email", {
         body: { email, token: confirmToken },
-      }).catch(() => {});
+      });
+
+      if (confirmationError || confirmationData?.error) {
+        throw confirmationError ?? new Error(confirmationData?.error ?? "Confirmation email failed");
+      }
 
       setStatus("sent");
     } catch {
