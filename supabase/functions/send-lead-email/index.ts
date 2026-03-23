@@ -1,5 +1,11 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
+// ── Förderungskonstanten (Quelle: § 84 AltZertG, Drucksache 21/4088)
+// Bei Gesetzesänderung hier anpassen.
+const MAX_GRUNDZULAGE_2027 = 480;   // 30% × 1.200 + 20% × 600
+const MAX_GRUNDZULAGE_2029 = 540;   // 35% × 1.200 + 20% × 600
+const KINDERZULAGE = 300;           // max. je Kind/Jahr (§ 85)
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
