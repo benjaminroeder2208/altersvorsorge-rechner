@@ -1,4 +1,15 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "jsr:@supabase/supabase-js@2";
+
+const rateLimitMap = new Map<string, number[]>();
+function checkRateLimit(ip: string, maxReqs = 5, windowMs = 60_000): boolean {
+  const now = Date.now();
+  const timestamps = (rateLimitMap.get(ip) ?? []).filter(t => now - t < windowMs);
+  if (timestamps.length >= maxReqs) return false;
+  timestamps.push(now);
+  rateLimitMap.set(ip, timestamps);
+  return true;
+}
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -37,6 +48,25 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Auth check
+    const apikey = req.headers.get("apikey");
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    if (!apikey || !anonKey || apikey !== anonKey) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Rate limit
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    if (!checkRateLimit(ip)) {
+      return new Response(JSON.stringify({ error: "Rate limit exceeded" }), {
+        status: 429,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const resendKey = Deno.env.get("RESEND_API_KEY");
     if (!resendKey) {
       return new Response(JSON.stringify({ error: "RESEND_API_KEY not configured" }), {
@@ -48,6 +78,25 @@ Deno.serve(async (req) => {
     const { email, token } = await req.json();
     if (!email || !token) {
       return new Response(JSON.stringify({ error: "Email and token required" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Verify token exists in simulation_leads
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    const { data: lead } = await supabase
+      .from("simulation_leads")
+      .select("id")
+      .eq("confirmation_token", token)
+      .eq("confirmed", false)
+      .maybeSingle();
+
+    if (!lead) {
+      return new Response(JSON.stringify({ error: "Invalid token" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
