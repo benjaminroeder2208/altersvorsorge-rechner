@@ -7,13 +7,10 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const fmt = (v: number) =>
-  v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
-
 const BASE = "https://altersvorsorge-rechner.com";
 
-function footerHtml(email: string) {
-  const unsub = `${BASE}/unsubscribe?email=${encodeURIComponent(email)}`;
+function footerHtml(unsubToken: string) {
+  const unsub = `${BASE}/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
   return `
     <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
     <table style="width:100%;text-align:center;">
@@ -37,20 +34,20 @@ function footerHtml(email: string) {
     </table>`;
 }
 
-function wrapHtml(body: string, email: string) {
+function wrapHtml(body: string, unsubToken: string) {
   return `<!DOCTYPE html>
 <html lang="de">
 <head><meta charset="utf-8"></head>
 <body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a2e;">
   <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
     ${body}
-    ${footerHtml(email)}
+    ${footerHtml(unsubToken)}
   </div>
 </body>
 </html>`;
 }
 
-function mail1Html(email: string) {
+function mail1Html(unsubToken: string) {
   return wrapHtml(`
     <h1 style="font-size:22px;font-weight:bold;color:#1B4FD8;margin:0 0 24px;">
       Der häufigste Fehler bei der Altersvorsorge
@@ -92,10 +89,10 @@ function mail1Html(email: string) {
     <a href="${BASE}/rechner" style="display:inline-block;background:#1B4FD8;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;">
       Jetzt berechnen →
     </a>
-  `, email);
+  `, unsubToken);
 }
 
-function mail2Html(email: string) {
+function mail2Html(unsubToken: string) {
   return wrapHtml(`
     <h1 style="font-size:22px;font-weight:bold;color:#1B4FD8;margin:0 0 24px;">
       Altersvorsorgedepot 2027 — was du jetzt tun solltest
@@ -138,7 +135,7 @@ function mail2Html(email: string) {
     <a href="${BASE}/rechner" style="display:inline-block;background:#1B4FD8;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;">
       Jetzt berechnen →
     </a>
-  `, email);
+  `, unsubToken);
 }
 
 Deno.serve(async (req) => {
@@ -169,7 +166,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { email } = await req.json();
+    const { email, unsub_token } = await req.json();
     if (!email) {
       return new Response(JSON.stringify({ error: "Email required" }), {
         status: 400,
@@ -194,6 +191,23 @@ Deno.serve(async (req) => {
       });
     }
 
+    // Get or create unsubscribe token
+    let finalUnsubToken = unsub_token;
+    if (!finalUnsubToken) {
+      const { data: existingUnsub } = await supabase
+        .from("email_unsubscribe_tokens")
+        .select("token")
+        .eq("email", email)
+        .maybeSingle();
+
+      if (existingUnsub) {
+        finalUnsubToken = existingUnsub.token;
+      } else {
+        finalUnsubToken = crypto.randomUUID();
+        await supabase.from("email_unsubscribe_tokens").insert({ email, token: finalUnsubToken });
+      }
+    }
+
     const now = new Date();
     const day3 = new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000);
     const day7 = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -210,7 +224,7 @@ Deno.serve(async (req) => {
         reply_to: "info@altersvorsorge-rechner.com",
         to: [email],
         subject: "Der häufigste Fehler bei der Altersvorsorge",
-        html: mail1Html(email),
+        html: mail1Html(finalUnsubToken),
         scheduled_at: day3.toISOString(),
       }),
     });
@@ -231,7 +245,7 @@ Deno.serve(async (req) => {
         reply_to: "info@altersvorsorge-rechner.com",
         to: [email],
         subject: "Altersvorsorgedepot 2027 — was du jetzt tun solltest",
-        html: mail2Html(email),
+        html: mail2Html(finalUnsubToken),
         scheduled_at: day7.toISOString(),
       }),
     });
