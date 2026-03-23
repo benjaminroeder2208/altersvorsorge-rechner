@@ -155,6 +155,33 @@ export type Database = {
         }
         Relationships: []
       }
+      security_audit_log: {
+        Row: {
+          created_at: string
+          details: Json | null
+          email: string | null
+          event_type: string
+          id: string
+          ip_address: string | null
+        }
+        Insert: {
+          created_at?: string
+          details?: Json | null
+          email?: string | null
+          event_type: string
+          id?: string
+          ip_address?: string | null
+        }
+        Update: {
+          created_at?: string
+          details?: Json | null
+          email?: string | null
+          event_type?: string
+          id?: string
+          ip_address?: string | null
+        }
+        Relationships: []
+      }
       simulation_leads: {
         Row: {
           birth_year: number
