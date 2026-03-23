@@ -179,7 +179,7 @@ const RechnerPage = () => (
 
             <div className="text-center mt-8">
               <Link
-                to="/"
+                to="/#rechner"
                 onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity active:scale-[0.97]"
               >
