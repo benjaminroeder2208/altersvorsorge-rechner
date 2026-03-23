@@ -250,6 +250,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
   const [dsgvoAccepted, setDsgvoAccepted] = useState(false);
   const [dsgvoError, setDsgvoError] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -260,6 +261,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
     }
 
     setStatus("sending");
+    setErrorMsg("");
     try {
       // Generate PDF
       let pdfBase64 = "";
@@ -305,13 +307,25 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
       });
 
       if (confirmationError || confirmationData?.error) {
-        throw confirmationError ?? new Error(confirmationData?.error ?? "Confirmation email failed");
+        const msg = confirmationData?.error ?? "Confirmation email failed";
+        if (msg === "Rate limit exceeded") {
+          throw new Error("rate_limit");
+        }
+        throw new Error("mail_failed");
       }
 
       setStatus("sent");
-    } catch {
+    } catch (err: any) {
+      const code = err?.message ?? "";
+      if (code === "rate_limit") {
+        setErrorMsg("Zu viele Anfragen. Bitte warte einen Moment und versuche es erneut.");
+      } else if (code === "mail_failed") {
+        setErrorMsg("Bestätigungsmail konnte nicht gesendet werden. Bitte prüfe deine E-Mail-Adresse.");
+      } else {
+        setErrorMsg("Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.");
+      }
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
+      setTimeout(() => { setStatus("idle"); setErrorMsg(""); }, 5000);
     }
   };
 
@@ -370,7 +384,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
               <p className="text-[11px] text-destructive text-left">Bitte stimme der Datenschutzerklärung zu.</p>
             )}
             {status === "error" && (
-              <p className="text-xs text-destructive">Fehler beim Speichern. Bitte versuche es erneut.</p>
+              <p className="text-xs text-destructive">{errorMsg || "Fehler beim Speichern. Bitte versuche es erneut."}</p>
             )}
           </form>
         )}
