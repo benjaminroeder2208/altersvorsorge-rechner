@@ -128,7 +128,16 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
         if (response?.error) throw new Error(response.error);
         setAnalyse(response?.analyse ?? "");
       })
-      .catch(() => setError("Analyse konnte nicht geladen werden."))
+      .catch((err: any) => {
+        const msg = err?.message ?? "";
+        if (msg === "Rate limit exceeded. Try again later." || msg.includes("429")) {
+          setError("Zu viele Anfragen — bitte warte einen Moment und versuche es erneut.");
+        } else if (msg === "API key not configured" || msg === "AI service error") {
+          setError("Der KI-Dienst ist vorübergehend nicht verfügbar. Bitte versuche es später erneut.");
+        } else {
+          setError("Analyse konnte nicht geladen werden. Bitte versuche es erneut.");
+        }
+      })
       .finally(() => setLoading(false));
   }, [open, data]);
 

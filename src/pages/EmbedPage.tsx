@@ -178,11 +178,14 @@ const EmbedPage = () => {
   const [dsgvoError, setDsgvoError] = useState(false);
   const [emailStatus, setEmailStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || emailStatus === "sending" || emailStatus === "sent") return;
     if (!dsgvoAccepted) { setDsgvoError(true); return; }
     setEmailStatus("sending");
+    setErrorMsg("");
     try {
       const confirmToken = crypto.randomUUID();
       const chartImg = await captureChart("embed-chart-capture").catch(() => "");
@@ -219,12 +222,22 @@ const EmbedPage = () => {
         body: { email, token: confirmToken },
       });
       if (confirmationError || confirmationData?.error) {
-        throw confirmationError ?? new Error(confirmationData?.error ?? "Confirmation email failed");
+        const msg = confirmationData?.error ?? "Confirmation email failed";
+        if (msg === "Rate limit exceeded") throw new Error("rate_limit");
+        throw new Error("mail_failed");
       }
       setEmailStatus("sent");
-    } catch {
+    } catch (err: any) {
+      const code = err?.message ?? "";
+      if (code === "rate_limit") {
+        setErrorMsg("Zu viele Anfragen. Bitte warte einen Moment.");
+      } else if (code === "mail_failed") {
+        setErrorMsg("Mail konnte nicht gesendet werden. Bitte prüfe deine E-Mail-Adresse.");
+      } else {
+        setErrorMsg("Ein Fehler ist aufgetreten. Bitte versuche es erneut.");
+      }
       setEmailStatus("error");
-      setTimeout(() => setEmailStatus("idle"), 3000);
+      setTimeout(() => { setEmailStatus("idle"); setErrorMsg(""); }, 5000);
     }
   };
 
