@@ -45,6 +45,19 @@ const HeroIllustration = () => (
       transition={{ duration: 1.5, delay: 0.5, ease }}
     />
 
+    {/* Amber projection line */}
+    <motion.path
+      d="M 240 140 C 280 100, 320 65, 360 40"
+      stroke="#F59E0B"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeDasharray="5,3"
+      fill="none"
+      initial={{ pathLength: 0, opacity: 0 }}
+      animate={{ pathLength: 1, opacity: 1 }}
+      transition={{ duration: 1, delay: 1.4, ease }}
+    />
+
     {/* Amber accent dots on curve */}
     <motion.circle cx="120" cy="230" r="5" fill="#F59E0B"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
