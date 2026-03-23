@@ -34,6 +34,10 @@ export const MAX_GRUNDZULAGE_AB_2029 =
 export const KINDERZULAGE_PRO_KIND = 300;             // 300 € je Kind/Jahr
 export const KINDERZULAGE_MINDESTEIGENBEITRAG = 1200; // ab 1.200 € Eigenbeitrag voll
 
+// ── Berufseinsteiger-Bonus ────────────────────────────────────────────────────
+export const BERUFSEINSTEIGER_BONUS = 200;        // 200 € einmalig (§ 84 Satz 2 EStG)
+export const BERUFSEINSTEIGER_ALTERSGRENZE = 25;  // unter 25 zu Beginn des Beitragsjahres
+
 // ── Mindesteigenbeitrag ───────────────────────────────────────────────────────
 export const MINDESTEIGENBEITRAG = 120;               // 120 €/Jahr (§ 86)
 
