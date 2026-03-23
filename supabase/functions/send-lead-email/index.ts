@@ -9,8 +9,8 @@ const corsHeaders = {
 const fmt = (v: number) =>
   v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
-function footerHtml(email: string) {
-  const unsub = `https://altersvorsorge-rechner.com/unsubscribe?email=${encodeURIComponent(email)}`;
+function footerHtml(unsubToken: string) {
+  const unsub = `https://altersvorsorge-rechner.com/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
   return `
     <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
     <table style="width:100%;text-align:center;">
@@ -62,7 +62,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { email, total_capital, monthly_payout, subsidies, monthly_contribution, pdf_base64 } = await req.json();
+    const { email, total_capital, monthly_payout, subsidies, monthly_contribution, pdf_base64, unsub_token } = await req.json();
 
     if (!email) {
       return new Response(JSON.stringify({ error: "Email required" }), {
@@ -70,6 +70,12 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+
+    // Use provided unsub_token or fall back to a generic link
+    const footerContent = unsub_token
+      ? footerHtml(unsub_token)
+      : `<hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
+         <p style="font-size:10px;color:#D1D5DB;text-align:center;">Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Keine Anlageberatung.</p>`;
 
     const htmlBody = `
 <!DOCTYPE html>
@@ -117,7 +123,7 @@ Deno.serve(async (req) => {
       Erneut berechnen →
     </a>
 
-    ${footerHtml(email)}
+    ${footerContent}
   </div>
 </body>
 </html>`;

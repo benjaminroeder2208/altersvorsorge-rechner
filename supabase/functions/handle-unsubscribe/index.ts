@@ -13,9 +13,9 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { email } = await req.json();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return new Response(JSON.stringify({ error: "Invalid email" }), {
+    const { token } = await req.json();
+    if (!token || typeof token !== "string") {
+      return new Response(JSON.stringify({ error: "Token required" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -26,21 +26,47 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    // Upsert: ignore if already suppressed
+    // Validate token
+    const { data: row } = await supabase
+      .from("email_unsubscribe_tokens")
+      .select("email, used_at")
+      .eq("token", token)
+      .maybeSingle();
+
+    if (!row) {
+      return new Response(JSON.stringify({ error: "Invalid token" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (row.used_at) {
+      return new Response(JSON.stringify({ status: "already_unsubscribed", email: row.email }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Mark token as used
+    await supabase
+      .from("email_unsubscribe_tokens")
+      .update({ used_at: new Date().toISOString() })
+      .eq("token", token);
+
+    // Add to suppression list (ignore duplicate)
     const { error } = await supabase.from("suppressed_emails").insert({
-      email,
+      email: row.email,
       reason: "unsubscribe",
     });
 
     if (error && !error.message.includes("duplicate")) {
-      console.error("Unsubscribe error:", error);
+      console.error("Suppression insert error:", error);
       return new Response(JSON.stringify({ error: "Failed" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    return new Response(JSON.stringify({ success: true }), {
+    return new Response(JSON.stringify({ success: true, email: row.email }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {

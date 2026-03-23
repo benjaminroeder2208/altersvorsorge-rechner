@@ -17,8 +17,8 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-function footerHtml(email: string) {
-  const unsub = `https://altersvorsorge-rechner.com/unsubscribe?email=${encodeURIComponent(email)}`;
+function footerHtml(unsubToken: string) {
+  const unsub = `https://altersvorsorge-rechner.com/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
   return `
     <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
     <table style="width:100%;text-align:center;">
@@ -102,6 +102,21 @@ Deno.serve(async (req) => {
       });
     }
 
+    // Generate or reuse unsubscribe token
+    const { data: existingUnsub } = await supabase
+      .from("email_unsubscribe_tokens")
+      .select("token")
+      .eq("email", email)
+      .maybeSingle();
+
+    let unsubToken: string;
+    if (existingUnsub) {
+      unsubToken = existingUnsub.token;
+    } else {
+      unsubToken = crypto.randomUUID();
+      await supabase.from("email_unsubscribe_tokens").insert({ email, token: unsubToken });
+    }
+
     const confirmUrl = `https://altersvorsorge-rechner.com/confirm?token=${encodeURIComponent(token)}`;
 
     const htmlBody = `<!DOCTYPE html>
@@ -128,7 +143,7 @@ Deno.serve(async (req) => {
     <p style="font-size:13px;line-height:1.6;color:#999;margin:8px 0 0;">
       Falls du dich nicht angemeldet hast, kannst du diese Mail ignorieren.
     </p>
-    ${footerHtml(email)}
+    ${footerHtml(unsubToken)}
   </div>
 </body>
 </html>`;
