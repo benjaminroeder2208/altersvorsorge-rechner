@@ -197,11 +197,27 @@ Deno.serve(async (req) => {
     if (!res.ok) {
       const errText = await res.text();
       console.error("Resend error:", res.status, errText);
+      await supabase.from("email_send_log").insert({
+        template_name: "confirmation-email",
+        recipient_email: email,
+        status: "failed",
+        error_message: `Resend ${res.status}: ${errText.slice(0, 500)}`,
+        message_id: `confirm-${token}`,
+      });
       return new Response(JSON.stringify({ error: "Email send failed" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+
+    const resData = await res.json();
+    await supabase.from("email_send_log").insert({
+      template_name: "confirmation-email",
+      recipient_email: email,
+      status: "sent",
+      message_id: `confirm-${token}`,
+      metadata: { resend_id: resData?.id ?? null },
+    });
 
     return new Response(JSON.stringify({ success: true }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
