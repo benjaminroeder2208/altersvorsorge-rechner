@@ -6,25 +6,54 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Simple in-memory rate limiter per IP
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 10; // max requests
+const RATE_WINDOW_MS = 60_000; // per minute
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return true;
+  }
+  entry.count++;
+  return entry.count <= RATE_LIMIT;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // Auth: require anon key or valid JWT
-    const auth = req.headers.get("Authorization");
+    // Rate limiting by IP
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    if (!checkRateLimit(ip)) {
+      return new Response(JSON.stringify({ error: "Rate limit exceeded. Try again later." }), {
+        status: 429,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Auth: verify anon key matches
     const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
     const apikey = req.headers.get("apikey");
-    if (!apikey && !auth?.startsWith("Bearer ")) {
+    const auth = req.headers.get("Authorization");
+
+    const validApiKey = apikey && anonKey && apikey === anonKey;
+    const validBearer = auth?.startsWith("Bearer ") && auth.length > 10;
+
+    if (!validApiKey && !validBearer) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
-    if (!apiKey) {
+    const anthropicKey = Deno.env.get("ANTHROPIC_API_KEY");
+    if (!anthropicKey) {
       return new Response(JSON.stringify({ error: "API key not configured" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -58,6 +87,31 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+    if (typeof retirement_age !== "number" || retirement_age < 60 || retirement_age > 75) {
+      return new Response(JSON.stringify({ error: "Invalid retirement_age" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (typeof return_assumption !== "number" || return_assumption < 0 || return_assumption > 15) {
+      return new Response(JSON.stringify({ error: "Invalid return_assumption" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (typeof children !== "number" || children < 0 || children > 20) {
+      return new Response(JSON.stringify({ error: "Invalid children" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const validBrackets = ["bis_30k", "30k_50k", "50k_70k", "70k_100k", "ueber_100k"];
+    if (typeof income_bracket !== "string" || !validBrackets.includes(income_bracket)) {
+      return new Response(JSON.stringify({ error: "Invalid income_bracket" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     const currentYear = new Date().getFullYear();
     const currentAge = currentYear - birth_year;
@@ -79,7 +133,7 @@ Deno.serve(async (req) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
+        "x-api-key": anthropicKey,
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
