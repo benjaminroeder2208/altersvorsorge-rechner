@@ -12,6 +12,17 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Auth: require anon key or valid JWT
+    const auth = req.headers.get("Authorization");
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    const apikey = req.headers.get("apikey");
+    if (!apikey && !auth?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
     if (!apiKey) {
       return new Response(JSON.stringify({ error: "API key not configured" }), {
@@ -33,6 +44,20 @@ Deno.serve(async (req) => {
       children,
       income_bracket,
     } = body;
+
+    // Input validation
+    if (typeof birth_year !== "number" || birth_year < 1930 || birth_year > 2010) {
+      return new Response(JSON.stringify({ error: "Invalid birth_year" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (typeof monthly_contribution !== "number" || monthly_contribution < 0 || monthly_contribution > 10000) {
+      return new Response(JSON.stringify({ error: "Invalid monthly_contribution" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     const currentYear = new Date().getFullYear();
     const currentAge = currentYear - birth_year;
