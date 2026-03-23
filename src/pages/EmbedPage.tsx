@@ -409,7 +409,7 @@ const EmbedPage = () => {
                       </label>
                     </div>
                     {dsgvoError && <p className="text-[10px] text-red-500 text-left">Bitte stimme der Datenschutzerklärung zu.</p>}
-                    {emailStatus === "error" && <p className="text-xs text-red-500">Fehler. Bitte erneut versuchen.</p>}
+                    {emailStatus === "error" && <p className="text-xs text-red-500">{errorMsg || "Fehler. Bitte erneut versuchen."}</p>}
                   </form>
                 )}
               </div>
