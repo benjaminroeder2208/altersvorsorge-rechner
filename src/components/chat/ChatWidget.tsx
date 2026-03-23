@@ -28,19 +28,24 @@ declare global {
 
 /* ─── markdown-lite renderer ─── */
 
+function isSafeUrl(url: string): boolean {
+  return url.startsWith('/') || url.startsWith('https://') || url.startsWith('http://');
+}
+
 function renderMarkdown(text: string) {
   // Simple markdown: links, bold
   const parts = text.split(/(\[.*?\]\(.*?\)|\*\*.*?\*\*)/g);
   return parts.map((part, i) => {
     const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
     if (linkMatch) {
+      const safeUrl = isSafeUrl(linkMatch[2]) ? linkMatch[2] : '#';
       return (
         <a
           key={i}
-          href={linkMatch[2]}
+          href={safeUrl}
           className="underline underline-offset-2 font-medium hover:opacity-80"
-          target={linkMatch[2].startsWith("http") ? "_blank" : undefined}
-          rel={linkMatch[2].startsWith("http") ? "noopener noreferrer" : undefined}
+          target={safeUrl.startsWith("http") ? "_blank" : undefined}
+          rel={safeUrl.startsWith("http") ? "noopener noreferrer" : undefined}
         >
           {linkMatch[1]}
         </a>
