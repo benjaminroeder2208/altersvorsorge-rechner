@@ -12,6 +12,8 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+
   try {
     const { token } = await req.json();
     if (!token) {
@@ -32,6 +34,11 @@ Deno.serve(async (req) => {
       .maybeSingle();
 
     if (findError || !lead) {
+      await supabase.from("security_audit_log").insert({
+        event_type: "email_confirmation_failed",
+        ip_address: clientIp,
+        details: { reason: "invalid_token" },
+      });
       return new Response(JSON.stringify({ error: "invalid_token" }), {
         status: 404,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -47,6 +54,12 @@ Deno.serve(async (req) => {
     const createdAt = new Date(lead.created_at).getTime();
     const now = Date.now();
     if (now - createdAt > 48 * 60 * 60 * 1000) {
+      await supabase.from("security_audit_log").insert({
+        event_type: "email_confirmation_expired",
+        email: lead.email,
+        ip_address: clientIp,
+        details: { lead_id: lead.id },
+      });
       return new Response(JSON.stringify({ error: "token_expired" }), {
         status: 410,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -59,6 +72,14 @@ Deno.serve(async (req) => {
       .eq("id", lead.id);
 
     if (updateError) throw updateError;
+
+    // Audit log: successful confirmation
+    await supabase.from("security_audit_log").insert({
+      event_type: "email_confirmed",
+      email: lead.email,
+      ip_address: clientIp,
+      details: { lead_id: lead.id },
+    });
 
     const resendKey = Deno.env.get("RESEND_API_KEY");
     if (resendKey) {

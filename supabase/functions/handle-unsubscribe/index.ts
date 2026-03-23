@@ -12,6 +12,8 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+
   try {
     const { token } = await req.json();
     if (!token || typeof token !== "string") {
@@ -34,6 +36,11 @@ Deno.serve(async (req) => {
       .maybeSingle();
 
     if (!row) {
+      await supabase.from("security_audit_log").insert({
+        event_type: "unsubscribe_failed",
+        ip_address: clientIp,
+        details: { reason: "invalid_token" },
+      });
       return new Response(JSON.stringify({ error: "Invalid token" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -65,6 +72,14 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+
+    // Audit log: successful unsubscribe
+    await supabase.from("security_audit_log").insert({
+      event_type: "email_unsubscribed",
+      email: row.email,
+      ip_address: clientIp,
+      details: { reason: "user_request" },
+    });
 
     return new Response(JSON.stringify({ success: true, email: row.email }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
