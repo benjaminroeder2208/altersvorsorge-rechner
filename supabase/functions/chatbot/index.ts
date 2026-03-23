@@ -83,7 +83,7 @@ ZINSESZINS:
 - Anna (25J, 150€/Mon, 7% p.a.) → 538.000€ mit 67
 - Ben (35J, 150€/Mon, 7% p.a.) → 255.000€ mit 67
 - Unterschied: 283.000€ durch 10 Jahre Aufschub
-- Mit Depot-Förderung (ab 2027, 30%/35%): Anna → ~595.000€
+- Mit Depot-Förderung (ab 2027, 30%/35%): Anna → ~595.000€. Zusätzlich erhält Anna im ersten Jahr den Berufseinsteiger-Bonus von einmalig +200€ (da unter 25).
 - Auch mit 50 sinnvoll: 300€/Mon → ~115.000€ = ~460€ Zusatzrente/Monat über 17 Jahre
 
 VERHALTENSREGELN:
