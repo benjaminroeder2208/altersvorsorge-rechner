@@ -77,11 +77,11 @@ const s = StyleSheet.create({
   productDesc: { fontSize: 9, color: MUTED, width: "60%" },
   footerText: { fontSize: 8, color: "#9CA3AF", textAlign: "center" },
   // Page 2 styles
-  p2SectionTitle: { fontSize: 13, fontWeight: "bold", color: "#111", marginBottom: 10 },
-  p2SectionTitleBlue: { fontSize: 13, fontWeight: "bold", color: PRIMARY, marginBottom: 10 },
-  p2Text: { fontSize: 9, color: "#444", lineHeight: 1.6 },
-  infoBox: { backgroundColor: INFO_BG, padding: 16, borderRadius: 6, marginBottom: 16 },
-  legalSection: { marginBottom: 16 },
+  p2SectionTitle: { fontSize: 13, fontWeight: "bold", color: "#111", marginBottom: 6 },
+  p2SectionTitleBlue: { fontSize: 13, fontWeight: "bold", color: PRIMARY, marginBottom: 6 },
+  p2Text: { fontSize: 8.5, color: "#444", lineHeight: 1.5 },
+  infoBox: { backgroundColor: INFO_BG, padding: 12, borderRadius: 6, marginBottom: 12 },
+  legalSection: { marginBottom: 10 },
 });
 
 export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
