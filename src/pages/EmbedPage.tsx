@@ -40,10 +40,10 @@ interface Inputs {
 }
 
 const INCOME_BANDS = [
-  { label: "bis 17.000 €", taxRate: 0 },
-  { label: "17.000 – 37.000 €", taxRate: 0.2 },
-  { label: "37.000 – 57.000 €", taxRate: 0.3 },
-  { label: "über 57.000 €", taxRate: 0.42 },
+  { label: "bis 17.000 €", taxRate: 0, key: "bis_30k" },
+  { label: "17.000 – 37.000 €", taxRate: 0.2, key: "30k_50k" },
+  { label: "37.000 – 57.000 €", taxRate: 0.3, key: "50k_70k" },
+  { label: "über 57.000 €", taxRate: 0.42, key: "ueber_100k" },
 ];
 
 interface ChartDataPoint {
