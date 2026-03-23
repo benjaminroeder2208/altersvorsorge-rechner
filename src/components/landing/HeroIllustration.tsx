@@ -59,6 +59,22 @@ const HeroIllustration = () => (
       transition={{ delay: 1.6, duration: 0.4 }}
     />
 
+    {/* Connector line: blue curve → Kapital card */}
+    <motion.line
+      x1="120" y1="230" x2="170" y2="246"
+      stroke="#1B4FD8" strokeWidth="1.5" strokeDasharray="3,2" opacity="0"
+      initial={{ opacity: 0 }} animate={{ opacity: 0.5 }}
+      transition={{ delay: 1.3, duration: 0.5 }}
+    />
+
+    {/* Connector line: amber dot → Förderung card */}
+    <motion.line
+      x1="240" y1="140" x2="260" y2="136"
+      stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="3,2" opacity="0"
+      initial={{ opacity: 0 }} animate={{ opacity: 0.7 }}
+      transition={{ delay: 1.5, duration: 0.5 }}
+    />
+
     {/* Data card 1 — bottom left */}
     <motion.g
       initial={{ opacity: 0, y: 10 }}
@@ -87,7 +103,7 @@ const HeroIllustration = () => (
       <rect x="260" y="100" width="155" height="72" rx="12" fill="white" stroke="#E5E7EB" strokeWidth="1" />
       <rect x="260" y="100" width="4" height="72" rx="2" fill="#F59E0B" />
       <text x="276" y="120" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">STAATL. FÖRDERUNG</text>
-      <text x="276" y="142" fontSize="14" fontWeight="700" fill="#F59E0B" fontFamily="system-ui">+16.620 €</text>
+      <text x="276" y="142" fontSize="14" fontWeight="700" fill="#F59E0B" fontFamily="system-ui">+17.160 €</text>
       <text x="276" y="160" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">kumuliert über 32 Jahre</text>
     </motion.g>
 
