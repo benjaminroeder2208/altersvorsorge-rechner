@@ -252,10 +252,9 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
               E-Mail: info@altersvorsorge-rechner.com | Impressum: altersvorsorge-rechner.com/impressum
             </Text>
           </View>
-        </View>
-
-        <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#E5E7EB" }}>
-          <Text style={s.footerText}>altersvorsorge-rechner.com · Seite 2/2</Text>
+          <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#E5E7EB" }}>
+            <Text style={s.footerText}>altersvorsorge-rechner.com · Seite 2/2</Text>
+          </View>
         </View>
       </Page>
     </Document>
