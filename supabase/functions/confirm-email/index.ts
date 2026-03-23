@@ -62,6 +62,21 @@ Deno.serve(async (req) => {
 
     const resendKey = Deno.env.get("RESEND_API_KEY");
     if (resendKey) {
+      // Get or create unsubscribe token for this email
+      const { data: existingUnsub } = await supabase
+        .from("email_unsubscribe_tokens")
+        .select("token")
+        .eq("email", lead.email)
+        .maybeSingle();
+
+      let unsubToken: string;
+      if (existingUnsub) {
+        unsubToken = existingUnsub.token;
+      } else {
+        unsubToken = crypto.randomUUID();
+        await supabase.from("email_unsubscribe_tokens").insert({ email: lead.email, token: unsubToken });
+      }
+
       await supabase.functions.invoke("send-lead-email", {
         body: {
           email: lead.email,
@@ -71,6 +86,7 @@ Deno.serve(async (req) => {
           monthly_contribution: lead.monthly_contribution,
           pdf_base64: lead.pdf_base64 ?? null,
           embed_source: lead.embed_source ?? null,
+          unsub_token: unsubToken,
         },
       }).catch((e: unknown) =>
         console.error("send-lead-email error:", e));
@@ -79,6 +95,7 @@ Deno.serve(async (req) => {
         body: {
           email: lead.email,
           embed_source: lead.embed_source ?? null,
+          unsub_token: unsubToken,
         },
       }).catch((e: unknown) =>
         console.error("schedule-followup error:", e));

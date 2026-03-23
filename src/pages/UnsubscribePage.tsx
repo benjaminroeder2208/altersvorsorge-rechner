@@ -6,21 +6,28 @@ import { Helmet } from "react-helmet-async";
 
 const UnsubscribePage = () => {
   const [params] = useSearchParams();
-  const email = params.get("email");
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error" | "invalid">("idle");
+  const token = params.get("token");
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error" | "invalid" | "already">("idle");
+  const [email, setEmail] = useState<string | null>(null);
 
   const handleUnsubscribe = async () => {
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!token) {
       setStatus("invalid");
       return;
     }
 
     setStatus("loading");
     try {
-      const { error } = await supabase.functions.invoke("handle-unsubscribe", {
-        body: { email },
+      const { data, error } = await supabase.functions.invoke("handle-unsubscribe", {
+        body: { token },
       });
       if (error) throw error;
+      if (data?.status === "already_unsubscribed") {
+        setEmail(data.email);
+        setStatus("already");
+        return;
+      }
+      setEmail(data?.email ?? null);
       setStatus("done");
     } catch {
       setStatus("error");
@@ -40,7 +47,26 @@ const UnsubscribePage = () => {
               <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto" />
               <h1 className="text-xl font-bold">Erfolgreich abgemeldet</h1>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Die E-Mail-Adresse <strong>{email}</strong> wurde aus unserem Verteiler entfernt. Du erhältst keine weiteren E-Mails von uns.
+                {email ? (
+                  <>Die E-Mail-Adresse <strong>{email}</strong> wurde aus unserem Verteiler entfernt. Du erhältst keine weiteren E-Mails von uns.</>
+                ) : (
+                  <>Du wurdest erfolgreich abgemeldet und erhältst keine weiteren E-Mails von uns.</>
+                )}
+              </p>
+              <Link to="/" className="inline-block mt-4 text-sm text-primary hover:underline">
+                Zurück zur Startseite →
+              </Link>
+            </div>
+          ) : status === "already" ? (
+            <div className="space-y-4">
+              <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto" />
+              <h1 className="text-xl font-bold">Bereits abgemeldet</h1>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {email ? (
+                  <>Die E-Mail-Adresse <strong>{email}</strong> ist bereits abgemeldet.</>
+                ) : (
+                  <>Diese E-Mail-Adresse ist bereits abgemeldet.</>
+                )}
               </p>
               <Link to="/" className="inline-block mt-4 text-sm text-primary hover:underline">
                 Zurück zur Startseite →
@@ -73,9 +99,6 @@ const UnsubscribePage = () => {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Möchtest du dich wirklich von unseren E-Mails abmelden?
               </p>
-              {email && (
-                <p className="text-sm font-medium">{email}</p>
-              )}
               <button
                 onClick={handleUnsubscribe}
                 className="w-full mt-2 bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-lg py-3 px-4 text-sm font-semibold transition-colors"
