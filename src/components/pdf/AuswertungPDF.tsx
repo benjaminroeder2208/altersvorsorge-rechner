@@ -48,7 +48,7 @@ const s = StyleSheet.create({
   headerTitle: { fontSize: 18, fontWeight: "bold", color: "#ffffff", marginBottom: 4 },
   headerDate: { fontSize: 8, color: "rgba(255,255,255,0.6)" },
   body: { padding: 30 },
-  sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#1a1a2e", marginBottom: 8, marginTop: 12 },
+  sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#1a1a2e", marginBottom: 8, marginTop: 6 },
   grid: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 12 },
   card: { width: "48%", backgroundColor: LIGHT_BG, borderRadius: 8, padding: 10, minHeight: 50 },
   cardHighlight: {
