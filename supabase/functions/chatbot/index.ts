@@ -40,6 +40,7 @@ ALTERSVORSORGEDEPOT:
 FÖRDERUNG:
 - Grundzulage ab 2027: 30% auf Eigenbeiträge bis 1.200€/Jahr (max. 360€) + 20% auf 1.200-1.800€/Jahr (max. 120€) = max. 480€/Jahr
 - Grundzulage ab 2029: 35% auf Eigenbeiträge bis 1.200€/Jahr (max. 420€) + 20% auf 1.200-1.800€/Jahr (max. 120€) = max. 540€/Jahr
+- Berufseinsteiger-Bonus: einmalig +200€ auf die Grundzulage im ersten Förderjahr, wenn der Zulageberechtigte zu Beginn des Beitragsjahres das 25. Lebensjahr noch nicht vollendet hat (§ 84 Satz 2 EStG). Wird automatisch gewährt, kein Antrag nötig. Gilt nur für direkt Förderberechtigte (§ 79 Satz 1 EStG), nicht für mittelbar berechtigte Ehegatten.
 - Kinderzulage: bis zu 300€ pro kindergeldberechtigtem Kind/Jahr (25% der Beiträge bis 1.800€/Jahr, max. 300€). Die volle Kinderzulage von 300€ wird erst ab einem Eigenbeitrag von 1.200€/Jahr (100€/Monat) erreicht.
 - Steuervorteil: Eigenbeiträge + Zulagen als Sonderausgaben absetzbar
 - Beispiel 35J., 1 Kind, 30% Steuersatz, 1.800€ Eigenbeitrag ab 2027: 480€ + 300€ = 780€ Zulagen + Steuervorteil ~378€ = ~1.158€/Jahr. Ab 2029: 540€ + 300€ = 840€ Zulagen + ~378€ = ~1.218€/Jahr
@@ -82,7 +83,7 @@ ZINSESZINS:
 - Anna (25J, 150€/Mon, 7% p.a.) → 538.000€ mit 67
 - Ben (35J, 150€/Mon, 7% p.a.) → 255.000€ mit 67
 - Unterschied: 283.000€ durch 10 Jahre Aufschub
-- Mit Depot-Förderung (ab 2027, 30%/35%): Anna → ~595.000€
+- Mit Depot-Förderung (ab 2027, 30%/35%): Anna → ~595.000€. Zusätzlich erhält Anna im ersten Jahr den Berufseinsteiger-Bonus von einmalig +200€ (da unter 25).
 - Auch mit 50 sinnvoll: 300€/Mon → ~115.000€ = ~460€ Zusatzrente/Monat über 17 Jahre
 
 VERHALTENSREGELN:
