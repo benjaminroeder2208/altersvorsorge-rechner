@@ -11,6 +11,14 @@ const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 10; // max requests
 const RATE_WINDOW_MS = 60_000; // per minute
 
+function getAllowedPublicKeys() {
+  return new Set(
+    [Deno.env.get("SUPABASE_ANON_KEY"), Deno.env.get("SUPABASE_PUBLISHABLE_KEY")].filter(
+      (value): value is string => Boolean(value),
+    ),
+  );
+}
+
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
   const entry = rateLimitMap.get(ip);
@@ -37,12 +45,12 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Auth: verify anon key matches
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    // Auth: verify public key matches
+    const allowedPublicKeys = getAllowedPublicKeys();
     const apikey = req.headers.get("apikey");
     const auth = req.headers.get("Authorization");
 
-    const validApiKey = apikey && anonKey && apikey === anonKey;
+    const validApiKey = Boolean(apikey && allowedPublicKeys.has(apikey));
     const validBearer = auth?.startsWith("Bearer ") && auth.length > 10;
 
     if (!validApiKey && !validBearer) {

@@ -17,19 +17,46 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-function footerHtml(unsubToken: string) {
-  const unsub = `https://altersvorsorge-rechner.com/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
+const DEFAULT_APP_URL = "https://altersvorsorge-rechner.lovable.app";
+
+function getAllowedPublicKeys() {
+  return new Set(
+    [Deno.env.get("SUPABASE_ANON_KEY"), Deno.env.get("SUPABASE_PUBLISHABLE_KEY")].filter(
+      (value): value is string => Boolean(value),
+    ),
+  );
+}
+
+function getAppBaseUrl(req: Request) {
+  const origin = req.headers.get("origin");
+
+  if (origin) {
+    try {
+      const parsed = new URL(origin);
+      if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+        return parsed.origin;
+      }
+    } catch {
+      // Ignore malformed origin and fall back to published app URL.
+    }
+  }
+
+  return DEFAULT_APP_URL;
+}
+
+function footerHtml(baseUrl: string, unsubToken: string) {
+  const unsub = `${baseUrl}/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
   return `
     <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
     <table style="width:100%;text-align:center;">
       <tr>
         <td>
           <p style="font-size:12px;color:#6B7280;margin:0 0 8px;">
-            <a href="https://altersvorsorge-rechner.com" style="color:#6B7280;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
+            <a href="${baseUrl}" style="color:#6B7280;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
             &nbsp;·&nbsp;
-            <a href="https://altersvorsorge-rechner.com/impressum" style="color:#6B7280;text-decoration:none;">Impressum</a>
+            <a href="${baseUrl}/impressum" style="color:#6B7280;text-decoration:none;">Impressum</a>
             &nbsp;·&nbsp;
-            <a href="https://altersvorsorge-rechner.com/datenschutz" style="color:#6B7280;text-decoration:none;">Datenschutz</a>
+            <a href="${baseUrl}/datenschutz" style="color:#6B7280;text-decoration:none;">Datenschutz</a>
           </p>
           <p style="font-size:11px;color:#9CA3AF;margin:0 0 8px;">
             <a href="${unsub}" style="color:#9CA3AF;text-decoration:underline;">Von diesem Newsletter abmelden</a>
@@ -49,10 +76,10 @@ Deno.serve(async (req) => {
 
   try {
     // Auth check: accept apikey header OR Bearer token
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    const allowedPublicKeys = getAllowedPublicKeys();
     const apikey = req.headers.get("apikey");
     const auth = req.headers.get("Authorization");
-    const validApiKey = apikey && anonKey && apikey === anonKey;
+    const validApiKey = Boolean(apikey && allowedPublicKeys.has(apikey));
     const validBearer = auth?.startsWith("Bearer ") && auth.length > 10;
     if (!validApiKey && !validBearer) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
@@ -120,7 +147,8 @@ Deno.serve(async (req) => {
       await supabase.from("email_unsubscribe_tokens").insert({ email, token: unsubToken });
     }
 
-    const confirmUrl = `https://altersvorsorge-rechner.com/confirm?token=${encodeURIComponent(token)}`;
+    const appBaseUrl = getAppBaseUrl(req);
+    const confirmUrl = `${appBaseUrl}/confirm?token=${encodeURIComponent(token)}`;
 
     const htmlBody = `<!DOCTYPE html>
 <html lang="de">
@@ -146,7 +174,7 @@ Deno.serve(async (req) => {
     <p style="font-size:13px;line-height:1.6;color:#999;margin:8px 0 0;">
       Falls du dich nicht angemeldet hast, kannst du diese Mail ignorieren.
     </p>
-    ${footerHtml(unsubToken)}
+    ${footerHtml(appBaseUrl, unsubToken)}
   </div>
 </body>
 </html>`;

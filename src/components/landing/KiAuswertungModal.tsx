@@ -4,6 +4,7 @@ import { X, Sparkles, Loader2, Check, TrendingDown, PiggyBank, Target, Clock } f
 
 
 import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, KINDERZULAGE_PRO_KIND } from "@/lib/foerderung";
+import { supabase } from "@/integrations/supabase/client";
 
 const fmt = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 const fmtEur = (v: number) => `${fmt(v)} €`;
@@ -120,17 +121,12 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
     setAnalyse("");
     setError("");
 
-    const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
-
-    fetch(`https://${projectId}.supabase.co/functions/v1/ki-auswertung`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY },
-      body: JSON.stringify(data),
-    })
-      .then((r) => r.json())
-      .then((json) => {
-        if (json.error) throw new Error(json.error);
-        setAnalyse(json.analyse);
+    supabase.functions
+      .invoke("ki-auswertung", { body: data })
+      .then(({ data: response, error }) => {
+        if (error) throw error;
+        if (response?.error) throw new Error(response.error);
+        setAnalyse(response?.analyse ?? "");
       })
       .catch(() => setError("Analyse konnte nicht geladen werden."))
       .finally(() => setLoading(false));

@@ -215,7 +215,12 @@ const EmbedPage = () => {
         pdf_base64: pdfBase64,
       } as any);
       if (error) throw error;
-      supabase.functions.invoke("send-confirmation-email", { body: { email, token: confirmToken } }).catch(() => {});
+      const { data: confirmationData, error: confirmationError } = await supabase.functions.invoke("send-confirmation-email", {
+        body: { email, token: confirmToken },
+      });
+      if (confirmationError || confirmationData?.error) {
+        throw confirmationError ?? new Error(confirmationData?.error ?? "Confirmation email failed");
+      }
       setEmailStatus("sent");
     } catch {
       setEmailStatus("error");
