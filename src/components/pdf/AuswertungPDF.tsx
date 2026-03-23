@@ -48,8 +48,8 @@ const s = StyleSheet.create({
   headerTitle: { fontSize: 18, fontWeight: "bold", color: "#ffffff", marginBottom: 4 },
   headerDate: { fontSize: 8, color: "rgba(255,255,255,0.6)" },
   body: { padding: 30 },
-  sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#1a1a2e", marginBottom: 8, marginTop: 12 },
-  grid: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 12 },
+  sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#1a1a2e", marginBottom: 8, marginTop: 6 },
+  grid: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 8 },
   card: { width: "48%", backgroundColor: LIGHT_BG, borderRadius: 8, padding: 10, minHeight: 50 },
   cardHighlight: {
     width: "48%",
@@ -63,10 +63,10 @@ const s = StyleSheet.create({
   cardLabel: { fontSize: 8, color: MUTED, marginBottom: 3 },
   cardValue: { fontSize: 18, fontWeight: "bold", color: "#1a1a2e" },
   cardValueBlue: { fontSize: 18, fontWeight: "bold", color: PRIMARY },
-  explanationBox: { backgroundColor: LIGHT_BG, borderRadius: 8, padding: 10, marginBottom: 12 },
+  explanationBox: { backgroundColor: LIGHT_BG, borderRadius: 8, padding: 8, marginBottom: 8 },
   explanationText: { fontSize: 10, color: "#333", lineHeight: 1.6 },
-  chartImage: { width: "100%", height: 160, marginBottom: 12, borderRadius: 6 },
-  table: { marginBottom: 12 },
+  chartImage: { width: "100%", height: 130, marginBottom: 8, borderRadius: 6 },
+  table: { marginBottom: 8 },
   tableRow: { flexDirection: "row", borderBottomWidth: 1, borderBottomColor: BORDER, paddingVertical: 6 },
   tableHeader: { flexDirection: "row", borderBottomWidth: 2, borderBottomColor: PRIMARY, paddingVertical: 6 },
   tableCell: { width: "25%", fontSize: 9, color: "#333" },
@@ -199,9 +199,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
             <Text style={s.p2SectionTitleBlue}>Wie wurde berechnet?</Text>
             <Text style={s.p2Text}>
               Die Berechnungen basieren auf folgenden Annahmen:{"\n\n"}
-              Rendite: Es wurde eine vereinfachte Rendite von {rendite} % p.a. angenommen. Diese entspricht in etwa der
-              historischen Durchschnittsrendite eines breit gestreuten Aktien-ETF (z. B. MSCI World) über lange
-              Zeiträume. Die tatsächliche Rendite kann höher oder niedriger ausfallen und ist nicht garantiert.{"\n\n"}
+               Rendite: Für diese Berechnung wurde eine Rendite von {rendite} % p.a. angenommen. Zur Einordnung: Die historische Durchschnittsrendite eines breit gestreuten Aktien-ETF (z. B. MSCI World) lag langfristig bei ca. 7 % p.a. Die tatsächliche Rendite kann höher oder niedriger ausfallen und ist nicht garantiert.{"\n\n"}
               Beiträge: Die monatlichen Eigenbeiträge werden als konstant über die gesamte Laufzeit angenommen.
               Steuerliche Auswirkungen der Beiträge (z. B. Sonderausgabenabzug) sind nicht berücksichtigt.{"\n\n"}
               Staatliche Förderung: Die Förderung basiert auf dem Gesetzentwurf zur Reform der privaten Altersvorsorge
