@@ -199,9 +199,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
             <Text style={s.p2SectionTitleBlue}>Wie wurde berechnet?</Text>
             <Text style={s.p2Text}>
               Die Berechnungen basieren auf folgenden Annahmen:{"\n\n"}
-              Rendite: Es wurde eine vereinfachte Rendite von {rendite} % p.a. angenommen. Diese entspricht in etwa der
-              historischen Durchschnittsrendite eines breit gestreuten Aktien-ETF (z. B. MSCI World) über lange
-              Zeiträume. Die tatsächliche Rendite kann höher oder niedriger ausfallen und ist nicht garantiert.{"\n\n"}
+               Rendite: Für diese Berechnung wurde eine Rendite von {rendite} % p.a. angenommen. Zur Einordnung: Die historische Durchschnittsrendite eines breit gestreuten Aktien-ETF (z. B. MSCI World) lag langfristig bei ca. 7 % p.a. Die tatsächliche Rendite kann höher oder niedriger ausfallen und ist nicht garantiert.{"\n\n"}
               Beiträge: Die monatlichen Eigenbeiträge werden als konstant über die gesamte Laufzeit angenommen.
               Steuerliche Auswirkungen der Beiträge (z. B. Sonderausgabenabzug) sind nicht berücksichtigt.{"\n\n"}
               Staatliche Förderung: Die Förderung basiert auf dem Gesetzentwurf zur Reform der privaten Altersvorsorge
