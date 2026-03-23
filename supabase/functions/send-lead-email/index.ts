@@ -1,5 +1,11 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
+// ── Förderungskonstanten (Quelle: § 84 AltZertG, Drucksache 21/4088)
+// Bei Gesetzesänderung hier anpassen.
+const MAX_GRUNDZULAGE_2027 = 480;   // 30% × 1.200 + 20% × 600
+const MAX_GRUNDZULAGE_2029 = 540;   // 35% × 1.200 + 20% × 600
+const KINDERZULAGE = 300;           // max. je Kind/Jahr (§ 85)
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
@@ -107,7 +113,7 @@ Deno.serve(async (req) => {
 
     <div style="background:#eef2ff;border-radius:12px;padding:20px;margin:0 0 24px;">
       <p style="font-size:14px;line-height:1.6;margin:0;color:#333;">
-         <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot soll ab 2027 starten und bietet ab 2027 bis zu 480 € Grundzulage pro Jahr (ab 2029: bis zu 540 €) plus bis zu 300 € je Kind pro Jahr. Die Angaben basieren auf dem aktuellen Gesetzentwurf — Änderungen sind möglich.
+         <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot soll ab 2027 starten und bietet ab 2027 bis zu ${MAX_GRUNDZULAGE_2027} € Grundzulage pro Jahr (ab 2029: bis zu ${MAX_GRUNDZULAGE_2029} €) plus bis zu ${KINDERZULAGE} € je Kind pro Jahr. Die Angaben basieren auf dem aktuellen Gesetzentwurf — Änderungen sind möglich.
       </p>
     </div>
 
