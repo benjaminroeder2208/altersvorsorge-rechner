@@ -87,6 +87,16 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Auth: require anon key or valid JWT
+    const auth = req.headers.get("Authorization");
+    const apikey = req.headers.get("apikey");
+    if (!apikey && !auth?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
     if (!apiKey) {
       return new Response(JSON.stringify({ error: "API key not configured" }), {
@@ -103,6 +113,22 @@ Deno.serve(async (req) => {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
+    }
+
+    // Input validation: cap message count and length
+    if (messages.length > 20) {
+      return new Response(JSON.stringify({ error: "Too many messages (max 20)" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    for (const m of messages) {
+      if (typeof m.content !== "string" || m.content.length > 2000) {
+        return new Response(JSON.stringify({ error: "Message too long (max 2000 chars)" }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
     }
 
     let systemPrompt = SYSTEM_PROMPT;
