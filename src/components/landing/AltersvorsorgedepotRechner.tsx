@@ -624,6 +624,21 @@ const AltersvorsorgedepotRechner = () => {
                       children: inputs.children,
                       subsidies: Math.round(r.totalSubsidies),
                     };
+                    // Anonymous tracking
+                    supabase.from("calculator_results").insert({
+                      birth_year: inputs.birthYear,
+                      monthly_contribution: inputs.monthlyContribution,
+                      monthly_payout: Math.round(r.monthlyPayout),
+                      total_capital: Math.round(r.capitalWithFunding),
+                      subsidies: Math.round(r.totalSubsidies),
+                      tax_benefits: Math.round(r.totalTaxBenefit),
+                      capital_gains: Math.round(r.capitalGains),
+                      own_contributions: Math.round(r.totalContributions),
+                      retirement_age: inputs.retirementAge,
+                      return_assumption: inputs.returnRate * 100,
+                      children: inputs.children,
+                      income_bracket: INCOME_BANDS[inputs.incomeBand].key,
+                    }).then(({ error }) => { if (error) console.warn("Tracking insert failed:", error.message); });
                   }}
                   className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
                 >

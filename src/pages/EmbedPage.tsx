@@ -40,10 +40,10 @@ interface Inputs {
 }
 
 const INCOME_BANDS = [
-  { label: "bis 17.000 €", taxRate: 0 },
-  { label: "17.000 – 37.000 €", taxRate: 0.2 },
-  { label: "37.000 – 57.000 €", taxRate: 0.3 },
-  { label: "über 57.000 €", taxRate: 0.42 },
+  { label: "bis 17.000 €", taxRate: 0, key: "bis_30k" },
+  { label: "17.000 – 37.000 €", taxRate: 0.2, key: "30k_50k" },
+  { label: "37.000 – 57.000 €", taxRate: 0.3, key: "50k_70k" },
+  { label: "über 57.000 €", taxRate: 0.42, key: "ueber_100k" },
 ];
 
 interface ChartDataPoint {
@@ -316,7 +316,25 @@ const EmbedPage = () => {
                 <StepperCard label="Kinder" value={inputs.children} min={0} max={6} onChange={(v) => set("children", v)} primaryColor={primaryColor} />
                 <StepperCard label="Renteneintritt" value={inputs.retirementAge} min={65} max={70} onChange={(v) => set("retirementAge", v)} primaryColor={primaryColor} />
               </div>
-              <button onClick={() => setStep(4)}
+              <button onClick={() => {
+                  setStep(4);
+                  const capitalGains = Math.max(Math.round(r.capitalWithFunding) - Math.round(r.totalContributions) - Math.round(r.totalSubsidies), 0);
+                  const taxBenefits = Math.round(INCOME_BANDS[inputs.incomeBand].taxRate * inputs.monthlyContribution * 12 * r.yearsToRetirement);
+                  supabase.from("calculator_results").insert({
+                    birth_year: inputs.birthYear,
+                    monthly_contribution: inputs.monthlyContribution,
+                    monthly_payout: Math.round(r.monthlyPayout),
+                    total_capital: Math.round(r.capitalWithFunding),
+                    subsidies: Math.round(r.totalSubsidies),
+                    tax_benefits: taxBenefits,
+                    capital_gains: capitalGains,
+                    own_contributions: Math.round(r.totalContributions),
+                    retirement_age: inputs.retirementAge,
+                    return_assumption: inputs.returnRate * 100,
+                    children: inputs.children,
+                    income_bracket: INCOME_BANDS[inputs.incomeBand].key,
+                  }).then(({ error }) => { if (error) console.warn("Tracking insert failed:", error.message); });
+                }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium text-sm hover:opacity-90 transition-opacity"
                 style={{ background: primaryColor }}>
                 Ergebnis anzeigen <ArrowRight className="w-4 h-4" />
