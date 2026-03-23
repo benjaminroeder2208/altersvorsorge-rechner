@@ -6,6 +6,22 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Simple in-memory rate limiter per IP
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 10; // max requests
+const RATE_WINDOW_MS = 60_000; // per minute
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return true;
+  }
+  entry.count++;
+  return entry.count <= RATE_LIMIT;
+}
+
 const SYSTEM_PROMPT = `Du bist ein freundlicher, sachlicher Altersvorsorge-Assistent auf altersvorsorge-rechner.com. Du hilfst Nutzern bei Fragen zur Altersvorsorge — verständlich, ohne Fachjargon, ohne konkrete Anlageberatung zu geben. Antworte immer auf Deutsch in 3-5 Sätzen.
 
 ALTERSVORSORGEDEPOT:
@@ -87,18 +103,32 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Auth: require anon key or valid JWT
-    const auth = req.headers.get("Authorization");
+    // Rate limiting by IP
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+    if (!checkRateLimit(ip)) {
+      return new Response(JSON.stringify({ error: "Rate limit exceeded. Try again later." }), {
+        status: 429,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Auth: verify anon key matches
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
     const apikey = req.headers.get("apikey");
-    if (!apikey && !auth?.startsWith("Bearer ")) {
+    const auth = req.headers.get("Authorization");
+
+    const validApiKey = apikey && anonKey && apikey === anonKey;
+    const validBearer = auth?.startsWith("Bearer ") && auth.length > 10;
+
+    if (!validApiKey && !validBearer) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
-    if (!apiKey) {
+    const anthropicKey = Deno.env.get("ANTHROPIC_API_KEY");
+    if (!anthropicKey) {
       return new Response(JSON.stringify({ error: "API key not configured" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -151,7 +181,7 @@ Beziehe dich auf diese Zahlen wenn es passt.
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
+        "x-api-key": anthropicKey,
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
