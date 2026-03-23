@@ -144,14 +144,10 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Auth check — only callable from server-side (other edge functions)
-    const apikey = req.headers.get("apikey");
+    // Auth check — only callable from server-side (service role)
     const auth = req.headers.get("authorization");
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
     const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-    const validApikey = apikey && anonKey && apikey === anonKey;
-    const validBearer = auth && serviceKey && auth === `Bearer ${serviceKey}`;
-    if (!validApikey && !validBearer) {
+    if (!auth || !serviceKey || auth !== `Bearer ${serviceKey}`) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
