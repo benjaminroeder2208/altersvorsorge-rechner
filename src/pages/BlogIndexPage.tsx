@@ -18,6 +18,13 @@ import {
 
 const articles = [
   {
+    slug: "/blog/altersvorsorgedepot-koalitionseinigung",
+    title: "Koalitionseinigung: Das Altersvorsorgedepot wird besser als geplant",
+    description: "CDU/CSU und SPD einigen sich auf höhere Zulagen, niedrigeren Kostendeckel und Einbeziehung von Selbstständigen. Alle bestätigten Änderungen im Überblick.",
+    readingTime: "4 Min.",
+    tag: "Altersvorsorgedepot",
+  },
+  {
     slug: "/blog/altersvorsorge-portfolio",
     title: "Wie sieht ein gutes Altersvorsorge-Portfolio aus? Drei Beispiele für verschiedene Lebenssituationen",
     description: "ETF-Sparplan, Altersvorsorgedepot, bAV oder Rürup — was gehört in welchem Verhältnis in dein Portfolio? Drei konkrete Beispiele mit echten Zahlen.",
