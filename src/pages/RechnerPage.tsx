@@ -129,8 +129,6 @@ const RechnerPage = () => (
     />
     <Navbar />
     <main>
-      {/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
-      <UpdateBanner />
       <HeroSection />
       <KeyFiguresSection />
       <CalculatorPreview />
