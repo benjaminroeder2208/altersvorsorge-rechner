@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
@@ -75,15 +75,6 @@ const jsonLd = [
   },
 ];
 
-const CtaBlock = ({ children, to = "/" }: { children: React.ReactNode; to?: string }) => (
-  <div className="my-10 p-6 md:p-8 bg-primary/5 border border-primary/10 rounded-2xl text-center">
-    <p className="text-sm md:text-base text-foreground mb-4 font-medium">{children}</p>
-    <Link to={to} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity">
-      <Calculator className="w-4 h-4" />
-      Zum Altersvorsorgedepot Rechner
-    </Link>
-  </div>
-);
 
 const SectionH2 = ({ id, children }: { id: string; children: React.ReactNode }) => (
   <h2 id={id} className="text-2xl md:text-3xl font-bold tracking-tight mt-14 mb-4 scroll-mt-24" style={{ letterSpacing: "-0.02em" }}>{children}</h2>
@@ -246,8 +237,6 @@ const BlogKoalitionseinigung = () => {
                 </div>
               </AnimatedSection>
 
-              <CtaBlock>Wie viel Förderung bekommst du? Berechne es jetzt.</CtaBlock>
-
               {/* ── 4. Kostendeckel ── */}
               <AnimatedSection delay={0.15}>
                 <SectionH2 id="kostendeckel">Kostendeckel auf 1 Prozent</SectionH2>
@@ -271,9 +260,6 @@ const BlogKoalitionseinigung = () => {
                   <p>
                     Die Koalition hat diese Einschränkung gestrichen. Alle Selbstständigen sollen künftig ein Altersvorsorgedepot eröffnen und die staatliche Förderung nutzen können — Freiberufler, Unternehmer und Künstler eingeschlossen.
                   </p>
-                  <Link to="/blog/altersvorsorge-selbststaendige" className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:underline mt-2">
-                    Mehr zur Altersvorsorge für Selbstständige <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
                 </div>
               </AnimatedSection>
 
@@ -311,8 +297,6 @@ const BlogKoalitionseinigung = () => {
                 </p>
               </AnimatedSection>
 
-              <CtaBlock>Berechne jetzt, wie viel Kapital du mit dem Altersvorsorgedepot aufbauen kannst.</CtaBlock>
-
               {/* ── FAQ ── */}
               <AnimatedSection delay={0.15}>
                 <SectionH2 id="faq">Häufige Fragen</SectionH2>
@@ -325,27 +309,6 @@ const BlogKoalitionseinigung = () => {
                   ))}
                 </Accordion>
               </AnimatedSection>
-
-              {/* ── Weiterführende Artikel ── */}
-              <div className="mt-12">
-                <p className="text-sm font-semibold mb-4">Weiterführende Artikel</p>
-                <div className="space-y-2">
-                  {[
-                    { to: "/blog/altersvorsorgedepot-2027", label: "Altersvorsorgedepot 2027: Alles, was du wissen musst" },
-                    { to: "/blog/altersvorsorge-selbststaendige", label: "Altersvorsorge für Selbstständige: Was wirklich funktioniert" },
-                    { to: "/blog/altersvorsorgedepot-vs-etf-sparplan", label: "Altersvorsorgedepot oder ETF-Sparplan?" },
-                  ].map((link) => (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm"
-                    >
-                      <span>{link.label}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
 
               {/* ── Disclaimer ── */}
               <p className="mt-12 text-xs text-muted-foreground/60 leading-relaxed">
