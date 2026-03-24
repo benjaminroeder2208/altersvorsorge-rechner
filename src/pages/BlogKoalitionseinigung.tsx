@@ -246,8 +246,6 @@ const BlogKoalitionseinigung = () => {
                 </div>
               </AnimatedSection>
 
-              <CtaBlock>Wie viel Förderung bekommst du? Berechne es jetzt.</CtaBlock>
-
               {/* ── 4. Kostendeckel ── */}
               <AnimatedSection delay={0.15}>
                 <SectionH2 id="kostendeckel">Kostendeckel auf 1 Prozent</SectionH2>
