@@ -38,6 +38,7 @@ import EmbedPage from "./pages/EmbedPage";
 import EinbettenPage from "./pages/EinbettenPage";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
+import UpdateBanner from "@/components/landing/UpdateBanner";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,8 @@ const App = () => (
           <BrowserRouter>
             <ScrollToHash />
             <ChatWidgetWrapper />
+            {/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
+            <UpdateBanner />
           <Routes>
             <Route path="/" element={<RechnerPage />} />
             <Route path="/altersvorsorgedepot" element={<HubPage />} />
