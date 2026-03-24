@@ -319,27 +319,6 @@ const BlogKoalitionseinigung = () => {
                 </Accordion>
               </AnimatedSection>
 
-              {/* ── Weiterführende Artikel ── */}
-              <div className="mt-12">
-                <p className="text-sm font-semibold mb-4">Weiterführende Artikel</p>
-                <div className="space-y-2">
-                  {[
-                    { to: "/blog/altersvorsorgedepot-2027", label: "Altersvorsorgedepot 2027: Alles, was du wissen musst" },
-                    { to: "/blog/altersvorsorge-selbststaendige", label: "Altersvorsorge für Selbstständige: Was wirklich funktioniert" },
-                    { to: "/blog/altersvorsorgedepot-vs-etf-sparplan", label: "Altersvorsorgedepot oder ETF-Sparplan?" },
-                  ].map((link) => (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm"
-                    >
-                      <span>{link.label}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
               {/* ── Disclaimer ── */}
               <p className="mt-12 text-xs text-muted-foreground/60 leading-relaxed">
                 Dieser Artikel basiert auf der Koalitionseinigung vom 24. März 2026. Das Gesetz ist noch nicht formell beschlossen. Alle Angaben ohne Gewähr und vorbehaltlich des endgültigen Gesetzesbeschlusses. Keine Anlageberatung.
