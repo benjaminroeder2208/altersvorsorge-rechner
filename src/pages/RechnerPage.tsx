@@ -1,4 +1,5 @@
 import Navbar from "@/components/landing/Navbar";
+import UpdateBanner from "@/components/landing/UpdateBanner";
 import HeroSection from "@/components/landing/HeroSection";
 import CalculatorPreview from "@/components/landing/CalculatorPreview";
 import KeyFiguresSection from "@/components/landing/KeyFiguresSection";
@@ -129,6 +130,8 @@ const RechnerPage = () => (
     />
     <Navbar />
     <main>
+      {/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
+      <UpdateBanner />
       <HeroSection />
       <KeyFiguresSection />
       <CalculatorPreview />
