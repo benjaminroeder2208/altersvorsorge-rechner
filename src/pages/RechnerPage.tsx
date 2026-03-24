@@ -1,5 +1,4 @@
 import Navbar from "@/components/landing/Navbar";
-import UpdateBanner from "@/components/landing/UpdateBanner";
 import HeroSection from "@/components/landing/HeroSection";
 import CalculatorPreview from "@/components/landing/CalculatorPreview";
 import KeyFiguresSection from "@/components/landing/KeyFiguresSection";
