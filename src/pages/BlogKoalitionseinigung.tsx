@@ -269,9 +269,6 @@ const BlogKoalitionseinigung = () => {
                   <p>
                     Die Koalition hat diese Einschränkung gestrichen. Alle Selbstständigen sollen künftig ein Altersvorsorgedepot eröffnen und die staatliche Förderung nutzen können — Freiberufler, Unternehmer und Künstler eingeschlossen.
                   </p>
-                  <Link to="/blog/altersvorsorge-selbststaendige" className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:underline mt-2">
-                    Mehr zur Altersvorsorge für Selbstständige <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
                 </div>
               </AnimatedSection>
 
