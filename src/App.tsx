@@ -38,6 +38,7 @@ import EmbedPage from "./pages/EmbedPage";
 import EinbettenPage from "./pages/EinbettenPage";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
+import UpdateBanner from "@/components/landing/UpdateBanner";
 
 const queryClient = new QueryClient();
 
