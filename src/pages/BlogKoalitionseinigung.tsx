@@ -306,8 +306,6 @@ const BlogKoalitionseinigung = () => {
                 </p>
               </AnimatedSection>
 
-              <CtaBlock>Berechne jetzt, wie viel Kapital du mit dem Altersvorsorgedepot aufbauen kannst.</CtaBlock>
-
               {/* ── FAQ ── */}
               <AnimatedSection delay={0.15}>
                 <SectionH2 id="faq">Häufige Fragen</SectionH2>
