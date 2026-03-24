@@ -32,6 +32,7 @@ import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
 import BlogRuerupRente from "./pages/BlogRuerupRente";
 import BlogPortfolio from "./pages/BlogPortfolio";
 import BlogWasDarfInsDepot from "./pages/BlogWasDarfInsDepot";
+import BlogKoalitionseinigung from "./pages/BlogKoalitionseinigung";
 import ConfirmPage from "./pages/ConfirmPage";
 import EmbedPage from "./pages/EmbedPage";
 import EinbettenPage from "./pages/EinbettenPage";
