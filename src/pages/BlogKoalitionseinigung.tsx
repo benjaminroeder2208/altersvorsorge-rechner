@@ -75,15 +75,6 @@ const jsonLd = [
   },
 ];
 
-const CtaBlock = ({ children, to = "/" }: { children: React.ReactNode; to?: string }) => (
-  <div className="my-10 p-6 md:p-8 bg-primary/5 border border-primary/10 rounded-2xl text-center">
-    <p className="text-sm md:text-base text-foreground mb-4 font-medium">{children}</p>
-    <Link to={to} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity">
-      <Calculator className="w-4 h-4" />
-      Zum Altersvorsorgedepot Rechner
-    </Link>
-  </div>
-);
 
 const SectionH2 = ({ id, children }: { id: string; children: React.ReactNode }) => (
   <h2 id={id} className="text-2xl md:text-3xl font-bold tracking-tight mt-14 mb-4 scroll-mt-24" style={{ letterSpacing: "-0.02em" }}>{children}</h2>
