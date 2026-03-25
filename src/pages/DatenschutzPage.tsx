@@ -252,7 +252,32 @@ const DatenschutzPage = () => (
 
     {/* 13 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">13. Aktualität dieser Erklärung</h2>
+      <h2 className="text-xl font-bold mb-3">13. Consent-Management (Cookiebot)</h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Diese Website verwendet Cookiebot, einen Dienst der Cybot A/S, Havnegade 39, 1058 Kopenhagen, Dänemark (nachfolgend „Cookiebot").
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Cookiebot dient der Verwaltung von Einwilligungen für den Einsatz von Cookies und ähnlichen Technologien gemäß Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;c DSGVO (rechtliche Verpflichtung) sowie Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an der rechtskonformen Gestaltung der Website).
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Beim Aufruf der Website wird eine Verbindung zu den Servern von Cookiebot hergestellt. Dabei wird Ihre IP-Adresse übermittelt. Cookiebot speichert Ihre Einwilligungsentscheidung in einem Cookie für 12 Monate.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Mit Cybot A/S besteht ein Auftragsverarbeitungsvertrag (AVV) gemäß Art.&nbsp;28 DSGVO. Weitere Informationen finden Sie in der Datenschutzerklärung von Cookiebot:{" "}
+        <a
+          href="https://www.cookiebot.com/de/privacy-policy/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-primary transition-colors"
+        >
+          cookiebot.com/de/privacy-policy
+        </a>
+      </p>
+    </section>
+
+    {/* 14 */}
+    <section>
+      <h2 className="text-xl font-bold mb-3">14. Aktualität dieser Erklärung</h2>
       <p className="text-muted-foreground leading-relaxed">
         Diese Datenschutzerklärung wurde zuletzt im März 2026 aktualisiert. Wir behalten uns vor, sie bei Änderungen der rechtlichen Lage oder unserer Dienste anzupassen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.
       </p>
