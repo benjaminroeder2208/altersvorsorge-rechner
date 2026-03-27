@@ -163,7 +163,7 @@ const BlogWasDarfInsDepot = () => {
               <SectionH2 id="warum-einschraenkungen">Warum gibt es überhaupt Einschränkungen?</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Das Altersvorsorgedepot ist staatlich gefördert — Grundzulage, Kinderzulage, Steuervorteil. Im Gegenzug stellt der Staat Anforderungen an die Produkte: Sie müssen für die Altersvorsorge geeignet sein, ein Mindestmaß an Streuung und Regulierung aufweisen und einem vertretbaren Risikorahmen entsprechen.</p>
-                <p>Der Gesetzentwurf nennt als Ziel ausdrücklich <strong className="text-foreground">„realwertorientierte Anlagestrategien"</strong>, die wegen der typischen langen Anlagezeiträume der Altersvorsorge besonders geeignet seien. Gleichzeitig soll das Depot kein Vehikel für riskante Spekulation oder Steuergestaltung werden.</p>
+                <p>Das beschlossene Gesetz nennt als Ziel ausdrücklich <strong className="text-foreground">„realwertorientierte Anlagestrategien"</strong>, die wegen der typischen langen Anlagezeiträume der Altersvorsorge besonders geeignet seien. Gleichzeitig soll das Depot kein Vehikel für riskante Spekulation oder Steuergestaltung werden.</p>
                 <p>Das Ergebnis ist eine klar definierte Liste erlaubter Anlageformen — alle mit einer gemeinsamen Einschränkung: Sie dürfen im europäischen Basisinformationsblatt (PRIIPs-KID) <strong className="text-foreground">höchstens in Risikoklasse 5 von 7</strong> eingestuft sein.</p>
               </div>
 
