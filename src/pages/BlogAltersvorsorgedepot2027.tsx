@@ -58,7 +58,7 @@ const faqItems = [
   },
   {
     q: "Kann ich als Selbstständiger einzahlen?",
-    a: "Die genaue Regelung hängt vom finalen Gesetz ab. Grundsätzlich ist ein breiter Förderberechtigtenkreis geplant — die Details für Selbstständige ohne Rentenversicherungspflicht sind noch offen.",
+    a: "Ja — der Bundestag hat Selbstständige und Freiberufler ausdrücklich in den Förderkreis aufgenommen. Wer Einkünfte aus selbstständiger oder freiberuflicher Tätigkeit erzielt und eine Steuererklärung abgibt, ist förderberechtigt.",
   },
   {
     q: "Was passiert, wenn ich vor 65 an das Geld muss?",
