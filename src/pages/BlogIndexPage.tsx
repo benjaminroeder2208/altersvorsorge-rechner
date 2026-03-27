@@ -41,7 +41,7 @@ const articles = [
   {
     slug: "/blog/was-darf-ins-altersvorsorgedepot",
     title: "Was darf ins Altersvorsorgedepot? Die erlaubten Anlageformen im Überblick",
-    description: "Welche Fonds, ETFs und Wertpapiere sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut Gesetzentwurf (§ 1 Abs. 1b AltZertG) klar erklärt.",
+    description: "Welche Fonds, ETFs und Wertpapiere sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut beschlossenem Gesetz (§ 1 Abs. 1b AltZertG) klar erklärt.",
     readingTime: "6 Min.",
     tag: "Altersvorsorgedepot",
   },

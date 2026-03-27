@@ -37,7 +37,7 @@ const ImpressumPage = () => (
     <section>
       <h2 className="text-xl font-bold mb-3">Haftungshinweis</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Alle Angaben zum Altersvorsorgedepot basieren auf dem aktuellen Gesetzentwurf. Änderungen im Gesetzgebungsverfahren sind möglich. Die Inhalte stellen keine Anlage-, Steuer- oder Rechtsberatung dar.
+        Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Alle Angaben zum Altersvorsorgedepot basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026). Die Inhalte stellen keine Anlage-, Steuer- oder Rechtsberatung dar.
       </p>
     </section>
   </ContentPageLayout>

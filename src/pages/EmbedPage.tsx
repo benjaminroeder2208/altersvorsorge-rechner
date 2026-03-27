@@ -443,7 +443,7 @@ const EmbedPage = () => {
         {/* Disclaimer */}
         <div className="mt-6 pt-4 border-t border-gray-100 space-y-1">
           <p className="text-[9px] text-gray-400 leading-relaxed text-center">
-            Simulation auf Basis des aktuellen Gesetzentwurfs. Keine Anlage-, Steuer- oder Rechtsberatung. Kapitalanlagen bergen Risiken. Angaben ohne Gewähr.
+            Simulation auf Basis des Altersvorsorgereformgesetzes (27.03.2026). Keine Anlage-, Steuer- oder Rechtsberatung. Kapitalanlagen bergen Risiken. Angaben ohne Gewähr.
           </p>
           <p className="text-center">
             <a href="https://altersvorsorge-rechner.com?ref=embed" target="_blank" rel="noopener noreferrer"
