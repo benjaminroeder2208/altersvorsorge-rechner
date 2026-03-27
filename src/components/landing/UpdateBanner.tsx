@@ -18,8 +18,8 @@ const UpdateBanner = () => {
       <div className="container max-w-4xl mx-auto flex items-center justify-center gap-2">
         <Info className="w-4 h-4 shrink-0" style={{ color: "#92400E" }} />
         <p className="text-sm" style={{ color: "#92400E" }}>
-          <span className="font-medium">Neu:</span> Beschlossen! Der Bundestag hat das Altersvorsorgedepot
-          verabschiedet. Wir aktualisieren in Kürze alle Zahlen.
+          <span className="font-medium">Beschlossen:</span> Der Bundestag hat das Altersvorsorgedepot verabschiedet. Wir
+          aktualisieren in Kürze alle Zahlen.
         </p>
       </div>
       <button
