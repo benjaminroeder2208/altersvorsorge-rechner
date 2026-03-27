@@ -225,8 +225,8 @@ const BlogSelbststaendige = () => {
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-xs text-muted-foreground/70 italic mt-1 mb-2">* Staatliche Förderung nur für freiwillig GRV-Versicherte. Ohne GRV-Mitgliedschaft kann das Depot als ungeförderter Sparvertrag genutzt werden.</p>
-              <p className="text-base leading-relaxed text-muted-foreground">Für freiwillig GRV-versicherte Selbstständige, die ohnehin langfristig für die Rente sparen wollen, kann das Altersvorsorgedepot den ETF-Sparplan ergänzen oder teilweise ersetzen.</p>
+              <p className="text-xs text-muted-foreground/70 italic mt-1 mb-2">* Selbstständige sind seit dem Bundestagsbeschluss vom 27. März 2026 voll förderberechtigt (§ 10a Abs. 1 Satz 5 EStG).</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Für Selbstständige, die langfristig für die Rente sparen wollen, kann das Altersvorsorgedepot den ETF-Sparplan ergänzen oder teilweise ersetzen.</p>
 
               {/* Strategie */}
               <SectionH2 id="strategie">Die optimale Strategie für Selbstständige</SectionH2>
