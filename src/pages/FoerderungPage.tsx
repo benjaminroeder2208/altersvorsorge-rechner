@@ -50,7 +50,7 @@ const FoerderungPage = () => (
     <section>
       <h2 className="text-xl font-bold mb-3">Kinderzulage</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Für jedes kindergeldberechtigte Kind sieht der Entwurf eine zusätzliche Zulage von bis zu 300 € pro Jahr vor (25 % der Beiträge bis 1.800 €/Jahr). Die volle Kinderzulage von 300 € wird erst ab einem Eigenbeitrag von 1.200 €/Jahr (100 €/Monat) erreicht.
+        Für jedes kindergeldberechtigte Kind sieht das Gesetz eine zusätzliche Zulage von bis zu 300 € pro Jahr vor (100 % der Eigenbeiträge bis 1.800 €/Jahr, max. 300 € pro Kind). Die volle Kinderzulage von 300 € wird bereits ab einem Eigenbeitrag von 300 €/Jahr (25 €/Monat) erreicht.
       </p>
     </section>
 

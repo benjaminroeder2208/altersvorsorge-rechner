@@ -38,20 +38,16 @@ const GesetzPage = () => (
     </section>
 
     <section>
-      <h2 className="text-xl font-bold mb-3">Politische Diskussion</h2>
+      <h2 className="text-xl font-bold mb-3">Was beschlossen wurde</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Im Mittelpunkt der Debatte stehen der Wegfall der Beitragsgarantie, die Höhe der{" "}
-        <Link to="/altersvorsorgedepot-foerderung" className="text-primary font-medium hover:underline">
-          Förderung
-        </Link>{" "}
-        und die Frage, ob das Modell bestehende Riester-Verträge ablösen soll.
+        Der Bundestag hat gegenüber dem Referentenentwurf wichtige Verbesserungen beschlossen: höhere Grundzulage (540 € statt 480 €), vereinfachte Kinderzulage (voll ab 25 €/Monat statt 100 €/Monat) und Einbeziehung von Selbstständigen in den Förderkreis.
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
         Nutzen Sie den{" "}
         <Link to="/" className="text-primary font-medium hover:underline">
           Altersvorsorgedepot Rechner
         </Link>{" "}
-        um die mögliche Entwicklung auf Basis des aktuellen Entwurfs zu simulieren.
+        um die mögliche Entwicklung auf Basis des beschlossenen Gesetzes zu simulieren.
       </p>
     </section>
   </ContentPageLayout>

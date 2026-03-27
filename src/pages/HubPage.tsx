@@ -20,7 +20,7 @@ const HubPage = () => (
     <section>
       <h2 className="text-xl font-bold mb-3">Was ist das Altersvorsorgedepot?</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Das Altersvorsorgedepot ist ein im aktuellen Gesetzentwurf vorgesehenes Modell für die private Altersvorsorge.
+        Das Altersvorsorgedepot ist ein neues staatlich gefördertes Vorsorgemodell, das der Bundestag am 27. März 2026 beschlossen hat. Es startet ab dem 1. Januar 2027.
         Es ermöglicht renditeorientierte Investitionen in Fonds oder ETFs — ohne die bisher bei Riester-Produkten
         übliche Beitragsgarantie.
       </p>
