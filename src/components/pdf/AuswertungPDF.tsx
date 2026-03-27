@@ -202,10 +202,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
                Rendite: Für diese Berechnung wurde eine Rendite von {rendite} % p.a. angenommen. Zur Einordnung: Die historische Durchschnittsrendite eines breit gestreuten Aktien-ETF (z. B. MSCI World) lag langfristig bei ca. 7 % p.a. Die tatsächliche Rendite kann höher oder niedriger ausfallen und ist nicht garantiert.{"\n\n"}
               Beiträge: Die monatlichen Eigenbeiträge werden als konstant über die gesamte Laufzeit angenommen.
               Steuerliche Auswirkungen der Beiträge (z. B. Sonderausgabenabzug) sind nicht berücksichtigt.{"\n\n"}
-              Staatliche Förderung: Die Förderung basiert auf dem Gesetzentwurf zur Reform der privaten Altersvorsorge
-              (Stand März 2026). Grundzulage: {GRUNDZULAGE_SATZ_AB_2027 * 100} % auf bis zu 1.200 €/Jahr (max. 360 €) + 20 % auf 1.200–1.800 €/Jahr
-              (max. 120 €) = max. {MAX_GRUNDZULAGE_AB_2027} €/Jahr ab 2027 (ab 2029: max. {MAX_GRUNDZULAGE_AB_2029} €/Jahr). Kinderzulage: bis zu {KINDERZULAGE_PRO_KIND} € pro Kind/Jahr. Das Gesetz ist noch nicht
-              beschlossen — Änderungen sind möglich.{"\n\n"}
+              Staatliche Förderung: Die Förderung basiert auf dem Altersvorsorgereformgesetz, beschlossen am 27. März 2026. Grundzulage: {GRUNDZULAGE_SATZ_T1 * 100} % auf die ersten {GRUNDZULAGE_T1_MAX} €/Jahr + {GRUNDZULAGE_SATZ_T2 * 100} % auf weitere 1.440 €/Jahr = max. {MAX_GRUNDZULAGE} €/Jahr. Kinderzulage: 100 % der Eigenbeiträge, max. {KINDERZULAGE_PRO_KIND} € pro Kind/Jahr.{"\n\n"}
               Auszahlung: Die monatliche Auszahlung wird vereinfacht berechnet als Gesamtkapital geteilt durch die
               Anzahl der Monate bis zum 85. Lebensjahr. Tatsächliche Rentenprodukte können abweichen.{"\n\n"}
               Inflation: Die Berechnungen sind nominal — Kaufkraftverlust durch Inflation ist nicht berücksichtigt. Bei
