@@ -41,7 +41,7 @@ const faqItems = [
   },
   {
     q: "Was ist mit Wohn-Riester?",
-    a: "Wohn-Riester — also die Nutzung von Riester-Kapital für selbstgenutztes Wohneigentum — ist ein Sondermodell mit eigenen Regeln. Ob und wie das Altersvorsorgedepot eine ähnliche Wohnförderoption bekommt, ist im aktuellen Gesetzentwurf noch nicht abschließend geregelt. Wer Wohn-Riester aktiv nutzt, sollte die weitere Gesetzgebung abwarten.",
+    a: "Wohn-Riester — also die Nutzung von Riester-Kapital für selbstgenutztes Wohneigentum — ist ein Sondermodell mit eigenen Regeln. Ob und wie das Altersvorsorgedepot eine ähnliche Wohnförderoption bekommt, ist im beschlossenen Gesetz noch nicht abschließend geregelt.",
   },
 ];
 
