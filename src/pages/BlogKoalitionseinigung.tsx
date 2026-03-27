@@ -6,7 +6,12 @@ import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import {
-  Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator,
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -49,7 +54,8 @@ const jsonLd = [
   {
     "@type": "Article",
     headline: "Koalitionseinigung: Das Altersvorsorgedepot wird besser als geplant",
-    description: "CDU/CSU und SPD einigen sich auf verbesserte Konditionen beim Altersvorsorgedepot. Abstimmung im Bundestag am 26. März 2026.",
+    description:
+      "CDU/CSU und SPD einigen sich auf verbesserte Konditionen beim Altersvorsorgedepot. Abstimmung im Bundestag am 26. März 2026.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-24",
     dateModified: "2026-03-24",
@@ -75,9 +81,14 @@ const jsonLd = [
   },
 ];
 
-
 const SectionH2 = ({ id, children }: { id: string; children: React.ReactNode }) => (
-  <h2 id={id} className="text-2xl md:text-3xl font-bold tracking-tight mt-14 mb-4 scroll-mt-24" style={{ letterSpacing: "-0.02em" }}>{children}</h2>
+  <h2
+    id={id}
+    className="text-2xl md:text-3xl font-bold tracking-tight mt-14 mb-4 scroll-mt-24"
+    style={{ letterSpacing: "-0.02em" }}
+  >
+    {children}
+  </h2>
 );
 
 const BlogKoalitionseinigung = () => {
@@ -97,11 +108,21 @@ const BlogKoalitionseinigung = () => {
         <div className="container max-w-5xl mx-auto px-6">
           <Breadcrumb className="mb-8 max-w-2xl">
             <BreadcrumbList>
-              <BreadcrumbItem><BreadcrumbLink asChild><Link to="/">Home</Link></BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/">Home</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbLink asChild><Link to="/blog">Blog</Link></BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/blog">Blog</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbPage>Koalitionseinigung</BreadcrumbPage></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbPage>Koalitionseinigung</BreadcrumbPage>
+              </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
 
@@ -111,7 +132,11 @@ const BlogKoalitionseinigung = () => {
               <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Inhalt</p>
               <nav className="space-y-1.5">
                 {tocItems.map((t) => (
-                  <a key={t.id} href={`#${t.id}`} className="block text-sm text-muted-foreground hover:text-foreground transition-colors leading-snug">
+                  <a
+                    key={t.id}
+                    href={`#${t.id}`}
+                    className="block text-sm text-muted-foreground hover:text-foreground transition-colors leading-snug"
+                  >
                     {t.label}
                   </a>
                 ))}
@@ -129,21 +154,35 @@ const BlogKoalitionseinigung = () => {
 
               {/* ── Hinweis-Box ── */}
               <AnimatedSection delay={0.05}>
-                <div className="p-4 rounded-xl mb-8" style={{ backgroundColor: "#FEF3C7", border: "1px solid #F59E0B" }}>
+                <div
+                  className="p-4 rounded-xl mb-8"
+                  style={{ backgroundColor: "#FEF3C7", border: "1px solid #F59E0B" }}
+                >
                   <p className="text-sm" style={{ color: "#92400E" }}>
-                    <strong>Stand: 24. März 2026</strong> — Koalitionseinigung. Das Gesetz ist noch nicht formell beschlossen. Abstimmung im Bundestag: 26. März 2026. Wir aktualisieren unseren Rechner und alle Zahlen unmittelbar nach dem Beschluss.
+                    <strong>Stand: 24. März 2026</strong> — Koalitionseinigung. Das Gesetz ist noch nicht formell
+                    beschlossen. Abstimmung im Bundestag: 27. März 2026.
                   </p>
                 </div>
               </AnimatedSection>
 
               {/* ── Mobile TOC ── */}
-              <Collapsible open={tocOpen} onOpenChange={setTocOpen} className="lg:hidden mb-8 border rounded-xl overflow-hidden">
+              <Collapsible
+                open={tocOpen}
+                onOpenChange={setTocOpen}
+                className="lg:hidden mb-8 border rounded-xl overflow-hidden"
+              >
                 <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium bg-secondary">
-                  Inhaltsverzeichnis <ChevronDown className={`w-4 h-4 transition-transform ${tocOpen ? "rotate-180" : ""}`} />
+                  Inhaltsverzeichnis{" "}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${tocOpen ? "rotate-180" : ""}`} />
                 </CollapsibleTrigger>
                 <CollapsibleContent className="px-4 py-3 space-y-2">
                   {tocItems.map((t) => (
-                    <a key={t.id} href={`#${t.id}`} className="block text-sm text-muted-foreground hover:text-foreground" onClick={() => setTocOpen(false)}>
+                    <a
+                      key={t.id}
+                      href={`#${t.id}`}
+                      className="block text-sm text-muted-foreground hover:text-foreground"
+                      onClick={() => setTocOpen(false)}
+                    >
                       {t.label}
                     </a>
                   ))}
@@ -154,10 +193,13 @@ const BlogKoalitionseinigung = () => {
               <AnimatedSection delay={0.1}>
                 <div className="prose-custom space-y-4">
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    Am 24. März 2026 haben sich CDU/CSU und SPD auf weitreichende Verbesserungen beim Altersvorsorgedepot geeinigt. Die Abstimmung im Bundestag ist für den 26. März angesetzt. Ab dem 1. Januar 2027 sollen die neuen Produkte zur Verfügung stehen.
+                    Am 24. März 2026 haben sich CDU/CSU und SPD auf weitreichende Verbesserungen beim
+                    Altersvorsorgedepot geeinigt. Die Abstimmung im Bundestag ist für den 26. März angesetzt. Ab dem 1.
+                    Januar 2027 sollen die neuen Produkte zur Verfügung stehen.
                   </p>
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    Die Einigung enthält mehrere wichtige Änderungen gegenüber dem ursprünglichen Referentenentwurf — zugunsten der Sparer.
+                    Die Einigung enthält mehrere wichtige Änderungen gegenüber dem ursprünglichen Referentenentwurf —
+                    zugunsten der Sparer.
                   </p>
                 </div>
               </AnimatedSection>
@@ -207,7 +249,8 @@ const BlogKoalitionseinigung = () => {
                   </table>
                 </div>
                 <p className="text-muted-foreground">
-                  Die genaue Berechnung der neuen Förderstruktur werden wir nach dem offiziellen Gesetzestext vom 26. März hier veröffentlichen und in unseren Rechner einarbeiten.
+                  Die genaue Berechnung der neuen Förderstruktur werden wir nach dem offiziellen Gesetzestext vom 26.
+                  März hier veröffentlichen und in unseren Rechner einarbeiten.
                 </p>
               </AnimatedSection>
 
@@ -216,10 +259,12 @@ const BlogKoalitionseinigung = () => {
                 <SectionH2 id="grundzulage">Höhere Grundzulage</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Die Grundzulage steigt von 30 auf 50 Cent pro eingezahltem Euro. Das ist die bedeutendste Änderung für alle Sparer.
+                    Die Grundzulage steigt von 30 auf 50 Cent pro eingezahltem Euro. Das ist die bedeutendste Änderung
+                    für alle Sparer.
                   </p>
                   <p>
-                    Die genaue Berechnungsstruktur — also auf welche Beitragsanteile welcher Satz gilt — werden wir nach dem offiziellen Beschluss transparent aufschlüsseln und in unseren Rechner einarbeiten.
+                    Die genaue Berechnungsstruktur — also auf welche Beitragsanteile welcher Satz gilt — werden wir nach
+                    dem offiziellen Beschluss transparent aufschlüsseln und in unseren Rechner einarbeiten.
                   </p>
                 </div>
               </AnimatedSection>
@@ -229,10 +274,12 @@ const BlogKoalitionseinigung = () => {
                 <SectionH2 id="kinderzulage">Kinderzulage schon ab 25 Euro im Monat</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Eine große Verbesserung für Familien: Die maximale Kinderzulage von 300 Euro pro Kind und Jahr wird künftig bereits bei einem Eigenbeitrag von 25 Euro im Monat voll erreicht.
+                    Eine große Verbesserung für Familien: Die maximale Kinderzulage von 300 Euro pro Kind und Jahr wird
+                    künftig bereits bei einem Eigenbeitrag von 25 Euro im Monat voll erreicht.
                   </p>
                   <p>
-                    Im ursprünglichen Entwurf waren dafür 100 Euro monatlich nötig. Für Familien mit niedrigem Einkommen ist das eine fundamentale Verbesserung.
+                    Im ursprünglichen Entwurf waren dafür 100 Euro monatlich nötig. Für Familien mit niedrigem Einkommen
+                    ist das eine fundamentale Verbesserung.
                   </p>
                 </div>
               </AnimatedSection>
@@ -242,10 +289,12 @@ const BlogKoalitionseinigung = () => {
                 <SectionH2 id="kostendeckel">Kostendeckel auf 1 Prozent</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Der Effektivkostendeckel für zertifizierte Standardprodukte sinkt von 1,5 auf 1,0 Prozent pro Jahr. Das schützt Sparer besser vor überteuerten Produkten.
+                    Der Effektivkostendeckel für zertifizierte Standardprodukte sinkt von 1,5 auf 1,0 Prozent pro Jahr.
+                    Das schützt Sparer besser vor überteuerten Produkten.
                   </p>
                   <p>
-                    Wichtig: Der Deckel gilt nur für das zertifizierte Standardprodukt — nicht für alle Depotangebote. Wer selbst günstige ETFs auswählt, liegt ohnehin deutlich unter 1 Prozent.
+                    Wichtig: Der Deckel gilt nur für das zertifizierte Standardprodukt — nicht für alle Depotangebote.
+                    Wer selbst günstige ETFs auswählt, liegt ohnehin deutlich unter 1 Prozent.
                   </p>
                 </div>
               </AnimatedSection>
@@ -255,10 +304,13 @@ const BlogKoalitionseinigung = () => {
                 <SectionH2 id="selbststaendige">Selbstständige erstmals förderberechtigt</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Das war die größte Überraschung der Einigung: Der ursprüngliche Entwurf schloss Selbstständige ohne Rentenversicherungspflicht vollständig aus.
+                    Das war die größte Überraschung der Einigung: Der ursprüngliche Entwurf schloss Selbstständige ohne
+                    Rentenversicherungspflicht vollständig aus.
                   </p>
                   <p>
-                    Die Koalition hat diese Einschränkung gestrichen. Alle Selbstständigen sollen künftig ein Altersvorsorgedepot eröffnen und die staatliche Förderung nutzen können — Freiberufler, Unternehmer und Künstler eingeschlossen.
+                    Die Koalition hat diese Einschränkung gestrichen. Alle Selbstständigen sollen künftig ein
+                    Altersvorsorgedepot eröffnen und die staatliche Förderung nutzen können — Freiberufler, Unternehmer
+                    und Künstler eingeschlossen.
                   </p>
                 </div>
               </AnimatedSection>
@@ -268,7 +320,9 @@ const BlogKoalitionseinigung = () => {
                 <SectionH2 id="standarddepot">Öffentliches Standarddepot</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Ein öffentlicher Träger wird ein eigenes Standarddepot anbieten — transparent und kostengünstig. Das Produkt soll denselben Kriterien entsprechen wie private Angebote und auch als Brücke zur geplanten Frühstart-Rente für Kinder dienen.
+                    Ein öffentlicher Träger wird ein eigenes Standarddepot anbieten — transparent und kostengünstig. Das
+                    Produkt soll denselben Kriterien entsprechen wie private Angebote und auch als Brücke zur geplanten
+                    Frühstart-Rente für Kinder dienen.
                   </p>
                 </div>
               </AnimatedSection>
@@ -277,9 +331,7 @@ const BlogKoalitionseinigung = () => {
               <AnimatedSection delay={0.15}>
                 <SectionH2 id="offen">Was jetzt noch offen ist</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    Die Abstimmung im Bundestag findet am 26. März 2026 statt. Danach folgt noch der Bundesrat.
-                  </p>
+                  <p>Die Abstimmung im Bundestag findet am 26. März 2026 statt. Danach folgt noch der Bundesrat.</p>
                   <p>Wir werden nach dem offiziellen Beschluss:</p>
                   <ul className="list-disc pl-6 space-y-1">
                     <li>Die genaue neue Förderberechnung veröffentlichen</li>
@@ -293,7 +345,9 @@ const BlogKoalitionseinigung = () => {
               <AnimatedSection delay={0.15}>
                 <SectionH2 id="fazit">Fazit</SectionH2>
                 <p className="text-muted-foreground">
-                  Die Koalitionseinigung ist eine gute Nachricht für alle, die langfristig für das Alter vorsorgen wollen. Höhere Zulagen, niedrigerer Kostendeckel, breiterer Zugang — das Depot wird attraktiver als ursprünglich geplant. Der Start bleibt: 1. Januar 2027.
+                  Die Koalitionseinigung ist eine gute Nachricht für alle, die langfristig für das Alter vorsorgen
+                  wollen. Höhere Zulagen, niedrigerer Kostendeckel, breiterer Zugang — das Depot wird attraktiver als
+                  ursprünglich geplant. Der Start bleibt: 1. Januar 2027.
                 </p>
               </AnimatedSection>
 
@@ -312,7 +366,9 @@ const BlogKoalitionseinigung = () => {
 
               {/* ── Disclaimer ── */}
               <p className="mt-12 text-xs text-muted-foreground/60 leading-relaxed">
-                Dieser Artikel basiert auf der Koalitionseinigung vom 24. März 2026. Das Gesetz ist noch nicht formell beschlossen. Alle Angaben ohne Gewähr und vorbehaltlich des endgültigen Gesetzesbeschlusses. Keine Anlageberatung.
+                Dieser Artikel basiert auf der Koalitionseinigung vom 24. März 2026. Das Gesetz ist noch nicht formell
+                beschlossen. Alle Angaben ohne Gewähr und vorbehaltlich des endgültigen Gesetzesbeschlusses. Keine
+                Anlageberatung.
               </p>
             </article>
           </div>
