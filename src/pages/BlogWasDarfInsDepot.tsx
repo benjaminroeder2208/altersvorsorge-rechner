@@ -154,7 +154,7 @@ const BlogWasDarfInsDepot = () => {
               {/* Intro */}
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Das Altersvorsorgedepot klingt nach einem normalen Wertpapierdepot — und in gewisser Hinsicht ist es das auch. Aber nicht alles, was du in ein normales Depot kaufen kannst, ist im geförderten Altersvorsorgedepot erlaubt. Der Gesetzgeber hat klare Grenzen gezogen: <strong className="text-foreground">breit gestreute Fonds ja, Einzelaktien nein. ETFs ja, Kryptowährungen nein.</strong></p>
-                <p>Dieser Artikel erklärt genau, was erlaubt ist — und warum. Alles basiert auf § 1 Absatz 1b des Altersvorsorgeverträge-Zertifizierungsgesetzes (AltZertG) in der Fassung des aktuellen Gesetzentwurfs (Drucksache 21/4088).</p>
+                <p>Dieser Artikel erklärt genau, was erlaubt ist — und warum. Alles basiert auf § 1 Absatz 1b des Altersvorsorgeverträge-Zertifizierungsgesetzes (AltZertG) in der Fassung des beschlossenen Gesetzes (Drucksache 21/4996).</p>
               </div>
 
               <CtaBlock>Berechne jetzt, wie sich dein Altersvorsorgedepot entwickeln könnte.</CtaBlock>
