@@ -984,7 +984,7 @@ const AltersvorsorgedepotRechner = () => {
                 {/* Disclaimer */}
                 <div className="max-w-xl mx-auto space-y-2">
                   <p className="text-xs text-muted-foreground/60 leading-relaxed">
-                    Diese Simulation basiert auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge.
+                    Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
                     Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt.
                     Sie stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
                   </p>
