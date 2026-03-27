@@ -243,7 +243,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                   <strong className="text-foreground">Geplanter Start:</strong> 1. Januar 2027
                 </p>
                 <p>
-                  <strong className="text-foreground">Status:</strong> Gesetzentwurf — Änderungen im Gesetzgebungsverfahren sind noch möglich.
+                  <strong className="text-foreground">Status:</strong> Beschlossen. Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Start: 1. Januar 2027.
                 </p>
               </div>
 
