@@ -31,7 +31,7 @@ const RentenlueckenRechner = () => {
     const r = 0.07 / 12;
     const n = (67 - alter) * 12;
     const sparOhneFoerderung = n > 0 ? (kapitalbedarf * r) / (Math.pow(1 + r, n) - 1) : 0;
-    const sparMitFoerderung = n > 0 ? (kapitalbedarf * r) / ((Math.pow(1 + r, n) - 1) * 1.35) : 0;
+    const sparMitFoerderung = n > 0 ? (kapitalbedarf * r) / ((Math.pow(1 + r, n) - 1) * 1.40) : 0;
     const deckung = bedarfMonat > 0 ? (renteMonatNetto / bedarfMonat) * 100 : 100;
     const jahre = 67 - alter;
     const nettoquote = brutto > 0 ? Math.round((clampedNetto / brutto) * 100) : 0;
