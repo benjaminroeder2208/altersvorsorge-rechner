@@ -134,7 +134,7 @@ const RentenlueckenRechnerPage = () =>
 
             <div>
               <p className="not-italic font-medium text-muted-foreground mb-1">Förderberechnung</p>
-              <p>Der Vorteil durch das Altersvorsorgedepot wird vereinfacht mit einem pauschalen Förderbonus von 35 % auf den Eigenbeitrag dargestellt. Die tatsächliche Förderstruktur ist gestaffelt: 35 % Grundzulage auf Eigenbeiträge bis 1.200 € pro Jahr, 20 % auf Beiträge zwischen 1.200 € und 1.800 € pro Jahr. Hinzu kommt eine Kinderzulage von bis zu 300 € pro Kind und Jahr sowie ein Steuervorteil durch den Sonderausgabenabzug, dessen Höhe vom individuellen Grenzsteuersatz abhängt. Der tatsächliche Fördervorteil kann je nach persönlicher Situation höher oder niedriger ausfallen als dargestellt.</p>
+              <p>Der Vorteil durch das Altersvorsorgedepot wird vereinfacht mit einem pauschalen Förderbonus von 40 % auf den Eigenbeitrag dargestellt. Die tatsächliche Förderstruktur gemäß § 84 EStG (beschlossen 27.03.2026) ist zweistufig: 50 % Grundzulage auf Eigenbeiträge bis 360 € pro Jahr (max. 180 €) + 25 % auf Beiträge zwischen 360 € und 1.800 € pro Jahr (max. 360 €) = max. 540 €/Jahr. Hinzu kommt eine Kinderzulage von bis zu 300 € pro Kind und Jahr (100 % der Eigenbeiträge, voll ab 25 €/Monat) sowie ein Steuervorteil durch den Sonderausgabenabzug. Der tatsächliche Fördervorteil kann je nach persönlicher Situation höher oder niedriger ausfallen.</p>
             </div>
 
             <div>
