@@ -6,9 +6,9 @@ const HubPage = () => (
     title="Altersvorsorgedepot einfach erklärt"
     breadcrumbLabel="Überblick"
     path="/altersvorsorgedepot"
-    description="Was ist das Altersvorsorgedepot? Hier erfahren Sie, wie das geplante Modell funktioniert, wie die Förderung gedacht ist und welche Auszahlungsoptionen vorgesehen sind."
+    description="Was ist das Altersvorsorgedepot? Hier erfahren Sie, wie das beschlossene Modell funktioniert, wie die Förderung gedacht ist und welche Auszahlungsoptionen vorgesehen sind."
     ogTitle="Altersvorsorgedepot einfach erklärt"
-    ogDescription="Das geplante Altersvorsorgedepot verständlich erklärt – von Förderung bis Auszahlung."
+    ogDescription="Das beschlossene Altersvorsorgedepot verständlich erklärt – von Förderung bis Auszahlung."
     relatedLinks={[
       { to: "/blog/altersvorsorgedepot-2027", label: "Altersvorsorgedepot 2027: Alles was du wissen musst" },
       { to: "/altersvorsorgedepot-foerderung", label: "Wie hoch ist die staatliche Förderung?" },
