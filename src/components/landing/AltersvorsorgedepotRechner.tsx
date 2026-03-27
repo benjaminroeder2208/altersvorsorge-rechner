@@ -992,7 +992,7 @@ const AltersvorsorgedepotRechner = () => {
                     Kapitalanlagen bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
                   </p>
                   <InfoText className="max-w-xs mx-auto">
-                    Die genaue Ausgestaltung hängt vom finalen Gesetz ab.
+                    Angaben basieren auf dem beschlossenen Gesetz vom 27. März 2026.
                   </InfoText>
                 </div>
 
