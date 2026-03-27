@@ -203,7 +203,7 @@ const BlogSelbststaendige = () => {
               <p className="text-base leading-relaxed text-muted-foreground">Viele Selbstständige setzen auf Immobilien als Altersvorsorge — selbstgenutzt oder als Renditeobjekt. Das kann sinnvoll sein, hat aber Klumpenrisiken (zu viel Vermögen in einer Anlage) und hohe Transaktionskosten.</p>
 
               <SectionH3>5. Altersvorsorgedepot ab 2027</SectionH3>
-              <p className="text-base leading-relaxed text-muted-foreground">Das Altersvorsorgedepot bietet staatliche Förderung (Zulagen + Sonderausgabenabzug) — allerdings nur für Pflichtversicherte und freiwillig Versicherte in der gesetzlichen Rentenversicherung. Selbstständige ohne GRV-Mitgliedschaft können das Depot als ungeförderten Sparvertrag nutzen, erhalten aber keine Zulagen. Für die meisten Selbstständigen ist daher Rürup steuerlich attraktiver.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Das Altersvorsorgedepot bietet staatliche Förderung (Zulagen + Sonderausgabenabzug) — und Selbstständige sind seit dem Bundestagsbeschluss voll förderberechtigt. Die maximale Grundzulage beträgt 540 €/Jahr. Kombiniert mit Rürup und ETF-Sparplan ergibt sich eine starke Vorsorgestrategie.</p>
 
               {/* AVD für Selbstständige */}
               <SectionH2 id="avd-bedeutung">Was das Altersvorsorgedepot für Selbstständige bedeutet</SectionH2>
