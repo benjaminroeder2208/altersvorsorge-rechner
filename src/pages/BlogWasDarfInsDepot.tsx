@@ -48,7 +48,7 @@ const jsonLd = [
   {
     "@type": "Article",
     headline: "Was darf ins Altersvorsorgedepot? Die erlaubten Anlageformen im Überblick",
-    description: "Welche ETFs, Fonds und Anleihen sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut Gesetzentwurf § 1 Abs. 1b AltZertG einfach erklärt.",
+    description: "Welche ETFs, Fonds und Anleihen sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut beschlossenem Gesetz § 1 Abs. 1b AltZertG einfach erklärt.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-22",
     dateModified: "2026-03-22",
