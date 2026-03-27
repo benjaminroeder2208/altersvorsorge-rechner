@@ -50,7 +50,7 @@ const tocItems = [
 const faqItems = [
   {
     q: "Ist das Gesetz schon beschlossen?",
-    a: "Nein. Stand heute liegt ein Regierungsentwurf vor, der den Gesetzgebungsprozess noch durchläuft. Der geplante Start ist der 1. Januar 2027. Änderungen einzelner Details sind möglich.",
+    a: "Ja. Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 beschlossen. Das Altersvorsorgedepot startet am 1. Januar 2027.",
   },
   {
     q: "Was passiert, wenn der Markt fällt?",
