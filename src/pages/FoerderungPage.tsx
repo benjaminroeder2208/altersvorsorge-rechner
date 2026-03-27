@@ -25,20 +25,24 @@ const FoerderungPage = () => (
     <section>
       <h2 className="text-xl font-bold mb-3">Grundzulage</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Die Grundzulage beträgt laut aktuellem Entwurf 30 % auf Eigenbeiträge bis 1.200 € pro Jahr und 20 % auf weitere 600 €.
+        Die Grundzulage ist zweistufig aufgebaut (§ 84 EStG, beschlossen 27.03.2026):
       </p>
       <ul className="mt-3 space-y-2">
         <li className="flex items-start gap-2 text-sm text-muted-foreground">
           <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-          Mindestbeitrag: 120 € pro Jahr
+          50 % auf Eigenbeiträge bis 360 €/Jahr → max. 180 €
         </li>
         <li className="flex items-start gap-2 text-sm text-muted-foreground">
           <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-          Maximale Grundzulage: bis zu 480 € pro Jahr
+          25 % auf Eigenbeiträge von 360 € bis 1.800 €/Jahr → max. 360 €
         </li>
         <li className="flex items-start gap-2 text-sm text-muted-foreground">
           <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-          Ab 2029 steigt die Grundzulage auf bis zu 540 € pro Jahr
+          Maximale Grundzulage: 540 €/Jahr — bereits ab 2027
+        </li>
+        <li className="flex items-start gap-2 text-sm text-muted-foreground">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+          Mindestbeitrag: 120 €/Jahr
         </li>
       </ul>
     </section>
