@@ -76,7 +76,7 @@ Deno.serve(async (req) => {
     const footerContent = unsub_token
       ? footerHtml(unsub_token)
       : `<hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
-         <p style="font-size:10px;color:#D1D5DB;text-align:center;">Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Keine Anlageberatung.</p>`;
+         <p style="font-size:10px;color:#D1D5DB;text-align:center;">Angaben basieren auf dem Altersvorsorgereformgesetz (27.03.2026). Keine Anlageberatung.</p>`;
 
     const htmlBody = `
 <!DOCTYPE html>
