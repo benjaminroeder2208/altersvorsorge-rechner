@@ -1,64 +1,82 @@
 /**
- * Zentrale Quelle aller Förderungs-Kennzahlen für das Altersvorsorgedepot.
- * Quelle: Gesetzentwurf Drucksache 21/4088, § 84 und § 85
- * Stand: 11.02.2026 — bei Gesetzesänderungen NUR HIER anpassen.
+ * Zentrale Quelle aller Förderungs-Kennzahlen
+ * für das Altersvorsorgedepot.
+ * Quelle: Beschlussempfehlung Drucksache 21/4996,
+ * § 84 und § 85 EStG (neue Fassung)
+ * Stand: 27.03.2026 — beschlossene Fassung
+ * Bei Gesetzesänderungen NUR HIER anpassen.
  */
 
-// ── Grundzulage ──────────────────────────────────────────────────────────────
-export const GRUNDZULAGE_SATZ_AB_2027 = 0.30;        // 30 % ab 01.01.2027
-export const GRUNDZULAGE_SATZ_AB_2029 = 0.35;        // 35 % ab 01.01.2029
-export const GRUNDZULAGE_BASIS_MAX = 1200;            // auf max. 1.200 € Eigenbeitrag
+// ── Grundzulage ──────────────────────────────
+// § 84 neue Fassung (Beschlussempfehlung)
+// Tranche 1: 50% auf Eigenbeiträge bis 360€/Jahr
+// Tranche 2: 25% auf Eigenbeiträge 360-1.800€/Jahr
+export const GRUNDZULAGE_SATZ_T1 = 0.50;
+export const GRUNDZULAGE_T1_MAX = 360;       // €/Jahr
+export const GRUNDZULAGE_SATZ_T2 = 0.25;
+export const GRUNDZULAGE_T2_MIN = 360;       // €/Jahr
+export const GRUNDZULAGE_T2_MAX = 1800;      // €/Jahr
 
-// Erhöhter Fördersatz für Kleinsparer (≤ 100 €/Monat Eigenbeitrag)
-export const GRUNDZULAGE_KLEINSPAR_SATZ_AB_2027 = 0.35;
-export const GRUNDZULAGE_KLEINSPAR_SATZ_AB_2029 = 0.40;
+// Max. Grundzulage:
+// 360 × 50% + 1440 × 25% = 180 + 360 = 540 €
+export const MAX_GRUNDZULAGE = 540;
 
-// ── Zusatzzulage (zweite Tranche) ────────────────────────────────────────────
-export const ZUSATZZULAGE_SATZ = 0.20;               // 20 % auf 2. Tranche
-export const ZUSATZZULAGE_BASIS_MIN = 1200;           // ab 1.200 € Eigenbeitrag
-export const ZUSATZZULAGE_BASIS_MAX = 1800;           // bis 1.800 € Eigenbeitrag
-// → max. Zusatzzulage: (1800 - 1200) * 0.20 = 120 €
+// ── Kinderzulage ─────────────────────────────
+// § 85 neue Fassung:
+// 100% der Eigenbeiträge bis 1.800€/Jahr,
+// max. 300€ pro Kind
+// Volle 300€ bereits ab 300€/Jahr = 25€/Monat
+export const KINDERZULAGE_SATZ = 1.00;
+export const KINDERZULAGE_BASIS_MAX = 1800;  // €/Jahr
+export const KINDERZULAGE_PRO_KIND = 300;    // € max.
 
-// ── Maximale Grundzulage pro Jahr ────────────────────────────────────────────
-export const MAX_GRUNDZULAGE_AB_2027 =
-  GRUNDZULAGE_BASIS_MAX * GRUNDZULAGE_SATZ_AB_2027 +
-  (ZUSATZZULAGE_BASIS_MAX - ZUSATZZULAGE_BASIS_MIN) * ZUSATZZULAGE_SATZ;
-// = 360 + 120 = 480 €
+// ── Berufseinsteiger-Bonus ───────────────────
+// § 84 Satz 2: einmalig +200€ für unter 25-J.
+export const BERUFSEINSTEIGER_BONUS = 200;
+export const BERUFSEINSTEIGER_ALTERSGRENZE = 25;
 
-export const MAX_GRUNDZULAGE_AB_2029 =
-  GRUNDZULAGE_BASIS_MAX * GRUNDZULAGE_SATZ_AB_2029 +
-  (ZUSATZZULAGE_BASIS_MAX - ZUSATZZULAGE_BASIS_MIN) * ZUSATZZULAGE_SATZ;
-// = 420 + 120 = 540 €
+// ── Mindesteigenbeitrag ──────────────────────
+// § 86: 120€/Jahr Voraussetzung für Förderung
+export const MINDESTEIGENBEITRAG = 120;
 
-// ── Kinderzulage ─────────────────────────────────────────────────────────────
-export const KINDERZULAGE_PRO_KIND = 300;             // 300 € je Kind/Jahr
-export const KINDERZULAGE_MINDESTEIGENBEITRAG = 1200; // ab 1.200 € Eigenbeitrag voll
+// ── Maximaler geförderter Eigenbeitrag ───────
+export const MAX_EIGENANTEIL_GEFOERDERT = 1800;
 
-// ── Berufseinsteiger-Bonus ────────────────────────────────────────────────────
-export const BERUFSEINSTEIGER_BONUS = 200;        // 200 € einmalig (§ 84 Satz 2 EStG)
-export const BERUFSEINSTEIGER_ALTERSGRENZE = 25;  // unter 25 zu Beginn des Beitragsjahres
-
-// ── Mindesteigenbeitrag ───────────────────────────────────────────────────────
-export const MINDESTEIGENBEITRAG = 120;               // 120 €/Jahr (§ 86)
-
-// ── Maximaler geförderter Eigenbeitrag ───────────────────────────────────────
-export const MAX_EIGENANTEIL_GEFOERDERT = 1800;       // 1.800 €/Jahr
-
-// ── Hilfsfunktionen ───────────────────────────────────────────────────────────
-export function getGrundzulageSatz(jahr: number): number {
-  return jahr >= 2029 ? GRUNDZULAGE_SATZ_AB_2029 : GRUNDZULAGE_SATZ_AB_2027;
-}
+// ── Hilfsfunktionen ──────────────────────────
 
 export function berechneGrundzulage(
-  eigenanteilJaehrlich: number,
-  jahr: number = 2027
+  eigenanteilJaehrlich: number
 ): number {
-  const satz = getGrundzulageSatz(jahr);
-  const tranche1 = Math.min(eigenanteilJaehrlich, GRUNDZULAGE_BASIS_MAX) * satz;
-  const tranche2 =
-    Math.max(0, Math.min(eigenanteilJaehrlich, ZUSATZZULAGE_BASIS_MAX) - ZUSATZZULAGE_BASIS_MIN) *
-    ZUSATZZULAGE_SATZ;
-  return tranche1 + tranche2;
+  if (eigenanteilJaehrlich < MINDESTEIGENBEITRAG) {
+    return 0;
+  }
+  const t1 =
+    Math.min(eigenanteilJaehrlich, GRUNDZULAGE_T1_MAX)
+    * GRUNDZULAGE_SATZ_T1;
+  const t2 =
+    Math.max(
+      0,
+      Math.min(eigenanteilJaehrlich, GRUNDZULAGE_T2_MAX)
+      - GRUNDZULAGE_T2_MIN
+    ) * GRUNDZULAGE_SATZ_T2;
+  return t1 + t2;
+}
+
+export function berechneKinderzulage(
+  eigenanteilJaehrlich: number,
+  anzahlKinder: number
+): number {
+  if (
+    eigenanteilJaehrlich < MINDESTEIGENBEITRAG
+    || anzahlKinder === 0
+  ) {
+    return 0;
+  }
+  const zulageProKind = Math.min(
+    eigenanteilJaehrlich * KINDERZULAGE_SATZ,
+    KINDERZULAGE_PRO_KIND
+  );
+  return zulageProKind * anzahlKinder;
 }
 
 export function berechneGesamtfoerderung(
@@ -67,7 +85,27 @@ export function berechneGesamtfoerderung(
   jahr: number = 2027
 ): number {
   return (
-    berechneGrundzulage(eigenanteilJaehrlich, jahr) +
-    anzahlKinder * KINDERZULAGE_PRO_KIND
+    berechneGrundzulage(eigenanteilJaehrlich) +
+    berechneKinderzulage(
+      eigenanteilJaehrlich,
+      anzahlKinder
+    )
   );
+}
+
+// Rückwärtskompatibilität — wird noch referenziert
+export const GRUNDZULAGE_SATZ_AB_2027 = 0.50;
+export const GRUNDZULAGE_SATZ_AB_2029 = 0.50;
+export const GRUNDZULAGE_BASIS_MAX = 360;
+export const ZUSATZZULAGE_SATZ = 0.25;
+export const ZUSATZZULAGE_BASIS_MIN = 360;
+export const ZUSATZZULAGE_BASIS_MAX = 1800;
+export const MAX_GRUNDZULAGE_AB_2027 = 540;
+export const MAX_GRUNDZULAGE_AB_2029 = 540;
+export const KINDERZULAGE_MINDESTEIGENBEITRAG = 300;
+
+export function getGrundzulageSatz(
+  jahr: number
+): number {
+  return GRUNDZULAGE_SATZ_T1;
 }
