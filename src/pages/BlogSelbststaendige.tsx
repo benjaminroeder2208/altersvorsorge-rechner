@@ -233,7 +233,7 @@ const BlogSelbststaendige = () => {
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Es gibt keine Einheitslösung — aber eine bewährte Grundstruktur:</p>
                 <p><strong className="text-foreground">Fundament: Mindestabsicherung sicherstellen</strong><br />Freiwillige gesetzliche Rentenversicherung oder Rürup prüfen — besonders für die Erwerbsminderungsabsicherung und steuerliche Optimierung in Jahren mit hohem Einkommen.</p>
-                <p><strong className="text-foreground">Wachstum: Kapitalmarkt nutzen</strong><br />ETF-Sparplan oder (ab 2027, als freiwillig GRV-Versicherter) Altersvorsorgedepot für den Aufbau von Vermögen mit langfristiger Perspektive.</p>
+                <p><strong className="text-foreground">Wachstum: Kapitalmarkt nutzen</strong><br />ETF-Sparplan oder (ab 2027) Altersvorsorgedepot für den Aufbau von Vermögen mit langfristiger Perspektive.</p>
                 <p><strong className="text-foreground">Flexibilität: Liquiditätspuffer halten</strong><br />Selbstständige brauchen mehr Liquiditätsreserven als Angestellte. Nicht alles in gebundene Produkte stecken — ein flexibler ETF-Sparplan als Puffer ist sinnvoll.</p>
               </div>
 
