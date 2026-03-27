@@ -58,7 +58,7 @@ const faqItems = [
   },
   {
     q: "Kann ich als Selbstständiger einzahlen?",
-    a: "Die genaue Regelung hängt vom finalen Gesetz ab. Grundsätzlich ist ein breiter Förderberechtigtenkreis geplant — die Details für Selbstständige ohne Rentenversicherungspflicht sind noch offen.",
+    a: "Ja — der Bundestag hat Selbstständige und Freiberufler ausdrücklich in den Förderkreis aufgenommen. Wer Einkünfte aus selbstständiger oder freiberuflicher Tätigkeit erzielt und eine Steuererklärung abgibt, ist förderberechtigt.",
   },
   {
     q: "Was passiert, wenn ich vor 65 an das Geld muss?",
@@ -191,7 +191,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                 <div className="flex items-center gap-3 text-sm text-muted-foreground mb-8">
                   <span>ca. 8 Min. Lesezeit</span>
                   <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                  <span>Stand: Gesetzentwurf 2025/2026</span>
+                  <span>Stand: beschlossen 27. März 2026</span>
                 </div>
               </AnimatedSection>
 
@@ -243,7 +243,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                   <strong className="text-foreground">Geplanter Start:</strong> 1. Januar 2027
                 </p>
                 <p>
-                  <strong className="text-foreground">Status:</strong> Gesetzentwurf — Änderungen im Gesetzgebungsverfahren sind noch möglich.
+                  <strong className="text-foreground">Status:</strong> Beschlossen. Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Start: 1. Januar 2027.
                 </p>
               </div>
 
@@ -251,7 +251,7 @@ const BlogAltersvorsorgedepot2027 = () => {
               <SectionH2 id="wer-kann">Wer kann das Altersvorsorgedepot nutzen?</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>
-                  Grundsätzlich richtet sich das Altersvorsorgedepot an alle, die in Deutschland rentenversicherungspflichtig beschäftigt sind — also den Großteil der Arbeitnehmerinnen und Arbeitnehmer. Auch Beamte und bestimmte Selbstständige sollen förderberechtigt sein, die genauen Regelungen hängen vom finalen Gesetz ab.
+                  Grundsätzlich richtet sich das Altersvorsorgedepot an alle, die in Deutschland rentenversicherungspflichtig beschäftigt sind — also den Großteil der Arbeitnehmerinnen und Arbeitnehmer. Auch Beamte und Selbstständige sind förderberechtigt — der Bundestag hat den Förderkreis ausdrücklich auf Personen mit Einkünften aus selbstständiger oder freiberuflicher Tätigkeit ausgeweitet.
                 </p>
                 <p>
                   Damit profitieren sowohl <strong className="text-foreground">Berufseinsteiger Mitte 20</strong>, die noch Jahrzehnte vor sich haben, als auch <strong className="text-foreground">Berufstätige zwischen 30 und 50</strong>, die ihre Altersvorsorge gezielt ausbauen wollen.
@@ -271,11 +271,10 @@ const BlogAltersvorsorgedepot2027 = () => {
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Der Staat zahlt dir einen direkten Zuschuss auf deine Einzahlungen:</p>
                 <ul className="list-disc pl-6 space-y-1">
-                   <li><strong className="text-foreground">30 %</strong> auf Eigenbeiträge bis <strong className="text-foreground">1.200 € pro Jahr</strong></li>
-                   <li><strong className="text-foreground">20 %</strong> auf Beiträge zwischen <strong className="text-foreground">1.200 € und 1.800 € pro Jahr</strong></li>
+                   <li><strong className="text-foreground">50 %</strong> auf Eigenbeiträge bis <strong className="text-foreground">360 € pro Jahr</strong></li>
+                   <li><strong className="text-foreground">25 %</strong> auf Beiträge zwischen <strong className="text-foreground">360 € und 1.800 € pro Jahr</strong></li>
                  </ul>
-                 <p>Das bedeutet: Wer den maximalen Eigenbeitrag von 1.800 € ausschöpft, bekommt bis zu <strong className="text-foreground">480 € Grundzulage</strong> vom Staat dazu.</p>
-                 <p>Ab 2029 steigt der Fördersatz auf 35 % — dann sind bis zu 540 € Grundzulage pro Jahr möglich.</p>
+                 <p>Das bedeutet: Wer den maximalen Eigenbeitrag von 1.800 € ausschöpft, bekommt bis zu <strong className="text-foreground">540 € Grundzulage</strong> — bereits ab 2027.</p>
               </div>
 
               <SectionH3>1b. Berufseinsteiger-Bonus</SectionH3>
@@ -286,7 +285,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                 auf die Grundzulage (§ 84 Satz 2 EStG). Der Bonus wird
                 automatisch gewährt und muss nicht beantragt werden.
                 Wer also mit 22 einsteigt, bekommt im ersten Jahr statt
-                bis zu 480 € bis zu 680 € Grundzulage.
+                bis zu 540 € bis zu 740 € Grundzulage.
               </p>
 
               <SectionH3>2. Kinderzulage</SectionH3>
@@ -317,8 +316,8 @@ const BlogAltersvorsorgedepot2027 = () => {
                       <TableCell className="text-right">1.800 €</TableCell>
                     </TableRow>
                     <TableRow>
-                       <TableCell>Grundzulage (30 % auf 1.200 € + 20 % auf 600 €)</TableCell>
-                       <TableCell className="text-right font-semibold">480 €</TableCell>
+                       <TableCell>Grundzulage (50 % auf 360 € + 25 % auf 1.440 €)</TableCell>
+                       <TableCell className="text-right font-semibold">540 €</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Steuervorteil (geschätzt, ~30 % Grenzsteuersatz)</TableCell>
@@ -326,7 +325,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Gesamtförderung</TableCell>
-                      <TableCell className="text-right font-bold text-primary">~1.010 €</TableCell>
+                      <TableCell className="text-right font-bold text-primary">~1.070 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
