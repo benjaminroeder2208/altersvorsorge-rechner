@@ -285,7 +285,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                 auf die Grundzulage (§ 84 Satz 2 EStG). Der Bonus wird
                 automatisch gewährt und muss nicht beantragt werden.
                 Wer also mit 22 einsteigt, bekommt im ersten Jahr statt
-                bis zu 480 € bis zu 680 € Grundzulage.
+                bis zu 540 € bis zu 740 € Grundzulage.
               </p>
 
               <SectionH3>2. Kinderzulage</SectionH3>
