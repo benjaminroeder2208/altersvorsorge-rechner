@@ -32,7 +32,7 @@ const homepageJsonLd = [
     "@type": "WebPage",
     name: "Altersvorsorgedepot Rechner",
     url: "https://altersvorsorge-rechner.com/",
-    description: "Rechner zur Simulation eines möglichen Altersvorsorgedepots auf Basis des aktuellen Gesetzentwurfs.",
+    description: "Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes.",
   },
   {
     "@type": "SoftwareApplication",
