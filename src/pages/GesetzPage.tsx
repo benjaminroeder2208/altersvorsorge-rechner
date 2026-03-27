@@ -3,12 +3,12 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const GesetzPage = () => (
   <ContentPageLayout
-    title="Gesetzentwurf zum Altersvorsorgedepot erklärt"
-    breadcrumbLabel="Gesetzentwurf"
+    title="Altersvorsorgereformgesetz: Was beschlossen wurde"
+    breadcrumbLabel="Das Gesetz"
     path="/altersvorsorgedepot-gesetz"
-    description="Wie ist der aktuelle Stand beim Altersvorsorgedepot? Hier finden Sie eine verständliche Einordnung des Gesetzentwurfs und der geplanten Reform."
-    ogTitle="Gesetzentwurf zum Altersvorsorgedepot erklärt"
-    ogDescription="Der aktuelle Stand der Reform der privaten Altersvorsorge verständlich zusammengefasst."
+    description="Wie ist der aktuelle Stand beim Altersvorsorgedepot? Das Altersvorsorgereformgesetz wurde am 27. März 2026 vom Bundestag beschlossen. Alle wichtigen Punkte im Überblick."
+    ogTitle="Altersvorsorgereformgesetz: Was beschlossen wurde"
+    ogDescription="Das Altersvorsorgereformgesetz wurde am 27. März 2026 beschlossen. Alle wichtigen Punkte verständlich zusammengefasst."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot einfach erklärt" },
       { to: "/blog/altersvorsorgedepot-2027", label: "Ratgeber: Altersvorsorgedepot 2027" },
@@ -16,42 +16,38 @@ const GesetzPage = () => (
     ]}
   >
     <p className="text-muted-foreground leading-relaxed">
-      Der Gesetzentwurf zur Reform der privaten Altersvorsorge sieht die Einführung des{" "}
+      Das Altersvorsorgereformgesetz wurde am 27. März 2026 vom Deutschen Bundestag beschlossen und führt das{" "}
       <Link to="/altersvorsorgedepot" className="text-primary font-medium hover:underline">
-        Altersvorsorgedepots
+        Altersvorsorgedepot
       </Link>{" "}
-      als neues Vorsorgemodell vor.
+      als neues staatlich gefördertes Vorsorgemodell ein.
     </p>
 
     <section>
-      <h2 className="text-xl font-bold mb-3">Aktueller Stand der Reform</h2>
+      <h2 className="text-xl font-bold mb-3">Aktueller Stand</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Der Entwurf befindet sich im parlamentarischen Verfahren. Die wesentlichen Eckpunkte stehen fest, Details können sich im Verlauf des Gesetzgebungsprozesses noch ändern.
+        Das Gesetz ist beschlossen. Der Bundestag hat am 27. März 2026 mit den Stimmen der Koalitionsfraktionen CDU/CSU und SPD das Altersvorsorgereformgesetz verabschiedet. Start: 1. Januar 2027.
       </p>
     </section>
 
     <section>
-      <h2 className="text-xl font-bold mb-3">Zeitplan der Einführung</h2>
+      <h2 className="text-xl font-bold mb-3">Zeitplan</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Das Gesetz soll voraussichtlich ab 2027 (geplant) in Kraft treten. Der genaue Zeitpunkt hängt vom parlamentarischen Verfahren ab. Angaben basieren auf dem aktuellen Gesetzentwurf. Änderungen möglich.
+        Das Gesetz tritt zum 1. Januar 2027 in Kraft. Ab diesem Datum können Bürgerinnen und Bürger ein Altersvorsorgedepot eröffnen und staatliche Förderung beantragen.
       </p>
     </section>
 
     <section>
-      <h2 className="text-xl font-bold mb-3">Politische Diskussion</h2>
+      <h2 className="text-xl font-bold mb-3">Was beschlossen wurde</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Im Mittelpunkt der Debatte stehen der Wegfall der Beitragsgarantie, die Höhe der{" "}
-        <Link to="/altersvorsorgedepot-foerderung" className="text-primary font-medium hover:underline">
-          Förderung
-        </Link>{" "}
-        und die Frage, ob das Modell bestehende Riester-Verträge ablösen soll.
+        Der Bundestag hat gegenüber dem Referentenentwurf wichtige Verbesserungen beschlossen: höhere Grundzulage (540 € statt 480 €), vereinfachte Kinderzulage (voll ab 25 €/Monat statt 100 €/Monat) und Einbeziehung von Selbstständigen in den Förderkreis.
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
         Nutzen Sie den{" "}
         <Link to="/" className="text-primary font-medium hover:underline">
           Altersvorsorgedepot Rechner
         </Link>{" "}
-        um die mögliche Entwicklung auf Basis des aktuellen Entwurfs zu simulieren.
+        um die mögliche Entwicklung auf Basis des beschlossenen Gesetzes zu simulieren.
       </p>
     </section>
   </ContentPageLayout>
