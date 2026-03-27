@@ -16,7 +16,7 @@ const FoerderungPage = () => (
     ]}
   >
     <p className="text-muted-foreground leading-relaxed">
-      Die staatliche Förderung ist ein zentraler Baustein des geplanten{" "}
+      Die staatliche Förderung ist ein zentraler Baustein des beschlossenen{" "}
       <Link to="/altersvorsorgedepot" className="text-primary font-medium hover:underline">
         Altersvorsorgedepots
       </Link>. Sie setzt sich aus drei Komponenten zusammen.
