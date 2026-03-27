@@ -20,9 +20,9 @@ const cards = [
     value: `${MAX_GRUNDZULAGE_AB_2027} €`,
     valueColor: "#F59E0B",
     accentColor: "#F59E0B",
-    label: "Staatliche Förderung pro Jahr",
+    label: "Maximale staatliche Förderung pro Jahr",
     sub: `durch das beschlossene Altersvorsorgedepot ab 2027 (50 % + 25 % Grundzulage)`,
-  },
+  }
 ];
 
 const KeyFiguresSection = () => (
