@@ -18,6 +18,13 @@ import {
 
 const articles = [
   {
+    slug: "/blog/altersvorsorgedepot-beschlossen",
+    title: "Altersvorsorgedepot beschlossen: Was jetzt gilt",
+    description: "Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Die neuen Förderregeln, was sich geändert hat und was das für dich bedeutet.",
+    readingTime: "5 Min.",
+    tag: "Altersvorsorgedepot",
+  },
+  {
     slug: "/blog/altersvorsorgedepot-koalitionseinigung",
     title: "Koalitionseinigung: Das Altersvorsorgedepot wird besser als geplant",
     description: "CDU/CSU und SPD einigen sich auf höhere Zulagen, niedrigeren Kostendeckel und Einbeziehung von Selbstständigen. Alle bestätigten Änderungen im Überblick.",

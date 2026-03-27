@@ -84,6 +84,7 @@ const App = () => (
             <Route path="/blog/altersvorsorge-portfolio" element={<BlogPortfolio />} />
             <Route path="/blog/was-darf-ins-altersvorsorgedepot" element={<BlogWasDarfInsDepot />} />
             <Route path="/blog/altersvorsorgedepot-koalitionseinigung" element={<BlogKoalitionseinigung />} />
+            <Route path="/blog/altersvorsorgedepot-beschlossen" element={<BlogBeschlossen />} />
             <Route path="/unsubscribe" element={<UnsubscribePage />} />
             <Route path="/confirm" element={<ConfirmPage />} />
             <Route path="/embed" element={<EmbedPage />} />
