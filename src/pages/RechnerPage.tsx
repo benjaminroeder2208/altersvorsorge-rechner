@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 const topicLinks = [
-  { to: "/altersvorsorgedepot", label: "Was ist das Altersvorsorgedepot?", desc: "Grundlagen und Funktionsweise des geplanten Altersvorsorgedepots." },
+  { to: "/altersvorsorgedepot", label: "Was ist das Altersvorsorgedepot?", desc: "Grundlagen und Funktionsweise des beschlossenen Altersvorsorgedepots." },
   { to: "/altersvorsorgedepot-foerderung", label: "Staatliche Förderung", desc: "Grundzulage, Kinderzulage und Steuervorteile im Überblick." },
   { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung im Alter", desc: "Wie die Entnahme im Ruhestand funktionieren soll." },
   { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "Vergleich mit ETF-Sparplan", desc: "Förderung vs. Flexibilität — was passt besser?" },
@@ -32,7 +32,7 @@ const homepageJsonLd = [
     "@type": "WebPage",
     name: "Altersvorsorgedepot Rechner",
     url: "https://altersvorsorge-rechner.com/",
-    description: "Rechner zur Simulation eines möglichen Altersvorsorgedepots auf Basis des aktuellen Gesetzentwurfs.",
+    description: "Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes.",
   },
   {
     "@type": "SoftwareApplication",
@@ -40,7 +40,7 @@ const homepageJsonLd = [
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
     url: "https://altersvorsorge-rechner.com/",
-    description: "Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des aktuellen Gesetzentwurfs.",
+    description: "Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes.",
     featureList: [
       "Simulation monatlicher Beiträge",
       "Berücksichtigung staatlicher Förderung",
@@ -61,7 +61,7 @@ const homepageJsonLd = [
         name: "Was ist das Altersvorsorgedepot?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Das Altersvorsorgedepot ist ein im aktuellen Gesetzentwurf vorgesehenes Modell für die private Altersvorsorge. Es ermöglicht renditeorientierte Investitionen in Fonds oder ETFs — ohne die bisher bei Riester-Produkten übliche Beitragsgarantie. Die Beiträge werden staatlich gefördert.",
+          text: "Das Altersvorsorgedepot ist ein vom Bundestag am 27. März 2026 beschlossenes Modell für die private Altersvorsorge. Es ermöglicht renditeorientierte Investitionen in Fonds oder ETFs — ohne die bisher bei Riester-Produkten übliche Beitragsgarantie. Die Beiträge werden staatlich gefördert.",
         },
       },
       {
@@ -69,7 +69,7 @@ const homepageJsonLd = [
         name: "Ist das Gesetz bereits beschlossen?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Nein. Der Gesetzentwurf befindet sich noch im parlamentarischen Verfahren. Alle auf dieser Seite dargestellten Informationen basieren auf dem aktuellen Entwurf und können sich im Laufe des Gesetzgebungsprozesses ändern.",
+          text: "Ja. Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 beschlossen. Das Altersvorsorgedepot startet am 1. Januar 2027.",
         },
       },
       {
@@ -85,7 +85,7 @@ const homepageJsonLd = [
         name: "Wer kann geförderte Beiträge leisten?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Die genauen Fördervoraussetzungen werden im finalen Gesetz festgelegt. Der aktuelle Entwurf sieht eine breite Zugänglichkeit vor, ähnlich dem bisherigen Riester-System. Grundsätzlich sollen rentenversicherungspflichtig Beschäftigte und weitere Personengruppen förderberechtigt sein.",
+          text: "Der Förderkreis umfasst rentenversicherungspflichtig Beschäftigte, Beamte sowie Selbstständige und Freiberufler. Der Bundestag hat den Förderkreis ausdrücklich auf Personen mit Einkünften aus selbstständiger oder freiberuflicher Tätigkeit ausgeweitet.",
         },
       },
       {
@@ -93,7 +93,7 @@ const homepageJsonLd = [
         name: "Wie hoch ist die maximale Förderung?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Die Grundzulage beträgt im Entwurf 30 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen 1.200 € und 1.800 € — maximal 480 € pro Jahr (ab 2029: 35 %, dann max. 540 €). Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.",
+          text: "Die Grundzulage beträgt 50 % auf Eigenbeiträge bis 360 € und 25 % auf Beiträge zwischen 360 € und 1.800 € — maximal 540 € pro Jahr, bereits ab 2027. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.",
         },
       },
       {
@@ -121,10 +121,10 @@ const RechnerPage = () => (
   <>
     <PageHead
       title="Altersvorsorgedepot Rechner – Altersvorsorge einfach berechnen"
-      description="Mit dem Altersvorsorgedepot Rechner simulieren Sie, wie sich monatliche Beiträge, staatliche Förderung und Rendite langfristig entwickeln könnten – auf Basis des aktuellen Gesetzentwurfs."
+      description="Mit dem Altersvorsorgedepot Rechner simulieren Sie, wie sich monatliche Beiträge, staatliche Förderung und Rendite langfristig entwickeln könnten – auf Basis des beschlossenen Altersvorsorgereformgesetzes."
       path="/"
       ogTitle="Altersvorsorgedepot Rechner – Altersvorsorge einfach berechnen"
-      ogDescription="Interaktiver Rechner zur Simulation eines möglichen Altersvorsorgedepots auf Basis des aktuellen Gesetzentwurfs."
+      ogDescription="Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes."
       jsonLd={homepageJsonLd}
     />
     <Navbar />
@@ -197,7 +197,7 @@ const RechnerPage = () => (
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-10">
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Mehr zum Altersvorsorgedepot</h2>
-            <p className="text-muted-foreground mt-2">Vertiefen Sie Ihr Wissen rund um das geplante Altersvorsorgedepot.</p>
+            <p className="text-muted-foreground mt-2">Vertiefen Sie Ihr Wissen rund um das beschlossene Altersvorsorgedepot.</p>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>

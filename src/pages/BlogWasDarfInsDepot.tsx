@@ -48,7 +48,7 @@ const jsonLd = [
   {
     "@type": "Article",
     headline: "Was darf ins Altersvorsorgedepot? Die erlaubten Anlageformen im Überblick",
-    description: "Welche ETFs, Fonds und Anleihen sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut Gesetzentwurf § 1 Abs. 1b AltZertG einfach erklärt.",
+    description: "Welche ETFs, Fonds und Anleihen sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut beschlossenem Gesetz § 1 Abs. 1b AltZertG einfach erklärt.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-22",
     dateModified: "2026-03-22",
@@ -99,7 +99,7 @@ const BlogWasDarfInsDepot = () => {
     <>
       <PageHead
         title="Was darf ins Altersvorsorgedepot? ETFs, Fonds & Co. erklärt"
-        description="Welche ETFs, Fonds und Anleihen sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut Gesetzentwurf § 1 Abs. 1b AltZertG einfach erklärt."
+        description="Welche ETFs, Fonds und Anleihen sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut beschlossenem Gesetz § 1 Abs. 1b AltZertG einfach erklärt."
         path={PATH}
         jsonLd={jsonLd}
       />
@@ -135,7 +135,7 @@ const BlogWasDarfInsDepot = () => {
                 <div className="flex items-center gap-3 text-sm text-muted-foreground mb-8">
                   <span>ca. 6 Min. Lesezeit</span>
                   <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                  <span>Stand: Gesetzentwurf 2025/2026</span>
+                  <span>Stand: beschlossen 27. März 2026</span>
                 </div>
               </AnimatedSection>
 
@@ -154,7 +154,7 @@ const BlogWasDarfInsDepot = () => {
               {/* Intro */}
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Das Altersvorsorgedepot klingt nach einem normalen Wertpapierdepot — und in gewisser Hinsicht ist es das auch. Aber nicht alles, was du in ein normales Depot kaufen kannst, ist im geförderten Altersvorsorgedepot erlaubt. Der Gesetzgeber hat klare Grenzen gezogen: <strong className="text-foreground">breit gestreute Fonds ja, Einzelaktien nein. ETFs ja, Kryptowährungen nein.</strong></p>
-                <p>Dieser Artikel erklärt genau, was erlaubt ist — und warum. Alles basiert auf § 1 Absatz 1b des Altersvorsorgeverträge-Zertifizierungsgesetzes (AltZertG) in der Fassung des aktuellen Gesetzentwurfs (Drucksache 21/4088).</p>
+                <p>Dieser Artikel erklärt genau, was erlaubt ist — und warum. Alles basiert auf § 1 Absatz 1b des Altersvorsorgeverträge-Zertifizierungsgesetzes (AltZertG) in der Fassung des beschlossenen Gesetzes (Drucksache 21/4996).</p>
               </div>
 
               <CtaBlock>Berechne jetzt, wie sich dein Altersvorsorgedepot entwickeln könnte.</CtaBlock>
@@ -163,7 +163,7 @@ const BlogWasDarfInsDepot = () => {
               <SectionH2 id="warum-einschraenkungen">Warum gibt es überhaupt Einschränkungen?</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Das Altersvorsorgedepot ist staatlich gefördert — Grundzulage, Kinderzulage, Steuervorteil. Im Gegenzug stellt der Staat Anforderungen an die Produkte: Sie müssen für die Altersvorsorge geeignet sein, ein Mindestmaß an Streuung und Regulierung aufweisen und einem vertretbaren Risikorahmen entsprechen.</p>
-                <p>Der Gesetzentwurf nennt als Ziel ausdrücklich <strong className="text-foreground">„realwertorientierte Anlagestrategien"</strong>, die wegen der typischen langen Anlagezeiträume der Altersvorsorge besonders geeignet seien. Gleichzeitig soll das Depot kein Vehikel für riskante Spekulation oder Steuergestaltung werden.</p>
+                <p>Das beschlossene Gesetz nennt als Ziel ausdrücklich <strong className="text-foreground">„realwertorientierte Anlagestrategien"</strong>, die wegen der typischen langen Anlagezeiträume der Altersvorsorge besonders geeignet seien. Gleichzeitig soll das Depot kein Vehikel für riskante Spekulation oder Steuergestaltung werden.</p>
                 <p>Das Ergebnis ist eine klar definierte Liste erlaubter Anlageformen — alle mit einer gemeinsamen Einschränkung: Sie dürfen im europäischen Basisinformationsblatt (PRIIPs-KID) <strong className="text-foreground">höchstens in Risikoklasse 5 von 7</strong> eingestuft sein.</p>
               </div>
 
@@ -202,7 +202,7 @@ const BlogWasDarfInsDepot = () => {
               {/* Was ist nicht erlaubt */}
               <SectionH2 id="nicht-erlaubt">Was ist nicht erlaubt?</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Der Gesetzentwurf nennt keine explizite Verbotsliste — aber die Positiv-Liste ist abschließend. Was nicht darin vorkommt, ist nicht förderfähig. Konkret bedeutet das:</p>
+                <p>Das Gesetz nennt keine explizite Verbotsliste — aber die Positiv-Liste ist abschließend. Was nicht darin vorkommt, ist nicht förderfähig. Konkret bedeutet das:</p>
               </div>
               <div className="my-6 space-y-3">
                 <div className="flex gap-3 p-4 bg-destructive/5 border border-destructive/10 rounded-xl">
@@ -304,7 +304,7 @@ const BlogWasDarfInsDepot = () => {
               {/* Disclaimer */}
               <div className="mt-16 p-5 bg-secondary rounded-xl">
                 <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge (Drucksache 21/4088). Änderungen im Gesetzgebungsverfahren sind möglich. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
+                  Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026, Drucksache 21/4996). Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
                 </p>
               </div>
             </article>

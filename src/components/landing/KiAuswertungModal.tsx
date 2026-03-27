@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Loader2, Check, TrendingDown, PiggyBank, Target, Clock } from "lucide-react";
 
 
-import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, KINDERZULAGE_PRO_KIND } from "@/lib/foerderung";
+import { MAX_GRUNDZULAGE, KINDERZULAGE_PRO_KIND } from "@/lib/foerderung";
 import { supabase } from "@/integrations/supabase/client";
 
 const fmt = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
@@ -261,9 +261,9 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                   <ProductCard
                     emoji="🏛️"
                     title="Altersvorsorgedepot (2027)"
-                    description={`Bis zu ${MAX_GRUNDZULAGE_AB_2027} € Grundzulage + ${KINDERZULAGE_PRO_KIND} € je Kind/Jahr (ab 2029: ${MAX_GRUNDZULAGE_AB_2029} €)`}
-                    subtitle="Angaben basieren auf dem aktuellen Gesetzentwurf. Änderungen möglich."
-                    badge="Geplant ab 2027"
+                    description={`Bis zu ${MAX_GRUNDZULAGE} € Grundzulage + ${KINDERZULAGE_PRO_KIND} € je Kind/Jahr`}
+                    subtitle="Beschlossenes Gesetz, 27. März 2026."
+                    badge="Ab 2027"
                     badgeClass="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
                   />
                   <ProductCard

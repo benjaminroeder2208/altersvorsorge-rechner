@@ -36,7 +36,7 @@ const faqItems = [
   },
   {
     q: "Lohnt sich das Depot auch bei hohem Einkommen?",
-    a: "Ja, auch bei hohen Einkommen lohnt sich die Förderung. Der Steuervorteil durch den Sonderausgabenabzug fällt sogar höher aus. Allerdings ist die Förderquote relativ zum Gesamtvermögen bei sehr hohen Einkommen kleiner — wer 10.000 € im Monat verdient, für den sind 480 € Grundzulage weniger transformativ als für jemanden mit 3.000 € Monatsgehalt.",
+    a: "Ja, auch bei hohen Einkommen lohnt sich die Förderung. Der Steuervorteil durch den Sonderausgabenabzug fällt sogar höher aus. Allerdings ist die Förderquote relativ zum Gesamtvermögen bei sehr hohen Einkommen kleiner — wer 10.000 € im Monat verdient, für den sind 540 € Grundzulage weniger transformativ als für jemanden mit 3.000 € Monatsgehalt.",
   },
   {
     q: "Was passiert mit meinem bestehenden ETF-Sparplan, wenn das Depot kommt?",
@@ -204,7 +204,7 @@ const BlogVsEtf = () => {
                 <div className="flex items-center gap-3 text-sm text-muted-foreground mb-8">
                   <span>ca. 7 Min. Lesezeit</span>
                   <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                  <span>Stand: Gesetzentwurf 2025/2026</span>
+                  <span>Stand: beschlossen 27. März 2026</span>
                 </div>
               </AnimatedSection>
 
@@ -283,7 +283,7 @@ const BlogVsEtf = () => {
 
               <SectionH3>Kosten</SectionH3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Riester-Produkte waren berüchtigt für hohe Gebühren. Beim Altersvorsorgedepot ist laut aktuellem Gesetzentwurf ein <strong className="text-foreground">Effektivkostendeckel von maximal 1,5 % p.a.</strong> vorgesehen — dieser gilt allerdings nur für das Standardprodukt (Standarddepot Altersvorsorge, § 1 Abs. 1c AltZertG). Für andere Depot-Varianten ohne Standardprodukt-Zertifizierung gilt dieser Deckel nicht. Beim ETF-Sparplan hängen die Kosten vom Anbieter und den gewählten ETFs ab — günstige Neobroker bieten hier sehr attraktive Konditionen.
+                Riester-Produkte waren berüchtigt für hohe Gebühren. Beim Altersvorsorgedepot ist laut beschlossenem Gesetz ein <strong className="text-foreground">Effektivkostendeckel von maximal 1,0 % p.a.</strong> vorgesehen — dieser gilt allerdings nur für das Standardprodukt (Standarddepot Altersvorsorge, § 1 Abs. 1c AltZertG). Für andere Depot-Varianten ohne Standardprodukt-Zertifizierung gilt dieser Deckel nicht. Beim ETF-Sparplan hängen die Kosten vom Anbieter und den gewählten ETFs ab — günstige Neobroker bieten hier sehr attraktive Konditionen.
               </p>
 
               {/* Förderbonus */}
@@ -413,7 +413,7 @@ const BlogVsEtf = () => {
               {/* Disclaimer */}
               <div className="mt-16 p-5 bg-secondary rounded-xl">
                 <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge. Änderungen im Gesetzgebungsverfahren sind möglich. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
+                  Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026). Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
                 </p>
               </div>
             </article>

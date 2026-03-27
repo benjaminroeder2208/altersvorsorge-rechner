@@ -145,7 +145,7 @@ const EinbettenPage = () => (
           <div className="mb-16">
             <h2 className="text-lg font-bold mb-4">Nutzungsbedingungen</h2>
             <p className="text-xs text-muted-foreground/70 leading-relaxed max-w-2xl">
-              Die Einbettung ist kostenlos und für nicht-kommerzielle sowie kommerzielle Websites erlaubt. Bedingungen: (1) Der "Powered by altersvorsorge-rechner.com" Link im Rechner darf nicht entfernt werden. (2) Der Rechner darf nicht in einem iframe mit display:none oder Breite 0 eingebettet werden. (3) Wir behalten uns vor, die Einbettung bei missbräuchlicher Verwendung zu sperren. Der Rechner wird ohne Gewähr bereitgestellt. Alle Angaben basieren auf dem aktuellen Gesetzentwurf.
+              Die Einbettung ist kostenlos und für nicht-kommerzielle sowie kommerzielle Websites erlaubt. Bedingungen: (1) Der "Powered by altersvorsorge-rechner.com" Link im Rechner darf nicht entfernt werden. (2) Der Rechner darf nicht in einem iframe mit display:none oder Breite 0 eingebettet werden. (3) Wir behalten uns vor, die Einbettung bei missbräuchlicher Verwendung zu sperren. Der Rechner wird ohne Gewähr bereitgestellt. Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
             </p>
           </div>
         </AnimatedSection>

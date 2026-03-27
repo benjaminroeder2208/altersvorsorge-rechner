@@ -10,11 +10,11 @@ import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, GRUNDZULAGE_SATZ_AB_2
 const faqs = [
   {
     q: "Was ist das Altersvorsorgedepot?",
-    a: "Das Altersvorsorgedepot ist ein im aktuellen Gesetzentwurf vorgesehenes Modell für die private Altersvorsorge. Es ermöglicht renditeorientierte Investitionen in Fonds oder ETFs — ohne die bisher bei Riester-Produkten übliche Beitragsgarantie. Die Beiträge werden staatlich gefördert.",
+    a: "Das Altersvorsorgedepot ist ein vom Bundestag am 27. März 2026 beschlossenes Modell für die private Altersvorsorge. Es ermöglicht renditeorientierte Investitionen in Fonds oder ETFs — ohne die bisher bei Riester-Produkten übliche Beitragsgarantie. Die Beiträge werden staatlich gefördert.",
   },
   {
     q: "Ist das Gesetz bereits beschlossen?",
-    a: "Nein. Der Gesetzentwurf befindet sich noch im parlamentarischen Verfahren. Alle auf dieser Seite dargestellten Informationen basieren auf dem aktuellen Entwurf und können sich im Laufe des Gesetzgebungsprozesses ändern.",
+    a: "Ja. Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 beschlossen. Das Altersvorsorgedepot startet am 1. Januar 2027.",
   },
   {
     q: "Was unterscheidet das Altersvorsorgedepot von Riester?",

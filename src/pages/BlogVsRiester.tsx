@@ -41,7 +41,7 @@ const faqItems = [
   },
   {
     q: "Was ist mit Wohn-Riester?",
-    a: "Wohn-Riester — also die Nutzung von Riester-Kapital für selbstgenutztes Wohneigentum — ist ein Sondermodell mit eigenen Regeln. Ob und wie das Altersvorsorgedepot eine ähnliche Wohnförderoption bekommt, ist im aktuellen Gesetzentwurf noch nicht abschließend geregelt. Wer Wohn-Riester aktiv nutzt, sollte die weitere Gesetzgebung abwarten.",
+    a: "Wohn-Riester — also die Nutzung von Riester-Kapital für selbstgenutztes Wohneigentum — ist ein Sondermodell mit eigenen Regeln. Ob und wie das Altersvorsorgedepot eine ähnliche Wohnförderoption bekommt, ist im beschlossenen Gesetz noch nicht abschließend geregelt.",
   },
 ];
 
@@ -144,7 +144,7 @@ const BlogVsRiester = () => {
                 <div className="flex items-center gap-3 text-sm text-muted-foreground mb-8">
                   <span>ca. 8 Min. Lesezeit</span>
                   <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                  <span>Stand: Gesetzentwurf 2025/2026</span>
+                  <span>Stand: beschlossen 27. März 2026</span>
                 </div>
               </AnimatedSection>
 
@@ -241,13 +241,13 @@ const BlogVsRiester = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Erforderlicher Eigenbeitrag</TableCell><TableCell>~1.365 €/Jahr</TableCell><TableCell>1.800 €/Jahr</TableCell></TableRow>
-                    <TableRow><TableCell>Grundzulage</TableCell><TableCell>175 €</TableCell><TableCell>480 €</TableCell></TableRow>
+                    <TableRow><TableCell>Grundzulage</TableCell><TableCell>175 €</TableCell><TableCell>540 €</TableCell></TableRow>
                     <TableRow><TableCell>Kinderzulage</TableCell><TableCell>300 €</TableCell><TableCell>300 €</TableCell></TableRow>
                     <TableRow><TableCell>Steuervorteil (geschätzt, ~30 %)</TableCell><TableCell>~350 €</TableCell><TableCell>~530 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Gesamtförderung</TableCell>
                       <TableCell className="font-bold">~825 €</TableCell>
-                      <TableCell className="font-bold text-primary">~1.310 €</TableCell>
+                      <TableCell className="font-bold text-primary">~1.370 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
@@ -396,7 +396,7 @@ const BlogVsRiester = () => {
               {/* Disclaimer */}
               <div className="mt-16 p-5 bg-secondary rounded-xl">
                 <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge sowie öffentlich verfügbaren Informationen zur Riester-Rente. Änderungen im Gesetzgebungsverfahren sind möglich. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Für individuelle Entscheidungen zu bestehenden Riester-Verträgen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
+                  Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026) sowie öffentlich verfügbaren Informationen zur Riester-Rente. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Für individuelle Entscheidungen zu bestehenden Riester-Verträgen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
                 </p>
               </div>
             </article>

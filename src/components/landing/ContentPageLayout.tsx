@@ -135,7 +135,7 @@ const ContentPageLayout = ({ title, breadcrumbLabel, path, description, ogTitle,
           )}
 
           <p className="mt-12 text-xs text-muted-foreground/60 leading-relaxed">
-            Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Änderungen im Gesetzgebungsverfahren sind möglich.
+            Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
             Diese Seite stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
           </p>
         </article>

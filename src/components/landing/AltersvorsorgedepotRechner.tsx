@@ -937,7 +937,7 @@ const AltersvorsorgedepotRechner = () => {
                       Dieser Betrag zeigt, wie viel mehr Kapital zum Rentenbeginn durch staatliche Förderung entsteht — im Vergleich zu identischen Einzahlungen ohne Förderung (z. B. in ein normales Depot).
                     </InfoText>
                     <InfoText className="mt-2 max-w-md mx-auto">
-                      Enthält Zulagen und Steuervorteile, die über die gesamte Laufzeit mitwachsen. Basiert auf dem aktuellen Gesetzentwurf — Änderungen möglich.
+                      Enthält Zulagen und Steuervorteile, die über die gesamte Laufzeit mitwachsen. Basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
                     </InfoText>
                   </div>
                 </div>
@@ -984,7 +984,7 @@ const AltersvorsorgedepotRechner = () => {
                 {/* Disclaimer */}
                 <div className="max-w-xl mx-auto space-y-2">
                   <p className="text-xs text-muted-foreground/60 leading-relaxed">
-                    Diese Simulation basiert auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge.
+                    Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
                     Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt.
                     Sie stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
                   </p>
@@ -992,7 +992,7 @@ const AltersvorsorgedepotRechner = () => {
                     Kapitalanlagen bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
                   </p>
                   <InfoText className="max-w-xs mx-auto">
-                    Die genaue Ausgestaltung hängt vom finalen Gesetz ab.
+                    Angaben basieren auf dem beschlossenen Gesetz vom 27. März 2026.
                   </InfoText>
                 </div>
 
@@ -1019,14 +1019,14 @@ const AltersvorsorgedepotRechner = () => {
               Fußnoten und Hinweise
             </h2>
             <p className="text-muted-foreground text-base mb-16 max-w-xl mx-auto">
-              Weitere Erläuterungen zur Simulation, zu Annahmen und zum aktuellen Gesetzentwurf.
+              Weitere Erläuterungen zur Simulation, zu Annahmen und zum beschlossenen Gesetz.
             </p>
 
             <div className="text-left max-w-2xl mx-auto space-y-6 text-sm text-muted-foreground leading-relaxed">
               <p>
-                Die dargestellten Berechnungen basieren auf dem Gesetzentwurf zur Reform der geförderten privaten Altersvorsorge
-                in der zum Zeitpunkt der Erstellung verfügbaren Fassung. Änderungen im Gesetzgebungsverfahren können dazu führen,
-                dass einzelne Förderbedingungen, Zulagenhöhen oder steuerliche Regelungen im finalen Gesetz abweichen.
+                Die dargestellten Berechnungen basieren auf dem Altersvorsorgereformgesetz, das am 27. März 2026 vom
+                Deutschen Bundestag beschlossen wurde. Die lektorierte Fassung des Gesetzes kann geringfügig von der
+                Beschlussempfehlung abweichen.
               </p>
               <p>
                 Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) dienen ausschließlich der
@@ -1039,8 +1039,8 @@ const AltersvorsorgedepotRechner = () => {
                 erheblich abweichen. Eine individuelle steuerliche Beratung wird empfohlen.
               </p>
               <p>
-                Die Grundzulage wird gemäß dem Entwurf mit {GRUNDZULAGE_SATZ_AB_2027 * 100} % auf Eigenbeiträge bis {fmt(GRUNDZULAGE_BASIS_MAX)} € und {ZUSATZZULAGE_SATZ * 100} % auf Beiträge zwischen
-                {" "}{fmt(GRUNDZULAGE_BASIS_MAX)} € und {fmt(ZUSATZZULAGE_BASIS_MAX)} € jährlich berechnet (ab 2029 steigt der Satz auf {GRUNDZULAGE_SATZ_AB_2029 * 100} %). Die Kinderzulage beträgt bis zu 25 % des Eigenbeitrags, maximal {KINDERZULAGE_PRO_KIND} €
+                Die Grundzulage wird gemäß dem beschlossenen Gesetz mit {GRUNDZULAGE_SATZ_AB_2027 * 100} % auf Eigenbeiträge bis {fmt(GRUNDZULAGE_BASIS_MAX)} € und {ZUSATZZULAGE_SATZ * 100} % auf Beiträge zwischen
+                {" "}{fmt(GRUNDZULAGE_BASIS_MAX)} € und {fmt(ZUSATZZULAGE_BASIS_MAX)} € jährlich berechnet. Die Kinderzulage beträgt bis zu 100 % des Eigenbeitrags, maximal {KINDERZULAGE_PRO_KIND} €
                 pro Kind und Jahr. Eine Mindestsparleistung von {MINDESTEIGENBEITRAG} € pro Jahr ist Voraussetzung für die Förderung.
               </p>
               <p>

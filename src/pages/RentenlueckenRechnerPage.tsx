@@ -109,7 +109,7 @@ const RentenlueckenRechnerPage = () =>
           <div className="space-y-3 text-[0.8rem] text-muted-foreground/70 italic leading-relaxed">
             <div>
               <p className="not-italic font-medium text-muted-foreground mb-1">Grundlage und Aktualität</p>
-              <p>Diese Berechnung basiert auf dem Gesetzentwurf zur Reform der steuerlich geförderten privaten Altersvorsorge in der zum Zeitpunkt der Erstellung verfügbaren Fassung. Das Altersvorsorgedepot ist noch nicht in Kraft — der geplante Start ist der 1. Januar 2027. Änderungen im Gesetzgebungsverfahren können dazu führen, dass einzelne Förderbedingungen, Zulagenhöhen oder steuerliche Regelungen im finalen Gesetz abweichen.</p>
+              <p>Diese Berechnung basiert auf dem Altersvorsorgereformgesetz, das am 27. März 2026 vom Bundestag beschlossen wurde. Das Altersvorsorgedepot startet am 1. Januar 2027.</p>
             </div>
 
             <div>

@@ -413,7 +413,7 @@ const BlogRentenlueckeMit30_40_50 = () => {
               {/* Disclaimer */}
               <div className="mt-16 p-5 bg-secondary rounded-xl">
                 <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Berechnungen basieren auf vereinfachten Annahmen (Rendite 7 % p.a., pauschale Steuer- und Abzugsschätzungen). Tatsächliche Renten- und Steuerwerte können erheblich abweichen. Alle Angaben basieren auf dem aktuellen Gesetzentwurf zur Reform der privaten Altersvorsorge. Änderungen im Gesetzgebungsverfahren sind möglich. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
+                  Alle Berechnungen basieren auf vereinfachten Annahmen (Rendite 7 % p.a., pauschale Steuer- und Abzugsschätzungen). Tatsächliche Renten- und Steuerwerte können erheblich abweichen. Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026). Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
                 </p>
               </div>
             </article>

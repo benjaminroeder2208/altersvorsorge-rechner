@@ -298,7 +298,7 @@ const BlogPortfolio = () => {
 
               <SectionH3>Schritt 2 — Altersvorsorgedepot ab 2027</SectionH3>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Mit 2 Kindern: <strong className="text-foreground">Grundzulage 480 € + Kinderzulage 2×300 € = 1.080 € staatliche Förderung pro Jahr.</strong> Das entspricht ~90 € gratis pro Monat vom Staat.</p>
+                <p>Mit 2 Kindern: <strong className="text-foreground">Grundzulage 540 € + Kinderzulage 2×300 € = 1.140 € staatliche Förderung pro Jahr.</strong> Das entspricht ~95 € gratis pro Monat vom Staat.</p>
               </div>
 
               <SectionH3>Schritt 3 — ETF-Sparplan als Puffer</SectionH3>
@@ -373,7 +373,7 @@ const BlogPortfolio = () => {
 
               <SectionH3>Schritt 2 — Altersvorsorgedepot ab 2027</SectionH3>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Ob Selbstständige vollständig förderberechtigt sind, ist noch nicht final geregelt. Wenn ja: 150 €/Monat für die staatliche Förderung — die Grundzulage allein macht 480 €/Jahr aus (ab 2029: 540 €).</p>
+                <p>Selbstständige sind seit dem Bundestagsbeschluss voll förderberechtigt: 150 €/Monat für die staatliche Förderung — die Grundzulage allein macht 540 €/Jahr aus.</p>
               </div>
 
               <SectionH3>Schritt 3 — ETF-Sparplan als Liquiditätspuffer</SectionH3>
