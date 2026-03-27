@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Info, X } from "lucide-react";
 
-{/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
+{
+  /* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */
+}
 
 const UpdateBanner = () => {
   const [visible, setVisible] = useState(true);
@@ -16,7 +18,8 @@ const UpdateBanner = () => {
       <div className="container max-w-4xl mx-auto flex items-center justify-center gap-2">
         <Info className="w-4 h-4 shrink-0" style={{ color: "#92400E" }} />
         <p className="text-sm" style={{ color: "#92400E" }}>
-          <span className="font-medium">Neu:</span> Die Koalition hat sich am 24. März auf verbesserte Konditionen geeinigt — höhere Zulagen, niedrigerer Kostendeckel, Selbstständige inklusive. Abstimmung im Bundestag: 26. März. Wir aktualisieren alle Zahlen nach Beschluss.
+          <span className="font-medium">Neu:</span> Beschlossen! Der Bundestag hat das Altersvorsorgedepot
+          verabschiedet. Wir aktualisieren in Kürze alle Zahlen.
         </p>
       </div>
       <button
