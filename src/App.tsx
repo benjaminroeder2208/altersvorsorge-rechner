@@ -33,6 +33,7 @@ import BlogRuerupRente from "./pages/BlogRuerupRente";
 import BlogPortfolio from "./pages/BlogPortfolio";
 import BlogWasDarfInsDepot from "./pages/BlogWasDarfInsDepot";
 import BlogKoalitionseinigung from "./pages/BlogKoalitionseinigung";
+import BlogBeschlossen from "./pages/BlogBeschlossen";
 import ConfirmPage from "./pages/ConfirmPage";
 import EmbedPage from "./pages/EmbedPage";
 import EinbettenPage from "./pages/EinbettenPage";
@@ -83,6 +84,7 @@ const App = () => (
             <Route path="/blog/altersvorsorge-portfolio" element={<BlogPortfolio />} />
             <Route path="/blog/was-darf-ins-altersvorsorgedepot" element={<BlogWasDarfInsDepot />} />
             <Route path="/blog/altersvorsorgedepot-koalitionseinigung" element={<BlogKoalitionseinigung />} />
+            <Route path="/blog/altersvorsorgedepot-beschlossen" element={<BlogBeschlossen />} />
             <Route path="/unsubscribe" element={<UnsubscribePage />} />
             <Route path="/confirm" element={<ConfirmPage />} />
             <Route path="/embed" element={<EmbedPage />} />
