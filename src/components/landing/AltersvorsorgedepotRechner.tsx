@@ -937,7 +937,7 @@ const AltersvorsorgedepotRechner = () => {
                       Dieser Betrag zeigt, wie viel mehr Kapital zum Rentenbeginn durch staatliche Förderung entsteht — im Vergleich zu identischen Einzahlungen ohne Förderung (z. B. in ein normales Depot).
                     </InfoText>
                     <InfoText className="mt-2 max-w-md mx-auto">
-                      Enthält Zulagen und Steuervorteile, die über die gesamte Laufzeit mitwachsen. Basiert auf dem aktuellen Gesetzentwurf — Änderungen möglich.
+                      Enthält Zulagen und Steuervorteile, die über die gesamte Laufzeit mitwachsen. Basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
                     </InfoText>
                   </div>
                 </div>
