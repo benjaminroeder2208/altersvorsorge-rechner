@@ -18,7 +18,7 @@ const UpdateBanner = () => {
       <div className="container max-w-4xl mx-auto flex items-center justify-center gap-2">
         <Info className="w-4 h-4 shrink-0" style={{ color: "#92400E" }} />
         <p className="text-sm" style={{ color: "#92400E" }}>
-          <span className="font-medium">Wichtige Information:</span> Der Bundestag die Reform der Altersvorsorge
+          <span className="font-medium">Wichtige Information:</span> Der Bundestag hat die Reform der Altersvorsorge
           inklusive dem Altersvorsorgedepot beschlossen.
         </p>
       </div>
