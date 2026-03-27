@@ -14,7 +14,7 @@ const sections = [
   { to: "/altersvorsorgedepot", label: "Überblick" },
   { to: "/altersvorsorgedepot-foerderung", label: "Förderung" },
   { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung" },
-  { to: "/altersvorsorgedepot-gesetz", label: "Gesetzentwurf" }]
+  { to: "/altersvorsorgedepot-gesetz", label: "Das Gesetz" }]
 
 },
 {
