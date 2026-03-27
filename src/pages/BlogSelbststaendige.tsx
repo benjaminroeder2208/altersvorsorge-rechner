@@ -207,7 +207,7 @@ const BlogSelbststaendige = () => {
 
               {/* AVD für Selbstständige */}
               <SectionH2 id="avd-bedeutung">Was das Altersvorsorgedepot für Selbstständige bedeutet</SectionH2>
-              <p className="text-base leading-relaxed text-muted-foreground mb-4">Die staatliche Förderung (Zulagen + Sonderausgabenabzug) des Altersvorsorgedepots steht nur GRV-Versicherten zu. Als freiwillig GRV-versicherter Selbstständiger kannst du die Förderung nutzen — hier der Vergleich:</p>
+              <p className="text-base leading-relaxed text-muted-foreground mb-4">Seit dem Bundestagsbeschluss vom 27. März 2026 sind alle Selbstständigen und Freiberufler voll förderberechtigt — ohne GRV-Mitgliedschaft. Hier der Vergleich:</p>
               <div className="overflow-x-auto -mx-6 px-6 my-4">
                 <Table>
                   <TableHeader>
