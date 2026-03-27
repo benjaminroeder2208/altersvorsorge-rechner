@@ -99,7 +99,7 @@ const BlogWasDarfInsDepot = () => {
     <>
       <PageHead
         title="Was darf ins Altersvorsorgedepot? ETFs, Fonds & Co. erklärt"
-        description="Welche ETFs, Fonds und Anleihen sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut Gesetzentwurf § 1 Abs. 1b AltZertG einfach erklärt."
+        description="Welche ETFs, Fonds und Anleihen sind im Altersvorsorgedepot erlaubt? Alle Anlageformen laut beschlossenem Gesetz § 1 Abs. 1b AltZertG einfach erklärt."
         path={PATH}
         jsonLd={jsonLd}
       />
