@@ -24,9 +24,9 @@ const GesetzPage = () => (
     </p>
 
     <section>
-      <h2 className="text-xl font-bold mb-3">Aktueller Stand der Reform</h2>
+      <h2 className="text-xl font-bold mb-3">Aktueller Stand</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Der Entwurf befindet sich im parlamentarischen Verfahren. Die wesentlichen Eckpunkte stehen fest, Details können sich im Verlauf des Gesetzgebungsprozesses noch ändern.
+        Das Gesetz ist beschlossen. Der Bundestag hat am 27. März 2026 mit den Stimmen der Koalitionsfraktionen CDU/CSU und SPD das Altersvorsorgereformgesetz verabschiedet. Start: 1. Januar 2027.
       </p>
     </section>
 
