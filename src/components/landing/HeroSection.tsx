@@ -87,7 +87,7 @@ const HeroSection = () =>
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}>
         
-          Stand: aktueller Gesetzentwurf. Änderungen möglich.
+          Stand: beschlossenes Gesetz, 27. März 2026.
         </motion.p>
       </div>
 
