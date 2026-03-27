@@ -85,7 +85,7 @@ const homepageJsonLd = [
         name: "Wer kann geförderte Beiträge leisten?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Die genauen Fördervoraussetzungen werden im finalen Gesetz festgelegt. Der aktuelle Entwurf sieht eine breite Zugänglichkeit vor, ähnlich dem bisherigen Riester-System. Grundsätzlich sollen rentenversicherungspflichtig Beschäftigte und weitere Personengruppen förderberechtigt sein.",
+          text: "Der Förderkreis umfasst rentenversicherungspflichtig Beschäftigte, Beamte sowie Selbstständige und Freiberufler. Der Bundestag hat den Förderkreis ausdrücklich auf Personen mit Einkünften aus selbstständiger oder freiberuflicher Tätigkeit ausgeweitet.",
         },
       },
       {
@@ -93,7 +93,7 @@ const homepageJsonLd = [
         name: "Wie hoch ist die maximale Förderung?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Die Grundzulage beträgt im Entwurf 30 % auf Eigenbeiträge bis 1.200 € und 20 % auf Beiträge zwischen 1.200 € und 1.800 € — maximal 480 € pro Jahr (ab 2029: 35 %, dann max. 540 €). Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.",
+          text: "Die Grundzulage beträgt 50 % auf Eigenbeiträge bis 360 € und 25 % auf Beiträge zwischen 360 € und 1.800 € — maximal 540 € pro Jahr, bereits ab 2027. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.",
         },
       },
       {
