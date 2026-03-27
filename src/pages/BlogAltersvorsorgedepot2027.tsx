@@ -191,7 +191,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                 <div className="flex items-center gap-3 text-sm text-muted-foreground mb-8">
                   <span>ca. 8 Min. Lesezeit</span>
                   <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
-                  <span>Stand: Gesetzentwurf 2025/2026</span>
+                  <span>Stand: beschlossen 27. März 2026</span>
                 </div>
               </AnimatedSection>
 
