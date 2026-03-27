@@ -202,7 +202,7 @@ const BlogWasDarfInsDepot = () => {
               {/* Was ist nicht erlaubt */}
               <SectionH2 id="nicht-erlaubt">Was ist nicht erlaubt?</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Der Gesetzentwurf nennt keine explizite Verbotsliste — aber die Positiv-Liste ist abschließend. Was nicht darin vorkommt, ist nicht förderfähig. Konkret bedeutet das:</p>
+                <p>Das Gesetz nennt keine explizite Verbotsliste — aber die Positiv-Liste ist abschließend. Was nicht darin vorkommt, ist nicht förderfähig. Konkret bedeutet das:</p>
               </div>
               <div className="my-6 space-y-3">
                 <div className="flex gap-3 p-4 bg-destructive/5 border border-destructive/10 rounded-xl">
