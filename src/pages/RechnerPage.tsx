@@ -40,7 +40,7 @@ const homepageJsonLd = [
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
     url: "https://altersvorsorge-rechner.com/",
-    description: "Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des aktuellen Gesetzentwurfs.",
+    description: "Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes.",
     featureList: [
       "Simulation monatlicher Beiträge",
       "Berücksichtigung staatlicher Förderung",
