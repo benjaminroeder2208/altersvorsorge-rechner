@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: "Ist das Gesetz bereits beschlossen?",
-    a: "Nein. Der Gesetzentwurf befindet sich noch im parlamentarischen Verfahren. Alle auf dieser Seite dargestellten Informationen basieren auf dem aktuellen Entwurf und können sich im Laufe des Gesetzgebungsprozesses ändern.",
+    a: "Ja. Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 beschlossen. Das Altersvorsorgedepot startet am 1. Januar 2027.",
   },
   {
     q: "Was unterscheidet das Altersvorsorgedepot von Riester?",
