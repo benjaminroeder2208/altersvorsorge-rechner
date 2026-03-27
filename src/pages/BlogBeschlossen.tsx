@@ -322,7 +322,7 @@ const BlogBeschlossen = () => {
                     <li>30 % Einmalentnahme zu Beginn möglich</li>
                     <li>Besteuerung nachgelagert im Alter</li>
                     <li>Berufseinsteiger-Bonus: +200 € einmalig für unter 25-Jährige</li>
-                    <li>Kostendeckel Standardprodukt: 1,5 %</li>
+                    <li>Kostendeckel Standardprodukt: 1,0 %</li>
                   </ul>
                 </div>
               </AnimatedSection>
