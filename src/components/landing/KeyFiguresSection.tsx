@@ -21,7 +21,7 @@ const cards = [
     valueColor: "#F59E0B",
     accentColor: "#F59E0B",
     label: "Staatliche Förderung pro Jahr",
-    sub: `durch das geplante Altersvorsorgedepot ab 2027 (ab 2029: bis zu ${MAX_GRUNDZULAGE_AB_2029} €)`,
+    sub: `durch das beschlossene Altersvorsorgedepot ab 2027 (50 % + 25 % Grundzulage)`,
   },
 ];
 
@@ -65,8 +65,8 @@ const KeyFiguresSection = () => (
         Rentenniveaus vor Steuern 2024 (Deutsche Rentenversicherung,
         Rentenversicherungsbericht 2024) bei 3.500 € Bruttogehalt
         und 32 Beitragsjahren. Individuelle Werte können abweichen.
-        480 €: Gesetzentwurf Drucksache 21/4088, § 84, gültig ab
-        01.01.2027. Änderungen im Gesetzgebungsverfahren möglich.
+        540 €: Beschlussempfehlung Drucksache 21/4996, § 84, gültig ab
+        01.01.2027.
       </p>
 
       {/* Disclaimer */}

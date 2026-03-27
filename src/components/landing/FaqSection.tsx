@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: "Wie hoch ist die maximale Förderung?",
-    a: `Die Grundzulage beträgt im Entwurf ${GRUNDZULAGE_SATZ_AB_2027 * 100} % auf Eigenbeiträge bis 1.200 € und 20 % auf weitere 600 €. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug. Maximale Grundzulage: max. ${MAX_GRUNDZULAGE_AB_2027} €/Jahr (ab 2029: ${MAX_GRUNDZULAGE_AB_2029} €/Jahr).`,
+    a: `Die Grundzulage besteht aus zwei Tranchen: 50 % auf Eigenbeiträge bis 360 €/Jahr (max. 180 €) und 25 % auf Eigenbeiträge zwischen 360 € und 1.800 €/Jahr (max. 360 €). Die maximale Grundzulage beträgt ${MAX_GRUNDZULAGE_AB_2027} €/Jahr. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr (100 % der Eigenbeiträge). Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.`,
   },
   {
     q: "Was passiert mit dem Geld bei schlechter Marktentwicklung?",
