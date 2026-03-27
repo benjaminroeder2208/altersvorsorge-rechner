@@ -3,12 +3,12 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const GesetzPage = () => (
   <ContentPageLayout
-    title="Gesetzentwurf zum Altersvorsorgedepot erklärt"
-    breadcrumbLabel="Gesetzentwurf"
+    title="Altersvorsorgereformgesetz: Was beschlossen wurde"
+    breadcrumbLabel="Das Gesetz"
     path="/altersvorsorgedepot-gesetz"
-    description="Wie ist der aktuelle Stand beim Altersvorsorgedepot? Hier finden Sie eine verständliche Einordnung des Gesetzentwurfs und der geplanten Reform."
-    ogTitle="Gesetzentwurf zum Altersvorsorgedepot erklärt"
-    ogDescription="Der aktuelle Stand der Reform der privaten Altersvorsorge verständlich zusammengefasst."
+    description="Wie ist der aktuelle Stand beim Altersvorsorgedepot? Das Altersvorsorgereformgesetz wurde am 27. März 2026 vom Bundestag beschlossen. Alle wichtigen Punkte im Überblick."
+    ogTitle="Altersvorsorgereformgesetz: Was beschlossen wurde"
+    ogDescription="Das Altersvorsorgereformgesetz wurde am 27. März 2026 beschlossen. Alle wichtigen Punkte verständlich zusammengefasst."
     relatedLinks={[
       { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot einfach erklärt" },
       { to: "/blog/altersvorsorgedepot-2027", label: "Ratgeber: Altersvorsorgedepot 2027" },
