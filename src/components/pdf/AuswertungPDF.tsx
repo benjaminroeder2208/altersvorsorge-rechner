@@ -226,10 +226,8 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
               Trotz sorgfältiger Erstellung übernehmen wir keine Haftung für die Richtigkeit, Vollständigkeit oder
               Aktualität der Angaben. Berechnungen basieren auf vereinfachten Modellen und können von der tatsächlichen
               Wertentwicklung abweichen.{"\n\n"}
-              Altersvorsorgedepot — Gesetzentwurf{"\n"}
-              Alle Angaben zum Altersvorsorgedepot basieren auf dem aktuellen Referentenentwurf des Bundesministeriums
-              der Finanzen (Stand März 2026). Das Gesetz ist noch nicht beschlossen. Förderbeträge, Bedingungen und
-              Start-Datum können sich im Gesetzgebungsverfahren noch ändern.{"\n\n"}
+              Altersvorsorgedepot — Beschlossenes Gesetz{"\n"}
+              Alle Angaben zum Altersvorsorgedepot basieren auf dem Altersvorsorgereformgesetz, das am 27. März 2026 vom Deutschen Bundestag beschlossen wurde. Die lektorierte Fassung des Gesetzes kann geringfügig von der Beschlussempfehlung abweichen.{"\n\n"}
               Steuerliche Hinweise{"\n"}
               Die steuerliche Behandlung der Erträge aus dem Altersvorsorgedepot (nachgelagerte Besteuerung im Alter)
               ist abhängig von Ihrer persönlichen Steuersituation und kann sich ändern. Bitte konsultieren Sie einen
