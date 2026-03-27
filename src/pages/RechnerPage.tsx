@@ -121,10 +121,10 @@ const RechnerPage = () => (
   <>
     <PageHead
       title="Altersvorsorgedepot Rechner – Altersvorsorge einfach berechnen"
-      description="Mit dem Altersvorsorgedepot Rechner simulieren Sie, wie sich monatliche Beiträge, staatliche Förderung und Rendite langfristig entwickeln könnten – auf Basis des aktuellen Gesetzentwurfs."
+      description="Mit dem Altersvorsorgedepot Rechner simulieren Sie, wie sich monatliche Beiträge, staatliche Förderung und Rendite langfristig entwickeln könnten – auf Basis des beschlossenen Altersvorsorgereformgesetzes."
       path="/"
       ogTitle="Altersvorsorgedepot Rechner – Altersvorsorge einfach berechnen"
-      ogDescription="Interaktiver Rechner zur Simulation eines möglichen Altersvorsorgedepots auf Basis des aktuellen Gesetzentwurfs."
+      ogDescription="Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes."
       jsonLd={homepageJsonLd}
     />
     <Navbar />
