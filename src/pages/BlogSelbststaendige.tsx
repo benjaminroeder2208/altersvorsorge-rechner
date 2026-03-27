@@ -142,10 +142,9 @@ const BlogSelbststaendige = () => {
                   <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
                   <AlertTitle className="text-yellow-800 dark:text-yellow-300 font-semibold">Wichtiger Hinweis zur Förderberechtigung</AlertTitle>
                   <AlertDescription className="text-yellow-700 dark:text-yellow-400/90 text-sm leading-relaxed space-y-2 mt-1">
-                    <p>Die staatliche Förderung des Altersvorsorgedepots (Zulage + Sonderausgabenabzug nach § 10a EStG) steht grundsätzlich nur Pflichtversicherten in der gesetzlichen Rentenversicherung zu — also Arbeitnehmerinnen und Arbeitnehmern sowie bestimmten Beamten.</p>
-                    <p><strong>Selbstständige sind in der Regel nicht direkt förderberechtigt</strong>, es sei denn, sie sind freiwillig in der gesetzlichen Rentenversicherung versichert.</p>
-                    <p>Selbstständige können das Altersvorsorgedepot zwar als ungeförderten Sparvertrag nutzen, erhalten aber keine staatlichen Zulagen und keinen Sonderausgabenabzug. Für Selbstständige bleiben Rürup (Basisrente) und der klassische ETF-Sparplan die steuerlich attraktiveren Hauptinstrumente.</p>
-                    <p className="text-xs text-yellow-600 dark:text-yellow-500 mt-1">Rechtsgrundlage: § 79, § 10a EStG (Gesetzentwurf Drucksache 21/4088)</p>
+                    <p>Gute Nachrichten: Der Bundestag hat am 27. März 2026 beschlossen, dass <strong>Selbstständige und Freiberufler ab 2027 voll förderberechtigt</strong> sind (§ 10a Abs. 1 Satz 5 EStG neue Fassung). Eine freiwillige GRV-Mitgliedschaft ist dafür nicht mehr erforderlich.</p>
+                    <p>Die maximale Grundzulage beträgt 540 €/Jahr (50 % auf Eigenbeiträge bis 360 € + 25 % auf 360–1.800 €). Dazu kommen bis zu 300 € Kinderzulage pro Kind sowie der Sonderausgabenabzug.</p>
+                    <p className="text-xs text-yellow-600 dark:text-yellow-500 mt-1">Rechtsgrundlage: Beschlussempfehlung Drucksache 21/4996, § 10a, § 84 EStG</p>
                   </AlertDescription>
                 </Alert>
               </AnimatedSection>
