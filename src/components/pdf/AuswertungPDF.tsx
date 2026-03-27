@@ -1,6 +1,6 @@
 import React from "react";
 import { Document, Page, Text, View, Image, StyleSheet, Font } from "@react-pdf/renderer";
-import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, GRUNDZULAGE_SATZ_AB_2027, KINDERZULAGE_PRO_KIND } from "@/lib/foerderung";
+import { MAX_GRUNDZULAGE, KINDERZULAGE_PRO_KIND, GRUNDZULAGE_SATZ_T1, GRUNDZULAGE_T1_MAX, GRUNDZULAGE_SATZ_T2 } from "@/lib/foerderung";
 
 Font.register({
   family: "Helvetica",
