@@ -164,7 +164,7 @@ const BlogSelbststaendige = () => {
               {/* Intro */}
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Selbstständige stehen beim Thema Altersvorsorge vor einer besonderen Herausforderung: Keine automatischen Rentenversicherungsbeiträge, keine bAV vom Arbeitgeber, kein Sicherheitsnetz. Wer selbst nicht vorsorgt, hat im Alter oft fast nichts.</p>
-                <p>Gleichzeitig gibt es für Selbstständige mehr Optionen als viele denken — und ab 2027 kommt mit dem <Link to="/altersvorsorgedepot" className="text-primary font-medium hover:underline">Altersvorsorgedepot</Link> ein neues Instrument dazu, das allerdings nur für freiwillig GRV-versicherte Selbstständige staatlich gefördert wird.</p>
+                <p>Gleichzeitig gibt es für Selbstständige mehr Optionen als viele denken — und ab 2027 kommt mit dem <Link to="/altersvorsorgedepot" className="text-primary font-medium hover:underline">Altersvorsorgedepot</Link> ein neues Instrument dazu. Selbstständige sind seit dem Bundestagsbeschluss vom 27. März 2026 voll förderberechtigt.</p>
               </div>
 
               <CtaBlock to="/rentenluecken-rechner">Wie groß ist deine Rentenlücke? Jetzt berechnen.</CtaBlock>
