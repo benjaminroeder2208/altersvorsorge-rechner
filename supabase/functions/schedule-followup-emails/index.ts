@@ -32,7 +32,7 @@ function footerHtml(unsubToken: string) {
             <a href="${unsub}" style="color:#9CA3AF;text-decoration:underline;">Von diesem Newsletter abmelden</a>
           </p>
           <p style="font-size:10px;color:#D1D5DB;margin:0;">
-            Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Keine Anlageberatung.
+            Angaben basieren auf dem Altersvorsorgereformgesetz (27.03.2026). Keine Anlageberatung.
           </p>
         </td>
       </tr>
