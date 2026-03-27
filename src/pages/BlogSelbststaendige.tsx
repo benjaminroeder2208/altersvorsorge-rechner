@@ -255,7 +255,7 @@ const BlogSelbststaendige = () => {
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-xs text-muted-foreground/70 italic mt-1">* Staatliche Förderung nur bei freiwilliger GRV-Mitgliedschaft. Ohne GRV: ungeförderter Sparvertrag.</p>
+              <p className="text-xs text-muted-foreground/70 italic mt-1">* Selbstständige sind seit dem Bundestagsbeschluss voll förderberechtigt.</p>
 
               <CtaBlock>Berechne, wie viel Kapital du bis zur Rente aufbauen kannst.</CtaBlock>
 
