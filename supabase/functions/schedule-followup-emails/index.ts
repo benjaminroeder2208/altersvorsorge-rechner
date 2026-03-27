@@ -132,8 +132,8 @@ function mail2Html(unsubToken: string) {
 
     <div style="background:#eef2ff;border-radius:12px;padding:20px;margin:0 0 24px;">
       <p style="font-size:14px;line-height:1.6;margin:0;color:#333;">
-         <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot soll bis zu ${MAX_GRUNDZULAGE_2027}&nbsp;€ Grundzulage
-         plus ${KINDERZULAGE}&nbsp;€ je Kind pro Jahr bieten (ab 2029: bis zu ${MAX_GRUNDZULAGE_2029}&nbsp;€). Angaben basieren auf dem aktuellen Gesetzentwurf — Änderungen möglich.
+         <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot startet am 1. Januar 2027 und bietet bis zu ${MAX_GRUNDZULAGE}&nbsp;€ Grundzulage
+         plus bis zu ${KINDERZULAGE}&nbsp;€ je Kind pro Jahr. Das Gesetz wurde am 27. März 2026 vom Bundestag beschlossen.
       </p>
     </div>
 
