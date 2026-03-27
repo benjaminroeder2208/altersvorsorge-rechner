@@ -140,7 +140,7 @@ const BlogSelbststaendige = () => {
 
                 <Alert className="mb-8 border-yellow-300 bg-yellow-50 dark:bg-yellow-950/30 dark:border-yellow-700">
                   <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
-                  <AlertTitle className="text-yellow-800 dark:text-yellow-300 font-semibold">Wichtiger Hinweis zur Förderberechtigung</AlertTitle>
+                  <AlertTitle className="text-yellow-800 dark:text-yellow-300 font-semibold">Selbstständige sind förderberechtigt!</AlertTitle>
                   <AlertDescription className="text-yellow-700 dark:text-yellow-400/90 text-sm leading-relaxed space-y-2 mt-1">
                     <p>Gute Nachrichten: Der Bundestag hat am 27. März 2026 beschlossen, dass <strong>Selbstständige und Freiberufler ab 2027 voll förderberechtigt</strong> sind (§ 10a Abs. 1 Satz 5 EStG neue Fassung). Eine freiwillige GRV-Mitgliedschaft ist dafür nicht mehr erforderlich.</p>
                     <p>Die maximale Grundzulage beträgt 540 €/Jahr (50 % auf Eigenbeiträge bis 360 € + 25 % auf 360–1.800 €). Dazu kommen bis zu 300 € Kinderzulage pro Kind sowie der Sonderausgabenabzug.</p>
