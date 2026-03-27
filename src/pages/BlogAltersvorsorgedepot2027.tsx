@@ -325,7 +325,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Gesamtförderung</TableCell>
-                      <TableCell className="text-right font-bold text-primary">~1.010 €</TableCell>
+                      <TableCell className="text-right font-bold text-primary">~1.070 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
