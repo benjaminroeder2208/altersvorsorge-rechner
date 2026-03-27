@@ -1019,14 +1019,14 @@ const AltersvorsorgedepotRechner = () => {
               Fußnoten und Hinweise
             </h2>
             <p className="text-muted-foreground text-base mb-16 max-w-xl mx-auto">
-              Weitere Erläuterungen zur Simulation, zu Annahmen und zum aktuellen Gesetzentwurf.
+              Weitere Erläuterungen zur Simulation, zu Annahmen und zum beschlossenen Gesetz.
             </p>
 
             <div className="text-left max-w-2xl mx-auto space-y-6 text-sm text-muted-foreground leading-relaxed">
               <p>
-                Die dargestellten Berechnungen basieren auf dem Gesetzentwurf zur Reform der geförderten privaten Altersvorsorge
-                in der zum Zeitpunkt der Erstellung verfügbaren Fassung. Änderungen im Gesetzgebungsverfahren können dazu führen,
-                dass einzelne Förderbedingungen, Zulagenhöhen oder steuerliche Regelungen im finalen Gesetz abweichen.
+                Die dargestellten Berechnungen basieren auf dem Altersvorsorgereformgesetz, das am 27. März 2026 vom
+                Deutschen Bundestag beschlossen wurde. Die lektorierte Fassung des Gesetzes kann geringfügig von der
+                Beschlussempfehlung abweichen.
               </p>
               <p>
                 Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) dienen ausschließlich der
