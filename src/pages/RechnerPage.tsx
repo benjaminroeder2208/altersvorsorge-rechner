@@ -197,7 +197,7 @@ const RechnerPage = () => (
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-10">
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Mehr zum Altersvorsorgedepot</h2>
-            <p className="text-muted-foreground mt-2">Vertiefen Sie Ihr Wissen rund um das geplante Altersvorsorgedepot.</p>
+            <p className="text-muted-foreground mt-2">Vertiefen Sie Ihr Wissen rund um das beschlossene Altersvorsorgedepot.</p>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>

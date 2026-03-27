@@ -231,7 +231,7 @@ const BlogAltersvorsorgedepot2027 = () => {
               <SectionH2 id="was-ist">Was ist das Altersvorsorgedepot?</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>
-                  Das Altersvorsorgedepot ist ein neues Modell für die private Altersvorsorge, das im aktuellen Gesetzentwurf der Bundesregierung vorgesehen ist. Es funktioniert wie ein normales Wertpapierdepot — mit einem entscheidenden Unterschied: Der Staat fördert deine Einzahlungen mit Zulagen und Steuervorteilen.
+                  Das Altersvorsorgedepot ist ein neues Modell für die private Altersvorsorge, das der Bundestag am 27. März 2026 beschlossen hat. Es funktioniert wie ein normales Wertpapierdepot — mit einem entscheidenden Unterschied: Der Staat fördert deine Einzahlungen mit Zulagen und Steuervorteilen.
                 </p>
                 <p>
                   Der größte Bruch mit der Vergangenheit: <strong className="text-foreground">keine Beitragsgarantie mehr.</strong> Bei Riester musste der Anbieter garantieren, dass du zum Rentenbeginn mindestens deine eingezahlten Beiträge zurückbekommst. Klingt sicher — war aber teuer. Diese Garantie hat dazu geführt, dass ein Großteil des Geldes in schwach verzinsten Anleihen geparkt wurde, statt am Kapitalmarkt zu arbeiten.

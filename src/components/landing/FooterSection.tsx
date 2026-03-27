@@ -87,7 +87,7 @@ const FooterSection = () =>
       </div>
 
       <div className="mt-6 text-xs text-muted-foreground/60 text-center max-w-2xl mx-auto leading-relaxed">
-        Alle Inhalte und Berechnungen dienen ausschließlich der allgemeinen Information und stellen keine Anlage-, Steuer- oder Rechtsberatung dar. Angaben zum Altersvorsorgedepot basieren auf dem aktuellen Gesetzentwurf — Änderungen sind möglich.
+        Alle Inhalte und Berechnungen dienen ausschließlich der allgemeinen Information und stellen keine Anlage-, Steuer- oder Rechtsberatung dar. Angaben zum Altersvorsorgedepot basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
       </div>
     </div>
   </footer>;

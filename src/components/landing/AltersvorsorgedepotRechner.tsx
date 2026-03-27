@@ -1039,8 +1039,8 @@ const AltersvorsorgedepotRechner = () => {
                 erheblich abweichen. Eine individuelle steuerliche Beratung wird empfohlen.
               </p>
               <p>
-                Die Grundzulage wird gemäß dem Entwurf mit {GRUNDZULAGE_SATZ_AB_2027 * 100} % auf Eigenbeiträge bis {fmt(GRUNDZULAGE_BASIS_MAX)} € und {ZUSATZZULAGE_SATZ * 100} % auf Beiträge zwischen
-                {" "}{fmt(GRUNDZULAGE_BASIS_MAX)} € und {fmt(ZUSATZZULAGE_BASIS_MAX)} € jährlich berechnet (ab 2029 steigt der Satz auf {GRUNDZULAGE_SATZ_AB_2029 * 100} %). Die Kinderzulage beträgt bis zu 25 % des Eigenbeitrags, maximal {KINDERZULAGE_PRO_KIND} €
+                Die Grundzulage wird gemäß dem beschlossenen Gesetz mit {GRUNDZULAGE_SATZ_AB_2027 * 100} % auf Eigenbeiträge bis {fmt(GRUNDZULAGE_BASIS_MAX)} € und {ZUSATZZULAGE_SATZ * 100} % auf Beiträge zwischen
+                {" "}{fmt(GRUNDZULAGE_BASIS_MAX)} € und {fmt(ZUSATZZULAGE_BASIS_MAX)} € jährlich berechnet. Die Kinderzulage beträgt bis zu 100 % des Eigenbeitrags, maximal {KINDERZULAGE_PRO_KIND} €
                 pro Kind und Jahr. Eine Mindestsparleistung von {MINDESTEIGENBEITRAG} € pro Jahr ist Voraussetzung für die Förderung.
               </p>
               <p>
