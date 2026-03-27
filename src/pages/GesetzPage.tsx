@@ -31,9 +31,9 @@ const GesetzPage = () => (
     </section>
 
     <section>
-      <h2 className="text-xl font-bold mb-3">Zeitplan der Einführung</h2>
+      <h2 className="text-xl font-bold mb-3">Zeitplan</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Das Gesetz soll voraussichtlich ab 2027 (geplant) in Kraft treten. Der genaue Zeitpunkt hängt vom parlamentarischen Verfahren ab. Angaben basieren auf dem aktuellen Gesetzentwurf. Änderungen möglich.
+        Das Gesetz tritt zum 1. Januar 2027 in Kraft. Ab diesem Datum können Bürgerinnen und Bürger ein Altersvorsorgedepot eröffnen und staatliche Förderung beantragen.
       </p>
     </section>
 
