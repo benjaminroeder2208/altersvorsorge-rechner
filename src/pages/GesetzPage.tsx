@@ -16,11 +16,11 @@ const GesetzPage = () => (
     ]}
   >
     <p className="text-muted-foreground leading-relaxed">
-      Der Gesetzentwurf zur Reform der privaten Altersvorsorge sieht die Einführung des{" "}
+      Das Altersvorsorgereformgesetz wurde am 27. März 2026 vom Deutschen Bundestag beschlossen und führt das{" "}
       <Link to="/altersvorsorgedepot" className="text-primary font-medium hover:underline">
-        Altersvorsorgedepots
+        Altersvorsorgedepot
       </Link>{" "}
-      als neues Vorsorgemodell vor.
+      als neues staatlich gefördertes Vorsorgemodell ein.
     </p>
 
     <section>
