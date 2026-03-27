@@ -265,7 +265,7 @@ const BlogSelbststaendige = () => {
                 <p><strong className="text-foreground">Schritt 1: Rentenlücke realistisch einschätzen.</strong> Als Selbstständiger ist die Lücke oft größer als bei Angestellten — weil kaum gesetzliche Rente kommt. Unser <Link to="/rentenluecken-rechner" className="text-primary font-medium hover:underline">Rentenlückenrechner</Link> gibt dir eine erste Orientierung.</p>
                 <p><strong className="text-foreground">Schritt 2: Steuerliche Optimierung prüfen.</strong> Besonders in einkommensstarken Jahren kann die Rürup-Rente Sinn machen — der Steuervorteil finanziert einen Teil der Einzahlung.</p>
                 <p><strong className="text-foreground">Schritt 3: Flexibilität nicht vergessen.</strong> Nicht alles in illiquide Produkte stecken. Ein ETF-Sparplan als Puffer ist für Selbstständige oft wichtiger als für Angestellte.</p>
-                <p><strong className="text-foreground">Schritt 4: Altersvorsorgedepot prüfen.</strong> Die staatliche Förderung steht nur GRV-Versicherten zu. Wenn du freiwillig versichert bist, kann sich das Altersvorsorgedepot lohnen. Ohne GRV-Mitgliedschaft bleiben Rürup und ETF-Sparplan die besseren Optionen.</p>
+                <p><strong className="text-foreground">Schritt 4: Altersvorsorgedepot prüfen.</strong> Selbstständige und Freiberufler sind seit dem Bundestagsbeschluss voll förderberechtigt. Das Altersvorsorgedepot lohnt sich besonders in Kombination mit Rürup und ETF-Sparplan.</p>
               </div>
 
               {/* FAQ */}
