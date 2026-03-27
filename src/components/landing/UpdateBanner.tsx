@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { Info, X } from "lucide-react";
 
-{
-  /* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */
-}
-
 const UpdateBanner = () => {
   const [visible, setVisible] = useState(true);
 
