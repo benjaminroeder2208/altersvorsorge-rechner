@@ -251,7 +251,7 @@ const BlogAltersvorsorgedepot2027 = () => {
               <SectionH2 id="wer-kann">Wer kann das Altersvorsorgedepot nutzen?</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>
-                  Grundsätzlich richtet sich das Altersvorsorgedepot an alle, die in Deutschland rentenversicherungspflichtig beschäftigt sind — also den Großteil der Arbeitnehmerinnen und Arbeitnehmer. Auch Beamte und bestimmte Selbstständige sollen förderberechtigt sein, die genauen Regelungen hängen vom finalen Gesetz ab.
+                  Grundsätzlich richtet sich das Altersvorsorgedepot an alle, die in Deutschland rentenversicherungspflichtig beschäftigt sind — also den Großteil der Arbeitnehmerinnen und Arbeitnehmer. Auch Beamte und Selbstständige sind förderberechtigt — der Bundestag hat den Förderkreis ausdrücklich auf Personen mit Einkünften aus selbstständiger oder freiberuflicher Tätigkeit ausgeweitet.
                 </p>
                 <p>
                   Damit profitieren sowohl <strong className="text-foreground">Berufseinsteiger Mitte 20</strong>, die noch Jahrzehnte vor sich haben, als auch <strong className="text-foreground">Berufstätige zwischen 30 und 50</strong>, die ihre Altersvorsorge gezielt ausbauen wollen.
