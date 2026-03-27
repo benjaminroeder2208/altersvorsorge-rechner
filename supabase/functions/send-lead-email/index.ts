@@ -1,10 +1,9 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
-// ── Förderungskonstanten (Quelle: § 84 AltZertG, Drucksache 21/4088)
-// Bei Gesetzesänderung hier anpassen.
-const MAX_GRUNDZULAGE_2027 = 480;   // 30% × 1.200 + 20% × 600
-const MAX_GRUNDZULAGE_2029 = 540;   // 35% × 1.200 + 20% × 600
-const KINDERZULAGE = 300;           // max. je Kind/Jahr (§ 85)
+// Quelle: Altersvorsorgereformgesetz,
+// beschlossen 27.03.2026, § 84+85 EStG
+const MAX_GRUNDZULAGE = 540;  // ab 2027
+const KINDERZULAGE = 300;     // max. je Kind
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -33,7 +32,7 @@ function footerHtml(unsubToken: string) {
             <a href="${unsub}" style="color:#9CA3AF;text-decoration:underline;">Von diesem Newsletter abmelden</a>
           </p>
           <p style="font-size:10px;color:#D1D5DB;margin:0;">
-            Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Keine Anlageberatung.
+            Angaben basieren auf dem Altersvorsorgereformgesetz (27.03.2026). Keine Anlageberatung.
           </p>
         </td>
       </tr>
@@ -77,7 +76,7 @@ Deno.serve(async (req) => {
     const footerContent = unsub_token
       ? footerHtml(unsub_token)
       : `<hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
-         <p style="font-size:10px;color:#D1D5DB;text-align:center;">Alle Angaben basieren auf dem aktuellen Gesetzentwurf. Keine Anlageberatung.</p>`;
+         <p style="font-size:10px;color:#D1D5DB;text-align:center;">Angaben basieren auf dem Altersvorsorgereformgesetz (27.03.2026). Keine Anlageberatung.</p>`;
 
     const htmlBody = `
 <!DOCTYPE html>
@@ -113,7 +112,7 @@ Deno.serve(async (req) => {
 
     <div style="background:#eef2ff;border-radius:12px;padding:20px;margin:0 0 24px;">
       <p style="font-size:14px;line-height:1.6;margin:0;color:#333;">
-         <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot soll ab 2027 starten und bietet ab 2027 bis zu ${MAX_GRUNDZULAGE_2027} € Grundzulage pro Jahr (ab 2029: bis zu ${MAX_GRUNDZULAGE_2029} €) plus bis zu ${KINDERZULAGE} € je Kind pro Jahr. Die Angaben basieren auf dem aktuellen Gesetzentwurf — Änderungen sind möglich.
+         <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot startet am 1. Januar 2027 und bietet bis zu ${MAX_GRUNDZULAGE}&nbsp;€ Grundzulage pro Jahr plus bis zu ${KINDERZULAGE}&nbsp;€ je Kind pro Jahr. Das Gesetz wurde am 27. März 2026 vom Bundestag beschlossen.
       </p>
     </div>
 
