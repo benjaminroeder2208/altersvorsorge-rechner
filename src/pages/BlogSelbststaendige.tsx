@@ -36,7 +36,7 @@ const faqItems = [
   },
   {
     q: "Lohnt sich das Altersvorsorgedepot für Selbstständige?",
-    a: "Nur wenn du freiwillig in der gesetzlichen Rentenversicherung versichert bist — dann bist du förderberechtigt und kannst Zulagen und Sonderausgabenabzug nutzen. Ohne GRV-Mitgliedschaft kannst du das Depot zwar als ungeförderten Sparvertrag nutzen, erhältst aber keine staatliche Förderung. Für die meisten Selbstständigen bleiben Rürup und ETF-Sparplan die attraktiveren Instrumente.",
+    a: "Ja — seit dem Bundestagsbeschluss vom 27. März 2026 sind Selbstständige und Freiberufler voll förderberechtigt. Du kannst Zulagen (bis 540 €/Jahr Grundzulage + 300 € je Kind) und den Sonderausgabenabzug nutzen. In Kombination mit Rürup und ETF-Sparplan ergibt sich eine starke Vorsorgestrategie.",
   },
   {
     q: "Was ist mit der Künstlersozialkasse (KSK)?",

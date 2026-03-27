@@ -65,8 +65,8 @@ const KeyFiguresSection = () => (
         Rentenniveaus vor Steuern 2024 (Deutsche Rentenversicherung,
         Rentenversicherungsbericht 2024) bei 3.500 € Bruttogehalt
         und 32 Beitragsjahren. Individuelle Werte können abweichen.
-        480 €: Gesetzentwurf Drucksache 21/4088, § 84, gültig ab
-        01.01.2027. Änderungen im Gesetzgebungsverfahren möglich.
+        540 €: Beschlussempfehlung Drucksache 21/4996, § 84, gültig ab
+        01.01.2027.
       </p>
 
       {/* Disclaimer */}
