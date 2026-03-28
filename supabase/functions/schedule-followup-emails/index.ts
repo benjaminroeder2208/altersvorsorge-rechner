@@ -230,8 +230,12 @@ Deno.serve(async (req) => {
       }),
     });
 
+    let mail1Id: string | null = null;
     if (!res1.ok) {
       console.error("Resend schedule mail 1 error:", res1.status, await res1.text());
+    } else {
+      const resBody = await res1.json();
+      mail1Id = resBody?.id ?? null;
     }
 
     // Schedule Mail 2 (Day 7)
@@ -251,8 +255,21 @@ Deno.serve(async (req) => {
       }),
     });
 
+    let mail2Id: string | null = null;
     if (!res2.ok) {
       console.error("Resend schedule mail 2 error:", res2.status, await res2.text());
+    } else {
+      const resBody = await res2.json();
+      mail2Id = resBody?.id ?? null;
+    }
+
+    // Save scheduled message IDs for potential cancellation
+    const rows = [];
+    if (mail1Id) rows.push({ email, resend_message_id: mail1Id, mail_type: "followup_1", scheduled_at: day3.toISOString() });
+    if (mail2Id) rows.push({ email, resend_message_id: mail2Id, mail_type: "followup_2", scheduled_at: day7.toISOString() });
+    if (rows.length > 0) {
+      const { error: insertErr } = await supabase.from("scheduled_followup_emails").insert(rows);
+      if (insertErr) console.error("Failed to save scheduled email IDs:", insertErr);
     }
 
     return new Response(JSON.stringify({ success: true }), {
