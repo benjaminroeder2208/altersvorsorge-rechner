@@ -56,7 +56,7 @@ const KeyFiguresSection = () => (
       <p className="text-[11px] text-muted-foreground/50 text-center max-w-md mx-auto leading-relaxed mt-4">
         ~1.100 € und 48 %: Eigene Modellrechnung auf Basis des Rentenniveaus vor Steuern 2024 (Deutsche
         Rentenversicherung, Rentenversicherungsbericht 2024) bei 3.500 € Bruttogehalt und 32 Beitragsjahren.
-        Individuelle Werte können abweichen. 540 €: Beschlussempfehlung Drucksache 21/4996, § 84, gültig ab 01.01.2027.
+        Individuelle Werte können abweichen. Beschlussempfehlung Drucksache 21/4996, § 84, gültig ab 01.01.2027.
       </p>
 
       {/* Disclaimer */}
