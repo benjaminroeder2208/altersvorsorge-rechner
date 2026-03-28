@@ -73,6 +73,41 @@ Deno.serve(async (req) => {
       });
     }
 
+    // Cancel scheduled follow-up emails via Resend API
+    const resendKey = Deno.env.get("RESEND_API_KEY");
+    if (resendKey) {
+      const { data: scheduled } = await supabase
+        .from("scheduled_followup_emails")
+        .select("id, resend_message_id")
+        .eq("email", row.email)
+        .eq("cancelled", false);
+
+      if (scheduled && scheduled.length > 0) {
+        for (const msg of scheduled) {
+          try {
+            const cancelRes = await fetch(
+              `https://api.resend.com/emails/${msg.resend_message_id}/cancel`,
+              {
+                method: "POST",
+                headers: { Authorization: `Bearer ${resendKey}` },
+              }
+            );
+            if (cancelRes.ok) {
+              await supabase
+                .from("scheduled_followup_emails")
+                .update({ cancelled: true })
+                .eq("id", msg.id);
+              console.log(`Cancelled scheduled email ${msg.resend_message_id}`);
+            } else {
+              console.error(`Failed to cancel ${msg.resend_message_id}:`, cancelRes.status);
+            }
+          } catch (e) {
+            console.error(`Error cancelling ${msg.resend_message_id}:`, e);
+          }
+        }
+      }
+    }
+
     // Audit log: successful unsubscribe
     await supabase.from("security_audit_log").insert({
       event_type: "email_unsubscribed",
