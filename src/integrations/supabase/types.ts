@@ -155,6 +155,36 @@ export type Database = {
         }
         Relationships: []
       }
+      scheduled_followup_emails: {
+        Row: {
+          cancelled: boolean
+          created_at: string
+          email: string
+          id: string
+          mail_type: string
+          resend_message_id: string
+          scheduled_at: string
+        }
+        Insert: {
+          cancelled?: boolean
+          created_at?: string
+          email: string
+          id?: string
+          mail_type: string
+          resend_message_id: string
+          scheduled_at: string
+        }
+        Update: {
+          cancelled?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          mail_type?: string
+          resend_message_id?: string
+          scheduled_at?: string
+        }
+        Relationships: []
+      }
       security_audit_log: {
         Row: {
           created_at: string
