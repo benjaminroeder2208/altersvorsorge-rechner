@@ -274,7 +274,7 @@ const BlogVsEtf = () => {
 
               <SectionH3>Flexibilität</SectionH3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Beim ETF-Sparplan bist du völlig frei: Du kannst jederzeit einzahlen, pausieren, verkaufen oder umschichten. Kein Vertrag, keine Bindung. Das Altersvorsorgedepot hingegen ist für die Altersvorsorge gedacht — das Geld ist bis zum 65. Lebensjahr gebunden. Wer vorher ran muss, verliert die Förderung.
+                Beim ETF-Sparplan bist du völlig frei: Du kannst jederzeit einzahlen, pausieren, verkaufen oder umschichten. Kein Vertrag, keine Bindung. Das Altersvorsorgedepot hingegen ist für die Altersvorsorge gedacht — das Geld ist bis zum Renteneintritt gebunden. Wer vorher ran muss, verliert die Förderung.
               </p>
 
               <SectionH3>Steuer</SectionH3>
