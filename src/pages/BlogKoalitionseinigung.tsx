@@ -250,8 +250,7 @@ const BlogKoalitionseinigung = () => {
                   </table>
                 </div>
                 <p className="text-muted-foreground">
-                  Die genaue Berechnung der neuen Förderstruktur werden wir nach dem offiziellen Gesetzestext vom 26.
-                  März hier veröffentlichen und in unseren Rechner einarbeiten.
+                  Die Förderstruktur ist inzwischen im beschlossenen Gesetz verankert und in unserem Rechner eingearbeitet.
                 </p>
               </AnimatedSection>
 
