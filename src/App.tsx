@@ -90,6 +90,7 @@ const App = () => (
             <Route path="/confirm" element={<ConfirmPage />} />
             <Route path="/embed" element={<EmbedPage />} />
             <Route path="/einbetten" element={<EinbettenPage />} />
+            <Route path="/reicht-meine-rente" element={<ReichtMeineRentePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
