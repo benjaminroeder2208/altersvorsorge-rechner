@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
@@ -51,7 +52,7 @@ const jsonLd = [
     description: "Beide investieren in ETFs — aber nur einer wird staatlich gefördert. Wir zeigen den konkreten Unterschied in Zahlen und helfen dir, die richtige Wahl zu treffen.",
     url: `${BASE}${PATH}`,
     datePublished: "2025-06-01",
-    dateModified: "2025-06-01",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -123,7 +124,7 @@ const DecisionFlowchart = () => (
         {/* Left branch */}
         <div className="flex flex-col items-center">
           <div className="px-4 py-3 bg-primary/10 border border-primary/20 rounded-xl text-sm font-medium text-center max-w-[200px]">
-            Brauchst du das Geld vor 65?
+            Brauchst du das Geld vor der Rente?
           </div>
           <div className="flex items-stretch mt-0">
             <div className="flex flex-col items-center">
@@ -258,9 +259,9 @@ const BlogVsEtf = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>✅ Ja — Zulagen + Steuervorteile</TableCell><TableCell>❌ Nein</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>⚠️ Gebunden bis 65</TableCell><TableCell>✅ Jederzeit verfügbar</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>⚠️ Gebunden bis Renteneintritt</TableCell><TableCell>✅ Jederzeit verfügbar</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Besteuerung</TableCell><TableCell>Nachgelagert (im Alter)</TableCell><TableCell>Abgeltungsteuer laufend</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>✅ Beim Standardprodukt (max. 1,5 % p.a.)</TableCell><TableCell>❌ Abhängig vom Anbieter</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell><TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>✅ Beim Standardprodukt (max. 1,0 % p.a.)</TableCell><TableCell>❌ Abhängig vom Anbieter</TableCell></TableRow></TableCell><TableCell>❌ Abhängig vom Anbieter</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlage in ETFs</TableCell><TableCell>✅ Voll möglich</TableCell><TableCell>✅ Voll möglich</TableCell></TableRow>
                   </TableBody>
                 </Table>
@@ -268,12 +269,12 @@ const BlogVsEtf = () => {
 
               <SectionH3>Förderung</SectionH3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Nur das Altersvorsorgedepot bekommt staatliche Zulagen. Der Staat zahlt dir bis zu <strong className="text-foreground">30 % auf deine ersten 1.200 € Eigenbeitrag</strong> pro Jahr direkt dazu — plus bis zu 300 € pro Kind. Obendrauf kommt der Steuervorteil durch den Sonderausgabenabzug. Ein normaler ETF-Sparplan bekommt nichts davon.
+                Nur das Altersvorsorgedepot bekommt staatliche Zulagen. Der Staat zahlt dir <strong className="text-foreground">50 % auf die ersten 360 € Eigenbeitrag und 25 % auf weitere Beiträge bis 1.800 €</strong> pro Jahr — insgesamt bis zu 540 € Grundzulage. Dazu kommen bis zu 300 € pro Kind und der Steuervorteil durch den Sonderausgabenabzug. Ein normaler ETF-Sparplan bekommt nichts davon.
               </p>
 
               <SectionH3>Flexibilität</SectionH3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Beim ETF-Sparplan bist du völlig frei: Du kannst jederzeit einzahlen, pausieren, verkaufen oder umschichten. Kein Vertrag, keine Bindung. Das Altersvorsorgedepot hingegen ist für die Altersvorsorge gedacht — das Geld ist bis zum 65. Lebensjahr gebunden. Wer vorher ran muss, verliert die Förderung.
+                Beim ETF-Sparplan bist du völlig frei: Du kannst jederzeit einzahlen, pausieren, verkaufen oder umschichten. Kein Vertrag, keine Bindung. Das Altersvorsorgedepot hingegen ist für die Altersvorsorge gedacht — das Geld ist bis zum Renteneintritt gebunden. Wer vorher ran muss, verliert die Förderung.
               </p>
 
               <SectionH3>Steuer</SectionH3>
@@ -289,7 +290,7 @@ const BlogVsEtf = () => {
               {/* Förderbonus */}
               <SectionH2 id="foerderbonus">Der Förderbonus in Zahlen</SectionH2>
               <p className="text-base leading-relaxed text-muted-foreground mb-4">
-                Schauen wir uns den Unterschied konkret an. Zwei Personen, beide 35 Jahre alt, beide investieren <strong className="text-foreground">150 € pro Monat</strong> über 30 Jahre bis zur Rente mit 65 — bei einer angenommenen Rendite von 7 % pro Jahr:
+                Schauen wir uns den Unterschied konkret an. Zwei Personen, beide 35 Jahre alt, beide investieren <strong className="text-foreground">150 € pro Monat</strong> ab 2027 über 32 Jahre bis zur Rente mit 67 — bei einer angenommenen Rendite von 7 % pro Jahr:
               </p>
               <div className="overflow-x-auto -mx-6 px-6">
                 <Table>
@@ -302,30 +303,30 @@ const BlogVsEtf = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Monatlicher Eigenbeitrag</TableCell><TableCell>150 €</TableCell><TableCell>150 €</TableCell></TableRow>
-                    <TableRow><TableCell>Staatliche Zulagen (kumuliert)</TableCell><TableCell>~16.740 €</TableCell><TableCell>—</TableCell></TableRow>
-                    <TableRow><TableCell>Steuervorteile (kumuliert)</TableCell><TableCell>~16.405 €</TableCell><TableCell>—</TableCell></TableRow>
+                    <TableRow><TableCell>Staatliche Zulagen (kumuliert)</TableCell><TableCell>~17.300 €</TableCell><TableCell>—</TableCell></TableRow>
+                    <TableRow><TableCell>Steuervorteile (kumuliert)</TableCell><TableCell>~12.100 €</TableCell><TableCell>—</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital zum Rentenbeginn</TableCell>
-                      <TableCell className="font-bold text-primary">~255.570 €</TableCell>
-                      <TableCell className="font-bold">~196.600 €</TableCell>
+                      <TableCell className="font-bold text-primary">~276.000 €</TableCell>
+                      <TableCell className="font-bold">~212.300 €</TableCell>
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Mögliche Auszahlung bis 85</TableCell>
-                      <TableCell className="font-bold text-primary">~1.183 €/Monat</TableCell>
-                      <TableCell className="font-bold">~910 €/Monat</TableCell>
+                      <TableCell className="font-bold text-primary">~1.280 €/Monat</TableCell>
+                      <TableCell className="font-bold">~985 €/Monat</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
               </div>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground mt-4">
-                <p>Die Differenz: knapp <strong className="text-foreground">59.000 €</strong> — allein durch die staatliche Förderung. Nicht durch höhere Einzahlungen, nicht durch eine bessere Rendite. Einfach dadurch, dass mehr Kapital von Anfang an investiert ist und mitwächst.</p>
-                <p><strong className="text-foreground">Wichtiger Hinweis:</strong> Dieser Vorteil gilt nur, wenn du das Geld tatsächlich bis 65 stehen lässt. Wer vorher auf das Kapital zugreifen muss, verliert die Förderung — dann verpufft der Vorteil.</p>
+                <p>Die Differenz: rund <strong className="text-foreground">64.000 €</strong> — allein durch die staatliche Förderung. Nicht durch höhere Einzahlungen, nicht durch eine bessere Rendite. Einfach dadurch, dass mehr Kapital von Anfang an investiert ist und mitwächst.</p>
+                <p><strong className="text-foreground">Wichtiger Hinweis:</strong> Dieser Vorteil gilt nur, wenn du das Geld tatsächlich bis 67 stehen lässt. Wer vorher auf das Kapital zugreifen muss, verliert die Förderung — dann verpufft der Vorteil.</p>
               </div>
 
               {/* Flexibilität */}
               <SectionH2 id="flexibilitaet">Der Flexibilitätsvorteil des ETF-Sparplans</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Die Bindung bis 65 ist kein kleines Detail — für manche ist sie ein echter Ausschlusskriterium. Der ETF-Sparplan punktet hier klar:</p>
+                <p>Die Bindung bis zum Renteneintritt ist kein kleines Detail — für manche ist sie ein echtes Ausschlusskriterium. Der ETF-Sparplan punktet hier klar:</p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>Du kannst <strong className="text-foreground">jederzeit verkaufen</strong> — für einen Hauskauf, eine Auszeit, eine Umschulung</li>
                   <li>Du kannst <strong className="text-foreground">pausieren</strong>, wenn das Geld gerade knapp ist — ohne Konsequenzen</li>
@@ -351,7 +352,7 @@ const BlogVsEtf = () => {
                 <li>Dein klares Ziel die <strong className="text-foreground">Altersvorsorge</strong> ist — nicht ein mittelfristiges Sparziel</li>
                 <li>Du einen <strong className="text-foreground">Anlagehorizont von mindestens 10 Jahren</strong> hast, besser 20+</li>
                 <li>Du die staatliche Förderung <strong className="text-foreground">vollständig mitnehmen</strong> willst</li>
-                <li>Du den eingezahlten Betrag bis 65 <strong className="text-foreground">nicht brauchst</strong></li>
+                <li>Du den eingezahlten Betrag bis zum Renteneintritt <strong className="text-foreground">nicht brauchst</strong></li>
                 <li>Du Elternteil bist und von der <strong className="text-foreground">Kinderzulage</strong> profitierst</li>
               </ul>
 
@@ -374,7 +375,7 @@ const BlogVsEtf = () => {
               <SectionH2 id="fazit">Fazit</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Es gibt kein objektives "Besser" — aber klare Kriterien für die richtige Wahl.</p>
-                <p><strong className="text-foreground">Wer langfristig für die Rente spart und das Geld nicht zwischendurch braucht</strong>, sollte die staatliche Förderung des Altersvorsorgedepots mitnehmen. Fast 60.000 € Unterschied über 30 Jahre sind kein Argument, das man einfach ignorieren sollte.</p>
+                <p><strong className="text-foreground">Wer langfristig für die Rente spart und das Geld nicht zwischendurch braucht</strong>, sollte die staatliche Förderung des Altersvorsorgedepots mitnehmen. Rund 64.000 € Unterschied über 32 Jahre sind kein Argument, das man einfach ignorieren sollte.</p>
                 <p><strong className="text-foreground">Wer Flexibilität braucht oder kurzfristigere Ziele hat</strong>, ist mit dem ETF-Sparplan besser bedient. Und wer beides will — Förderung und Flexibilität — kombiniert einfach beide Instrumente.</p>
               </div>
 
@@ -411,11 +412,7 @@ const BlogVsEtf = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026). Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
