@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -51,7 +52,7 @@ const jsonLd = [
     description: "Was bringt es wirklich, früh mit der Altersvorsorge anzufangen? Wir zeigen den Zinseszins-Effekt an konkreten Zahlen — und warum 10 Jahre Unterschied über 100.000 € ausmachen können.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-19",
-    dateModified: "2026-03-19",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -199,21 +200,21 @@ const BlogZinseszins = () => {
                     <TableRow><TableCell>Eingezahltes Eigenkapital</TableCell><TableCell>75.600 €</TableCell><TableCell>57.600 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital mit 67</TableCell>
-                      <TableCell className="font-bold text-primary">~538.000 €</TableCell>
-                      <TableCell className="font-bold">~255.000 €</TableCell>
+                      <TableCell className="font-bold text-primary">~444.000 €</TableCell>
+                      <TableCell className="font-bold">~212.000 €</TableCell>
                     </TableRow>
-                    <TableRow><TableCell>Unterschied</TableCell><TableCell className="text-primary font-semibold">+283.000 €</TableCell><TableCell>—</TableCell></TableRow>
+                    <TableRow><TableCell>Unterschied</TableCell><TableCell className="text-primary font-semibold">+232.000 €</TableCell><TableCell>—</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Anna zahlt 18.000 € mehr ein als Ben — aber sie hat am Ende <strong className="text-foreground">283.000 € mehr</strong> auf dem Konto. Der Unterschied kommt nicht von höheren Einzahlungen. Er kommt von 10 Jahren mehr Zinseszins-Wachstum.</p>
-                <p>Anders gesagt: Bens 10 Jahre Aufschub kosten ihn 283.000 € — für dieselbe monatliche Sparrate.</p>
+                <p>Anna zahlt 18.000 € mehr ein als Ben — aber sie hat am Ende <strong className="text-foreground">232.000 € mehr</strong> auf dem Konto. Der Unterschied kommt nicht von höheren Einzahlungen. Er kommt von 10 Jahren mehr Zinseszins-Wachstum.</p>
+                <p>Anders gesagt: Bens 10 Jahre Aufschub kosten ihn 232.000 € — für dieselbe monatliche Sparrate.</p>
               </div>
 
               {/* Was müsste Ben tun? */}
               <SectionH2 id="aufholen">Was müsste Ben tun, um dasselbe Ergebnis zu erreichen?</SectionH2>
-              <p className="text-base leading-relaxed text-muted-foreground mb-4">Wenn Ben mit 35 dasselbe Endkapital wie Anna (538.000 €) erreichen will, muss er seinen monatlichen Beitrag drastisch erhöhen:</p>
+              <p className="text-base leading-relaxed text-muted-foreground mb-4">Wenn Ben mit 35 dasselbe Endkapital wie Anna (~444.000 €) erreichen will, muss er seinen monatlichen Beitrag drastisch erhöhen:</p>
               <div className="overflow-x-auto -mx-6 px-6 my-4">
                 <Table>
                   <TableHeader>
@@ -224,13 +225,13 @@ const BlogZinseszins = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell>Zielkapital mit 67</TableCell><TableCell>538.000 €</TableCell><TableCell>538.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>Monatlicher Beitrag nötig</TableCell><TableCell className="font-bold">150 €</TableCell><TableCell className="font-bold">~315 €</TableCell></TableRow>
-                    <TableRow><TableCell>Gesamte Eigeneinzahlung</TableCell><TableCell>75.600 €</TableCell><TableCell>120.960 €</TableCell></TableRow>
+                    <TableRow><TableCell>Zielkapital mit 67</TableCell><TableCell>444.000 €</TableCell><TableCell>444.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>Monatlicher Beitrag nötig</TableCell><TableCell className="font-bold">150 €</TableCell><TableCell className="font-bold">~335 €</TableCell></TableRow>
+                    <TableRow><TableCell>Gesamte Eigeneinzahlung</TableCell><TableCell>75.600 €</TableCell><TableCell>~128.600 €</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-base leading-relaxed text-muted-foreground">Ben müsste mehr als <strong className="text-foreground">doppelt so viel</strong> einzahlen wie Anna — und trotzdem 45.360 € mehr aus eigener Tasche beisteuern. Das sind die echten Kosten des Aufschubs.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Ben müsste mehr als <strong className="text-foreground">doppelt so viel</strong> einzahlen wie Anna — und trotzdem rund 53.000 € mehr aus eigener Tasche beisteuern. Das sind die echten Kosten des Aufschubs.</p>
 
               {/* Mit Altersvorsorgedepot */}
               <SectionH2 id="avd-effekt">Mit dem Altersvorsorgedepot: Förderung verstärkt den Effekt</SectionH2>
@@ -246,16 +247,16 @@ const BlogZinseszins = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Monatlicher Eigenbeitrag</TableCell><TableCell>150 €</TableCell><TableCell>150 €</TableCell></TableRow>
-                    <TableRow><TableCell>Staatliche Förderung (kumuliert)</TableCell><TableCell>~57.120 €</TableCell><TableCell>~43.520 €</TableCell></TableRow>
+                    <TableRow><TableCell>Staatliche Förderung (kumuliert)</TableCell><TableCell>~22.700 €</TableCell><TableCell>~17.300 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital mit 67</TableCell>
-                      <TableCell className="font-bold text-primary">~728.000 €</TableCell>
-                      <TableCell className="font-bold">~344.000 €</TableCell>
+                      <TableCell className="font-bold text-primary">~577.000 €</TableCell>
+                      <TableCell className="font-bold">~276.000 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-base leading-relaxed text-muted-foreground">Die Förderung läuft bei Anna 10 Jahre länger mit — und durch den Zinseszins-Effekt wächst dieser Vorsprung auf fast <strong className="text-foreground">384.000 €</strong> an. Jeder geförderte Euro, der früh investiert wird, ist am Ende deutlich mehr wert als ein später investierter.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Die Förderung läuft bei Anna 10 Jahre länger mit — und durch den Zinseszins-Effekt wächst dieser Vorsprung auf rund <strong className="text-foreground">301.000 €</strong> an. Jeder geförderte Euro, der früh investiert wird, ist am Ende deutlich mehr wert als ein später investierter.</p>
 
               {/* Spät starten */}
               <SectionH2 id="spaet-starten">Was ist, wenn man wirklich erst spät anfangen kann?</SectionH2>
@@ -274,14 +275,14 @@ const BlogZinseszins = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell>40 Jahre</TableCell><TableCell>27 Jahre</TableCell><TableCell>~305.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>45 Jahre</TableCell><TableCell>22 Jahre</TableCell><TableCell>~191.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>50 Jahre</TableCell><TableCell>17 Jahre</TableCell><TableCell>~115.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>55 Jahre</TableCell><TableCell>12 Jahre</TableCell><TableCell>~63.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>40 Jahre</TableCell><TableCell>27 Jahre</TableCell><TableCell>~287.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>45 Jahre</TableCell><TableCell>22 Jahre</TableCell><TableCell>~189.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>50 Jahre</TableCell><TableCell>17 Jahre</TableCell><TableCell>~119.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>55 Jahre</TableCell><TableCell>12 Jahre</TableCell><TableCell>~69.000 €</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-base leading-relaxed text-muted-foreground">Auch wer mit 50 anfängt, kann noch über 100.000 € aufbauen — das entspricht einer monatlichen Zusatzrente von rund 460 € über 18 Jahre. Kein vollständiger Ausgleich, aber ein erheblicher Puffer.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Auch wer mit 50 anfängt, kann noch rund 119.000 € aufbauen — das entspricht einer monatlichen Zusatzrente von rund 550 € über 18 Jahre. Kein vollständiger Ausgleich, aber ein erheblicher Puffer.</p>
 
               {/* Die wichtigste Lektion */}
               <SectionH2 id="lektion">Die wichtigste Lektion</SectionH2>
@@ -324,11 +325,7 @@ const BlogZinseszins = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Berechnungen basieren auf vereinfachten Annahmen (Rendite 7 % p.a., keine Inflation, keine Kosten). Tatsächliche Werte können erheblich abweichen. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
