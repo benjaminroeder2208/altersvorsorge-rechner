@@ -268,7 +268,7 @@ const BlogRentenpunkteKaufen = () => {
                     <TableRow><TableCell className="font-medium">Garantie</TableCell><TableCell>✅ Lebenslang garantiert</TableCell><TableCell>❌ Keine Beitragsgarantie</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Inflationsschutz</TableCell><TableCell>✅ An Lohnentwicklung gekoppelt</TableCell><TableCell>⚠️ Nur durch Marktrendite</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>Sonderausgabenabzug</TableCell><TableCell>✅ Zulagen + Steuerersparnis</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>❌ Kein Zugriff vor Rente</TableCell><TableCell>⚠️ Ab 65 verfügbar</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>❌ Kein Zugriff vor Rente</TableCell><TableCell>⚠️ Ab Renteneintritt verfügbar</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Vererbbarkeit</TableCell><TableCell>❌ Stark eingeschränkt</TableCell><TableCell>✅ Kapital vererbbar</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Ideal für</TableCell><TableCell>Sicherheitssockel, Frühverrentung</TableCell><TableCell>Langfristigen Vermögensaufbau</TableCell></TableRow>
                   </TableBody>
