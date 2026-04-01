@@ -261,7 +261,7 @@ const BlogVsEtf = () => {
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>✅ Ja — Zulagen + Steuervorteile</TableCell><TableCell>❌ Nein</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>⚠️ Gebunden bis Renteneintritt</TableCell><TableCell>✅ Jederzeit verfügbar</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Besteuerung</TableCell><TableCell>Nachgelagert (im Alter)</TableCell><TableCell>Abgeltungsteuer laufend</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell><TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>✅ Beim Standardprodukt (max. 1,0 % p.a.)</TableCell><TableCell>❌ Abhängig vom Anbieter</TableCell></TableRow></TableCell><TableCell>❌ Abhängig vom Anbieter</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>✅ Beim Standardprodukt (max. 1,0 % p.a.)</TableCell><TableCell>❌ Abhängig vom Anbieter</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlage in ETFs</TableCell><TableCell>✅ Voll möglich</TableCell><TableCell>✅ Voll möglich</TableCell></TableRow>
                   </TableBody>
                 </Table>
