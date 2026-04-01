@@ -221,7 +221,7 @@ const BlogSelbststaendige = () => {
                   <TableBody>
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Bis zu 540 €/Jahr Grundzulage + Steuervorteil</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlage in ETFs</TableCell><TableCell>✅ Ja</TableCell><TableCell>✅ Ja</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>✅ Jederzeit</TableCell><TableCell>⚠️ Gebunden bis 65</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>✅ Jederzeit</TableCell><TableCell>⚠️ Gebunden bis Renteneintritt</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Steuer auf Erträge</TableCell><TableCell>Abgeltungsteuer</TableCell><TableCell>Nachgelagert</TableCell></TableRow>
                   </TableBody>
                 </Table>
