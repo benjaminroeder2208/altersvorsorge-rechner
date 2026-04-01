@@ -256,7 +256,7 @@ const BlogZinseszins = () => {
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-base leading-relaxed text-muted-foreground">Die Förderung läuft bei Anna 10 Jahre länger mit — und durch den Zinseszins-Effekt wächst dieser Vorsprung auf fast <strong className="text-foreground">384.000 €</strong> an. Jeder geförderte Euro, der früh investiert wird, ist am Ende deutlich mehr wert als ein später investierter.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Die Förderung läuft bei Anna 10 Jahre länger mit — und durch den Zinseszins-Effekt wächst dieser Vorsprung auf rund <strong className="text-foreground">301.000 €</strong> an. Jeder geförderte Euro, der früh investiert wird, ist am Ende deutlich mehr wert als ein später investierter.</p>
 
               {/* Spät starten */}
               <SectionH2 id="spaet-starten">Was ist, wenn man wirklich erst spät anfangen kann?</SectionH2>
