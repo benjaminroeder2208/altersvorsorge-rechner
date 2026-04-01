@@ -222,8 +222,8 @@ const BlogRiesterKuendigen = () => {
 
               <SectionH3>4. Auf die Übertragungsregelung warten</SectionH3>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Im aktuellen Gesetzgebungsverfahren zum Altersvorsorgedepot wird diskutiert, ob <strong className="text-foreground">bestehendes Riester-Kapital ohne Förderrückzahlung</strong> in das neue Depot übertragen werden kann. Das wäre die optimale Lösung — du behältst alle Zulagen und investierst gleichzeitig in das flexiblere neue Produkt.</p>
-                <p>Ob und in welcher Form diese Regelung kommt, ist noch nicht final beschlossen. Gerade deshalb: Nicht voreilig kündigen, sondern abwarten.</p>
+                <p>Das beschlossene Gesetz regelt den förderunschädlichen Wechsel zwischen zertifizierten Altersvorsorgeverträgen. Eine explizite Regelung zur Übertragung von <strong className="text-foreground">Alt-Riester-Kapital in ein neues Altersvorsorgedepot</strong> ist im Gesetzestext jedoch nicht eindeutig vorgesehen. Es ist möglich, dass hier noch Klarstellungen oder Durchführungsverordnungen folgen.</p>
+                <p>Gerade deshalb: Nicht voreilig kündigen, sondern abwarten.</p>
               </div>
 
               {/* Wann Kündigung sinnvoll */}
