@@ -360,7 +360,7 @@ const BlogVsRiester = () => {
               <SectionH2 id="fazit">Fazit</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Riester war ein Versuch — ein gut gemeinter, aber schlecht umgesetzter. Das Altersvorsorgedepot ist kein Riester 2.0, sondern ein echter Neustart: einfachere Förderstruktur, keine Beitragsgarantie, volle ETF-Investition, geplanter Kostendeckel.</p>
-                <p>Wer neu anfängt, sollte auf das Altersvorsorgedepot warten — es startet voraussichtlich am 1. Januar 2027. Wer bereits Riester hat, sollte seinen Vertrag nüchtern prüfen, nicht überstürzt kündigen und die weiteren Entwicklungen im Gesetzgebungsverfahren beobachten.</p>
+                <p>Wer neu anfängt, sollte auf das Altersvorsorgedepot warten — es startet am 1. Januar 2027. Wer bereits Riester hat, sollte seinen Vertrag nüchtern prüfen und nicht überstürzt kündigen.</p>
               </div>
 
               <CtaBlock>Jetzt berechnen, was das Altersvorsorgedepot für dich bedeutet.</CtaBlock>
