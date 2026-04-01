@@ -158,7 +158,7 @@ const RentenCheckPage = () => {
                     <ArrowLeft className="w-4 h-4" />
                   </button>
                   <button
-                    onClick={next}
+                    onClick={showResult}
                     className="flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
                   >
                     Ergebnis anzeigen <ArrowRight className="w-4 h-4" />
