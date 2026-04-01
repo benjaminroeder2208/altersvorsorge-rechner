@@ -225,9 +225,9 @@ const BlogZinseszins = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell>Zielkapital mit 67</TableCell><TableCell>538.000 €</TableCell><TableCell>538.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>Monatlicher Beitrag nötig</TableCell><TableCell className="font-bold">150 €</TableCell><TableCell className="font-bold">~315 €</TableCell></TableRow>
-                    <TableRow><TableCell>Gesamte Eigeneinzahlung</TableCell><TableCell>75.600 €</TableCell><TableCell>120.960 €</TableCell></TableRow>
+                    <TableRow><TableCell>Zielkapital mit 67</TableCell><TableCell>444.000 €</TableCell><TableCell>444.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>Monatlicher Beitrag nötig</TableCell><TableCell className="font-bold">150 €</TableCell><TableCell className="font-bold">~335 €</TableCell></TableRow>
+                    <TableRow><TableCell>Gesamte Eigeneinzahlung</TableCell><TableCell>75.600 €</TableCell><TableCell>~128.600 €</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
