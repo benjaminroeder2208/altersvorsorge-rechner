@@ -300,11 +300,7 @@ const BlogSelbststaendige = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Das Altersvorsorgereformgesetz wurde am 27. März 2026 vom Bundestag beschlossen. Selbstständige und Freiberufler sind ausdrücklich in den Förderkreis aufgenommen (§ 10a Abs. 1 Satz 5 EStG). Für individuelle Entscheidungen empfehlen wir die Beratung durch einen Steuerberater oder unabhängigen Finanzberater.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
