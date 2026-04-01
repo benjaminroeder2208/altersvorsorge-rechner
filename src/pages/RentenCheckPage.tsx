@@ -7,7 +7,7 @@ import { Slider } from "@/components/ui/slider";
 const fmt = (n: number) =>
   n.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
-const steps = ["Alter", "Einkommen", "Sparen", "Ergebnis"];
+const steps = ["Alter", "Einkommen", "Sparen"];
 
 const RentenCheckPage = () => {
   const [step, setStep] = useState(0);
