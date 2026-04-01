@@ -197,7 +197,10 @@ const RechnerPage = () => (
                     { label: "Monatlicher Beitrag", values: ["150 €", "150 €", "150 €"] },
                     { label: "Ansparzeit bis 67", values: ["42 Jahre", "32 Jahre", "22 Jahre"] },
                     { label: "Eingezahltes Kapital", values: ["75.600 €", "57.600 €", "39.600 €"] },
-                    { label: "Kapital mit 67 (7 % p.a.)", values: ["~444.000 €", "~212.000 €", "~94.000 €"] },
+                    {
+                      label: "Kapital mit 67 (7 % p.a.), ohne Zulagen",
+                      values: ["~444.000 €", "~212.000 €", "~94.000 €"],
+                    },
                     { label: "Monatliche Zusatzrente", values: ["~2.055 €", "~985 €", "~435 €"] },
                   ].map((row, i) => (
                     <tr key={row.label} className={i % 2 === 0 ? "bg-background" : ""}>
