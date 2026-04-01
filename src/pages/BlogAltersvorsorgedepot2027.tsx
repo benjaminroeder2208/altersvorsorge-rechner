@@ -384,7 +384,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                 </Table>
               </div>
               <p className="text-base leading-relaxed text-muted-foreground mt-4">
-                Zum Vergleich: Ohne staatliche Förderung — also mit einem normalen Depot und denselben 150 € — würden bei gleicher Rendite nur rund <strong className="text-foreground">196.600 €</strong> zusammenkommen. Der Förderbonus macht in diesem Szenario also einen Unterschied von fast <strong className="text-foreground">60.000 €</strong>.
+                Zum Vergleich: Ohne staatliche Förderung — also mit einem normalen Depot und denselben 150 € — würden bei gleicher Rendite nur rund <strong className="text-foreground">212.300 €</strong> zusammenkommen. Der Förderbonus macht in diesem Szenario also einen Unterschied von fast <strong className="text-foreground">64.000 €</strong>.
               </p>
 
               <CtaBlock>Deine persönlichen Zahlen sind anders? Berechne jetzt dein individuelles Ergebnis.</CtaBlock>
