@@ -318,7 +318,7 @@ const BlogEtfSteuern = () => {
                     <TableRow><TableCell className="font-medium">Besteuerung</TableCell><TableCell>Laufend (Abgeltungsteuer)</TableCell><TableCell>Nachgelagert (im Alter)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Steuersatz</TableCell><TableCell>~26,375 % pauschal</TableCell><TableCell>Persönlicher Steuersatz (oft niedriger)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>❌ Keine</TableCell><TableCell>✅ Bis 540 €/Jahr + Kinderzulage</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Verfügbarkeit</TableCell><TableCell>✅ Jederzeit</TableCell><TableCell>Ab 65 Jahren</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Verfügbarkeit</TableCell><TableCell>✅ Jederzeit</TableCell><TableCell>Ab Renteneintritt</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlagefreiheit</TableCell><TableCell>✅ Volle Auswahl</TableCell><TableCell>✅ Volle ETF-Auswahl</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>✅ Sehr hoch</TableCell><TableCell>⚠️ Gebunden bis 65</TableCell></TableRow>
                   </TableBody>
