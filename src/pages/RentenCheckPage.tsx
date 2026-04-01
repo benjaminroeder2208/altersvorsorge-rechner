@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet-async";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Slider } from "@/components/ui/slider";
-import { Slider } from "@/components/ui/slider";
 
 const fmt = (n: number) =>
   n.toLocaleString("de-DE", { maximumFractionDigits: 0 });
