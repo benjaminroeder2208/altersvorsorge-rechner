@@ -378,7 +378,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Mögliche monatliche Auszahlung bis 85</TableCell>
-                      <TableCell className="text-right font-bold text-primary">~1.183 €</TableCell>
+                      <TableCell className="text-right font-bold text-primary">~1.280 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
