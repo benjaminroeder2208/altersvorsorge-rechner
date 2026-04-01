@@ -352,7 +352,7 @@ const BlogVsEtf = () => {
                 <li>Dein klares Ziel die <strong className="text-foreground">Altersvorsorge</strong> ist — nicht ein mittelfristiges Sparziel</li>
                 <li>Du einen <strong className="text-foreground">Anlagehorizont von mindestens 10 Jahren</strong> hast, besser 20+</li>
                 <li>Du die staatliche Förderung <strong className="text-foreground">vollständig mitnehmen</strong> willst</li>
-                <li>Du den eingezahlten Betrag bis 65 <strong className="text-foreground">nicht brauchst</strong></li>
+                <li>Du den eingezahlten Betrag bis zum Renteneintritt <strong className="text-foreground">nicht brauchst</strong></li>
                 <li>Du Elternteil bist und von der <strong className="text-foreground">Kinderzulage</strong> profitierst</li>
               </ul>
 
