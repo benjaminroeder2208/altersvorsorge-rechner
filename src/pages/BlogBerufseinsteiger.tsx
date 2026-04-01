@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -51,7 +52,7 @@ const jsonLd = [
     description: "Mit 20 fühlt sich die Rente abstrakt an. Aber kein Berufstätiger hat mehr Zeit als du gerade — und Zeit ist das einzige was du später nicht kaufen kannst.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -176,15 +177,15 @@ const BlogBerufseinsteiger = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow className="bg-primary/5"><TableCell className="font-semibold">20 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">47 Jahre</TableCell><TableCell className="text-right font-bold text-primary">~538.000 €</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">30 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">37 Jahre</TableCell><TableCell className="text-right">~265.000 €</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">40 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">27 Jahre</TableCell><TableCell className="text-right">~122.000 €</TableCell></TableRow>
+                    <TableRow className="bg-primary/5"><TableCell className="font-semibold">20 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">47 Jahre</TableCell><TableCell className="text-right font-bold text-primary">~423.000 €</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">30 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">37 Jahre</TableCell><TableCell className="text-right">~206.000 €</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">40 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">27 Jahre</TableCell><TableCell className="text-right">~96.000 €</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
               <p className="text-xs text-muted-foreground/60 mt-2">* Bei 7 % durchschnittlicher Rendite p.a., vor Steuern und Kosten. Renteneintritt mit 67.</p>
               <div className="my-6 p-5 bg-destructive/5 border border-destructive/10 rounded-xl">
-                <p className="text-base font-semibold text-foreground mb-1">10 Jahre Aufschub kosten 273.000 €</p>
+                <p className="text-base font-semibold text-foreground mb-1">10 Jahre Aufschub kosten 217.000 €</p>
                 <p className="text-sm text-muted-foreground">— ohne einen Cent mehr einzuzahlen. Der Unterschied entsteht allein durch den Zinseszinseffekt.</p>
               </div>
 
@@ -337,11 +338,7 @@ const BlogBerufseinsteiger = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Alle Angaben basieren auf vereinfachten Annahmen und dem Stand 2026. Für individuelle Entscheidungen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
