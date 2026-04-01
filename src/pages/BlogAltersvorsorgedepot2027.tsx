@@ -365,8 +365,8 @@ const BlogAltersvorsorgedepot2027 = () => {
                       <TableCell className="text-right">150 €</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Anlagehorizont bis 67</TableCell>
-                      <TableCell className="text-right">~31 Jahre</TableCell>
+                      <TableCell>Anlagehorizont (2027 bis 2059)</TableCell>
+                      <TableCell className="text-right">32 Jahre</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Angenommene Rendite</TableCell>
