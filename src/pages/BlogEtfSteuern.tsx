@@ -373,11 +373,7 @@ const BlogEtfSteuern = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Steuerliche Angaben basieren auf dem Stand 2026 und können sich ändern. Für individuelle steuerliche Fragen empfehlen wir die Beratung durch einen Steuerberater.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
