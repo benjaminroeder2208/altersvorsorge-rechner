@@ -32,7 +32,7 @@ const faqItems = [
   },
   {
     q: "Kann ich Riester-Kapital ins Altersvorsorgedepot übertragen?",
-    a: "Das wird derzeit im Gesetzgebungsverfahren diskutiert. Der aktuelle Entwurf sieht eine Möglichkeit zur Übertragung von Riester-Kapital in das neue Altersvorsorgedepot vor — ohne Förderrückzahlung. Ob und in welcher Form das kommt, ist aber noch nicht final beschlossen. Am besten abwarten und den Vertrag vorerst ruhend stellen.",
+    a: "Das beschlossene Gesetz regelt den förderunschädlichen Anbieterwechsel zwischen zertifizierten Verträgen. Eine spezifische Übertragungsregelung von Alt-Riester-Kapital in ein neues Altersvorsorgedepot ist im Gesetzestext nicht explizit vorgesehen. Es bleibt abzuwarten, ob hier noch Klarstellungen folgen. Bis dahin ist Ruhendstellen die sicherste Option.",
   },
   {
     q: "Was ist besser: Ruhendstellen oder kündigen?",
