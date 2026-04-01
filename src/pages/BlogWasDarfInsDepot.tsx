@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -246,7 +247,7 @@ const BlogWasDarfInsDepot = () => {
 
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Hinzu kommt beim Standarddepot eine <strong className="text-foreground">automatische Umschichtung</strong>: Fünf Jahre vor Rentenbeginn dürfen höchstens 50 Prozent des Kapitals im chancenorientierten Fonds liegen, zwei Jahre vorher höchstens 30 Prozent. Das ist das sogenannte <strong className="text-foreground">Life-Cycle-Prinzip</strong> — Risiko wird mit näherrückendem Rentenalter schrittweise reduziert.</p>
-                <p>Für das Standarddepot gilt außerdem eine <strong className="text-foreground">Kostenobergrenze</strong>: Die Effektivkosten dürfen über die Vertragslaufzeit maximal 1,5 Prozent pro Jahr betragen.</p>
+                <p>Für das Standarddepot gilt außerdem eine <strong className="text-foreground">Kostenobergrenze</strong>: Die Effektivkosten dürfen über die Vertragslaufzeit maximal 1,0 Prozent pro Jahr betragen (§ 2a Abs. 2 AltZertG).</p>
               </div>
 
               {/* Selbst auswählen */}
@@ -302,11 +303,7 @@ const BlogWasDarfInsDepot = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026, Drucksache 21/4996). Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
