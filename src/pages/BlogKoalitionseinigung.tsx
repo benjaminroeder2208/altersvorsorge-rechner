@@ -27,7 +27,7 @@ const tocItems = [
   { id: "kostendeckel", label: "Kostendeckel auf 1 Prozent" },
   { id: "selbststaendige", label: "Selbstständige förderberechtigt" },
   { id: "standarddepot", label: "Öffentliches Standarddepot" },
-  { id: "offen", label: "Was jetzt noch offen ist" },
+  { id: "offen", label: "Was seitdem passiert ist" },
   { id: "fazit", label: "Fazit" },
   { id: "faq", label: "Häufige Fragen" },
 ];
