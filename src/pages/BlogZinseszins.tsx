@@ -214,7 +214,7 @@ const BlogZinseszins = () => {
 
               {/* Was müsste Ben tun? */}
               <SectionH2 id="aufholen">Was müsste Ben tun, um dasselbe Ergebnis zu erreichen?</SectionH2>
-              <p className="text-base leading-relaxed text-muted-foreground mb-4">Wenn Ben mit 35 dasselbe Endkapital wie Anna (538.000 €) erreichen will, muss er seinen monatlichen Beitrag drastisch erhöhen:</p>
+              <p className="text-base leading-relaxed text-muted-foreground mb-4">Wenn Ben mit 35 dasselbe Endkapital wie Anna (~444.000 €) erreichen will, muss er seinen monatlichen Beitrag drastisch erhöhen:</p>
               <div className="overflow-x-auto -mx-6 px-6 my-4">
                 <Table>
                   <TableHeader>
