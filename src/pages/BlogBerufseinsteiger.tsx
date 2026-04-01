@@ -52,7 +52,7 @@ const jsonLd = [
     description: "Mit 20 fühlt sich die Rente abstrakt an. Aber kein Berufstätiger hat mehr Zeit als du gerade — und Zeit ist das einzige was du später nicht kaufen kannst.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
