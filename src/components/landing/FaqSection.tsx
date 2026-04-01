@@ -1,10 +1,5 @@
 import AnimatedSection from "./AnimatedSection";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, GRUNDZULAGE_SATZ_AB_2027 } from "@/lib/foerderung";
 
 const faqs = [
@@ -18,7 +13,7 @@ const faqs = [
   },
   {
     q: "Was unterscheidet das Altersvorsorgedepot von Riester?",
-    a: "Der wichtigste Unterschied: Beim Altersvorsorgedepot entfällt die verpflichtende Beitragsgarantie. Dadurch können die Beiträge vollständig am Kapitalmarkt angelegt werden, was langfristig höhere Renditechancen ermöglicht. Zudem soll die Förderstruktur vereinfacht werden. Beim Standardprodukt (Standarddepot Altersvorsorge) sind die Kosten gesetzlich auf maximal 1,5 % p.a. Effektivkosten begrenzt — für andere Depot-Varianten ohne Standardprodukt-Zertifizierung gilt dieser Deckel nicht.",
+    a: "Der wichtigste Unterschied: Beim Altersvorsorgedepot entfällt die verpflichtende Beitragsgarantie. Dadurch können die Beiträge vollständig am Kapitalmarkt angelegt werden, was langfristig höhere Renditechancen ermöglicht. Zudem soll die Förderstruktur vereinfacht werden. Beim Standardprodukt (Standarddepot Altersvorsorge) sind die Kosten gesetzlich auf maximal 1,0 % p.a. Effektivkosten begrenzt — für andere Depot-Varianten ohne Standardprodukt-Zertifizierung gilt dieser Deckel nicht.",
   },
   {
     q: "Wer kann geförderte Beiträge leisten?",
@@ -45,12 +40,8 @@ const FaqSection = () => (
         <Accordion type="single" collapsible className="space-y-3">
           {faqs.map((faq, i) => (
             <AccordionItem key={i} value={`faq-${i}`} className="bg-secondary rounded-2xl px-6 border-none">
-              <AccordionTrigger className="text-left font-semibold py-5 hover:no-underline">
-                {faq.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
-                {faq.a}
-              </AccordionContent>
+              <AccordionTrigger className="text-left font-semibold py-5 hover:no-underline">{faq.q}</AccordionTrigger>
+              <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">{faq.a}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
