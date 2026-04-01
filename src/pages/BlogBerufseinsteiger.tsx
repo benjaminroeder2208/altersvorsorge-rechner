@@ -177,9 +177,9 @@ const BlogBerufseinsteiger = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow className="bg-primary/5"><TableCell className="font-semibold">20 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">47 Jahre</TableCell><TableCell className="text-right font-bold text-primary">~538.000 €</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">30 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">37 Jahre</TableCell><TableCell className="text-right">~265.000 €</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">40 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">27 Jahre</TableCell><TableCell className="text-right">~122.000 €</TableCell></TableRow>
+                    <TableRow className="bg-primary/5"><TableCell className="font-semibold">20 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">47 Jahre</TableCell><TableCell className="text-right font-bold text-primary">~423.000 €</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">30 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">37 Jahre</TableCell><TableCell className="text-right">~206.000 €</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">40 Jahren</TableCell><TableCell>100 €/Monat</TableCell><TableCell className="text-right">27 Jahre</TableCell><TableCell className="text-right">~96.000 €</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
