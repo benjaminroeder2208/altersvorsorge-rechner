@@ -163,8 +163,8 @@ const RechnerPage = () => (
                     { label: "Monatlicher Beitrag", values: ["150 €", "150 €", "150 €"] },
                     { label: "Ansparzeit bis 67", values: ["42 Jahre", "32 Jahre", "22 Jahre"] },
                     { label: "Eingezahltes Kapital", values: ["75.600 €", "57.600 €", "39.600 €"] },
-                    { label: "Kapital mit 67 (7 % p.a.)", values: ["~538.000 €", "~255.000 €", "~113.000 €"] },
-                    { label: "Monatliche Zusatzrente", values: ["~2.490 €", "~1.183 €", "~523 €"] },
+                    { label: "Kapital mit 67 (7 % p.a.)", values: ["~444.000 €", "~212.000 €", "~94.000 €"] },
+                    { label: "Monatliche Zusatzrente", values: ["~2.055 €", "~985 €", "~435 €"] },
                   ].map((row, i) => (
                     <tr key={row.label} className={i % 2 === 0 ? "bg-background" : ""}>
                       <td className="py-3 px-4 font-medium text-muted-foreground">{row.label}</td>
@@ -187,9 +187,12 @@ const RechnerPage = () => (
               </Link>
             </div>
 
-            <p className="text-xs text-muted-foreground text-center mt-6 max-w-[400px] mx-auto leading-relaxed">
-              Berechnung bei 150 € / Monat, Renteneintritt mit 67, 7 % Rendite p.a. — dieser Wert orientiert sich am historischen Durchschnitt breit gestreuter Aktienindizes (z.&nbsp;B. MSCI World) über lange Zeiträume. Er ist keine Prognose und kann in einzelnen Zeiträumen erheblich abweichen, auch ins Negative. Kapitalanlagen in Fonds und ETFs unterliegen Marktschwankungen. Im ungünstigen Fall kann der Wert der Anlage sinken — auch unter den eingezahlten Betrag. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Die Darstellung vereinfacht und berücksichtigt weder Inflation, Kosten noch Steuern. Keine Anlageberatung.
-            </p>
+            <div className="mt-8 p-5 bg-muted/50 border border-border/60 rounded-xl max-w-2xl mx-auto">
+              <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">Hinweise & Haftungsausschluss</p>
+              <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
+                Berechnung bei 150 €/Monat, Renteneintritt mit 67, 7 % Rendite p.a. — dieser Wert orientiert sich am historischen Durchschnitt breit gestreuter Aktienindizes (siehe z.{"\u00A0"}B. <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>). Er ist keine Prognose und kann in einzelnen Zeiträumen erheblich abweichen, auch ins Negative. Kapitalanlagen in Fonds und ETFs unterliegen Marktschwankungen. Im ungünstigen Fall kann der Wert der Anlage sinken — auch unter den eingezahlten Betrag. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Die Darstellung vereinfacht und berücksichtigt weder Inflation, Kosten noch Steuern. Keine Anlageberatung.
+              </p>
+            </div>
           </AnimatedSection>
         </div>
       </section>
