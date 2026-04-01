@@ -265,7 +265,7 @@ const BlogRuerupRente = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell className="font-medium">Steuerlicher Vorteil</TableCell><TableCell>✅ Sehr hoch (bis 42 % + Soli)</TableCell><TableCell>Mittel (Zulagen + Sonderausgaben)</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>❌ Keine (bis 62, keine Kündigung)</TableCell><TableCell>⚠️ Gering (bis 65 gebunden)</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>❌ Keine (bis 62, keine Kündigung)</TableCell><TableCell>⚠️ Gering (bis Renteneintritt gebunden)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Vererbbarkeit</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Ja</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Renditechance</TableCell><TableCell>⚠️ Abhängig vom Produkt</TableCell><TableCell>✅ Hoch (volle ETF-Auswahl)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Staatliche Zulage</TableCell><TableCell>❌ Nein (nur Steuerabzug)</TableCell><TableCell>✅ Bis 540 €/Jahr + Kinderzulage</TableCell></TableRow>
