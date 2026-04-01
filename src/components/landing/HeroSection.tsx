@@ -44,7 +44,7 @@ const HeroSection = () =>
         
           <span className="text-foreground">150 € im Monat.</span>
           <br />
-          <span style={{ color: "#1B4FD8" }} className="font-bold">255.000 € im Alter.</span>
+          <span style={{ color: "#1B4FD8" }} className="font-bold">276.000 € im Alter.</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -53,7 +53,7 @@ const HeroSection = () =>
         className="text-base text-muted-foreground mb-10 max-w-lg"
         style={{ lineHeight: 1.7 }}>
         
-          So viel Kapital könnte ein 35-Jähriger mit 150 € monatlich aufbauen — plus staatliche Förderung des geplanten Altersvorsorgedepots. Jetzt persönliche Altersvorsorge berechnen: mit KI-Analyse und individueller Auswertung als PDF. Kostenlos und unabhängig.
+          So viel Kapital könnte ein 35-Jähriger mit 150 € monatlich ab 2027 aufbauen — plus staatliche Förderung des Altersvorsorgedepots. Jetzt persönliche Altersvorsorge berechnen: mit KI-Analyse und individueller Auswertung als PDF. Kostenlos und unabhängig.
         
 
       
