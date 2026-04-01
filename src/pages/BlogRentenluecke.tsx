@@ -295,7 +295,7 @@ const BlogRentenluecke = () => {
                 </Table>
               </div>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Wer mit 25 statt mit 35 anfängt, hat am Ende mehr als doppelt so viel — bei gleichem monatlichem Beitrag. Wer mit 25 statt mit 45 anfängt, hat fünfmal so viel.</p>
+                <p>Wer mit 25 statt mit 35 anfängt, hat am Ende mehr als doppelt so viel — bei gleichem monatlichem Beitrag. Wer mit 25 statt mit 45 anfängt, hat fast fünfmal so viel.</p>
                 <p><strong className="text-foreground">Aber:</strong> Wer diese Zahlen liest und schon 40 oder 45 ist, sollte sich nicht entmutigen lassen. Auch 20 Jahre staatlich gefördertes Sparen machen einen erheblichen Unterschied. Besser jetzt anfangen als nie.</p>
               </div>
 
