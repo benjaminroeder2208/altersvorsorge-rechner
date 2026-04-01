@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -51,7 +52,7 @@ const jsonLd = [
     description: "Für Selbstständige und Gutverdiener das stärkste Steuersparinstrument. Für alle anderen oft eine teure Falle. Der Unterschied liegt im Einkommen.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -264,7 +265,7 @@ const BlogRuerupRente = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell className="font-medium">Steuerlicher Vorteil</TableCell><TableCell>✅ Sehr hoch (bis 42 % + Soli)</TableCell><TableCell>Mittel (Zulagen + Sonderausgaben)</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>❌ Keine (bis 62, keine Kündigung)</TableCell><TableCell>⚠️ Gering (bis 65 gebunden)</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>❌ Keine (bis 62, keine Kündigung)</TableCell><TableCell>⚠️ Gering (bis Renteneintritt gebunden)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Vererbbarkeit</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Ja</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Renditechance</TableCell><TableCell>⚠️ Abhängig vom Produkt</TableCell><TableCell>✅ Hoch (volle ETF-Auswahl)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Staatliche Zulage</TableCell><TableCell>❌ Nein (nur Steuerabzug)</TableCell><TableCell>✅ Bis 540 €/Jahr + Kinderzulage</TableCell></TableRow>
@@ -335,11 +336,7 @@ const BlogRuerupRente = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Alle Angaben basieren auf dem Stand 2026 und können sich ändern. Für individuelle Rürup-Entscheidungen empfehlen wir die Beratung durch einen Steuerberater oder eine unabhängige Verbraucherzentrale.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
