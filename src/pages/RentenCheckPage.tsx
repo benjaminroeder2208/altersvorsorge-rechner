@@ -215,10 +215,10 @@ const RentenCheckPage = () => {
 
                 <div className="space-y-3">
                   <Link
-                    to="/rentenluecken-rechner"
+                    to="/reicht-meine-rente"
                     className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
                   >
-                    Detailliert berechnen <ArrowRight className="w-4 h-4" />
+                    Zurück zur Übersicht <ArrowRight className="w-4 h-4" />
                   </Link>
                   <button
                     onClick={() => setStep(0)}
