@@ -34,8 +34,14 @@ const RentenCheckPage = () => {
   const verbleibendeLuecke = Math.max(luecke - renteAusSpar, 0);
   const deckung = bedarf > 0 ? Math.min(((renteNetto + renteAusSpar) / bedarf) * 100, 100) : 100;
 
-  const next = () => setStep((s) => Math.min(s + 1, 3));
+  const navigate = useNavigate();
+  const next = () => setStep((s) => Math.min(s + 1, 2));
   const prev = () => setStep((s) => Math.max(s - 1, 0));
+  const showResult = () => {
+    navigate("/renten-check/result", {
+      state: { luecke: verbleibendeLuecke, renteNetto, bedarf, deckung, alter },
+    });
+  };
 
   return (
     <>
