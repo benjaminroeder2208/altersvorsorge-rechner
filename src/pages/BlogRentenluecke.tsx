@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -52,7 +53,7 @@ const jsonLd = [
     description: "Die gesetzliche Rente reicht für die meisten nicht. Wir zeigen konkret, wie groß die Rentenlücke ist — und wie du sie mit dem Altersvorsorgedepot ab 2027 schließen kannst.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-15",
-    dateModified: "2026-03-15",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -287,14 +288,14 @@ const BlogRentenluecke = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell>25 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold text-primary">~264.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>35 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold">~122.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>45 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold">~52.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>25 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold text-primary">~296.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>35 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold">~142.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>45 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold">~63.000 €</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Wer mit 25 statt mit 35 anfängt, hat am Ende mehr als doppelt so viel — bei gleichem monatlichem Beitrag. Wer mit 25 statt mit 45 anfängt, hat fünfmal so viel.</p>
+                <p>Wer mit 25 statt mit 35 anfängt, hat am Ende mehr als doppelt so viel — bei gleichem monatlichem Beitrag. Wer mit 25 statt mit 45 anfängt, hat fast fünfmal so viel.</p>
                 <p><strong className="text-foreground">Aber:</strong> Wer diese Zahlen liest und schon 40 oder 45 ist, sollte sich nicht entmutigen lassen. Auch 20 Jahre staatlich gefördertes Sparen machen einen erheblichen Unterschied. Besser jetzt anfangen als nie.</p>
               </div>
 
@@ -338,11 +339,7 @@ const BlogRentenluecke = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026) sowie vereinfachten Rentenberechnungen. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
