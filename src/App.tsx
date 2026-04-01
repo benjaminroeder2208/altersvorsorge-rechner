@@ -37,6 +37,7 @@ import BlogBeschlossen from "./pages/BlogBeschlossen";
 import ConfirmPage from "./pages/ConfirmPage";
 import EmbedPage from "./pages/EmbedPage";
 import EinbettenPage from "./pages/EinbettenPage";
+import ReichtMeineRentePage from "./pages/ReichtMeineRentePage";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 import UpdateBanner from "@/components/landing/UpdateBanner";
