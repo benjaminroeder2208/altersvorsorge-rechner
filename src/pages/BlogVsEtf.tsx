@@ -303,17 +303,17 @@ const BlogVsEtf = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Monatlicher Eigenbeitrag</TableCell><TableCell>150 €</TableCell><TableCell>150 €</TableCell></TableRow>
-                    <TableRow><TableCell>Staatliche Zulagen (kumuliert)</TableCell><TableCell>~16.740 €</TableCell><TableCell>—</TableCell></TableRow>
-                    <TableRow><TableCell>Steuervorteile (kumuliert)</TableCell><TableCell>~16.405 €</TableCell><TableCell>—</TableCell></TableRow>
+                    <TableRow><TableCell>Staatliche Zulagen (kumuliert)</TableCell><TableCell>~17.300 €</TableCell><TableCell>—</TableCell></TableRow>
+                    <TableRow><TableCell>Steuervorteile (kumuliert)</TableCell><TableCell>~12.100 €</TableCell><TableCell>—</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital zum Rentenbeginn</TableCell>
-                      <TableCell className="font-bold text-primary">~255.570 €</TableCell>
-                      <TableCell className="font-bold">~196.600 €</TableCell>
+                      <TableCell className="font-bold text-primary">~276.000 €</TableCell>
+                      <TableCell className="font-bold">~212.300 €</TableCell>
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Mögliche Auszahlung bis 85</TableCell>
-                      <TableCell className="font-bold text-primary">~1.183 €/Monat</TableCell>
-                      <TableCell className="font-bold">~910 €/Monat</TableCell>
+                      <TableCell className="font-bold text-primary">~1.280 €/Monat</TableCell>
+                      <TableCell className="font-bold">~985 €/Monat</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
