@@ -290,7 +290,7 @@ const BlogVsEtf = () => {
               {/* Förderbonus */}
               <SectionH2 id="foerderbonus">Der Förderbonus in Zahlen</SectionH2>
               <p className="text-base leading-relaxed text-muted-foreground mb-4">
-                Schauen wir uns den Unterschied konkret an. Zwei Personen, beide 35 Jahre alt, beide investieren <strong className="text-foreground">150 € pro Monat</strong> über 30 Jahre bis zur Rente mit 65 — bei einer angenommenen Rendite von 7 % pro Jahr:
+                Schauen wir uns den Unterschied konkret an. Zwei Personen, beide 35 Jahre alt, beide investieren <strong className="text-foreground">150 € pro Monat</strong> ab 2027 über 32 Jahre bis zur Rente mit 67 — bei einer angenommenen Rendite von 7 % pro Jahr:
               </p>
               <div className="overflow-x-auto -mx-6 px-6">
                 <Table>
