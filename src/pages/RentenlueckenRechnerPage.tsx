@@ -103,8 +103,8 @@ const RentenlueckenRechnerPage = () =>
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-16 p-5 bg-secondary rounded-xl space-y-4">
-          <p className="text-sm font-semibold text-foreground">Hinweise zur Berechnung</p>
+        <div className="mt-16 p-5 bg-muted/50 border border-border/60 rounded-xl space-y-4">
+          <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">Hinweise & Haftungsausschluss</p>
 
           <div className="space-y-3 text-[0.8rem] text-muted-foreground/70 italic leading-relaxed">
             <div>
@@ -129,7 +129,7 @@ const RentenlueckenRechnerPage = () =>
 
             <div>
               <p className="not-italic font-medium text-muted-foreground mb-1">Sparrate und Renditeannahme</p>
-              <p>Die monatlich notwendige Sparrate wird mit der Rentenbarwertformel berechnet. Als Renditeannahme werden 7 % p.a. zugrunde gelegt — ein historisch plausibler Richtwert für breit gestreute Aktienportfolios, jedoch keine Prognose und keine Garantie. Die tatsächliche Wertentwicklung hängt von der gewählten Anlageform, der Marktentwicklung, den anfallenden Kosten und dem konkreten Investitionszeitpunkt ab. Kapitalanlagen bergen Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals. Frühere Wertentwicklungen sind kein verlässlicher Indikator für künftige Ergebnisse.</p>
+              <p>Die monatlich notwendige Sparrate wird mit der Rentenbarwertformel berechnet. Als Renditeannahme werden 7 % p.a. zugrunde gelegt — ein historisch plausibler Richtwert für breit gestreute Aktienportfolios (siehe z.&nbsp;B. <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>), jedoch keine Prognose und keine Garantie. Die tatsächliche Wertentwicklung hängt von der gewählten Anlageform, der Marktentwicklung, den anfallenden Kosten und dem konkreten Investitionszeitpunkt ab. Kapitalanlagen bergen Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals. Frühere Wertentwicklungen sind kein verlässlicher Indikator für künftige Ergebnisse.</p>
             </div>
 
             <div>
