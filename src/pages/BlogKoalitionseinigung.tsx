@@ -263,8 +263,7 @@ const BlogKoalitionseinigung = () => {
                     für alle Sparer.
                   </p>
                   <p>
-                    Die genaue Berechnungsstruktur — also auf welche Beitragsanteile welcher Satz gilt — werden wir nach
-                    dem offiziellen Beschluss transparent aufschlüsseln und in unseren Rechner einarbeiten.
+                    Die Berechnungsstruktur ist im beschlossenen Gesetz festgelegt: 50 % auf Eigenbeiträge bis 360 €/Jahr (max. 180 €) und 25 % auf Beiträge zwischen 360 € und 1.800 €/Jahr (max. 360 €) — insgesamt bis zu 540 € Grundzulage pro Jahr.
                   </p>
                 </div>
               </AnimatedSection>
