@@ -104,7 +104,7 @@ const RentenlueckenRechnerPage = () =>
 
         {/* Disclaimer */}
         <div className="mt-16 p-5 bg-muted/50 border border-border/60 rounded-xl space-y-4">
-          <p className="text-sm font-semibold text-foreground">Hinweise zur Berechnung</p>
+          <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">Hinweise & Haftungsausschluss</p>
 
           <div className="space-y-3 text-[0.8rem] text-muted-foreground/70 italic leading-relaxed">
             <div>
