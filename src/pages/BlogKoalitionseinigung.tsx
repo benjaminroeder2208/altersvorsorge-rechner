@@ -357,12 +357,7 @@ const BlogKoalitionseinigung = () => {
                 </Accordion>
               </AnimatedSection>
 
-              {/* ── Disclaimer ── */}
-              <p className="mt-12 text-xs text-muted-foreground/60 leading-relaxed">
-                Dieser Artikel basiert auf der Koalitionseinigung vom 24. März 2026. Das Gesetz ist noch nicht formell
-                beschlossen. Alle Angaben ohne Gewähr und vorbehaltlich des endgültigen Gesetzesbeschlusses. Keine
-                Anlageberatung.
-              </p>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
