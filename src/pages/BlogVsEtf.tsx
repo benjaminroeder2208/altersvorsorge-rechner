@@ -375,7 +375,7 @@ const BlogVsEtf = () => {
               <SectionH2 id="fazit">Fazit</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Es gibt kein objektives "Besser" — aber klare Kriterien für die richtige Wahl.</p>
-                <p><strong className="text-foreground">Wer langfristig für die Rente spart und das Geld nicht zwischendurch braucht</strong>, sollte die staatliche Förderung des Altersvorsorgedepots mitnehmen. Fast 60.000 € Unterschied über 30 Jahre sind kein Argument, das man einfach ignorieren sollte.</p>
+                <p><strong className="text-foreground">Wer langfristig für die Rente spart und das Geld nicht zwischendurch braucht</strong>, sollte die staatliche Förderung des Altersvorsorgedepots mitnehmen. Rund 64.000 € Unterschied über 32 Jahre sind kein Argument, das man einfach ignorieren sollte.</p>
                 <p><strong className="text-foreground">Wer Flexibilität braucht oder kurzfristigere Ziele hat</strong>, ist mit dem ETF-Sparplan besser bedient. Und wer beides will — Förderung und Flexibilität — kombiniert einfach beide Instrumente.</p>
               </div>
 
