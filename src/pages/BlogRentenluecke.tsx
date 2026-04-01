@@ -288,9 +288,9 @@ const BlogRentenluecke = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell>25 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold text-primary">~264.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>35 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold">~122.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>45 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold">~52.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>25 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold text-primary">~296.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>35 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold">~142.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>45 Jahre</TableCell><TableCell>100 €</TableCell><TableCell className="text-right font-semibold">~63.000 €</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
