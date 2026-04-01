@@ -319,8 +319,8 @@ const BlogVsEtf = () => {
                 </Table>
               </div>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground mt-4">
-                <p>Die Differenz: knapp <strong className="text-foreground">59.000 €</strong> — allein durch die staatliche Förderung. Nicht durch höhere Einzahlungen, nicht durch eine bessere Rendite. Einfach dadurch, dass mehr Kapital von Anfang an investiert ist und mitwächst.</p>
-                <p><strong className="text-foreground">Wichtiger Hinweis:</strong> Dieser Vorteil gilt nur, wenn du das Geld tatsächlich bis 65 stehen lässt. Wer vorher auf das Kapital zugreifen muss, verliert die Förderung — dann verpufft der Vorteil.</p>
+                <p>Die Differenz: rund <strong className="text-foreground">64.000 €</strong> — allein durch die staatliche Förderung. Nicht durch höhere Einzahlungen, nicht durch eine bessere Rendite. Einfach dadurch, dass mehr Kapital von Anfang an investiert ist und mitwächst.</p>
+                <p><strong className="text-foreground">Wichtiger Hinweis:</strong> Dieser Vorteil gilt nur, wenn du das Geld tatsächlich bis 67 stehen lässt. Wer vorher auf das Kapital zugreifen muss, verliert die Förderung — dann verpufft der Vorteil.</p>
               </div>
 
               {/* Flexibilität */}
