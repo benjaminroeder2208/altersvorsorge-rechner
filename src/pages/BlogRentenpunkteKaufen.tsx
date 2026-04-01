@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -39,7 +40,7 @@ const faqItems = [
   },
   {
     q: "Was ist besser — Rentenpunkte oder Altersvorsorgedepot?",
-    a: "Das hängt von der individuellen Situation ab. Rentenpunkte bieten lebenslange, inflationsindexierte Sicherheit — aber mit schlechter Rendite. Das Altersvorsorgedepot bietet staatliche Förderung und marktübliche Renditen, ist aber bis 65 gebunden und nicht garantiert. Für die meisten ist eine Kombination sinnvoll: Rentenpunkte für den Sicherheitssockel, Altersvorsorgedepot für den Renditeanteil.",
+    a: "Das hängt von der individuellen Situation ab. Rentenpunkte bieten lebenslange, inflationsindexierte Sicherheit — aber mit schlechter Rendite. Das Altersvorsorgedepot bietet staatliche Förderung und marktübliche Renditen, ist aber bis zum Renteneintritt gebunden und nicht garantiert. Für die meisten ist eine Kombination sinnvoll: Rentenpunkte für den Sicherheitssockel, Altersvorsorgedepot für den Renditeanteil.",
   },
 ];
 
@@ -50,7 +51,7 @@ const jsonLd = [
     description: "Wer freiwillig in die gesetzliche Rente einzahlt, kann seine Rente erhöhen. Aber die Rendite-Rechnung ist ernüchternd — wir zeigen die Zahlen ehrlich.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -267,7 +268,7 @@ const BlogRentenpunkteKaufen = () => {
                     <TableRow><TableCell className="font-medium">Garantie</TableCell><TableCell>✅ Lebenslang garantiert</TableCell><TableCell>❌ Keine Beitragsgarantie</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Inflationsschutz</TableCell><TableCell>✅ An Lohnentwicklung gekoppelt</TableCell><TableCell>⚠️ Nur durch Marktrendite</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>Sonderausgabenabzug</TableCell><TableCell>✅ Zulagen + Steuerersparnis</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>❌ Kein Zugriff vor Rente</TableCell><TableCell>⚠️ Ab 65 verfügbar</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>❌ Kein Zugriff vor Rente</TableCell><TableCell>⚠️ Ab Renteneintritt verfügbar</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Vererbbarkeit</TableCell><TableCell>❌ Stark eingeschränkt</TableCell><TableCell>✅ Kapital vererbbar</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Ideal für</TableCell><TableCell>Sicherheitssockel, Frühverrentung</TableCell><TableCell>Langfristigen Vermögensaufbau</TableCell></TableRow>
                   </TableBody>
@@ -323,11 +324,7 @@ const BlogRentenpunkteKaufen = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Alle Angaben basieren auf dem Stand 2026 und können sich ändern. Für individuelle Entscheidungen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
