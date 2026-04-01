@@ -208,8 +208,8 @@ const BlogZinseszins = () => {
                 </Table>
               </div>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Anna zahlt 18.000 € mehr ein als Ben — aber sie hat am Ende <strong className="text-foreground">283.000 € mehr</strong> auf dem Konto. Der Unterschied kommt nicht von höheren Einzahlungen. Er kommt von 10 Jahren mehr Zinseszins-Wachstum.</p>
-                <p>Anders gesagt: Bens 10 Jahre Aufschub kosten ihn 283.000 € — für dieselbe monatliche Sparrate.</p>
+                <p>Anna zahlt 18.000 € mehr ein als Ben — aber sie hat am Ende <strong className="text-foreground">232.000 € mehr</strong> auf dem Konto. Der Unterschied kommt nicht von höheren Einzahlungen. Er kommt von 10 Jahren mehr Zinseszins-Wachstum.</p>
+                <p>Anders gesagt: Bens 10 Jahre Aufschub kosten ihn 232.000 € — für dieselbe monatliche Sparrate.</p>
               </div>
 
               {/* Was müsste Ben tun? */}
