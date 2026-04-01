@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -52,7 +53,7 @@ const jsonLd = [
     description: "Riester war die Hoffnung — das Altersvorsorgedepot ist der Neustart. Wir zeigen die wichtigsten Unterschiede, was mit bestehenden Riester-Verträgen passiert und für wen sich was lohnt.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-19",
-    dateModified: "2026-03-19",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -195,12 +196,12 @@ const BlogVsRiester = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell className="font-medium">Grundzulage</TableCell><TableCell>175 €/Jahr (fix)</TableCell><TableCell>30 % auf bis zu 1.200 € + 20 % auf bis zu 600 €</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Grundzulage</TableCell><TableCell>175 €/Jahr (fix)</TableCell><TableCell>50 % auf bis zu 360 € + 25 % auf 360–1.800 € (max. 540 €)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Kinderzulage</TableCell><TableCell>300 €/Kind (ab 2008)</TableCell><TableCell>bis zu 300 €/Kind</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Eigenbeitrag für volle Förderung</TableCell><TableCell>4 % des Vorjahresbruttos (mind. 60 €)</TableCell><TableCell>1.800 €/Jahr (150 €/Monat)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Beitragsgarantie</TableCell><TableCell>✅ Ja — 100 %</TableCell><TableCell>❌ Nein</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlage in ETFs</TableCell><TableCell>⚠️ Begrenzt</TableCell><TableCell>✅ Voll möglich</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Beim Standardprodukt (max. 1,5 % p.a.)</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Kostendeckel</TableCell><TableCell>❌ Nein</TableCell><TableCell>✅ Beim Standardprodukt (max. 1,0 % p.a.)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Zulagenantrag</TableCell><TableCell>Manuell / via Anbieter</TableCell><TableCell>Automatisch (geplant)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Besteuerung</TableCell><TableCell>Nachgelagert</TableCell><TableCell>Nachgelagert</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Mindesteinzahlung</TableCell><TableCell>60 €/Jahr</TableCell><TableCell>120 €/Jahr</TableCell></TableRow>
@@ -222,9 +223,10 @@ const BlogVsRiester = () => {
               <div className="text-base leading-relaxed text-muted-foreground space-y-2">
                 <p>Beim Altersvorsorgedepot ist die Förderung <strong className="text-foreground">prozentual auf den Eigenbeitrag</strong> ausgelegt:</p>
                 <ul className="list-disc pl-6 space-y-1">
-                  <li><strong className="text-foreground">30 %</strong> auf die ersten 1.200 € Eigenbeitrag pro Jahr</li>
-                  <li><strong className="text-foreground">20 %</strong> auf weitere 600 € Eigenbeitrag (bis 1.800 € gesamt)</li>
-                  <li>Kinderzulage: bis zu <strong className="text-foreground">300 € pro Kind</strong></li>
+                  <li><strong className="text-foreground">50 %</strong> auf Eigenbeiträge bis 360 € pro Jahr (max. 180 €)</li>
+                  <li><strong className="text-foreground">25 %</strong> auf Eigenbeiträge zwischen 360 € und 1.800 € pro Jahr (max. 360 €)</li>
+                  <li>Maximale Grundzulage: <strong className="text-foreground">540 € pro Jahr</strong></li>
+                  <li>Kinderzulage: bis zu <strong className="text-foreground">300 € pro Kind</strong> (100 % der Eigenbeiträge, voll ab 25 €/Monat)</li>
                 </ul>
               </div>
 
@@ -288,7 +290,7 @@ const BlogVsRiester = () => {
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital zum Rentenbeginn (geschätzt)</TableCell>
                       <TableCell className="font-bold">~130.000 €</TableCell>
-                      <TableCell className="font-bold text-primary">~255.000 €</TableCell>
+                      <TableCell className="font-bold text-primary">~276.000 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
@@ -358,7 +360,7 @@ const BlogVsRiester = () => {
               <SectionH2 id="fazit">Fazit</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Riester war ein Versuch — ein gut gemeinter, aber schlecht umgesetzter. Das Altersvorsorgedepot ist kein Riester 2.0, sondern ein echter Neustart: einfachere Förderstruktur, keine Beitragsgarantie, volle ETF-Investition, geplanter Kostendeckel.</p>
-                <p>Wer neu anfängt, sollte auf das Altersvorsorgedepot warten — es startet voraussichtlich am 1. Januar 2027. Wer bereits Riester hat, sollte seinen Vertrag nüchtern prüfen, nicht überstürzt kündigen und die weiteren Entwicklungen im Gesetzgebungsverfahren beobachten.</p>
+                <p>Wer neu anfängt, sollte auf das Altersvorsorgedepot warten — es startet am 1. Januar 2027. Wer bereits Riester hat, sollte seinen Vertrag nüchtern prüfen und nicht überstürzt kündigen.</p>
               </div>
 
               <CtaBlock>Jetzt berechnen, was das Altersvorsorgedepot für dich bedeutet.</CtaBlock>
@@ -394,11 +396,7 @@ const BlogVsRiester = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026) sowie öffentlich verfügbaren Informationen zur Riester-Rente. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Für individuelle Entscheidungen zu bestehenden Riester-Verträgen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
