@@ -34,20 +34,20 @@ const tocItems = [
 
 const faqItems = [
   {
-    q: "Wann wird das Gesetz beschlossen?",
-    a: "Die Abstimmung im Bundestag ist für den 26. März 2026 angesetzt. Der Start des Altersvorsorgedepots bleibt der 1. Januar 2027.",
+    q: "Ist das Gesetz beschlossen?",
+    a: "Ja — der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Das Altersvorsorgedepot startet am 1. Januar 2027.",
   },
   {
     q: "Können Selbstständige das Depot nutzen?",
-    a: "Ja — laut Koalitionseinigung werden alle Selbstständigen förderberechtigt. Die genauen Details folgen nach dem offiziellen Beschluss.",
+    a: "Ja — Selbstständige und Freiberufler sind im beschlossenen Gesetz ausdrücklich als förderberechtigt aufgenommen (§ 10a Abs. 1 Satz 5 EStG).",
   },
   {
-    q: "Wann aktualisiert ihr euren Rechner?",
-    a: "Unmittelbar nach dem Bundestags-Beschluss am 26. März arbeiten wir die neuen Zahlen in unseren Rechner ein.",
+    q: "Ist der Rechner bereits aktualisiert?",
+    a: "Ja — unser Rechner arbeitet mit den beschlossenen Förderzahlen (Grundzulage bis 540 €, Kinderzulage bis 300 €, Berufseinsteiger-Bonus 200 €).",
   },
   {
     q: "Was ändert sich bei der Kinderzulage?",
-    a: "Die volle Kinderzulage von 300 Euro pro Kind und Jahr wird künftig bereits ab 25 Euro Monatsbeitrag erreicht — statt bisher 100 Euro.",
+    a: "Die volle Kinderzulage von 300 Euro pro Kind und Jahr wird bereits ab 25 Euro Monatsbeitrag erreicht — statt der ursprünglich geplanten 100 Euro.",
   },
 ];
 
