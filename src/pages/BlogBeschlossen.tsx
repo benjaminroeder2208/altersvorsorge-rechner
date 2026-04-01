@@ -378,10 +378,7 @@ const BlogBeschlossen = () => {
                 </div>
               </AnimatedSection>
 
-              {/* ── Disclaimer ── */}
-              <p className="mt-12 text-xs text-muted-foreground/60 leading-relaxed">
-                Dieser Artikel basiert auf der Beschlussempfehlung des Finanzausschusses (Drucksache 21/4996) vom 25. März 2026 und dem Bundestagsbeschluss vom 27. März 2026. Die lektorierte Fassung des Gesetzes kann geringfügig abweichen. Keine Anlageberatung.
-              </p>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
