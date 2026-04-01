@@ -189,7 +189,7 @@ const RechnerPage = () => (
 
             <div className="mt-8 p-5 bg-muted/50 border border-border/60 rounded-xl max-w-2xl mx-auto">
               <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">Hinweise & Haftungsausschluss</p>
-              <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
+              <p className="text-xs text-muted-foreground/70 leading-relaxed">
                 Berechnung bei 150 €/Monat, Renteneintritt mit 67, 7 % Rendite p.a. — dieser Wert orientiert sich am historischen Durchschnitt breit gestreuter Aktienindizes (siehe z.{"\u00A0"}B. <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>). Er ist keine Prognose und kann in einzelnen Zeiträumen erheblich abweichen, auch ins Negative. Kapitalanlagen in Fonds und ETFs unterliegen Marktschwankungen. Im ungünstigen Fall kann der Wert der Anlage sinken — auch unter den eingezahlten Betrag. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Die Darstellung vereinfacht und berücksichtigt weder Inflation, Kosten noch Steuern. Keine Anlageberatung.
               </p>
             </div>
