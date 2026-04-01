@@ -275,10 +275,10 @@ const BlogZinseszins = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow><TableCell>40 Jahre</TableCell><TableCell>27 Jahre</TableCell><TableCell>~305.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>45 Jahre</TableCell><TableCell>22 Jahre</TableCell><TableCell>~191.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>50 Jahre</TableCell><TableCell>17 Jahre</TableCell><TableCell>~115.000 €</TableCell></TableRow>
-                    <TableRow><TableCell>55 Jahre</TableCell><TableCell>12 Jahre</TableCell><TableCell>~63.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>40 Jahre</TableCell><TableCell>27 Jahre</TableCell><TableCell>~287.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>45 Jahre</TableCell><TableCell>22 Jahre</TableCell><TableCell>~189.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>50 Jahre</TableCell><TableCell>17 Jahre</TableCell><TableCell>~119.000 €</TableCell></TableRow>
+                    <TableRow><TableCell>55 Jahre</TableCell><TableCell>12 Jahre</TableCell><TableCell>~69.000 €</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
