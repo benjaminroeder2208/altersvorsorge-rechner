@@ -44,7 +44,7 @@ const HeroSection = () =>
         
           <span className="text-foreground">150 € im Monat.</span>
           <br />
-          <span style={{ color: "#1B4FD8" }} className="font-bold">255.000 € im Alter.</span>
+          <span style={{ color: "#1B4FD8" }} className="font-bold">276.000 € im Alter.</span>
         </motion.h1>
 
         {/* Subtitle */}
