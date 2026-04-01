@@ -259,7 +259,7 @@ const BlogRiesterKuendigen = () => {
                     <TableRow><TableCell className="font-medium">Neue Förderung</TableCell><TableCell>175 € Grundzulage/Jahr</TableCell><TableCell>Bis zu 540 €/Jahr im Depot</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlagefreiheit</TableCell><TableCell>⚠️ Eingeschränkt</TableCell><TableCell>✅ Volle ETF-Auswahl</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Garantiezwang</TableCell><TableCell>Ja (Beitragserhalt)</TableCell><TableCell>❌ Nein (mehr Rendite möglich)</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Kosten</TableCell><TableCell>Abhängig vom Vertrag</TableCell><TableCell>Geplanter Kostendeckel</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Kosten</TableCell><TableCell>Abhängig vom Vertrag</TableCell><TableCell>Max. 1,0 % p.a. (Standardprodukt)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>Gering</TableCell><TableCell>✅ Hoch</TableCell></TableRow>
                   </TableBody>
                 </Table>
