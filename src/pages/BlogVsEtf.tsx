@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
