@@ -396,11 +396,7 @@ const BlogVsRiester = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026) sowie öffentlich verfügbaren Informationen zur Riester-Rente. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Für individuelle Entscheidungen zu bestehenden Riester-Verträgen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
