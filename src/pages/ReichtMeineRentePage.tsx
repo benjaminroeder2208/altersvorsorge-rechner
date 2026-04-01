@@ -26,7 +26,7 @@ const ReichtMeineRentePage = () => (
           Die meisten unterschätzen ihre Rentenlücke. Finde in 2&nbsp;Minuten heraus, wie deine Situation aussieht.
         </p>
         <Link
-          to="/rentenluecken-rechner"
+          to="/renten-check"
           className="mt-10 inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-base hover:opacity-90 transition-opacity"
         >
           Jetzt berechnen
