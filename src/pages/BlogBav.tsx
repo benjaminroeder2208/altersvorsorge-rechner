@@ -51,7 +51,7 @@ const jsonLd = [
     description: "Die bAV ist oft der einfachste Weg zur Altersvorsorge — weil der Chef mitbezahlt. Wir erklären, wie sie funktioniert, was sie kostet und wann sie sich lohnt.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-19",
-    dateModified: "2026-03-19",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
