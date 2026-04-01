@@ -124,7 +124,7 @@ const DecisionFlowchart = () => (
         {/* Left branch */}
         <div className="flex flex-col items-center">
           <div className="px-4 py-3 bg-primary/10 border border-primary/20 rounded-xl text-sm font-medium text-center max-w-[200px]">
-            Brauchst du das Geld vor 65?
+            Brauchst du das Geld vor der Rente?
           </div>
           <div className="flex items-stretch mt-0">
             <div className="flex flex-col items-center">
