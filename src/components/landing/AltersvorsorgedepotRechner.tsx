@@ -1,13 +1,6 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { ArrowRight, ChevronLeft, Check, Mail, Sparkles, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -28,8 +21,7 @@ import {
 
 /* ─────────────── helpers ─────────────── */
 
-const fmt = (v: number) =>
-  v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
+const fmt = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
 const fmtEur = (v: number) => `${fmt(v)} €`;
 
@@ -98,7 +90,9 @@ function calculate(inputs: Inputs) {
     const age = currentAge + y + 1;
     const startYear = Math.max(CURRENT_YEAR, 2027);
     const calendarYear = startYear + y;
-    const yearSubsidy = berechneGesamtfoerderung(annualOwn, children, calendarYear) + (y === 0 && berufseinsteiger ? BERUFSEINSTEIGER_BONUS : 0);
+    const yearSubsidy =
+      berechneGesamtfoerderung(annualOwn, children, calendarYear) +
+      (y === 0 && berufseinsteiger ? BERUFSEINSTEIGER_BONUS : 0);
 
     totalContributions += annualOwn;
     totalSubsidies += yearSubsidy;
@@ -157,7 +151,10 @@ const AnimatedNumber = ({ value, suffix = "" }: { value: number; suffix?: string
   useEffect(() => {
     const start = display;
     const diff = value - start;
-    if (Math.abs(diff) < 1) { setDisplay(value); return; }
+    if (Math.abs(diff) < 1) {
+      setDisplay(value);
+      return;
+    }
     const duration = 600;
     const startTime = performance.now();
 
@@ -168,11 +165,18 @@ const AnimatedNumber = ({ value, suffix = "" }: { value: number; suffix?: string
       if (t < 1) ref.current = requestAnimationFrame(tick);
     };
     ref.current = requestAnimationFrame(tick);
-    return () => { if (ref.current) cancelAnimationFrame(ref.current); };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      if (ref.current) cancelAnimationFrame(ref.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
-  return <>{fmt(display)}{suffix}</>;
+  return (
+    <>
+      {fmt(display)}
+      {suffix}
+    </>
+  );
 };
 
 /* ─────────────── helper text component ─────────────── */
@@ -220,10 +224,19 @@ const StackedTooltip = ({ active, payload, label }: any) => {
 /* ─────────────── stepper input ─────────────── */
 
 const StepperCard = ({
-  label, value, min, max, onChange, format,
+  label,
+  value,
+  min,
+  max,
+  onChange,
+  format,
 }: {
-  label: string; value: number; min: number; max: number;
-  onChange: (v: number) => void; format?: (v: number) => string;
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  onChange: (v: number) => void;
+  format?: (v: number) => string;
 }) => (
   <div className="bg-background border border-border rounded-2xl p-6 flex items-center justify-between">
     <span className="text-base text-muted-foreground">{label}</span>
@@ -232,15 +245,17 @@ const StepperCard = ({
         onClick={() => onChange(Math.max(min, value - 1))}
         disabled={value <= min}
         className="w-9 h-9 rounded-full bg-secondary text-foreground font-medium text-lg flex items-center justify-center hover:bg-border transition-colors disabled:opacity-20"
-      >−</button>
-      <span className="text-xl font-bold tabular-nums min-w-[4ch] text-center">
-        {format ? format(value) : value}
-      </span>
+      >
+        −
+      </button>
+      <span className="text-xl font-bold tabular-nums min-w-[4ch] text-center">{format ? format(value) : value}</span>
       <button
         onClick={() => onChange(Math.min(max, value + 1))}
         disabled={value >= max}
         className="w-9 h-9 rounded-full bg-secondary text-foreground font-medium text-lg flex items-center justify-center hover:bg-border transition-colors disabled:opacity-20"
-      >+</button>
+      >
+        +
+      </button>
     </div>
   </div>
 );
@@ -304,9 +319,12 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
       if (error) throw error;
 
       // Send confirmation email (DOI)
-      const { data: confirmationData, error: confirmationError } = await supabase.functions.invoke("send-confirmation-email", {
-        body: { email, token: confirmToken },
-      });
+      const { data: confirmationData, error: confirmationError } = await supabase.functions.invoke(
+        "send-confirmation-email",
+        {
+          body: { email, token: confirmToken },
+        },
+      );
 
       if (confirmationError || confirmationData?.error) {
         const msg = confirmationData?.error ?? "Confirmation email failed";
@@ -327,7 +345,10 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         setErrorMsg("Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.");
       }
       setStatus("error");
-      setTimeout(() => { setStatus("idle"); setErrorMsg(""); }, 5000);
+      setTimeout(() => {
+        setStatus("idle");
+        setErrorMsg("");
+      }, 5000);
     }
   };
 
@@ -339,12 +360,14 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
           <h3 className="text-lg font-semibold">Deine persönliche PDF-Auswertung</h3>
         </div>
         <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
-          Gib deine E-Mail ein und erhalte deine persönliche Auswertung als PDF — mit deinen Kennzahlen, Kapitalentwicklungs-Chart und Vergleich. Kostenlos, kein Newsletter.
+          Gib deine E-Mail ein und erhalte deine persönliche Auswertung als PDF — mit deinen Kennzahlen,
+          Kapitalentwicklungs-Chart und Vergleich. Kostenlos, kein Newsletter.
         </p>
 
         {status === "sent" ? (
           <div className="flex items-center justify-center gap-2 text-primary text-sm font-medium py-3">
-            <FileText className="w-4 h-4" /> Fast geschafft! Wir haben dir eine Bestätigungsmail gesendet. Nach der Bestätigung erhältst du dein PDF sofort.
+            <FileText className="w-4 h-4" /> Fast geschafft! Wir haben dir eine Bestätigungsmail gesendet. Nach der
+            Bestätigung erhältst du dein PDF sofort.
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -373,20 +396,36 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
               <Checkbox
                 id="dsgvo-newsletter"
                 checked={dsgvoAccepted}
-                onCheckedChange={(v) => { setDsgvoAccepted(!!v); setDsgvoError(false); }}
+                onCheckedChange={(v) => {
+                  setDsgvoAccepted(!!v);
+                  setDsgvoError(false);
+                }}
                 className={`mt-0.5 ${dsgvoError ? "border-destructive ring-1 ring-destructive" : ""}`}
               />
-              <label htmlFor="dsgvo-newsletter" className="text-[11px] text-muted-foreground leading-relaxed cursor-pointer">
+              <label
+                htmlFor="dsgvo-newsletter"
+                className="text-[11px] text-muted-foreground leading-relaxed cursor-pointer"
+              >
                 Ich stimme der Verarbeitung meiner E-Mail-Adresse gemäß der{" "}
-                <a href="/datenschutz" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Datenschutzerklärung</a>{" "}
-                zu. Die Adresse wird ausschließlich zur Zusendung meiner Auswertung und gelegentlicher Updates verwendet.
+                <a
+                  href="/datenschutz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-foreground"
+                >
+                  Datenschutzerklärung
+                </a>{" "}
+                zu. Die Adresse wird ausschließlich zur Zusendung meiner Auswertung und gelegentlicher Updates
+                verwendet.
               </label>
             </div>
             {dsgvoError && (
               <p className="text-[11px] text-destructive text-left">Bitte stimme der Datenschutzerklärung zu.</p>
             )}
             {status === "error" && (
-              <p className="text-xs text-destructive">{errorMsg || "Fehler beim Speichern. Bitte versuche es erneut."}</p>
+              <p className="text-xs text-destructive">
+                {errorMsg || "Fehler beim Speichern. Bitte versuche es erneut."}
+              </p>
             )}
           </form>
         )}
@@ -410,9 +449,8 @@ const AltersvorsorgedepotRechner = () => {
   });
 
   const set = useCallback(
-    <K extends keyof Inputs>(key: K, value: Inputs[K]) =>
-      setInputs((prev) => ({ ...prev, [key]: value })),
-    []
+    <K extends keyof Inputs>(key: K, value: Inputs[K]) => setInputs((prev) => ({ ...prev, [key]: value })),
+    [],
   );
 
   const r = useMemo(() => calculate(inputs), [inputs]);
@@ -427,7 +465,6 @@ const AltersvorsorgedepotRechner = () => {
     <>
       <section id="rechner" className="section-padding">
         <div className="container max-w-3xl mx-auto px-6">
-
           {/* Step indicator */}
           <div className="flex items-center justify-center gap-2 mb-16">
             {[1, 2, 3].map((s) => (
@@ -452,10 +489,12 @@ const AltersvorsorgedepotRechner = () => {
                 transition={{ duration: 0.4 }}
                 className="text-center"
               >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
+                <h2
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
+                  style={{ letterSpacing: "-0.02em" }}
+                >
                   Wie viel möchten Sie monatlich
-                  <br className="hidden md:block" />
-                  {" "}für Ihre Altersvorsorge investieren?
+                  <br className="hidden md:block" /> für Ihre Altersvorsorge investieren?
                 </h2>
                 <p className="text-muted-foreground text-lg mb-16 max-w-xl mx-auto">
                   Je höher Ihr monatlicher Beitrag, desto stärker kann der langfristige Vermögensaufbau ausfallen.
@@ -470,7 +509,9 @@ const AltersvorsorgedepotRechner = () => {
                 <div className="max-w-lg mx-auto mb-4">
                   <input
                     type="range"
-                    min={10} max={600} step={10}
+                    min={10}
+                    max={600}
+                    step={10}
                     value={inputs.monthlyContribution}
                     onChange={(e) => set("monthlyContribution", Number(e.target.value))}
                     className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer accent-primary
@@ -486,7 +527,8 @@ const AltersvorsorgedepotRechner = () => {
 
                 {/* Annual contribution */}
                 <p className="text-sm text-muted-foreground mt-6">
-                  Jährlicher Eigenbeitrag: <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution * 12)}</span>
+                  Jährlicher Eigenbeitrag:{" "}
+                  <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution * 12)}</span>
                 </p>
                 <InfoText className="mt-2 max-w-sm mx-auto">
                   Dieser Wert ergibt sich aus Ihrem monatlichen Beitrag hochgerechnet auf ein Jahr.
@@ -525,7 +567,9 @@ const AltersvorsorgedepotRechner = () => {
                   Wie hoch ist Ihr Bruttojahreseinkommen?
                 </h2>
                 <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
-                  Wir nutzen Ihr Einkommen ausschließlich zur Schätzung Ihrer Steuerersparnis durch den Sonderausgabenabzug — nicht zur Berechnung der Zulagen. Zulagen erhält jede förderberechtigte Person unabhängig vom Einkommen.
+                  Wir nutzen Ihr Einkommen ausschließlich zur Schätzung Ihrer Steuerersparnis durch den
+                  Sonderausgabenabzug — nicht zur Berechnung der Zulagen. Zulagen erhält jede förderberechtigte Person
+                  unabhängig vom Einkommen.
                 </p>
 
                 <div className="grid grid-cols-2 gap-3 max-w-xl mx-auto">
@@ -539,7 +583,9 @@ const AltersvorsorgedepotRechner = () => {
                           : "border-border bg-background hover:bg-secondary"
                       }`}
                     >
-                      <span className={`text-sm font-semibold ${inputs.incomeBand === i ? "text-primary" : "text-foreground"}`}>
+                      <span
+                        className={`text-sm font-semibold ${inputs.incomeBand === i ? "text-primary" : "text-foreground"}`}
+                      >
                         {band.label}
                       </span>
                     </button>
@@ -547,7 +593,9 @@ const AltersvorsorgedepotRechner = () => {
                 </div>
 
                 <InfoText className="mt-6 max-w-md mx-auto">
-                  Der Sonderausgabenabzug ermöglicht es, Eigenbeiträge und Zulagen bis zu 1.800 €/Jahr in der Steuererklärung geltend zu machen. Je höher Ihr Grenzsteuersatz, desto größer die zusätzliche Steuerersparnis — diese ist jedoch immer eine Schätzung und individuell verschieden.
+                  Der Sonderausgabenabzug ermöglicht es, Eigenbeiträge und Zulagen bis zu 1.800 €/Jahr in der
+                  Steuererklärung geltend zu machen. Je höher Ihr Grenzsteuersatz, desto größer die zusätzliche
+                  Steuerersparnis — diese ist jedoch immer eine Schätzung und individuell verschieden.
                 </InfoText>
 
                 <button
@@ -627,20 +675,25 @@ const AltersvorsorgedepotRechner = () => {
                       subsidies: Math.round(r.totalSubsidies),
                     };
                     // Anonymous tracking
-                    supabase.from("calculator_results").insert({
-                      birth_year: inputs.birthYear,
-                      monthly_contribution: inputs.monthlyContribution,
-                      monthly_payout: Math.round(r.monthlyPayout),
-                      total_capital: Math.round(r.capitalWithFunding),
-                      subsidies: Math.round(r.totalSubsidies),
-                      tax_benefits: Math.round(r.totalTaxBenefit),
-                      capital_gains: Math.round(r.capitalGains),
-                      own_contributions: Math.round(r.totalContributions),
-                      retirement_age: inputs.retirementAge,
-                      return_assumption: inputs.returnRate * 100,
-                      children: inputs.children,
-                      income_bracket: INCOME_BANDS[inputs.incomeBand].key,
-                    }).then(({ error }) => { if (error) console.warn("Tracking insert failed:", error.message); });
+                    supabase
+                      .from("calculator_results")
+                      .insert({
+                        birth_year: inputs.birthYear,
+                        monthly_contribution: inputs.monthlyContribution,
+                        monthly_payout: Math.round(r.monthlyPayout),
+                        total_capital: Math.round(r.capitalWithFunding),
+                        subsidies: Math.round(r.totalSubsidies),
+                        tax_benefits: Math.round(r.totalTaxBenefit),
+                        capital_gains: Math.round(r.capitalGains),
+                        own_contributions: Math.round(r.totalContributions),
+                        retirement_age: inputs.retirementAge,
+                        return_assumption: inputs.returnRate * 100,
+                        children: inputs.children,
+                        income_bracket: INCOME_BANDS[inputs.incomeBand].key,
+                      })
+                      .then(({ error }) => {
+                        if (error) console.warn("Tracking insert failed:", error.message);
+                      });
                   }}
                   className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
                 >
@@ -674,7 +727,10 @@ const AltersvorsorgedepotRechner = () => {
                   <p className="text-sm font-medium text-primary uppercase tracking-widest mb-6">
                     Kapital zum Rentenbeginn
                   </p>
-                  <p className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.03em" }}>
+                  <p
+                    className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-3"
+                    style={{ letterSpacing: "-0.03em" }}
+                  >
                     <AnimatedNumber value={Math.round(r.capitalWithFunding)} suffix=" €" />
                   </p>
                   <p className="text-muted-foreground text-lg mb-8">
@@ -690,18 +746,21 @@ const AltersvorsorgedepotRechner = () => {
                 </div>
 
                 <InfoText className="max-w-md mx-auto mb-16">
-                  Die monatliche Auszahlung wird in dieser Simulation vereinfacht bis zum Alter von 85 Jahren dargestellt.
+                  Die monatliche Auszahlung wird in dieser Simulation vereinfacht bis zum Alter von 85 Jahren
+                  dargestellt.
                 </InfoText>
 
                 {/* Result interpretation */}
                 <div className="max-w-xl mx-auto mb-20 p-6 bg-secondary/50 rounded-2xl">
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Wenn Sie monatlich <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution)}</span> investieren,
-                    könnte Ihr Altersvorsorgedepot bis zum Rentenbeginn mit <span className="font-semibold text-foreground">{inputs.retirementAge}</span> auf
-                    etwa <span className="font-semibold text-foreground">{fmtEur(Math.round(r.capitalWithFunding))}</span> anwachsen.
-                    Das entspricht einer möglichen monatlichen Auszahlung von
-                    etwa <span className="font-semibold text-foreground">{fmtEur(Math.round(r.monthlyPayout))}</span> bis
-                    zum Alter von 85 Jahren.
+                    Wenn Sie monatlich{" "}
+                    <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution)}</span>{" "}
+                    investieren, könnte Ihr Altersvorsorgedepot bis zum Rentenbeginn mit{" "}
+                    <span className="font-semibold text-foreground">{inputs.retirementAge}</span> auf etwa{" "}
+                    <span className="font-semibold text-foreground">{fmtEur(Math.round(r.capitalWithFunding))}</span>{" "}
+                    anwachsen. Das entspricht einer möglichen monatlichen Auszahlung von etwa{" "}
+                    <span className="font-semibold text-foreground">{fmtEur(Math.round(r.monthlyPayout))}</span> bis zum
+                    Alter von 85 Jahren.
                   </p>
                 </div>
 
@@ -787,13 +846,15 @@ const AltersvorsorgedepotRechner = () => {
                         <XAxis
                           dataKey="age"
                           tick={{ fill: "hsl(240, 1%, 44%)", fontSize: 12 }}
-                          axisLine={false} tickLine={false}
+                          axisLine={false}
+                          tickLine={false}
                           interval="preserveStartEnd"
                         />
                         <YAxis
                           tick={{ fill: "hsl(240, 1%, 44%)", fontSize: 12 }}
-                          axisLine={false} tickLine={false}
-                          tickFormatter={(v) => v >= 1000 ? `${Math.round(v / 1000)}k` : fmt(v)}
+                          axisLine={false}
+                          tickLine={false}
+                          tickFormatter={(v) => (v >= 1000 ? `${Math.round(v / 1000)}k` : fmt(v))}
                           width={50}
                         />
                         <Tooltip content={<StackedTooltip />} />
@@ -859,12 +920,14 @@ const AltersvorsorgedepotRechner = () => {
                         </p>
                         {item.label === "Staatliche Zulagen" && (
                           <p className="text-[11px] text-muted-foreground/60 mt-2 leading-snug">
-                            Summe aller staatlichen Grundzulagen (und ggf. Kinderzulagen) über die gesamte Ansparzeit — direkt in Ihr Depot eingezahlt, unabhängig von Ihrem Einkommen.
+                            Summe aller staatlichen Grundzulagen (und ggf. Kinderzulagen) über die gesamte Ansparzeit —
+                            direkt in Ihr Depot eingezahlt, unabhängig von Ihrem Einkommen.
                           </p>
                         )}
                         {item.label === "Steuervorteile" && (
                           <p className="text-[11px] text-muted-foreground/60 mt-2 leading-snug">
-                            Geschätzter kumulierter Steuervorteil durch den Sonderausgabenabzug, basierend auf Ihrer Einkommensklasse. Individuelle Abweichungen sind möglich.
+                            Geschätzter kumulierter Steuervorteil durch den Sonderausgabenabzug, basierend auf Ihrer
+                            Einkommensklasse. Individuelle Abweichungen sind möglich.
                           </p>
                         )}
                       </div>
@@ -874,14 +937,9 @@ const AltersvorsorgedepotRechner = () => {
                   <div className="mt-6 bg-background border border-border rounded-2xl p-6 max-w-2xl mx-auto text-left">
                     <div className="flex items-center justify-between flex-wrap gap-4">
                       <div>
-                        <p className="text-sm text-muted-foreground mb-1">
-                          Eingezahltes Kapital gesamt
-                        </p>
+                        <p className="text-sm text-muted-foreground mb-1">Eingezahltes Kapital gesamt</p>
                         <p className="text-xl font-bold tabular-nums">
-                          <AnimatedNumber
-                            value={Math.round(r.totalContributions + r.totalSubsidies)}
-                            suffix=" €"
-                          />
+                          <AnimatedNumber value={Math.round(r.totalContributions + r.totalSubsidies)} suffix=" €" />
                         </p>
                         <p className="text-[11px] text-muted-foreground/60 mt-1 leading-snug">
                           Eigenbeiträge + Staatliche Zulagen
@@ -889,9 +947,7 @@ const AltersvorsorgedepotRechner = () => {
                       </div>
                       <div className="text-muted-foreground/40 text-2xl font-light">+</div>
                       <div>
-                        <p className="text-sm text-muted-foreground mb-1">
-                          Wertentwicklung (Kapitalerträge)
-                        </p>
+                        <p className="text-sm text-muted-foreground mb-1">Wertentwicklung (Kapitalerträge)</p>
                         <p className="text-xl font-bold tabular-nums text-[hsl(174,60%,38%)]">
                           <AnimatedNumber
                             value={Math.round(r.capitalWithFunding - r.totalContributions - r.totalSubsidies)}
@@ -904,14 +960,9 @@ const AltersvorsorgedepotRechner = () => {
                       </div>
                       <div className="text-muted-foreground/40 text-2xl font-light">=</div>
                       <div>
-                        <p className="text-sm text-muted-foreground mb-1">
-                          Kapital zum Rentenbeginn
-                        </p>
+                        <p className="text-sm text-muted-foreground mb-1">Kapital zum Rentenbeginn</p>
                         <p className="text-xl font-bold tabular-nums text-primary">
-                          <AnimatedNumber
-                            value={Math.round(r.capitalWithFunding)}
-                            suffix=" €"
-                          />
+                          <AnimatedNumber value={Math.round(r.capitalWithFunding)} suffix=" €" />
                         </p>
                         <p className="text-[11px] text-muted-foreground/60 mt-1 leading-snug">
                           Entspricht dem oben angezeigten Gesamtkapital
@@ -919,12 +970,15 @@ const AltersvorsorgedepotRechner = () => {
                       </div>
                     </div>
                     <p className="text-[11px] text-muted-foreground/50 mt-5 leading-snug border-t border-border pt-4">
-                      Kapitalerträge sind keine Garantie. Die Simulation basiert auf vereinfachten Annahmen ohne Inflation, Kosten oder Steuern auf Erträge. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
+                      Kapitalerträge sind keine Garantie. Die Simulation basiert auf vereinfachten Annahmen ohne
+                      Inflation, Kosten oder Steuern auf Erträge. Frühere Wertentwicklungen sind kein verlässlicher
+                      Indikator für die Zukunft.
                     </p>
                   </div>
 
                   <InfoText className="mt-6 max-w-md mx-auto">
-                    Die Zusammensetzung zeigt, wie sich Eigenbeiträge, staatliche Zulagen und Kapitalerträge ergänzen können.
+                    Die Zusammensetzung zeigt, wie sich Eigenbeiträge, staatliche Zulagen und Kapitalerträge ergänzen
+                    können.
                   </InfoText>
 
                   {/* Funding advantage */}
@@ -934,10 +988,12 @@ const AltersvorsorgedepotRechner = () => {
                       +<AnimatedNumber value={Math.round(r.capitalWithFunding - r.capitalWithout)} suffix=" €" />
                     </p>
                     <InfoText className="mt-2 max-w-md mx-auto">
-                      Dieser Betrag zeigt, wie viel mehr Kapital zum Rentenbeginn durch staatliche Förderung entsteht — im Vergleich zu identischen Einzahlungen ohne Förderung (z. B. in ein normales Depot).
+                      Dieser Betrag zeigt, wie viel mehr Kapital zum Rentenbeginn durch staatliche Förderung entsteht —
+                      im Vergleich zu identischen Einzahlungen ohne Förderung (z. B. in ein normales Depot).
                     </InfoText>
                     <InfoText className="mt-2 max-w-md mx-auto">
-                      Enthält Zulagen und Steuervorteile, die über die gesamte Laufzeit mitwachsen. Basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
+                      Enthält Zulagen und Steuervorteile, die über die gesamte Laufzeit mitwachsen. Basiert auf dem
+                      Altersvorsorgereformgesetz (beschlossen 27.03.2026).
                     </InfoText>
                   </div>
                 </div>
@@ -947,19 +1003,34 @@ const AltersvorsorgedepotRechner = () => {
                   <h3 className="text-xl font-bold mb-8">Vergleich</h3>
                   <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
                     {[
-                      { title: "Altersvorsorgedepot", capital: r.capitalWithFunding, monthly: r.monthlyPayout, highlight: true },
-                      { title: "Normales Depot", capital: r.capitalWithout, monthly: r.monthlyPayoutWithout, highlight: false },
-                      { title: "Sparkonto (2 %)", capital: r.capitalSavings, monthly: r.monthlyPayoutSavings, highlight: false },
+                      {
+                        title: "Altersvorsorgedepot",
+                        capital: r.capitalWithFunding,
+                        monthly: r.monthlyPayout,
+                        highlight: true,
+                      },
+                      {
+                        title: "Normales Depot",
+                        capital: r.capitalWithout,
+                        monthly: r.monthlyPayoutWithout,
+                        highlight: false,
+                      },
+                      {
+                        title: "Sparkonto (2 %)",
+                        capital: r.capitalSavings,
+                        monthly: r.monthlyPayoutSavings,
+                        highlight: false,
+                      },
                     ].map((c) => (
                       <div
                         key={c.title}
                         className={`rounded-2xl p-6 transition-shadow ${
-                          c.highlight
-                            ? "bg-primary/5 ring-1 ring-primary/15"
-                            : "bg-secondary"
+                          c.highlight ? "bg-primary/5 ring-1 ring-primary/15" : "bg-secondary"
                         }`}
                       >
-                        <p className={`text-sm font-medium mb-5 ${c.highlight ? "text-primary" : "text-muted-foreground"}`}>
+                        <p
+                          className={`text-sm font-medium mb-5 ${c.highlight ? "text-primary" : "text-muted-foreground"}`}
+                        >
                           {c.title}
                         </p>
                         <p className="text-2xl font-bold tabular-nums mb-0.5">
@@ -983,12 +1054,14 @@ const AltersvorsorgedepotRechner = () => {
 
                 {/* Disclaimer */}
                 <div className="max-w-xl mx-auto p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
-                  <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">Hinweise & Haftungsausschluss</p>
+                  <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">
+                    Hinweise & Haftungsausschluss
+                  </p>
                   <p className="text-xs text-muted-foreground/70 leading-relaxed">
-                    Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
-                    Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt.
-                    Kapitalanlagen bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
-                    Sie stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
+                    Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026). Steuerliche
+                    Effekte und Produktausgestaltung sind vereinfacht dargestellt. Kapitalanlagen bergen Risiken.
+                    Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Sie stellt keine
+                    Anlage-, Steuer- oder Rechtsberatung dar.
                   </p>
                 </div>
 
@@ -1011,7 +1084,6 @@ const AltersvorsorgedepotRechner = () => {
       {step === 4 && (
         <section className="bg-muted/30 border-t border-border/40 py-24 md:py-32">
           <div className="container max-w-3xl mx-auto px-6 text-center">
-            <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-3">Hinweise & Haftungsausschluss</p>
             <p className="text-muted-foreground text-base mb-16 max-w-xl mx-auto">
               Weitere Erläuterungen zur Simulation, zu Annahmen und zum beschlossenen Gesetz.
             </p>
@@ -1023,33 +1095,45 @@ const AltersvorsorgedepotRechner = () => {
                 Beschlussempfehlung abweichen.
               </p>
               <p>
-                Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) orientieren sich am historischen Durchschnitt breit gestreuter Aktienindizes (siehe z.{"\u00A0"}B. <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>) und stellen keine Prognose dar. Die tatsächliche Wertentwicklung hängt von der gewählten
-                Anlageform, der Marktentwicklung und den anfallenden Kosten ab.
+                Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) orientieren sich am
+                historischen Durchschnitt breit gestreuter Aktienindizes (siehe z.{"\u00A0"}B.{" "}
+                <a
+                  href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  MSCI-World-Renditedreieck des Deutschen Aktieninstituts
+                </a>
+                ) und stellen keine Prognose dar. Die tatsächliche Wertentwicklung hängt von der gewählten Anlageform,
+                der Marktentwicklung und den anfallenden Kosten ab.
               </p>
               <p>
-                Die steuerlichen Vorteile werden auf Basis vereinfachter Grenzsteuersätze geschätzt. Die tatsächliche steuerliche
-                Wirkung kann je nach individueller Situation, Familienstand, weiteren Einkünften und geltenden Freibeträgen
-                erheblich abweichen. Eine individuelle steuerliche Beratung wird empfohlen.
+                Die steuerlichen Vorteile werden auf Basis vereinfachter Grenzsteuersätze geschätzt. Die tatsächliche
+                steuerliche Wirkung kann je nach individueller Situation, Familienstand, weiteren Einkünften und
+                geltenden Freibeträgen erheblich abweichen. Eine individuelle steuerliche Beratung wird empfohlen.
               </p>
               <p>
-                Die Grundzulage wird gemäß dem beschlossenen Gesetz mit {GRUNDZULAGE_SATZ_AB_2027 * 100} % auf Eigenbeiträge bis {fmt(GRUNDZULAGE_BASIS_MAX)} € und {ZUSATZZULAGE_SATZ * 100} % auf Beiträge zwischen
-                {" "}{fmt(GRUNDZULAGE_BASIS_MAX)} € und {fmt(ZUSATZZULAGE_BASIS_MAX)} € jährlich berechnet. Die Kinderzulage beträgt bis zu 100 % des Eigenbeitrags, maximal {KINDERZULAGE_PRO_KIND} €
-                pro Kind und Jahr. Eine Mindestsparleistung von {MINDESTEIGENBEITRAG} € pro Jahr ist Voraussetzung für die Förderung.
+                Die Grundzulage wird gemäß dem beschlossenen Gesetz mit {GRUNDZULAGE_SATZ_AB_2027 * 100} % auf
+                Eigenbeiträge bis {fmt(GRUNDZULAGE_BASIS_MAX)} € und {ZUSATZZULAGE_SATZ * 100} % auf Beiträge zwischen{" "}
+                {fmt(GRUNDZULAGE_BASIS_MAX)} € und {fmt(ZUSATZZULAGE_BASIS_MAX)} € jährlich berechnet. Die Kinderzulage
+                beträgt bis zu 100 % des Eigenbeitrags, maximal {KINDERZULAGE_PRO_KIND} € pro Kind und Jahr. Eine
+                Mindestsparleistung von {MINDESTEIGENBEITRAG} € pro Jahr ist Voraussetzung für die Förderung.
               </p>
               <p>
-                Die monatliche Auszahlung wird vereinfacht als gleichmäßige Entnahme des angesparten Kapitals bis zum Alter von
-                85 Jahren berechnet. In der Praxis können Auszahlungsmodelle (z. B. Teilverrentung, flexible Entnahme oder
-                lebenslange Rente) die tatsächlichen monatlichen Beträge erheblich beeinflussen.
+                Die monatliche Auszahlung wird vereinfacht als gleichmäßige Entnahme des angesparten Kapitals bis zum
+                Alter von 85 Jahren berechnet. In der Praxis können Auszahlungsmodelle (z. B. Teilverrentung, flexible
+                Entnahme oder lebenslange Rente) die tatsächlichen monatlichen Beträge erheblich beeinflussen.
               </p>
               <p>
-                Der Vergleich mit einem ungeförderten Depot und einem Sparkonto dient ausschließlich der Veranschaulichung.
-                Das Sparkonto wird mit einer pauschalen Verzinsung von 2 % p.a. simuliert. Inflation, Steuern auf Erträge und
-                individuelle Kosten sind in keiner der Varianten berücksichtigt.
+                Der Vergleich mit einem ungeförderten Depot und einem Sparkonto dient ausschließlich der
+                Veranschaulichung. Das Sparkonto wird mit einer pauschalen Verzinsung von 2 % p.a. simuliert. Inflation,
+                Steuern auf Erträge und individuelle Kosten sind in keiner der Varianten berücksichtigt.
               </p>
               <p>
-                Kapitalanlagen bergen Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals.
-                Frühere Wertentwicklungen sind kein verlässlicher Indikator für künftige Ergebnisse.
-                Diese Simulation stellt keine Anlageberatung, Steuerberatung oder Rechtsberatung dar.
+                Kapitalanlagen bergen Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals. Frühere
+                Wertentwicklungen sind kein verlässlicher Indikator für künftige Ergebnisse. Diese Simulation stellt
+                keine Anlageberatung, Steuerberatung oder Rechtsberatung dar.
               </p>
             </div>
           </div>
