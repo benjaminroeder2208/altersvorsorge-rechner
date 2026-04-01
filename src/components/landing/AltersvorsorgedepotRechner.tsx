@@ -1013,11 +1013,9 @@ const AltersvorsorgedepotRechner = () => {
 
       {/* ── FOOTNOTES SECTION ── */}
       {step === 4 && (
-        <section className="bg-secondary py-24 md:py-32">
+        <section className="bg-muted/30 border-t border-border/40 py-24 md:py-32">
           <div className="container max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
-              Fußnoten und Hinweise
-            </h2>
+            <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-3">Hinweise & Haftungsausschluss</p>
             <p className="text-muted-foreground text-base mb-16 max-w-xl mx-auto">
               Weitere Erläuterungen zur Simulation, zu Annahmen und zum beschlossenen Gesetz.
             </p>
