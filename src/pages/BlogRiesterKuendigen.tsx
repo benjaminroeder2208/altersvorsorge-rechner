@@ -315,11 +315,7 @@ const BlogRiesterKuendigen = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Für individuelle Riester-Entscheidungen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
