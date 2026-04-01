@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -52,7 +53,7 @@ const jsonLd = [
     description: "Zu spät für die Altersvorsorge? Drei konkrete Szenarien mit echten Zahlen zeigen, was mit 30, 40 und 50 Jahren noch möglich ist — und wie das Altersvorsorgedepot ab 2027 hilft.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-15",
-    dateModified: "2026-03-15",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -366,7 +367,7 @@ const BlogRentenlueckeMit30_40_50 = () => {
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p><strong className="text-foreground">Schritt 2: Monatlichen Spielraum realistisch einschätzen.</strong> Was kannst du dauerhaft zurücklegen — nicht im besten Monat, sondern im normalen? Auch 50 € sind besser als nichts. Lieber klein anfangen und dabei bleiben als mit großen Beträgen starten und nach drei Monaten aufhören.</p>
                 <p><strong className="text-foreground">Schritt 3: Betriebliche Altersvorsorge prüfen.</strong> Frag bei deinem Arbeitgeber nach, ob eine bAV angeboten wird und wie hoch der Arbeitgeberzuschuss ist. Das ist oft der einfachste und steuerlich günstigste erste Schritt.</p>
-                <p><strong className="text-foreground">Schritt 4: Ab 2027 Altersvorsorgedepot eröffnen.</strong> Das neue Altersvorsorgedepot startet voraussichtlich am 1. Januar 2027. Informiere dich jetzt — und berechne, wie viel Kapital du bis zur Rente aufbauen könntest.</p>
+                <p><strong className="text-foreground">Schritt 4: Ab 2027 Altersvorsorgedepot eröffnen.</strong> Das neue Altersvorsorgedepot startet am 1. Januar 2027. Informiere dich jetzt — und berechne, wie viel Kapital du bis zur Rente aufbauen könntest.</p>
               </div>
 
               <CtaBlock>Jetzt berechnen, was für dich noch möglich ist.</CtaBlock>
@@ -411,11 +412,7 @@ const BlogRentenlueckeMit30_40_50 = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Berechnungen basieren auf vereinfachten Annahmen (Rendite 7 % p.a., pauschale Steuer- und Abzugsschätzungen). Tatsächliche Renten- und Steuerwerte können erheblich abweichen. Angaben basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026). Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
