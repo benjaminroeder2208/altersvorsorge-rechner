@@ -9,15 +9,21 @@ const HeroIllustration = () => (
   <svg viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
     {/* Background circles */}
     <motion.circle
-      cx="210" cy="160" r="155"
-      fill="#1B4FD8" opacity="0.06"
+      cx="210"
+      cy="160"
+      r="155"
+      fill="#1B4FD8"
+      opacity="0.06"
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 0.06 }}
       transition={{ duration: 0.8, delay: 0.2, ease }}
     />
     <motion.circle
-      cx="210" cy="160" r="115"
-      fill="#1B4FD8" opacity="0.06"
+      cx="210"
+      cy="160"
+      r="115"
+      fill="#1B4FD8"
+      opacity="0.06"
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 0.06 }}
       transition={{ duration: 0.8, delay: 0.3, ease }}
@@ -59,19 +65,33 @@ const HeroIllustration = () => (
     />
 
     {/* Amber accent dots on curve */}
-    <motion.circle cx="120" cy="230" r="5" fill="#F59E0B"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+    <motion.circle
+      cx="120"
+      cy="230"
+      r="5"
+      fill="#F59E0B"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ delay: 1.2, duration: 0.4 }}
     />
-    <motion.circle cx="240" cy="140" r="8" fill="#F59E0B"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+    <motion.circle
+      cx="240"
+      cy="140"
+      r="8"
+      fill="#F59E0B"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ delay: 1.4, duration: 0.4 }}
     />
-    <motion.circle cx="360" cy="40" r="5" fill="#F59E0B"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+    <motion.circle
+      cx="360"
+      cy="40"
+      r="5"
+      fill="#F59E0B"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ delay: 1.6, duration: 0.4 }}
     />
-
 
     {/* Data card 1 — bottom left */}
     <motion.g
@@ -84,9 +104,15 @@ const HeroIllustration = () => (
     >
       <rect x="20" y="210" width="150" height="72" rx="12" fill="white" stroke="#E5E7EB" strokeWidth="1" />
       <rect x="20" y="210" width="4" height="72" rx="2" fill="#1B4FD8" />
-      <text x="36" y="230" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">KAPITAL MIT 67</text>
-      <text x="36" y="252" fontSize="14" fontWeight="700" fill="#1B4FD8" fontFamily="system-ui">255.000 €</text>
-      <text x="36" y="270" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">bei 150 € / Monat</text>
+      <text x="36" y="230" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">
+        KAPITAL MIT 67
+      </text>
+      <text x="36" y="252" fontSize="14" fontWeight="700" fill="#1B4FD8" fontFamily="system-ui">
+        212.000 €
+      </text>
+      <text x="36" y="270" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">
+        bei 150 € / Monat
+      </text>
     </motion.g>
 
     {/* Data card 2 — mid right */}
@@ -100,9 +126,15 @@ const HeroIllustration = () => (
     >
       <rect x="260" y="100" width="155" height="72" rx="12" fill="white" stroke="#E5E7EB" strokeWidth="1" />
       <rect x="260" y="100" width="4" height="72" rx="2" fill="#F59E0B" />
-      <text x="276" y="120" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">STAATL. FÖRDERUNG</text>
-      <text x="276" y="142" fontSize="14" fontWeight="700" fill="#F59E0B" fontFamily="system-ui">+17.280 €</text>
-      <text x="276" y="160" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">kumuliert über 32 Jahre</text>
+      <text x="276" y="120" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">
+        STAATL. FÖRDERUNG
+      </text>
+      <text x="276" y="142" fontSize="14" fontWeight="700" fill="#F59E0B" fontFamily="system-ui">
+        +17.280 €
+      </text>
+      <text x="276" y="160" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">
+        kumuliert über 32 Jahre
+      </text>
     </motion.g>
 
     {/* Mini bar chart — bottom right */}
