@@ -38,6 +38,7 @@ import ConfirmPage from "./pages/ConfirmPage";
 import EmbedPage from "./pages/EmbedPage";
 import EinbettenPage from "./pages/EinbettenPage";
 import ReichtMeineRentePage from "./pages/ReichtMeineRentePage";
+import RentenCheckPage from "./pages/RentenCheckPage";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 import UpdateBanner from "@/components/landing/UpdateBanner";
@@ -91,6 +92,7 @@ const App = () => (
             <Route path="/embed" element={<EmbedPage />} />
             <Route path="/einbetten" element={<EinbettenPage />} />
             <Route path="/reicht-meine-rente" element={<ReichtMeineRentePage />} />
+            <Route path="/renten-check" element={<RentenCheckPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
