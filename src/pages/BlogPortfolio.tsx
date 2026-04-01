@@ -193,7 +193,7 @@ const BlogPortfolio = () => {
                       <TableCell className="font-medium">Altersvorsorgedepot</TableCell>
                       <TableCell>Ja (ab 2027)</TableCell>
                       <TableCell>Gering</TableCell>
-                      <TableCell>Angestellte</TableCell>
+                      <TableCell>Alle (inkl. Selbstständige)</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="font-medium">bAV</TableCell>
