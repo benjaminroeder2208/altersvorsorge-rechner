@@ -59,7 +59,7 @@ const jsonLd = [
       "CDU/CSU und SPD einigen sich auf verbesserte Konditionen beim Altersvorsorgedepot. Abstimmung im Bundestag am 26. März 2026.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-24",
-    dateModified: "2026-03-24",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
