@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -51,7 +52,7 @@ const jsonLd = [
     description: "Steuern können einen erheblichen Teil der ETF-Rendite auffressen — wenn man sie nicht versteht. Wir erklären Abgeltungsteuer, Vorabpauschale und den Steuerstundungseffekt.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -317,9 +318,9 @@ const BlogEtfSteuern = () => {
                     <TableRow><TableCell className="font-medium">Besteuerung</TableCell><TableCell>Laufend (Abgeltungsteuer)</TableCell><TableCell>Nachgelagert (im Alter)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Steuersatz</TableCell><TableCell>~26,375 % pauschal</TableCell><TableCell>Persönlicher Steuersatz (oft niedriger)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>❌ Keine</TableCell><TableCell>✅ Bis 540 €/Jahr + Kinderzulage</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Verfügbarkeit</TableCell><TableCell>✅ Jederzeit</TableCell><TableCell>Ab 65 Jahren</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Verfügbarkeit</TableCell><TableCell>✅ Jederzeit</TableCell><TableCell>Ab Renteneintritt</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlagefreiheit</TableCell><TableCell>✅ Volle Auswahl</TableCell><TableCell>✅ Volle ETF-Auswahl</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>✅ Sehr hoch</TableCell><TableCell>⚠️ Gebunden bis 65</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>✅ Sehr hoch</TableCell><TableCell>⚠️ Gebunden bis Renteneintritt</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
@@ -372,11 +373,7 @@ const BlogEtfSteuern = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Steuerliche Angaben basieren auf dem Stand 2026 und können sich ändern. Für individuelle steuerliche Fragen empfehlen wir die Beratung durch einen Steuerberater.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
