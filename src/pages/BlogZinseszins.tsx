@@ -200,10 +200,10 @@ const BlogZinseszins = () => {
                     <TableRow><TableCell>Eingezahltes Eigenkapital</TableCell><TableCell>75.600 €</TableCell><TableCell>57.600 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital mit 67</TableCell>
-                      <TableCell className="font-bold text-primary">~538.000 €</TableCell>
-                      <TableCell className="font-bold">~255.000 €</TableCell>
+                      <TableCell className="font-bold text-primary">~444.000 €</TableCell>
+                      <TableCell className="font-bold">~212.000 €</TableCell>
                     </TableRow>
-                    <TableRow><TableCell>Unterschied</TableCell><TableCell className="text-primary font-semibold">+283.000 €</TableCell><TableCell>—</TableCell></TableRow>
+                    <TableRow><TableCell>Unterschied</TableCell><TableCell className="text-primary font-semibold">+232.000 €</TableCell><TableCell>—</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
