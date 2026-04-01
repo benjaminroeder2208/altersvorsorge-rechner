@@ -374,7 +374,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital zum Rentenbeginn</TableCell>
-                      <TableCell className="text-right font-bold text-primary">~255.570 €</TableCell>
+                      <TableCell className="text-right font-bold text-primary">~276.000 €</TableCell>
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Mögliche monatliche Auszahlung bis 85</TableCell>
