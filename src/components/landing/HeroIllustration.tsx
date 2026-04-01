@@ -111,7 +111,7 @@ const HeroIllustration = () => (
         212.000 €
       </text>
       <text x="36" y="270" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">
-        bei 150 € / Monat
+        150 € / Monat, 7 % p.a.*
       </text>
     </motion.g>
 
@@ -127,7 +127,7 @@ const HeroIllustration = () => (
       <rect x="260" y="100" width="155" height="72" rx="12" fill="white" stroke="#E5E7EB" strokeWidth="1" />
       <rect x="260" y="100" width="4" height="72" rx="2" fill="#F59E0B" />
       <text x="276" y="120" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">
-        MÖGLICHE ZULAGEN
+        MÖGLICHE GRUNDZULAGE
       </text>
       <text x="276" y="142" fontSize="14" fontWeight="700" fill="#F59E0B" fontFamily="system-ui">
         +17.280 €
