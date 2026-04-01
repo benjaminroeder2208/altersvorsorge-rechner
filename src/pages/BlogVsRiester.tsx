@@ -296,7 +296,7 @@ const BlogVsRiester = () => {
                 </Table>
               </div>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Der Unterschied von rund <strong className="text-foreground">125.000 €</strong> entsteht nicht durch höhere Einzahlungen — sondern durch die Kombination aus besserer Förderung und freier ETF-Investition ohne Garantiezwang.</p>
+                <p>Der Unterschied von rund <strong className="text-foreground">~146.000 €</strong> entsteht nicht durch höhere Einzahlungen — sondern durch die Kombination aus besserer Förderung und freier ETF-Investition ohne Garantiezwang.</p>
                 <div className="p-4 bg-secondary rounded-xl">
                   <p className="text-sm text-muted-foreground/70 italic">Hinweis: Die Riester-Rendite ist stark vertragsabhängig. Günstige Riester-Fondssparpläne können besser abschneiden als klassische Versicherungsprodukte.</p>
                 </div>
