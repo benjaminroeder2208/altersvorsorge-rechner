@@ -270,7 +270,7 @@ const BlogRiesterKuendigen = () => {
                 <p>Person, 35 Jahre alt, 150 €/Monat verfügbar für Altersvorsorge, Riester-Vertrag seit 5 Jahren:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong className="text-foreground">Option A:</strong> Riester weiterführen mit 150 €/Monat → Kapital mit 67: ca. 95.000 € (durch Beitragsgarantie stark begrenzt)</li>
-                  <li><strong className="text-foreground">Option B:</strong> Riester ruhendstellen + 150 €/Monat ins Altersvorsorgedepot (7 % p.a.) → Riester-Altkapital ca. 12.000 € + Depot ca. 255.000 € = <strong className="text-foreground">ca. 267.000 €</strong></li>
+                  <li><strong className="text-foreground">Option B:</strong> Riester ruhendstellen + 150 €/Monat ins Altersvorsorgedepot (7 % p.a.) → Riester-Altkapital ca. 12.000 € + Depot ca. 276.000 € = <strong className="text-foreground">ca. 288.000 €</strong></li>
                 </ul>
                 <p>Die Kombination aus ruhendem Riester und Altersvorsorgedepot bringt in diesem Beispiel deutlich mehr — weil das Depot ohne Garantiezwang in ETFs investieren kann und höhere Renditen erwirtschaftet.</p>
               </div>
