@@ -12,9 +12,17 @@ const ReichtMeineRentePage = () => (
       />
     </Helmet>
 
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      {/* Subtle flow header */}
+      <div className="w-full border-b border-border/30">
+        <div className="max-w-2xl mx-auto px-6 py-3 flex items-center justify-between">
+          <p className="text-sm font-semibold text-foreground tracking-tight">Renten-Check</p>
+          <p className="text-xs text-muted-foreground">Schritt 1 von 3</p>
+        </div>
+      </div>
+
       {/* HERO */}
-      <section className="flex flex-col items-center justify-center text-center px-6 pt-24 pb-20 md:pt-36 md:pb-28">
+      <section className="flex flex-col items-center justify-center text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24">
         <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/60 mb-4">
           Kostenloser Schnellcheck
         </p>
@@ -32,10 +40,11 @@ const ReichtMeineRentePage = () => (
           Jetzt berechnen
           <ArrowRight className="w-5 h-5" />
         </Link>
+        <p className="mt-4 text-xs text-muted-foreground/50">Dauert nur 3 kurze Fragen</p>
       </section>
 
       {/* PROBLEM */}
-      <section className="bg-muted/40 py-20 md:py-28 px-6">
+      <section className="bg-muted/40 py-16 md:py-24 px-6">
         <div className="max-w-2xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-2">
             <AlertTriangle className="w-6 h-6" />
@@ -50,7 +59,7 @@ const ReichtMeineRentePage = () => (
       </section>
 
       {/* PERSONAL RELEVANCE */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-16 md:py-24 px-6">
         <div className="max-w-2xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-2">
             <User className="w-6 h-6" />
@@ -65,7 +74,7 @@ const ReichtMeineRentePage = () => (
       </section>
 
       {/* MINI INSIGHT */}
-      <section className="bg-muted/40 py-20 md:py-28 px-6">
+      <section className="bg-muted/40 py-16 md:py-24 px-6">
         <div className="max-w-2xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-destructive/10 text-destructive mb-2">
             <TrendingDown className="w-6 h-6" />
@@ -80,7 +89,7 @@ const ReichtMeineRentePage = () => (
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-20 md:py-28 px-6">
+      <section className="py-16 md:py-24 px-6 flex-1 flex items-center">
         <div className="max-w-lg mx-auto text-center space-y-8">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
             Wie groß ist deine Lücke?
@@ -97,6 +106,13 @@ const ReichtMeineRentePage = () => (
           </Link>
         </div>
       </section>
+
+      {/* Footer */}
+      <div className="border-t border-border/30 py-6 px-6">
+        <p className="text-xs text-muted-foreground/50 text-center">
+          Renten-Check · Vereinfachte Schätzung · Keine Anlageberatung
+        </p>
+      </div>
     </div>
   </>
 );
