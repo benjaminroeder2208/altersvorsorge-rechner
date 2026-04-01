@@ -247,11 +247,11 @@ const BlogZinseszins = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow><TableCell>Monatlicher Eigenbeitrag</TableCell><TableCell>150 €</TableCell><TableCell>150 €</TableCell></TableRow>
-                    <TableRow><TableCell>Staatliche Förderung (kumuliert)</TableCell><TableCell>~57.120 €</TableCell><TableCell>~43.520 €</TableCell></TableRow>
+                    <TableRow><TableCell>Staatliche Förderung (kumuliert)</TableCell><TableCell>~22.700 €</TableCell><TableCell>~17.300 €</TableCell></TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital mit 67</TableCell>
-                      <TableCell className="font-bold text-primary">~728.000 €</TableCell>
-                      <TableCell className="font-bold">~344.000 €</TableCell>
+                      <TableCell className="font-bold text-primary">~577.000 €</TableCell>
+                      <TableCell className="font-bold">~276.000 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
