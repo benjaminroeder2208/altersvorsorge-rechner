@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ChevronDown, ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -78,7 +79,7 @@ const jsonLd = [
       "Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Wir erklären, wie die Förderung funktioniert, was du bekommst — und für wen es sich wirklich lohnt.",
     url: `${BASE}${PATH}`,
     datePublished: "2025-06-01",
-    dateModified: "2025-06-01",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -364,8 +365,8 @@ const BlogAltersvorsorgedepot2027 = () => {
                       <TableCell className="text-right">150 €</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Anlagehorizont bis 67</TableCell>
-                      <TableCell className="text-right">~31 Jahre</TableCell>
+                      <TableCell>Anlagehorizont (2027 bis 2059)</TableCell>
+                      <TableCell className="text-right">32 Jahre</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Angenommene Rendite</TableCell>
@@ -373,17 +374,17 @@ const BlogAltersvorsorgedepot2027 = () => {
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital zum Rentenbeginn</TableCell>
-                      <TableCell className="text-right font-bold text-primary">~255.570 €</TableCell>
+                      <TableCell className="text-right font-bold text-primary">~276.000 €</TableCell>
                     </TableRow>
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Mögliche monatliche Auszahlung bis 85</TableCell>
-                      <TableCell className="text-right font-bold text-primary">~1.183 €</TableCell>
+                      <TableCell className="text-right font-bold text-primary">~1.280 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
               </div>
               <p className="text-base leading-relaxed text-muted-foreground mt-4">
-                Zum Vergleich: Ohne staatliche Förderung — also mit einem normalen Depot und denselben 150 € — würden bei gleicher Rendite nur rund <strong className="text-foreground">196.600 €</strong> zusammenkommen. Der Förderbonus macht in diesem Szenario also einen Unterschied von fast <strong className="text-foreground">60.000 €</strong>.
+                Zum Vergleich: Ohne staatliche Förderung — also mit einem normalen Depot und denselben 150 € — würden bei gleicher Rendite nur rund <strong className="text-foreground">212.300 €</strong> zusammenkommen. Der Förderbonus macht in diesem Szenario also einen Unterschied von fast <strong className="text-foreground">64.000 €</strong>.
               </p>
 
               <CtaBlock>Deine persönlichen Zahlen sind anders? Berechne jetzt dein individuelles Ergebnis.</CtaBlock>
@@ -535,7 +536,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                 </div>
               </div>
 
-              {/* Disclaimer */}
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
