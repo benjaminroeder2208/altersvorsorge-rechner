@@ -52,7 +52,7 @@ const jsonLd = [
     description: "Steuern können einen erheblichen Teil der ETF-Rendite auffressen — wenn man sie nicht versteht. Wir erklären Abgeltungsteuer, Vorabpauschale und den Steuerstundungseffekt.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
