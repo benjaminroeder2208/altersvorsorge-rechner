@@ -185,7 +185,7 @@ const BlogBerufseinsteiger = () => {
               </div>
               <p className="text-xs text-muted-foreground/60 mt-2">* Bei 7 % durchschnittlicher Rendite p.a., vor Steuern und Kosten. Renteneintritt mit 67.</p>
               <div className="my-6 p-5 bg-destructive/5 border border-destructive/10 rounded-xl">
-                <p className="text-base font-semibold text-foreground mb-1">10 Jahre Aufschub kosten 273.000 €</p>
+                <p className="text-base font-semibold text-foreground mb-1">10 Jahre Aufschub kosten 217.000 €</p>
                 <p className="text-sm text-muted-foreground">— ohne einen Cent mehr einzuzahlen. Der Unterschied entsteht allein durch den Zinseszinseffekt.</p>
               </div>
 
