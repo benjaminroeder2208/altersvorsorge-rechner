@@ -367,7 +367,7 @@ const BlogRentenlueckeMit30_40_50 = () => {
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p><strong className="text-foreground">Schritt 2: Monatlichen Spielraum realistisch einschätzen.</strong> Was kannst du dauerhaft zurücklegen — nicht im besten Monat, sondern im normalen? Auch 50 € sind besser als nichts. Lieber klein anfangen und dabei bleiben als mit großen Beträgen starten und nach drei Monaten aufhören.</p>
                 <p><strong className="text-foreground">Schritt 3: Betriebliche Altersvorsorge prüfen.</strong> Frag bei deinem Arbeitgeber nach, ob eine bAV angeboten wird und wie hoch der Arbeitgeberzuschuss ist. Das ist oft der einfachste und steuerlich günstigste erste Schritt.</p>
-                <p><strong className="text-foreground">Schritt 4: Ab 2027 Altersvorsorgedepot eröffnen.</strong> Das neue Altersvorsorgedepot startet voraussichtlich am 1. Januar 2027. Informiere dich jetzt — und berechne, wie viel Kapital du bis zur Rente aufbauen könntest.</p>
+                <p><strong className="text-foreground">Schritt 4: Ab 2027 Altersvorsorgedepot eröffnen.</strong> Das neue Altersvorsorgedepot startet am 1. Januar 2027. Informiere dich jetzt — und berechne, wie viel Kapital du bis zur Rente aufbauen könntest.</p>
               </div>
 
               <CtaBlock>Jetzt berechnen, was für dich noch möglich ist.</CtaBlock>
