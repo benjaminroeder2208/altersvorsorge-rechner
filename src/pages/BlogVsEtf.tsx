@@ -326,7 +326,7 @@ const BlogVsEtf = () => {
               {/* Flexibilität */}
               <SectionH2 id="flexibilitaet">Der Flexibilitätsvorteil des ETF-Sparplans</SectionH2>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Die Bindung bis 65 ist kein kleines Detail — für manche ist sie ein echter Ausschlusskriterium. Der ETF-Sparplan punktet hier klar:</p>
+                <p>Die Bindung bis zum Renteneintritt ist kein kleines Detail — für manche ist sie ein echtes Ausschlusskriterium. Der ETF-Sparplan punktet hier klar:</p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>Du kannst <strong className="text-foreground">jederzeit verkaufen</strong> — für einen Hauskauf, eine Auszeit, eine Umschulung</li>
                   <li>Du kannst <strong className="text-foreground">pausieren</strong>, wenn das Geld gerade knapp ist — ohne Konsequenzen</li>
