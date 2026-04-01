@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -31,7 +32,7 @@ const faqItems = [
   },
   {
     q: "Kann ich Riester-Kapital ins Altersvorsorgedepot übertragen?",
-    a: "Das wird derzeit im Gesetzgebungsverfahren diskutiert. Der aktuelle Entwurf sieht eine Möglichkeit zur Übertragung von Riester-Kapital in das neue Altersvorsorgedepot vor — ohne Förderrückzahlung. Ob und in welcher Form das kommt, ist aber noch nicht final beschlossen. Am besten abwarten und den Vertrag vorerst ruhend stellen.",
+    a: "Das beschlossene Gesetz regelt den förderunschädlichen Anbieterwechsel zwischen zertifizierten Verträgen. Eine spezifische Übertragungsregelung von Alt-Riester-Kapital in ein neues Altersvorsorgedepot ist im Gesetzestext nicht explizit vorgesehen. Es bleibt abzuwarten, ob hier noch Klarstellungen folgen. Bis dahin ist Ruhendstellen die sicherste Option.",
   },
   {
     q: "Was ist besser: Ruhendstellen oder kündigen?",
@@ -50,7 +51,7 @@ const jsonLd = [
     description: "Kündigen klingt verlockend — kostet aber fast immer mehr als es bringt. Wir zeigen die vier Alternativen und wann eine Kündigung trotzdem sinnvoll ist.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -221,8 +222,8 @@ const BlogRiesterKuendigen = () => {
 
               <SectionH3>4. Auf die Übertragungsregelung warten</SectionH3>
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>Im aktuellen Gesetzgebungsverfahren zum Altersvorsorgedepot wird diskutiert, ob <strong className="text-foreground">bestehendes Riester-Kapital ohne Förderrückzahlung</strong> in das neue Depot übertragen werden kann. Das wäre die optimale Lösung — du behältst alle Zulagen und investierst gleichzeitig in das flexiblere neue Produkt.</p>
-                <p>Ob und in welcher Form diese Regelung kommt, ist noch nicht final beschlossen. Gerade deshalb: Nicht voreilig kündigen, sondern abwarten.</p>
+                <p>Das beschlossene Gesetz regelt den förderunschädlichen Wechsel zwischen zertifizierten Altersvorsorgeverträgen. Eine explizite Regelung zur Übertragung von <strong className="text-foreground">Alt-Riester-Kapital in ein neues Altersvorsorgedepot</strong> ist im Gesetzestext jedoch nicht eindeutig vorgesehen. Es ist möglich, dass hier noch Klarstellungen oder Durchführungsverordnungen folgen.</p>
+                <p>Gerade deshalb: Nicht voreilig kündigen, sondern abwarten.</p>
               </div>
 
               {/* Wann Kündigung sinnvoll */}
@@ -258,7 +259,7 @@ const BlogRiesterKuendigen = () => {
                     <TableRow><TableCell className="font-medium">Neue Förderung</TableCell><TableCell>175 € Grundzulage/Jahr</TableCell><TableCell>Bis zu 540 €/Jahr im Depot</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlagefreiheit</TableCell><TableCell>⚠️ Eingeschränkt</TableCell><TableCell>✅ Volle ETF-Auswahl</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Garantiezwang</TableCell><TableCell>Ja (Beitragserhalt)</TableCell><TableCell>❌ Nein (mehr Rendite möglich)</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Kosten</TableCell><TableCell>Abhängig vom Vertrag</TableCell><TableCell>Geplanter Kostendeckel</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Kosten</TableCell><TableCell>Abhängig vom Vertrag</TableCell><TableCell>Max. 1,0 % p.a. (Standardprodukt)</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>Gering</TableCell><TableCell>✅ Hoch</TableCell></TableRow>
                   </TableBody>
                 </Table>
@@ -269,7 +270,7 @@ const BlogRiesterKuendigen = () => {
                 <p>Person, 35 Jahre alt, 150 €/Monat verfügbar für Altersvorsorge, Riester-Vertrag seit 5 Jahren:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong className="text-foreground">Option A:</strong> Riester weiterführen mit 150 €/Monat → Kapital mit 67: ca. 95.000 € (durch Beitragsgarantie stark begrenzt)</li>
-                  <li><strong className="text-foreground">Option B:</strong> Riester ruhendstellen + 150 €/Monat ins Altersvorsorgedepot (7 % p.a.) → Riester-Altkapital ca. 12.000 € + Depot ca. 255.000 € = <strong className="text-foreground">ca. 267.000 €</strong></li>
+                  <li><strong className="text-foreground">Option B:</strong> Riester ruhendstellen + 150 €/Monat ins Altersvorsorgedepot (7 % p.a.) → Riester-Altkapital ca. 12.000 € + Depot ca. 276.000 € = <strong className="text-foreground">ca. 288.000 €</strong></li>
                 </ul>
                 <p>Die Kombination aus ruhendem Riester und Altersvorsorgedepot bringt in diesem Beispiel deutlich mehr — weil das Depot ohne Garantiezwang in ETFs investieren kann und höhere Renditen erwirtschaftet.</p>
               </div>
@@ -314,11 +315,7 @@ const BlogRiesterKuendigen = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Für individuelle Riester-Entscheidungen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
