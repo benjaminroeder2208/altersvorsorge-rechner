@@ -40,7 +40,7 @@ const faqItems = [
   },
   {
     q: "Was ist besser — Rentenpunkte oder Altersvorsorgedepot?",
-    a: "Das hängt von der individuellen Situation ab. Rentenpunkte bieten lebenslange, inflationsindexierte Sicherheit — aber mit schlechter Rendite. Das Altersvorsorgedepot bietet staatliche Förderung und marktübliche Renditen, ist aber bis 65 gebunden und nicht garantiert. Für die meisten ist eine Kombination sinnvoll: Rentenpunkte für den Sicherheitssockel, Altersvorsorgedepot für den Renditeanteil.",
+    a: "Das hängt von der individuellen Situation ab. Rentenpunkte bieten lebenslange, inflationsindexierte Sicherheit — aber mit schlechter Rendite. Das Altersvorsorgedepot bietet staatliche Förderung und marktübliche Renditen, ist aber bis zum Renteneintritt gebunden und nicht garantiert. Für die meisten ist eine Kombination sinnvoll: Rentenpunkte für den Sicherheitssockel, Altersvorsorgedepot für den Renditeanteil.",
   },
 ];
 
