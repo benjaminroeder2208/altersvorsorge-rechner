@@ -247,7 +247,7 @@ const BlogWasDarfInsDepot = () => {
 
               <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>Hinzu kommt beim Standarddepot eine <strong className="text-foreground">automatische Umschichtung</strong>: Fünf Jahre vor Rentenbeginn dürfen höchstens 50 Prozent des Kapitals im chancenorientierten Fonds liegen, zwei Jahre vorher höchstens 30 Prozent. Das ist das sogenannte <strong className="text-foreground">Life-Cycle-Prinzip</strong> — Risiko wird mit näherrückendem Rentenalter schrittweise reduziert.</p>
-                <p>Für das Standarddepot gilt außerdem eine <strong className="text-foreground">Kostenobergrenze</strong>: Die Effektivkosten dürfen über die Vertragslaufzeit maximal 1,5 Prozent pro Jahr betragen.</p>
+                <p>Für das Standarddepot gilt außerdem eine <strong className="text-foreground">Kostenobergrenze</strong>: Die Effektivkosten dürfen über die Vertragslaufzeit maximal 1,0 Prozent pro Jahr betragen (§ 2a Abs. 2 AltZertG).</p>
               </div>
 
               {/* Selbst auswählen */}
