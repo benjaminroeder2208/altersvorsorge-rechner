@@ -231,7 +231,7 @@ const BlogZinseszins = () => {
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-base leading-relaxed text-muted-foreground">Ben müsste mehr als <strong className="text-foreground">doppelt so viel</strong> einzahlen wie Anna — und trotzdem 45.360 € mehr aus eigener Tasche beisteuern. Das sind die echten Kosten des Aufschubs.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Ben müsste mehr als <strong className="text-foreground">doppelt so viel</strong> einzahlen wie Anna — und trotzdem rund 53.000 € mehr aus eigener Tasche beisteuern. Das sind die echten Kosten des Aufschubs.</p>
 
               {/* Mit Altersvorsorgedepot */}
               <SectionH2 id="avd-effekt">Mit dem Altersvorsorgedepot: Förderung verstärkt den Effekt</SectionH2>
