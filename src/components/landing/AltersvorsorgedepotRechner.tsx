@@ -1013,11 +1013,9 @@ const AltersvorsorgedepotRechner = () => {
 
       {/* ── FOOTNOTES SECTION ── */}
       {step === 4 && (
-        <section className="bg-secondary py-24 md:py-32">
+        <section className="bg-muted/30 border-t border-border/40 py-24 md:py-32">
           <div className="container max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
-              Fußnoten und Hinweise
-            </h2>
+            <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-3">Hinweise & Haftungsausschluss</p>
             <p className="text-muted-foreground text-base mb-16 max-w-xl mx-auto">
               Weitere Erläuterungen zur Simulation, zu Annahmen und zum beschlossenen Gesetz.
             </p>
@@ -1029,8 +1027,7 @@ const AltersvorsorgedepotRechner = () => {
                 Beschlussempfehlung abweichen.
               </p>
               <p>
-                Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) dienen ausschließlich der
-                Veranschaulichung und stellen keine Prognose dar. Die tatsächliche Wertentwicklung hängt von der gewählten
+                Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) orientieren sich am historischen Durchschnitt breit gestreuter Aktienindizes (siehe z.{"\u00A0"}B. <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>) und stellen keine Prognose dar. Die tatsächliche Wertentwicklung hängt von der gewählten
                 Anlageform, der Marktentwicklung und den anfallenden Kosten ab.
               </p>
               <p>
