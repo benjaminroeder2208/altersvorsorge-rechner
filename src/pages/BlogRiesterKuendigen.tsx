@@ -51,7 +51,7 @@ const jsonLd = [
     description: "Kündigen klingt verlockend — kostet aber fast immer mehr als es bringt. Wir zeigen die vier Alternativen und wann eine Kündigung trotzdem sinnvoll ist.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
