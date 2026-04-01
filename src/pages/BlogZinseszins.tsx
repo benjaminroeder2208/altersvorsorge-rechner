@@ -52,7 +52,7 @@ const jsonLd = [
     description: "Was bringt es wirklich, früh mit der Altersvorsorge anzufangen? Wir zeigen den Zinseszins-Effekt an konkreten Zahlen — und warum 10 Jahre Unterschied über 100.000 € ausmachen können.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-19",
-    dateModified: "2026-03-19",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
