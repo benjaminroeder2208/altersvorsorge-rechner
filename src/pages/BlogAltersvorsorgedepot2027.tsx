@@ -536,7 +536,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                 </div>
               </div>
 
-              {/* Disclaimer */}
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
