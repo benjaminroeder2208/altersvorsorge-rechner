@@ -982,18 +982,14 @@ const AltersvorsorgedepotRechner = () => {
                 </div>
 
                 {/* Disclaimer */}
-                <div className="max-w-xl mx-auto space-y-2">
-                  <p className="text-xs text-muted-foreground/60 leading-relaxed">
+                <div className="max-w-xl mx-auto p-5 bg-muted/50 border border-border/60 rounded-xl">
+                  <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">Hinweise & Haftungsausschluss</p>
+                  <p className="text-xs text-muted-foreground/70 leading-relaxed">
                     Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
                     Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt.
+                    Kapitalanlagen bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
                     Sie stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
                   </p>
-                  <p className="text-xs text-muted-foreground/60 leading-relaxed">
-                    Kapitalanlagen bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft.
-                  </p>
-                  <InfoText className="max-w-xs mx-auto">
-                    Angaben basieren auf dem beschlossenen Gesetz vom 27. März 2026.
-                  </InfoText>
                 </div>
 
                 {/* Restart */}
