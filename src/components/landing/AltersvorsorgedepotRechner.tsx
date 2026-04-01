@@ -1027,8 +1027,7 @@ const AltersvorsorgedepotRechner = () => {
                 Beschlussempfehlung abweichen.
               </p>
               <p>
-                Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) dienen ausschließlich der
-                Veranschaulichung und stellen keine Prognose dar. Die tatsächliche Wertentwicklung hängt von der gewählten
+                Die Simulation verwendet vereinfachte Annahmen. Die Renditeannahmen (5 %, 7 %, 9 %) orientieren sich am historischen Durchschnitt breit gestreuter Aktienindizes (siehe z.{"\u00A0"}B. <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>) und stellen keine Prognose dar. Die tatsächliche Wertentwicklung hängt von der gewählten
                 Anlageform, der Marktentwicklung und den anfallenden Kosten ab.
               </p>
               <p>
