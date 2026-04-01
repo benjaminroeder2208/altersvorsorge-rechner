@@ -326,17 +326,11 @@ const BlogKoalitionseinigung = () => {
                 </div>
               </AnimatedSection>
 
-              {/* ── 7. Was jetzt noch offen ist ── */}
+              {/* ── 7. Was seitdem passiert ist ── */}
               <AnimatedSection delay={0.15}>
-                <SectionH2 id="offen">Was jetzt noch offen ist</SectionH2>
+                <SectionH2 id="offen">Was seitdem passiert ist</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>Die Abstimmung im Bundestag findet am 26. März 2026 statt. Danach folgt noch der Bundesrat.</p>
-                  <p>Wir werden nach dem offiziellen Beschluss:</p>
-                  <ul className="list-disc pl-6 space-y-1">
-                    <li>Die genaue neue Förderberechnung veröffentlichen</li>
-                    <li>Unseren Rechner aktualisieren</li>
-                    <li>Alle Zahlen auf dieser Seite anpassen</li>
-                  </ul>
+                  <p>Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 beschlossen — mit allen hier beschriebenen Verbesserungen. Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert.</p>
                 </div>
               </AnimatedSection>
 
