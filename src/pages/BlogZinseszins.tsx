@@ -282,7 +282,7 @@ const BlogZinseszins = () => {
                   </TableBody>
                 </Table>
               </div>
-              <p className="text-base leading-relaxed text-muted-foreground">Auch wer mit 50 anfängt, kann noch über 100.000 € aufbauen — das entspricht einer monatlichen Zusatzrente von rund 460 € über 18 Jahre. Kein vollständiger Ausgleich, aber ein erheblicher Puffer.</p>
+              <p className="text-base leading-relaxed text-muted-foreground">Auch wer mit 50 anfängt, kann noch rund 119.000 € aufbauen — das entspricht einer monatlichen Zusatzrente von rund 550 € über 18 Jahre. Kein vollständiger Ausgleich, aber ein erheblicher Puffer.</p>
 
               {/* Die wichtigste Lektion */}
               <SectionH2 id="lektion">Die wichtigste Lektion</SectionH2>
