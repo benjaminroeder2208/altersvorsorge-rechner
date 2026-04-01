@@ -320,7 +320,7 @@ const BlogEtfSteuern = () => {
                     <TableRow><TableCell className="font-medium">Staatliche Förderung</TableCell><TableCell>❌ Keine</TableCell><TableCell>✅ Bis 540 €/Jahr + Kinderzulage</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Verfügbarkeit</TableCell><TableCell>✅ Jederzeit</TableCell><TableCell>Ab Renteneintritt</TableCell></TableRow>
                     <TableRow><TableCell className="font-medium">Anlagefreiheit</TableCell><TableCell>✅ Volle Auswahl</TableCell><TableCell>✅ Volle ETF-Auswahl</TableCell></TableRow>
-                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>✅ Sehr hoch</TableCell><TableCell>⚠️ Gebunden bis 65</TableCell></TableRow>
+                    <TableRow><TableCell className="font-medium">Flexibilität</TableCell><TableCell>✅ Sehr hoch</TableCell><TableCell>⚠️ Gebunden bis Renteneintritt</TableCell></TableRow>
                   </TableBody>
                 </Table>
               </div>
