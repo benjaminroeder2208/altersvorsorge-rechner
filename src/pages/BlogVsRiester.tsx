@@ -223,9 +223,10 @@ const BlogVsRiester = () => {
               <div className="text-base leading-relaxed text-muted-foreground space-y-2">
                 <p>Beim Altersvorsorgedepot ist die Förderung <strong className="text-foreground">prozentual auf den Eigenbeitrag</strong> ausgelegt:</p>
                 <ul className="list-disc pl-6 space-y-1">
-                  <li><strong className="text-foreground">30 %</strong> auf die ersten 1.200 € Eigenbeitrag pro Jahr</li>
-                  <li><strong className="text-foreground">20 %</strong> auf weitere 600 € Eigenbeitrag (bis 1.800 € gesamt)</li>
-                  <li>Kinderzulage: bis zu <strong className="text-foreground">300 € pro Kind</strong></li>
+                  <li><strong className="text-foreground">50 %</strong> auf Eigenbeiträge bis 360 € pro Jahr (max. 180 €)</li>
+                  <li><strong className="text-foreground">25 %</strong> auf Eigenbeiträge zwischen 360 € und 1.800 € pro Jahr (max. 360 €)</li>
+                  <li>Maximale Grundzulage: <strong className="text-foreground">540 € pro Jahr</strong></li>
+                  <li>Kinderzulage: bis zu <strong className="text-foreground">300 € pro Kind</strong> (100 % der Eigenbeiträge, voll ab 25 €/Monat)</li>
                 </ul>
               </div>
 
