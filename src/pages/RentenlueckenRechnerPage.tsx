@@ -129,7 +129,7 @@ const RentenlueckenRechnerPage = () =>
 
             <div>
               <p className="not-italic font-medium text-muted-foreground mb-1">Sparrate und Renditeannahme</p>
-              <p>Die monatlich notwendige Sparrate wird mit der Rentenbarwertformel berechnet. Als Renditeannahme werden 7 % p.a. zugrunde gelegt — ein historisch plausibler Richtwert für breit gestreute Aktienportfolios, jedoch keine Prognose und keine Garantie. Die tatsächliche Wertentwicklung hängt von der gewählten Anlageform, der Marktentwicklung, den anfallenden Kosten und dem konkreten Investitionszeitpunkt ab. Kapitalanlagen bergen Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals. Frühere Wertentwicklungen sind kein verlässlicher Indikator für künftige Ergebnisse.</p>
+              <p>Die monatlich notwendige Sparrate wird mit der Rentenbarwertformel berechnet. Als Renditeannahme werden 7 % p.a. zugrunde gelegt — ein historisch plausibler Richtwert für breit gestreute Aktienportfolios (siehe z.&nbsp;B. <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>), jedoch keine Prognose und keine Garantie. Die tatsächliche Wertentwicklung hängt von der gewählten Anlageform, der Marktentwicklung, den anfallenden Kosten und dem konkreten Investitionszeitpunkt ab. Kapitalanlagen bergen Risiken, einschließlich des möglichen Verlusts des eingesetzten Kapitals. Frühere Wertentwicklungen sind kein verlässlicher Indikator für künftige Ergebnisse.</p>
             </div>
 
             <div>
