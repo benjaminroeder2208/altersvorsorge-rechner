@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -51,7 +52,7 @@ const jsonLd = [
     description: "ETF-Sparplan, Altersvorsorgedepot, bAV oder Rürup — was gehört in welchem Verhältnis in dein Portfolio? Drei konkrete Beispiele mit echten Zahlen.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-21",
-    dateModified: "2026-03-21",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -192,7 +193,7 @@ const BlogPortfolio = () => {
                       <TableCell className="font-medium">Altersvorsorgedepot</TableCell>
                       <TableCell>Ja (ab 2027)</TableCell>
                       <TableCell>Gering</TableCell>
-                      <TableCell>Angestellte</TableCell>
+                      <TableCell>Alle (inkl. Selbstständige)</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="font-medium">bAV</TableCell>
@@ -498,11 +499,7 @@ const BlogPortfolio = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Alle Angaben basieren auf vereinfachten Annahmen und dem Stand 2026. Für individuelle Entscheidungen empfehlen wir die Beratung durch eine unabhängige Verbraucherzentrale oder einen zugelassenen Finanzberater.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
