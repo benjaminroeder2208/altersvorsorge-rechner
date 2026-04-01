@@ -248,7 +248,7 @@ const RechnerPage = () => (
                 Ergebnisse können erheblich abweichen — auch ins Negative. Kapitalanlagen bergen Risiken, einschließlich
                 des möglichen Verlusts des eingesetzten Kapitals. Frühere Wertentwicklungen sind kein verlässlicher
                 Indikator für die Zukunft. Angaben zum Altersvorsorgedepot basieren auf dem Altersvorsorgereformgesetz
-                (beschlossen 27.03.2026). Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
+                (beschlossen 27.03.2026). Keine Anlage-, Steuer- oder Rechtsberatung.
               </p>
             </div>
           </AnimatedSection>
