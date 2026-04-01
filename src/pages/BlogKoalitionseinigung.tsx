@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import {
@@ -26,27 +27,27 @@ const tocItems = [
   { id: "kostendeckel", label: "Kostendeckel auf 1 Prozent" },
   { id: "selbststaendige", label: "Selbstständige förderberechtigt" },
   { id: "standarddepot", label: "Öffentliches Standarddepot" },
-  { id: "offen", label: "Was jetzt noch offen ist" },
+  { id: "offen", label: "Was seitdem passiert ist" },
   { id: "fazit", label: "Fazit" },
   { id: "faq", label: "Häufige Fragen" },
 ];
 
 const faqItems = [
   {
-    q: "Wann wird das Gesetz beschlossen?",
-    a: "Die Abstimmung im Bundestag ist für den 26. März 2026 angesetzt. Der Start des Altersvorsorgedepots bleibt der 1. Januar 2027.",
+    q: "Ist das Gesetz beschlossen?",
+    a: "Ja — der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Das Altersvorsorgedepot startet am 1. Januar 2027.",
   },
   {
     q: "Können Selbstständige das Depot nutzen?",
-    a: "Ja — laut Koalitionseinigung werden alle Selbstständigen förderberechtigt. Die genauen Details folgen nach dem offiziellen Beschluss.",
+    a: "Ja — Selbstständige und Freiberufler sind im beschlossenen Gesetz ausdrücklich als förderberechtigt aufgenommen (§ 10a Abs. 1 Satz 5 EStG).",
   },
   {
-    q: "Wann aktualisiert ihr euren Rechner?",
-    a: "Unmittelbar nach dem Bundestags-Beschluss am 26. März arbeiten wir die neuen Zahlen in unseren Rechner ein.",
+    q: "Ist der Rechner bereits aktualisiert?",
+    a: "Ja — unser Rechner arbeitet mit den beschlossenen Förderzahlen (Grundzulage bis 540 €, Kinderzulage bis 300 €, Berufseinsteiger-Bonus 200 €).",
   },
   {
     q: "Was ändert sich bei der Kinderzulage?",
-    a: "Die volle Kinderzulage von 300 Euro pro Kind und Jahr wird künftig bereits ab 25 Euro Monatsbeitrag erreicht — statt bisher 100 Euro.",
+    a: "Die volle Kinderzulage von 300 Euro pro Kind und Jahr wird bereits ab 25 Euro Monatsbeitrag erreicht — statt der ursprünglich geplanten 100 Euro.",
   },
 ];
 
@@ -58,7 +59,7 @@ const jsonLd = [
       "CDU/CSU und SPD einigen sich auf verbesserte Konditionen beim Altersvorsorgedepot. Abstimmung im Bundestag am 26. März 2026.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-24",
-    dateModified: "2026-03-24",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -249,8 +250,7 @@ const BlogKoalitionseinigung = () => {
                   </table>
                 </div>
                 <p className="text-muted-foreground">
-                  Die genaue Berechnung der neuen Förderstruktur werden wir nach dem offiziellen Gesetzestext vom 26.
-                  März hier veröffentlichen und in unseren Rechner einarbeiten.
+                  Die Förderstruktur ist inzwischen im beschlossenen Gesetz verankert und in unserem Rechner eingearbeitet.
                 </p>
               </AnimatedSection>
 
@@ -263,8 +263,7 @@ const BlogKoalitionseinigung = () => {
                     für alle Sparer.
                   </p>
                   <p>
-                    Die genaue Berechnungsstruktur — also auf welche Beitragsanteile welcher Satz gilt — werden wir nach
-                    dem offiziellen Beschluss transparent aufschlüsseln und in unseren Rechner einarbeiten.
+                    Die Berechnungsstruktur ist im beschlossenen Gesetz festgelegt: 50 % auf Eigenbeiträge bis 360 €/Jahr (max. 180 €) und 25 % auf Beiträge zwischen 360 € und 1.800 €/Jahr (max. 360 €) — insgesamt bis zu 540 € Grundzulage pro Jahr.
                   </p>
                 </div>
               </AnimatedSection>
@@ -327,17 +326,11 @@ const BlogKoalitionseinigung = () => {
                 </div>
               </AnimatedSection>
 
-              {/* ── 7. Was jetzt noch offen ist ── */}
+              {/* ── 7. Was seitdem passiert ist ── */}
               <AnimatedSection delay={0.15}>
-                <SectionH2 id="offen">Was jetzt noch offen ist</SectionH2>
+                <SectionH2 id="offen">Was seitdem passiert ist</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
-                  <p>Die Abstimmung im Bundestag findet am 26. März 2026 statt. Danach folgt noch der Bundesrat.</p>
-                  <p>Wir werden nach dem offiziellen Beschluss:</p>
-                  <ul className="list-disc pl-6 space-y-1">
-                    <li>Die genaue neue Förderberechnung veröffentlichen</li>
-                    <li>Unseren Rechner aktualisieren</li>
-                    <li>Alle Zahlen auf dieser Seite anpassen</li>
-                  </ul>
+                  <p>Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 beschlossen — mit allen hier beschriebenen Verbesserungen. Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert.</p>
                 </div>
               </AnimatedSection>
 
@@ -364,12 +357,7 @@ const BlogKoalitionseinigung = () => {
                 </Accordion>
               </AnimatedSection>
 
-              {/* ── Disclaimer ── */}
-              <p className="mt-12 text-xs text-muted-foreground/60 leading-relaxed">
-                Dieser Artikel basiert auf der Koalitionseinigung vom 24. März 2026. Das Gesetz ist noch nicht formell
-                beschlossen. Alle Angaben ohne Gewähr und vorbehaltlich des endgültigen Gesetzesbeschlusses. Keine
-                Anlageberatung.
-              </p>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
