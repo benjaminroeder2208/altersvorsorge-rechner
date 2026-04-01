@@ -10,11 +10,31 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 const topicLinks = [
-  { to: "/altersvorsorgedepot", label: "Was ist das Altersvorsorgedepot?", desc: "Grundlagen und Funktionsweise des beschlossenen Altersvorsorgedepots." },
-  { to: "/altersvorsorgedepot-foerderung", label: "Staatliche Förderung", desc: "Grundzulage, Kinderzulage und Steuervorteile im Überblick." },
-  { to: "/altersvorsorgedepot-auszahlung", label: "Auszahlung im Alter", desc: "Wie die Entnahme im Ruhestand funktionieren soll." },
-  { to: "/altersvorsorgedepot-vs-etf-sparplan", label: "Vergleich mit ETF-Sparplan", desc: "Förderung vs. Flexibilität — was passt besser?" },
-  { to: "/altersvorsorgedepot-vs-riester", label: "Vergleich mit Riester", desc: "Die wichtigsten Unterschiede zum bisherigen Riester-Modell." },
+  {
+    to: "/altersvorsorgedepot",
+    label: "Was ist das Altersvorsorgedepot?",
+    desc: "Grundlagen und Funktionsweise des beschlossenen Altersvorsorgedepots.",
+  },
+  {
+    to: "/altersvorsorgedepot-foerderung",
+    label: "Staatliche Förderung",
+    desc: "Grundzulage, Kinderzulage und Steuervorteile im Überblick.",
+  },
+  {
+    to: "/altersvorsorgedepot-auszahlung",
+    label: "Auszahlung im Alter",
+    desc: "Wie die Entnahme im Ruhestand funktionieren soll.",
+  },
+  {
+    to: "/altersvorsorgedepot-vs-etf-sparplan",
+    label: "Vergleich mit ETF-Sparplan",
+    desc: "Förderung vs. Flexibilität — was passt besser?",
+  },
+  {
+    to: "/altersvorsorgedepot-vs-riester",
+    label: "Vergleich mit Riester",
+    desc: "Die wichtigsten Unterschiede zum bisherigen Riester-Modell.",
+  },
 ];
 
 const homepageJsonLd = [
@@ -32,7 +52,8 @@ const homepageJsonLd = [
     "@type": "WebPage",
     name: "Altersvorsorgedepot Rechner",
     url: "https://altersvorsorge-rechner.com/",
-    description: "Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes.",
+    description:
+      "Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes.",
   },
   {
     "@type": "SoftwareApplication",
@@ -40,7 +61,8 @@ const homepageJsonLd = [
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
     url: "https://altersvorsorge-rechner.com/",
-    description: "Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes.",
+    description:
+      "Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes.",
     featureList: [
       "Simulation monatlicher Beiträge",
       "Berücksichtigung staatlicher Förderung",
@@ -110,7 +132,8 @@ const homepageJsonLd = [
     "@type": "Organization",
     name: "altersvorsorge-rechner.com",
     url: "https://altersvorsorge-rechner.com",
-    description: "Unabhängiges Team aus Finanz- und Technik-Enthusiasten. Kostenlose, werbefreie Tools und Ratgeber rund um Altersvorsorge in Deutschland.",
+    description:
+      "Unabhängiges Team aus Finanz- und Technik-Enthusiasten. Kostenlose, werbefreie Tools und Ratgeber rund um Altersvorsorge in Deutschland.",
     foundingDate: "2026",
     areaServed: "DE",
     inLanguage: "de",
@@ -148,8 +171,19 @@ const RechnerPage = () => (
                   <tr>
                     <th className="text-left py-3 px-4 font-medium text-muted-foreground" />
                     <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 25 starten</th>
-                    <th className="py-3 px-4 font-semibold text-center relative" style={{ background: "#1B4FD8", color: "white", borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
-                      <span className="inline-block px-3 py-0.5 rounded-full text-xs font-medium mb-1" style={{ background: "rgba(255,255,255,0.2)", color: "white" }}>
+                    <th
+                      className="py-3 px-4 font-semibold text-center relative"
+                      style={{
+                        background: "#1B4FD8",
+                        color: "white",
+                        borderTopLeftRadius: 12,
+                        borderTopRightRadius: 12,
+                      }}
+                    >
+                      <span
+                        className="inline-block px-3 py-0.5 rounded-full text-xs font-medium mb-1"
+                        style={{ background: "rgba(255,255,255,0.2)", color: "white" }}
+                      >
                         Das Beispiel
                       </span>
                       <br />
@@ -169,7 +203,12 @@ const RechnerPage = () => (
                     <tr key={row.label} className={i % 2 === 0 ? "bg-background" : ""}>
                       <td className="py-3 px-4 font-medium text-muted-foreground">{row.label}</td>
                       <td className="py-3 px-4 text-center tabular-nums">{row.values[0]}</td>
-                      <td className="py-3 px-4 text-center font-medium tabular-nums" style={{ background: "#EEF3FF", color: "#1B4FD8" }}>{row.values[1]}</td>
+                      <td
+                        className="py-3 px-4 text-center font-medium tabular-nums"
+                        style={{ background: "#EEF3FF", color: "#1B4FD8" }}
+                      >
+                        {row.values[1]}
+                      </td>
                       <td className="py-3 px-4 text-center tabular-nums">{row.values[2]}</td>
                     </tr>
                   ))}
@@ -180,7 +219,10 @@ const RechnerPage = () => (
             <div className="text-center mt-8">
               <Link
                 to="#rechner"
-                onClick={(e) => { e.preventDefault(); document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" }); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity active:scale-[0.97]"
               >
                 Persönliche Altersvorsorge berechnen <ArrowRight className="w-4 h-4" />
@@ -188,9 +230,25 @@ const RechnerPage = () => (
             </div>
 
             <div className="mt-8 p-5 bg-muted/50 border border-border/60 rounded-xl max-w-2xl mx-auto text-center">
-              <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">Hinweise & Haftungsausschluss</p>
+              <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">
+                Hinweise & Haftungsausschluss
+              </p>
               <p className="text-xs text-muted-foreground/70 leading-relaxed">
-                Berechnung bei 150 €/Monat, Renteneintritt mit 67, 7 % Rendite p.a. — dieser Wert orientiert sich am historischen Durchschnitt breit gestreuter Aktienindizes (siehe z.{"\u00A0"}B. <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>). Er ist keine Prognose und kann in einzelnen Zeiträumen erheblich abweichen, auch ins Negative. Kapitalanlagen in Fonds und ETFs unterliegen Marktschwankungen. Im ungünstigen Fall kann der Wert der Anlage sinken — auch unter den eingezahlten Betrag. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Die Darstellung vereinfacht und berücksichtigt weder Inflation, Kosten noch Steuern. Keine Anlageberatung.
+                Alle Beispielrechnungen verwenden vereinfachte Annahmen: angenommene Rendite von 7 % p.a. (historischer
+                Durchschnitt breit gestreuter Aktienindizes — siehe z.{"\u00A0"}B.{" "}
+                <a
+                  href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  MSCI-World-Renditedreieck des Deutschen Aktieninstituts
+                </a>{" "}
+                — keine Prognose), keine Inflation, keine Produktkosten, keine Steuern auf Erträge. Tatsächliche
+                Ergebnisse können erheblich abweichen — auch ins Negative. Kapitalanlagen bergen Risiken, einschließlich
+                des möglichen Verlusts des eingesetzten Kapitals. Frühere Wertentwicklungen sind kein verlässlicher
+                Indikator für die Zukunft. Angaben zum Altersvorsorgedepot basieren auf dem Altersvorsorgereformgesetz
+                (beschlossen 27.03.2026). Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
               </p>
             </div>
           </AnimatedSection>
@@ -200,7 +258,9 @@ const RechnerPage = () => (
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-10">
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Mehr zum Altersvorsorgedepot</h2>
-            <p className="text-muted-foreground mt-2">Vertiefen Sie Ihr Wissen rund um das beschlossene Altersvorsorgedepot.</p>
+            <p className="text-muted-foreground mt-2">
+              Vertiefen Sie Ihr Wissen rund um das beschlossene Altersvorsorgedepot.
+            </p>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
@@ -232,31 +292,51 @@ const RechnerPage = () => (
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <div className="grid sm:grid-cols-2 gap-4">
-              <Link to="/blog/altersvorsorgedepot-2027" className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors">
+              <Link
+                to="/blog/altersvorsorgedepot-2027"
+                className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+              >
                 <div>
                   <p className="font-semibold text-sm mb-1">Altersvorsorgedepot 2027 erklärt</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">Alles zum neuen Altersvorsorgedepot: Förderung, Funktionsweise, Start 2027.</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Alles zum neuen Altersvorsorgedepot: Förderung, Funktionsweise, Start 2027.
+                  </p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
               </Link>
-              <Link to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors">
+              <Link
+                to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst"
+                className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+              >
                 <div>
                   <p className="font-semibold text-sm mb-1">Was ist die Rentenlücke?</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">Wie groß die Lücke wirklich ist — und was du dagegen tun kannst.</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Wie groß die Lücke wirklich ist — und was du dagegen tun kannst.
+                  </p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
               </Link>
-              <Link to="/rentenluecken-rechner" className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors">
+              <Link
+                to="/rentenluecken-rechner"
+                className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+              >
                 <div>
                   <p className="font-semibold text-sm mb-1">Rentenlückenrechner</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">Berechne deine persönliche Rentenlücke in 30 Sekunden.</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Berechne deine persönliche Rentenlücke in 30 Sekunden.
+                  </p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
               </Link>
-              <Link to="/blog" className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors">
+              <Link
+                to="/blog"
+                className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+              >
                 <div>
                   <p className="font-semibold text-sm mb-1">Alle Ratgeber →</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">Alle Artikel zu Altersvorsorge, Rente und Förderung.</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Alle Artikel zu Altersvorsorge, Rente und Förderung.
+                  </p>
                 </div>
                 <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
               </Link>
