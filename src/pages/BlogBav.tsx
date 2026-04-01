@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -50,7 +51,7 @@ const jsonLd = [
     description: "Die bAV ist oft der einfachste Weg zur Altersvorsorge — weil der Chef mitbezahlt. Wir erklären, wie sie funktioniert, was sie kostet und wann sie sich lohnt.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-19",
-    dateModified: "2026-03-19",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
@@ -278,11 +279,7 @@ const BlogBav = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar. Für individuelle bAV-Entscheidungen empfehlen wir die Beratung durch einen unabhängigen Finanz- oder Steuerberater.
-                </p>
-              </div>
+              <BlogDisclaimer />
             </article>
           </div>
         </div>
