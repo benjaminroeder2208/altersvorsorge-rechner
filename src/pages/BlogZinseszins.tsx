@@ -325,11 +325,7 @@ const BlogZinseszins = () => {
               </div>
 
               {/* Disclaimer */}
-              <div className="mt-16 p-5 bg-secondary rounded-xl">
-                <p className="text-xs text-muted-foreground/70 italic leading-relaxed">
-                  Alle Berechnungen basieren auf vereinfachten Annahmen (Rendite 7 % p.a., keine Inflation, keine Kosten). Tatsächliche Werte können erheblich abweichen. Dieser Artikel stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-                </p>
-              </div>
+              <BlogDisclaimer mitRechnung />
             </article>
           </div>
         </div>
