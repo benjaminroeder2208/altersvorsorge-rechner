@@ -52,7 +52,7 @@ const jsonLd = [
     description: "Beide investieren in ETFs — aber nur einer wird staatlich gefördert. Wir zeigen den konkreten Unterschied in Zahlen und helfen dir, die richtige Wahl zu treffen.",
     url: `${BASE}${PATH}`,
     datePublished: "2025-06-01",
-    dateModified: "2025-06-01",
+    dateModified: "2026-04-01",
     author: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     publisher: { "@type": "Organization", name: "altersvorsorge-rechner.com" },
     isPartOf: { "@type": "WebSite", url: `${BASE}/` },
