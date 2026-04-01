@@ -49,8 +49,8 @@ const HeroSection = () => (
         {/* Subtitle */}
         <motion.p {...anim(0.5)} className="text-base text-muted-foreground mb-10 max-w-lg" style={{ lineHeight: 1.7 }}>
           So viel Kapital könnte ein 35-Jähriger mit 150 € monatlich in 32 Jahren aufbauen — plus staatliche Förderung
-          des Altersvorsorgedepots. Jetzt persönliche Altersvorsorge berechnen: mit KI-Analyse und individueller
-          Auswertung als PDF. Kostenlos und unabhängig.
+          ab 01.01.2027 im neuen Altersvorsorgedepot. Jetzt persönliche Altersvorsorge berechnen: mit KI-Analyse und
+          individueller Auswertung als PDF. Kostenlos und unabhängig.
         </motion.p>
 
         {/* CTAs */}
