@@ -290,7 +290,7 @@ const BlogVsRiester = () => {
                     <TableRow className="bg-primary/5">
                       <TableCell className="font-semibold">Kapital zum Rentenbeginn (geschätzt)</TableCell>
                       <TableCell className="font-bold">~130.000 €</TableCell>
-                      <TableCell className="font-bold text-primary">~255.000 €</TableCell>
+                      <TableCell className="font-bold text-primary">~276.000 €</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
