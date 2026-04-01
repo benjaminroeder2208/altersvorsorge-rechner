@@ -7,7 +7,7 @@ import { Slider } from "@/components/ui/slider";
 const fmt = (n: number) =>
   n.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
-const steps = ["Alter", "Einkommen", "Sparen"];
+const stepLabels = ["Alter", "Einkommen", "Sparen"];
 
 const RentenCheckPage = () => {
   const [step, setStep] = useState(0);
@@ -16,7 +16,6 @@ const RentenCheckPage = () => {
   const [erspartes, setErspartes] = useState(0);
   const [sparrate, setSparrate] = useState(0);
 
-  // Simple calculation
   const jahreRente = 67 - alter;
   const durchschnittslohn = 45358;
   const entgeltpunkte = ((einkommen * 12) / durchschnittslohn) * Math.min(jahreRente + 10, 45);
@@ -24,7 +23,6 @@ const RentenCheckPage = () => {
   const bedarf = einkommen * 0.75;
   const luecke = Math.max(bedarf - renteNetto, 0);
 
-  // Capital from savings
   const r = 0.06 / 12;
   const n = jahreRente * 12;
   const kapitalSpar = n > 0 && r > 0
@@ -51,26 +49,46 @@ const RentenCheckPage = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background text-foreground flex flex-col">
-        {/* Progress */}
+        {/* Flow header */}
+        <div className="w-full border-b border-border/30">
+          <div className="max-w-lg mx-auto px-6 py-3 flex items-center justify-between">
+            <Link to="/reicht-meine-rente" className="text-sm font-semibold text-foreground tracking-tight hover:opacity-70 transition-opacity">
+              Renten-Check
+            </Link>
+            <p className="text-xs text-muted-foreground">Schritt 2 von 3</p>
+          </div>
+        </div>
+
+        {/* Progress steps */}
         <div className="w-full bg-muted/40 border-b border-border/40">
-          <div className="max-w-lg mx-auto px-6 py-4 flex items-center gap-3">
-            {steps.map((label, i) => (
-              <div key={label} className="flex items-center gap-2 flex-1">
-                <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold shrink-0 transition-colors ${
-                    i < step
-                      ? "bg-primary text-primary-foreground"
-                      : i === step
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-muted-foreground"
-                  }`}
-                >
-                  {i < step ? <CheckCircle className="w-4 h-4" /> : i + 1}
+          <div className="max-w-lg mx-auto px-6 py-4">
+            {/* Progress bar */}
+            <div className="h-1.5 bg-muted rounded-full overflow-hidden mb-3">
+              <div
+                className="h-full bg-primary rounded-full transition-all duration-500"
+                style={{ width: `${((step + 1) / stepLabels.length) * 100}%` }}
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              {stepLabels.map((label, i) => (
+                <div key={label} className="flex items-center gap-1.5">
+                  <div
+                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-semibold shrink-0 transition-colors ${
+                      i < step
+                        ? "bg-primary text-primary-foreground"
+                        : i === step
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {i < step ? <CheckCircle className="w-3.5 h-3.5" /> : i + 1}
+                  </div>
+                  <span className={`text-xs ${i <= step ? "text-foreground font-medium" : "text-muted-foreground"}`}>
+                    {label}
+                  </span>
                 </div>
-                <span className="text-xs text-muted-foreground hidden sm:block">{label}</span>
-                {i < steps.length - 1 && <div className="h-px flex-1 bg-border" />}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
@@ -166,8 +184,14 @@ const RentenCheckPage = () => {
                 </div>
               </div>
             )}
-
           </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-border/30 py-4 px-6">
+          <p className="text-xs text-muted-foreground/50 text-center">
+            Renten-Check · Vereinfachte Schätzung · Keine Anlageberatung
+          </p>
         </div>
       </div>
     </>
