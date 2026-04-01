@@ -94,6 +94,7 @@ const App = () => (
             <Route path="/einbetten" element={<EinbettenPage />} />
             <Route path="/reicht-meine-rente" element={<ReichtMeineRentePage />} />
             <Route path="/renten-check" element={<RentenCheckPage />} />
+            <Route path="/renten-check/result" element={<RentenCheckResultPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
