@@ -7,7 +7,12 @@ import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import {
-  Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator,
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -47,7 +52,8 @@ const jsonLd = [
   {
     "@type": "Article",
     headline: "Altersvorsorgedepot beschlossen: Was jetzt gilt",
-    description: "Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Die neuen Förderregeln, was sich geändert hat und was das für dich bedeutet.",
+    description:
+      "Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Die neuen Förderregeln, was sich geändert hat und was das für dich bedeutet.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-27",
     dateModified: "2026-03-27",
@@ -74,7 +80,13 @@ const jsonLd = [
 ];
 
 const SectionH2 = ({ id, children }: { id: string; children: React.ReactNode }) => (
-  <h2 id={id} className="text-2xl md:text-3xl font-bold tracking-tight mt-14 mb-4 scroll-mt-24" style={{ letterSpacing: "-0.02em" }}>{children}</h2>
+  <h2
+    id={id}
+    className="text-2xl md:text-3xl font-bold tracking-tight mt-14 mb-4 scroll-mt-24"
+    style={{ letterSpacing: "-0.02em" }}
+  >
+    {children}
+  </h2>
 );
 
 const BlogBeschlossen = () => {
@@ -94,11 +106,21 @@ const BlogBeschlossen = () => {
         <div className="container max-w-5xl mx-auto px-6">
           <Breadcrumb className="mb-8 max-w-2xl">
             <BreadcrumbList>
-              <BreadcrumbItem><BreadcrumbLink asChild><Link to="/">Home</Link></BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/">Home</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbLink asChild><Link to="/blog">Blog</Link></BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/blog">Blog</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbPage>Altersvorsorgedepot beschlossen</BreadcrumbPage></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbPage>Altersvorsorgedepot beschlossen</BreadcrumbPage>
+              </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
 
@@ -108,7 +130,11 @@ const BlogBeschlossen = () => {
               <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Inhalt</p>
               <nav className="space-y-1.5">
                 {tocItems.map((t) => (
-                  <a key={t.id} href={`#${t.id}`} className="block text-sm text-muted-foreground hover:text-foreground transition-colors leading-snug">
+                  <a
+                    key={t.id}
+                    href={`#${t.id}`}
+                    className="block text-sm text-muted-foreground hover:text-foreground transition-colors leading-snug"
+                  >
                     {t.label}
                   </a>
                 ))}
@@ -128,7 +154,9 @@ const BlogBeschlossen = () => {
               <AnimatedSection delay={0.05}>
                 <div className="prose-custom space-y-4">
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    Der Bundestag hat heute, am 27. März 2026, das Altersvorsorgereformgesetz verabschiedet. Ab dem 1. Januar 2027 können Bürgerinnen und Bürger ein gefördertes Altersvorsorgedepot eröffnen. Die Förderstruktur ist gegenüber dem ursprünglichen Referentenentwurf deutlich verbessert worden.
+                    Der Bundestag hat heute, am 27. März 2026, das Altersvorsorgereformgesetz verabschiedet. Ab dem 1.
+                    Januar 2027 können Bürgerinnen und Bürger ein gefördertes Altersvorsorgedepot eröffnen. Die
+                    Förderstruktur ist gegenüber dem ursprünglichen Referentenentwurf deutlich verbessert worden.
                   </p>
                 </div>
               </AnimatedSection>
@@ -137,7 +165,8 @@ const BlogBeschlossen = () => {
               <AnimatedSection delay={0.1}>
                 <div className="p-5 rounded-xl mb-8 mt-6 bg-emerald-50 border border-emerald-500">
                   <p className="text-sm text-emerald-900 mb-3">
-                    ✅ Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert. Berechne jetzt deine persönliche Förderung.
+                    ✅ Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert. Berechne jetzt deine
+                    persönliche Förderung.
                   </p>
                   <Link
                     to="/"
@@ -149,13 +178,23 @@ const BlogBeschlossen = () => {
               </AnimatedSection>
 
               {/* ── Mobile TOC ── */}
-              <Collapsible open={tocOpen} onOpenChange={setTocOpen} className="lg:hidden mb-8 border rounded-xl overflow-hidden">
+              <Collapsible
+                open={tocOpen}
+                onOpenChange={setTocOpen}
+                className="lg:hidden mb-8 border rounded-xl overflow-hidden"
+              >
                 <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium bg-secondary">
-                  Inhaltsverzeichnis <ChevronDown className={`w-4 h-4 transition-transform ${tocOpen ? "rotate-180" : ""}`} />
+                  Inhaltsverzeichnis{" "}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${tocOpen ? "rotate-180" : ""}`} />
                 </CollapsibleTrigger>
                 <CollapsibleContent className="px-4 py-3 space-y-2">
                   {tocItems.map((t) => (
-                    <a key={t.id} href={`#${t.id}`} className="block text-sm text-muted-foreground hover:text-foreground" onClick={() => setTocOpen(false)}>
+                    <a
+                      key={t.id}
+                      href={`#${t.id}`}
+                      className="block text-sm text-muted-foreground hover:text-foreground"
+                      onClick={() => setTocOpen(false)}
+                    >
                       {t.label}
                     </a>
                   ))}
@@ -208,7 +247,7 @@ const BlogBeschlossen = () => {
                       <tr className="border-b border-border/50">
                         <td className="py-3 pr-4">Kostendeckel Standard</td>
                         <td className="py-3 pr-4">1,5 %</td>
-                        <td className="py-3 font-medium text-foreground">1,5 %</td>
+                        <td className="py-3 font-medium text-foreground">1,0 %</td>
                       </tr>
                       <tr>
                         <td className="py-3 pr-4">Start</td>
@@ -224,18 +263,16 @@ const BlogBeschlossen = () => {
               <AnimatedSection delay={0.15}>
                 <SectionH2 id="grundzulage">Die neue Grundzulage im Detail</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
+                  <p>Die Grundzulage funktioniert nach einer neuen Systematik mit zwei Tranchen:</p>
                   <p>
-                    Die Grundzulage funktioniert nach einer neuen Systematik mit zwei Tranchen:
+                    <strong className="text-foreground">Tranche 1:</strong> 50 % auf die ersten 360 € Eigenbeitrag pro
+                    Jahr → max. 180 € Zulage.
                   </p>
                   <p>
-                    <strong className="text-foreground">Tranche 1:</strong> 50 % auf die ersten 360 € Eigenbeitrag pro Jahr → max. 180 € Zulage.
+                    <strong className="text-foreground">Tranche 2:</strong> 25 % auf Eigenbeiträge zwischen 360 € und
+                    1.800 € pro Jahr → max. 360 € Zulage.
                   </p>
-                  <p>
-                    <strong className="text-foreground">Tranche 2:</strong> 25 % auf Eigenbeiträge zwischen 360 € und 1.800 € pro Jahr → max. 360 € Zulage.
-                  </p>
-                  <p>
-                    Zusammen: Wer 1.800 € pro Jahr (150 €/Monat) einzahlt, erhält die volle Grundzulage von 540 €.
-                  </p>
+                  <p>Zusammen: Wer 1.800 € pro Jahr (150 €/Monat) einzahlt, erhält die volle Grundzulage von 540 €.</p>
                 </div>
                 <div className="overflow-x-auto mt-6 mb-6">
                   <table className="w-full text-sm border-collapse">
@@ -282,16 +319,19 @@ const BlogBeschlossen = () => {
                 <SectionH2 id="kinderzulage">Kinderzulage: Volle 300 € schon ab 25 € im Monat</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Die Kinderzulage wurde fundamental verbessert: Sie beträgt jetzt 100 % der Eigenbeiträge — bis zu 300 € pro Kind und Jahr.
+                    Die Kinderzulage wurde fundamental verbessert: Sie beträgt jetzt 100 % der Eigenbeiträge — bis zu
+                    300 € pro Kind und Jahr.
                   </p>
                   <p>
-                    Das bedeutet: Die volle Kinderzulage von 300 € wird bereits bei einem Eigenbeitrag von 300 €/Jahr (25 €/Monat) erreicht. Im ursprünglichen Entwurf waren dafür 100 €/Monat nötig.
+                    Das bedeutet: Die volle Kinderzulage von 300 € wird bereits bei einem Eigenbeitrag von 300 €/Jahr
+                    (25 €/Monat) erreicht. Im ursprünglichen Entwurf waren dafür 100 €/Monat nötig.
                   </p>
                   <p>
                     <strong className="text-foreground">Beispiel Familie mit zwei Kindern, 25 €/Monat:</strong>
                   </p>
                   <p>
-                    Grundzulage: 150 € + Kinderzulage: 2 × 150 € = 300 € → Gesamtförderung: 450 € bei nur 300 € Eigenbeitrag.
+                    Grundzulage: 150 € + Kinderzulage: 2 × 150 € = 300 € → Gesamtförderung: 450 € bei nur 300 €
+                    Eigenbeitrag.
                   </p>
                 </div>
               </AnimatedSection>
@@ -301,10 +341,13 @@ const BlogBeschlossen = () => {
                 <SectionH2 id="selbststaendige">Selbstständige: Erstmals förderberechtigt</SectionH2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Eine der wichtigsten Änderungen gegenüber dem Referentenentwurf: Selbstständige sind nun förderberechtigt. Der Bundestag hat den Förderkreis auf Personen ausgeweitet, die Einkünfte aus selbstständiger oder freiberuflicher Tätigkeit erzielen und eine Steuererklärung abgeben.
+                    Eine der wichtigsten Änderungen gegenüber dem Referentenentwurf: Selbstständige sind nun
+                    förderberechtigt. Der Bundestag hat den Förderkreis auf Personen ausgeweitet, die Einkünfte aus
+                    selbstständiger oder freiberuflicher Tätigkeit erzielen und eine Steuererklärung abgeben.
                   </p>
                   <p>
-                    Das Altersvorsorgedepot wird damit zum ersten staatlich geförderten Altersvorsorgeprodukt, das Selbstständigen ohne Umwege offensteht.
+                    Das Altersvorsorgedepot wird damit zum ersten staatlich geförderten Altersvorsorgeprodukt, das
+                    Selbstständigen ohne Umwege offensteht.
                   </p>
                 </div>
               </AnimatedSection>
@@ -331,9 +374,7 @@ const BlogBeschlossen = () => {
               {/* ── CTA-Box ── */}
               <AnimatedSection delay={0.15}>
                 <div className="p-8 rounded-2xl mt-14 mb-10 bg-[#1B4FD8] text-white text-center">
-                  <p className="text-lg font-semibold mb-2">
-                    Berechne jetzt deine persönliche Förderung
-                  </p>
+                  <p className="text-lg font-semibold mb-2">Berechne jetzt deine persönliche Förderung</p>
                   <p className="text-sm text-white/80 mb-5">
                     Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert.
                   </p>
@@ -366,13 +407,22 @@ const BlogBeschlossen = () => {
                   <Link to="/blog/altersvorsorgedepot-2027" className="block text-sm text-primary hover:underline">
                     → Altersvorsorgedepot 2027: Alles was du wissen musst
                   </Link>
-                  <Link to="/blog/altersvorsorgedepot-koalitionseinigung" className="block text-sm text-primary hover:underline">
+                  <Link
+                    to="/blog/altersvorsorgedepot-koalitionseinigung"
+                    className="block text-sm text-primary hover:underline"
+                  >
                     → Koalitionseinigung: Was sich geändert hat
                   </Link>
-                  <Link to="/blog/altersvorsorge-selbststaendige" className="block text-sm text-primary hover:underline">
+                  <Link
+                    to="/blog/altersvorsorge-selbststaendige"
+                    className="block text-sm text-primary hover:underline"
+                  >
                     → Altersvorsorge für Selbstständige
                   </Link>
-                  <Link to="/blog/altersvorsorgedepot-vs-etf-sparplan" className="block text-sm text-primary hover:underline">
+                  <Link
+                    to="/blog/altersvorsorgedepot-vs-etf-sparplan"
+                    className="block text-sm text-primary hover:underline"
+                  >
                     → Altersvorsorgedepot vs. ETF-Sparplan
                   </Link>
                 </div>
