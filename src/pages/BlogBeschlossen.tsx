@@ -207,8 +207,8 @@ const BlogBeschlossen = () => {
                       </tr>
                       <tr className="border-b border-border/50">
                         <td className="py-3 pr-4">Kostendeckel Standard</td>
-                        <td className="py-3 pr-4">1,5 %</td>
-                        <td className="py-3 font-medium text-foreground">1,5 % (unverändert)</td>
+                        <td className="py-3 pr-4">1,0 %</td>
+                        <td className="py-3 font-medium text-foreground">1,0 %</td>
                       </tr>
                       <tr>
                         <td className="py-3 pr-4">Start</td>
