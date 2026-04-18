@@ -27,6 +27,7 @@ import RentenlueckenRechnerPage from "./pages/RentenlueckenRechnerPage";
 import UnsubscribePage from "./pages/UnsubscribePage";
 import BlogBerufseinsteiger from "./pages/BlogBerufseinsteiger";
 import BlogAltersvorsorge30Jahre from "./pages/BlogAltersvorsorge30Jahre";
+import BlogRentenluckeBerechnen from "./pages/BlogRentenluckeBerechnen";
 import BlogRiesterKuendigen from "./pages/BlogRiesterKuendigen";
 import BlogEtfSteuern from "./pages/BlogEtfSteuern";
 import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
@@ -81,6 +82,7 @@ const App = () => (
             <Route path="/blog/betriebliche-altersvorsorge" element={<BlogBav />} />
             <Route path="/blog/altersvorsorge-selbststaendige" element={<BlogSelbststaendige />} />
             <Route path="/blog/altersvorsorge-30-jahre" element={<BlogAltersvorsorge30Jahre />} />
+            <Route path="/blog/rentenlucke-berechnen" element={<BlogRentenluckeBerechnen />} />
             <Route path="/blog/altersvorsorge-berufseinsteiger" element={<BlogBerufseinsteiger />} />
             <Route path="/blog/riester-kuendigen" element={<BlogRiesterKuendigen />} />
             <Route path="/blog/etf-sparplan-steuern" element={<BlogEtfSteuern />} />
