@@ -35,6 +35,9 @@ import BlogSteuernSparenAltersvorsorge from "./pages/BlogSteuernSparenAltersvors
 import BlogAltersvorsorgeAb40 from "./pages/BlogAltersvorsorgeAb40";
 import BlogAltersvorsorge50Jahre from "./pages/BlogAltersvorsorge50Jahre";
 import BlogWieVielGeldAlter from "./pages/BlogWieVielGeldAlter";
+import BlogAltersvorsorgeFragen from "./pages/BlogAltersvorsorgeFragen";
+import BlogAltersvorsorgeFreiberufler from "./pages/BlogAltersvorsorgeFreiberufler";
+import BlogAltersvorsorgeBerechnen from "./pages/BlogAltersvorsorgeBerechnen";
 import BlogRiesterKuendigen from "./pages/BlogRiesterKuendigen";
 import BlogEtfSteuern from "./pages/BlogEtfSteuern";
 import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
@@ -91,6 +94,9 @@ const App = () => (
             <Route path="/blog/altersvorsorge-30-jahre" element={<BlogAltersvorsorge30Jahre />} />
             <Route path="/blog/rentenlucke-berechnen" element={<BlogRentenluckeBerechnen />} />
             <Route path="/blog/etf-sparplan-anfaenger" element={<BlogEtfSparplanAnfaenger />} />
+            <Route path="/blog/altersvorsorge-fuer-frauen" element={<BlogAltersvorsorgeFragen />} />
+            <Route path="/blog/altersvorsorge-fuer-freiberufler" element={<BlogAltersvorsorgeFreiberufler />} />
+            <Route path="/blog/altersvorsorge-berechnen" element={<BlogAltersvorsorgeBerechnen />} />
             <Route path="/blog/altersvorsorge-ab-40" element={<BlogAltersvorsorgeAb40 />} />
             <Route path="/blog/altersvorsorge-50-jahre" element={<BlogAltersvorsorge50Jahre />} />
             <Route path="/blog/wie-viel-geld-braucht-man-im-alter" element={<BlogWieVielGeldAlter />} />

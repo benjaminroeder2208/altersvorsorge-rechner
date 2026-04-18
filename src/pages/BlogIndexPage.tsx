@@ -18,6 +18,13 @@ import {
 
 const articles = [
   {
+    slug: "/blog/altersvorsorge-berechnen",
+    title: "Altersvorsorge berechnen: Schritt-für-Schritt zur deiner Rentenlücke",
+    description: "Altersvorsorge berechnen: So ermittelst du deine Rentenlücke. Mit Formel, Excel-Vorlage und unserem interaktiven Rechner. Konkrete Beispiele.",
+    readingTime: "8 Min.",
+    tag: "Rentenlücke",
+  },
+  {
     slug: "/blog/wie-viel-geld-braucht-man-im-alter",
     title: "Wie viel Geld braucht man im Alter? Die ehrliche Rechnung",
     description: "Wie viel Geld brauchst du im Alter wirklich? Deutsche Realität vs. 80%-Regel. 5 konkrete Lebensstil-Szenarien, regionale Unterschiede, ehrliche Zahlen.",
@@ -88,6 +95,13 @@ const articles = [
     tag: "Steuern & Recht",
   },
   {
+    slug: "/blog/altersvorsorge-fuer-frauen",
+    title: "Altersvorsorge für Frauen: 4 Strategien gegen die Rentenlücke",
+    description: "Altersvorsorge für Frauen: Karrierelücken, Rentensplitting, Witwenrente. 4 konkrete Strategien mit Euro-Zahlen für deine Sicherheit.",
+    readingTime: "9 Min.",
+    tag: "Vorsorge-Strategien",
+  },
+  {
     slug: "/blog/altersvorsorge-ab-40",
     title: "Altersvorsorge ab 40: Ist es noch nicht zu spät?",
     description: "Mit 40 Jahren Altersvorsorge anfangen? Konkrete Zahlen zeigen: Es ist nicht zu spät. 27 Jahre bis zur Rente, 200 Euro pro Monat reichen aus.",
@@ -100,6 +114,13 @@ const articles = [
     description: "Wie viel Rente brauchst du? Wir zeigen, wie viel realistisch ist, was du sparst und wie du deine Rentenlücke berechnest.",
     readingTime: "8 Min.",
     tag: "Rentenlücke",
+  },
+  {
+    slug: "/blog/altersvorsorge-fuer-freiberufler",
+    title: "Altersvorsorge für Freiberufler: Rürup, Depot & maximale Steuersparnis",
+    description: "Altersvorsorge für Freiberufler: Rürup vs. Depot vs. ETF. Welche Strategie maximiert Steuervorteil und Kapitalaufbau? Mit konkreten Beispielen.",
+    readingTime: "9 Min.",
+    tag: "Vorsorge-Strategien",
   },
   {
     slug: "/blog/altersvorsorge-50-jahre",
