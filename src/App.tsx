@@ -30,6 +30,7 @@ import BlogAltersvorsorge30Jahre from "./pages/BlogAltersvorsorge30Jahre";
 import BlogRentenluckeBerechnen from "./pages/BlogRentenluckeBerechnen";
 import BlogDepotVsEtf from "./pages/BlogDepotVsEtf";
 import BlogEtfSparplanAnfaenger from "./pages/BlogEtfSparplanAnfaenger";
+import BlogWieVielRenteReichtAus from "./pages/BlogWieVielRenteReichtAus";
 import BlogRiesterKuendigen from "./pages/BlogRiesterKuendigen";
 import BlogEtfSteuern from "./pages/BlogEtfSteuern";
 import BlogRentenpunkteKaufen from "./pages/BlogRentenpunkteKaufen";
@@ -86,6 +87,7 @@ const App = () => (
             <Route path="/blog/altersvorsorge-30-jahre" element={<BlogAltersvorsorge30Jahre />} />
             <Route path="/blog/rentenlucke-berechnen" element={<BlogRentenluckeBerechnen />} />
             <Route path="/blog/etf-sparplan-anfaenger" element={<BlogEtfSparplanAnfaenger />} />
+            <Route path="/blog/wie-viel-rente-reicht-aus" element={<BlogWieVielRenteReichtAus />} />
             <Route path="/blog/altersvorsorgedepot-vs-etf-sparplan" element={<BlogDepotVsEtf />} />
             <Route path="/blog/altersvorsorge-berufseinsteiger" element={<BlogBerufseinsteiger />} />
             <Route path="/blog/riester-kuendigen" element={<BlogRiesterKuendigen />} />

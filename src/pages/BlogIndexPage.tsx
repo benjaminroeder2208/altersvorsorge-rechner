@@ -81,11 +81,18 @@ const articles = [
     tag: "Steuern & Recht",
   },
   {
+    slug: "/blog/wie-viel-rente-reicht-aus",
+    title: "Wie viel Rente reicht aus? Die ehrliche Antwort mit Zahlen",
+    description: "Wie viel Rente brauchst du? Wir zeigen, wie viel realistisch ist, was du sparst und wie du deine Rentenlücke berechnest.",
+    readingTime: "8 Min.",
+    tag: "Rentenlücke",
+  },
+  {
     slug: "/blog/rentenpunkte-kaufen",
     title: "Rentenpunkte kaufen: Lohnt es sich wirklich?",
     description: "Wer freiwillig in die gesetzliche Rente einzahlt, kann seine Rente erhöhen. Die Rendite-Rechnung ist ernüchternd.",
     readingTime: "7 Min.",
-    tag: "Steuern & Recht",
+    tag: "Steuern &amp; Recht",
   },
   {
     slug: "/blog/ruerup-rente",
