@@ -67,6 +67,13 @@ const articles = [
     tag: "Steuern & Recht",
   },
   {
+    slug: "/blog/etf-sparplan-anfaenger",
+    title: "ETF-Sparplan für Anfänger: So fängst du mit 50 Euro/Monat an",
+    description: "ETF-Sparplan für Anfänger: Schritt-für-Schritt erklärt. Wie du mit 50€/Monat startest, welche ETFs sinnvoll sind und wie viel du später hast.",
+    readingTime: "9 Min.",
+    tag: "Altersvorsorgedepot",
+  },
+  {
     slug: "/blog/etf-sparplan-steuern",
     title: "ETF Sparplan Steuern: Was du wirklich zahlen musst",
     description: "Steuern können einen erheblichen Teil der ETF-Rendite auffressen — wenn man sie nicht versteht.",
