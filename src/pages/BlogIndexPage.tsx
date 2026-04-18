@@ -138,9 +138,9 @@ const articles = [
   },
   {
     slug: "/blog/altersvorsorgedepot-vs-etf-sparplan",
-    title: "Altersvorsorgedepot oder ETF-Sparplan?",
-    description: "Beide investieren in ETFs — aber nur einer wird staatlich gefördert.",
-    readingTime: "7 Min.",
+    title: "Altersvorsorgedepot vs. ETF-Sparplan: Welches Produkt ist wirklich besser?",
+    description: "Beide investieren in ETFs, aber nur einer wird gefördert. Wir zeigen die Unterschiede mit konkreten Beispielen.",
+    readingTime: "8 Min.",
     tag: "Vergleiche",
   },
   {
