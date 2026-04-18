@@ -123,13 +123,13 @@ const articles = [
     tag: "Vorsorge-Strategien",
   },
   {
-  {
     slug: "/blog/rentenlucke-berechnen",
     title: "Rentenlücke berechnen: So erkennst du deine persönliche Versorgungslücke",
     description: "Rentenlücke berechnen leicht gemacht. Wir zeigen, wie groß deine Lücke ist und wie viel du sparen musst.",
     readingTime: "8 Min.",
     tag: "Rentenlücke",
   },
+  {
     slug: "/blog/rentenlucke-mit-30-40-50",
     title: "Rentenlücke mit 30, 40 oder 50: Was du jetzt noch tun kannst",
     description: "Drei konkrete Szenarien mit echten Zahlen.",
