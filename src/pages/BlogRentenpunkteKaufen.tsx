@@ -325,6 +325,16 @@ const BlogRentenpunkteKaufen = () => {
 
               {/* Disclaimer */}
               <BlogDisclaimer />
+
+              <div className="mt-8 text-center">
+                <Link
+                  to="/rentenluecken-rechner"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
+                >
+                  <Calculator className="w-4 h-4" />
+                  Deine Rentenlücke berechnen
+                </Link>
+              </div>
             </article>
           </div>
         </div>
