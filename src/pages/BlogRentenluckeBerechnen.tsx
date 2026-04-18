@@ -320,7 +320,7 @@ const BlogRentenluckeBerechnen = () => {
                 <div>
                   <h3 className="font-semibold mb-2">Fehler 3: "Ich warte auf bessere Zeiten"</h3>
                   <p className="text-sm text-muted-foreground">
-                    Es gibt keine besseren Zeiten. Zeit schlägt Timing. €50/Monat jetzt > €500/Monat in 10 Jahren.
+                    Es gibt keine besseren Zeiten. Zeit schlägt Timing. €50/Monat jetzt &gt; €500/Monat in 10 Jahren.
                   </p>
                 </div>
               </div>
