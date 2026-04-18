@@ -18,6 +18,13 @@ import {
 
 const articles = [
   {
+    slug: "/blog/wie-viel-geld-braucht-man-im-alter",
+    title: "Wie viel Geld braucht man im Alter? Die ehrliche Rechnung",
+    description: "Wie viel Geld brauchst du im Alter wirklich? Deutsche Realität vs. 80%-Regel. 5 konkrete Lebensstil-Szenarien, regionale Unterschiede, ehrliche Zahlen.",
+    readingTime: "10 Min.",
+    tag: "Rentenlücke",
+  },
+  {
     slug: "/blog/altersvorsorgedepot-beschlossen",
     title: "Altersvorsorgedepot beschlossen: Was jetzt gilt",
     description: "Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Die neuen Förderregeln, was sich geändert hat und was das für dich bedeutet.",
@@ -81,11 +88,25 @@ const articles = [
     tag: "Steuern & Recht",
   },
   {
+    slug: "/blog/altersvorsorge-ab-40",
+    title: "Altersvorsorge ab 40: Ist es noch nicht zu spät?",
+    description: "Mit 40 Jahren Altersvorsorge anfangen? Konkrete Zahlen zeigen: Es ist nicht zu spät. 27 Jahre bis zur Rente, 200 Euro pro Monat reichen aus.",
+    readingTime: "8 Min.",
+    tag: "Vorsorge-Strategien",
+  },
+  {
     slug: "/blog/wie-viel-rente-reicht-aus",
     title: "Wie viel Rente reicht aus? Die ehrliche Antwort mit Zahlen",
     description: "Wie viel Rente brauchst du? Wir zeigen, wie viel realistisch ist, was du sparst und wie du deine Rentenlücke berechnest.",
     readingTime: "8 Min.",
     tag: "Rentenlücke",
+  },
+  {
+    slug: "/blog/altersvorsorge-50-jahre",
+    title: "Altersvorsorge mit 50 Jahren: Noch 17 Jahre bis zur Rente",
+    description: "Mit 50 Jahren ist es eng, aber nicht unmöglich. 17 Jahre bis 67, aggressive Strategie nötig. Konkrete Zahlen und Catch-up Strategien.",
+    readingTime: "9 Min.",
+    tag: "Vorsorge-Strategien",
   },
   {
     slug: "/blog/steuern-sparen-altersvorsorge",
