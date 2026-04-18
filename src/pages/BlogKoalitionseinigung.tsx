@@ -56,7 +56,7 @@ const jsonLd = [
     "@type": "Article",
     headline: "Koalitionseinigung: Das Altersvorsorgedepot wird besser als geplant",
     description:
-      "CDU/CSU und SPD einigen sich auf verbesserte Konditionen beim Altersvorsorgedepot. Abstimmung im Bundestag am 26. März 2026.",
+      "Ampel-Koalition einigt sich auf Altersvorsorgedepot. Grundzulage €540/Jahr, Selbstständige förderberechtigt, ab 2027. Die wichtigsten Punkte.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-24",
     dateModified: "2026-04-01",

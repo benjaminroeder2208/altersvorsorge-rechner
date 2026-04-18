@@ -53,7 +53,7 @@ const jsonLd = [
     "@type": "Article",
     headline: "Altersvorsorgedepot beschlossen: Was jetzt gilt",
     description:
-      "Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Die neuen Förderregeln, was sich geändert hat und was das für dich bedeutet.",
+      "Bundestag beschlossen (27.03.2026): Altersvorsorgedepot mit Grundzulage €540/Jahr, Kinderzulage, Berufseinsteiger-Bonus. Alle Details zur Reform.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-27",
     dateModified: "2026-03-27",

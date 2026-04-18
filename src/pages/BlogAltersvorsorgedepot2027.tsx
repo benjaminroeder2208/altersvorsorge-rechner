@@ -76,7 +76,7 @@ const jsonLd = [
     "@type": "Article",
     headline: "Altersvorsorgedepot 2027: Alles, was du wissen musst",
     description:
-      "Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Wir erklären, wie die Förderung funktioniert, was du bekommst — und für wen es sich wirklich lohnt.",
+      "Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Grundzulage €540/Jahr, Kinderzulage, Selbstständige förderberechtigt. Wir erklären alles.",
     url: `${BASE}${PATH}`,
     datePublished: "2025-06-01",
     dateModified: "2026-04-01",
