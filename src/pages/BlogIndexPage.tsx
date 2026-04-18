@@ -116,13 +116,13 @@ const articles = [
     tag: "Vorsorge-Strategien",
   },
   {
-  {
     slug: "/blog/altersvorsorge-30-jahre",
     title: "Altersvorsorge mit 30 Jahren — Warum früh starten wirklich lohnt",
     description: "Mit 30 Jahren sparen? Ja! Wir zeigen, wie ein 35-Jähriger €276.000 aufbaut — und was es kostet, zu warten.",
     readingTime: "9 Min.",
     tag: "Vorsorge-Strategien",
   },
+  {
     slug: "/blog/rentenlucke-mit-30-40-50",
     title: "Rentenlücke mit 30, 40 oder 50: Was du jetzt noch tun kannst",
     description: "Drei konkrete Szenarien mit echten Zahlen.",
