@@ -88,6 +88,13 @@ const articles = [
     tag: "Rentenlücke",
   },
   {
+    slug: "/blog/steuern-sparen-altersvorsorge",
+    title: "Steuern sparen mit Altersvorsorge: So sparst du bis zu 3.000 Euro pro Jahr",
+    description: "Mit Altersvorsorge Steuern sparen: Sonderausgabenabzug, Freibeträge, Rürup. Konkrete Euro-Beispiele für Angestellte und Selbstständige.",
+    readingTime: "9 Min.",
+    tag: "Steuern &amp; Recht",
+  },
+  {
     slug: "/blog/rentenpunkte-kaufen",
     title: "Rentenpunkte kaufen: Lohnt es sich wirklich?",
     description: "Wer freiwillig in die gesetzliche Rente einzahlt, kann seine Rente erhöhen. Die Rendite-Rechnung ist ernüchternd.",
