@@ -536,6 +536,29 @@ const BlogAltersvorsorgedepot2027 = () => {
                 </div>
               </div>
 
+              {/* RELATED_ARTICLES_START */}
+              <div className="mt-8 mb-4">
+                <h3 className="text-lg font-semibold mb-4 text-foreground">📚 Verwandte Artikel</h3>
+                <div className="space-y-2">
+                  <Link to="/blog/altersvorsorgedepot-beschlossen" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot beschlossen: Was jetzt gilt</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/altersvorsorgedepot-vs-etf-sparplan" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot vs. ETF-Sparplan</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/was-darf-ins-altersvorsorgedepot" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Was darf ins Altersvorsorgedepot?</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/altersvorsorgedepot-vs-riester" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot vs. Riester</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                </div>
+              </div>
+
               <BlogDisclaimer mitRechnung />
             </article>
           </div>

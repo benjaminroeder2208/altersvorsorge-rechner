@@ -325,6 +325,29 @@ const BlogZinseszins = () => {
               </div>
 
               {/* Disclaimer */}
+              {/* RELATED_ARTICLES_START */}
+              <div className="mt-8 mb-4">
+                <h3 className="text-lg font-semibold mb-4 text-foreground">📚 Verwandte Artikel</h3>
+                <div className="space-y-2">
+                  <Link to="/blog/altersvorsorge-berufseinsteiger" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorge mit 20: Warum jetzt der beste Zeitpunkt ist</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/altersvorsorge-30-jahre" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorge mit 30 Jahren</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/rentenlucke-mit-30-40-50" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Rentenlücke mit 30, 40, 50 Jahren: Was ist noch möglich?</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/etf-sparplan-anfaenger" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>ETF-Sparplan für Anfänger: So fängst du mit 50 Euro/Monat an</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                </div>
+              </div>
+
               <BlogDisclaimer mitRechnung />
             </article>
           </div>
