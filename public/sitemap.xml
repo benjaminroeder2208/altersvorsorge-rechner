@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- MAIN PAGES -->
   <url>
     <loc>https://altersvorsorge-rechner.com/</loc>
     <lastmod>2026-05-26</lastmod>
@@ -10,20 +11,89 @@
     <loc>https://altersvorsorge-rechner.com/altersvorsorgedepot</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/altersvorsorgedepot-rechner</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/altersvorsorgedepot-foerderung</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/altersvorsorgedepot-auszahlung</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/altersvorsorgedepot-gesetz</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/altersvorsorgedepot-gesetzesentwurf</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/altersvorsorgedepot-vs-etf-sparplan</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/altersvorsorgedepot-vs-riester</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://altersvorsorge-rechner.com/rentenluecken-rechner</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/renten-check</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/reicht-meine-rente</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <!-- LEGAL PAGES -->
+  <url>
+    <loc>https://altersvorsorge-rechner.com/impressum</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/datenschutz</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <!-- BLOG INDEX -->
   <url>
     <loc>https://altersvorsorge-rechner.com/blog</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- BLOG ARTICLES (28 TOTAL) -->
   <url>
     <loc>https://altersvorsorge-rechner.com/blog/altersvorsorge-30-jahre</loc>
     <lastmod>2026-04-19</lastmod>
