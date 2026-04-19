@@ -346,6 +346,29 @@ const BlogRentenluckeBerechnen = () => {
             </p>
           </div>
 
+          {/* RELATED_ARTICLES_START */}
+          <div className="mt-8 mb-4">
+            <h3 className="text-lg font-semibold mb-4 text-foreground">📚 Verwandte Artikel</h3>
+            <div className="space-y-2">
+              <Link to="/blog/wie-viel-geld-braucht-man-im-alter" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                <span>Wie viel Geld braucht man im Alter?</span>
+                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+              </Link>
+              <Link to="/blog/altersvorsorge-30-jahre" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                <span>Altersvorsorge mit 30 Jahren</span>
+                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+              </Link>
+              <Link to="/blog/altersvorsorgedepot-vs-etf-sparplan" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                <span>Altersvorsorgedepot vs. ETF-Sparplan</span>
+                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+              </Link>
+              <Link to="/blog/altersvorsorge-berechnen" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                <span>Altersvorsorge berechnen: Schritt-für-Schritt zu deiner Rentenlücke</span>
+                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+              </Link>
+            </div>
+          </div>
+
           <BlogDisclaimer mitRechnung={true} />
 
           <div className="mt-8 text-center">
