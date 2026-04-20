@@ -152,17 +152,6 @@ const DatenschutzPage = () => (
         Ihre Daten werden gespeichert solange dies für den Versandzweck erforderlich ist. Nach Abmeldung wird Ihre E-Mail-Adresse in einer Sperrliste geführt um weiteren Versand dauerhaft zu unterbinden. Auf Wunsch werden Ihre Daten vollständig gelöscht — Anfragen an: info@altersvorsorge-rechner.com
       </p>
 
-      <h3 className="text-lg font-semibold mt-4 mb-2">Newsletter-Anmeldung & Lead-Magnet (PDF-Checkliste)</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Über die Seite <em>/newsletter</em> können Sie eine kostenlose Altersvorsorge-Checkliste als PDF anfordern und sich optional für unseren wöchentlichen Newsletter eintragen. Beide Vorgänge sind separat per Checkbox einwilligungspflichtig.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Verarbeitete Daten: E-Mail-Adresse, Anmelde-Quelle (z.&nbsp;B. <em>newsletter_landing</em>), Zeitpunkt, Newsletter-Einwilligung (ja/nein), Bestätigungsstatus, generierte Checklisten-PDF (temporär bis Versand). Speicherort: Tabelle <em>newsletter_subscriptions</em> bei Supabase (USA, AVV gemäß Art.&nbsp;28 DSGVO, EU-Standardvertragsklauseln).
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Newsletter-Inhalt: Wöchentliche redaktionelle Tipps zur Altersvorsorge, ETFs und gesetzlichen Neuerungen. Kein Werbeversand für Dritte. Versand über Resend (siehe oben).
-      </p>
-
       <h3 className="text-lg font-semibold mt-4 mb-2">Abmeldung</h3>
       <p className="text-muted-foreground leading-relaxed">
         Sie können sich jederzeit vom Newsletter abmelden. Ein Abmeldelink ist in jeder E-Mail enthalten. Der Widerruf der Einwilligung berührt nicht die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung.

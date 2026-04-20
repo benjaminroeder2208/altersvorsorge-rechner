@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
-import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
 import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import {
@@ -54,7 +53,7 @@ const jsonLd = [
     "@type": "Article",
     headline: "Altersvorsorgedepot beschlossen: Was jetzt gilt",
     description:
-      "Bundestag beschlossen (27.03.2026): Altersvorsorgedepot mit Grundzulage €540/Jahr, Kinderzulage, Berufseinsteiger-Bonus. Alle Details zur Reform.",
+      "Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Die neuen Förderregeln, was sich geändert hat und was das für dich bedeutet.",
     url: `${BASE}${PATH}`,
     datePublished: "2026-03-27",
     dateModified: "2026-03-27",
@@ -428,41 +427,7 @@ const BlogBeschlossen = () => {
                 </div>
               </AnimatedSection>
 
-              <BlogNewsletterWidget />
               <BlogDisclaimer />
-
-              <div className="mt-8 text-center">
-                {/* RELATED_ARTICLES_START */}
-                <div className="mt-8 mb-4">
-                  <h3 className="text-lg font-semibold mb-4 text-foreground">📚 Verwandte Artikel</h3>
-                  <div className="space-y-2">
-                    <Link to="/blog/altersvorsorgedepot-2027" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                      <span>Altersvorsorgedepot 2027: Alles, was du wissen musst</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                    </Link>
-                    <Link to="/blog/altersvorsorgedepot-koalitionseinigung" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                      <span>Koalitionseinigung: Das Altersvorsorgedepot wird besser als geplant</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                    </Link>
-                    <Link to="/blog/altersvorsorgedepot-vs-riester" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                      <span>Altersvorsorgedepot vs. Riester</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                    </Link>
-                    <Link to="/blog/was-darf-ins-altersvorsorgedepot" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                      <span>Was darf ins Altersvorsorgedepot?</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                    </Link>
-                  </div>
-                </div>
-
-                <Link
-                  to="/altersvorsorgedepot"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
-                >
-                  <ArrowRight className="w-4 h-4" />
-                  Zum Altersvorsorgedepot Rechner
-                </Link>
-              </div>
             </article>
           </div>
         </div>

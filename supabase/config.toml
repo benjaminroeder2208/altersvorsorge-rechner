@@ -17,10 +17,3 @@ verify_jwt = false
 
 [functions.chatbot]
 verify_jwt = false
-
-[functions.send-newsletter-edition]
-verify_jwt = false
-
-
-[functions.send-newsletter-edition]
-verify_jwt = false

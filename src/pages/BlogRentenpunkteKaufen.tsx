@@ -1,6 +1,5 @@
 import { useState } from "react";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
-import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -325,41 +324,7 @@ const BlogRentenpunkteKaufen = () => {
               </div>
 
               {/* Disclaimer */}
-              {/* RELATED_ARTICLES_START */}
-              <div className="mt-8 mb-4">
-                <h3 className="text-lg font-semibold mb-4 text-foreground">📚 Verwandte Artikel</h3>
-                <div className="space-y-2">
-                  <Link to="/blog/rentenlucke-berechnen" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Rentenlücke berechnen leicht gemacht</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                  </Link>
-                  <Link to="/blog/altersvorsorgedepot-2027" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Altersvorsorgedepot 2027: Alles, was du wissen musst</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                  </Link>
-                  <Link to="/blog/etf-sparplan-anfaenger" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>ETF-Sparplan für Anfänger: So fängst du mit 50 Euro/Monat an</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                  </Link>
-                  <Link to="/blog/wie-viel-rente-reicht-aus" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
-                    <span>Wie viel Rente reicht aus?</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
-                  </Link>
-                </div>
-              </div>
-
-              <BlogNewsletterWidget />
               <BlogDisclaimer />
-
-              <div className="mt-8 text-center">
-                <Link
-                  to="/rentenluecken-rechner"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
-                >
-                  <Calculator className="w-4 h-4" />
-                  Deine Rentenlücke berechnen
-                </Link>
-              </div>
             </article>
           </div>
         </div>

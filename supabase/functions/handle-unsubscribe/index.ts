@@ -73,18 +73,6 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Mark any newsletter subscriptions for this email as unsubscribed
-    const { error: nlErr } = await supabase
-      .from("newsletter_subscriptions")
-      .update({ status: "unsubscribed", subscribed_to_newsletter: false })
-      .ilike("email", row.email)
-      .neq("status", "unsubscribed");
-
-    if (nlErr) {
-      console.error("Newsletter unsubscribe update error:", nlErr);
-      // Non-fatal: suppression list already prevents future sends
-    }
-
     // Cancel scheduled follow-up emails via Resend API
     const resendKey = Deno.env.get("RESEND_API_KEY");
     if (resendKey) {

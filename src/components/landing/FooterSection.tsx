@@ -28,7 +28,6 @@ const sections = [
   title: "Informationen",
   links: [
   { to: "/blog", label: "Blog" },
-  { to: "/newsletter", label: "Newsletter & Checkliste" },
   { to: "/einbetten", label: "Rechner einbetten" },
   { to: "/#faq", label: "FAQ", isAnchor: true }]
 
