@@ -378,20 +378,9 @@ const EmbedPage = () => {
 
               {/* Mini chart */}
               <div id="embed-chart-capture" className="h-[180px] mb-6">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={r.chartData} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
-                    <defs>
-                      <linearGradient id="embedGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor={primaryColor} stopOpacity={0.2} />
-                        <stop offset="100%" stopColor={primaryColor} stopOpacity={0.02} />
-                      </linearGradient>
-                    </defs>
-                    <XAxis dataKey="age" tick={{ fill: "#9CA3AF", fontSize: 11 }} axisLine={false} tickLine={false} interval="preserveStartEnd" />
-                    <YAxis tick={{ fill: "#9CA3AF", fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => v >= 1000 ? `${Math.round(v / 1000)}k` : String(v)} width={45} />
-                    <Tooltip content={<StackedTooltip />} />
-                    <Area type="monotone" dataKey="total" stroke={primaryColor} fill="url(#embedGrad)" strokeWidth={2} />
-                  </AreaChart>
-                </ResponsiveContainer>
+                <Suspense fallback={<div className="w-full h-full bg-gray-50 rounded-lg animate-pulse" />}>
+                  <EmbedMiniChart data={r.chartData} primaryColor={primaryColor} />
+                </Suspense>
               </div>
 
               {/* Email capture */}
