@@ -38,6 +38,18 @@ const AdminLayout = ({ children, title }: Props) => {
                 </span>
               </NavLink>
               <NavLink
+                to="/admin/subscribers"
+                className={({ isActive }) =>
+                  `px-2.5 py-1 rounded-md transition-colors ${
+                    isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5" /> Empfänger
+                </span>
+              </NavLink>
+              <NavLink
                 to="/admin/leads"
                 className={({ isActive }) =>
                   `px-2.5 py-1 rounded-md transition-colors ${
