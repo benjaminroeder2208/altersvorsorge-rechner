@@ -1,7 +1,14 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const ChatWidget = lazy(() => import("./ChatWidget"));
+// Swallow chunk-load failures (e.g. stale hash after redeploy) so the
+// global chat widget can never blank the page with a "Script error."
+const ChatWidget = lazy(() =>
+  import("./ChatWidget").catch((err) => {
+    console.warn("[ChatWidget] failed to load chunk, skipping:", err);
+    return { default: () => null };
+  })
+);
 
 const HIDDEN_ROUTES = ["/impressum", "/datenschutz", "/embed"];
 
