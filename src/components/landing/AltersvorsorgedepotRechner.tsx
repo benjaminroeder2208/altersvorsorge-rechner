@@ -829,66 +829,9 @@ const AltersvorsorgedepotRechner = () => {
                   </InfoText>
 
                   <div id="pdf-chart-capture" className="h-[300px] md:h-[360px]">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <AreaChart data={r.chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                        <defs>
-                          <linearGradient id="gradContributions" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="hsl(240, 1%, 44%)" stopOpacity={0.2} />
-                            <stop offset="100%" stopColor="hsl(240, 1%, 44%)" stopOpacity={0.03} />
-                          </linearGradient>
-                          <linearGradient id="gradSubsidies" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="hsl(216, 100%, 34%)" stopOpacity={0.25} />
-                            <stop offset="100%" stopColor="hsl(216, 100%, 34%)" stopOpacity={0.03} />
-                          </linearGradient>
-                          <linearGradient id="gradGains" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="hsl(174, 60%, 45%)" stopOpacity={0.3} />
-                            <stop offset="100%" stopColor="hsl(174, 60%, 45%)" stopOpacity={0.03} />
-                          </linearGradient>
-                        </defs>
-                        <XAxis
-                          dataKey="age"
-                          tick={{ fill: "hsl(240, 1%, 44%)", fontSize: 12 }}
-                          axisLine={false}
-                          tickLine={false}
-                          interval="preserveStartEnd"
-                        />
-                        <YAxis
-                          tick={{ fill: "hsl(240, 1%, 44%)", fontSize: 12 }}
-                          axisLine={false}
-                          tickLine={false}
-                          tickFormatter={(v) => (v >= 1000 ? `${Math.round(v / 1000)}k` : fmt(v))}
-                          width={50}
-                        />
-                        <Tooltip content={<StackedTooltip />} />
-                        <Area
-                          type="monotone"
-                          dataKey="contributions"
-                          name="Eigenbeiträge"
-                          stackId="1"
-                          stroke="hsl(240, 1%, 44%)"
-                          fill="url(#gradContributions)"
-                          strokeWidth={0}
-                        />
-                        <Area
-                          type="monotone"
-                          dataKey="subsidies"
-                          name="Zulagen"
-                          stackId="1"
-                          stroke="hsl(216, 100%, 34%)"
-                          fill="url(#gradSubsidies)"
-                          strokeWidth={0}
-                        />
-                        <Area
-                          type="monotone"
-                          dataKey="gains"
-                          name="Kapitalerträge"
-                          stackId="1"
-                          stroke="hsl(174, 60%, 45%)"
-                          fill="url(#gradGains)"
-                          strokeWidth={2}
-                        />
-                      </AreaChart>
-                    </ResponsiveContainer>
+                    <Suspense fallback={<div className="w-full h-full bg-muted/30 rounded-lg animate-pulse" />}>
+                      <StackedAreaChart data={r.chartData} />
+                    </Suspense>
                   </div>
 
                   {/* Chart legend */}
