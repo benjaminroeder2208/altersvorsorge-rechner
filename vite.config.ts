@@ -28,11 +28,23 @@ export default defineConfig(({ mode }) => ({
           if (id.includes("/react-dom/") || id.match(/\/react\/[^/]*$/) || id.includes("/react/index") || id.includes("/scheduler/")) {
             return "vendor-react";
           }
+          if (id.includes("react-router") || id.includes("@remix-run/router") || id.includes("/history/")) {
+            return "vendor-router";
+          }
           if (id.includes("@supabase/")) {
             return "vendor-supabase";
           }
           if (id.includes("@tanstack/")) {
             return "vendor-tanstack";
+          }
+          if (id.includes("framer-motion") || id.includes("/motion-dom/") || id.includes("/motion-utils/")) {
+            return "vendor-motion";
+          }
+          if (id.includes("@radix-ui/")) {
+            return "vendor-radix";
+          }
+          if (id.includes("lucide-react")) {
+            return "vendor-icons";
           }
           return undefined;
         },
