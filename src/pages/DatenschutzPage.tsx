@@ -321,9 +321,47 @@ const DatenschutzPage = () => (
 
     {/* 14 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">14. Aktualität dieser Erklärung</h2>
+      <h2 className="text-xl font-bold mb-3">14. Google Tag Manager und Google Consent Mode v2</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Diese Datenschutzerklärung wurde zuletzt im März 2026 aktualisiert. Wir behalten uns vor, sie bei Änderungen der rechtlichen Lage oder unserer Dienste anzupassen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.
+        Diese Website nutzt den Google Tag Manager (GTM), einen Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland (nachfolgend „Google"). Der Google Tag Manager ist ein technisches Werkzeug, mit dem wir Tracking- und Analyse-Tags zentral verwalten und ausspielen können. Der Google Tag Manager selbst setzt keine Cookies und erfasst keine personenbezogenen Daten zu Analyse- oder Marketingzwecken.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Beim Laden des Google Tag Managers wird Ihre IP-Adresse an Google übertragen, was zur technischen Auslieferung des Skripts erforderlich ist. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an einer effizienten und sicheren Verwaltung von Tags). Werden über den Tag Manager Dienste ausgelöst, die Cookies setzen oder personenbezogene Daten verarbeiten (z.&nbsp;B. Google Analytics, Google Ads), erfolgt dies ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO und §&nbsp;25 Abs.&nbsp;1 TTDSG.
+      </p>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Google Consent Mode v2</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Auf dieser Website ist der Google Consent Mode v2 implementiert. Dieser regelt das Verhalten von Google-Diensten (z.&nbsp;B. Google Analytics, Google Ads) in Abhängigkeit von Ihrer Cookie-Einwilligung. Solange Sie keine Einwilligung erteilt haben, sind alle Consent-Kategorien (insbesondere <code>ad_storage</code>, <code>ad_user_data</code>, <code>ad_personalization</code>, <code>analytics_storage</code>) standardmäßig auf „denied" gesetzt. In diesem Zustand werden keine Cookies gesetzt und keine personenbezogenen Daten an Google übertragen.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Sofern Sie nicht einwilligen, sendet Google im sogenannten „cookieless"-Modus lediglich anonyme, nicht identifizierende Signale (sogenannte Pings ohne Cookie- oder Geräte-IDs). Diese ermöglichen Google eine modellierte, statistische Auswertung, ohne dass eine Identifikation Ihrer Person möglich ist. Zusätzlich sind die Funktionen <code>ads_data_redaction</code> (Anonymisierung werbebezogener Daten) und <code>url_passthrough</code> (Übergabe von Klick-IDs ohne Cookies) aktiviert.
+      </p>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Steuerung über Cookiebot</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Die Steuerung Ihrer Einwilligung erfolgt über das in Abschnitt&nbsp;13 beschriebene Consent-Management-Tool Cookiebot. Sobald Sie im Cookie-Banner Ihre Auswahl treffen, übermittelt Cookiebot die entsprechenden Signale (<code>gtag('consent', 'update', …)</code>) an den Google Tag Manager. Erst danach werden Tags wie Google Analytics oder Google Ads – sofern eingewilligt – mit aktivem Cookie-Tracking geladen.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Sie können Ihre Einwilligung jederzeit widerrufen oder anpassen, indem Sie die Cookie-Einstellungen über das Cookiebot-Banner erneut aufrufen. Der Widerruf wirkt für die Zukunft.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Weitere Informationen zum Google Tag Manager und zu den Datenschutzbestimmungen finden Sie unter:{" "}
+        <a
+          href="https://policies.google.com/privacy?hl=de"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-primary transition-colors"
+        >
+          policies.google.com/privacy
+        </a>
+      </p>
+    </section>
+
+    {/* 15 */}
+    <section>
+      <h2 className="text-xl font-bold mb-3">15. Aktualität dieser Erklärung</h2>
+      <p className="text-muted-foreground leading-relaxed">
+        Diese Datenschutzerklärung wurde zuletzt im April 2026 aktualisiert. Wir behalten uns vor, sie bei Änderungen der rechtlichen Lage oder unserer Dienste anzupassen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.
       </p>
     </section>
   </ContentPageLayout>
