@@ -1,8 +1,27 @@
 <!doctype html>
 <html lang="de">
   <head>
+    <!-- Google Consent Mode v2 - Default (denied) BEFORE GTM loads. Cookiebot updates these states based on user consent. -->
+    <script data-cookieconsent="ignore">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'personalization_storage': 'denied',
+        'security_storage': 'granted',
+        'wait_for_update': 500,
+        'region': ['DE', 'AT', 'CH', 'EU']
+      });
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
+    </script>
+    <!-- Cookiebot (manages consent and updates Consent Mode states automatically) -->
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="71ee8ac9-9b38-4881-a659-b76fc90f100b" data-blockingmode="auto" type="text/javascript"></script>
-    <!-- Google Tag Manager (consent-aware via Cookiebot/Consent Mode v2 inside GTM) -->
+    <!-- Google Tag Manager (loads always; tags inside GTM respect Consent Mode) -->
     <script data-cookieconsent="ignore">
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
