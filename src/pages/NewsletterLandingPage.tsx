@@ -136,7 +136,7 @@ const NewsletterLandingPage = () => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm"
+                className="bg-card border border-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm min-w-0 w-full"
               >
                 {status === "sent" ? (
                   <div className="text-center py-4">
