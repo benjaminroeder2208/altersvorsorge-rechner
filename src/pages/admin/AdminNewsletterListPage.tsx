@@ -109,8 +109,8 @@ const AdminNewsletterListPage = () => {
             </Button>
           </div>
         ) : (
-          <div className="bg-card border border-border rounded-2xl overflow-hidden">
-            <table className="w-full text-sm">
+          <div className="bg-card border border-border rounded-2xl overflow-x-auto">
+            <table className="w-full text-sm min-w-[640px]">
               <thead className="bg-secondary/50 text-xs uppercase text-muted-foreground tracking-wider">
                 <tr>
                   <th className="text-left py-2.5 px-4 font-medium">Betreff</th>
