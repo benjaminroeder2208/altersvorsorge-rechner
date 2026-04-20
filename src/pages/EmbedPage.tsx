@@ -188,6 +188,7 @@ const EmbedPage = () => {
     setErrorMsg("");
     try {
       const confirmToken = crypto.randomUUID();
+      const { captureChart, generatePDFBase64 } = await import("@/utils/generatePDF");
       const chartImg = await captureChart("embed-chart-capture").catch(() => "");
       const pdfBase64 = await generatePDFBase64({
         monthly_contribution: inputs.monthlyContribution,

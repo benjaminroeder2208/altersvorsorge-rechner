@@ -283,6 +283,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
       // Generate PDF
       let pdfBase64 = "";
       try {
+        const { captureChart, generatePDFBase64 } = await import("@/utils/generatePDF");
         const chartImg = await captureChart();
         pdfBase64 = await generatePDFBase64({
           monthly_contribution: inputs.monthlyContribution,
