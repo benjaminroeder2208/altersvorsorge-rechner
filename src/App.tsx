@@ -160,6 +160,14 @@ const App = () => (
                 </ProtectedAdminRoute>
               }
             />
+            <Route
+              path="/admin/subscribers"
+              element={
+                <ProtectedAdminRoute>
+                  <AdminNewsletterSubscribersPage />
+                </ProtectedAdminRoute>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
