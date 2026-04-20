@@ -33,6 +33,9 @@ const BlogNewsletterWidget = () => {
     try {
       let pdfBase64: string | null = null;
       try {
+        const { generateNewsletterChecklistPDFBase64 } = await import(
+          "@/utils/generateNewsletterPDF"
+        );
         pdfBase64 = await generateNewsletterChecklistPDFBase64();
       } catch (pdfErr) {
         console.warn("PDF-Generierung fehlgeschlagen, fahre ohne PDF fort", pdfErr);

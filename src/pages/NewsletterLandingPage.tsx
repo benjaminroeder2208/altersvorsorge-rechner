@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
-import { generateNewsletterChecklistPDFBase64 } from "@/utils/generateNewsletterPDF";
+
 import FooterSection from "@/components/landing/FooterSection";
 import Navbar from "@/components/landing/Navbar";
 
