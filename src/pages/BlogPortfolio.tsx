@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
+import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -499,6 +500,30 @@ const BlogPortfolio = () => {
               </div>
 
               {/* Disclaimer */}
+              {/* RELATED_ARTICLES_START */}
+              <div className="mt-8 mb-4">
+                <h3 className="text-lg font-semibold mb-4 text-foreground">📚 Verwandte Artikel</h3>
+                <div className="space-y-2">
+                  <Link to="/blog/altersvorsorgedepot-vs-etf-sparplan" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot vs. ETF-Sparplan</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/betriebliche-altersvorsorge" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Betriebliche Altersvorsorge (bAV)</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/ruerup-rente" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Rürup-Rente: Die beste Steuersparnis für Selbstständige</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/altersvorsorge-30-jahre" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorge mit 30 Jahren</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                </div>
+              </div>
+
+              <BlogNewsletterWidget />
               <BlogDisclaimer mitRechnung />
             </article>
           </div>

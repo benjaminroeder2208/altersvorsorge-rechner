@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 const ConfirmPage = () => {
   const [params] = useSearchParams();
   const token = params.get("token");
+  const type = params.get("type");
   const [status, setStatus] = useState<"loading" | "confirmed" | "already" | "expired" | "error">("loading");
 
   useEffect(() => {
@@ -15,8 +16,9 @@ const ConfirmPage = () => {
       return;
     }
 
+    const fnName = type === "newsletter" ? "confirm-newsletter" : "confirm-email";
     supabase.functions
-      .invoke("confirm-email", { body: { token } })
+      .invoke(fnName, { body: { token } })
       .then(({ data, error }) => {
         if (error) {
           setStatus("error");

@@ -18,6 +18,20 @@ import {
 
 const articles = [
   {
+    slug: "/blog/altersvorsorge-berechnen",
+    title: "Altersvorsorge berechnen: Schritt-für-Schritt zur deiner Rentenlücke",
+    description: "Altersvorsorge berechnen: So ermittelst du deine Rentenlücke. Mit Formel, Excel-Vorlage und unserem interaktiven Rechner. Konkrete Beispiele.",
+    readingTime: "8 Min.",
+    tag: "Rentenlücke",
+  },
+  {
+    slug: "/blog/wie-viel-geld-braucht-man-im-alter",
+    title: "Wie viel Geld braucht man im Alter? Die ehrliche Rechnung",
+    description: "Wie viel Geld brauchst du im Alter wirklich? Deutsche Realität vs. 80%-Regel. 5 konkrete Lebensstil-Szenarien, regionale Unterschiede, ehrliche Zahlen.",
+    readingTime: "10 Min.",
+    tag: "Rentenlücke",
+  },
+  {
     slug: "/blog/altersvorsorgedepot-beschlossen",
     title: "Altersvorsorgedepot beschlossen: Was jetzt gilt",
     description: "Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Die neuen Förderregeln, was sich geändert hat und was das für dich bedeutet.",
@@ -67,6 +81,13 @@ const articles = [
     tag: "Steuern & Recht",
   },
   {
+    slug: "/blog/etf-sparplan-anfaenger",
+    title: "ETF-Sparplan für Anfänger: So fängst du mit 50 Euro/Monat an",
+    description: "ETF-Sparplan für Anfänger: Schritt-für-Schritt erklärt. Wie du mit 50€/Monat startest, welche ETFs sinnvoll sind und wie viel du später hast.",
+    readingTime: "9 Min.",
+    tag: "Altersvorsorgedepot",
+  },
+  {
     slug: "/blog/etf-sparplan-steuern",
     title: "ETF Sparplan Steuern: Was du wirklich zahlen musst",
     description: "Steuern können einen erheblichen Teil der ETF-Rendite auffressen — wenn man sie nicht versteht.",
@@ -74,11 +95,53 @@ const articles = [
     tag: "Steuern & Recht",
   },
   {
+    slug: "/blog/altersvorsorge-fuer-frauen",
+    title: "Altersvorsorge für Frauen: 4 Strategien gegen die Rentenlücke",
+    description: "Altersvorsorge für Frauen: Karrierelücken, Rentensplitting, Witwenrente. 4 konkrete Strategien mit Euro-Zahlen für deine Sicherheit.",
+    readingTime: "9 Min.",
+    tag: "Vorsorge-Strategien",
+  },
+  {
+    slug: "/blog/altersvorsorge-ab-40",
+    title: "Altersvorsorge ab 40: Ist es noch nicht zu spät?",
+    description: "Mit 40 Jahren Altersvorsorge anfangen? Konkrete Zahlen zeigen: Es ist nicht zu spät. 27 Jahre bis zur Rente, 200 Euro pro Monat reichen aus.",
+    readingTime: "8 Min.",
+    tag: "Vorsorge-Strategien",
+  },
+  {
+    slug: "/blog/wie-viel-rente-reicht-aus",
+    title: "Wie viel Rente reicht aus? Die ehrliche Antwort mit Zahlen",
+    description: "Wie viel Rente brauchst du? Wir zeigen, wie viel realistisch ist, was du sparst und wie du deine Rentenlücke berechnest.",
+    readingTime: "8 Min.",
+    tag: "Rentenlücke",
+  },
+  {
+    slug: "/blog/altersvorsorge-fuer-freiberufler",
+    title: "Altersvorsorge für Freiberufler: Rürup, Depot & maximale Steuersparnis",
+    description: "Altersvorsorge für Freiberufler: Rürup vs. Depot vs. ETF. Welche Strategie maximiert Steuervorteil und Kapitalaufbau? Mit konkreten Beispielen.",
+    readingTime: "9 Min.",
+    tag: "Vorsorge-Strategien",
+  },
+  {
+    slug: "/blog/altersvorsorge-50-jahre",
+    title: "Altersvorsorge mit 50 Jahren: Noch 17 Jahre bis zur Rente",
+    description: "Mit 50 Jahren ist es eng, aber nicht unmöglich. 17 Jahre bis 67, aggressive Strategie nötig. Konkrete Zahlen und Catch-up Strategien.",
+    readingTime: "9 Min.",
+    tag: "Vorsorge-Strategien",
+  },
+  {
+    slug: "/blog/steuern-sparen-altersvorsorge",
+    title: "Steuern sparen mit Altersvorsorge: So sparst du bis zu 3.000 Euro pro Jahr",
+    description: "Mit Altersvorsorge Steuern sparen: Sonderausgabenabzug, Freibeträge, Rürup. Konkrete Euro-Beispiele für Angestellte und Selbstständige.",
+    readingTime: "9 Min.",
+    tag: "Steuern &amp; Recht",
+  },
+  {
     slug: "/blog/rentenpunkte-kaufen",
     title: "Rentenpunkte kaufen: Lohnt es sich wirklich?",
     description: "Wer freiwillig in die gesetzliche Rente einzahlt, kann seine Rente erhöhen. Die Rendite-Rechnung ist ernüchternd.",
     readingTime: "7 Min.",
-    tag: "Steuern & Recht",
+    tag: "Steuern &amp; Recht",
   },
   {
     slug: "/blog/ruerup-rente",
@@ -116,6 +179,20 @@ const articles = [
     tag: "Vorsorge-Strategien",
   },
   {
+    slug: "/blog/altersvorsorge-30-jahre",
+    title: "Altersvorsorge mit 30 Jahren — Warum früh starten wirklich lohnt",
+    description: "Mit 30 Jahren sparen? Ja! Wir zeigen, wie ein 35-Jähriger €276.000 aufbaut — und was es kostet, zu warten.",
+    readingTime: "9 Min.",
+    tag: "Vorsorge-Strategien",
+  },
+  {
+    slug: "/blog/rentenlucke-berechnen",
+    title: "Rentenlücke berechnen: So erkennst du deine persönliche Versorgungslücke",
+    description: "Rentenlücke berechnen leicht gemacht. Wir zeigen, wie groß deine Lücke ist und wie viel du sparen musst.",
+    readingTime: "8 Min.",
+    tag: "Rentenlücke",
+  },
+  {
     slug: "/blog/rentenlucke-mit-30-40-50",
     title: "Rentenlücke mit 30, 40 oder 50: Was du jetzt noch tun kannst",
     description: "Drei konkrete Szenarien mit echten Zahlen.",
@@ -124,9 +201,9 @@ const articles = [
   },
   {
     slug: "/blog/altersvorsorgedepot-vs-etf-sparplan",
-    title: "Altersvorsorgedepot oder ETF-Sparplan?",
-    description: "Beide investieren in ETFs — aber nur einer wird staatlich gefördert.",
-    readingTime: "7 Min.",
+    title: "Altersvorsorgedepot vs. ETF-Sparplan: Welches Produkt ist wirklich besser?",
+    description: "Beide investieren in ETFs, aber nur einer wird gefördert. Wir zeigen die Unterschiede mit konkreten Beispielen.",
+    readingTime: "8 Min.",
     tag: "Vergleiche",
   },
   {

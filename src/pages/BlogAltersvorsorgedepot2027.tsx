@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
+import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
 import { Link } from "react-router-dom";
 import { ChevronDown, ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -76,7 +77,7 @@ const jsonLd = [
     "@type": "Article",
     headline: "Altersvorsorgedepot 2027: Alles, was du wissen musst",
     description:
-      "Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Wir erklären, wie die Förderung funktioniert, was du bekommst — und für wen es sich wirklich lohnt.",
+      "Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Grundzulage €540/Jahr, Kinderzulage, Selbstständige förderberechtigt. Wir erklären alles.",
     url: `${BASE}${PATH}`,
     datePublished: "2025-06-01",
     dateModified: "2026-04-01",
@@ -536,6 +537,30 @@ const BlogAltersvorsorgedepot2027 = () => {
                 </div>
               </div>
 
+              {/* RELATED_ARTICLES_START */}
+              <div className="mt-8 mb-4">
+                <h3 className="text-lg font-semibold mb-4 text-foreground">📚 Verwandte Artikel</h3>
+                <div className="space-y-2">
+                  <Link to="/blog/altersvorsorgedepot-beschlossen" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot beschlossen: Was jetzt gilt</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/altersvorsorgedepot-vs-etf-sparplan" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot vs. ETF-Sparplan</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/was-darf-ins-altersvorsorgedepot" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Was darf ins Altersvorsorgedepot?</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                  <Link to="/blog/altersvorsorgedepot-vs-riester" className="flex items-center justify-between p-3 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+                    <span>Altersvorsorgedepot vs. Riester</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                  </Link>
+                </div>
+              </div>
+
+              <BlogNewsletterWidget />
               <BlogDisclaimer mitRechnung />
             </article>
           </div>

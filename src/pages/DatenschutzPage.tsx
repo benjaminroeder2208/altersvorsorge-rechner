@@ -152,6 +152,17 @@ const DatenschutzPage = () => (
         Ihre Daten werden gespeichert solange dies für den Versandzweck erforderlich ist. Nach Abmeldung wird Ihre E-Mail-Adresse in einer Sperrliste geführt um weiteren Versand dauerhaft zu unterbinden. Auf Wunsch werden Ihre Daten vollständig gelöscht — Anfragen an: info@altersvorsorge-rechner.com
       </p>
 
+      <h3 className="text-lg font-semibold mt-4 mb-2">Newsletter-Anmeldung & Lead-Magnet (PDF-Checkliste)</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Über die Seite <em>/newsletter</em> können Sie eine kostenlose Altersvorsorge-Checkliste als PDF anfordern und sich optional für unseren wöchentlichen Newsletter eintragen. Beide Vorgänge sind separat per Checkbox einwilligungspflichtig.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Verarbeitete Daten: E-Mail-Adresse, Anmelde-Quelle (z.&nbsp;B. <em>newsletter_landing</em>), Zeitpunkt, Newsletter-Einwilligung (ja/nein), Bestätigungsstatus, generierte Checklisten-PDF (temporär bis Versand). Speicherort: Tabelle <em>newsletter_subscriptions</em> bei Supabase (USA, AVV gemäß Art.&nbsp;28 DSGVO, EU-Standardvertragsklauseln).
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Newsletter-Inhalt: Wöchentliche redaktionelle Tipps zur Altersvorsorge, ETFs und gesetzlichen Neuerungen. Kein Werbeversand für Dritte. Versand über Resend (siehe oben).
+      </p>
+
       <h3 className="text-lg font-semibold mt-4 mb-2">Abmeldung</h3>
       <p className="text-muted-foreground leading-relaxed">
         Sie können sich jederzeit vom Newsletter abmelden. Ein Abmeldelink ist in jeder E-Mail enthalten. Der Widerruf der Einwilligung berührt nicht die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung.
@@ -163,51 +174,7 @@ const DatenschutzPage = () => (
 
     {/* 9 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">9. Google Ads und Conversion Tracking</h2>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Werbung über Google Ads</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Diese Website nutzt Google Ads zur Schaltung von Suchanzeigen. Google Ads ist ein Dienst der Google Ireland Limited, 70 Sir John Rogerson's Quay, Dublin 2, Irland.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Durch Google Ads werden automatisch Cookies und ähnliche Technologien gesetzt, um die Anzeigenleistung zu messen und Ihre Interessenskategorien zu bestimmen.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Conversion Tracking</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Wir nutzen das Conversion Tracking von Google, um zu messen, ob Nutzer nach dem Klick auf eine Google-Anzeige eine gewünschte Aktion durchgeführt haben (z.&nbsp;B. Newsletter-Anmeldung). Der Cookie &quot;_gac&quot; wird auf Ihrem Gerät gesetzt und Google kann damit begrenzt analysieren, ob eine Konversion stattgefunden hat.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an Campaignemessung).
-      </p>
-    </section>
-
-    {/* 10 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">10. Lead Magnet und PDF-Generierung</h2>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Lead Magnet: Persönliche Auswertung (PDF)</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Unser kostenloses PDF mit Ihrer persönlichen Altersvorsorge-Auswertung ist ein Lead Magnet. Zur Nutzung müssen Sie den Altersvorsorge-Rechner verwenden und Ihre E-Mail-Adresse angeben.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Datenverarbeitung für das PDF</h3>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Folgende Daten werden verarbeitet: E-Mail-Adresse, Geburtsjahr, monatlicher Sparbetrag, Anzahl Kinder und Renteneintrittsalter. Diese Daten werden in unserer Datenbank (Supabase) gespeichert für PDF-Generierung, Newsletter-Zustellung und Angebotsverbesserung.
-      </p>
-
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Speicherdauer: Daten werden so lange gespeichert wie nötig für PDF-Zustellung (48 Stunden) und Newsletter-Versand bei aktiven Abonnenten.
-      </p>
-
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO (Einwilligung durch aktive Angabe Ihrer Daten).
-      </p>
-    </section>
-
-    {/* 11 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">11. KI-gestützte Funktionen</h2>
+      <h2 className="text-xl font-bold mb-3">9. KI-gestützte Funktionen</h2>
       <p className="text-muted-foreground leading-relaxed">
         Diese Website nutzt KI-Funktionen (KI-Auswertung und Vorsorge-Assistent Chat) auf Basis der Anthropic Claude API:
       </p>
@@ -230,9 +197,9 @@ const DatenschutzPage = () => (
       </p>
     </section>
 
-    {/* 12 */}
+    {/* 10 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">12. Ihre Rechte</h2>
+      <h2 className="text-xl font-bold mb-3">10. Ihre Rechte</h2>
       <p className="text-muted-foreground leading-relaxed">
         Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
       </p>
@@ -321,47 +288,9 @@ const DatenschutzPage = () => (
 
     {/* 14 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">14. Google Tag Manager und Google Consent Mode v2</h2>
+      <h2 className="text-xl font-bold mb-3">14. Aktualität dieser Erklärung</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Diese Website nutzt den Google Tag Manager (GTM), einen Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland (nachfolgend „Google"). Der Google Tag Manager ist ein technisches Werkzeug, mit dem wir Tracking- und Analyse-Tags zentral verwalten und ausspielen können. Der Google Tag Manager selbst setzt keine Cookies und erfasst keine personenbezogenen Daten zu Analyse- oder Marketingzwecken.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Beim Laden des Google Tag Managers wird Ihre IP-Adresse an Google übertragen, was zur technischen Auslieferung des Skripts erforderlich ist. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an einer effizienten und sicheren Verwaltung von Tags). Werden über den Tag Manager Dienste ausgelöst, die Cookies setzen oder personenbezogene Daten verarbeiten (z.&nbsp;B. Google Analytics, Google Ads), erfolgt dies ausschließlich auf Grundlage Ihrer Einwilligung gemäß Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO und §&nbsp;25 Abs.&nbsp;1 TTDSG.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Google Consent Mode v2</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Auf dieser Website ist der Google Consent Mode v2 implementiert. Dieser regelt das Verhalten von Google-Diensten (z.&nbsp;B. Google Analytics, Google Ads) in Abhängigkeit von Ihrer Cookie-Einwilligung. Solange Sie keine Einwilligung erteilt haben, sind alle Consent-Kategorien (insbesondere <code>ad_storage</code>, <code>ad_user_data</code>, <code>ad_personalization</code>, <code>analytics_storage</code>) standardmäßig auf „denied" gesetzt. In diesem Zustand werden keine Cookies gesetzt und keine personenbezogenen Daten an Google übertragen.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Sofern Sie nicht einwilligen, sendet Google im sogenannten „cookieless"-Modus lediglich anonyme, nicht identifizierende Signale (sogenannte Pings ohne Cookie- oder Geräte-IDs). Diese ermöglichen Google eine modellierte, statistische Auswertung, ohne dass eine Identifikation Ihrer Person möglich ist. Zusätzlich sind die Funktionen <code>ads_data_redaction</code> (Anonymisierung werbebezogener Daten) und <code>url_passthrough</code> (Übergabe von Klick-IDs ohne Cookies) aktiviert.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Steuerung über Cookiebot</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Die Steuerung Ihrer Einwilligung erfolgt über das in Abschnitt&nbsp;13 beschriebene Consent-Management-Tool Cookiebot. Sobald Sie im Cookie-Banner Ihre Auswahl treffen, übermittelt Cookiebot die entsprechenden Signale (<code>gtag('consent', 'update', …)</code>) an den Google Tag Manager. Erst danach werden Tags wie Google Analytics oder Google Ads – sofern eingewilligt – mit aktivem Cookie-Tracking geladen.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Sie können Ihre Einwilligung jederzeit widerrufen oder anpassen, indem Sie die Cookie-Einstellungen über das Cookiebot-Banner erneut aufrufen. Der Widerruf wirkt für die Zukunft.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Weitere Informationen zum Google Tag Manager und zu den Datenschutzbestimmungen finden Sie unter:{" "}
-        <a
-          href="https://policies.google.com/privacy?hl=de"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-primary transition-colors"
-        >
-          policies.google.com/privacy
-        </a>
-      </p>
-    </section>
-
-    {/* 15 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">15. Aktualität dieser Erklärung</h2>
-      <p className="text-muted-foreground leading-relaxed">
-        Diese Datenschutzerklärung wurde zuletzt im April 2026 aktualisiert. Wir behalten uns vor, sie bei Änderungen der rechtlichen Lage oder unserer Dienste anzupassen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.
+        Diese Datenschutzerklärung wurde zuletzt im März 2026 aktualisiert. Wir behalten uns vor, sie bei Änderungen der rechtlichen Lage oder unserer Dienste anzupassen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.
       </p>
     </section>
   </ContentPageLayout>
