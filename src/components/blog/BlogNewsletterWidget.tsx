@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
+import { generateNewsletterChecklistPDFBase64 } from "@/utils/generateNewsletterPDF";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -30,12 +31,20 @@ const BlogNewsletterWidget = () => {
 
     setLoading(true);
     try {
+      let pdfBase64: string | null = null;
+      try {
+        pdfBase64 = await generateNewsletterChecklistPDFBase64();
+      } catch (pdfErr) {
+        console.warn("PDF-Generierung fehlgeschlagen, fahre ohne PDF fort", pdfErr);
+      }
+
       const { data, error: fnErr } = await supabase.functions.invoke("newsletter-signup", {
         body: {
           email: trimmed,
           subscribed_to_newsletter: true,
           dsgvo_accepted: true,
           source: "blog",
+          pdf_base64: pdfBase64,
         },
       });
       if (fnErr) throw fnErr;
