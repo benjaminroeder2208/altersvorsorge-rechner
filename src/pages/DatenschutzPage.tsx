@@ -163,7 +163,51 @@ const DatenschutzPage = () => (
 
     {/* 9 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">9. KI-gestützte Funktionen</h2>
+      <h2 className="text-xl font-bold mb-3">9. Google Ads und Conversion Tracking</h2>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Werbung über Google Ads</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Diese Website nutzt Google Ads zur Schaltung von Suchanzeigen. Google Ads ist ein Dienst der Google Ireland Limited, 70 Sir John Rogerson's Quay, Dublin 2, Irland.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Durch Google Ads werden automatisch Cookies und ähnliche Technologien gesetzt, um die Anzeigenleistung zu messen und Ihre Interessenskategorien zu bestimmen.
+      </p>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Conversion Tracking</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Wir nutzen das Conversion Tracking von Google, um zu messen, ob Nutzer nach dem Klick auf eine Google-Anzeige eine gewünschte Aktion durchgeführt haben (z.&nbsp;B. Newsletter-Anmeldung). Der Cookie &quot;_gac&quot; wird auf Ihrem Gerät gesetzt und Google kann damit begrenzt analysieren, ob eine Konversion stattgefunden hat.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an Campaignemessung).
+      </p>
+    </section>
+
+    {/* 10 */}
+    <section>
+      <h2 className="text-xl font-bold mb-3">10. Lead Magnet und PDF-Generierung</h2>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Lead Magnet: Persönliche Auswertung (PDF)</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Unser kostenloses PDF mit Ihrer persönlichen Altersvorsorge-Auswertung ist ein Lead Magnet. Zur Nutzung müssen Sie den Altersvorsorge-Rechner verwenden und Ihre E-Mail-Adresse angeben.
+      </p>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Datenverarbeitung für das PDF</h3>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Folgende Daten werden verarbeitet: E-Mail-Adresse, Geburtsjahr, monatlicher Sparbetrag, Anzahl Kinder und Renteneintrittsalter. Diese Daten werden in unserer Datenbank (Supabase) gespeichert für PDF-Generierung, Newsletter-Zustellung und Angebotsverbesserung.
+      </p>
+
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Speicherdauer: Daten werden so lange gespeichert wie nötig für PDF-Zustellung (48 Stunden) und Newsletter-Versand bei aktiven Abonnenten.
+      </p>
+
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO (Einwilligung durch aktive Angabe Ihrer Daten).
+      </p>
+    </section>
+
+    {/* 11 */}
+    <section>
+      <h2 className="text-xl font-bold mb-3">11. KI-gestützte Funktionen</h2>
       <p className="text-muted-foreground leading-relaxed">
         Diese Website nutzt KI-Funktionen (KI-Auswertung und Vorsorge-Assistent Chat) auf Basis der Anthropic Claude API:
       </p>
@@ -186,9 +230,9 @@ const DatenschutzPage = () => (
       </p>
     </section>
 
-    {/* 10 */}
+    {/* 12 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">10. Ihre Rechte</h2>
+      <h2 className="text-xl font-bold mb-3">12. Ihre Rechte</h2>
       <p className="text-muted-foreground leading-relaxed">
         Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
       </p>
