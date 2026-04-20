@@ -8,6 +8,11 @@ interface Props {
   title?: string;
 }
 
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `shrink-0 px-2.5 py-1 rounded-md transition-colors ${
+    isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
+  }`;
+
 const AdminLayout = ({ children, title }: Props) => {
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -18,58 +23,38 @@ const AdminLayout = ({ children, title }: Props) => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="border-b border-border bg-card">
-        <div className="container max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/admin/newsletter" className="flex items-center gap-2 font-semibold">
-              <Newspaper className="w-4 h-4 text-primary" />
-              <span className="text-sm">Admin</span>
-            </Link>
-            <nav className="flex items-center gap-1 text-sm">
-              <NavLink
-                to="/admin/newsletter"
-                className={({ isActive }) =>
-                  `px-2.5 py-1 rounded-md transition-colors ${
-                    isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`
-                }
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  <Newspaper className="w-3.5 h-3.5" /> Newsletter
-                </span>
-              </NavLink>
-              <NavLink
-                to="/admin/subscribers"
-                className={({ isActive }) =>
-                  `px-2.5 py-1 rounded-md transition-colors ${
-                    isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`
-                }
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5" /> Empfänger
-                </span>
-              </NavLink>
-              <NavLink
-                to="/admin/leads"
-                className={({ isActive }) =>
-                  `px-2.5 py-1 rounded-md transition-colors ${
-                    isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`
-                }
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  <Users className="w-3.5 h-3.5" /> Leads
-                </span>
-              </NavLink>
-            </nav>
-          </div>
-          <Button variant="ghost" size="sm" onClick={handleLogout}>
-            <LogOut className="w-4 h-4 mr-1.5" /> Abmelden
+        <div className="container max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
+          <Link to="/admin/newsletter" className="flex items-center gap-2 font-semibold shrink-0">
+            <Newspaper className="w-4 h-4 text-primary" />
+            <span className="text-sm">Admin</span>
+          </Link>
+          <Button variant="ghost" size="sm" onClick={handleLogout} className="shrink-0">
+            <LogOut className="w-4 h-4 sm:mr-1.5" />
+            <span className="hidden sm:inline">Abmelden</span>
           </Button>
         </div>
+        <div className="container max-w-6xl mx-auto px-4 sm:px-6 pb-2 -mt-1">
+          <nav className="flex items-center gap-1 text-sm overflow-x-auto scrollbar-none -mx-1 px-1">
+            <NavLink to="/admin/newsletter" className={navLinkClass}>
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                <Newspaper className="w-3.5 h-3.5" /> Newsletter
+              </span>
+            </NavLink>
+            <NavLink to="/admin/subscribers" className={navLinkClass}>
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                <Mail className="w-3.5 h-3.5" /> Empfänger
+              </span>
+            </NavLink>
+            <NavLink to="/admin/leads" className={navLinkClass}>
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                <Users className="w-3.5 h-3.5" /> Leads
+              </span>
+            </NavLink>
+          </nav>
+        </div>
       </header>
-      <main className="flex-1 container max-w-6xl mx-auto px-6 py-8">
-        {title && <h1 className="text-2xl font-bold mb-6">{title}</h1>}
+      <main className="flex-1 container max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        {title && <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{title}</h1>}
         {children}
       </main>
     </div>
