@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
+import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -396,6 +397,7 @@ const BlogEtfSteuern = () => {
                 </div>
               </div>
 
+              <BlogNewsletterWidget />
               <BlogDisclaimer />
             </article>
           </div>

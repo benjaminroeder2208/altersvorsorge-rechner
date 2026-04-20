@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
+import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
 import { Link } from "react-router-dom";
 import { ChevronDown, ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
@@ -559,6 +560,7 @@ const BlogAltersvorsorgedepot2027 = () => {
                 </div>
               </div>
 
+              <BlogNewsletterWidget />
               <BlogDisclaimer mitRechnung />
             </article>
           </div>

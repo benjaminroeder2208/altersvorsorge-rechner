@@ -361,7 +361,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         </div>
         <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
           Gib deine E-Mail ein und erhalte deine persönliche Auswertung als PDF — mit deinen Kennzahlen,
-          Kapitalentwicklungs-Chart und Vergleich. Kostenlos, kein Newsletter.
+          Kapitalentwicklungs-Chart und Vergleich. Kostenlos. Optional: Erhalte auch wöchentliche Tipps zur Altersvorsorge.
         </p>
 
         {status === "sent" ? (

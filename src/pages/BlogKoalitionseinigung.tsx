@@ -4,6 +4,7 @@ import { ChevronDown, ArrowRight } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
+import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
 import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import {
@@ -357,6 +358,7 @@ const BlogKoalitionseinigung = () => {
                 </Accordion>
               </AnimatedSection>
 
+              <BlogNewsletterWidget />
               <BlogDisclaimer />
 
               <div className="mt-8 text-center">

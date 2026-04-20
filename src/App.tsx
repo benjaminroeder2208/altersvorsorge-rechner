@@ -52,6 +52,11 @@ import EinbettenPage from "./pages/EinbettenPage";
 import ReichtMeineRentePage from "./pages/ReichtMeineRentePage";
 import RentenCheckPage from "./pages/RentenCheckPage";
 import RentenCheckResultPage from "./pages/RentenCheckResultPage";
+import NewsletterLandingPage from "./pages/NewsletterLandingPage";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import AdminNewsletterListPage from "./pages/admin/AdminNewsletterListPage";
+import AdminNewsletterEditPage from "./pages/admin/AdminNewsletterEditPage";
+import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 import UpdateBanner from "@/components/landing/UpdateBanner";
@@ -119,6 +124,32 @@ const App = () => (
             <Route path="/reicht-meine-rente" element={<ReichtMeineRentePage />} />
             <Route path="/renten-check" element={<RentenCheckPage />} />
             <Route path="/renten-check/result" element={<RentenCheckResultPage />} />
+            <Route path="/newsletter" element={<NewsletterLandingPage />} />
+            <Route path="/admin/login" element={<AdminLoginPage />} />
+            <Route
+              path="/admin/newsletter"
+              element={
+                <ProtectedAdminRoute>
+                  <AdminNewsletterListPage />
+                </ProtectedAdminRoute>
+              }
+            />
+            <Route
+              path="/admin/newsletter/new"
+              element={
+                <ProtectedAdminRoute>
+                  <AdminNewsletterEditPage />
+                </ProtectedAdminRoute>
+              }
+            />
+            <Route
+              path="/admin/newsletter/:id"
+              element={
+                <ProtectedAdminRoute>
+                  <AdminNewsletterEditPage />
+                </ProtectedAdminRoute>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

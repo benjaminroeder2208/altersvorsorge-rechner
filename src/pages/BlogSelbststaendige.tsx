@@ -1,5 +1,6 @@
 import { useState } from "react";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
+import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, ChevronDown, AlertTriangle } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
@@ -323,6 +324,7 @@ const BlogSelbststaendige = () => {
                 </div>
               </div>
 
+              <BlogNewsletterWidget />
               <BlogDisclaimer />
             </article>
           </div>
