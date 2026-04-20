@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
-import { generateNewsletterChecklistPDFBase64 } from "@/utils/generateNewsletterPDF";
+
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -33,6 +33,9 @@ const BlogNewsletterWidget = () => {
     try {
       let pdfBase64: string | null = null;
       try {
+        const { generateNewsletterChecklistPDFBase64 } = await import(
+          "@/utils/generateNewsletterPDF"
+        );
         pdfBase64 = await generateNewsletterChecklistPDFBase64();
       } catch (pdfErr) {
         console.warn("PDF-Generierung fehlgeschlagen, fahre ohne PDF fort", pdfErr);

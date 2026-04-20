@@ -5,7 +5,7 @@ import { ArrowRight, ChevronLeft, Check, Mail, Sparkles, FileText } from "lucide
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
-import { generatePDFBase64, captureChart } from "@/utils/generatePDF";
+
 import {
   berechneGesamtfoerderung,
   MINDESTEIGENBEITRAG,
@@ -283,6 +283,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
       // Generate PDF
       let pdfBase64 = "";
       try {
+        const { captureChart, generatePDFBase64 } = await import("@/utils/generatePDF");
         const chartImg = await captureChart();
         pdfBase64 = await generatePDFBase64({
           monthly_contribution: inputs.monthlyContribution,
