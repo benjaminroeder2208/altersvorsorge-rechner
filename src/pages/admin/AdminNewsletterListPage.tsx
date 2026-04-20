@@ -78,16 +78,16 @@ const AdminNewsletterListPage = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <AdminLayout>
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
           <div>
-            <h1 className="text-2xl font-bold">Newsletter-Editionen</h1>
+            <h1 className="text-xl sm:text-2xl font-bold">Newsletter-Editionen</h1>
             <p className="text-sm text-muted-foreground mt-1">
               {confirmedCount === null
                 ? "Lade Empfängerzahl…"
                 : `${confirmedCount.toLocaleString("de-DE")} bestätigte Empfänger insgesamt`}
             </p>
           </div>
-          <Button asChild>
+          <Button asChild className="self-start sm:self-auto">
             <Link to="/admin/newsletter/new">
               <Plus className="w-4 h-4 mr-1.5" /> Neue Edition
             </Link>
