@@ -18,4 +18,25 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Split stable third-party libraries into their own long-lived chunks.
+        // App code changes won't invalidate these, so repeat visitors keep them cached.
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined;
+          if (id.includes("/react-dom/") || id.match(/\/react\/[^/]*$/) || id.includes("/react/index") || id.includes("/scheduler/")) {
+            return "vendor-react";
+          }
+          if (id.includes("@supabase/")) {
+            return "vendor-supabase";
+          }
+          if (id.includes("@tanstack/")) {
+            return "vendor-tanstack";
+          }
+          return undefined;
+        },
+      },
+    },
+  },
 }));
