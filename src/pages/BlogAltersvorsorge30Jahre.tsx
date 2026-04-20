@@ -111,24 +111,24 @@ const BlogAltersvorsorge30Jahre = () => {
               Inhaltsverzeichnis
             </CollapsibleTrigger>
             <CollapsibleContent className="pt-3 space-y-2 text-sm">
-              <Link to="#zinseszins" onClick={() => setTocOpen(false)} className="block hover:text-primary">
+              <a href="#zinseszins" onClick={() => setTocOpen(false)} className="block hover:text-primary">
                 1. Der Zinseszins-Effekt
-              </Link>
-              <Link to="#szenarien" onClick={() => setTocOpen(false)} className="block hover:text-primary">
+              </a>
+              <a href="#szenarien" onClick={() => setTocOpen(false)} className="block hover:text-primary">
                 2. Drei realistische Szenarien
-              </Link>
-              <Link to="#depot-vergleich" onClick={() => setTocOpen(false)} className="block hover:text-primary">
+              </a>
+              <a href="#depot-vergleich" onClick={() => setTocOpen(false)} className="block hover:text-primary">
                 3. Depot vs. ohne Förderung
-              </Link>
-              <Link to="#fehler" onClick={() => setTocOpen(false)} className="block hover:text-primary">
+              </a>
+              <a href="#fehler" onClick={() => setTocOpen(false)} className="block hover:text-primary">
                 4. Die 3 größten Fehler
-              </Link>
-              <Link to="#action-plan" onClick={() => setTocOpen(false)} className="block hover:text-primary">
+              </a>
+              <a href="#action-plan" onClick={() => setTocOpen(false)} className="block hover:text-primary">
                 5. Dein Action Plan
-              </Link>
-              <Link to="#faq" onClick={() => setTocOpen(false)} className="block hover:text-primary">
+              </a>
+              <a href="#faq" onClick={() => setTocOpen(false)} className="block hover:text-primary">
                 Häufige Fragen
-              </Link>
+              </a>
             </CollapsibleContent>
           </Collapsible>
 
