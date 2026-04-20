@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { LogOut, Newspaper, Users } from "lucide-react";
+import { LogOut, Newspaper, Users, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -35,6 +35,18 @@ const AdminLayout = ({ children, title }: Props) => {
               >
                 <span className="inline-flex items-center gap-1.5">
                   <Newspaper className="w-3.5 h-3.5" /> Newsletter
+                </span>
+              </NavLink>
+              <NavLink
+                to="/admin/subscribers"
+                className={({ isActive }) =>
+                  `px-2.5 py-1 rounded-md transition-colors ${
+                    isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`
+                }
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5" /> Empfänger
                 </span>
               </NavLink>
               <NavLink

@@ -57,6 +57,7 @@ import AdminLoginPage from "./pages/admin/AdminLoginPage";
 import AdminNewsletterListPage from "./pages/admin/AdminNewsletterListPage";
 import AdminNewsletterEditPage from "./pages/admin/AdminNewsletterEditPage";
 import AdminLeadsPage from "./pages/admin/AdminLeadsPage";
+import AdminNewsletterSubscribersPage from "./pages/admin/AdminNewsletterSubscribersPage";
 import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
@@ -156,6 +157,14 @@ const App = () => (
               element={
                 <ProtectedAdminRoute>
                   <AdminLeadsPage />
+                </ProtectedAdminRoute>
+              }
+            />
+            <Route
+              path="/admin/subscribers"
+              element={
+                <ProtectedAdminRoute>
+                  <AdminNewsletterSubscribersPage />
                 </ProtectedAdminRoute>
               }
             />
