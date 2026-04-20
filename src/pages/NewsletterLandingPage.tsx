@@ -290,7 +290,7 @@ const NewsletterLandingPage = () => {
 
           {/* What you get */}
           <section className="bg-secondary/30 border-y border-border py-16">
-            <div className="container max-w-5xl mx-auto px-6">
+            <div className="container max-w-5xl mx-auto px-4 sm:px-6">
               <h2 className="text-2xl font-bold text-center mb-10">
                 Das steckt in deiner Checkliste
               </h2>
