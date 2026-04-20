@@ -85,39 +85,35 @@ Deno.serve(async (req) => {
       .ilike("email", email)
       .maybeSingle();
 
-    const isResubscribe = existing?.status === "unsubscribed";
-
-    // Check suppression list — but allow if this is an explicit re-subscribe
+    // Check suppression list. Since the user just gave explicit DSGVO consent
+    // on this form, treat any signup attempt as an intent to (re)subscribe and
+    // lift the suppression. This covers users who unsubscribed previously, who
+    // were suppressed via a different lead-magnet flow, or who were added to
+    // the suppression list manually.
     const { data: suppressed } = await supabase
       .from("suppressed_emails")
       .select("id")
       .eq("email", email)
       .maybeSingle();
 
-    if (suppressed && !isResubscribe) {
-      return new Response(JSON.stringify({ status: "suppressed" }), {
-        status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // If re-subscribe, lift the suppression so future sends go through
-    if (isResubscribe && suppressed) {
+    if (suppressed) {
       const { error: delErr } = await supabase
         .from("suppressed_emails")
         .delete()
         .eq("email", email);
       if (delErr) {
         console.error("Failed to remove suppression for re-subscribe:", delErr);
-        // Non-fatal: subscription update below still proceeds; sender will retry next cycle
+        // Non-fatal: subscription update/insert below still proceeds.
       } else {
         await supabase.from("security_audit_log").insert({
           event_type: "newsletter_resubscribe",
           email,
-          details: { source, removed_suppression: true },
+          details: { source, removed_suppression: true, had_prior_subscription: Boolean(existing) },
         });
       }
     }
+
+    const isResubscribe = existing?.status === "unsubscribed" || Boolean(suppressed);
 
     let token: string;
     if (existing) {
