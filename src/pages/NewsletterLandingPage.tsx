@@ -86,24 +86,25 @@ const NewsletterLandingPage = () => {
         <link rel="canonical" href="https://altersvorsorge-rechner.com/newsletter" />
       </Helmet>
 
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
         <Navbar />
 
-        <main className="flex-1">
+        <main className="flex-1 w-full">
           {/* Hero + Form */}
-          <section className="container max-w-5xl mx-auto px-6 pt-12 pb-16 md:pt-20 md:pb-24">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+          <section className="container max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-16 md:pt-20 md:pb-24">
+            <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
               {/* Left: copy */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
+                className="min-w-0"
               >
                 <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-foreground mb-5">
                   <Sparkles className="w-3.5 h-3.5 text-primary" />
                   Kostenlose Checkliste
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-4">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-4 break-words hyphens-auto">
                   Altersvorsorge-Checkliste:{" "}
                   <span className="text-primary">3 Szenarien</span> mit konkreten €-Zahlen
                 </h1>
@@ -124,7 +125,7 @@ const NewsletterLandingPage = () => {
                       <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                         <Check className="h-3.5 w-3.5" />
                       </span>
-                      <span className="text-foreground/90">{item}</span>
+                      <span className="text-foreground/90 min-w-0 break-words">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -135,7 +136,7 @@ const NewsletterLandingPage = () => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm"
+                className="bg-card border border-border rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm min-w-0 w-full"
               >
                 {status === "sent" ? (
                   <div className="text-center py-4">
@@ -289,7 +290,7 @@ const NewsletterLandingPage = () => {
 
           {/* What you get */}
           <section className="bg-secondary/30 border-y border-border py-16">
-            <div className="container max-w-5xl mx-auto px-6">
+            <div className="container max-w-5xl mx-auto px-4 sm:px-6">
               <h2 className="text-2xl font-bold text-center mb-10">
                 Das steckt in deiner Checkliste
               </h2>
