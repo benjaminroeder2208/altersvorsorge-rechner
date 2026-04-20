@@ -8,7 +8,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
 import UpdateBanner from "@/components/landing/UpdateBanner";
-import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
+// Lazy: only loaded when an /admin/* route is visited
+const ProtectedAdminRoute = lazy(() => import("./components/admin/ProtectedAdminRoute"));
 
 // Eager: landing page (LCP-critical)
 import RechnerPage from "./pages/RechnerPage";
