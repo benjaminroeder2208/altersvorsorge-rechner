@@ -15,282 +15,238 @@ const DatenschutzPage = () => (
 
       <h3 className="text-lg font-semibold mt-4 mb-2">Allgemeine Hinweise</h3>
       <p className="text-muted-foreground leading-relaxed">
-        Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+        Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.
       </p>
 
       <h3 className="text-lg font-semibold mt-4 mb-2">Datenerfassung auf dieser Website</h3>
+
+      <h4 className="text-base font-semibold mt-3 mb-2">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h4>
       <p className="text-muted-foreground leading-relaxed">
-        Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Die Kontaktdaten finden Sie im Impressum dieser Website.
+        Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle" in dieser Datenschutzerklärung entnehmen.
       </p>
 
-      <h3 className="text-lg font-semibold mt-4 mb-2">Wie erfassen wir Ihre Daten?</h3>
+      <h4 className="text-base font-semibold mt-3 mb-2">Wie erfassen wir Ihre Daten?</h4>
       <p className="text-muted-foreground leading-relaxed">
-        Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen — etwa durch Eingabe Ihrer E-Mail-Adresse. Andere Daten werden automatisch beim Besuch der Website erfasst: technische Daten wie IP-Adresse, Browsertyp und Zeitpunkt des Zugriffs.
+        Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.&nbsp;B. um Daten handeln, die Sie in ein Kontaktformular eingeben.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.&nbsp;B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.
       </p>
 
-      <h3 className="text-lg font-semibold mt-4 mb-2">Welche Rechte haben Sie?</h3>
+      <h4 className="text-base font-semibold mt-3 mb-2">Wofür nutzen wir Ihre Daten?</h4>
       <p className="text-muted-foreground leading-relaxed">
-        Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Datenübertragbarkeit. Außerdem steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
+        Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.
+      </p>
+
+      <h4 className="text-base font-semibold mt-3 mb-2">Welche Rechte haben Sie bezüglich Ihrer Daten?</h4>
+      <p className="text-muted-foreground leading-relaxed">
+        Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.
+      </p>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Analyse-Tools und Tools von Drittanbietern</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Beim Besuch dieser Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Das geschieht vor allem mit sogenannten Analyseprogrammen.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Detaillierte Informationen zu diesen Analyseprogrammen finden Sie in der folgenden Datenschutzerklärung.
       </p>
     </section>
 
     {/* 2 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">2. Verantwortlicher</h2>
+      <h2 className="text-xl font-bold mb-3">2. Hosting</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Benjamin Röder<br />
-        Mainkurstraße 16<br />
-        63075 Offenbach am Main<br />
-        E-Mail: info@altersvorsorge-rechner.com
+        Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
+      </p>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Externes Hosting</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters / der Hoster gespeichert. Hierbei kann es sich v.&nbsp;a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO). Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO und §&nbsp;25 Abs.&nbsp;1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z.&nbsp;B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Unser(e) Hoster wird bzw. werden Ihre Daten nur insoweit verarbeiten, wie dies zur Erfüllung seiner Leistungspflichten erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Wir setzen folgende(n) Hoster ein:
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Lovable Technology Ltd.<br />
+        2nd Floor College House<br />
+        17 King Edwards Road<br />
+        London, HA4 7AE<br />
+        Vereinigtes Königreich
       </p>
     </section>
 
     {/* 3 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">3. Hosting</h2>
+      <h2 className="text-xl font-bold mb-3">3. Widerspruch gegen Werbe-E-Mails</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Diese Website wird über Lovable (Lovable Technology Ltd., 2nd Floor College House, 17 King Edwards Road, London, HA4 7AE, Vereinigtes Königreich) gehostet.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Beim Aufruf der Website werden technische Verbindungsdaten verarbeitet: IP-Adresse, Zeitpunkt des Zugriffs, aufgerufene Seite, Browsertyp und Betriebssystem. Diese Daten sind technisch notwendig für den sicheren Betrieb der Website und werden nicht dauerhaft gespeichert.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse am sicheren Websitebetrieb).
+        Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung wird hiermit widersprochen. Bei unverlangte Zusendung von Werbeinformationen behalten wir uns ausdrücklich rechtliche Schritte vor.
       </p>
     </section>
 
     {/* 4 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">4. SSL- und TLS-Verschlüsselung</h2>
+      <h2 className="text-xl font-bold mb-3">4. Google Analytics</h2>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Google Analytics</h3>
       <p className="text-muted-foreground leading-relaxed">
-        Diese Website nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers mit „https://" beginnt und ein Schloss-Symbol angezeigt wird. Bei aktivierter Verschlüsselung können übermittelte Daten nicht von Dritten mitgelesen werden.
+        Diese Website nutzt den Webanalysedienst Google Analytics. Anbieter ist die Google Ireland Limited („Google"), Gordon House, Barrow Street, Dublin 4, Irland.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Google Analytics verwendet Technologien, die die Wiedererkennung des Nutzers zum Zwecke der Analyse des Nutzerverhaltens ermöglichen (z.&nbsp;B. Cookies oder Device-Fingerprinting). Die von Google erfassten Informationen über die Benutzung dieser Website werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO und §&nbsp;25 Abs.&nbsp;1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier:{" "}
+        <a href="https://business.safety.google/adscontrollerterms/sccs/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://business.safety.google/adscontrollerterms/sccs/
+        </a>.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Der DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link:{" "}
+        <a href="https://www.dataprivacyframework.gov/participant/5780" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://www.dataprivacyframework.gov/participant/5780
+        </a>.
+      </p>
+
+      <h4 className="text-base font-semibold mt-3 mb-2">IP Anonymisierung</h4>
+      <p className="text-muted-foreground leading-relaxed">
+        Die Google Analytics IP-Anonymisierung ist aktiviert. Dadurch wird Ihre IP-Adresse von Google innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum vor der Übermittlung in die USA gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt. Im Auftrag des Betreibers dieser Website wird Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber dem Websitebetreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.
+      </p>
+
+      <h4 className="text-base font-semibold mt-3 mb-2">Browser Plugin</h4>
+      <p className="text-muted-foreground leading-relaxed">
+        Sie können die Erfassung und Verarbeitung Ihrer Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren:{" "}
+        <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://tools.google.com/dlpage/gaoptout?hl=de
+        </a>.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics finden Sie in der Datenschutzerklärung von Google:{" "}
+        <a href="https://support.google.com/analytics/answer/6004245?hl=de" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://support.google.com/analytics/answer/6004245?hl=de
+        </a>.
+      </p>
+
+      <h4 className="text-base font-semibold mt-3 mb-2">Google-Signale</h4>
+      <p className="text-muted-foreground leading-relaxed">
+        Wir nutzen Google-Signale. Wenn Sie unsere Website besuchen, erfasst Google Analytics u.&nbsp;a. Ihren Standort, Suchverlauf und YouTube-Verlauf sowie demografische Daten (Besucherdaten). Diese Daten können mit Hilfe von Google-Signal für personalisierte Werbung verwendet werden. Wenn Sie über ein Google-Konto verfügen, werden die Besucherdaten von Google-Signal mit Ihrem Google-Konto verknüpft und für personalisierte Werbebotschaften verwendet. Die Daten werden außerdem für die Erstellung anonymisierter Statistiken zum Nutzerverhalten unserer User verwendet.
+      </p>
+
+      <h4 className="text-base font-semibold mt-3 mb-2">Auftragsverarbeitung</h4>
+      <p className="text-muted-foreground leading-relaxed">
+        Wir haben mit Google einen Vertrag zur Auftragsverarbeitung abgeschlossen und setzen die strengen Vorgaben der deutschen Datenschutzbehörden bei der Nutzung von Google Analytics vollständig um.
+      </p>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Google Ads</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Der Websitebetreiber verwendet Google Ads. Google Ads ist ein Online-Werbeprogramm der Google Ireland Limited („Google"), Gordon House, Barrow Street, Dublin 4, Irland.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Google Ads ermöglicht es uns Werbeanzeigen in der Google-Suchmaschine oder auf Drittwebseiten auszuspielen, wenn der Nutzer bestimmte Suchbegriffe bei Google eingibt (Keyword-Targeting). Ferner können zielgerichtete Werbeanzeigen anhand der bei Google vorhandenen Nutzerdaten (z.&nbsp;B. Standortdaten und Interessen) ausgespielt werden (Zielgruppen-Targeting). Wir als Websitebetreiber können diese Daten quantitativ auswerten, indem wir beispielsweise analysieren, welche Suchbegriffe zur Ausspielung unserer Werbeanzeigen geführt haben und wie viele Anzeigen zu entsprechenden Klicks geführt haben.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO und §&nbsp;25 Abs.&nbsp;1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier:{" "}
+        <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://policies.google.com/privacy/frameworks
+        </a>{" "}und{" "}
+        <a href="https://business.safety.google/controllerterms/" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://business.safety.google/controllerterms/
+        </a>.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Der DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link:{" "}
+        <a href="https://www.dataprivacyframework.gov/participant/5780" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://www.dataprivacyframework.gov/participant/5780
+        </a>.
+      </p>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Google Conversion-Tracking</h3>
+      <p className="text-muted-foreground leading-relaxed">
+        Diese Website nutzt Google Conversion Tracking. Anbieter ist die Google Ireland Limited („Google"), Gordon House, Barrow Street, Dublin 4, Irland.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Mit Hilfe von Google-Conversion-Tracking können Google und wir erkennen, ob der Nutzer bestimmte Aktionen durchgeführt hat. So können wir beispielsweise auswerten, welche Buttons auf unserer Website wie häufig geklickt und welche Produkte besonders häufig angesehen oder gekauft wurden. Diese Informationen dienen dazu, Conversion-Statistiken zu erstellen. Wir erfahren die Gesamtanzahl der Nutzer, die auf unsere Anzeigen geklickt haben und welche Aktionen sie durchgeführt haben. Wir erhalten keine Informationen, mit denen wir den Nutzer persönlich identifizieren können. Google selbst nutzt zur Identifikation Cookies oder vergleichbare Wiedererkennungstechnologien.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Die Nutzung dieses Dienstes erfolgt auf Grundlage Ihrer Einwilligung nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO und §&nbsp;25 Abs.&nbsp;1 TDDDG. Die Einwilligung ist jederzeit widerrufbar.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Mehr Informationen zu Google Conversion-Tracking finden Sie in den Datenschutzbestimmungen von Google:{" "}
+        <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://policies.google.com/privacy?hl=de
+        </a>.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Der DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link:{" "}
+        <a href="https://www.dataprivacyframework.gov/participant/5780" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://www.dataprivacyframework.gov/participant/5780
+        </a>.
       </p>
     </section>
 
     {/* 5 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">5. Cookies</h2>
+      <h2 className="text-xl font-bold mb-3">5. Newsletter</h2>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Newsletterdaten</h3>
       <p className="text-muted-foreground leading-relaxed">
-        Diese Website verwendet ausschließlich technisch notwendige Cookies, die für den Betrieb der Seite erforderlich sind. Sie speichern keine personenbezogenen Daten und erfordern keine Einwilligung.
+        Wenn Sie den auf der Website angebotenen Newsletter beziehen möchten, benötigen wir von Ihnen eine E-Mail-Adresse sowie Informationen, welche uns die Überprüfung gestatten, dass Sie der Inhaber der angegebenen E-Mail-Adresse sind und mit dem Empfang des Newsletters einverstanden sind. Weitere Daten werden nicht bzw. nur auf freiwilliger Basis erhoben. Diese Daten verwenden wir ausschließlich für den Versand der angeforderten Informationen und geben diese nicht an Dritte weiter.
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
-        Tracking-Cookies, Werbe-Cookies oder Cookies zur Verhaltensanalyse werden nicht eingesetzt.
+        Die Verarbeitung der in das Newsletteranmeldeformular eingegebenen Daten erfolgt ausschließlich auf Grundlage Ihrer Einwilligung (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO). Die erteilte Einwilligung zur Speicherung der Daten, der E-Mail-Adresse sowie deren Nutzung zum Versand des Newsletters können Sie jederzeit widerrufen, etwa über den „Austragen"-Link im Newsletter. Die Rechtmäßigkeit der bereits erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
-        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse am technischen Betrieb der Website).
+        Die von Ihnen zum Zwecke des Newsletter-Bezugs bei uns hinterlegten Daten werden von uns bis zu Ihrer Austragung aus dem Newsletter bei uns bzw. dem Newsletterdiensteanbieter gespeichert und nach der Abbestellung des Newsletters oder nach Zweckfortfall aus der Newsletterverteilerliste gelöscht. Wir behalten uns vor, E-Mail-Adressen aus unserem Newsletterverteiler nach eigenem Ermessen im Rahmen unseres berechtigten Interesses nach Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO zu löschen oder zu sperren.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Daten, die zu anderen Zwecken bei uns gespeichert wurden, bleiben hiervon unberührt.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Nach Ihrer Austragung aus der Newsletterverteilerliste wird Ihre E-Mail-Adresse bei uns bzw. dem Newsletterdiensteanbieter ggf. in einer Blacklist gespeichert, sofern dies zur Verhinderung künftiger Mailings erforderlich ist. Die Daten aus der Blacklist werden nur für diesen Zweck verwendet und nicht mit anderen Daten zusammengeführt. Dies dient sowohl Ihrem Interesse als auch unserem Interesse an der Einhaltung der gesetzlichen Vorgaben beim Versand von Newslettern (berechtigtes Interesse im Sinne des Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO). Die Speicherung in der Blacklist ist zeitlich nicht befristet. <strong>Sie können der Speicherung widersprechen, sofern Ihre Interessen unser berechtigtes Interesse überwiegen.</strong>
       </p>
     </section>
 
     {/* 6 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">6. Schriftarten</h2>
+      <h2 className="text-xl font-bold mb-3">6. Plugins und Tools</h2>
+
+      <h3 className="text-lg font-semibold mt-4 mb-2">Google Fonts (lokales Hosting)</h3>
       <p className="text-muted-foreground leading-relaxed">
-        Diese Website verwendet ausschließlich systemseitig vorinstallierte Schriftarten (System-Fonts). Es werden keine externen Schriftartdienste wie Google Fonts geladen. Es findet daher keine Verbindung zu externen Servern für Schriftarten statt.
+        Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Die Google Fonts sind lokal installiert. Eine Verbindung zu Servern von Google findet dabei nicht statt.
+      </p>
+      <p className="text-muted-foreground leading-relaxed mt-3">
+        Weitere Informationen zu Google Fonts finden Sie unter{" "}
+        <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://developers.google.com/fonts/faq
+        </a>{" "}und in der Datenschutzerklärung von Google:{" "}
+        <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
+          https://policies.google.com/privacy?hl=de
+        </a>.
       </p>
     </section>
 
     {/* 7 */}
     <section>
-      <h2 className="text-xl font-bold mb-3">7. Analyse und Tracking</h2>
+      <h2 className="text-xl font-bold mb-3">7. Ihre Rechte</h2>
       <p className="text-muted-foreground leading-relaxed">
-        Diese Website verwendet Flock Analytics zur anonymisierten Analyse des Nutzerverhaltens. Dabei werden keine personenbezogenen Daten erfasst, keine Cookies gesetzt und keine individuellen Nutzerprofile erstellt. Die erfassten Daten (z.&nbsp;B. aufgerufene Seiten, Verweildauer) sind vollständig anonymisiert und können nicht einer bestimmten Person zugeordnet werden.
+        Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
       </p>
       <p className="text-muted-foreground leading-relaxed mt-3">
-        Die Analyse dient ausschließlich der Verbesserung des Angebots.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an der Websiteoptimierung).
-      </p>
-    </section>
-
-    {/* 8 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">8. E-Mail-Erfassung und Newsletter</h2>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Double-Opt-In-Verfahren</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Wenn Sie Ihre E-Mail-Adresse angeben, verwenden wir ein Double-Opt-In-Verfahren: Sie erhalten zunächst eine Bestätigungsmail mit einem Bestätigungslink. Erst nach Klick auf diesen Link wird Ihre Adresse aktiviert und die Auswertung sowie weitere E-Mails versendet. Nicht bestätigte Adressen werden nach 48 Stunden automatisch gelöscht.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Zweck der Verarbeitung</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Ihre E-Mail-Adresse wird verwendet für:
-      </p>
-      <ul className="list-disc pl-6 text-muted-foreground leading-relaxed mt-2 space-y-1">
-        <li>Den Versand Ihrer persönlichen Berechnungsauswertung</li>
-        <li>Gelegentliche Informationen zum Stand des Altersvorsorgedepot-Gesetzgebungsverfahrens</li>
-        <li>Follow-up-E-Mails mit Altersvorsorge-Tipps (maximal 3 E-Mails innerhalb von 7 Tagen nach Anmeldung)</li>
-      </ul>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Ihre Adresse wird nicht für Werbezwecke genutzt und nicht an Dritte weitergegeben.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">E-Mail-Versand über Resend</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Der E-Mail-Versand erfolgt über:<br />
-        Resend Inc.<br />
-        2261 Market Street #5039<br />
-        San Francisco, CA 94114, USA
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Mit Resend besteht ein Auftragsverarbeitungsvertrag (AVV) gemäß Art.&nbsp;28 DSGVO. Die Datenübertragung in die USA erfolgt auf Basis der EU-Standardvertragsklauseln gemäß Art.&nbsp;46 Abs.&nbsp;2 lit.&nbsp;c DSGVO.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Datenspeicherung über Supabase</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Ihre E-Mail-Adresse und Berechnungsergebnisse werden gespeichert bei:<br />
-        Supabase Inc.<br />
-        970 Trestle Glen Rd<br />
-        Oakland, CA 94610, USA
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Mit Supabase besteht ein Auftragsverarbeitungsvertrag (AVV) gemäß Art.&nbsp;28 DSGVO. Die Datenübertragung in die USA erfolgt auf Basis der EU-Standardvertragsklauseln.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Speicherdauer</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Ihre Daten werden gespeichert solange dies für den Versandzweck erforderlich ist. Nach Abmeldung wird Ihre E-Mail-Adresse in einer Sperrliste geführt um weiteren Versand dauerhaft zu unterbinden. Auf Wunsch werden Ihre Daten vollständig gelöscht — Anfragen an: info@altersvorsorge-rechner.com
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Newsletter-Anmeldung & Lead-Magnet (PDF-Checkliste)</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Über die Seite <em>/newsletter</em> können Sie eine kostenlose Altersvorsorge-Checkliste als PDF anfordern und sich optional für unseren wöchentlichen Newsletter eintragen. Beide Vorgänge sind separat per Checkbox einwilligungspflichtig.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Verarbeitete Daten: E-Mail-Adresse, Anmelde-Quelle (z.&nbsp;B. <em>newsletter_landing</em>), Zeitpunkt, Newsletter-Einwilligung (ja/nein), Bestätigungsstatus, generierte Checklisten-PDF (temporär bis Versand). Speicherort: Tabelle <em>newsletter_subscriptions</em> bei Supabase (USA, AVV gemäß Art.&nbsp;28 DSGVO, EU-Standardvertragsklauseln).
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Newsletter-Inhalt: Wöchentliche redaktionelle Tipps zur Altersvorsorge, ETFs und gesetzlichen Neuerungen. Kein Werbeversand für Dritte. Versand über Resend (siehe oben).
-      </p>
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Abmeldung</h3>
-      <p className="text-muted-foreground leading-relaxed">
-        Sie können sich jederzeit vom Newsletter abmelden. Ein Abmeldelink ist in jeder E-Mail enthalten. Der Widerruf der Einwilligung berührt nicht die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO (Einwilligung durch aktives Setzen der Checkbox und Bestätigung per Double-Opt-In).
-      </p>
-    </section>
-
-    {/* 9 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">9. KI-gestützte Funktionen</h2>
-      <p className="text-muted-foreground leading-relaxed">
-        Diese Website nutzt KI-Funktionen (KI-Auswertung und Vorsorge-Assistent Chat) auf Basis der Anthropic Claude API:
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-2">
-        Anthropic PBC<br />
-        548 Market St, PMB 90375<br />
-        San Francisco, CA 94104, USA
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Dabei werden Ihre Rechner-Eingaben (Geburtsjahr, monatlicher Beitrag, Renteneintrittsalter, Anzahl Kinder, Einkommensklasse und berechnete Ergebnisse) sowie Ihre Chat-Nachrichten an die Anthropic API übermittelt, um eine personalisierte Auswertung oder Antwort zu generieren.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Diese Daten werden von Anthropic nicht dauerhaft gespeichert und nicht für das Training von KI-Modellen verwendet.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Die Nutzung der KI-Funktionen ist freiwillig. Die Rechner-Grundfunktion ist ohne KI-Nutzung verfügbar.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Rechtsgrundlage: Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO (Einwilligung durch aktive Nutzung der Funktion).
-      </p>
-    </section>
-
-    {/* 10 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">10. Ihre Rechte</h2>
-      <p className="text-muted-foreground leading-relaxed">
-        Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
-      </p>
-
-      <p className="text-muted-foreground leading-relaxed mt-4">
-        <strong>Auskunftsrecht (Art.&nbsp;15 DSGVO)</strong><br />
-        Sie können Auskunft über die von uns gespeicherten Daten verlangen.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        <strong>Berichtigungsrecht (Art.&nbsp;16 DSGVO)</strong><br />
-        Sie können die Berichtigung unrichtiger Daten verlangen.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        <strong>Löschungsrecht (Art.&nbsp;17 DSGVO)</strong><br />
-        Sie können die Löschung Ihrer Daten verlangen, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        <strong>Einschränkung der Verarbeitung (Art.&nbsp;18 DSGVO)</strong><br />
-        Sie können die Einschränkung der Verarbeitung verlangen.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        <strong>Datenübertragbarkeit (Art.&nbsp;20 DSGVO)</strong><br />
-        Sie können Ihre Daten in einem maschinenlesbaren Format erhalten.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        <strong>Widerspruchsrecht (Art.&nbsp;21 DSGVO)</strong><br />
-        Sie können der Verarbeitung auf Basis berechtigter Interessen widersprechen.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        <strong>Widerruf der Einwilligung</strong><br />
-        Erteilte Einwilligungen können Sie jederzeit mit Wirkung für die Zukunft widerrufen — ohne Angabe von Gründen.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-4">
-        Zur Ausübung Ihrer Rechte: info@altersvorsorge-rechner.com
-      </p>
-    </section>
-
-    {/* 11 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">11. Beschwerderecht bei der Aufsichtsbehörde</h2>
-      <p className="text-muted-foreground leading-relaxed">
-        Sie haben das Recht, sich bei der zuständigen Datenschutz-Aufsichtsbehörde zu beschweren. Für Hessen ist dies:
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Der Hessische Beauftragte für Datenschutz und Informationsfreiheit (HBDI)<br />
-        Postfach 3163<br />
-        65021 Wiesbaden<br />
-        <a href="https://datenschutz.hessen.de" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
-          https://datenschutz.hessen.de
-        </a>
-      </p>
-    </section>
-
-    {/* 12 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">12. Widerspruch gegen Werbe-Mails</h2>
-      <p className="text-muted-foreground leading-relaxed">
-        Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung wird hiermit widersprochen. Bei unverlangter Zusendung von Werbeinformationen behalten wir uns ausdrücklich rechtliche Schritte vor.
-      </p>
-    </section>
-
-    {/* 13 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">13. Consent-Management (Cookiebot)</h2>
-      <p className="text-muted-foreground leading-relaxed">
-        Diese Website verwendet Cookiebot, einen Dienst der Cybot A/S, Havnegade 39, 1058 Kopenhagen, Dänemark (nachfolgend „Cookiebot").
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Cookiebot dient der Verwaltung von Einwilligungen für den Einsatz von Cookies und ähnlichen Technologien gemäß Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;c DSGVO (rechtliche Verpflichtung) sowie Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (berechtigtes Interesse an der rechtskonformen Gestaltung der Website).
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Beim Aufruf der Website wird eine Verbindung zu den Servern von Cookiebot hergestellt. Dabei wird Ihre IP-Adresse übermittelt. Cookiebot speichert Ihre Einwilligungsentscheidung in einem Cookie für 12 Monate.
-      </p>
-      <p className="text-muted-foreground leading-relaxed mt-3">
-        Mit Cybot A/S besteht ein Auftragsverarbeitungsvertrag (AVV) gemäß Art.&nbsp;28 DSGVO. Weitere Informationen finden Sie in der Datenschutzerklärung von Cookiebot:{" "}
-        <a
-          href="https://www.cookiebot.com/de/privacy-policy/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-primary transition-colors"
-        >
-          cookiebot.com/de/privacy-policy
-        </a>
-      </p>
-    </section>
-
-    {/* 14 */}
-    <section>
-      <h2 className="text-xl font-bold mb-3">14. Aktualität dieser Erklärung</h2>
-      <p className="text-muted-foreground leading-relaxed">
-        Diese Datenschutzerklärung wurde zuletzt im März 2026 aktualisiert. Wir behalten uns vor, sie bei Änderungen der rechtlichen Lage oder unserer Dienste anzupassen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.
+        Des Weiteren haben Sie das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren.
       </p>
     </section>
   </ContentPageLayout>
