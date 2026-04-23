@@ -6,6 +6,7 @@ import { ArrowRight, ChevronLeft, Check, Mail, Sparkles, FileText } from "lucide
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
+import { trackEvent } from "@/lib/analytics";
 
 import {
   berechneGesamtfoerderung,
@@ -300,6 +301,11 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         }
         throw new Error("mail_failed");
       }
+
+      trackEvent("lead_magnet_download", {
+        lead_magnet_type: "retirement_calculator_pdf",
+        email,
+      });
 
       setStatus("sent");
     } catch (err: any) {
