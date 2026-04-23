@@ -49,6 +49,21 @@ const RentenlueckenRechner = () => {
     };
   }, [alter, brutto, clampedNetto, bedarf]);
 
+  // Track calculator usage (debounced) when inputs change
+  useEffect(() => {
+    const t = setTimeout(() => {
+      trackEvent("calculator_used", {
+        calculator_type: "pension_gap_calculator",
+        age: alter,
+        retirement_age: 67,
+        brutto_monthly: brutto,
+        netto_monthly: clampedNetto,
+        bedarf_percent: bedarf,
+      });
+    }, 800);
+    return () => clearTimeout(t);
+  }, [alter, brutto, clampedNetto, bedarf]);
+
   const deckungColor =
     result.deckung >= 75
       ? "bg-green-500"
