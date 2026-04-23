@@ -302,6 +302,11 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         throw new Error("mail_failed");
       }
 
+      trackEvent("lead_magnet_download", {
+        lead_magnet_type: "retirement_calculator_pdf",
+        email,
+      });
+
       setStatus("sent");
     } catch (err: any) {
       const code = err?.message ?? "";
