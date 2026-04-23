@@ -73,6 +73,9 @@ const AdminNewsletterEditPage = lazy(() => import("./pages/admin/AdminNewsletter
 const AdminLeadsPage = lazy(() => import("./pages/admin/AdminLeadsPage"));
 const AdminNewsletterSubscribersPage = lazy(() => import("./pages/admin/AdminNewsletterSubscribersPage"));
 
+// Internal QA — not linked, noindex
+const AnalyticsTestPage = lazy(() => import("./pages/internal/AnalyticsTestPage"));
+
 const queryClient = new QueryClient();
 
 const RouteFallback = () => (
@@ -200,6 +203,7 @@ const App = () => (
                   </ProtectedAdminRoute>
                 }
               />
+              <Route path="/internal/analytics-test" element={<AnalyticsTestPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
