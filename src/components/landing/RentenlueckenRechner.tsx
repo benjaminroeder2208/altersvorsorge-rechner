@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { trackEvent } from "@/lib/analytics";
 
 const fmt = (n: number) =>
   n.toLocaleString("de-DE", { maximumFractionDigits: 0 });
@@ -47,6 +48,21 @@ const RentenlueckenRechner = () => {
       jahre,
       nettoquote,
     };
+  }, [alter, brutto, clampedNetto, bedarf]);
+
+  // Track calculator usage (debounced) when inputs change
+  useEffect(() => {
+    const t = setTimeout(() => {
+      trackEvent("calculator_used", {
+        calculator_type: "pension_gap_calculator",
+        age: alter,
+        retirement_age: 67,
+        brutto_monthly: brutto,
+        netto_monthly: clampedNetto,
+        bedarf_percent: bedarf,
+      });
+    }, 800);
+    return () => clearTimeout(t);
   }, [alter, brutto, clampedNetto, bedarf]);
 
   const deckungColor =

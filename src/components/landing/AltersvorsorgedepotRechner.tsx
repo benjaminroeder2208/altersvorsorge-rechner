@@ -306,6 +306,12 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
         lead_magnet_type: "retirement_calculator_pdf",
         email,
       });
+      trackEvent("lead_generated", {
+        lead_source: "retirement_calculator",
+        monthly_contribution: inputs.monthlyContribution,
+        age: CURRENT_YEAR - inputs.birthYear,
+        email,
+      });
 
       setStatus("sent");
     } catch (err: any) {
@@ -427,6 +433,19 @@ const AltersvorsorgedepotRechner = () => {
   );
 
   const r = useMemo(() => calculate(inputs), [inputs]);
+
+  // Track calculator usage (debounced) when inputs change
+  useEffect(() => {
+    const t = setTimeout(() => {
+      trackEvent("calculator_used", {
+        calculator_type: "retirement_calculator",
+        monthly_contribution: inputs.monthlyContribution,
+        age: CURRENT_YEAR - inputs.birthYear,
+        retirement_age: inputs.retirementAge,
+      });
+    }, 800);
+    return () => clearTimeout(t);
+  }, [inputs]);
 
   const stepVariants = {
     initial: { opacity: 0, y: 30 },
