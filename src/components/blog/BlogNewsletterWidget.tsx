@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
+import { trackEvent } from "@/lib/analytics";
 
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,6 +53,10 @@ const BlogNewsletterWidget = () => {
       });
       if (fnErr) throw fnErr;
       if (data?.error) throw new Error(data.error);
+      trackEvent("newsletter_signup", {
+        email: trimmed,
+        source: "blog_widget",
+      });
       setSuccess(data?.status === "resubscribe_pending" ? "resubscribe" : "new");
     } catch (err) {
       console.error("Newsletter signup error:", err);
