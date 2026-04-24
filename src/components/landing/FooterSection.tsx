@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Cookie } from "lucide-react";
 import { openCookieSettings } from "@/lib/cookieConsent";
 
 const sections = [
@@ -87,8 +88,12 @@ const FooterSection = () =>
           <button
             type="button"
             onClick={openCookieSettings}
-            className="hover:text-foreground transition-colors"
+            aria-haspopup="dialog"
+            aria-label="Cookie-Einstellungen öffnen"
+            title="Cookie-Einstellungen öffnen"
+            className="inline-flex items-center gap-1.5 underline-offset-4 hover:text-foreground hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
           >
+            <Cookie className="h-3.5 w-3.5" aria-hidden="true" />
             Cookie-Einstellungen
           </button>
         </div>
