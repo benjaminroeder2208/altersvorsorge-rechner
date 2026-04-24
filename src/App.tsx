@@ -93,7 +93,6 @@ const App = () => (
         <BrowserRouter>
           <ScrollToHash />
           <ChatWidgetWrapper />
-          <CookieSettingsWrapper />
           {/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
           <UpdateBanner />
           <Suspense fallback={<RouteFallback />}>
