@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { openCookieSettings } from "@/lib/cookieConsent";
 
 const sections = [
 {
@@ -83,6 +84,13 @@ const FooterSection = () =>
         <div className="flex items-center gap-4">
           <Link to="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
           <Link to="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
+          <button
+            type="button"
+            onClick={openCookieSettings}
+            className="hover:text-foreground transition-colors"
+          >
+            Cookie-Einstellungen
+          </button>
         </div>
         <p>© {new Date().getFullYear()} altersvorsorge-rechner.com</p>
       </div>
