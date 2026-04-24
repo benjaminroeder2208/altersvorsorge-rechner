@@ -7,7 +7,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToHash from "./components/ScrollToHash";
 import ChatWidgetWrapper from "./components/chat/ChatWidgetWrapper";
-import CookieSettingsWrapper from "./components/CookieSettingsWrapper";
 import UpdateBanner from "@/components/landing/UpdateBanner";
 // Lazy: only loaded when an /admin/* route is visited
 const ProtectedAdminRoute = lazy(() => import("./components/admin/ProtectedAdminRoute"));
@@ -94,7 +93,6 @@ const App = () => (
         <BrowserRouter>
           <ScrollToHash />
           <ChatWidgetWrapper />
-          <CookieSettingsWrapper />
           {/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
           <UpdateBanner />
           <Suspense fallback={<RouteFallback />}>
