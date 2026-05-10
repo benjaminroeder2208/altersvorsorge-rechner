@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/components/seo/PageHead";
 import { ArrowRight, AlertTriangle, User, TrendingDown } from "lucide-react";
 
 const ReichtMeineRentePage = () => (
   <>
-    <Helmet>
-      <title>Reicht meine Rente? – Rentenlücke in 2 Minuten berechnen</title>
-      <meta
-        name="description"
-        content="Finde heraus, ob deine gesetzliche Rente reicht. Berechne deine persönliche Rentenlücke in nur 2 Minuten – kostenlos und unverbindlich."
-      />
-    </Helmet>
+    <PageHead
+      title="Reicht meine Rente? – Rentenlücke in 2 Minuten berechnen"
+      description="Finde heraus, ob deine gesetzliche Rente reicht. Berechne deine persönliche Rentenlücke in nur 2 Minuten – kostenlos und unverbindlich."
+      path="/reicht-meine-rente"
+    />
 
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Subtle flow header */}

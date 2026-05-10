@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/components/seo/PageHead";
 import { Mail, Download, Check, FileText, Loader2, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -80,14 +80,11 @@ const NewsletterLandingPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Kostenlose Altersvorsorge-Checkliste — 3 Szenarien als PDF</title>
-        <meta
-          name="description"
-          content="Lade die kostenlose Checkliste mit 3 konkreten Altersvorsorge-Szenarien (Start mit 25, 35, 45 Jahren) als PDF herunter — inklusive Förderung und monatlicher Auszahlung."
-        />
-        <link rel="canonical" href="https://altersvorsorge-rechner.com/newsletter" />
-      </Helmet>
+      <PageHead
+        title="Kostenlose Altersvorsorge-Checkliste — 3 Szenarien als PDF"
+        description="Lade die kostenlose Checkliste mit 3 konkreten Altersvorsorge-Szenarien (Start mit 25, 35, 45 Jahren) als PDF herunter — inklusive Förderung und monatlicher Auszahlung."
+        path="/newsletter"
+      />
 
       <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
         <Navbar />
