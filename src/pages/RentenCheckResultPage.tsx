@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/components/seo/PageHead";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowRight, TrendingUp, Shield, Lightbulb, CheckCircle } from "lucide-react";
 
@@ -26,10 +26,12 @@ const RentenCheckResultPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Dein Ergebnis – Renten-Check</title>
-        <meta name="description" content="Dein persönliches Rentenlücken-Ergebnis mit konkreten nächsten Schritten." />
-      </Helmet>
+      <PageHead
+        title="Dein Ergebnis – Renten-Check"
+        description="Dein persönliches Rentenlücken-Ergebnis mit konkreten nächsten Schritten."
+        path="/renten-check/result"
+        robots="noindex,nofollow"
+      />
 
       <div className="min-h-screen bg-background text-foreground flex flex-col">
         {/* Flow header */}

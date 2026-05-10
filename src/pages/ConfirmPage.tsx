@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { CheckCircle, XCircle, Loader2, Clock } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/components/seo/PageHead";
 
 const ConfirmPage = () => {
   const [params] = useSearchParams();
@@ -34,10 +34,12 @@ const ConfirmPage = () => {
 
   return (
     <>
-      <Helmet>
-        <meta name="robots" content="noindex, nofollow" />
-        <title>E-Mail bestätigen — altersvorsorge-rechner.com</title>
-      </Helmet>
+      <PageHead
+        title="E-Mail bestätigen — altersvorsorge-rechner.com"
+        description="Bestätige deine E-Mail-Adresse, um den Versand abzuschließen."
+        path="/confirm"
+        robots="noindex,nofollow"
+      />
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="max-w-md w-full bg-card border border-border rounded-2xl p-8 shadow-sm text-center">
           {status === "loading" && (

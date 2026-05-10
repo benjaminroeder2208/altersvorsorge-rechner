@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/components/seo/PageHead";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Slider } from "@/components/ui/slider";
@@ -43,10 +43,11 @@ const RentenCheckPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Renten-Check – Reicht meine Rente?</title>
-        <meta name="description" content="Schneller Renten-Check: Finde in unter 60 Sekunden heraus, ob deine Rente reicht." />
-      </Helmet>
+      <PageHead
+        title="Renten-Check – Reicht meine Rente?"
+        description="Schneller Renten-Check: Finde in unter 60 Sekunden heraus, ob deine Rente reicht."
+        path="/renten-check"
+      />
 
       <div className="min-h-screen bg-background text-foreground flex flex-col">
         {/* Flow header */}

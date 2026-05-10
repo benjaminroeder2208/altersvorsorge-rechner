@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { CheckCircle, XCircle, Loader2 } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import PageHead from "@/components/seo/PageHead";
 
 const UnsubscribePage = () => {
   const [params] = useSearchParams();
@@ -36,10 +36,12 @@ const UnsubscribePage = () => {
 
   return (
     <>
-      <Helmet>
-        <meta name="robots" content="noindex, nofollow" />
-        <title>Abmelden — altersvorsorge-rechner.com</title>
-      </Helmet>
+      <PageHead
+        title="Abmelden — altersvorsorge-rechner.com"
+        description="Melde dich von unserem Newsletter ab."
+        path="/unsubscribe"
+        robots="noindex,nofollow"
+      />
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="max-w-md w-full bg-card border border-border rounded-2xl p-8 shadow-sm text-center">
           {status === "done" ? (
