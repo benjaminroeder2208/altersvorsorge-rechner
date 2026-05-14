@@ -17,10 +17,17 @@ interface MetricRow {
   source: "SSOT" | "Blog";
 }
 
+interface Suggestion {
+  field: string;
+  value: string;
+  note?: string;
+}
+
 interface RowWithViolations extends MetricRow {
   titleLen: number;
   descLen: number;
   violations: string[];
+  suggestions: Suggestion[];
 }
 
 // Eagerly load all Blog page sources as raw text. Vite resolves this at build
