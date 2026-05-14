@@ -56,6 +56,7 @@ interface RowWithViolations extends MetricRow {
   suggestions: Suggestion[];
   blogOptimizations: Suggestion[];
   severity: number;
+  limits: { titleMin: number; titleMax: number; descMin: number; descMax: number };
 }
 
 const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
