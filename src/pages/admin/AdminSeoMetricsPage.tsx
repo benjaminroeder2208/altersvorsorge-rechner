@@ -774,13 +774,14 @@ const AdminSeoMetricsPage = () => {
                           </ul>
                         )}
                         {r.suggestions.length > 0 && (
-                          <SuggestionList label="Vorschlag" items={r.suggestions} />
+                          <SuggestionList label="Vorschlag" items={r.suggestions} row={r} />
                         )}
                         {r.blogOptimizations.length > 0 && (
                           <SuggestionList
                             label="Blog-Optimierung"
                             items={r.blogOptimizations}
                             tone="primary"
+                            row={r}
                           />
                         )}
                       </div>
