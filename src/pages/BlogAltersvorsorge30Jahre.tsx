@@ -70,7 +70,7 @@ const BlogAltersvorsorge30Jahre = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorge mit 30: Warum jetzt sparen die beste Entscheidung ist"
         description="Mit 30 Jahren sparen? Ja! Wir zeigen, wie ein 35-Jähriger €276.000 aufbaut — und was es kostet, zu warten."
         path={PATH}

@@ -98,7 +98,7 @@ const BlogRiesterKuendigen = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Riester kündigen: Wann es sich lohnt und was du wirklich verlierst"
         description="Kündigen klingt verlockend — kostet aber fast immer mehr als es bringt. Wir zeigen die vier Alternativen und wann eine Kündigung trotzdem sinnvoll ist."
         path={PATH}

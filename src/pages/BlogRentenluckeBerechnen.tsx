@@ -70,7 +70,7 @@ const BlogRentenluckeBerechnen = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Rentenlücke berechnen: So erkennst du deine Versorgungslücke"
         description="Rentenlücke berechnen leicht gemacht. Wir zeigen, wie groß deine Lücke ist und wie viel du sparen musst. Mit Rechenbeispiel."
         path={PATH}

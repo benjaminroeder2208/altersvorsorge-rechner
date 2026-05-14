@@ -98,7 +98,7 @@ const BlogKoalitionseinigung = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Koalitionseinigung Altersvorsorgedepot: Höhere Zulagen, niedrigerer Kostendeckel, Selbstständige inklusive"
         description="CDU/CSU und SPD einigen sich auf verbesserte Konditionen beim Altersvorsorgedepot. Abstimmung im Bundestag am 26. März 2026. Alle bestätigten Änderungen im Überblick."
         path={PATH}

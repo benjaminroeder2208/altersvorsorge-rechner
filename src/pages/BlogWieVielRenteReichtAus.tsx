@@ -70,7 +70,7 @@ const BlogWieVielRenteReichtAus = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Wie viel Rente reicht aus? Die ehrliche Antwort mit Zahlen"
         description="Wie viel Rente brauchst du? Wir zeigen, wie viel realistisch ist, was du sparst und wie du deine Rentenlücke berechnest."
         path={PATH}

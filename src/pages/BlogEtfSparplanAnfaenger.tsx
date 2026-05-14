@@ -70,7 +70,7 @@ const BlogEtfSparplanAnfaenger = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="ETF-Sparplan für Anfänger: So fängst du mit 50 Euro/Monat an"
         description="ETF-Sparplan für Anfänger: Schritt-für-Schritt erklärt. Wie du mit 50€/Monat startest, welche ETFs sinnvoll sind und wie viel du später hast."
         path={PATH}

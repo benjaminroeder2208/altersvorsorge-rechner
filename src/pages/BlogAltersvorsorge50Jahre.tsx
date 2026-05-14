@@ -70,7 +70,7 @@ const BlogAltersvorsorge50Jahre = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorge mit 50 Jahren: Noch 17 Jahre bis zur Rente"
         description="Mit 50 Jahren ist es eng, aber nicht unmöglich. 17 Jahre bis 67, aggressive Strategie nötig. Konkrete Zahlen und Catch-up Strategien."
         path={PATH}

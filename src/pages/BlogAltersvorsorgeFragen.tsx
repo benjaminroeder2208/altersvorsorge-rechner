@@ -70,7 +70,7 @@ const BlogAltersvorsorgeFragen = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorge für Frauen: 4 Strategien gegen die Rentenlücke"
         description="Altersvorsorge für Frauen: Karrierelücken, Rentensplitting, Witwenrente. 4 konkrete Strategien mit Euro-Zahlen für deine Sicherheit."
         path={PATH}

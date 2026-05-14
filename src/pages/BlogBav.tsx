@@ -98,7 +98,7 @@ const BlogBav = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Betriebliche Altersvorsorge (bAV): Lohnt sie sich wirklich?"
         description="Die bAV ist oft der einfachste Weg zur Altersvorsorge — weil der Chef mitbezahlt. Wir erklären, wie sie funktioniert, was sie kostet und wann sie sich lohnt."
         path={PATH}

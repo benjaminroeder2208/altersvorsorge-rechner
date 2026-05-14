@@ -71,7 +71,7 @@ const BlogDepotVsEtf = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorgedepot vs. ETF-Sparplan: Welches Produkt ist besser?"
         description="Beide investieren in ETFs, aber nur einer wird gefördert. Wir zeigen die Unterschiede mit konkreten Beispielen."
         path={PATH}

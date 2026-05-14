@@ -95,7 +95,7 @@ const BlogBeschlossen = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorgedepot beschlossen: Die neuen Förderregeln ab 2027"
         description="Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 verabschiedet. Neue Grundzulage, neue Kinderzulage, Selbstständige inklusive."
         path={PATH}

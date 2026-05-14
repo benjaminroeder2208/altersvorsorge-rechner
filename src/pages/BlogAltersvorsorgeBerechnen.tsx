@@ -70,7 +70,7 @@ const BlogAltersvorsorgeBerechnen = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorge berechnen: Schritt-für-Schritt zur deiner Rentenlücke"
         description="Altersvorsorge berechnen: So ermittelst du deine Rentenlücke. Mit Formel, Excel-Vorlage und unserem interaktiven Rechner. Konkrete Beispiele."
         path={PATH}

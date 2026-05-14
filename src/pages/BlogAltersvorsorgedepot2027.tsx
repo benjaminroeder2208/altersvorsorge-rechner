@@ -139,7 +139,7 @@ const BlogAltersvorsorgedepot2027 = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorgedepot 2027: Alles, was du wissen musst"
         description="Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Wir erklären, wie die Förderung funktioniert, was du bekommst — und für wen es sich wirklich lohnt."
         path={PATH}
