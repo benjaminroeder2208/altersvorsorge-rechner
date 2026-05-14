@@ -239,6 +239,23 @@ function lengthClass(len: number, min: number, max: number): string {
 const AdminSeoMetricsPage = () => {
   const rows = useMemo(buildRows, []);
   const violationCount = rows.filter((r) => r.violations.length > 0).length;
+  const totalSeverity = rows.reduce((s, r) => s + r.severity, 0);
+
+  // Gruppierte Summary nach Verstoßtyp
+  const summary = useMemo(() => {
+    const byType = new Map<ViolationType, { count: number; severity: number }>();
+    for (const r of rows) {
+      for (const v of r.violations) {
+        const cur = byType.get(v.type) ?? { count: 0, severity: 0 };
+        cur.count += 1;
+        cur.severity += v.severity;
+        byType.set(v.type, cur);
+      }
+    }
+    return Array.from(byType.entries())
+      .map(([type, agg]) => ({ type, ...agg }))
+      .sort((a, b) => b.severity - a.severity);
+  }, [rows]);
 
   return (
     <>
@@ -254,7 +271,7 @@ const AdminSeoMetricsPage = () => {
           (PageHead-Props). Limits: Title ≤ {TITLE_MAX}, Description {DESC_MIN}–{DESC_MAX}.
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-6 text-xs">
+        <div className="flex flex-wrap gap-2 mb-4 text-xs">
           <span className="px-2 py-1 rounded-md bg-muted text-muted-foreground">
             {rows.length} Routen geprüft
           </span>
@@ -267,13 +284,42 @@ const AdminSeoMetricsPage = () => {
           >
             {violationCount} mit Verstößen
           </span>
+          <span className="px-2 py-1 rounded-md bg-muted text-muted-foreground">
+            Gesamt-Score: <span className="font-medium text-foreground">{totalSeverity}</span>
+          </span>
         </div>
+
+        {summary.length > 0 && (
+          <div className="mb-6 rounded-lg border border-border bg-card p-3 sm:p-4">
+            <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">
+              Verstöße nach Typ (Priorität)
+            </div>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+              {summary.map((s) => {
+                const bucket = severityBucket(s.severity);
+                return (
+                  <li key={s.type} className="flex items-center justify-between gap-3">
+                    <span className="text-foreground">{VIOLATION_LABELS[s.type]}</span>
+                    <span className="flex items-center gap-2 shrink-0">
+                      <span className="text-xs text-muted-foreground">
+                        {s.count}× · Score {s.severity}
+                      </span>
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded ${bucket.cls}`}>
+                        {bucket.label}
+                      </span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
 
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
             <thead className="bg-muted/50">
               <tr className="text-left">
-                <th className="px-3 py-2 font-medium">Status</th>
+                <th className="px-3 py-2 font-medium">Schwere</th>
                 <th className="px-3 py-2 font-medium">Pfad</th>
                 <th className="px-3 py-2 font-medium">Title (Länge)</th>
                 <th className="px-3 py-2 font-medium">Description (Länge)</th>
