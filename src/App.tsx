@@ -243,6 +243,14 @@ const App = () => (
                   </ProtectedAdminRoute>
                 }
               />
+              <Route
+                path="/admin/serp-history"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminSerpHistoryPage />
+                  </ProtectedAdminRoute>
+                }
+              />
               <Route path="/internal/analytics-test" element={<AnalyticsTestPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
