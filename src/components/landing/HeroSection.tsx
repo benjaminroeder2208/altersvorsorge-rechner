@@ -28,9 +28,8 @@ const HeroSection = () => (
           </span>
         </motion.div>
 
-        {/* H1 */}
-        <motion.h1
-          {...anim(0.3)}
+        {/* H1 — rendered without animation so it paints immediately (LCP candidate) */}
+        <h1
           className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6"
           style={{ letterSpacing: "-0.02em" }}
         >
@@ -39,7 +38,7 @@ const HeroSection = () => (
           <span className="font-bold text-primary">
             212.000 € im Alter.
           </span>
-        </motion.h1>
+        </h1>
 
         {/* Subtitle */}
         <motion.p {...anim(0.5)} className="text-base text-muted-foreground mb-10 max-w-lg" style={{ lineHeight: 1.7 }}>
