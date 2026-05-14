@@ -240,7 +240,14 @@ function shortenDescription(desc: string, max: number): string {
  * Title und Meta-Description, die innerhalb der SEO-Limits bleiben und sich
  * vom aktuellen Wert unterscheiden. Sortiert nach erwartetem CTR-Impact.
  */
-function buildBlogOptimizations(title: string, description: string): Suggestion[] {
+function buildBlogOptimizations(
+  title: string,
+  description: string,
+  limits: { titleMax: number; descMin: number; descMax: number },
+): Suggestion[] {
+  const TITLE_MAX = limits.titleMax;
+  const DESC_MIN = limits.descMin;
+  const DESC_MAX = limits.descMax;
   const out: Suggestion[] = [];
   const CURRENT_YEAR = "2026";
   const TITLE_TARGET_MIN = 50;
