@@ -139,17 +139,85 @@ const AdminGscDashboardPage = () => {
           </Button>
         </Card>
 
-        {meta.startDate && (
-          <p className="text-xs text-muted-foreground">
-            altersvorsorge-rechner.com · {meta.startDate} – {meta.endDate}
-          </p>
-        )}
-
-        {error && (
-          <Card className="p-4 border-destructive bg-destructive/5 text-sm text-destructive">
-            {error}
-          </Card>
-        )}
+        {/* Verbindungs- & Datenstatus */}
+        <Card
+          className={`p-4 text-sm border ${
+            error
+              ? "border-destructive bg-destructive/5"
+              : rows.length === 0 && !loading
+              ? "border-amber-500/40 bg-amber-50 dark:bg-amber-950/20"
+              : "border-border bg-muted/30"
+          }`}
+        >
+          <div className="flex flex-wrap items-start gap-3">
+            <div className="mt-0.5">
+              {error ? (
+                <AlertCircle className="w-5 h-5 text-destructive" />
+              ) : loading ? (
+                <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
+              ) : rows.length === 0 ? (
+                <Info className="w-5 h-5 text-amber-600" />
+              ) : (
+                <CheckCircle2 className="w-5 h-5 text-primary" />
+              )}
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="font-medium">
+                {error
+                  ? "Verbindung fehlgeschlagen"
+                  : loading
+                  ? "Lade Search-Console-Daten…"
+                  : rows.length === 0
+                  ? "Verbunden – noch keine Daten"
+                  : "Verbunden – Daten aktuell"}
+              </div>
+              <div className="mt-1 text-xs text-muted-foreground space-y-0.5">
+                <div>
+                  Property: <span className="font-mono">altersvorsorge-rechner.com</span>
+                </div>
+                {meta.startDate && (
+                  <div>
+                    Zeitraum: {meta.startDate} – {meta.endDate} (GSC liefert mit ~2 Tagen Verzug)
+                  </div>
+                )}
+                {lastFetched && (
+                  <div className="inline-flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    Letzter Abruf: {fmtTime(lastFetched)}
+                    {retryCount > 0 && ` · ${retryCount} Wiederholung${retryCount > 1 ? "en" : ""}`}
+                  </div>
+                )}
+                {!error && rows.length === 0 && !loading && (
+                  <div className="text-amber-700 dark:text-amber-400 mt-1">
+                    Hinweis: Nach Verifizierung einer Property dauert es typischerweise 2–4 Tage,
+                    bis Google die ersten Impressionen erfasst.
+                  </div>
+                )}
+                {error && (
+                  <>
+                    <div className="text-destructive mt-1">{error}</div>
+                    {errorDetails && (
+                      <details className="mt-1">
+                        <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
+                          Technische Details
+                        </summary>
+                        <pre className="mt-1 p-2 bg-muted rounded text-[10px] overflow-x-auto whitespace-pre-wrap break-all">
+                          {errorDetails}
+                        </pre>
+                      </details>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+            {error && (
+              <Button size="sm" variant="outline" onClick={handleRetry} disabled={loading}>
+                <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${loading ? "animate-spin" : ""}`} />
+                Erneut versuchen
+              </Button>
+            )}
+          </div>
+        </Card>
 
         {/* KPIs */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
