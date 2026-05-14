@@ -16,17 +16,30 @@ interface SerpEntry {
   type: "official" | "media" | "bank" | "fintech" | "wiki" | "video" | "competitor";
 }
 
+type SerpKind = "official" | "media" | "bank" | "fintech" | "wiki" | "video" | "competitor";
+
+interface SerpEntry {
+  pos: number;
+  domain: string;
+  url: string;
+  type: SerpKind;
+}
+
+type Angle = string | { text: string; priority?: boolean };
+
 interface KeywordBlock {
   keyword: string;
   volume: string;
   difficulty: string;
   difficultyLabel: string;
+  /** Numerische KD 0–100 für die Score-Berechnung. */
+  kd: number;
   results: SerpEntry[];
-  angles: string[];
+  angles: Angle[];
   ourEdge: string;
 }
 
-const TYPE_LABEL: Record<SerpEntry["type"], { label: string; tone: string }> = {
+const TYPE_LABEL: Record<SerpKind, { label: string; tone: string }> = {
   official: { label: "Behörde", tone: "bg-disclaimer text-disclaimer-foreground" },
   media: { label: "Ratgeber", tone: "bg-secondary text-foreground" },
   bank: { label: "Bank", tone: "bg-secondary text-foreground" },
@@ -35,6 +48,38 @@ const TYPE_LABEL: Record<SerpEntry["type"], { label: string; tone: string }> = {
   video: { label: "Video", tone: "bg-secondary text-foreground" },
   competitor: { label: "Wettbewerber", tone: "bg-secondary text-foreground" },
 };
+
+/**
+ * Content-Score 0–100 (höher = einfacher zu ranken).
+ * Heuristik analog Keyword-Dashboard: Basis = 100 − KD, gewichtet nach SERP-Mix.
+ * Behörden/Wiki ziehen den Score; Video- und Wettbewerber-Lücken heben ihn.
+ */
+function contentScore(k: KeywordBlock): number {
+  let score = 100 - k.kd;
+  const types = new Set(k.results.map((r) => r.type));
+  if (types.has("official")) score -= 12;
+  if (types.has("wiki")) score -= 6;
+  if (types.has("media")) score -= 4;
+  if (types.has("bank")) score -= 2;
+  if (types.has("fintech")) score -= 2;
+  if (types.has("video")) score += 4; // YouTube-Karussell = Lücke für eigenes Embed
+  if (types.has("competitor")) score += 3; // Direkter Wettbewerber statt Behörde = schlagbar
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function scoreTone(s: number): { label: string; tone: string } {
+  if (s >= 70) return { label: "Leicht", tone: "bg-primary text-primary-foreground" };
+  if (s >= 50) return { label: "Machbar", tone: "bg-primary/15 text-primary" };
+  if (s >= 30) return { label: "Schwer", tone: "bg-disclaimer text-disclaimer-foreground" };
+  return { label: "Sehr schwer", tone: "bg-secondary text-foreground" };
+}
+
+function angleText(a: Angle): string {
+  return typeof a === "string" ? a : a.text;
+}
+function isPriority(a: Angle): boolean {
+  return typeof a !== "string" && !!a.priority;
+}
 
 const KEYWORDS: KeywordBlock[] = [
   {
