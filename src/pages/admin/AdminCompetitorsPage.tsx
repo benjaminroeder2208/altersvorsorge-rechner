@@ -87,6 +87,7 @@ const KEYWORDS: KeywordBlock[] = [
     volume: "2.400 / Monat",
     difficulty: "34/100",
     difficultyLabel: "machbar",
+    kd: 34,
     results: [
       { pos: 1, domain: "riester.deutsche-rentenversicherung.de", url: "https://riester.deutsche-rentenversicherung.de/DE/Lohnt-sich-Riester/Staatliche-Foerderung-fuer-Sie/staatliche-foerderung-fuer-sie_node", type: "official" },
       { pos: 2, domain: "raisin.com", url: "https://www.raisin.com/de-de/altersvorsorge/riester-rente/zulagen/", type: "fintech" },
