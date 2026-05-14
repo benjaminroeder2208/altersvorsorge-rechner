@@ -260,6 +260,7 @@ const AdminSeoMetricsPage = () => {
   // Filter state
   const [onlyViolations, setOnlyViolations] = useState(false);
   const [activeTypes, setActiveTypes] = useState<Set<ViolationType>>(new Set());
+  const [search, setSearch] = useState("");
 
   const toggleType = (t: ViolationType) =>
     setActiveTypes((prev) => {
@@ -270,17 +271,20 @@ const AdminSeoMetricsPage = () => {
     });
 
   const filteredRows = useMemo(() => {
+    const q = search.trim().toLowerCase();
     return rows.filter((r) => {
       if (activeTypes.size > 0) {
         if (!r.violations.some((v) => activeTypes.has(v.type))) return false;
-        return true; // type filter implies "with violations"
+      } else if (onlyViolations && r.violations.length === 0) return false;
+      if (q) {
+        const hay = `${r.path} ${r.title} ${r.description}`.toLowerCase();
+        if (!hay.includes(q)) return false;
       }
-      if (onlyViolations && r.violations.length === 0) return false;
       return true;
     });
-  }, [rows, onlyViolations, activeTypes]);
+  }, [rows, onlyViolations, activeTypes, search]);
 
-  const filterActive = onlyViolations || activeTypes.size > 0;
+  const filterActive = onlyViolations || activeTypes.size > 0 || search.trim().length > 0;
 
   return (
     <>
