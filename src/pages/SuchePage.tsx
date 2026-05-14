@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Fuse, { type FuseResult, type FuseResultMatch } from "fuse.js";
-import { Search as SearchIcon, X, FileText, Newspaper } from "lucide-react";
+import { Search as SearchIcon, X, FileText, Newspaper, Clock, TrendingUp } from "lucide-react";
 import PageHead from "@/components/seo/PageHead";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
@@ -26,9 +26,50 @@ const KIND_LABEL: Record<IndexEntry["kind"], string> = {
   blog: "Blog-Artikel",
 };
 
+const RECENT_KEY = "suche:recent";
+const RECENT_MAX = 6;
+
+// Curated popular keywords (kuratiert nach Themenrelevanz)
+const POPULAR_KEYWORDS = [
+  "Altersvorsorgedepot",
+  "Förderung",
+  "ETF-Sparplan",
+  "Riester kündigen",
+  "Rentenlücke",
+  "Steuern",
+  "Auszahlung",
+  "Kinderzulage",
+  "Grundzulage",
+  "Altersvorsorgereformgesetz",
+  "ETF vs. Riester",
+  "Rentenphase",
+];
+
+function loadRecents(): string[] {
+  try {
+    const raw = localStorage.getItem(RECENT_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr) ? arr.filter((x) => typeof x === "string").slice(0, RECENT_MAX) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveRecent(q: string, prev: string[]): string[] {
+  const trimmed = q.trim();
+  if (trimmed.length < 2) return prev;
+  const next = [trimmed, ...prev.filter((x) => x.toLowerCase() !== trimmed.toLowerCase())].slice(0, RECENT_MAX);
+  try {
+    localStorage.setItem(RECENT_KEY, JSON.stringify(next));
+  } catch {
+    /* ignore */
+  }
+  return next;
+}
+
 /** Build a short snippet around the first matched range for the given key. */
 function buildSnippet(entry: IndexEntry, matches: readonly FuseResultMatch[] | undefined): string {
-  // Prefer body/intro/description matches for context (title is already shown).
   const preferKeys = ["body", "intro", "description", "h1"];
   let chosen: { value: string; range: [number, number] } | null = null;
 
@@ -40,7 +81,6 @@ function buildSnippet(entry: IndexEntry, matches: readonly FuseResultMatch[] | u
     }
   }
 
-  // Fallback: first non-empty long-form field
   if (!chosen) {
     const fallback = entry.body || entry.intro || entry.description;
     if (!fallback) return "";
@@ -56,7 +96,6 @@ function buildSnippet(entry: IndexEntry, matches: readonly FuseResultMatch[] | u
   if (start > 0) snippet = "… " + snippet;
   if (end < value.length) snippet = snippet + " …";
 
-  // Highlight the matched span
   const localStart = range[0] - start + (start > 0 ? 2 : 0);
   const localEnd = range[1] - start + (start > 0 ? 2 : 0) + 1;
   return (
@@ -69,7 +108,6 @@ function buildSnippet(entry: IndexEntry, matches: readonly FuseResultMatch[] | u
 }
 
 const HighlightedSnippet = ({ raw }: { raw: string }) => {
-  // Splits on the marker pair injected by buildSnippet.
   const parts: { text: string; mark: boolean }[] = [];
   let i = 0;
   while (i < raw.length) {
@@ -102,13 +140,27 @@ const HighlightedSnippet = ({ raw }: { raw: string }) => {
   );
 };
 
+interface Suggestion {
+  label: string;
+  source: "recent" | "popular";
+}
+
 const SuchePage = () => {
   const [params, setParams] = useSearchParams();
   const initialQuery = params.get("q") ?? "";
   const [query, setQuery] = useState(initialQuery);
   const [index, setIndex] = useState<IndexEntry[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [recents, setRecents] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Load recents on mount
+  useEffect(() => {
+    setRecents(loadRecents());
+  }, []);
 
   // Fetch index once on mount (cached by browser)
   useEffect(() => {
@@ -145,6 +197,17 @@ const SuchePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
+  // Close suggestions on outside click
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
   const fuse = useMemo(() => {
     if (!index) return null;
     return new Fuse(index, {
@@ -168,6 +231,67 @@ const SuchePage = () => {
     return fuse.search(query.trim(), { limit: 30 });
   }, [fuse, query]);
 
+  // Build suggestions: recents first, then popular keywords (filtered by current input)
+  const suggestions: Suggestion[] = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const seen = new Set<string>();
+    const out: Suggestion[] = [];
+
+    for (const r of recents) {
+      const key = r.toLowerCase();
+      if (q && !key.includes(q)) continue;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({ label: r, source: "recent" });
+    }
+    for (const p of POPULAR_KEYWORDS) {
+      const key = p.toLowerCase();
+      if (q && !key.includes(q)) continue;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({ label: p, source: "popular" });
+      if (out.length >= 8) break;
+    }
+    return out.slice(0, 8);
+  }, [query, recents]);
+
+  const commitQuery = useCallback((q: string) => {
+    setQuery(q);
+    setRecents((prev) => saveRecent(q, prev));
+    setShowSuggestions(false);
+    setActiveSuggestion(-1);
+  }, []);
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!showSuggestions || suggestions.length === 0) {
+      if (e.key === "Enter") commitQuery(query);
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveSuggestion((i) => (i + 1) % suggestions.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveSuggestion((i) => (i <= 0 ? suggestions.length - 1 : i - 1));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      const pick = activeSuggestion >= 0 ? suggestions[activeSuggestion].label : query;
+      commitQuery(pick);
+    } else if (e.key === "Escape") {
+      setShowSuggestions(false);
+      setActiveSuggestion(-1);
+    }
+  };
+
+  const clearRecents = () => {
+    try {
+      localStorage.removeItem(RECENT_KEY);
+    } catch {
+      /* ignore */
+    }
+    setRecents([]);
+  };
+
   return (
     <>
       <PageHead
@@ -184,26 +308,92 @@ const SuchePage = () => {
           Durchsuche Ratgeber-Seiten und alle Blog-Artikel zu Altersvorsorgedepot, Förderung, Rente und ETF.
         </p>
 
-        <div className="relative mb-2">
+        <div ref={wrapRef} className="relative mb-2">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
           <input
             ref={inputRef}
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setShowSuggestions(true);
+              setActiveSuggestion(-1);
+            }}
+            onFocus={() => setShowSuggestions(true)}
+            onKeyDown={onKeyDown}
             placeholder="z. B. Förderung, ETF, Riester kündigen, Steuern …"
             aria-label="Suchbegriff eingeben"
+            aria-autocomplete="list"
+            aria-expanded={showSuggestions && suggestions.length > 0}
+            aria-controls="suche-suggestions"
+            role="combobox"
             className="w-full pl-10 pr-10 py-3 text-base rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
           />
           {query && (
             <button
               type="button"
-              onClick={() => setQuery("")}
+              onClick={() => {
+                setQuery("");
+                inputRef.current?.focus();
+              }}
               aria-label="Suche leeren"
               className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded text-muted-foreground hover:text-foreground hover:bg-muted"
             >
               <X className="w-4 h-4" />
             </button>
+          )}
+
+          {showSuggestions && suggestions.length > 0 && (
+            <div
+              id="suche-suggestions"
+              role="listbox"
+              className="absolute z-20 left-0 right-0 mt-1 rounded-lg border border-border bg-card shadow-lg overflow-hidden"
+            >
+              {recents.length > 0 && suggestions.some((s) => s.source === "recent") && (
+                <div className="flex items-center justify-between px-3 pt-2 pb-1">
+                  <span className="text-[10px] uppercase tracking-wide text-muted-foreground">Zuletzt gesucht</span>
+                  <button
+                    type="button"
+                    onClick={clearRecents}
+                    onMouseDown={(e) => e.preventDefault()}
+                    className="text-[10px] text-muted-foreground hover:text-foreground underline-offset-2 hover:underline"
+                  >
+                    Verlauf löschen
+                  </button>
+                </div>
+              )}
+              <ul>
+                {suggestions.map((s, idx) => {
+                  const Icon = s.source === "recent" ? Clock : TrendingUp;
+                  const isFirstPopular =
+                    s.source === "popular" && (idx === 0 || suggestions[idx - 1].source === "recent");
+                  return (
+                    <div key={`${s.source}-${s.label}`}>
+                      {isFirstPopular && (
+                        <div className="px-3 pt-2 pb-1 text-[10px] uppercase tracking-wide text-muted-foreground">
+                          Beliebte Suchbegriffe
+                        </div>
+                      )}
+                      <li
+                        role="option"
+                        aria-selected={idx === activeSuggestion}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          commitQuery(s.label);
+                        }}
+                        onMouseEnter={() => setActiveSuggestion(idx)}
+                        className={`flex items-center gap-2 px-3 py-2 text-sm cursor-pointer ${
+                          idx === activeSuggestion ? "bg-muted" : "hover:bg-muted/60"
+                        }`}
+                      >
+                        <Icon className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                        <span className="text-foreground truncate">{s.label}</span>
+                      </li>
+                    </div>
+                  );
+                })}
+              </ul>
+            </div>
           )}
         </div>
 
@@ -246,6 +436,7 @@ const SuchePage = () => {
                 </div>
                 <Link
                   to={item.path}
+                  onClick={() => setRecents((prev) => saveRecent(query, prev))}
                   className="text-base md:text-lg font-semibold text-primary hover:underline block mb-1"
                 >
                   {item.title}
