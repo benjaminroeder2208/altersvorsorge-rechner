@@ -136,7 +136,7 @@ export const ROUTES: SeoRoute[] = [
   },
   {
     path: "/altersvorsorgedepot-vs-riester",
-    title: "Altersvorsorgedepot vs. Riester – Was ändert sich für Sparer?",
+    title: "Altersvorsorgedepot vs. Riester",
     description:
       "Altersvorsorgedepot oder Riester-Rente? Unterschiede bei Förderung, Aktienquote, Kosten, Auszahlung und Übertragbarkeit alter Riester-Verträge im Überblick.",
     h1: "Altersvorsorgedepot vs. Riester",
