@@ -72,8 +72,9 @@ const robotsTxt = readFileSync(ROBOTS_PATH, "utf8");
 const sitemapPaths = parseSitemapPaths(sitemapXml).map(norm);
 const sitemapSet = new Set(sitemapPaths);
 const disallows = parseRobotsDisallow(robotsTxt);
-const indexableRoutes = ROUTES.map((r) => norm(r.path));
+const indexableRoutes = ROUTES.filter((r) => !r.noindex).map((r) => norm(r.path));
 const indexableSet = new Set(indexableRoutes);
+const noindexRoutes = new Set(ROUTES.filter((r) => r.noindex).map((r) => norm(r.path)));
 
 // 1. Indexierbare Route fehlt in sitemap?
 for (const route of indexableRoutes) {
