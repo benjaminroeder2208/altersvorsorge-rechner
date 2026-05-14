@@ -301,30 +301,36 @@ const AdminKeywordsPage = () => {
           subtitle="Bestes Volumen-zu-Schwierigkeit-Verhältnis, nach Intent gewichtet"
           items={groups.opportunities}
           showPriority
+          onSelect={setSelected}
         />
         <KeywordGroup
           icon={<TrendingUp className="w-4 h-4 text-primary" />}
           title="Hochvolumige Keywords (≥ 1.000 / Monat)"
           subtitle="Top-of-Funnel — Reichweite und Markenpräsenz"
           items={groups.highVolume}
+          onSelect={setSelected}
         />
         <KeywordGroup
           icon={<Target className="w-4 h-4 text-primary" />}
           title="Förderung & Vergleiche"
           subtitle="Kommerziell wertvolle Keywords nahe an der Conversion"
           items={groups.subsidy}
+          onSelect={setSelected}
         />
         <KeywordGroup
           icon={<HelpCircle className="w-4 h-4 text-primary" />}
           title="High-Intent Fragen"
           subtitle="Niedriges Volumen, hohe Conversion — ideal für FAQ-Blöcke"
           items={groups.questions}
+          onSelect={setSelected}
         />
       </div>
 
       <p className="text-xs text-muted-foreground mt-8">
         Quelle: Semrush, Datenbank DE. Keine Echtzeit-Daten — manuelle Aktualisierung nötig.
       </p>
+
+      <KeywordDetailSheet kw={selected} onClose={() => setSelected(null)} />
     </AdminLayout>
   );
 };
