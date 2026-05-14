@@ -1,0 +1,42 @@
+# altersvorsorge-rechner.com
+
+> Unabhängiger Rechner und Ratgeber zum deutschen Altersvorsorgedepot (Reformgesetz vom 27.03.2026), zur Rentenlücke und zur staatlichen Förderung der privaten Altersvorsorge.
+
+Die Seite richtet sich an Sparerinnen und Sparer in Deutschland und erklärt das neue Altersvorsorgedepot, vergleicht es mit Riester und ETF-Sparplänen und bietet kostenlose Rechner inkl. PDF-Auswertung. Inhalte sind redaktionell und stellen keine Anlageberatung dar.
+
+## Rechner
+
+- [Altersvorsorgedepot Rechner](/): Förderung, Endkapital und Steuervorteil monatlicher Beiträge berechnen.
+- [Rentenlücken-Rechner](/rentenluecken-rechner): Persönliche Rentenlücke aus Nettoeinkommen und gesetzlicher Rente ermitteln.
+- [Renten-Check](/renten-check): 3-Schritt-Quickcheck "Reicht meine Rente?".
+- [Reicht meine Rente?](/reicht-meine-rente): Erklärseite zum Renten-Check.
+
+## Altersvorsorgedepot
+
+- [Altersvorsorgedepot Übersicht](/altersvorsorgedepot): Hub-Seite mit allen Themen rund um das Depot.
+- [Förderung](/altersvorsorgedepot-foerderung): 50% Grundzulage bis 360€, 25% bis 1.800€, Kinderzulage 100%.
+- [Auszahlung](/altersvorsorgedepot-auszahlung): Rentenbeginn 65–70, Kapitalentnahme bis 30%.
+- [Gesetz](/altersvorsorgedepot-gesetz): Altersvorsorgereformgesetz, beschlossen 27.03.2026.
+- [vs. ETF-Sparplan](/altersvorsorgedepot-vs-etf-sparplan): Vergleich mit klassischem ETF-Sparplan.
+- [vs. Riester](/altersvorsorgedepot-vs-riester): Unterschiede zur alten Riester-Rente.
+
+## Blog
+
+- [Altersvorsorgedepot beschlossen](/blog/altersvorsorgedepot-beschlossen): Kernpunkte des am 27.03.2026 beschlossenen Reformgesetzes.
+- [Altersvorsorgedepot ab 2027](/blog/altersvorsorgedepot-2027): Was sich für Sparer ab Inkrafttreten ändert.
+- [Rentenlücke berechnen](/blog/rentenlucke-berechnen): Methoden und Formeln zur Rentenlückenberechnung.
+- [Altersvorsorge mit 30 Jahren](/blog/altersvorsorge-30-jahre): Strategien für junge Sparer.
+- [Altersvorsorge ab 40](/blog/altersvorsorge-ab-40): Aufholstrategien in der Lebensmitte.
+- [Altersvorsorge mit 50](/blog/altersvorsorge-50-jahre): Optionen vor dem Ruhestand.
+- [Riester kündigen](/blog/riester-kuendigen): Wann kündigen, wann ruhen lassen.
+- [Blog Übersicht](/blog): Alle Artikel im Überblick.
+
+## Rechtliches
+
+- [Impressum](/impressum)
+- [Datenschutz](/datenschutz)
+
+## Optional
+
+- [Newsletter](/newsletter): Kostenlose Altersvorsorge-Checkliste als PDF.
+- [Rechner einbetten](/einbetten): Iframe-Code für externe Websites.
