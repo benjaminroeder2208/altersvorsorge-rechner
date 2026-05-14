@@ -360,8 +360,14 @@ function lengthClass(len: number, min: number, max: number): string {
   return "text-muted-foreground";
 }
 
-const SERP_TITLE_MAX = 60;
-const SERP_DESC_MAX = 160;
+type SerpDevice = "desktop" | "mobile";
+
+const SERP_LIMITS: Record<SerpDevice, { title: number; description: number; widthCls: string }> = {
+  // Desktop SERP shows ~600px snippets → ~60 title chars / ~160 description chars
+  desktop: { title: 60, description: 160, widthCls: "max-w-[600px]" },
+  // Mobile SERP is narrower → typically ~55 title chars / ~120 description chars
+  mobile: { title: 55, description: 120, widthCls: "max-w-[360px]" },
+};
 
 function truncateForSerp(text: string, max: number): string {
   if (text.length <= max) return text;
@@ -383,30 +389,38 @@ const SerpPreview = ({
   title,
   description,
   variant = "current",
+  device = "desktop",
 }: {
   label: string;
   path: string;
   title: string;
   description: string;
   variant?: "current" | "suggested";
+  device?: SerpDevice;
 }) => {
+  const limits = SERP_LIMITS[device];
   const cls =
     variant === "suggested"
       ? "rounded-md border border-primary/30 bg-primary/5 p-2.5"
       : "rounded-md border border-border bg-card p-2.5";
+  const titleSize = device === "mobile" ? "text-[14px]" : "text-[15px]";
+  const descSize = device === "mobile" ? "text-[12px]" : "text-[12.5px]";
   return (
-    <div className={cls}>
-      <div className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1.5">
-        {label}
+    <div className={`${cls} ${limits.widthCls}`}>
+      <div className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1.5 flex items-center justify-between gap-2">
+        <span>{label}</span>
+        <span className="text-muted-foreground/70 normal-case tracking-normal">
+          {device === "mobile" ? "Mobile" : "Desktop"} · {limits.title}/{limits.description}
+        </span>
       </div>
       <div className="text-[11px] text-muted-foreground leading-tight truncate">
         {pathToBreadcrumb(path)}
       </div>
-      <div className="text-[15px] leading-snug mt-0.5" style={{ color: "#1a0dab" }}>
-        {truncateForSerp(title || "(kein Titel)", SERP_TITLE_MAX)}
+      <div className={`${titleSize} leading-snug mt-0.5`} style={{ color: "#1a0dab" }}>
+        {truncateForSerp(title || "(kein Titel)", limits.title)}
       </div>
-      <div className="text-[12.5px] leading-snug mt-0.5" style={{ color: "#4d5156" }}>
-        {truncateForSerp(description || "(keine Description)", SERP_DESC_MAX)}
+      <div className={`${descSize} leading-snug mt-0.5`} style={{ color: "#4d5156" }}>
+        {truncateForSerp(description || "(keine Description)", limits.description)}
       </div>
     </div>
   );
