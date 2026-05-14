@@ -115,6 +115,7 @@ const KEYWORDS: Kw[] = [
     intent: "transactional",
     covered: "/",
     relatedPages: ["/altersvorsorgedepot-foerderung", "/altersvorsorgedepot-vs-riester"],
+    serp: ["official", "media", "fintech", "bank", "paa"],
     outline: [
       "Riester-Zulage 2026 in Zahlen: Grundzulage, Kinderzulage, Berufseinsteiger-Bonus",
       "Anspruchsvoraussetzungen + Mindesteigenbeitrag (4 %)",
