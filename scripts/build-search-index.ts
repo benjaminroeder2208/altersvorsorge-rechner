@@ -10,10 +10,11 @@
  * Excluded: noindex routes, /admin/*, /embed/*.
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { ROUTES } from "./seo-routes";
 
-const ROOT = resolve(import.meta.dir ?? __dirname, "..");
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const APP_TSX = resolve(ROOT, "src/App.tsx");
 const PAGES_DIR = resolve(ROOT, "src/pages");
 const OUT = resolve(ROOT, "public/search-index.json");
