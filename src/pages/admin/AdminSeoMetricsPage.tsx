@@ -16,6 +16,7 @@ interface MetricRow {
   description: string;
   ogType: "website" | "article";
   source: "SSOT" | "Blog";
+  sourceFile: string;
 }
 
 interface Suggestion {
