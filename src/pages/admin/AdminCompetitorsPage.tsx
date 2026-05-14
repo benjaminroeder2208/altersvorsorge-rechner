@@ -90,6 +90,33 @@ const KEYWORDS: KeywordBlock[] = [
     ],
     ourEdge: "KD nur 23/100 — sehr gut erreichbar. Vorteil gegenüber Behörden: aktueller, mit Rechner. Vorteil gegenüber Banken/Fintechs: unabhängig (kein Produktverkauf). Sweet Spot.",
   },
+  {
+    keyword: "altersvorsorge",
+    volume: "18.100 / Monat",
+    difficulty: "46/100",
+    difficultyLabel: "anspruchsvoll",
+    results: [
+      { pos: 1, domain: "de.wikipedia.org", url: "https://de.wikipedia.org/wiki/Altersvorsorge", type: "wiki" },
+      { pos: 2, domain: "deutsche-rentenversicherung.de", url: "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Drei-Saeulen-der-Altersvorsorge/drei-saeulen-der-altersvorsorge_node.html", type: "official" },
+      { pos: 3, domain: "finanztip.de", url: "https://www.finanztip.de/altersvorsorge/", type: "media" },
+      { pos: 4, domain: "verbraucherzentrale.de", url: "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge", type: "official" },
+      { pos: 5, domain: "bundesfinanzministerium.de", url: "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Lohnsteuer/Private-Altersvorsorge/private-altersvorsorge.html", type: "official" },
+      { pos: 6, domain: "stiftung-warentest.de", url: "https://www.test.de/thema/altersvorsorge/", type: "media" },
+      { pos: 7, domain: "allianz.de", url: "https://www.allianz.de/vorsorge/altersvorsorge/", type: "competitor" },
+      { pos: 8, domain: "ing.de", url: "https://www.ing.de/wissen/altersvorsorge/", type: "bank" },
+      { pos: 9, domain: "finanzfluss.de", url: "https://www.finanzfluss.de/geldanlage/altersvorsorge/", type: "fintech" },
+      { pos: 10, domain: "youtube.com", url: "https://www.youtube.com/results?search_query=altersvorsorge", type: "video" },
+    ],
+    angles: [
+      'Hub-Seite »Altersvorsorge 2026/2027 — der komplette Überblick nach der Reform« als zentrale Landingpage mit Drei-Säulen-Modell + neuem Altersvorsorgedepot.',
+      'Interaktiver Entscheidungsbaum »Welche Altersvorsorge passt zu mir?« nach Alter, Familienstand, Einkommen — keiner der Top-10 hat ein interaktives Tool.',
+      "Vergleichstabelle aller Vorsorge-Formen 2027 (gesetzlich, Depot, bAV, Riester-Bestand, Rürup, ETF) mit Förderquote, Bindung, Kosten und Steuern.",
+      "Zielgruppen-Cluster (Berufseinsteiger, Familien, Selbstständige, 50+) — Wikipedia und Behörden bieten nur generische Inhalte.",
+      "Aktualitäts-Hebel: Reform-Updates aus Drs. 21/4996 prominent platziert. Wikipedia und BMF aktualisieren langsamer.",
+      "Schema.org `Article` + `FAQPage` + `BreadcrumbList`, jährlich aktualisierter `dateModified`-Timestamp für News-Boost.",
+    ],
+    ourEdge: "KD 46/100 ist anspruchsvoll, aber die Top-10 ist breit und unspezifisch (Wikipedia, Behörden, Versicherer). Mit der Reform-Aktualität (2027) und einem echten interaktiven Tool gibt es einen klaren Differenzierungs-Hebel — kein Top-10-Ergebnis kombiniert beides.",
+  },
 ];
 
 const AdminCompetitorsPage = () => {
