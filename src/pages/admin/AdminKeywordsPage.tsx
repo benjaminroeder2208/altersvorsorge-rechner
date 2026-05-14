@@ -245,6 +245,61 @@ function priorityScore(k: Kw): number {
   return (k.volume / (k.kd + 10)) * intentWeight;
 }
 
+/** SERP-Typ-Metadaten für Badges. */
+const SERP_META: Record<SerpType, { label: string; tone: string; hint: string }> = {
+  official: { label: "Offiziell", tone: "bg-disclaimer text-disclaimer-foreground", hint: "BMF / Deutsche Rentenversicherung — sehr schwer zu schlagen" },
+  wiki: { label: "Wiki", tone: "bg-secondary text-foreground", hint: "Wikipedia — hohe Autorität, oft Top-3" },
+  media: { label: "Medien", tone: "bg-secondary text-foreground", hint: "Stiftung Warentest, FAZ, Handelsblatt etc." },
+  bank: { label: "Bank", tone: "bg-secondary text-foreground", hint: "Sparkasse, ING, DKB, Allianz" },
+  fintech: { label: "Fintech", tone: "bg-secondary text-foreground", hint: "Finanzfluss, Finanztip, Trade Republic, Scalable" },
+  competitor: { label: "Wettbewerb", tone: "bg-primary/10 text-primary", hint: "Direkter Themen-Wettbewerber" },
+  comparison: { label: "Vergleich", tone: "bg-secondary text-foreground", hint: "Check24, Verivox & Co." },
+  calculator: { label: "Rechner", tone: "bg-primary text-primary-foreground", hint: "Tool/Rechner-Ergebnis — direkter Wettbewerb für uns" },
+  video: { label: "Video", tone: "bg-secondary text-foreground", hint: "YouTube-Karussell — Lücke für eigenes Video" },
+  paa: { label: "People also ask", tone: "bg-secondary text-foreground", hint: "Frage-Box mit FAQ-Chance" },
+  featured_snippet: { label: "Featured Snippet", tone: "bg-disclaimer text-disclaimer-foreground", hint: "Position 0 — schwer, aber lohnenswert" },
+  news: { label: "News", tone: "bg-secondary text-foreground", hint: "Top-Stories-Karussell aktuell" },
+};
+
+/** Standard-SERP nach Intent, falls für ein Keyword keine individuelle Recherche vorhanden. */
+function defaultSerp(k: Kw): SerpType[] {
+  if (k.intent === "question") return ["paa", "media", "featured_snippet", "wiki"];
+  if (k.intent === "comparison") return ["fintech", "media", "comparison", "bank"];
+  if (k.intent === "transactional") return ["official", "media", "fintech", "bank"];
+  if (k.intent === "broad") return ["wiki", "official", "media", "fintech"];
+  return ["media", "fintech", "wiki"];
+}
+
+function serpFor(k: Kw): SerpType[] {
+  return k.serp && k.serp.length > 0 ? k.serp : defaultSerp(k);
+}
+
+/**
+ * Content-Score 0–100: geschätzte Realisierbarkeit eines Top-10-Rankings.
+ * Höher = einfacher zu ranken. Berücksichtigt KD, SERP-Konkurrenz, Intent und vorhandene Coverage.
+ */
+function contentScore(k: Kw): number {
+  let score = 100 - k.kd; // Basis: Inverse Difficulty
+  const serp = serpFor(k);
+  if (serp.includes("official")) score -= 12;
+  if (serp.includes("wiki")) score -= 6;
+  if (serp.includes("featured_snippet")) score -= 4;
+  if (serp.includes("paa")) score += 4;
+  if (serp.includes("video")) score += 3;
+  if (serp.includes("comparison")) score -= 4;
+  if (k.intent === "question") score += 6;
+  if (k.intent === "comparison") score += 3;
+  if (k.covered) score += 8; // Wir haben bereits einen Fuß in der Tür
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function scoreTone(s: number): { label: string; tone: string } {
+  if (s >= 70) return { label: "Leicht", tone: "bg-primary text-primary-foreground" };
+  if (s >= 50) return { label: "Machbar", tone: "bg-primary/15 text-primary" };
+  if (s >= 30) return { label: "Schwer", tone: "bg-disclaimer text-disclaimer-foreground" };
+  return { label: "Sehr schwer", tone: "bg-secondary text-foreground" };
+}
+
 const AdminKeywordsPage = () => {
   const [filter, setFilter] = useState("");
   const [selected, setSelected] = useState<Kw | null>(null);
