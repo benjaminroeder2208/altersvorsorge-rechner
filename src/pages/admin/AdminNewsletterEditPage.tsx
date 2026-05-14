@@ -44,7 +44,7 @@ const AdminNewsletterEditPage = () => {
   const [subject, setSubject] = useState("");
   const [preheader, setPreheader] = useState("");
   const [htmlContent, setHtmlContent] = useState(
-    `<h1 style="font-size:22px;font-weight:bold;color:#1B4FD8;margin:0 0 16px;">Hallo,</h1>\n<p>Willkommen zur dieswöchigen Ausgabe …</p>`,
+    `<h1 style="font-size:22px;font-weight:bold;color:${BRAND.primary};margin:0 0 16px;">Hallo,</h1>\n<p>Willkommen zur dieswöchigen Ausgabe …</p>`,
   );
   const [scheduledLocal, setScheduledLocal] = useState("");
   const [loading, setLoading] = useState(!isNew);
