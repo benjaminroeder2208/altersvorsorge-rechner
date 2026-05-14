@@ -342,7 +342,10 @@ const AdminSeoMetricsPage = () => {
                         <div className="space-y-2">
                           <ul className="text-xs text-destructive space-y-0.5">
                             {r.violations.map((v) => (
-                              <li key={v}>• {v}</li>
+                              <li key={v.type}>
+                                • {v.message}
+                                <span className="text-muted-foreground"> · +{v.severity}</span>
+                              </li>
                             ))}
                           </ul>
                           {r.suggestions.length > 0 && (
