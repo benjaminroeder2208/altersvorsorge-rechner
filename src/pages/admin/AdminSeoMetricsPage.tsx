@@ -658,23 +658,48 @@ const AdminSeoMetricsPage = () => {
 
         {summary.length > 0 && (
           <div className="mb-6 rounded-lg border border-border bg-card p-3 sm:p-4">
-            <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">
-              Verstöße nach Typ (Priorität)
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <div className="text-xs uppercase tracking-wide text-muted-foreground">
+                Verstöße nach Typ (Priorität)
+              </div>
+              <span className="text-[10px] text-muted-foreground hidden sm:inline">
+                Klicken, um Tabelle nur auf diesen Typ zu filtern
+              </span>
             </div>
             <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
               {summary.map((s) => {
                 const bucket = severityBucket(s.severity);
+                const isActive = activeTypes.has(s.type);
+                const isOnlyActive = isActive && activeTypes.size === 1;
                 return (
-                  <li key={s.type} className="flex items-center justify-between gap-3">
-                    <span className="text-foreground">{VIOLATION_LABELS[s.type]}</span>
-                    <span className="flex items-center gap-2 shrink-0">
-                      <span className="text-xs text-muted-foreground">
-                        {s.count}× · Score {s.severity}
+                  <li key={s.type}>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveTypes(isOnlyActive ? new Set() : new Set([s.type]))
+                      }
+                      aria-pressed={isActive}
+                      title={
+                        isOnlyActive
+                          ? "Filter aufheben"
+                          : `Tabelle auf „${VIOLATION_LABELS[s.type]}“ filtern`
+                      }
+                      className={`w-full flex items-center justify-between gap-3 px-2 py-1 -mx-2 rounded text-left transition-colors ${
+                        isActive
+                          ? "bg-primary/10 ring-1 ring-primary/40"
+                          : "hover:bg-muted"
+                      }`}
+                    >
+                      <span className="text-foreground">{VIOLATION_LABELS[s.type]}</span>
+                      <span className="flex items-center gap-2 shrink-0">
+                        <span className="text-xs text-muted-foreground">
+                          {s.count}× · Score {s.severity}
+                        </span>
+                        <span className={`text-[10px] px-1.5 py-0.5 rounded ${bucket.cls}`}>
+                          {bucket.label}
+                        </span>
                       </span>
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded ${bucket.cls}`}>
-                        {bucket.label}
-                      </span>
-                    </span>
+                    </button>
                   </li>
                 );
               })}
