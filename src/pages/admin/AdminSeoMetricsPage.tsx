@@ -123,44 +123,68 @@ function buildRows(): RowWithViolations[] {
     .map((r) => {
       const titleLen = r.title.length;
       const descLen = r.description.length;
-      const violations: string[] = [];
-      const suggestions: { field: string; value: string; note?: string }[] = [];
+      const violations: Violation[] = [];
+      const suggestions: Suggestion[] = [];
 
       if (titleLen === 0) {
-        violations.push("Titel fehlt");
+        violations.push({ type: "title-missing", message: "Titel fehlt", severity: 5 });
       } else if (titleLen > TITLE_MAX) {
-        violations.push(`Titel zu lang (${titleLen} > ${TITLE_MAX})`);
+        const sev = clamp(1 + Math.ceil((titleLen - TITLE_MAX) / 4), 1, 4);
+        violations.push({
+          type: "title-too-long",
+          message: `Titel zu lang (${titleLen} > ${TITLE_MAX})`,
+          severity: sev,
+        });
         suggestions.push({ field: "title", value: shortenTitle(r.title, TITLE_MAX) });
       }
 
       if (descLen === 0) {
-        violations.push("Description fehlt");
+        violations.push({ type: "desc-missing", message: "Description fehlt", severity: 4 });
       } else if (descLen < DESC_MIN) {
-        violations.push(`Description zu kurz (${descLen} < ${DESC_MIN})`);
+        const sev = clamp(1 + Math.ceil((DESC_MIN - descLen) / 15), 1, 3);
+        violations.push({
+          type: "desc-too-short",
+          message: `Description zu kurz (${descLen} < ${DESC_MIN})`,
+          severity: sev,
+        });
         suggestions.push({
           field: "description",
           value: r.description,
           note: `Um ≥ ${DESC_MIN - descLen} Zeichen erweitern – z. B. konkreten Nutzen, Förderhöhe oder CTA ergänzen.`,
         });
       } else if (descLen > DESC_MAX) {
-        violations.push(`Description zu lang (${descLen} > ${DESC_MAX})`);
+        const sev = clamp(1 + Math.ceil((descLen - DESC_MAX) / 15), 1, 3);
+        violations.push({
+          type: "desc-too-long",
+          message: `Description zu lang (${descLen} > ${DESC_MAX})`,
+          severity: sev,
+        });
         suggestions.push({ field: "description", value: shortenDescription(r.description, DESC_MAX) });
       }
 
       const isBlog = r.path.startsWith("/blog/");
       if (isBlog && r.ogType !== "article") {
-        violations.push("ogType sollte 'article' sein");
+        violations.push({
+          type: "ogtype-should-article",
+          message: "ogType sollte 'article' sein",
+          severity: 2,
+        });
         suggestions.push({ field: "ogType", value: 'ogType="article"' });
       }
       if (!isBlog && r.ogType === "article" && r.path !== "/blog") {
-        violations.push("ogType 'article' für Nicht-Blog-Route");
+        violations.push({
+          type: "ogtype-should-website",
+          message: "ogType 'article' für Nicht-Blog-Route",
+          severity: 1,
+        });
         suggestions.push({ field: "ogType", value: 'ogType="website"' });
       }
 
-      return { ...r, titleLen, descLen, violations, suggestions };
+      const severity = violations.reduce((sum, v) => sum + v.severity, 0);
+      return { ...r, titleLen, descLen, violations, suggestions, severity };
     })
     .sort((a, b) => {
-      if (a.violations.length !== b.violations.length) return b.violations.length - a.violations.length;
+      if (a.severity !== b.severity) return b.severity - a.severity;
       return a.path.localeCompare(b.path);
     });
 }
