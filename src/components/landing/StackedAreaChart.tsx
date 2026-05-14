@@ -38,7 +38,7 @@ const StackedTooltip = ({ active, payload, label }: any) => {
           <span className="text-sm font-bold tabular-nums">{fmtEur(point.total)}</span>
         </div>
       </div>
-      <p className="text-[10px] text-muted-foreground/50 mt-3 leading-tight">
+      <p className="text-[10px] text-muted-foreground mt-3 leading-tight">
         Vereinfachte Simulation auf Basis Ihrer Eingaben.
       </p>
     </div>

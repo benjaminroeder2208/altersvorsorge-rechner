@@ -278,7 +278,7 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
 
               {/* Disclaimer */}
               {!loading && (
-                <p className="text-[11px] text-muted-foreground/50 leading-relaxed">
+                <p className="text-[11px] text-muted-foreground leading-relaxed">
                   Diese KI-Auswertung dient ausschließlich der allgemeinen Information und stellt keine individuelle
                   Finanz- oder Anlageberatung dar. Bitte konsultiere bei konkreten Entscheidungen einen zugelassenen
                   Finanzberater.

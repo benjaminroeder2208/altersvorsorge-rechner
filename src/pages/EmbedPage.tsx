@@ -238,7 +238,7 @@ const EmbedPage = () => {
                   onChange={(e) => set("monthlyContribution", Number(e.target.value))}
                   className="w-full h-1.5 bg-gray-200 rounded-full appearance-none cursor-pointer"
                   style={{ accentColor: primaryColor }} />
-                <div className="flex justify-between text-xs text-gray-400 mt-1"><span>10 €</span><span>600 €</span></div>
+                <div className="flex justify-between text-xs text-gray-600 mt-1"><span>10 €</span><span>600 €</span></div>
               </div>
 
               <button onClick={() => setStep(2)}
@@ -338,7 +338,7 @@ const EmbedPage = () => {
                 <div className="bg-gray-50 rounded-xl p-4">
                   <p className="text-xs text-gray-500 mb-1">Staatliche Förderung</p>
                   <p className="text-lg font-bold" style={{ color: primaryColor }}>{fmtEur(Math.round(r.totalSubsidies))}</p>
-                  <p className="text-[10px] text-gray-400 mt-1 leading-snug">
+                  <p className="text-[10px] text-gray-600 mt-1 leading-snug">
                     Summe aller Grundzulagen über die Ansparzeit. Unabhängig vom Einkommen — direkt ins Depot.
                   </p>
                 </div>
@@ -371,7 +371,7 @@ const EmbedPage = () => {
                   <form onSubmit={handleEmailSubmit} className="space-y-3">
                     <div className="flex gap-2">
                       <input type="email" required placeholder="Deine E-Mail" value={email} onChange={(e) => setEmail(e.target.value)}
-                        className="flex-1 px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2" style={{ focusRingColor: primaryColor } as any} />
+                        className="flex-1 px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2" style={{ focusRingColor: primaryColor } as any} />
                       <button type="submit" disabled={emailStatus === "sending" || !dsgvoAccepted}
                         className="px-4 py-2.5 rounded-lg text-white font-medium text-sm hover:opacity-90 disabled:opacity-50"
                         style={{ background: primaryColor }}>
@@ -394,7 +394,7 @@ const EmbedPage = () => {
               </div>
 
               {/* Restart */}
-              <button onClick={() => setStep(1)} className="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-4 mb-4">
+              <button onClick={() => setStep(1)} className="text-xs text-gray-600 hover:text-gray-800 underline underline-offset-4 mb-4">
                 Neue Berechnung
               </button>
             </motion.div>
@@ -403,12 +403,12 @@ const EmbedPage = () => {
 
         {/* Disclaimer */}
         <div className="mt-6 pt-4 border-t border-gray-100 space-y-1">
-          <p className="text-[9px] text-gray-400 leading-relaxed text-center">
+          <p className="text-[9px] text-gray-600 leading-relaxed text-center">
             Simulation auf Basis des Altersvorsorgereformgesetzes (27.03.2026). Keine Anlage-, Steuer- oder Rechtsberatung. Kapitalanlagen bergen Risiken. Angaben ohne Gewähr.
           </p>
           <p className="text-center">
             <a href="https://altersvorsorge-rechner.com?ref=embed" target="_blank" rel="noopener noreferrer"
-              className="text-[10px] text-gray-400 hover:text-gray-600 transition-colors">
+              className="text-[10px] text-gray-600 hover:text-gray-800 transition-colors">
               Powered by altersvorsorge-rechner.com
             </a>
           </p>

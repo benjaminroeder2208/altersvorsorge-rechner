@@ -190,7 +190,7 @@ const RentenCheckPage = () => {
 
         {/* Footer */}
         <div className="border-t border-border/30 py-4 px-6">
-          <p className="text-xs text-muted-foreground/50 text-center">
+          <p className="text-xs text-muted-foreground text-center">
             Renten-Check · Vereinfachte Schätzung · Keine Anlageberatung
           </p>
         </div>
