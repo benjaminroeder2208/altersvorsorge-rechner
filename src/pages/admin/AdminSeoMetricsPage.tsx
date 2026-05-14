@@ -472,7 +472,7 @@ const AdminSeoMetricsPage = () => {
           Übersicht über Title-Länge, Description-Länge und ogType pro Route. Quellen:
           {" "}
           <code>scripts/seo-routes.ts</code> (SSOT-Routen) und <code>src/pages/Blog*.tsx</code>{" "}
-          (PageHead-Props). Limits: Title ≤ {TITLE_MAX}, Description {DESC_MIN}–{DESC_MAX}.
+          (PageHead-Props). Default-Limits: Title ≤ {defTitleMax}, Description {defDescMin}–{defDescMax}. <Link to="/admin/seo/settings" className="text-primary hover:underline inline-flex items-center gap-1"><Settings className="w-3 h-3" /> anpassen</Link>.
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4 text-xs">
