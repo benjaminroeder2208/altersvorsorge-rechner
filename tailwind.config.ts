@@ -74,6 +74,24 @@ export default {
           border: "hsl(var(--embed-border))",
           "border-subtle": "hsl(var(--embed-border-subtle))",
         },
+        "primary-soft": {
+          DEFAULT: "hsl(var(--primary-soft))",
+          foreground: "hsl(var(--primary-soft-foreground))",
+          border: "hsl(var(--primary-soft-border))",
+        },
+        "brand-amber": {
+          DEFAULT: "hsl(var(--brand-amber))",
+          foreground: "hsl(var(--brand-amber-foreground))",
+        },
+        "brand-red": {
+          DEFAULT: "hsl(var(--brand-red))",
+          foreground: "hsl(var(--brand-red-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        overlay: "hsl(var(--overlay))",
       },
       borderRadius: {
         lg: "var(--radius)",
