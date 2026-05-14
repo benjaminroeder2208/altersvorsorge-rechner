@@ -164,8 +164,8 @@ const BlogBeschlossen = () => {
 
               {/* ── Grüne Info-Box ── */}
               <AnimatedSection delay={0.1}>
-                <div className="p-5 rounded-xl mb-8 mt-6 bg-emerald-50 border border-emerald-500">
-                  <p className="text-sm text-emerald-900 mb-3">
+                <div className="p-5 rounded-xl mb-8 mt-6 bg-success/10 border border-success">
+                  <p className="text-sm text-success mb-3">
                     ✅ Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert. Berechne jetzt deine
                     persönliche Förderung.
                   </p>
