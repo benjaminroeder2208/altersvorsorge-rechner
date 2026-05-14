@@ -1,7 +1,7 @@
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Trophy, Target, Lightbulb } from "lucide-react";
+import { ExternalLink, Trophy, Target, Lightbulb, Gauge } from "lucide-react";
 
 /**
  * Snapshot von Semrush SERP-Daten (Datenbank: DE).
@@ -16,17 +16,30 @@ interface SerpEntry {
   type: "official" | "media" | "bank" | "fintech" | "wiki" | "video" | "competitor";
 }
 
+type SerpKind = "official" | "media" | "bank" | "fintech" | "wiki" | "video" | "competitor";
+
+interface SerpEntry {
+  pos: number;
+  domain: string;
+  url: string;
+  type: SerpKind;
+}
+
+type Angle = string | { text: string; priority?: boolean };
+
 interface KeywordBlock {
   keyword: string;
   volume: string;
   difficulty: string;
   difficultyLabel: string;
+  /** Numerische KD 0–100 für die Score-Berechnung. */
+  kd: number;
   results: SerpEntry[];
-  angles: string[];
+  angles: Angle[];
   ourEdge: string;
 }
 
-const TYPE_LABEL: Record<SerpEntry["type"], { label: string; tone: string }> = {
+const TYPE_LABEL: Record<SerpKind, { label: string; tone: string }> = {
   official: { label: "Behörde", tone: "bg-disclaimer text-disclaimer-foreground" },
   media: { label: "Ratgeber", tone: "bg-secondary text-foreground" },
   bank: { label: "Bank", tone: "bg-secondary text-foreground" },
@@ -36,12 +49,45 @@ const TYPE_LABEL: Record<SerpEntry["type"], { label: string; tone: string }> = {
   competitor: { label: "Wettbewerber", tone: "bg-secondary text-foreground" },
 };
 
+/**
+ * Content-Score 0–100 (höher = einfacher zu ranken).
+ * Heuristik analog Keyword-Dashboard: Basis = 100 − KD, gewichtet nach SERP-Mix.
+ * Behörden/Wiki ziehen den Score; Video- und Wettbewerber-Lücken heben ihn.
+ */
+function contentScore(k: KeywordBlock): number {
+  let score = 100 - k.kd;
+  const types = new Set(k.results.map((r) => r.type));
+  if (types.has("official")) score -= 12;
+  if (types.has("wiki")) score -= 6;
+  if (types.has("media")) score -= 4;
+  if (types.has("bank")) score -= 2;
+  if (types.has("fintech")) score -= 2;
+  if (types.has("video")) score += 4; // YouTube-Karussell = Lücke für eigenes Embed
+  if (types.has("competitor")) score += 3; // Direkter Wettbewerber statt Behörde = schlagbar
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function scoreTone(s: number): { label: string; tone: string } {
+  if (s >= 70) return { label: "Leicht", tone: "bg-primary text-primary-foreground" };
+  if (s >= 50) return { label: "Machbar", tone: "bg-primary/15 text-primary" };
+  if (s >= 30) return { label: "Schwer", tone: "bg-disclaimer text-disclaimer-foreground" };
+  return { label: "Sehr schwer", tone: "bg-secondary text-foreground" };
+}
+
+function angleText(a: Angle): string {
+  return typeof a === "string" ? a : a.text;
+}
+function isPriority(a: Angle): boolean {
+  return typeof a !== "string" && !!a.priority;
+}
+
 const KEYWORDS: KeywordBlock[] = [
   {
     keyword: "riester zulage",
     volume: "2.400 / Monat",
     difficulty: "34/100",
     difficultyLabel: "machbar",
+    kd: 34,
     results: [
       { pos: 1, domain: "riester.deutsche-rentenversicherung.de", url: "https://riester.deutsche-rentenversicherung.de/DE/Lohnt-sich-Riester/Staatliche-Foerderung-fuer-Sie/staatliche-foerderung-fuer-sie_node", type: "official" },
       { pos: 2, domain: "raisin.com", url: "https://www.raisin.com/de-de/altersvorsorge/riester-rente/zulagen/", type: "fintech" },
@@ -68,6 +114,7 @@ const KEYWORDS: KeywordBlock[] = [
     volume: "3.600 / Monat",
     difficulty: "23/100",
     difficultyLabel: "leicht",
+    kd: 23,
     results: [
       { pos: 1, domain: "bundesfinanzministerium.de", url: "https://www.bundesfinanzministerium.de/Content/DE/FAQ/reform-der-privaten-altersvorsorge.html", type: "official" },
       { pos: 2, domain: "finanztip.de", url: "https://www.finanztip.de/altersvorsorge/altersvorsorgedepot-rechner/", type: "media" },
@@ -95,6 +142,7 @@ const KEYWORDS: KeywordBlock[] = [
     volume: "18.100 / Monat",
     difficulty: "46/100",
     difficultyLabel: "anspruchsvoll",
+    kd: 46,
     results: [
       { pos: 1, domain: "de.wikipedia.org", url: "https://de.wikipedia.org/wiki/Altersvorsorge", type: "wiki" },
       { pos: 2, domain: "deutsche-rentenversicherung.de", url: "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Drei-Saeulen-der-Altersvorsorge/drei-saeulen-der-altersvorsorge_node.html", type: "official" },
@@ -107,15 +155,17 @@ const KEYWORDS: KeywordBlock[] = [
       { pos: 9, domain: "finanzfluss.de", url: "https://www.finanzfluss.de/geldanlage/altersvorsorge/", type: "fintech" },
       { pos: 10, domain: "youtube.com", url: "https://www.youtube.com/results?search_query=altersvorsorge", type: "video" },
     ],
+    // Reihenfolge korreliert mit Score-Treibern: Top-3 sind die H2-Abschnitte, die den Score
+    // direkt heben (Video-Lücke +4, Wettbewerber-Schwäche +3, Aktualitäts-Hebel kompensiert official/wiki).
     angles: [
-      'Hub-Seite »Altersvorsorge 2026/2027 — der komplette Überblick nach der Reform« als zentrale Landingpage mit Drei-Säulen-Modell + neuem Altersvorsorgedepot.',
-      'Interaktiver Entscheidungsbaum »Welche Altersvorsorge passt zu mir?« nach Alter, Familienstand, Einkommen — keiner der Top-10 hat ein interaktives Tool.',
-      "Vergleichstabelle aller Vorsorge-Formen 2027 (gesetzlich, Depot, bAV, Riester-Bestand, Rürup, ETF) mit Förderquote, Bindung, Kosten und Steuern.",
-      "Zielgruppen-Cluster (Berufseinsteiger, Familien, Selbstständige, 50+) — Wikipedia und Behörden bieten nur generische Inhalte.",
-      "Aktualitäts-Hebel: Reform-Updates aus Drs. 21/4996 prominent platziert. Wikipedia und BMF aktualisieren langsamer.",
+      { text: "H2 »Reform 2026/2027 — was sich konkret ändert« mit Drs. 21/4996 prominent oben. Direkter Hebel gegen Wikipedia/BMF (langsame Aktualisierung) und gegen Versicherer-Seiten (Eigeninteresse). Kompensiert -18 Score-Penalty aus official + wiki.", priority: true },
+      { text: "H2 »Welche Altersvorsorge passt zu mir? — interaktiver Entscheidungsbaum« nach Alter, Familie, Einkommen. Schließt die Tool-Lücke (kein Top-10-Ergebnis hat eines) und nutzt die Wettbewerber-Schwäche (+3 Score-Boost durch competitor in Pos. 7).", priority: true },
+      { text: "H2 »Altersvorsorge erklärt in 90 Sekunden« als eingebettetes Video + Transkript. Bedient die Video-Intent in Pos. 10 (+4 Score-Boost) und liefert Featured-Snippet-Material.", priority: true },
+      "H2 »Vergleichstabelle aller Vorsorge-Formen 2027« (gesetzlich, Depot, bAV, Riester-Bestand, Rürup, ETF) mit Förderquote, Bindung, Kosten, Steuern.",
+      "H2 »Altersvorsorge nach Lebensphase« — Cluster für Berufseinsteiger, Familien, Selbstständige, 50+. Wikipedia und Behörden bieten nur generische Inhalte.",
       "Schema.org `Article` + `FAQPage` + `BreadcrumbList`, jährlich aktualisierter `dateModified`-Timestamp für News-Boost.",
     ],
-    ourEdge: "KD 46/100 ist anspruchsvoll, aber die Top-10 ist breit und unspezifisch (Wikipedia, Behörden, Versicherer). Mit der Reform-Aktualität (2027) und einem echten interaktiven Tool gibt es einen klaren Differenzierungs-Hebel — kein Top-10-Ergebnis kombiniert beides.",
+    ourEdge: "Score 35/100 (Schwer): Wikipedia + 3× Behörde drücken den Score, aber Video-Karussell und Versicherer-Eigeninteresse öffnen Lücken. Reform-Aktualität, eigenes Tool und Erklärvideo sind die drei Score-Treiber — daher als Top-3-H2 priorisiert.",
   },
 ];
 
@@ -127,13 +177,19 @@ const AdminCompetitorsPage = () => {
       </p>
 
       <div className="space-y-8">
-        {KEYWORDS.map((kw) => (
+        {KEYWORDS.map((kw) => {
+          const score = contentScore(kw);
+          const tone = scoreTone(score);
+          return (
           <Card key={kw.keyword} className="p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
               <h2 className="text-lg sm:text-xl font-bold">"{kw.keyword}"</h2>
               <div className="flex flex-wrap gap-2 text-xs">
                 <Badge variant="secondary">Volumen: {kw.volume}</Badge>
                 <Badge variant="secondary">KD: {kw.difficulty} ({kw.difficultyLabel})</Badge>
+                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded ${tone.tone}`}>
+                  <Gauge className="w-3 h-3" /> Content-Score {score}/100 · {tone.label}
+                </span>
               </div>
             </div>
 
@@ -176,7 +232,14 @@ const AdminCompetitorsPage = () => {
                   {kw.angles.map((a, i) => (
                     <li key={i} className="flex gap-2">
                       <span className="text-primary shrink-0">•</span>
-                      <span>{a}</span>
+                      <span>
+                        {isPriority(a) && (
+                          <Badge className="mr-2 align-middle bg-primary text-primary-foreground hover:bg-primary text-[10px]">
+                            Score-Treiber
+                          </Badge>
+                        )}
+                        {angleText(a)}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -190,7 +253,8 @@ const AdminCompetitorsPage = () => {
               </div>
             </div>
           </Card>
-        ))}
+          );
+        })}
       </div>
 
       <p className="text-xs text-muted-foreground mt-8">
