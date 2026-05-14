@@ -182,7 +182,11 @@ function buildRows(): RowWithViolations[] {
       }
 
       const severity = violations.reduce((sum, v) => sum + v.severity, 0);
-      return { ...r, titleLen, descLen, violations, suggestions, severity };
+      const isBlog2 = r.path.startsWith("/blog/");
+      const blogOptimizations = isBlog2
+        ? buildBlogOptimizations(r.title, r.description)
+        : [];
+      return { ...r, titleLen, descLen, violations, suggestions, blogOptimizations, severity };
     })
     .sort((a, b) => {
       if (a.severity !== b.severity) return b.severity - a.severity;
