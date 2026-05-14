@@ -104,6 +104,15 @@ const Navbar = () => {
           </a>
         </div>
 
+        {/* Search icon (desktop) */}
+        <Link
+          to={`/suche${location.pathname === "/suche" && location.search ? location.search : ""}`}
+          aria-label="Suche öffnen"
+          className="hidden sm:inline-flex shrink-0 items-center justify-center w-9 h-9 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+        >
+          <Search className="w-4 h-4" />
+        </Link>
+
         {/* Sticky CTA */}
         <Link
           to="/"
