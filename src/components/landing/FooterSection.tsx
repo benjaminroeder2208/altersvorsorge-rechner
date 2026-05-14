@@ -83,6 +83,7 @@ const FooterSection = () =>
           </Link>
         </div>
         <div className="flex items-center gap-4">
+          <Link to="/suche" className="hover:text-foreground transition-colors">Suche</Link>
           <Link to="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
           <Link to="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
           <button
