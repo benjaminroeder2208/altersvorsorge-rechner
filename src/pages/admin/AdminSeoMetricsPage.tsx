@@ -410,9 +410,11 @@ const SuggestionList = ({
 };
 
 const AdminSeoMetricsPage = () => {
-  const rows = useMemo(buildRows, []);
+  const settings = useMemo(loadSeoSettings, []);
+  const rows = useMemo(() => buildRows(settings), [settings]);
   const violationCount = rows.filter((r) => r.violations.length > 0).length;
   const totalSeverity = rows.reduce((s, r) => s + r.severity, 0);
+  const { titleMax: defTitleMax, descMin: defDescMin, descMax: defDescMax } = settings.defaults;
 
   // Gruppierte Summary nach Verstoßtyp
   const summary = useMemo(() => {
