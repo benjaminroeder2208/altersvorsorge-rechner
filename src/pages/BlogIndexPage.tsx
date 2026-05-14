@@ -227,7 +227,7 @@ const CATEGORIES = [
 ] as const;
 
 const TAG_COLORS: Record<string, { bg: string; text: string }> = {
-  "Altersvorsorgedepot": { bg: "bg-[#EEF3FF]", text: "text-[#1B4FD8]" },
+  "Altersvorsorgedepot": { bg: "bg-primary-soft", text: "text-primary" },
   "Rentenlücke": { bg: "bg-red-50", text: "text-red-600" },
   "Vergleiche": { bg: "bg-purple-50", text: "text-purple-600" },
   "Vorsorge-Strategien": { bg: "bg-green-50", text: "text-green-700" },
@@ -320,22 +320,22 @@ const BlogIndexPage = () => {
           <AnimatedSection delay={0.1}>
             <Link
               to={featured.slug}
-              className="group block rounded-2xl bg-[#1B4FD8] p-8 md:p-10 mb-10 overflow-hidden relative"
+              className="group block rounded-2xl bg-primary p-8 md:p-10 mb-10 overflow-hidden relative"
             >
               <div className="flex flex-col md:flex-row items-start gap-6">
                 {/* Text */}
                 <div className="relative z-10 flex-1 min-w-0">
-                  <span className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-white/15 text-white mb-4">
+                  <span className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-primary-foreground/15 text-primary-foreground mb-4">
                     Featured
                   </span>
-                  <h2 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight">
+                  <h2 className="text-xl md:text-2xl font-bold text-primary-foreground mb-3 leading-tight">
                     {featured.title}
                   </h2>
-                  <p className="text-sm text-white/80 leading-relaxed mb-4 max-w-lg">
+                  <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4 max-w-lg">
                     Das Altersvorsorgedepot kommt 2027 und löst Riester ab. Wir erklären, wie die Förderung funktioniert, was du bekommst — und für wen es sich wirklich lohnt.
                   </p>
-                  <p className="text-xs text-white/60 mb-5">{featured.readingTime} Lesezeit</p>
-                  <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#1B4FD8] text-sm font-semibold group-hover:opacity-90 transition-opacity">
+                  <p className="text-xs text-primary-foreground/70 mb-5">{featured.readingTime} Lesezeit</p>
+                  <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background text-primary text-sm font-semibold group-hover:opacity-90 transition-opacity">
                     Artikel lesen <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
@@ -356,7 +356,7 @@ const BlogIndexPage = () => {
                   onClick={() => setActiveFilter(cat)}
                   className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     activeFilter === cat
-                      ? "bg-[#1B4FD8] text-white"
+                      ? "bg-primary text-primary-foreground"
                       : "bg-secondary text-muted-foreground hover:bg-secondary/70"
                   }`}
                 >

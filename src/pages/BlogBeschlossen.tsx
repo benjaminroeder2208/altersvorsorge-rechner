@@ -171,7 +171,7 @@ const BlogBeschlossen = () => {
                   </p>
                   <Link
                     to="/"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-700 transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-success text-primary-foreground text-sm font-semibold hover:bg-success/90 transition-colors"
                   >
                     Jetzt berechnen
                   </Link>
@@ -373,14 +373,14 @@ const BlogBeschlossen = () => {
 
               {/* ── CTA-Box ── */}
               <AnimatedSection delay={0.15}>
-                <div className="p-8 rounded-2xl mt-14 mb-10 bg-[#1B4FD8] text-white text-center">
+                <div className="p-8 rounded-2xl mt-14 mb-10 bg-primary text-primary-foreground text-center">
                   <p className="text-lg font-semibold mb-2">Berechne jetzt deine persönliche Förderung</p>
-                  <p className="text-sm text-white/80 mb-5">
+                  <p className="text-sm text-primary-foreground/80 mb-5">
                     Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert.
                   </p>
                   <Link
                     to="/"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#1B4FD8] text-sm font-semibold hover:opacity-90 transition-opacity"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-background text-primary text-sm font-semibold hover:opacity-90 transition-opacity"
                   >
                     Jetzt berechnen
                   </Link>
