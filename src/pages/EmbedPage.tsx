@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import PageHead from "@/components/seo/PageHead";
+import { BRAND } from "@/lib/brandColors";
 import {
   berechneGesamtfoerderung,
   MINDESTEIGENBEITRAG,
@@ -22,7 +23,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 function useEmbedParams() {
   const params = new URLSearchParams(window.location.search);
   return {
-    color: params.get("color") || "#1B4FD8",
+    color: params.get("color") || BRAND.primary,
     utmSource: params.get("utm_source") || null,
     lang: params.get("lang") || "de",
   };
