@@ -103,6 +103,10 @@ for (const sp of sitemapPaths) {
 // erfasst, daher nur Warnung statt Fehler).
 for (const sp of sitemapPaths) {
   if (!indexableSet.has(sp) && !sp.startsWith("/blog")) {
+    if (noindexRoutes.has(sp)) {
+      errors.push(`Sitemap-Eintrag ${sp} ist als noindex markiert (Widerspruch)`);
+      continue;
+    }
     warnings.push(`Sitemap-Eintrag ${sp} ist nicht in ROUTES (scripts/seo-routes.ts) gelistet`);
   }
 }
