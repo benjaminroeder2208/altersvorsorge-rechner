@@ -246,6 +246,140 @@ const RechnerPage = () => (
           </AnimatedSection>
         </div>
       </section>
+      {/* SEO: Riester Zulage erklärt */}
+      <section id="riester-zulage" className="section-padding bg-secondary">
+        <div className="container max-w-4xl mx-auto px-6">
+          <AnimatedSection className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Riester Zulage — wie sie heute funktioniert</h2>
+            <p className="text-muted-foreground mt-2">
+              Die staatliche Förderung der Riester-Rente im Überblick — und was sich mit dem neuen Altersvorsorgedepot ab 2027 ändert.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.1}>
+            <div className="grid sm:grid-cols-3 gap-4 mb-6">
+              <div className="p-5 rounded-2xl bg-background">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Grundzulage Riester</p>
+                <p className="text-2xl font-bold">175 €</p>
+                <p className="text-xs text-muted-foreground mt-1">pro Jahr, fix</p>
+              </div>
+              <div className="p-5 rounded-2xl bg-background">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Kinderzulage Riester</p>
+                <p className="text-2xl font-bold">300 €</p>
+                <p className="text-xs text-muted-foreground mt-1">pro Kind ab 2008 / 185 € davor</p>
+              </div>
+              <div className="p-5 rounded-2xl bg-background">
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Mindesteigenbeitrag</p>
+                <p className="text-2xl font-bold">4 %</p>
+                <p className="text-xs text-muted-foreground mt-1">des Vorjahresbruttos, abzgl. Zulagen</p>
+              </div>
+            </div>
+
+            <div className="text-sm text-muted-foreground space-y-3 leading-relaxed">
+              <p>
+                Die <strong className="text-foreground">Riester Zulage</strong> setzt sich aus Grundzulage und Kinderzulage zusammen. Volle Zulagen erhält nur, wer den Mindesteigenbeitrag von 4 % des Vorjahresbruttos einzahlt (max. 2.100 € inkl. Zulagen). Der Antrag läuft über den Anbieter, ausgezahlt wird die Zulage rückwirkend — meist 1–2 Jahre nach dem Beitragsjahr.
+              </p>
+              <p>
+                Mit dem am 27. März 2026 beschlossenen{" "}
+                <Link to="/altersvorsorgedepot-gesetz" className="text-primary underline">Altersvorsorgereformgesetz</Link>{" "}
+                wird die Förderung ab 2027 vollständig neu strukturiert: Statt fixer Beträge gilt eine prozentuale Zulage von 50 % auf Eigenbeiträge bis 360 € und 25 % auf 360–1.800 € — maximal 540 € pro Jahr. Bestehende Riester-Verträge bleiben bestehen, neue Abschlüsse sind ab 2027 nicht mehr förderfähig.
+              </p>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                to="/blog/riester-kuendigen"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background hover:bg-background/70 text-sm font-medium transition-colors"
+              >
+                Riester kündigen oder pausieren? <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/altersvorsorgedepot-vs-riester"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+              >
+                Riester vs. Altersvorsorgedepot <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* SEO: Altersvorsorgedepot — Riester vs. Depot Vergleich */}
+      <section id="riester-vs-depot" className="section-padding">
+        <div className="container max-w-4xl mx-auto px-6">
+          <AnimatedSection className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+              Altersvorsorgedepot vs. Riester — der direkte Vergleich
+            </h2>
+            <p className="text-muted-foreground mt-2">
+              Was das neue Altersvorsorgedepot ab 2027 anders macht — und für wen sich der Wechsel lohnen kann.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.1}>
+            <div className="overflow-x-auto -mx-2">
+              <table className="w-full text-sm border-collapse min-w-[560px]">
+                <thead>
+                  <tr>
+                    <th className="text-left py-3 px-4 font-medium text-muted-foreground" />
+                    <th className="py-3 px-4 font-semibold text-center text-muted-foreground">Riester-Rente</th>
+                    <th
+                      className="py-3 px-4 font-semibold text-center bg-primary text-primary-foreground"
+                      style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+                    >
+                      Altersvorsorgedepot
+                      <br />
+                      <span className="text-xs font-normal opacity-80">ab 2027</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { label: "Beitragsgarantie", r: "100 % der eingezahlten Beiträge", d: "Keine — volle Aktien-/ETF-Quote möglich" },
+                    { label: "Grundzulage", r: "175 € / Jahr (fix)", d: "50 % bis 360 € + 25 % bis 1.800 € — max. 540 €" },
+                    { label: "Kinderzulage", r: "300 € pro Kind (ab 2008)", d: "100 % der Eigenbeiträge — max. 300 € pro Kind" },
+                    { label: "Berufseinsteiger-Bonus", r: "200 € einmalig (unter 25)", d: "200 € einmalig (unter 25)" },
+                    { label: "Anlageform", r: "Versicherung, Banksparplan, Fondssparplan, Wohn-Riester", d: "Wertpapier-Depot (ETFs, Fonds, Aktien)" },
+                    { label: "Kostendeckel", r: "Kein gesetzlicher Deckel", d: "Max. 1,0 % p.a. (nur Standardprodukt)" },
+                    { label: "Antrag", r: "Über Anbieter, jährlich", d: "Automatisch — kein Zulagenantrag nötig" },
+                    { label: "Auszahlung", r: "Lebenslange Rente, 30 % Einmalentnahme möglich", d: "Rente ab 65–70, bis 30 % als Einmalentnahme" },
+                    { label: "Besteuerung", r: "Voll nachgelagert", d: "Voll nachgelagert" },
+                    { label: "Neuabschluss", r: "Ab 2027 nicht mehr förderfähig", d: "Start: 1. Januar 2027" },
+                  ].map((row, i) => (
+                    <tr key={row.label} className={i % 2 === 0 ? "bg-secondary" : ""}>
+                      <td className="py-3 px-4 font-medium text-muted-foreground align-top">{row.label}</td>
+                      <td className="py-3 px-4 text-center text-muted-foreground align-top">{row.r}</td>
+                      <td className="py-3 px-4 text-center align-top font-medium bg-primary-soft text-primary-soft-foreground">
+                        {row.d}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="text-center mt-8">
+              <Link
+                to="#rechner"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("rechner")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity active:scale-[0.97]"
+              >
+                Förderung im Depot berechnen <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="mt-6 p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
+              <p className="text-xs text-muted-foreground/70 leading-relaxed">
+                Quelle: Altersvorsorgereformgesetz, Beschlussempfehlung Drs. 21/4996 (beschlossen 27.03.2026), §§ 84, 85 EStG (neue Fassung). Bestehende Riester-Verträge laufen unverändert weiter — eine voreilige Kündigung ist meist nicht sinnvoll. Keine Anlage-, Steuer- oder Rechtsberatung.
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       <section id="mehr" className="section-padding">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-10">
