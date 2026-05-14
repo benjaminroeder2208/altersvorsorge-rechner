@@ -467,6 +467,18 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority, onSelect }: 
                       {k.kd}
                     </span>
                   </td>
+                  <td className="py-2.5 px-2 text-right align-top">
+                    {(() => {
+                      const s = contentScore(k);
+                      const t = scoreTone(s);
+                      return (
+                        <span className={`inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded text-[10px] ${t.tone}`}>
+                          <span className="tabular-nums font-semibold">{s}</span>
+                          <span className="opacity-80">{t.label}</span>
+                        </span>
+                      );
+                    })()}
+                  </td>
                   <td className="py-2.5 px-2 align-top">
                     <span className={`text-[10px] px-1.5 py-0.5 rounded ${meta.tone}`}>{meta.label}</span>
                   </td>
