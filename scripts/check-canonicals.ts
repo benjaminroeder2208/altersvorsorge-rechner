@@ -30,6 +30,19 @@ function extractCanonicals(html: string): string[] {
     .filter((h): h is string => Boolean(h));
 }
 
+function extractRobots(html: string): string[] {
+  const re = /<meta\b[^>]*\bname=["']robots["'][^>]*>/gi;
+  const tags = html.match(re) ?? [];
+  return tags
+    .map((t) => t.match(/\bcontent=["']([^"']+)["']/i)?.[1])
+    .filter((c): c is string => Boolean(c));
+}
+
+function isNoindex(content: string): boolean {
+  const tokens = content.toLowerCase().split(/[,\s]+/).filter(Boolean);
+  return tokens.includes("noindex") || tokens.includes("none");
+}
+
 const errors: string[] = [];
 const xml = readFileSync(SITEMAP_PATH, "utf8");
 const locs = parseSitemapLocs(xml);
