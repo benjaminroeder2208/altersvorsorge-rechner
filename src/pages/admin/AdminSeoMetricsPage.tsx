@@ -360,16 +360,81 @@ function lengthClass(len: number, min: number, max: number): string {
   return "text-muted-foreground";
 }
 
+/**
+ * Build a Lovable-ready prompt that performs a precise, single-file overwrite
+ * of one head field (title / description / ogType) in the project source.
+ * Pasting the prompt into Lovable chat triggers an instant search-replace.
+ */
+function buildOverwritePrompt(
+  row: { path: string; source: "SSOT" | "Blog"; sourceFile: string; title: string; description: string; ogType: string },
+  field: string,
+  newValue: string,
+): string {
+  // For ogType suggestions the value comes as `ogType="article"` — strip
+  // wrappers so we can quote the bare value cleanly.
+  const cleaned =
+    field === "ogType"
+      ? newValue.replace(/^ogType="?|"?$/g, "")
+      : newValue;
+
+  if (row.source === "SSOT") {
+    const oldLine =
+      field === "title"
+        ? `    title: ${JSON.stringify(row.title)},`
+        : field === "description"
+          ? `    description: ${JSON.stringify(row.description)},`
+          : `    ogType: ${JSON.stringify(row.ogType)},`;
+    const newLine =
+      field === "ogType"
+        ? `    ogType: ${JSON.stringify(cleaned)},`
+        : `    ${field}: ${JSON.stringify(cleaned)},`;
+    return [
+      `Bitte überschreibe in der SSOT-Route "${row.path}" das Feld "${field}".`,
+      ``,
+      `Datei: ${row.sourceFile}`,
+      `Suche im Objekt mit \`path: "${row.path}"\` nach der Zeile:`,
+      `\`\`\``,
+      oldLine,
+      `\`\`\``,
+      `Ersetze sie durch:`,
+      `\`\`\``,
+      newLine,
+      `\`\`\``,
+      `Andere Routen unverändert lassen.`,
+    ].join("\n");
+  }
+
+  // Blog: PageHead attribute
+  const attr = field === "ogType" ? "ogType" : field;
+  const oldAttr = `${attr}="${field === "ogType" ? row.ogType : field === "title" ? row.title : row.description}"`;
+  const newAttr = `${attr}="${cleaned}"`;
+  return [
+    `Bitte überschreibe in der Blog-Seite "${row.path}" das PageHead-Feld "${field}".`,
+    ``,
+    `Datei: ${row.sourceFile}`,
+    `Im <PageHead …/> ersetze:`,
+    `\`\`\``,
+    oldAttr,
+    `\`\`\``,
+    `durch:`,
+    `\`\`\``,
+    newAttr,
+    `\`\`\``,
+  ].join("\n");
+}
+
 const SuggestionList = ({
   label,
   items,
   tone = "default",
+  row,
 }: {
   label: string;
   items: Suggestion[];
   tone?: "default" | "primary";
+  row: { path: string; source: "SSOT" | "Blog"; sourceFile: string; title: string; description: string; ogType: string };
 }) => {
-  const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
+  const [copied, setCopied] = useState<{ idx: number; kind: "value" | "patch" } | null>(null);
   const labelCls =
     tone === "primary"
       ? "text-[10px] uppercase tracking-wide text-primary font-medium"
@@ -379,36 +444,55 @@ const SuggestionList = ({
       ? "rounded bg-primary/10 px-2 py-1 text-foreground break-words"
       : "rounded bg-muted/60 px-2 py-1 text-foreground break-words";
 
-  const handleCopy = (text: string, idx: number) => {
+  const handleCopy = (text: string, idx: number, kind: "value" | "patch") => {
     navigator.clipboard?.writeText(text);
-    setCopiedIdx(idx);
-    window.setTimeout(() => setCopiedIdx((c) => (c === idx ? null : c)), 1500);
+    setCopied({ idx, kind });
+    window.setTimeout(
+      () => setCopied((c) => (c && c.idx === idx && c.kind === kind ? null : c)),
+      1800,
+    );
   };
 
   return (
     <div className="space-y-1.5 pt-1.5 border-t border-border">
       <div className={labelCls}>{label}</div>
-      {items.map((s, i) => (
-        <div key={i} className="text-xs">
-          <div className="flex items-center justify-between gap-2 mb-0.5">
-            <span className="text-muted-foreground">
-              {s.field}
-              {s.field !== "ogType" && ` (${s.value.length} Z.)`}
-            </span>
-            <button
-              type="button"
-              onClick={() => handleCopy(s.value, i)}
-              className="text-primary hover:underline text-[11px]"
-            >
-              {copiedIdx === i ? "kopiert ✓" : "kopieren"}
-            </button>
+      {items.map((s, i) => {
+        const valueCopied = copied?.idx === i && copied.kind === "value";
+        const patchCopied = copied?.idx === i && copied.kind === "patch";
+        return (
+          <div key={i} className="text-xs">
+            <div className="flex items-center justify-between gap-2 mb-0.5">
+              <span className="text-muted-foreground">
+                {s.field}
+                {s.field !== "ogType" && ` (${s.value.length} Z.)`}
+              </span>
+              <span className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleCopy(s.value, i, "value")}
+                  className="text-muted-foreground hover:text-foreground text-[11px]"
+                >
+                  {valueCopied ? "kopiert ✓" : "Wert"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleCopy(buildOverwritePrompt(row, s.field, s.value), i, "patch")
+                  }
+                  className="text-primary hover:underline text-[11px] font-medium"
+                  title="Lovable-Prompt kopieren – einfügen ins Chat überschreibt die Quelldatei"
+                >
+                  {patchCopied ? "Patch kopiert ✓" : "→ Lovable-Patch"}
+                </button>
+              </span>
+            </div>
+            <div className={boxCls}>{s.value}</div>
+            {s.note && (
+              <div className="text-[11px] text-muted-foreground mt-0.5">{s.note}</div>
+            )}
           </div>
-          <div className={boxCls}>{s.value}</div>
-          {s.note && (
-            <div className="text-[11px] text-muted-foreground mt-0.5">{s.note}</div>
-          )}
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
