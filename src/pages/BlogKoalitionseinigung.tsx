@@ -156,11 +156,8 @@ const BlogKoalitionseinigung = () => {
 
               {/* ── Hinweis-Box ── */}
               <AnimatedSection delay={0.05}>
-                <div
-                  className="p-4 rounded-xl mb-8"
-                  style={{ backgroundColor: "#FEF3C7", border: "1px solid #F59E0B" }}
-                >
-                  <p className="text-sm" style={{ color: "#92400E" }}>
+                <div className="p-4 rounded-xl mb-8 bg-warning border border-warning-border">
+                  <p className="text-sm text-warning-foreground">
                     <strong>Stand: 24. März 2026</strong> — Koalitionseinigung. Das Gesetz ist noch nicht formell
                     beschlossen. Abstimmung im Bundestag: 27. März 2026.
                   </p>
