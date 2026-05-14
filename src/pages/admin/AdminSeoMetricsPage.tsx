@@ -865,18 +865,38 @@ const AdminSeoMetricsPage = () => {
                       })()}
                     </td>
                     <td className="px-3 py-2">
-                      <a
-                        href={r.path}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-primary hover:underline break-all"
-                      >
-                        {r.path}
-                        <ExternalLink className="w-3 h-3 shrink-0" />
-                      </a>
-                      <div className="text-[10px] text-muted-foreground uppercase tracking-wide mt-0.5">
-                        {r.source}
-                      </div>
+                      {(() => {
+                        const liveUrl = `${BASE_URL.replace(/\/$/, "")}${r.path}`;
+                        const previewUrl = `${window.location.origin}${r.path}`;
+                        return (
+                          <>
+                            <a
+                              href={liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title={`Live öffnen: ${liveUrl}`}
+                              className="inline-flex items-center gap-1 text-primary hover:underline break-all"
+                            >
+                              {r.path}
+                              <ExternalLink className="w-3 h-3 shrink-0" />
+                            </a>
+                            <div className="mt-1">
+                              <a
+                                href={previewUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={`Preview öffnen: ${previewUrl}`}
+                                className="text-[10px] text-muted-foreground hover:text-foreground hover:underline inline-flex items-center gap-1"
+                              >
+                                Preview <ExternalLink className="w-2.5 h-2.5" />
+                              </a>
+                            </div>
+                            <div className="text-[10px] text-muted-foreground uppercase tracking-wide mt-0.5">
+                              {r.source}
+                            </div>
+                          </>
+                        );
+                      })()}
                     </td>
                     <td className="px-3 py-2">
                       <div className="line-clamp-2 text-foreground">{r.title || "—"}</div>
