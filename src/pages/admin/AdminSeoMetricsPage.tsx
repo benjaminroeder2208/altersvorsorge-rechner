@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle, ExternalLink, Search as SearchIcon, X, Settings } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
-import { ROUTES as SSOT_ROUTES } from "../../../scripts/seo-routes";
+import { ROUTES as SSOT_ROUTES, BASE_URL } from "../../../scripts/seo-routes";
 import {
   loadSeoSettings,
   getLimitsForRoute,
