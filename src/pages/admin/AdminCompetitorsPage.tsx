@@ -253,7 +253,8 @@ const AdminCompetitorsPage = () => {
               </div>
             </div>
           </Card>
-        ))}
+          );
+        })}
       </div>
 
       <p className="text-xs text-muted-foreground mt-8">
