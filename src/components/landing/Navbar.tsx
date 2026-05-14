@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { BRAND } from "@/lib/brandColors";
 
 const navLinks = [
   { to: "/", label: "Rechner" },
@@ -12,35 +13,16 @@ const navLinks = [
 ];
 
 const LogoIcon = () => (
-  <svg
-    width="26"
-    height="24"
-    viewBox="0 0 26 24"
-    xmlns="http://www.w3.org/2000/svg"
-    className="shrink-0"
-  >
-    <path d="M2,22 C5,17 9,12 15,7 L15,22 Z"
-      fill="#1B4FD8" fillOpacity="0.08" />
-    <path d="M2,22 C5,17 9,12 15,7"
-      fill="none" stroke="#1B4FD8"
-      strokeWidth="1.8" strokeLinecap="round" />
-    <path d="M15,7 C18,4 20,3 23,1"
-      fill="none" stroke="#F59E0B"
-      strokeWidth="1.6" strokeLinecap="round"
-      strokeDasharray="2,1.8" />
-    <circle cx="2" cy="22" r="1.4"
-      fill="#1B4FD8" fillOpacity="0.3" />
-    <circle cx="9" cy="14" r="1.7"
-      fill="#1B4FD8" fillOpacity="0.65" />
-    <circle cx="15" cy="7" r="2.2"
-      fill="#1B4FD8" />
-    <circle cx="23" cy="1" r="3.5"
-      fill="#F59E0B" fillOpacity="0.2" />
-    <circle cx="23" cy="1" r="2.2"
-      fill="#F59E0B" />
-    <line x1="2" y1="22" x2="26" y2="22"
-      stroke="#1B4FD8" strokeWidth="1"
-      strokeLinecap="round" strokeOpacity="0.2" />
+  <svg width="26" height="24" viewBox="0 0 26 24" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+    <path d="M2,22 C5,17 9,12 15,7 L15,22 Z" fill={BRAND.primary} fillOpacity="0.08" />
+    <path d="M2,22 C5,17 9,12 15,7" fill="none" stroke={BRAND.primary} strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M15,7 C18,4 20,3 23,1" fill="none" stroke={BRAND.amber} strokeWidth="1.6" strokeLinecap="round" strokeDasharray="2,1.8" />
+    <circle cx="2" cy="22" r="1.4" fill={BRAND.primary} fillOpacity="0.3" />
+    <circle cx="9" cy="14" r="1.7" fill={BRAND.primary} fillOpacity="0.65" />
+    <circle cx="15" cy="7" r="2.2" fill={BRAND.primary} />
+    <circle cx="23" cy="1" r="3.5" fill={BRAND.amber} fillOpacity="0.2" />
+    <circle cx="23" cy="1" r="2.2" fill={BRAND.amber} />
+    <line x1="2" y1="22" x2="26" y2="22" stroke={BRAND.primary} strokeWidth="1" strokeLinecap="round" strokeOpacity="0.2" />
   </svg>
 );
 
