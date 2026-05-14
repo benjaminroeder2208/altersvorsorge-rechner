@@ -64,6 +64,20 @@ html {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Disclaimer / fine-print tokens — guaranteed >= 4.5:1 on bg-muted/50 and bg-background */
+    --disclaimer-foreground: 240 4% 35%;
+    --disclaimer-background: 240 5% 97%;
+    --disclaimer-border: 220 13% 88%;
+
+    /* Embed widget tokens — fixed light theme, AA-contrast guaranteed */
+    --embed-background: 0 0% 100%;
+    --embed-surface: 240 5% 97%;
+    --embed-foreground: 0 0% 11%;
+    --embed-foreground-muted: 240 4% 38%;
+    --embed-foreground-strong: 0 0% 9%;
+    --embed-border: 220 13% 88%;
+    --embed-border-subtle: 220 13% 94%;
   }
 }
 
