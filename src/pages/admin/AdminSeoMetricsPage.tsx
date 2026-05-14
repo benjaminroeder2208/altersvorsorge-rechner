@@ -703,6 +703,47 @@ const AdminSeoMetricsPage = () => {
           )}
         </div>
 
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span className="text-[11px] uppercase tracking-wide text-muted-foreground mr-1">
+            Schweregrad
+          </span>
+          {(["Hoch", "Mittel", "Niedrig", "OK"] as const).map((label) => {
+            const active = activeSeverities.has(label);
+            const count = severityCounts[label] ?? 0;
+            const disabled = count === 0;
+            const bucketCls = severityBucket(
+              label === "Hoch" ? 99 : label === "Mittel" ? 4 : label === "Niedrig" ? 1 : 0,
+            ).cls;
+            return (
+              <button
+                key={label}
+                type="button"
+                onClick={() => toggleSeverity(label)}
+                disabled={disabled}
+                className={`text-xs px-2.5 py-1 rounded-md border transition-colors ${
+                  active
+                    ? `${bucketCls} border-current font-medium`
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                } ${disabled ? "opacity-40 cursor-not-allowed" : ""}`}
+              >
+                {label}
+                <span className={`ml-1 ${active ? "" : "text-muted-foreground"}`}>
+                  ({count})
+                </span>
+              </button>
+            );
+          })}
+          {activeSeverities.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setActiveSeverities(new Set())}
+              className="text-xs text-muted-foreground hover:text-foreground underline"
+            >
+              alle
+            </button>
+          )}
+        </div>
+
         <div className="mb-4 flex flex-wrap items-center gap-2">
           <button
             type="button"
