@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle, ExternalLink, Search as SearchIcon, X, Settings } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
-import { ROUTES as SSOT_ROUTES } from "../../../scripts/seo-routes";
+import { ROUTES as SSOT_ROUTES, BASE_URL } from "../../../scripts/seo-routes";
 import {
   loadSeoSettings,
   getLimitsForRoute,
@@ -359,6 +359,58 @@ function lengthClass(len: number, min: number, max: number): string {
   if (len < min) return "text-amber-600 font-medium";
   return "text-muted-foreground";
 }
+
+const SERP_TITLE_MAX = 60;
+const SERP_DESC_MAX = 160;
+
+function truncateForSerp(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd() + "…";
+}
+
+function pathToBreadcrumb(path: string): string {
+  const host = BASE_URL.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  if (path === "/" || path === "") return host;
+  const parts = path.split("/").filter(Boolean);
+  return [host, ...parts].join(" › ");
+}
+
+const SerpPreview = ({
+  label,
+  path,
+  title,
+  description,
+  variant = "current",
+}: {
+  label: string;
+  path: string;
+  title: string;
+  description: string;
+  variant?: "current" | "suggested";
+}) => {
+  const cls =
+    variant === "suggested"
+      ? "rounded-md border border-primary/30 bg-primary/5 p-2.5"
+      : "rounded-md border border-border bg-card p-2.5";
+  return (
+    <div className={cls}>
+      <div className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1.5">
+        {label}
+      </div>
+      <div className="text-[11px] text-muted-foreground leading-tight truncate">
+        {pathToBreadcrumb(path)}
+      </div>
+      <div className="text-[15px] leading-snug mt-0.5" style={{ color: "#1a0dab" }}>
+        {truncateForSerp(title || "(kein Titel)", SERP_TITLE_MAX)}
+      </div>
+      <div className="text-[12.5px] leading-snug mt-0.5" style={{ color: "#4d5156" }}>
+        {truncateForSerp(description || "(keine Description)", SERP_DESC_MAX)}
+      </div>
+    </div>
+  );
+};
 
 /**
  * Build a Lovable-ready prompt that performs a precise, single-file overwrite
@@ -761,6 +813,42 @@ const AdminSeoMetricsPage = () => {
                     </td>
                     <td className="px-3 py-2 max-w-sm">
                       <div className="space-y-2">
+                        <SerpPreview
+                          label="SERP-Vorschau (aktuell)"
+                          path={r.path}
+                          title={r.title}
+                          description={r.description}
+                        />
+                        {(() => {
+                          // Build deterministic SERP previews per distinct
+                          // title/description suggestion (regular + blog).
+                          const all = [...r.suggestions, ...r.blogOptimizations];
+                          const seen = new Set<string>();
+                          const previews: { label: string; title: string; description: string }[] = [];
+                          for (const s of all) {
+                            if (s.field !== "title" && s.field !== "description") continue;
+                            const nextTitle = s.field === "title" ? s.value : r.title;
+                            const nextDesc = s.field === "description" ? s.value : r.description;
+                            const key = `${nextTitle}|${nextDesc}`;
+                            if (seen.has(key)) continue;
+                            seen.add(key);
+                            previews.push({
+                              label: `Vorschau · ${s.field === "title" ? "Titel" : "Description"} angepasst`,
+                              title: nextTitle,
+                              description: nextDesc,
+                            });
+                          }
+                          return previews.map((p, i) => (
+                            <SerpPreview
+                              key={i}
+                              label={p.label}
+                              path={r.path}
+                              title={p.title}
+                              description={p.description}
+                              variant="suggested"
+                            />
+                          ));
+                        })()}
                         {ok ? (
                           <span className="text-xs text-emerald-700">OK</span>
                         ) : (
