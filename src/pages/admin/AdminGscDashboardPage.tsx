@@ -305,12 +305,6 @@ const AdminGscDashboardPage = () => {
           </Card>
         )}
 
-        {!loading && rows.length === 0 && !error && (
-          <Card className="p-8 text-center text-muted-foreground text-sm">
-            Noch keine Daten. Google braucht typischerweise ein paar Tage nach der Verifizierung,
-            bis erste Impressionen erfasst werden.
-          </Card>
-        )}
       </div>
     </AdminLayout>
   );
