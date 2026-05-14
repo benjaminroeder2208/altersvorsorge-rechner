@@ -224,6 +224,7 @@ export const ROUTES: SeoRoute[] = [
     h1: "Impressum",
     intro: "Anbieterkennzeichnung gemäß § 5 TMG.",
     jsonLd: webPage("Impressum", "Anbieterkennzeichnung nach § 5 TMG.", "/impressum"),
+    noindex: true,
   },
   {
     path: "/datenschutz",
