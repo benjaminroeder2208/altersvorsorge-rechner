@@ -162,7 +162,7 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
           onClick={onClose}
         >
           {/* Overlay */}
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-overlay/60 backdrop-blur-sm" />
 
           {/* Modal */}
           <motion.div

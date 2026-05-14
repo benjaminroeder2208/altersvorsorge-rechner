@@ -242,7 +242,7 @@ const EmbedPage = () => {
               </div>
 
               <button onClick={() => setStep(2)}
-                className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium text-sm hover:opacity-90 transition-opacity"
+                className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
                 style={{ background: primaryColor }}>
                 Weiter <ArrowRight className="w-4 h-4" />
               </button>
@@ -269,7 +269,7 @@ const EmbedPage = () => {
                 ))}
               </div>
               <button onClick={() => setStep(3)}
-                className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium text-sm hover:opacity-90 transition-opacity"
+                className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
                 style={{ background: primaryColor }}>
                 Weiter <ArrowRight className="w-4 h-4" />
               </button>
@@ -307,7 +307,7 @@ const EmbedPage = () => {
                     income_bracket: INCOME_BANDS[inputs.incomeBand].key,
                   }).then(({ error }) => { if (error) console.warn("Tracking insert failed:", error.message); });
                 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium text-sm hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
                 style={{ background: primaryColor }}>
                 Ergebnis anzeigen <ArrowRight className="w-4 h-4" />
               </button>
@@ -373,7 +373,7 @@ const EmbedPage = () => {
                       <input type="email" required placeholder="Deine E-Mail" value={email} onChange={(e) => setEmail(e.target.value)}
                         className="flex-1 px-3 py-2.5 rounded-lg border border-embed-border bg-embed text-sm placeholder:text-embed-foreground-muted focus:outline-none focus:ring-2" style={{ focusRingColor: primaryColor } as any} />
                       <button type="submit" disabled={emailStatus === "sending" || !dsgvoAccepted}
-                        className="px-4 py-2.5 rounded-lg text-white font-medium text-sm hover:opacity-90 disabled:opacity-50"
+                        className="px-4 py-2.5 rounded-lg text-primary-foreground font-medium text-sm hover:opacity-90 disabled:opacity-50"
                         style={{ background: primaryColor }}>
                         {emailStatus === "sending" ? "..." : "PDF →"}
                       </button>
