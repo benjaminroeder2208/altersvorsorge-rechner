@@ -1,10 +1,11 @@
 /**
- * Postbuild-Validator: jede sitemap-URL hat im prerenderten HTML genau eine
- * <link rel="canonical">, die exakt auf die sitemap-loc zeigt. Erkennt:
- *  - fehlende prerenderte HTML-Datei
- *  - fehlendes canonical-Tag
- *  - mehrere widersprüchliche canonical-Tags
- *  - canonical zeigt auf andere URL als sitemap-loc
+ * Postbuild-CI-Check: validiert sitemap.xml gegen noindex- und canonical-Regeln
+ * im prerenderten HTML. Bricht den Build ab (exit 1) bei jedem Verstoß.
+ *
+ * Pro sitemap-loc wird geprüft:
+ *  - prerenderte HTML-Datei existiert
+ *  - genau ein <link rel="canonical">, href == sitemap-loc
+ *  - <meta name="robots"> enthält KEIN "noindex" / "none"
  */
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
@@ -27,6 +28,19 @@ function extractCanonicals(html: string): string[] {
   return tags
     .map((t) => t.match(/\bhref=["']([^"']+)["']/i)?.[1])
     .filter((h): h is string => Boolean(h));
+}
+
+function extractRobots(html: string): string[] {
+  const re = /<meta\b[^>]*\bname=["']robots["'][^>]*>/gi;
+  const tags = html.match(re) ?? [];
+  return tags
+    .map((t) => t.match(/\bcontent=["']([^"']+)["']/i)?.[1])
+    .filter((c): c is string => Boolean(c));
+}
+
+function isNoindex(content: string): boolean {
+  const tokens = content.toLowerCase().split(/[,\s]+/).filter(Boolean);
+  return tokens.includes("noindex") || tokens.includes("none");
 }
 
 const errors: string[] = [];
@@ -69,13 +83,24 @@ for (const loc of locs) {
     errors.push(`Sitemap-loc ${loc} ↔ canonical ${unique[0]} stimmen nicht überein`);
     continue;
   }
+  // noindex-Prüfung: keine robots-Meta darf noindex/none enthalten
+  const robots = extractRobots(html);
+  const offending = robots.filter(isNoindex);
+  if (offending.length) {
+    errors.push(
+      `Sitemap-loc ${loc} – HTML enthält noindex (Widerspruch zur sitemap): "${offending.join('", "')}"`,
+    );
+    continue;
+  }
   checked++;
 }
 
 if (errors.length) {
-  console.error("❌ Canonical-Validierung fehlgeschlagen:");
+  console.error("❌ Sitemap ↔ noindex/canonical Validierung fehlgeschlagen:");
   for (const e of errors) console.error("  - " + e);
   process.exit(1);
 }
 
-console.log(`✅ Canonicals konsistent – ${checked}/${locs.length} sitemap-URLs validiert.`);
+console.log(
+  `✅ Sitemap ↔ noindex/canonical konsistent – ${checked}/${locs.length} sitemap-URLs validiert.`,
+);
