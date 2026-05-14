@@ -3,7 +3,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const VsEtfPage = () => (
   <ContentPageLayout
-    title="Altersvorsorgedepot vs ETF Sparplan – Was ist der Unterschied?"
+    title="Altersvorsorgedepot vs. ETF Sparplan – Der Unterschied"
     breadcrumbLabel="ETF Vergleich"
     path="/altersvorsorgedepot-vs-etf-sparplan"
     description="Altersvorsorgedepot oder ETF Sparplan? Erfahren Sie, wie sich Förderung, Flexibilität und steuerliche Behandlung unterscheiden könnten."
