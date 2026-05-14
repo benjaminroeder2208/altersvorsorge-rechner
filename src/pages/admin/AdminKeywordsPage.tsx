@@ -19,6 +19,20 @@ const SNAPSHOT_DATE = "14. Mai 2026";
 
 type Intent = "broad" | "transactional" | "comparison" | "question" | "branded";
 
+type SerpType =
+  | "official"
+  | "wiki"
+  | "media"
+  | "bank"
+  | "fintech"
+  | "competitor"
+  | "comparison"
+  | "calculator"
+  | "video"
+  | "paa"
+  | "featured_snippet"
+  | "news";
+
 interface Kw {
   term: string;
   volume: number; // Monatliches Suchvolumen (DE)
@@ -32,6 +46,8 @@ interface Kw {
   relatedPages?: string[];
   /** Optionale individuelle Content-Gliederung (H2-Ebene). */
   outline?: string[];
+  /** Top-3–5 SERP-Ergebnistypen (Snapshot). Wenn leer, wird Standard nach Intent generiert. */
+  serp?: SerpType[];
 }
 
 const KEYWORDS: Kw[] = [
