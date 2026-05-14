@@ -3,7 +3,14 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { TrendingUp, HelpCircle, Target, Search } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { TrendingUp, HelpCircle, Target, Search, ExternalLink, FileText, Link2, ChevronRight } from "lucide-react";
 
 /**
  * Snapshot von Semrush DE-Daten. Manuell aktualisieren bei neuer Recherche.
@@ -21,29 +28,136 @@ interface Kw {
   covered?: string;
   /** Empfohlene Ziel-URL, falls nicht abgedeckt. */
   suggested?: string;
+  /** Weitere Seiten, die das Keyword unterstützend abdecken. */
+  relatedPages?: string[];
+  /** Optionale individuelle Content-Gliederung (H2-Ebene). */
+  outline?: string[];
 }
 
 const KEYWORDS: Kw[] = [
   // Hochvolumige Top-of-Funnel
-  { term: "riester rente", volume: 27100, kd: 31, intent: "broad", covered: "/altersvorsorgedepot-vs-riester" },
-  { term: "altersvorsorge", volume: 18100, kd: 46, intent: "broad", covered: "/" },
-  { term: "private altersvorsorge", volume: 6600, kd: 56, intent: "broad", suggested: "/blog/altersvorsorgedepot-2027" },
-  { term: "altersvorsorgedepot", volume: 3600, kd: 23, intent: "broad", covered: "/altersvorsorgedepot" },
-  { term: "riester rente auszahlung", volume: 3600, kd: 30, intent: "broad", suggested: "/altersvorsorgedepot-auszahlung" },
+  {
+    term: "riester rente",
+    volume: 27100,
+    kd: 31,
+    intent: "broad",
+    covered: "/altersvorsorgedepot-vs-riester",
+    relatedPages: ["/blog/riester-kuendigen", "/altersvorsorgedepot-vs-riester"],
+    outline: [
+      "Was ist die Riester-Rente? (Kurzdefinition + Status 2026)",
+      "Wie funktioniert die Förderung: Grundzulage 175 € + Kinderzulage 300 €",
+      "Auszahlung, Besteuerung und typische Renditen",
+      "Riester-Reform 2027: Übergang ins Altersvorsorgedepot",
+      "Lohnt sich Riester noch? Vergleich mit dem neuen Depot",
+      "FAQ + interner Link zum Riester-vs-Depot-Rechner",
+    ],
+  },
+  { term: "altersvorsorge", volume: 18100, kd: 46, intent: "broad", covered: "/", relatedPages: ["/altersvorsorgedepot", "/blog/altersvorsorgedepot-2027"] },
+  {
+    term: "private altersvorsorge",
+    volume: 6600,
+    kd: 56,
+    intent: "broad",
+    suggested: "/blog/altersvorsorgedepot-2027",
+    relatedPages: ["/altersvorsorgedepot", "/altersvorsorgedepot-vs-riester"],
+    outline: [
+      "Drei Säulen der Altersvorsorge in Deutschland (2026)",
+      "Welche Form passt zu wem? (Angestellte, Selbstständige, Familien)",
+      "Förderung 2027: Altersvorsorgedepot vs. Riester vs. Rürup",
+      "Renditebeispiele: 50 €, 150 €, 300 € pro Monat",
+      "Kostenfallen erkennen (Deckel 1,0 % laut Gesetz)",
+      "Schritt-für-Schritt: So startest du",
+    ],
+  },
+  {
+    term: "altersvorsorgedepot",
+    volume: 3600,
+    kd: 23,
+    intent: "broad",
+    covered: "/altersvorsorgedepot",
+    relatedPages: ["/altersvorsorgedepot-foerderung", "/altersvorsorgedepot-vs-etf-sparplan", "/altersvorsorgedepot-gesetz"],
+    outline: [
+      "Was ist das Altersvorsorgedepot? (Definition nach Drs. 21/4996)",
+      "Förderung 2027: 50 % Zulage bis 360 €, 25 % bis 1.800 €",
+      "Wer ist berechtigt? Voraussetzungen + Berufseinsteiger-Bonus",
+      "Wie eröffne ich ein Depot? (Anbieter, Schritte, Fristen)",
+      "Kosten, Auszahlung, Besteuerung im Vergleich zu Riester",
+      "Rechner-Einbettung + FAQ",
+    ],
+  },
+  { term: "riester rente auszahlung", volume: 3600, kd: 30, intent: "broad", suggested: "/altersvorsorgedepot-auszahlung", relatedPages: ["/blog/riester-kuendigen"] },
   { term: "rürup", volume: 1900, kd: 49, intent: "broad", covered: "/blog/ruerup-rente" },
   { term: "vorsorgeaufwendungen", volume: 1000, kd: 24, intent: "broad", suggested: "/blog/steuern-sparen-altersvorsorge" },
 
   // Förder- / Zulagen-Keywords
-  { term: "riester zulage", volume: 2400, kd: 34, intent: "transactional", covered: "/" },
-  { term: "altersvorsorgezulage", volume: 2400, kd: 28, intent: "transactional", suggested: "/altersvorsorgedepot-foerderung" },
-  { term: "kinderzulage riester", volume: 1900, kd: 22, intent: "transactional", suggested: "/altersvorsorgedepot-foerderung" },
+  {
+    term: "riester zulage",
+    volume: 2400,
+    kd: 34,
+    intent: "transactional",
+    covered: "/",
+    relatedPages: ["/altersvorsorgedepot-foerderung", "/altersvorsorgedepot-vs-riester"],
+    outline: [
+      "Riester-Zulage 2026 in Zahlen: Grundzulage, Kinderzulage, Berufseinsteiger-Bonus",
+      "Anspruchsvoraussetzungen + Mindesteigenbeitrag (4 %)",
+      "Antrag: Dauerzulageantrag vs. jährlicher Antrag",
+      "Wann wird die Zulage gutgeschrieben? (Fristen)",
+      "Was passiert mit der Zulage ab 2027 (Übergang ins Depot)",
+      "Rechenbeispiel: Familie mit 2 Kindern + CTA zum Rechner",
+    ],
+  },
+  {
+    term: "altersvorsorgezulage",
+    volume: 2400,
+    kd: 28,
+    intent: "transactional",
+    suggested: "/altersvorsorgedepot-foerderung",
+    relatedPages: ["/altersvorsorgedepot", "/altersvorsorgedepot-gesetz"],
+    outline: [
+      "Was ist die Altersvorsorgezulage? (Sammelbegriff seit Reform 2026)",
+      "Neue Staffelung 2027: 50 % bis 360 €, 25 % bis 1.800 €, 100 % je Kind",
+      "Vergleich: Alte Riester-Zulage vs. neue Depot-Zulage",
+      "So beantragst du die Zulage im Depot",
+      "Beispielrechnungen für 4 Lebenssituationen",
+      "FAQ + Link zum offiziellen Gesetzesentwurf",
+    ],
+  },
+  { term: "kinderzulage riester", volume: 1900, kd: 22, intent: "transactional", suggested: "/altersvorsorgedepot-foerderung", relatedPages: ["/blog/riester-kuendigen"] },
   { term: "altersvorsorge staatlich gefördert", volume: 170, kd: 39, intent: "transactional", covered: "/altersvorsorgedepot-foerderung" },
 
   // Vergleichs-Keywords (kommerziell wertvoll)
-  { term: "altersvorsorgedepot vs etf", volume: 90, kd: 18, intent: "comparison", covered: "/altersvorsorgedepot-vs-etf-sparplan" },
-  { term: "altersvorsorgedepot vs riester", volume: 50, kd: 20, intent: "comparison", covered: "/altersvorsorgedepot-vs-riester" },
-  { term: "rentenreform 2026", volume: 1900, kd: 26, intent: "comparison", covered: "/blog/altersvorsorgedepot-beschlossen" },
-  { term: "frühstartrente", volume: 1900, kd: 38, intent: "comparison", suggested: "/blog/altersvorsorgedepot-2027" },
+  {
+    term: "altersvorsorgedepot vs etf",
+    volume: 90,
+    kd: 18,
+    intent: "comparison",
+    covered: "/altersvorsorgedepot-vs-etf-sparplan",
+    relatedPages: ["/altersvorsorgedepot"],
+    outline: [
+      "Kurzantwort: Wann lohnt sich das Depot, wann der freie ETF-Sparplan?",
+      "Vergleichstabelle (Zulage, Steuern, Flexibilität, Kosten)",
+      "Renditerechnung über 30 Jahre (mit/ohne Förderung)",
+      "Bindung & Auszahlung: Was du aufgibst",
+      "Fazit + Entscheidungsbaum",
+    ],
+  },
+  { term: "altersvorsorgedepot vs riester", volume: 50, kd: 20, intent: "comparison", covered: "/altersvorsorgedepot-vs-riester", relatedPages: ["/altersvorsorgedepot-foerderung"] },
+  { term: "rentenreform 2026", volume: 1900, kd: 26, intent: "comparison", covered: "/blog/altersvorsorgedepot-beschlossen", relatedPages: ["/altersvorsorgedepot-gesetz"] },
+  {
+    term: "frühstartrente",
+    volume: 1900,
+    kd: 38,
+    intent: "comparison",
+    suggested: "/blog/altersvorsorgedepot-2027",
+    relatedPages: ["/altersvorsorgedepot"],
+    outline: [
+      "Was war die geplante Frühstartrente? (Ursprung im Koalitionsvertrag)",
+      "Warum sie ins Altersvorsorgedepot überführt wurde",
+      "Was bleibt für junge Sparer (Berufseinsteiger-Bonus)",
+      "Vergleich: Frühstartrente-Idee vs. tatsächliches Depot 2027",
+      "Empfehlung für 18–25-Jährige + CTA",
+    ],
+  },
 
   // High-Intent Fragen (niedriges Volumen, hohe Conversion)
   { term: "wann wird die riester zulage gutgeschrieben", volume: 90, kd: 12, intent: "question", suggested: "/blog/riester-kuendigen" },
@@ -55,6 +169,44 @@ const KEYWORDS: Kw[] = [
   { term: "wie heißt die staatlich geförderte private altersvorsorge", volume: 10, kd: 10, intent: "question", covered: "/altersvorsorgedepot" },
   { term: "was sind vorsorgeaufwendungen", volume: 480, kd: 18, intent: "question", suggested: "/blog/steuern-sparen-altersvorsorge" },
 ];
+
+/** Fallback-Gliederung, falls für ein Keyword keine individuelle vorhanden ist. */
+function defaultOutline(k: Kw): string[] {
+  if (k.intent === "question") {
+    return [
+      `Direkte Antwort auf '${k.term}' (1–2 Sätze, fett, ganz oben)`,
+      "Hintergrund: Rechtsgrundlage und Stand 2026",
+      "Konkretes Rechen- oder Praxisbeispiel",
+      "Häufige Stolperfallen / Sonderfälle",
+      "Verwandte Fragen + interner Link zum Hauptartikel",
+    ];
+  }
+  if (k.intent === "comparison") {
+    return [
+      `Kurzfazit: ${k.term} — wer gewinnt?`,
+      "Vergleichstabelle (Förderung, Kosten, Flexibilität, Steuer)",
+      "Renditebeispiel über 20–30 Jahre",
+      "Wann welche Variante besser passt (Zielgruppen)",
+      "Empfehlung + CTA zum Rechner",
+    ];
+  }
+  if (k.intent === "transactional") {
+    return [
+      `${k.term} 2026/2027: Die Eckdaten in einer Übersichts-Box`,
+      "Voraussetzungen und wer Anspruch hat",
+      "Antrag und Auszahlung Schritt für Schritt",
+      "Rechenbeispiele für 2–3 Lebenssituationen",
+      "FAQ + CTA zum Förder-Rechner",
+    ];
+  }
+  return [
+    `Was ist '${k.term}'? (Definition + Status 2026)`,
+    "Wie funktioniert es? (mit Grafik/Tabelle)",
+    "Vor- und Nachteile",
+    "Vergleich mit Alternativen",
+    "Praxisbeispiel + interne Verlinkung",
+  ];
+}
 
 const INTENT_META: Record<Intent, { label: string; tone: string }> = {
   broad: { label: "Breit", tone: "bg-secondary text-foreground" },
@@ -79,6 +231,7 @@ function priorityScore(k: Kw): number {
 
 const AdminKeywordsPage = () => {
   const [filter, setFilter] = useState("");
+  const [selected, setSelected] = useState<Kw | null>(null);
 
   const filtered = useMemo(() => {
     const q = filter.trim().toLowerCase();
@@ -148,30 +301,36 @@ const AdminKeywordsPage = () => {
           subtitle="Bestes Volumen-zu-Schwierigkeit-Verhältnis, nach Intent gewichtet"
           items={groups.opportunities}
           showPriority
+          onSelect={setSelected}
         />
         <KeywordGroup
           icon={<TrendingUp className="w-4 h-4 text-primary" />}
           title="Hochvolumige Keywords (≥ 1.000 / Monat)"
           subtitle="Top-of-Funnel — Reichweite und Markenpräsenz"
           items={groups.highVolume}
+          onSelect={setSelected}
         />
         <KeywordGroup
           icon={<Target className="w-4 h-4 text-primary" />}
           title="Förderung & Vergleiche"
           subtitle="Kommerziell wertvolle Keywords nahe an der Conversion"
           items={groups.subsidy}
+          onSelect={setSelected}
         />
         <KeywordGroup
           icon={<HelpCircle className="w-4 h-4 text-primary" />}
           title="High-Intent Fragen"
           subtitle="Niedriges Volumen, hohe Conversion — ideal für FAQ-Blöcke"
           items={groups.questions}
+          onSelect={setSelected}
         />
       </div>
 
       <p className="text-xs text-muted-foreground mt-8">
         Quelle: Semrush, Datenbank DE. Keine Echtzeit-Daten — manuelle Aktualisierung nötig.
       </p>
+
+      <KeywordDetailSheet kw={selected} onClose={() => setSelected(null)} />
     </AdminLayout>
   );
 };
@@ -182,9 +341,10 @@ interface GroupProps {
   subtitle: string;
   items: Kw[];
   showPriority?: boolean;
+  onSelect?: (k: Kw) => void;
 }
 
-const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps) => {
+const KeywordGroup = ({ icon, title, subtitle, items, showPriority, onSelect }: GroupProps) => {
   if (items.length === 0) return null;
   return (
     <Card className="p-5">
@@ -206,6 +366,7 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
               <th className="text-left py-2 px-2 font-medium">Intent</th>
               <th className="text-left py-2 px-2 font-medium">Status</th>
               {showPriority && <th className="text-right py-2 px-2 font-medium">Score</th>}
+              <th className="w-6" />
             </tr>
           </thead>
           <tbody>
@@ -213,7 +374,11 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
               const meta = INTENT_META[k.intent];
               const band = volumeBand(k.volume);
               return (
-                <tr key={k.term} className="border-t border-border/60">
+                <tr
+                  key={k.term}
+                  className="border-t border-border/60 cursor-pointer hover:bg-muted/40 transition-colors"
+                  onClick={() => onSelect?.(k)}
+                >
                   <td className="py-2.5 px-2 align-top">
                     <span className="font-medium break-words">{k.term}</span>
                   </td>
@@ -232,12 +397,27 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
                   </td>
                   <td className="py-2.5 px-2 align-top">
                     {k.covered ? (
-                      <a href={k.covered} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-xs">
+                      <a
+                        href={k.covered}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline text-xs"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         ✓ {k.covered}
                       </a>
                     ) : k.suggested ? (
                       <span className="text-xs text-muted-foreground">
-                        Lücke → <a href={k.suggested} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{k.suggested}</a>
+                        Lücke →{" "}
+                        <a
+                          href={k.suggested}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {k.suggested}
+                        </a>
                       </span>
                     ) : (
                       <Badge variant="secondary" className="text-[10px]">Lücke</Badge>
@@ -248,6 +428,9 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
                       {Math.round(priorityScore(k))}
                     </td>
                   )}
+                  <td className="py-2.5 px-1 align-top text-muted-foreground">
+                    <ChevronRight className="w-4 h-4" />
+                  </td>
                 </tr>
               );
             })}
@@ -255,6 +438,136 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
         </table>
       </div>
     </Card>
+  );
+};
+
+interface DetailProps {
+  kw: Kw | null;
+  onClose: () => void;
+}
+
+const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
+  const open = !!kw;
+  if (!kw) {
+    return (
+      <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
+        <SheetContent />
+      </Sheet>
+    );
+  }
+
+  const meta = INTENT_META[kw.intent];
+  const target = kw.covered ?? kw.suggested;
+  const coveredPages = Array.from(
+    new Set([
+      ...(kw.covered ? [kw.covered] : []),
+      ...(kw.relatedPages ?? []),
+    ])
+  );
+  const outline = kw.outline ?? defaultOutline(kw);
+
+  return (
+    <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
+      <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
+        <SheetHeader className="text-left">
+          <div className="flex items-center gap-2 mb-1">
+            <span className={`text-[10px] px-1.5 py-0.5 rounded ${meta.tone}`}>{meta.label}</span>
+            <span className="text-xs text-muted-foreground tabular-nums">
+              {kw.volume.toLocaleString("de-DE")} / Monat · KD {kw.kd}
+            </span>
+          </div>
+          <SheetTitle className="text-xl break-words">{kw.term}</SheetTitle>
+          <SheetDescription>
+            {kw.covered
+              ? "Bereits durch eine eigene Seite abgedeckt — Detail-Optimierung möglich."
+              : "Lücke im Content — eigene Zielseite empfohlen."}
+          </SheetDescription>
+        </SheetHeader>
+
+        <div className="mt-6 space-y-6 text-sm">
+          {/* Empfohlene Ziel-URL */}
+          <section>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
+              <Target className="w-3.5 h-3.5" /> Empfohlene Ziel-URL
+            </h3>
+            {target ? (
+              <a
+                href={target}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium break-all"
+              >
+                {target} <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
+              </a>
+            ) : (
+              <p className="text-muted-foreground">
+                Noch keine Ziel-URL definiert. Vorschlag: neue Detailseite anlegen.
+              </p>
+            )}
+            {!kw.covered && kw.suggested && (
+              <p className="text-xs text-muted-foreground mt-1">
+                Diese URL existiert noch nicht produktiv und sollte als nächstes erstellt werden.
+              </p>
+            )}
+          </section>
+
+          {/* Abgedeckte Seiten */}
+          <section>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
+              <Link2 className="w-3.5 h-3.5" /> Abgedeckte Seiten ({coveredPages.length})
+            </h3>
+            {coveredPages.length === 0 ? (
+              <p className="text-muted-foreground">
+                Aktuell deckt keine produktive Seite dieses Keyword ab.
+              </p>
+            ) : (
+              <ul className="space-y-1.5">
+                {coveredPages.map((p) => (
+                  <li key={p}>
+                    <a
+                      href={p}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-primary hover:underline break-all"
+                    >
+                      {p} <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          {/* Content-Gliederung */}
+          <section>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
+              <FileText className="w-3.5 h-3.5" /> Content-Gliederung
+              {!kw.outline && (
+                <span className="text-[10px] font-normal normal-case text-muted-foreground">
+                  (generischer Vorschlag)
+                </span>
+              )}
+            </h3>
+            <ol className="space-y-2 list-decimal list-inside marker:text-muted-foreground">
+              {outline.map((line, i) => (
+                <li key={i} className="leading-snug">{line}</li>
+              ))}
+            </ol>
+          </section>
+
+          {/* Priorisierung */}
+          <section className="bg-muted/50 rounded-lg p-3">
+            <p className="text-xs text-muted-foreground">
+              Priorisierungs-Score:{" "}
+              <span className="font-semibold tabular-nums text-foreground">
+                {Math.round(priorityScore(kw))}
+              </span>{" "}
+              · Heuristik: Volumen / (KD + 10) × Intent-Gewicht
+            </p>
+          </section>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 
