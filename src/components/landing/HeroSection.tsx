@@ -13,7 +13,7 @@ const anim = (delay: number) => ({
 const HeroSection = () => (
   <section className="relative min-h-[auto] md:min-h-[90vh] flex items-center overflow-hidden bg-background">
     {/* Right blue tint — desktop only */}
-    <div className="absolute top-0 right-0 bottom-0 w-1/2 hidden md:block" style={{ background: "#EEF3FF" }} />
+    <div className="absolute top-0 right-0 bottom-0 w-1/2 hidden md:block bg-primary-soft" />
 
     <div className="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center py-20 md:py-0 px-6">
       {/* Left column — Text */}
@@ -21,13 +21,8 @@ const HeroSection = () => (
         {/* Badge */}
         <motion.div {...anim(0.1)} className="mb-6">
           <span
-            className="inline-block px-4 py-1.5 rounded-full text-[11px] font-medium uppercase tracking-widest"
-            style={{
-              background: "#EEF3FF",
-              border: "1px solid #BFDBFE",
-              color: "#1B4FD8",
-              letterSpacing: "0.05em",
-            }}
+            className="inline-block px-4 py-1.5 rounded-full text-[11px] font-medium uppercase tracking-widest bg-primary-soft border border-primary-soft-border text-primary-soft-foreground"
+            style={{ letterSpacing: "0.05em" }}
           >
             ✦ Mit KI-Auswertung & PDF-Auswertung
           </span>
@@ -41,7 +36,7 @@ const HeroSection = () => (
         >
           <span className="text-foreground">150 € im Monat.</span>
           <br />
-          <span style={{ color: "#1B4FD8" }} className="font-bold">
+          <span className="font-bold text-primary">
             212.000 € im Alter.
           </span>
         </motion.h1>
@@ -60,15 +55,13 @@ const HeroSection = () => (
         >
           <a
             href="#rechner"
-            className="inline-flex items-center justify-center px-8 py-3 rounded-full text-white font-medium text-base transition-opacity hover:opacity-90"
-            style={{ background: "#1B4FD8" }}
+            className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium text-base transition-opacity hover:opacity-90"
           >
             Jetzt berechnen
           </a>
           <a
             href="#vergleich"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-base transition-colors"
-            style={{ color: "#1B4FD8" }}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-base transition-colors text-primary"
           >
             Mehr erfahren
             <ArrowDown className="w-4 h-4" />

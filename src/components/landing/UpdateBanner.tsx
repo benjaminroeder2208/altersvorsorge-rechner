@@ -7,23 +7,17 @@ const UpdateBanner = () => {
   if (!visible) return null;
 
   return (
-    <div
-      className="w-full py-3 px-6 text-center relative"
-      style={{ backgroundColor: "#FEF3C7", borderBottom: "1px solid #F59E0B" }}
-    >
+    <div className="w-full py-3 px-6 text-center relative bg-warning border-b border-warning-border">
       <div className="container max-w-4xl mx-auto flex items-center justify-center gap-2">
-        <Info className="w-4 h-4 shrink-0" style={{ color: "#92400E" }} />
-        <p className="text-sm" style={{ color: "#92400E" }}>
+        <Info className="w-4 h-4 shrink-0 text-warning-foreground" />
+        <p className="text-sm text-warning-foreground">
           <span className="font-medium">Wichtige Information:</span> Der Bundestag hat die Reform der Altersvorsorge
           inklusive dem Altersvorsorgedepot beschlossen.
         </p>
       </div>
       <button
         onClick={() => setVisible(false)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 transition-colors"
-        style={{ color: "#D97706" }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "#92400E")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "#D97706")}
+        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-warning-foreground/80 hover:text-warning-foreground transition-colors"
         aria-label="Banner schließen"
       >
         <X className="w-4 h-4" />

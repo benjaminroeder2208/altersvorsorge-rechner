@@ -72,7 +72,7 @@ const AdminLeadsPage = () => {
             </div>
             <div className="p-4 rounded-xl border border-border bg-card">
               <p className="text-xs text-muted-foreground">Bestätigt</p>
-              <p className="text-2xl font-bold text-emerald-700">{confirmedCount}</p>
+              <p className="text-2xl font-bold text-success">{confirmedCount}</p>
             </div>
             <div className="p-4 rounded-xl border border-border bg-card">
               <p className="text-xs text-muted-foreground">Ausstehend</p>
@@ -104,7 +104,7 @@ const AdminLeadsPage = () => {
                       <td className="px-4 py-3 font-mono text-xs">{l.email}</td>
                       <td className="px-4 py-3">
                         {l.confirmed ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 text-xs">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-success/15 text-success text-xs">
                             <CheckCircle2 className="w-3 h-3" /> Bestätigt
                           </span>
                         ) : (
@@ -118,7 +118,7 @@ const AdminLeadsPage = () => {
                       </td>
                       <td className="px-4 py-3">
                         {l.pdf_base64 ? (
-                          <span className="inline-flex items-center gap-1 text-emerald-700 text-xs">
+                          <span className="inline-flex items-center gap-1 text-success text-xs">
                             <FileText className="w-3 h-3" /> ja
                           </span>
                         ) : (

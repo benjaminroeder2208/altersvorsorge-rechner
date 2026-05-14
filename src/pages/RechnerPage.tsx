@@ -172,18 +172,10 @@ const RechnerPage = () => (
                     <th className="text-left py-3 px-4 font-medium text-muted-foreground" />
                     <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 25 starten</th>
                     <th
-                      className="py-3 px-4 font-semibold text-center relative"
-                      style={{
-                        background: "#1B4FD8",
-                        color: "white",
-                        borderTopLeftRadius: 12,
-                        borderTopRightRadius: 12,
-                      }}
+                      className="py-3 px-4 font-semibold text-center relative bg-primary text-primary-foreground"
+                      style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
                     >
-                      <span
-                        className="inline-block px-3 py-0.5 rounded-full text-xs font-medium mb-1"
-                        style={{ background: "rgba(255,255,255,0.2)", color: "white" }}
-                      >
+                      <span className="inline-block px-3 py-0.5 rounded-full text-xs font-medium mb-1 bg-primary-foreground/20 text-primary-foreground">
                         Das Beispiel
                       </span>
                       <br />
@@ -206,10 +198,7 @@ const RechnerPage = () => (
                     <tr key={row.label} className={i % 2 === 0 ? "bg-background" : ""}>
                       <td className="py-3 px-4 font-medium text-muted-foreground">{row.label}</td>
                       <td className="py-3 px-4 text-center tabular-nums">{row.values[0]}</td>
-                      <td
-                        className="py-3 px-4 text-center font-medium tabular-nums"
-                        style={{ background: "#EEF3FF", color: "#1B4FD8" }}
-                      >
+                      <td className="py-3 px-4 text-center font-medium tabular-nums bg-primary-soft text-primary-soft-foreground">
                         {row.values[1]}
                       </td>
                       <td className="py-3 px-4 text-center tabular-nums">{row.values[2]}</td>

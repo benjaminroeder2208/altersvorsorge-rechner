@@ -46,7 +46,7 @@ const UnsubscribePage = () => {
         <div className="max-w-md w-full bg-card border border-border rounded-2xl p-8 shadow-sm text-center">
           {status === "done" ? (
             <div className="space-y-4">
-              <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto" />
+              <CheckCircle className="w-12 h-12 text-success mx-auto" />
               <h1 className="text-xl font-bold">Erfolgreich abgemeldet</h1>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {email ? (
@@ -61,7 +61,7 @@ const UnsubscribePage = () => {
             </div>
           ) : status === "already" ? (
             <div className="space-y-4">
-              <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto" />
+              <CheckCircle className="w-12 h-12 text-success mx-auto" />
               <h1 className="text-xl font-bold">Bereits abgemeldet</h1>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {email ? (

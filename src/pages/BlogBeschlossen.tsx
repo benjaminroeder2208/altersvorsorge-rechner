@@ -164,14 +164,14 @@ const BlogBeschlossen = () => {
 
               {/* ── Grüne Info-Box ── */}
               <AnimatedSection delay={0.1}>
-                <div className="p-5 rounded-xl mb-8 mt-6 bg-emerald-50 border border-emerald-500">
-                  <p className="text-sm text-emerald-900 mb-3">
+                <div className="p-5 rounded-xl mb-8 mt-6 bg-success/10 border border-success">
+                  <p className="text-sm text-success mb-3">
                     ✅ Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert. Berechne jetzt deine
                     persönliche Förderung.
                   </p>
                   <Link
                     to="/"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-700 transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-success text-primary-foreground text-sm font-semibold hover:bg-success/90 transition-colors"
                   >
                     Jetzt berechnen
                   </Link>
@@ -373,14 +373,14 @@ const BlogBeschlossen = () => {
 
               {/* ── CTA-Box ── */}
               <AnimatedSection delay={0.15}>
-                <div className="p-8 rounded-2xl mt-14 mb-10 bg-[#1B4FD8] text-white text-center">
+                <div className="p-8 rounded-2xl mt-14 mb-10 bg-primary text-primary-foreground text-center">
                   <p className="text-lg font-semibold mb-2">Berechne jetzt deine persönliche Förderung</p>
-                  <p className="text-sm text-white/80 mb-5">
+                  <p className="text-sm text-primary-foreground/80 mb-5">
                     Unser Rechner ist bereits auf die beschlossenen Zahlen aktualisiert.
                   </p>
                   <Link
                     to="/"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#1B4FD8] text-sm font-semibold hover:opacity-90 transition-opacity"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-background text-primary text-sm font-semibold hover:opacity-90 transition-opacity"
                   >
                     Jetzt berechnen
                   </Link>

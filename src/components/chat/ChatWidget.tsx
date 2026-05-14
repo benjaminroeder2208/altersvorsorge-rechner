@@ -172,19 +172,19 @@ const ChatWidget = () => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3 }}
             onClick={open ? () => setOpen(false) : handleOpen}
-            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors duration-200 group"
-            style={{ backgroundColor: "#1B4FD8" }}
+            className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors duration-200 group bg-primary text-primary-foreground"
+            
             aria-label={open ? "Chat schließen" : "Frag den Vorsorge-Assistenten"}
             title={open ? "Chat schließen" : "Frag den Vorsorge-Assistenten"}
           >
             <AnimatePresence mode="wait">
               {open ? (
                 <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                  <X className="w-6 h-6 text-white" />
+                  <X className="w-6 h-6" />
                 </motion.span>
               ) : (
                 <motion.span key="sparkle" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                  <Sparkles className="w-6 h-6 text-white" />
+                  <Sparkles className="w-6 h-6" />
                 </motion.span>
               )}
             </AnimatePresence>
@@ -204,7 +204,7 @@ const ChatWidget = () => {
             style={{ height: "min(520px, 80vh)" }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 text-white shrink-0" style={{ backgroundColor: "#1B4FD8" }}>
+            <div className="flex items-center justify-between px-4 py-3 text-primary-foreground bg-primary shrink-0" >
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5" />
                 <span className="font-semibold text-sm">Vorsorge-Assistent</span>
@@ -226,10 +226,10 @@ const ChatWidget = () => {
                   <div
                     className={`max-w-[85%] px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
                       msg.role === "user"
-                        ? "text-white rounded-[12px_12px_4px_12px]"
+                        ? "bg-primary text-primary-foreground rounded-[12px_12px_4px_12px]"
                         : "bg-secondary text-foreground rounded-[12px_12px_12px_4px]"
                     }`}
-                    style={msg.role === "user" ? { backgroundColor: "#1B4FD8" } : undefined}
+                    
                   >
                     {msg.role === "assistant" ? renderMarkdown(msg.content) : msg.content}
                   </div>
@@ -268,8 +268,8 @@ const ChatWidget = () => {
                 <button
                   onClick={sendMessage}
                   disabled={loading || !input.trim()}
-                  className="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center text-white transition-opacity disabled:opacity-40"
-                  style={{ backgroundColor: "#1B4FD8" }}
+                  className="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center bg-primary text-primary-foreground transition-opacity disabled:opacity-40"
+                  
                   aria-label="Senden"
                 >
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}

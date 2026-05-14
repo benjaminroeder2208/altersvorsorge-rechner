@@ -4,22 +4,19 @@ import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029 } from "@/lib/foerderu
 const cards = [
   {
     value: "~1.100 €",
-    valueColor: "#EF4444",
-    accentColor: "#EF4444",
+    tone: "text-brand-red bg-brand-red",
     label: "Durchschnittliche Rentenlücke",
     sub: "pro Monat bei einem 35-Jährigen mit 3.500 € Brutto",
   },
   {
     value: "48 %",
-    valueColor: "#1B4FD8",
-    accentColor: "#1B4FD8",
+    tone: "text-primary bg-primary",
     label: "So viel ersetzt die gesetzliche Rente",
     sub: "des letzten Bruttogehalts — netto oft noch weniger",
   },
   {
     value: `${MAX_GRUNDZULAGE_AB_2027} €`,
-    valueColor: "#F59E0B",
-    accentColor: "#F59E0B",
+    tone: "text-brand-amber bg-brand-amber",
     label: "Maximale Grundzulage pro Jahr",
     sub: `durch das beschlossene Altersvorsorgedepot ab 2027`,
   },
@@ -29,26 +26,27 @@ const KeyFiguresSection = () => (
   <section className="bg-secondary py-16 md:py-20">
     <div className="container px-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {cards.map((card, i) => (
-          <AnimatedSection key={i} delay={0.1 * (i + 1)}>
-            <div className="bg-background rounded-2xl p-6 shadow-sm overflow-hidden flex">
-              {/* Accent stripe */}
-              <div className="w-1 rounded-full shrink-0 -ml-6 mr-5" style={{ background: card.accentColor }} />
-              <div>
-                <p className="text-3xl font-bold" style={{ color: card.valueColor }}>
-                  {card.value}
-                </p>
-                <p className="text-sm font-medium text-foreground mt-1">{card.label}</p>
-                <p className="text-xs text-muted-foreground mt-1">{card.sub}</p>
+        {cards.map((card, i) => {
+          const [textTone, bgTone] = card.tone.split(" ");
+          return (
+            <AnimatedSection key={i} delay={0.1 * (i + 1)}>
+              <div className="bg-background rounded-2xl p-6 shadow-sm overflow-hidden flex">
+                {/* Accent stripe */}
+                <div className={`w-1 rounded-full shrink-0 -ml-6 mr-5 ${bgTone}`} />
+                <div>
+                  <p className={`text-3xl font-bold ${textTone}`}>{card.value}</p>
+                  <p className="text-sm font-medium text-foreground mt-1">{card.label}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{card.sub}</p>
+                </div>
               </div>
-            </div>
-          </AnimatedSection>
-        ))}
+            </AnimatedSection>
+          );
+        })}
       </div>
 
       {/* CTA */}
       <div className="text-center mt-8">
-        <a href="#rechner" className="text-sm font-medium hover:underline" style={{ color: "#1B4FD8" }}>
+        <a href="#rechner" className="text-sm font-medium hover:underline text-primary">
           Wie groß ist deine persönliche Lücke? →
         </a>
       </div>
