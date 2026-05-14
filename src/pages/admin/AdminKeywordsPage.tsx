@@ -3,6 +3,7 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -10,7 +11,21 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { TrendingUp, HelpCircle, Target, Search, ExternalLink, FileText, Link2, ChevronRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import {
+  TrendingUp,
+  HelpCircle,
+  Target,
+  Search,
+  ExternalLink,
+  FileText,
+  Link2,
+  ChevronRight,
+  Sparkles,
+  Copy,
+  Loader2,
+} from "lucide-react";
 
 /**
  * Snapshot von Semrush DE-Daten. Manuell aktualisieren bei neuer Recherche.
@@ -535,6 +550,9 @@ interface DetailProps {
 
 const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
   const open = !!kw;
+  const [draft, setDraft] = useState<string>("");
+  const [generating, setGenerating] = useState(false);
+
   if (!kw) {
     return (
       <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
@@ -556,6 +574,43 @@ const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
   const isSerpDefault = !kw.serp || kw.serp.length === 0;
   const score = contentScore(kw);
   const tone = scoreTone(score);
+
+  const handleGenerate = async () => {
+    setGenerating(true);
+    setDraft("");
+    try {
+      const { data, error } = await supabase.functions.invoke("generate-seo-draft", {
+        body: {
+          keyword: kw.term,
+          intent: meta.label,
+          outline,
+          targetUrl: target,
+          coveredPages,
+        },
+      });
+      if (error) throw error;
+      const text = (data as { draft?: string; error?: string } | null)?.draft;
+      const apiError = (data as { error?: string } | null)?.error;
+      if (apiError) throw new Error(apiError);
+      if (!text) throw new Error("Leere Antwort vom Modell");
+      setDraft(text);
+      toast.success("Artikel-Entwurf erstellt");
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Generierung fehlgeschlagen";
+      toast.error(msg);
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(draft);
+      toast.success("Entwurf in die Zwischenablage kopiert");
+    } catch {
+      toast.error("Kopieren nicht möglich");
+    }
+  };
 
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
@@ -686,6 +741,53 @@ const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
                 <li key={i} className="leading-snug">{line}</li>
               ))}
             </ol>
+          </section>
+
+          {/* SEO-Entwurf generieren */}
+          <section>
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" /> SEO-Artikel-Entwurf
+              </h3>
+              {draft && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleCopy}
+                  className="h-7 px-2 text-xs"
+                >
+                  <Copy className="w-3 h-3 mr-1" /> Kopieren
+                </Button>
+              )}
+            </div>
+
+            <Button
+              size="sm"
+              onClick={handleGenerate}
+              disabled={generating}
+              className="w-full"
+            >
+              {generating ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />
+                  Entwurf wird generiert…
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+                  {draft ? "Entwurf neu generieren" : "Entwurf aus Gliederung generieren"}
+                </>
+              )}
+            </Button>
+
+            {draft && (
+              <pre className="mt-3 p-3 rounded-lg bg-muted/50 text-xs leading-relaxed whitespace-pre-wrap break-words font-mono max-h-[400px] overflow-y-auto">
+                {draft}
+              </pre>
+            )}
+            <p className="text-[10px] text-muted-foreground mt-2">
+              KI-generierter Erstentwurf — vor Veröffentlichung redaktionell prüfen, Faktencheck und interne Links setzen.
+            </p>
           </section>
 
           {/* Priorisierung */}
