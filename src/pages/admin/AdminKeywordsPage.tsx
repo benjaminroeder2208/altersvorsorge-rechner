@@ -36,25 +36,128 @@ interface Kw {
 
 const KEYWORDS: Kw[] = [
   // Hochvolumige Top-of-Funnel
-  { term: "riester rente", volume: 27100, kd: 31, intent: "broad", covered: "/altersvorsorgedepot-vs-riester" },
-  { term: "altersvorsorge", volume: 18100, kd: 46, intent: "broad", covered: "/" },
-  { term: "private altersvorsorge", volume: 6600, kd: 56, intent: "broad", suggested: "/blog/altersvorsorgedepot-2027" },
-  { term: "altersvorsorgedepot", volume: 3600, kd: 23, intent: "broad", covered: "/altersvorsorgedepot" },
-  { term: "riester rente auszahlung", volume: 3600, kd: 30, intent: "broad", suggested: "/altersvorsorgedepot-auszahlung" },
+  {
+    term: "riester rente",
+    volume: 27100,
+    kd: 31,
+    intent: "broad",
+    covered: "/altersvorsorgedepot-vs-riester",
+    relatedPages: ["/blog/riester-kuendigen", "/altersvorsorgedepot-vs-riester"],
+    outline: [
+      "Was ist die Riester-Rente? (Kurzdefinition + Status 2026)",
+      "Wie funktioniert die Förderung: Grundzulage 175 € + Kinderzulage 300 €",
+      "Auszahlung, Besteuerung und typische Renditen",
+      "Riester-Reform 2027: Übergang ins Altersvorsorgedepot",
+      "Lohnt sich Riester noch? Vergleich mit dem neuen Depot",
+      "FAQ + interner Link zum Riester-vs-Depot-Rechner",
+    ],
+  },
+  { term: "altersvorsorge", volume: 18100, kd: 46, intent: "broad", covered: "/", relatedPages: ["/altersvorsorgedepot", "/blog/altersvorsorgedepot-2027"] },
+  {
+    term: "private altersvorsorge",
+    volume: 6600,
+    kd: 56,
+    intent: "broad",
+    suggested: "/blog/altersvorsorgedepot-2027",
+    relatedPages: ["/altersvorsorgedepot", "/altersvorsorgedepot-vs-riester"],
+    outline: [
+      "Drei Säulen der Altersvorsorge in Deutschland (2026)",
+      "Welche Form passt zu wem? (Angestellte, Selbstständige, Familien)",
+      "Förderung 2027: Altersvorsorgedepot vs. Riester vs. Rürup",
+      "Renditebeispiele: 50 €, 150 €, 300 € pro Monat",
+      "Kostenfallen erkennen (Deckel 1,0 % laut Gesetz)",
+      "Schritt-für-Schritt: So startest du",
+    ],
+  },
+  {
+    term: "altersvorsorgedepot",
+    volume: 3600,
+    kd: 23,
+    intent: "broad",
+    covered: "/altersvorsorgedepot",
+    relatedPages: ["/altersvorsorgedepot-foerderung", "/altersvorsorgedepot-vs-etf-sparplan", "/altersvorsorgedepot-gesetz"],
+    outline: [
+      "Was ist das Altersvorsorgedepot? (Definition nach Drs. 21/4996)",
+      "Förderung 2027: 50 % Zulage bis 360 €, 25 % bis 1.800 €",
+      "Wer ist berechtigt? Voraussetzungen + Berufseinsteiger-Bonus",
+      "Wie eröffne ich ein Depot? (Anbieter, Schritte, Fristen)",
+      "Kosten, Auszahlung, Besteuerung im Vergleich zu Riester",
+      "Rechner-Einbettung + FAQ",
+    ],
+  },
+  { term: "riester rente auszahlung", volume: 3600, kd: 30, intent: "broad", suggested: "/altersvorsorgedepot-auszahlung", relatedPages: ["/blog/riester-kuendigen"] },
   { term: "rürup", volume: 1900, kd: 49, intent: "broad", covered: "/blog/ruerup-rente" },
   { term: "vorsorgeaufwendungen", volume: 1000, kd: 24, intent: "broad", suggested: "/blog/steuern-sparen-altersvorsorge" },
 
   // Förder- / Zulagen-Keywords
-  { term: "riester zulage", volume: 2400, kd: 34, intent: "transactional", covered: "/" },
-  { term: "altersvorsorgezulage", volume: 2400, kd: 28, intent: "transactional", suggested: "/altersvorsorgedepot-foerderung" },
-  { term: "kinderzulage riester", volume: 1900, kd: 22, intent: "transactional", suggested: "/altersvorsorgedepot-foerderung" },
+  {
+    term: "riester zulage",
+    volume: 2400,
+    kd: 34,
+    intent: "transactional",
+    covered: "/",
+    relatedPages: ["/altersvorsorgedepot-foerderung", "/altersvorsorgedepot-vs-riester"],
+    outline: [
+      "Riester-Zulage 2026 in Zahlen: Grundzulage, Kinderzulage, Berufseinsteiger-Bonus",
+      "Anspruchsvoraussetzungen + Mindesteigenbeitrag (4 %)",
+      "Antrag: Dauerzulageantrag vs. jährlicher Antrag",
+      "Wann wird die Zulage gutgeschrieben? (Fristen)",
+      "Was passiert mit der Zulage ab 2027 (Übergang ins Depot)",
+      "Rechenbeispiel: Familie mit 2 Kindern + CTA zum Rechner",
+    ],
+  },
+  {
+    term: "altersvorsorgezulage",
+    volume: 2400,
+    kd: 28,
+    intent: "transactional",
+    suggested: "/altersvorsorgedepot-foerderung",
+    relatedPages: ["/altersvorsorgedepot", "/altersvorsorgedepot-gesetz"],
+    outline: [
+      "Was ist die Altersvorsorgezulage? (Sammelbegriff seit Reform 2026)",
+      "Neue Staffelung 2027: 50 % bis 360 €, 25 % bis 1.800 €, 100 % je Kind",
+      "Vergleich: Alte Riester-Zulage vs. neue Depot-Zulage",
+      "So beantragst du die Zulage im Depot",
+      "Beispielrechnungen für 4 Lebenssituationen",
+      "FAQ + Link zum offiziellen Gesetzesentwurf",
+    ],
+  },
+  { term: "kinderzulage riester", volume: 1900, kd: 22, intent: "transactional", suggested: "/altersvorsorgedepot-foerderung", relatedPages: ["/blog/riester-kuendigen"] },
   { term: "altersvorsorge staatlich gefördert", volume: 170, kd: 39, intent: "transactional", covered: "/altersvorsorgedepot-foerderung" },
 
   // Vergleichs-Keywords (kommerziell wertvoll)
-  { term: "altersvorsorgedepot vs etf", volume: 90, kd: 18, intent: "comparison", covered: "/altersvorsorgedepot-vs-etf-sparplan" },
-  { term: "altersvorsorgedepot vs riester", volume: 50, kd: 20, intent: "comparison", covered: "/altersvorsorgedepot-vs-riester" },
-  { term: "rentenreform 2026", volume: 1900, kd: 26, intent: "comparison", covered: "/blog/altersvorsorgedepot-beschlossen" },
-  { term: "frühstartrente", volume: 1900, kd: 38, intent: "comparison", suggested: "/blog/altersvorsorgedepot-2027" },
+  {
+    term: "altersvorsorgedepot vs etf",
+    volume: 90,
+    kd: 18,
+    intent: "comparison",
+    covered: "/altersvorsorgedepot-vs-etf-sparplan",
+    relatedPages: ["/altersvorsorgedepot"],
+    outline: [
+      "Kurzantwort: Wann lohnt sich das Depot, wann der freie ETF-Sparplan?",
+      "Vergleichstabelle (Zulage, Steuern, Flexibilität, Kosten)",
+      "Renditerechnung über 30 Jahre (mit/ohne Förderung)",
+      "Bindung & Auszahlung: Was du aufgibst",
+      "Fazit + Entscheidungsbaum",
+    ],
+  },
+  { term: "altersvorsorgedepot vs riester", volume: 50, kd: 20, intent: "comparison", covered: "/altersvorsorgedepot-vs-riester", relatedPages: ["/altersvorsorgedepot-foerderung"] },
+  { term: "rentenreform 2026", volume: 1900, kd: 26, intent: "comparison", covered: "/blog/altersvorsorgedepot-beschlossen", relatedPages: ["/altersvorsorgedepot-gesetz"] },
+  {
+    term: "frühstartrente",
+    volume: 1900,
+    kd: 38,
+    intent: "comparison",
+    suggested: "/blog/altersvorsorgedepot-2027",
+    relatedPages: ["/altersvorsorgedepot"],
+    outline: [
+      "Was war die geplante Frühstartrente? (Ursprung im Koalitionsvertrag)",
+      "Warum sie ins Altersvorsorgedepot überführt wurde",
+      "Was bleibt für junge Sparer (Berufseinsteiger-Bonus)",
+      "Vergleich: Frühstartrente-Idee vs. tatsächliches Depot 2027",
+      "Empfehlung für 18–25-Jährige + CTA",
+    ],
+  },
 
   // High-Intent Fragen (niedriges Volumen, hohe Conversion)
   { term: "wann wird die riester zulage gutgeschrieben", volume: 90, kd: 12, intent: "question", suggested: "/blog/riester-kuendigen" },
@@ -66,6 +169,44 @@ const KEYWORDS: Kw[] = [
   { term: "wie heißt die staatlich geförderte private altersvorsorge", volume: 10, kd: 10, intent: "question", covered: "/altersvorsorgedepot" },
   { term: "was sind vorsorgeaufwendungen", volume: 480, kd: 18, intent: "question", suggested: "/blog/steuern-sparen-altersvorsorge" },
 ];
+
+/** Fallback-Gliederung, falls für ein Keyword keine individuelle vorhanden ist. */
+function defaultOutline(k: Kw): string[] {
+  if (k.intent === "question") {
+    return [
+      `Direkte Antwort auf '${k.term}' (1–2 Sätze, fett, ganz oben)`,
+      "Hintergrund: Rechtsgrundlage und Stand 2026",
+      "Konkretes Rechen- oder Praxisbeispiel",
+      "Häufige Stolperfallen / Sonderfälle",
+      "Verwandte Fragen + interner Link zum Hauptartikel",
+    ];
+  }
+  if (k.intent === "comparison") {
+    return [
+      `Kurzfazit: ${k.term} — wer gewinnt?`,
+      "Vergleichstabelle (Förderung, Kosten, Flexibilität, Steuer)",
+      "Renditebeispiel über 20–30 Jahre",
+      "Wann welche Variante besser passt (Zielgruppen)",
+      "Empfehlung + CTA zum Rechner",
+    ];
+  }
+  if (k.intent === "transactional") {
+    return [
+      `${k.term} 2026/2027: Die Eckdaten in einer Übersichts-Box`,
+      "Voraussetzungen und wer Anspruch hat",
+      "Antrag und Auszahlung Schritt für Schritt",
+      "Rechenbeispiele für 2–3 Lebenssituationen",
+      "FAQ + CTA zum Förder-Rechner",
+    ];
+  }
+  return [
+    `Was ist '${k.term}'? (Definition + Status 2026)`,
+    "Wie funktioniert es? (mit Grafik/Tabelle)",
+    "Vor- und Nachteile",
+    "Vergleich mit Alternativen",
+    "Praxisbeispiel + interne Verlinkung",
+  ];
+}
 
 const INTENT_META: Record<Intent, { label: string; tone: string }> = {
   broad: { label: "Breit", tone: "bg-secondary text-foreground" },
