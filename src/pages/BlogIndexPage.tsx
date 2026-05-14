@@ -253,9 +253,9 @@ const FeaturedIllustration = () => (
       fill="white"
       opacity="0.05"
     />
-    <circle cx="90" cy="80" r="4" fill="#F59E0B" />
-    <circle cx="140" cy="42" r="6" fill="#F59E0B" />
-    <circle cx="180" cy="24" r="4" fill="#F59E0B" />
+    <circle cx="90" cy="80" r="4" fill={BRAND.amber} />
+    <circle cx="140" cy="42" r="6" fill={BRAND.amber} />
+    <circle cx="180" cy="24" r="4" fill={BRAND.amber} />
   </svg>
 );
 
