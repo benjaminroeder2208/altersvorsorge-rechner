@@ -20,9 +20,9 @@ const StackedTooltip = ({ active, payload, label }: any) => {
     <div className="bg-embed border border-embed-border rounded-xl p-3 shadow-lg text-xs min-w-[180px]">
       <p className="text-embed-foreground-muted mb-2 font-medium">Alter {label}</p>
       {[
-        { label: "Eigenbeiträge", value: point.contributions, color: "#9CA3AF" },
-        { label: "Zulagen", value: point.subsidies, color: "#1B4FD8" },
-        { label: "Kapitalerträge", value: point.gains, color: "#2DD4A8" },
+        { label: "Eigenbeiträge", value: point.contributions, color: BRAND.chartGray },
+        { label: "Zulagen", value: point.subsidies, color: BRAND.chartBlue },
+        { label: "Kapitalerträge", value: point.gains, color: BRAND.chartTeal },
       ].map((row) => (
         <div key={row.label} className="flex items-center justify-between gap-3 mb-1">
           <div className="flex items-center gap-1.5">
@@ -56,13 +56,13 @@ const EmbedMiniChart = ({ data, primaryColor }: Props) => (
       </defs>
       <XAxis
         dataKey="age"
-        tick={{ fill: "#9CA3AF", fontSize: 11 }}
+        tick={{ fill: BRAND.chartGray, fontSize: 11 }}
         axisLine={false}
         tickLine={false}
         interval="preserveStartEnd"
       />
       <YAxis
-        tick={{ fill: "#9CA3AF", fontSize: 11 }}
+        tick={{ fill: BRAND.chartGray, fontSize: 11 }}
         axisLine={false}
         tickLine={false}
         tickFormatter={(v) => (v >= 1000 ? `${Math.round(v / 1000)}k` : String(v))}
