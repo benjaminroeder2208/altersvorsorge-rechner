@@ -122,7 +122,7 @@ export const ROUTES: SeoRoute[] = [
   },
   {
     path: "/altersvorsorgedepot-vs-etf-sparplan",
-    title: "Altersvorsorgedepot vs. ETF-Sparplan – Der ehrliche Vergleich",
+    title: "Altersvorsorgedepot vs. ETF-Sparplan",
     description:
       "Altersvorsorgedepot oder klassischer ETF-Sparplan? Förderung, Steuern, Flexibilität und Auszahlung im direkten Vergleich – mit Beispielrechnung.",
     h1: "Altersvorsorgedepot vs. ETF-Sparplan",
