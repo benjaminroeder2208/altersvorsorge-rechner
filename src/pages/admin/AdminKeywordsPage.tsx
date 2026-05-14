@@ -3,7 +3,14 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { TrendingUp, HelpCircle, Target, Search } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { TrendingUp, HelpCircle, Target, Search, ExternalLink, FileText, Link2, ChevronRight } from "lucide-react";
 
 /**
  * Snapshot von Semrush DE-Daten. Manuell aktualisieren bei neuer Recherche.
