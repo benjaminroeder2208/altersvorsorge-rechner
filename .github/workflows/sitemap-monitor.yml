@@ -1,0 +1,21 @@
+name: Sitemap & Routes Monitor
+
+on:
+  schedule:
+    # Täglich 06:00 UTC (≈ 07:00/08:00 Berlin) – früh genug, um SEO-Probleme vor dem Tagesgeschäft zu sehen.
+    - cron: "0 6 * * *"
+  workflow_dispatch: {} # manuell auslösbar
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Monitor live sitemap & critical routes
+        env:
+          MONITOR_BASE_URL: https://altersvorsorge-rechner.com
+        run: bunx tsx scripts/monitor-sitemap.ts
