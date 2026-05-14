@@ -77,7 +77,7 @@ const HeroSection = () => (
 
         {/* Disclaimer */}
         <motion.p
-          className="text-xs text-muted-foreground/50"
+          className="text-xs text-muted-foreground"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}

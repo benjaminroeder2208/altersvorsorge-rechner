@@ -38,7 +38,7 @@ const ReichtMeineRentePage = () => (
           Jetzt berechnen
           <ArrowRight className="w-5 h-5" />
         </Link>
-        <p className="mt-4 text-xs text-muted-foreground/50">Dauert nur 3 kurze Fragen</p>
+        <p className="mt-4 text-xs text-muted-foreground">Dauert nur 3 kurze Fragen</p>
       </section>
 
       {/* PROBLEM */}
@@ -107,7 +107,7 @@ const ReichtMeineRentePage = () => (
 
       {/* Footer */}
       <div className="border-t border-border/30 py-6 px-6">
-        <p className="text-xs text-muted-foreground/50 text-center">
+        <p className="text-xs text-muted-foreground text-center">
           Renten-Check · Vereinfachte Schätzung · Keine Anlageberatung
         </p>
       </div>

@@ -233,7 +233,7 @@ const RechnerPage = () => (
             </div>
 
             <div className="mt-8 p-5 bg-muted/50 border border-border/60 rounded-xl max-w-2xl mx-auto text-center">
-              <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                 *Hinweise & Haftungsausschluss
               </p>
               <p className="text-xs text-muted-foreground/70 leading-relaxed">

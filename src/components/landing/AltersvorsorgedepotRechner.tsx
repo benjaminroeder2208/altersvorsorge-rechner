@@ -357,7 +357,7 @@ const NewsletterCard = ({ inputs, result }: { inputs: Inputs; result: ReturnType
                 placeholder="Deine E-Mail-Adresse"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                className="flex-1 px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
               />
               <button
                 type="submit"
@@ -880,7 +880,7 @@ const AltersvorsorgedepotRechner = () => {
                           Eigenbeiträge + Staatliche Zulagen
                         </p>
                       </div>
-                      <div className="text-muted-foreground/40 text-2xl font-light">+</div>
+                      <div className="text-muted-foreground text-2xl font-light">+</div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Wertentwicklung (Kapitalerträge)</p>
                         <p className="text-xl font-bold tabular-nums text-[hsl(174,60%,38%)]">
@@ -893,7 +893,7 @@ const AltersvorsorgedepotRechner = () => {
                           Simulierte Erträge bei {Math.round(inputs.returnRate * 100)} % p.a.
                         </p>
                       </div>
-                      <div className="text-muted-foreground/40 text-2xl font-light">=</div>
+                      <div className="text-muted-foreground text-2xl font-light">=</div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Kapital zum Rentenbeginn</p>
                         <p className="text-xl font-bold tabular-nums text-primary">
@@ -904,7 +904,7 @@ const AltersvorsorgedepotRechner = () => {
                         </p>
                       </div>
                     </div>
-                    <p className="text-[11px] text-muted-foreground/50 mt-5 leading-snug border-t border-border pt-4">
+                    <p className="text-[11px] text-muted-foreground mt-5 leading-snug border-t border-border pt-4">
                       Kapitalerträge sind keine Garantie. Die Simulation basiert auf vereinfachten Annahmen ohne
                       Inflation, Kosten oder Steuern auf Erträge. Frühere Wertentwicklungen sind kein verlässlicher
                       Indikator für die Zukunft.
@@ -989,7 +989,7 @@ const AltersvorsorgedepotRechner = () => {
 
                 {/* Disclaimer */}
                 <div className="max-w-xl mx-auto p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
-                  <p className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider mb-2">
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                     Hinweise & Haftungsausschluss
                   </p>
                   <p className="text-xs text-muted-foreground/70 leading-relaxed">

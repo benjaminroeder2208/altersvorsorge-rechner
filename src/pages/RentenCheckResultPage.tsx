@@ -245,7 +245,7 @@ const RentenCheckResultPage = () => {
                     <p className="text-sm font-medium text-foreground">{label}</p>
                     <p className="text-xs text-muted-foreground">{desc}</p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground/50 group-hover:text-muted-foreground transition-colors shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-muted-foreground transition-colors shrink-0" />
                 </div>
               ))}
             </div>
@@ -264,7 +264,7 @@ const RentenCheckResultPage = () => {
 
         {/* Footer */}
         <div className="border-t border-border/30 py-6 px-6 mt-auto">
-          <p className="text-xs text-muted-foreground/50 text-center">
+          <p className="text-xs text-muted-foreground text-center">
             Renten-Check · Vereinfachte Schätzung · Keine Anlage-, Steuer- oder Rechtsberatung
           </p>
         </div>
