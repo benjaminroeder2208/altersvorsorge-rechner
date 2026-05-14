@@ -198,10 +198,7 @@ const RechnerPage = () => (
                     <tr key={row.label} className={i % 2 === 0 ? "bg-background" : ""}>
                       <td className="py-3 px-4 font-medium text-muted-foreground">{row.label}</td>
                       <td className="py-3 px-4 text-center tabular-nums">{row.values[0]}</td>
-                      <td
-                        className="py-3 px-4 text-center font-medium tabular-nums"
-                        style={{ background: "#EEF3FF", color: "#1B4FD8" }}
-                      >
+                      <td className="py-3 px-4 text-center font-medium tabular-nums bg-primary-soft text-primary-soft-foreground">
                         {row.values[1]}
                       </td>
                       <td className="py-3 px-4 text-center tabular-nums">{row.values[2]}</td>
