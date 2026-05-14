@@ -234,6 +234,14 @@ const App = () => (
                   </ProtectedAdminRoute>
                 }
               />
+              <Route
+                path="/admin/keywords"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminKeywordsPage />
+                  </ProtectedAdminRoute>
+                }
+              />
               <Route path="/internal/analytics-test" element={<AnalyticsTestPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
