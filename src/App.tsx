@@ -73,6 +73,7 @@ const AdminNewsletterListPage = lazy(() => import("./pages/admin/AdminNewsletter
 const AdminNewsletterEditPage = lazy(() => import("./pages/admin/AdminNewsletterEditPage"));
 const AdminLeadsPage = lazy(() => import("./pages/admin/AdminLeadsPage"));
 const AdminNewsletterSubscribersPage = lazy(() => import("./pages/admin/AdminNewsletterSubscribersPage"));
+const AdminSeoMetricsPage = lazy(() => import("./pages/admin/AdminSeoMetricsPage"));
 
 // Internal QA — not linked, noindex
 const AnalyticsTestPage = lazy(() => import("./pages/internal/AnalyticsTestPage"));
@@ -201,6 +202,14 @@ const App = () => (
                 element={
                   <ProtectedAdminRoute>
                     <AdminNewsletterSubscribersPage />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="/admin/seo"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminSeoMetricsPage />
                   </ProtectedAdminRoute>
                 }
               />
