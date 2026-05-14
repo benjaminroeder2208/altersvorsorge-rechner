@@ -1,7 +1,7 @@
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Trophy, Target, Lightbulb } from "lucide-react";
+import { ExternalLink, Trophy, Target, Lightbulb, Gauge } from "lucide-react";
 
 /**
  * Snapshot von Semrush SERP-Daten (Datenbank: DE).
