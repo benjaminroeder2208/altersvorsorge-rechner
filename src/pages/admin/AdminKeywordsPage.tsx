@@ -59,6 +59,7 @@ const KEYWORDS: Kw[] = [
     intent: "broad",
     covered: "/altersvorsorgedepot-vs-riester",
     relatedPages: ["/blog/riester-kuendigen", "/altersvorsorgedepot-vs-riester"],
+    serp: ["wiki", "official", "media", "fintech", "paa"],
     outline: [
       "Was ist die Riester-Rente? (Kurzdefinition + Status 2026)",
       "Wie funktioniert die Förderung: Grundzulage 175 € + Kinderzulage 300 €",
