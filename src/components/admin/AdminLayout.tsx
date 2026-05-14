@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { LogOut, Newspaper, Users, Mail, Search } from "lucide-react";
+import { LogOut, Newspaper, Users, Mail, Search, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
