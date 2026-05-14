@@ -78,6 +78,7 @@ const AdminSeoMetricsPage = lazy(() => import("./pages/admin/AdminSeoMetricsPage
 const AdminSeoSettingsPage = lazy(() => import("./pages/admin/AdminSeoSettingsPage"));
 const AdminCompetitorsPage = lazy(() => import("./pages/admin/AdminCompetitorsPage"));
 const AdminKeywordsPage = lazy(() => import("./pages/admin/AdminKeywordsPage"));
+const AdminSerpHistoryPage = lazy(() => import("./pages/admin/AdminSerpHistoryPage"));
 
 // Internal QA — not linked, noindex
 const AnalyticsTestPage = lazy(() => import("./pages/internal/AnalyticsTestPage"));
@@ -239,6 +240,14 @@ const App = () => (
                 element={
                   <ProtectedAdminRoute>
                     <AdminKeywordsPage />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="/admin/serp-history"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminSerpHistoryPage />
                   </ProtectedAdminRoute>
                 }
               />
