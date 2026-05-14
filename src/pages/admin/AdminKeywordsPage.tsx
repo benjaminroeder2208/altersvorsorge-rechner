@@ -231,6 +231,7 @@ function priorityScore(k: Kw): number {
 
 const AdminKeywordsPage = () => {
   const [filter, setFilter] = useState("");
+  const [selected, setSelected] = useState<Kw | null>(null);
 
   const filtered = useMemo(() => {
     const q = filter.trim().toLowerCase();
