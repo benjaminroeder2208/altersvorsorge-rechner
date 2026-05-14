@@ -23,12 +23,46 @@ interface Suggestion {
   note?: string;
 }
 
+type ViolationType =
+  | "title-missing"
+  | "title-too-long"
+  | "desc-missing"
+  | "desc-too-long"
+  | "desc-too-short"
+  | "ogtype-should-article"
+  | "ogtype-should-website";
+
+interface Violation {
+  type: ViolationType;
+  message: string;
+  severity: number;
+}
+
+const VIOLATION_LABELS: Record<ViolationType, string> = {
+  "title-missing": "Titel fehlt",
+  "title-too-long": "Titel zu lang",
+  "desc-missing": "Description fehlt",
+  "desc-too-long": "Description zu lang",
+  "desc-too-short": "Description zu kurz",
+  "ogtype-should-article": "ogType sollte 'article' sein",
+  "ogtype-should-website": "ogType sollte 'website' sein",
+};
+
 interface RowWithViolations extends MetricRow {
   titleLen: number;
   descLen: number;
-  violations: string[];
+  violations: Violation[];
   suggestions: Suggestion[];
+  severity: number;
 }
+
+const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+const severityBucket = (s: number): { label: string; cls: string } => {
+  if (s === 0) return { label: "OK", cls: "bg-emerald-500/10 text-emerald-700" };
+  if (s <= 2) return { label: "Niedrig", cls: "bg-amber-500/10 text-amber-700" };
+  if (s <= 5) return { label: "Mittel", cls: "bg-orange-500/10 text-orange-700" };
+  return { label: "Hoch", cls: "bg-destructive/10 text-destructive" };
+};
 
 // Eagerly load all Blog page sources as raw text. Vite resolves this at build
 // time, so the bundle stays self-contained.
