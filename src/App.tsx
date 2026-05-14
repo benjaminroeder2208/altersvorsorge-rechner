@@ -205,6 +205,14 @@ const App = () => (
                   </ProtectedAdminRoute>
                 }
               />
+              <Route
+                path="/admin/seo"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminSeoMetricsPage />
+                  </ProtectedAdminRoute>
+                }
+              />
               <Route path="/internal/analytics-test" element={<AnalyticsTestPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
