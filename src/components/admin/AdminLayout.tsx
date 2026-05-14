@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { LogOut, Newspaper, Users, Mail, Search } from "lucide-react";
+import { LogOut, Newspaper, Users, Mail, Search, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -53,6 +53,11 @@ const AdminLayout = ({ children, title }: Props) => {
             <NavLink to="/admin/seo" className={navLinkClass}>
               <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                 <Search className="w-3.5 h-3.5" /> SEO
+              </span>
+            </NavLink>
+            <NavLink to="/internal/analytics-test" className={navLinkClass} target="_blank" rel="noopener noreferrer">
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                <Activity className="w-3.5 h-3.5" /> Analytics-Test
               </span>
             </NavLink>
           </nav>
