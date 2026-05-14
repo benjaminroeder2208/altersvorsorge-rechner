@@ -70,6 +70,11 @@ const AdminLayout = ({ children, title }: Props) => {
                 <Target className="w-3.5 h-3.5" /> Keywords
               </span>
             </NavLink>
+            <NavLink to="/admin/serp-history" className={navLinkClass}>
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                <History className="w-3.5 h-3.5" /> SERP-Historie
+              </span>
+            </NavLink>
             <NavLink to="/internal/analytics-test" className={navLinkClass} target="_blank" rel="noopener noreferrer">
               <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                 <Activity className="w-3.5 h-3.5" /> Analytics-Test
