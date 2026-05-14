@@ -55,10 +55,10 @@ const KEYWORDS: KeywordBlock[] = [
       { pos: 10, domain: "riester.deutsche-rentenversicherung.de", url: "https://riester.deutsche-rentenversicherung.de/DE/Riester-Rechner/riester-rechner-einstieg_node", type: "official" },
     ],
     angles: [
-      "Bridge-Artikel „Riester-Zulage vs. Altersvorsorgedepot-Förderung 2027" — direkter Vergleich der Zulagenhöhen, Antragswege und Steuervorteile.",
+      "Bridge-Artikel "Riester-Zulage vs. Altersvorsorgedepot-Förderung 2027" — direkter Vergleich der Zulagenhöhen, Antragswege und Steuervorteile.",
       "Interaktiver Zulagenrechner mit Vergleichsanzeige (Riester heute vs. Depot ab 2027) — keine Top-10-Seite bietet das.",
-      "FAQ-Block für die High-Intent-Fragen aus den Question Keywords: „Wann wird die Riester-Zulage gutgeschrieben?", „Wie hoch ist die Riester-Zulage?", „Wer bekommt keine Riester-Zulage?".",
-      "Ratgeber „Riester pausieren statt kündigen — und 2027 ins Depot wechseln" (passt zur Riester-Transfer-Policy).",
+      "FAQ-Block für die High-Intent-Fragen aus den Question Keywords: "Wann wird die Riester-Zulage gutgeschrieben?", "Wie hoch ist die Riester-Zulage?", "Wer bekommt keine Riester-Zulage?".",
+      "Ratgeber "Riester pausieren statt kündigen — und 2027 ins Depot wechseln" (passt zur Riester-Transfer-Policy).",
       "Schema.org `FAQPage` + `HowTo` Markup für die Zulagen-Schritte — Behörden-Seiten haben das nicht.",
     ],
     ourEdge: "Top-10 ist dominiert von Behörden (statisch, schwer aktualisiert) und Versicherern (eigeninteressiert). Eine unabhängige, aktuelle Vergleichsseite mit Rechner und 2027-Perspektive füllt eine echte Lücke.",
@@ -81,9 +81,9 @@ const KEYWORDS: KeywordBlock[] = [
       { pos: 10, domain: "fincite.de", url: "https://www.fincite.de/blog/altersvorsorgedepot", type: "competitor" },
     ],
     angles: [
-      "„Altersvorsorgedepot 2027 — alle Regeln nach Beschluss vom 27.03.2026" als Hub-Seite mit Verweis auf Drs. 21/4996 (mehr juristische Tiefe als Finanztip, aktueller als BMF-FAQ).",
+      ""Altersvorsorgedepot 2027 — alle Regeln nach Beschluss vom 27.03.2026" als Hub-Seite mit Verweis auf Drs. 21/4996 (mehr juristische Tiefe als Finanztip, aktueller als BMF-FAQ).",
       "Interaktiver Endkapital-Rechner inkl. Förderung — Finanztip hat einen Rechner, aber ohne Kinderzulage und Berufseinsteiger-Bonus differenziert.",
-      "Vergleichstabelle „Altersvorsorgedepot bei den Anbietern" (Scalable, ING, DKB, Union Investment) — neutrale, anbieterunabhängige Gegenüberstellung der 1,0%-Kostendeckel-Produkte.",
+      "Vergleichstabelle "Altersvorsorgedepot bei den Anbietern" (Scalable, ING, DKB, Union Investment) — neutrale, anbieterunabhängige Gegenüberstellung der 1,0%-Kostendeckel-Produkte.",
       "PDF-Auswertung als Lead-Magnet — hat keiner der Top-10.",
       "Video-Erklärbeiträge in eigene Seite einbetten + Transkript — bedient die Video-Intent in Position 9.",
       "Themen-Cluster: Auszahlung, Förderung, vs. Riester, vs. ETF — bereits aufgebaut, gezielt intern verlinken auf /altersvorsorgedepot.",
@@ -103,7 +103,7 @@ const AdminCompetitorsPage = () => {
         {KEYWORDS.map((kw) => (
           <Card key={kw.keyword} className="p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-              <h2 className="text-lg sm:text-xl font-bold">„{kw.keyword}"</h2>
+              <h2 className="text-lg sm:text-xl font-bold">"{kw.keyword}"</h2>
               <div className="flex flex-wrap gap-2 text-xs">
                 <Badge variant="secondary">Volumen: {kw.volume}</Badge>
                 <Badge variant="secondary">KD: {kw.difficulty} ({kw.difficultyLabel})</Badge>
