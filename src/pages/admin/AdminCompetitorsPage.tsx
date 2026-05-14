@@ -114,6 +114,7 @@ const KEYWORDS: KeywordBlock[] = [
     volume: "3.600 / Monat",
     difficulty: "23/100",
     difficultyLabel: "leicht",
+    kd: 23,
     results: [
       { pos: 1, domain: "bundesfinanzministerium.de", url: "https://www.bundesfinanzministerium.de/Content/DE/FAQ/reform-der-privaten-altersvorsorge.html", type: "official" },
       { pos: 2, domain: "finanztip.de", url: "https://www.finanztip.de/altersvorsorge/altersvorsorgedepot-rechner/", type: "media" },
