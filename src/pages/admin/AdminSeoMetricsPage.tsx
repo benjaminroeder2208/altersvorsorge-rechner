@@ -813,6 +813,42 @@ const AdminSeoMetricsPage = () => {
                     </td>
                     <td className="px-3 py-2 max-w-sm">
                       <div className="space-y-2">
+                        <SerpPreview
+                          label="SERP-Vorschau (aktuell)"
+                          path={r.path}
+                          title={r.title}
+                          description={r.description}
+                        />
+                        {(() => {
+                          // Build deterministic SERP previews per distinct
+                          // title/description suggestion (regular + blog).
+                          const all = [...r.suggestions, ...r.blogOptimizations];
+                          const seen = new Set<string>();
+                          const previews: { label: string; title: string; description: string }[] = [];
+                          for (const s of all) {
+                            if (s.field !== "title" && s.field !== "description") continue;
+                            const nextTitle = s.field === "title" ? s.value : r.title;
+                            const nextDesc = s.field === "description" ? s.value : r.description;
+                            const key = `${nextTitle}|${nextDesc}`;
+                            if (seen.has(key)) continue;
+                            seen.add(key);
+                            previews.push({
+                              label: `Vorschau · ${s.field === "title" ? "Titel" : "Description"} angepasst`,
+                              title: nextTitle,
+                              description: nextDesc,
+                            });
+                          }
+                          return previews.map((p, i) => (
+                            <SerpPreview
+                              key={i}
+                              label={p.label}
+                              path={r.path}
+                              title={p.title}
+                              description={p.description}
+                              variant="suggested"
+                            />
+                          ));
+                        })()}
                         {ok ? (
                           <span className="text-xs text-emerald-700">OK</span>
                         ) : (
