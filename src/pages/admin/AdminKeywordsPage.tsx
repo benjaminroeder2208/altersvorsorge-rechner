@@ -576,6 +576,48 @@ const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
         </SheetHeader>
 
         <div className="mt-6 space-y-6 text-sm">
+          {/* Content-Score */}
+          <section className="rounded-lg border border-border/60 p-3 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Content-Score</p>
+              <p className="text-xs text-muted-foreground">
+                Geschätzte Realisierbarkeit eines Top-10-Rankings.
+              </p>
+            </div>
+            <div className="text-right">
+              <div className="text-2xl font-bold tabular-nums leading-none">{score}</div>
+              <span className={`inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded ${tone.tone}`}>{tone.label}</span>
+            </div>
+          </section>
+
+          {/* SERP-Preview */}
+          <section>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
+              <Search className="w-3.5 h-3.5" /> SERP-Preview (Top {serp.length})
+              {isSerpDefault && (
+                <span className="text-[10px] font-normal normal-case text-muted-foreground">
+                  (Standard nach Intent — manuelle Recherche empfohlen)
+                </span>
+              )}
+            </h3>
+            <ol className="space-y-1.5">
+              {serp.map((t, i) => {
+                const m = SERP_META[t];
+                return (
+                  <li key={`${t}-${i}`} className="flex items-start gap-2">
+                    <span className="text-[10px] tabular-nums text-muted-foreground w-4 text-right pt-0.5">
+                      {i + 1}.
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded ${m.tone}`}>{m.label}</span>
+                      <p className="text-xs text-muted-foreground mt-0.5">{m.hint}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+
           {/* Empfohlene Ziel-URL */}
           <section>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
