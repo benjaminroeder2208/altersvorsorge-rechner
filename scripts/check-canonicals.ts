@@ -1,10 +1,11 @@
 /**
- * Postbuild-Validator: jede sitemap-URL hat im prerenderten HTML genau eine
- * <link rel="canonical">, die exakt auf die sitemap-loc zeigt. Erkennt:
- *  - fehlende prerenderte HTML-Datei
- *  - fehlendes canonical-Tag
- *  - mehrere widersprüchliche canonical-Tags
- *  - canonical zeigt auf andere URL als sitemap-loc
+ * Postbuild-CI-Check: validiert sitemap.xml gegen noindex- und canonical-Regeln
+ * im prerenderten HTML. Bricht den Build ab (exit 1) bei jedem Verstoß.
+ *
+ * Pro sitemap-loc wird geprüft:
+ *  - prerenderte HTML-Datei existiert
+ *  - genau ein <link rel="canonical">, href == sitemap-loc
+ *  - <meta name="robots"> enthält KEIN "noindex" / "none"
  */
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
