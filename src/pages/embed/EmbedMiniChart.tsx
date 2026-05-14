@@ -1,4 +1,5 @@
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { BRAND } from "@/lib/brandColors";
 
 export interface EmbedChartDataPoint {
   age: number;
