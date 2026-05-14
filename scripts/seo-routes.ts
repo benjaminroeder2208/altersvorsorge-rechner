@@ -80,7 +80,7 @@ export const ROUTES: SeoRoute[] = [
   },
   {
     path: "/altersvorsorgedepot-foerderung",
-    title: "Altersvorsorgedepot Förderung – So hoch ist die staatliche Zulage",
+    title: "Altersvorsorgedepot Förderung",
     description:
       "50 % Grundförderung bis 360 €, 25 % bis 1.800 €, 100 % Kinderzulage: So funktioniert die staatliche Förderung des Altersvorsorgedepots ab 2027.",
     h1: "Altersvorsorgedepot Förderung",
