@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { BRAND } from "@/lib/brandColors";
 
 const navLinks = [
