@@ -60,6 +60,20 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        disclaimer: {
+          DEFAULT: "hsl(var(--disclaimer-background))",
+          foreground: "hsl(var(--disclaimer-foreground))",
+          border: "hsl(var(--disclaimer-border))",
+        },
+        embed: {
+          DEFAULT: "hsl(var(--embed-background))",
+          surface: "hsl(var(--embed-surface))",
+          foreground: "hsl(var(--embed-foreground))",
+          "foreground-muted": "hsl(var(--embed-foreground-muted))",
+          "foreground-strong": "hsl(var(--embed-foreground-strong))",
+          border: "hsl(var(--embed-border))",
+          "border-subtle": "hsl(var(--embed-border-subtle))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
