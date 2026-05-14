@@ -107,7 +107,7 @@ function parseBlogSources(): MetricRow[] {
   return rows;
 }
 
-function buildRows(): RowWithViolations[] {
+function buildRows(settings: ReturnType<typeof loadSeoSettings>): RowWithViolations[] {
   const ssot: MetricRow[] = SSOT_ROUTES.filter((r) => !r.noindex).map((r) => ({
     path: r.path,
     title: r.title,
@@ -123,6 +123,7 @@ function buildRows(): RowWithViolations[] {
 
   return Array.from(byPath.values())
     .map((r) => {
+      const limits = getLimitsForRoute(settings, r.path);
       const titleLen = r.title.length;
       const descLen = r.description.length;
       const violations: Violation[] = [];
@@ -130,53 +131,52 @@ function buildRows(): RowWithViolations[] {
 
       if (titleLen === 0) {
         violations.push({ type: "title-missing", message: "Titel fehlt", severity: 5 });
-      } else if (titleLen > TITLE_MAX) {
-        const sev = clamp(1 + Math.ceil((titleLen - TITLE_MAX) / 4), 1, 4);
+      } else if (titleLen > limits.titleMax) {
+        const sev = clamp(1 + Math.ceil((titleLen - limits.titleMax) / 4), 1, 4);
         violations.push({
           type: "title-too-long",
-          message: `Titel zu lang (${titleLen} > ${TITLE_MAX})`,
+          message: `Titel zu lang (${titleLen} > ${limits.titleMax})`,
           severity: sev,
         });
-        suggestions.push({ field: "title", value: shortenTitle(r.title, TITLE_MAX) });
+        suggestions.push({ field: "title", value: shortenTitle(r.title, limits.titleMax) });
       }
 
       if (descLen === 0) {
         violations.push({ type: "desc-missing", message: "Description fehlt", severity: 4 });
-      } else if (descLen < DESC_MIN) {
-        const sev = clamp(1 + Math.ceil((DESC_MIN - descLen) / 15), 1, 3);
+      } else if (descLen < limits.descMin) {
+        const sev = clamp(1 + Math.ceil((limits.descMin - descLen) / 15), 1, 3);
         violations.push({
           type: "desc-too-short",
-          message: `Description zu kurz (${descLen} < ${DESC_MIN})`,
+          message: `Description zu kurz (${descLen} < ${limits.descMin})`,
           severity: sev,
         });
         suggestions.push({
           field: "description",
           value: r.description,
-          note: `Um ≥ ${DESC_MIN - descLen} Zeichen erweitern – z. B. konkreten Nutzen, Förderhöhe oder CTA ergänzen.`,
+          note: `Um ≥ ${limits.descMin - descLen} Zeichen erweitern – z. B. konkreten Nutzen, Förderhöhe oder CTA ergänzen.`,
         });
-      } else if (descLen > DESC_MAX) {
-        const sev = clamp(1 + Math.ceil((descLen - DESC_MAX) / 15), 1, 3);
+      } else if (descLen > limits.descMax) {
+        const sev = clamp(1 + Math.ceil((descLen - limits.descMax) / 15), 1, 3);
         violations.push({
           type: "desc-too-long",
-          message: `Description zu lang (${descLen} > ${DESC_MAX})`,
+          message: `Description zu lang (${descLen} > ${limits.descMax})`,
           severity: sev,
         });
-        suggestions.push({ field: "description", value: shortenDescription(r.description, DESC_MAX) });
+        suggestions.push({ field: "description", value: shortenDescription(r.description, limits.descMax) });
       }
 
-      const isBlog = r.path.startsWith("/blog/");
-      if (isBlog && r.ogType !== "article") {
+      const expectedOg = getExpectedOgType(settings, r.path);
+      if (expectedOg === "article" && r.ogType !== "article") {
         violations.push({
           type: "ogtype-should-article",
           message: "ogType sollte 'article' sein",
           severity: 2,
         });
         suggestions.push({ field: "ogType", value: 'ogType="article"' });
-      }
-      if (!isBlog && r.ogType === "article" && r.path !== "/blog") {
+      } else if (expectedOg === "website" && r.ogType !== "website") {
         violations.push({
           type: "ogtype-should-website",
-          message: "ogType 'article' für Nicht-Blog-Route",
+          message: "ogType sollte 'website' sein",
           severity: 1,
         });
         suggestions.push({ field: "ogType", value: 'ogType="website"' });
@@ -185,9 +185,9 @@ function buildRows(): RowWithViolations[] {
       const severity = violations.reduce((sum, v) => sum + v.severity, 0);
       const isBlog2 = r.path.startsWith("/blog/");
       const blogOptimizations = isBlog2
-        ? buildBlogOptimizations(r.title, r.description)
+        ? buildBlogOptimizations(r.title, r.description, limits)
         : [];
-      return { ...r, titleLen, descLen, violations, suggestions, blogOptimizations, severity };
+      return { ...r, titleLen, descLen, violations, suggestions, blogOptimizations, severity, limits };
     })
     .sort((a, b) => {
       if (a.severity !== b.severity) return b.severity - a.severity;
