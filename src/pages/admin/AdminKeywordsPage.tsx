@@ -437,9 +437,10 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority, onSelect }: 
               <th className="text-left py-2 px-2 font-medium">Keyword</th>
               <th className="text-right py-2 px-2 font-medium">Volumen</th>
               <th className="text-right py-2 px-2 font-medium">KD</th>
+              <th className="text-right py-2 px-2 font-medium">Content-Score</th>
               <th className="text-left py-2 px-2 font-medium">Intent</th>
               <th className="text-left py-2 px-2 font-medium">Status</th>
-              {showPriority && <th className="text-right py-2 px-2 font-medium">Score</th>}
+              {showPriority && <th className="text-right py-2 px-2 font-medium">Prio</th>}
               <th className="w-6" />
             </tr>
           </thead>
