@@ -405,7 +405,7 @@ const AdminSeoMetricsPage = () => {
               </tr>
             </thead>
             <tbody>
-              {rows.map((r) => {
+              {filteredRows.map((r) => {
                 const ok = r.violations.length === 0;
                 return (
                   <tr
