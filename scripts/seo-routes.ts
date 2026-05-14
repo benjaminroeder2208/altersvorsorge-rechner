@@ -94,7 +94,7 @@ export const ROUTES: SeoRoute[] = [
   },
   {
     path: "/altersvorsorgedepot-auszahlung",
-    title: "Altersvorsorgedepot Auszahlung – So funktioniert die Rentenphase",
+    title: "Altersvorsorgedepot Auszahlung",
     description:
       "Wie funktioniert die Auszahlung beim Altersvorsorgedepot? Rentenbeginn 65–70, monatliche Rente bis mind. 85 und bis zu 30 % Kapitalentnahme erklärt.",
     h1: "Altersvorsorgedepot Auszahlung",
