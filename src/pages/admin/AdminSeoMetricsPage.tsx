@@ -651,7 +651,7 @@ const AdminSeoMetricsPage = () => {
                     </td>
                     <td className="px-3 py-2">
                       <div className="line-clamp-2 text-foreground">{r.title || "—"}</div>
-                      <div className={`text-xs mt-1 ${lengthClass(r.titleLen, 1, TITLE_MAX)}`}>
+                      <div className={`text-xs mt-1 ${lengthClass(r.titleLen, 1, r.limits.titleMax)}`}>
                         {r.titleLen} Zeichen
                       </div>
                     </td>
