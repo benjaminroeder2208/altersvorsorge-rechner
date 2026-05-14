@@ -238,6 +238,7 @@ export const ROUTES: SeoRoute[] = [
       "Datenschutzhinweise nach DSGVO.",
       "/datenschutz",
     ),
+    noindex: true,
   },
   {
     path: "/blog",
