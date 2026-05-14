@@ -23,12 +23,46 @@ interface Suggestion {
   note?: string;
 }
 
+type ViolationType =
+  | "title-missing"
+  | "title-too-long"
+  | "desc-missing"
+  | "desc-too-long"
+  | "desc-too-short"
+  | "ogtype-should-article"
+  | "ogtype-should-website";
+
+interface Violation {
+  type: ViolationType;
+  message: string;
+  severity: number;
+}
+
+const VIOLATION_LABELS: Record<ViolationType, string> = {
+  "title-missing": "Titel fehlt",
+  "title-too-long": "Titel zu lang",
+  "desc-missing": "Description fehlt",
+  "desc-too-long": "Description zu lang",
+  "desc-too-short": "Description zu kurz",
+  "ogtype-should-article": "ogType sollte 'article' sein",
+  "ogtype-should-website": "ogType sollte 'website' sein",
+};
+
 interface RowWithViolations extends MetricRow {
   titleLen: number;
   descLen: number;
-  violations: string[];
+  violations: Violation[];
   suggestions: Suggestion[];
+  severity: number;
 }
+
+const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
+const severityBucket = (s: number): { label: string; cls: string } => {
+  if (s === 0) return { label: "OK", cls: "bg-emerald-500/10 text-emerald-700" };
+  if (s <= 2) return { label: "Niedrig", cls: "bg-amber-500/10 text-amber-700" };
+  if (s <= 5) return { label: "Mittel", cls: "bg-orange-500/10 text-orange-700" };
+  return { label: "Hoch", cls: "bg-destructive/10 text-destructive" };
+};
 
 // Eagerly load all Blog page sources as raw text. Vite resolves this at build
 // time, so the bundle stays self-contained.
@@ -89,44 +123,68 @@ function buildRows(): RowWithViolations[] {
     .map((r) => {
       const titleLen = r.title.length;
       const descLen = r.description.length;
-      const violations: string[] = [];
-      const suggestions: { field: string; value: string; note?: string }[] = [];
+      const violations: Violation[] = [];
+      const suggestions: Suggestion[] = [];
 
       if (titleLen === 0) {
-        violations.push("Titel fehlt");
+        violations.push({ type: "title-missing", message: "Titel fehlt", severity: 5 });
       } else if (titleLen > TITLE_MAX) {
-        violations.push(`Titel zu lang (${titleLen} > ${TITLE_MAX})`);
+        const sev = clamp(1 + Math.ceil((titleLen - TITLE_MAX) / 4), 1, 4);
+        violations.push({
+          type: "title-too-long",
+          message: `Titel zu lang (${titleLen} > ${TITLE_MAX})`,
+          severity: sev,
+        });
         suggestions.push({ field: "title", value: shortenTitle(r.title, TITLE_MAX) });
       }
 
       if (descLen === 0) {
-        violations.push("Description fehlt");
+        violations.push({ type: "desc-missing", message: "Description fehlt", severity: 4 });
       } else if (descLen < DESC_MIN) {
-        violations.push(`Description zu kurz (${descLen} < ${DESC_MIN})`);
+        const sev = clamp(1 + Math.ceil((DESC_MIN - descLen) / 15), 1, 3);
+        violations.push({
+          type: "desc-too-short",
+          message: `Description zu kurz (${descLen} < ${DESC_MIN})`,
+          severity: sev,
+        });
         suggestions.push({
           field: "description",
           value: r.description,
           note: `Um ≥ ${DESC_MIN - descLen} Zeichen erweitern – z. B. konkreten Nutzen, Förderhöhe oder CTA ergänzen.`,
         });
       } else if (descLen > DESC_MAX) {
-        violations.push(`Description zu lang (${descLen} > ${DESC_MAX})`);
+        const sev = clamp(1 + Math.ceil((descLen - DESC_MAX) / 15), 1, 3);
+        violations.push({
+          type: "desc-too-long",
+          message: `Description zu lang (${descLen} > ${DESC_MAX})`,
+          severity: sev,
+        });
         suggestions.push({ field: "description", value: shortenDescription(r.description, DESC_MAX) });
       }
 
       const isBlog = r.path.startsWith("/blog/");
       if (isBlog && r.ogType !== "article") {
-        violations.push("ogType sollte 'article' sein");
+        violations.push({
+          type: "ogtype-should-article",
+          message: "ogType sollte 'article' sein",
+          severity: 2,
+        });
         suggestions.push({ field: "ogType", value: 'ogType="article"' });
       }
       if (!isBlog && r.ogType === "article" && r.path !== "/blog") {
-        violations.push("ogType 'article' für Nicht-Blog-Route");
+        violations.push({
+          type: "ogtype-should-website",
+          message: "ogType 'article' für Nicht-Blog-Route",
+          severity: 1,
+        });
         suggestions.push({ field: "ogType", value: 'ogType="website"' });
       }
 
-      return { ...r, titleLen, descLen, violations, suggestions };
+      const severity = violations.reduce((sum, v) => sum + v.severity, 0);
+      return { ...r, titleLen, descLen, violations, suggestions, severity };
     })
     .sort((a, b) => {
-      if (a.violations.length !== b.violations.length) return b.violations.length - a.violations.length;
+      if (a.severity !== b.severity) return b.severity - a.severity;
       return a.path.localeCompare(b.path);
     });
 }
@@ -181,6 +239,23 @@ function lengthClass(len: number, min: number, max: number): string {
 const AdminSeoMetricsPage = () => {
   const rows = useMemo(buildRows, []);
   const violationCount = rows.filter((r) => r.violations.length > 0).length;
+  const totalSeverity = rows.reduce((s, r) => s + r.severity, 0);
+
+  // Gruppierte Summary nach Verstoßtyp
+  const summary = useMemo(() => {
+    const byType = new Map<ViolationType, { count: number; severity: number }>();
+    for (const r of rows) {
+      for (const v of r.violations) {
+        const cur = byType.get(v.type) ?? { count: 0, severity: 0 };
+        cur.count += 1;
+        cur.severity += v.severity;
+        byType.set(v.type, cur);
+      }
+    }
+    return Array.from(byType.entries())
+      .map(([type, agg]) => ({ type, ...agg }))
+      .sort((a, b) => b.severity - a.severity);
+  }, [rows]);
 
   return (
     <>
@@ -196,7 +271,7 @@ const AdminSeoMetricsPage = () => {
           (PageHead-Props). Limits: Title ≤ {TITLE_MAX}, Description {DESC_MIN}–{DESC_MAX}.
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-6 text-xs">
+        <div className="flex flex-wrap gap-2 mb-4 text-xs">
           <span className="px-2 py-1 rounded-md bg-muted text-muted-foreground">
             {rows.length} Routen geprüft
           </span>
@@ -209,13 +284,42 @@ const AdminSeoMetricsPage = () => {
           >
             {violationCount} mit Verstößen
           </span>
+          <span className="px-2 py-1 rounded-md bg-muted text-muted-foreground">
+            Gesamt-Score: <span className="font-medium text-foreground">{totalSeverity}</span>
+          </span>
         </div>
+
+        {summary.length > 0 && (
+          <div className="mb-6 rounded-lg border border-border bg-card p-3 sm:p-4">
+            <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">
+              Verstöße nach Typ (Priorität)
+            </div>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+              {summary.map((s) => {
+                const bucket = severityBucket(s.severity);
+                return (
+                  <li key={s.type} className="flex items-center justify-between gap-3">
+                    <span className="text-foreground">{VIOLATION_LABELS[s.type]}</span>
+                    <span className="flex items-center gap-2 shrink-0">
+                      <span className="text-xs text-muted-foreground">
+                        {s.count}× · Score {s.severity}
+                      </span>
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded ${bucket.cls}`}>
+                        {bucket.label}
+                      </span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
 
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
             <thead className="bg-muted/50">
               <tr className="text-left">
-                <th className="px-3 py-2 font-medium">Status</th>
+                <th className="px-3 py-2 font-medium">Schwere</th>
                 <th className="px-3 py-2 font-medium">Pfad</th>
                 <th className="px-3 py-2 font-medium">Title (Länge)</th>
                 <th className="px-3 py-2 font-medium">Description (Länge)</th>
@@ -233,12 +337,24 @@ const AdminSeoMetricsPage = () => {
                       ok ? "" : "bg-destructive/5"
                     }`}
                   >
-                    <td className="px-3 py-2">
-                      {ok ? (
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                      ) : (
-                        <AlertTriangle className="w-4 h-4 text-destructive" />
-                      )}
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      {(() => {
+                        const bucket = severityBucket(r.severity);
+                        return (
+                          <span
+                            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium ${bucket.cls}`}
+                            title={`Schweregrad-Score: ${r.severity}`}
+                          >
+                            {ok ? (
+                              <CheckCircle2 className="w-3 h-3" />
+                            ) : (
+                              <AlertTriangle className="w-3 h-3" />
+                            )}
+                            {bucket.label}
+                            {!ok && <span className="text-muted-foreground">· {r.severity}</span>}
+                          </span>
+                        );
+                      })()}
                     </td>
                     <td className="px-3 py-2">
                       <a
@@ -284,7 +400,10 @@ const AdminSeoMetricsPage = () => {
                         <div className="space-y-2">
                           <ul className="text-xs text-destructive space-y-0.5">
                             {r.violations.map((v) => (
-                              <li key={v}>• {v}</li>
+                              <li key={v.type}>
+                                • {v.message}
+                                <span className="text-muted-foreground"> · +{v.severity}</span>
+                              </li>
                             ))}
                           </ul>
                           {r.suggestions.length > 0 && (
