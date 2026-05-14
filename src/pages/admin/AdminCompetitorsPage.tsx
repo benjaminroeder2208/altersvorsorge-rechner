@@ -167,6 +167,34 @@ const KEYWORDS: KeywordBlock[] = [
     ],
     ourEdge: "Score 35/100 (Schwer): Wikipedia + 3× Behörde drücken den Score, aber Video-Karussell und Versicherer-Eigeninteresse öffnen Lücken. Reform-Aktualität, eigenes Tool und Erklärvideo sind die drei Score-Treiber — daher als Top-3-H2 priorisiert.",
   },
+  {
+    keyword: "private altersvorsorge",
+    volume: "8.100 / Monat",
+    difficulty: "42/100",
+    difficultyLabel: "anspruchsvoll",
+    kd: 42,
+    results: [
+      { pos: 1, domain: "bundesfinanzministerium.de", url: "https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Lohnsteuer/Private-Altersvorsorge/private-altersvorsorge.html", type: "official" },
+      { pos: 2, domain: "verbraucherzentrale.de", url: "https://www.verbraucherzentrale.de/wissen/geld-versicherungen/altersvorsorge/private-altersvorsorge-welche-formen-es-gibt-und-fuer-wen-sie-sich-eignen-13884", type: "official" },
+      { pos: 3, domain: "finanztip.de", url: "https://www.finanztip.de/altersvorsorge/private-altersvorsorge/", type: "media" },
+      { pos: 4, domain: "deutsche-rentenversicherung.de", url: "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Drei-Saeulen-der-Altersvorsorge/03-private-altersvorsorge.html", type: "official" },
+      { pos: 5, domain: "stiftung-warentest.de", url: "https://www.test.de/thema/private-altersvorsorge/", type: "media" },
+      { pos: 6, domain: "allianz.de", url: "https://www.allianz.de/vorsorge/altersvorsorge/private-altersvorsorge/", type: "competitor" },
+      { pos: 7, domain: "ergo.de", url: "https://www.ergo.de/de/Produkte/Vorsorge/Private-Altersvorsorge", type: "competitor" },
+      { pos: 8, domain: "finanzfluss.de", url: "https://www.finanzfluss.de/geldanlage/private-altersvorsorge/", type: "fintech" },
+      { pos: 9, domain: "ing.de", url: "https://www.ing.de/wissen/private-altersvorsorge/", type: "bank" },
+      { pos: 10, domain: "youtube.com", url: "https://www.youtube.com/results?search_query=private+altersvorsorge", type: "video" },
+    ],
+    angles: [
+      { text: "H2 »Private Altersvorsorge ab 2027 — Altersvorsorgedepot statt Riester« mit Reform-SSOT (Drs. 21/4996). Direkter Aktualitäts-Hebel gegen BMF, Verbraucherzentrale und DRV (3× official, -36 Penalty).", priority: true },
+      { text: "H2 »Welche private Altersvorsorge passt zu mir? — interaktiver Vergleichsrechner« (Depot, Rürup, bAV, ETF). Nutzt Tool-Lücke und Versicherer-Schwäche (Pos. 6+7 mit Eigeninteresse, +6 Score-Boost durch 2× competitor).", priority: true },
+      { text: "H2 »Private Altersvorsorge in 2 Minuten erklärt« als eingebettetes Video + Transkript. Bedient Video-Intent (+4 Score-Boost) und liefert Featured-Snippet-Material.", priority: true },
+      "H2 »Förderung der privaten Altersvorsorge 2027« mit Zulagen-Tabelle (50%/25%, Kinderboost, 1.800€-Cap) und Steuerbeispielen.",
+      "H2 »Private Altersvorsorge für Selbstständige, Familien, 50+« — Cluster-Inhalte, die Behörden-Seiten nicht abdecken.",
+      "Interne Verlinkung zu /altersvorsorgedepot, /rentenluecken-rechner und Blog-Cluster; Schema.org `Article` + `FAQPage` + jährliches `dateModified`.",
+    ],
+    ourEdge: "Score 40/100 (Schwer): 3× official + 2× media drücken stark, aber 2 Versicherer-Treffer (+6) und Video-Slot (+4) öffnen Lücken. Reform-Aktualität, Vergleichsrechner und Erklärvideo sind die Score-Treiber — als Top-3-H2 priorisiert.",
+  },
 ];
 
 const AdminCompetitorsPage = () => {
