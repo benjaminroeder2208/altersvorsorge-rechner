@@ -142,6 +142,7 @@ const KEYWORDS: KeywordBlock[] = [
     volume: "18.100 / Monat",
     difficulty: "46/100",
     difficultyLabel: "anspruchsvoll",
+    kd: 46,
     results: [
       { pos: 1, domain: "de.wikipedia.org", url: "https://de.wikipedia.org/wiki/Altersvorsorge", type: "wiki" },
       { pos: 2, domain: "deutsche-rentenversicherung.de", url: "https://www.deutsche-rentenversicherung.de/DRV/DE/Rente/Allgemeine-Informationen/Drei-Saeulen-der-Altersvorsorge/drei-saeulen-der-altersvorsorge_node.html", type: "official" },
@@ -154,15 +155,17 @@ const KEYWORDS: KeywordBlock[] = [
       { pos: 9, domain: "finanzfluss.de", url: "https://www.finanzfluss.de/geldanlage/altersvorsorge/", type: "fintech" },
       { pos: 10, domain: "youtube.com", url: "https://www.youtube.com/results?search_query=altersvorsorge", type: "video" },
     ],
+    // Reihenfolge korreliert mit Score-Treibern: Top-3 sind die H2-Abschnitte, die den Score
+    // direkt heben (Video-Lücke +4, Wettbewerber-Schwäche +3, Aktualitäts-Hebel kompensiert official/wiki).
     angles: [
-      'Hub-Seite »Altersvorsorge 2026/2027 — der komplette Überblick nach der Reform« als zentrale Landingpage mit Drei-Säulen-Modell + neuem Altersvorsorgedepot.',
-      'Interaktiver Entscheidungsbaum »Welche Altersvorsorge passt zu mir?« nach Alter, Familienstand, Einkommen — keiner der Top-10 hat ein interaktives Tool.',
-      "Vergleichstabelle aller Vorsorge-Formen 2027 (gesetzlich, Depot, bAV, Riester-Bestand, Rürup, ETF) mit Förderquote, Bindung, Kosten und Steuern.",
-      "Zielgruppen-Cluster (Berufseinsteiger, Familien, Selbstständige, 50+) — Wikipedia und Behörden bieten nur generische Inhalte.",
-      "Aktualitäts-Hebel: Reform-Updates aus Drs. 21/4996 prominent platziert. Wikipedia und BMF aktualisieren langsamer.",
+      { text: "H2 »Reform 2026/2027 — was sich konkret ändert« mit Drs. 21/4996 prominent oben. Direkter Hebel gegen Wikipedia/BMF (langsame Aktualisierung) und gegen Versicherer-Seiten (Eigeninteresse). Kompensiert -18 Score-Penalty aus official + wiki.", priority: true },
+      { text: "H2 »Welche Altersvorsorge passt zu mir? — interaktiver Entscheidungsbaum« nach Alter, Familie, Einkommen. Schließt die Tool-Lücke (kein Top-10-Ergebnis hat eines) und nutzt die Wettbewerber-Schwäche (+3 Score-Boost durch competitor in Pos. 7).", priority: true },
+      { text: "H2 »Altersvorsorge erklärt in 90 Sekunden« als eingebettetes Video + Transkript. Bedient die Video-Intent in Pos. 10 (+4 Score-Boost) und liefert Featured-Snippet-Material.", priority: true },
+      "H2 »Vergleichstabelle aller Vorsorge-Formen 2027« (gesetzlich, Depot, bAV, Riester-Bestand, Rürup, ETF) mit Förderquote, Bindung, Kosten, Steuern.",
+      "H2 »Altersvorsorge nach Lebensphase« — Cluster für Berufseinsteiger, Familien, Selbstständige, 50+. Wikipedia und Behörden bieten nur generische Inhalte.",
       "Schema.org `Article` + `FAQPage` + `BreadcrumbList`, jährlich aktualisierter `dateModified`-Timestamp für News-Boost.",
     ],
-    ourEdge: "KD 46/100 ist anspruchsvoll, aber die Top-10 ist breit und unspezifisch (Wikipedia, Behörden, Versicherer). Mit der Reform-Aktualität (2027) und einem echten interaktiven Tool gibt es einen klaren Differenzierungs-Hebel — kein Top-10-Ergebnis kombiniert beides.",
+    ourEdge: "Score 35/100 (Schwer): Wikipedia + 3× Behörde drücken den Score, aber Video-Karussell und Versicherer-Eigeninteresse öffnen Lücken. Reform-Aktualität, eigenes Tool und Erklärvideo sind die drei Score-Treiber — daher als Top-3-H2 priorisiert.",
   },
 ];
 
