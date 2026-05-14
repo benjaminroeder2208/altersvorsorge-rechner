@@ -121,14 +121,14 @@ const StepperCard = ({ label, value, min, max, onChange, primaryColor }: {
   label: string; value: number; min: number; max: number;
   onChange: (v: number) => void; primaryColor: string;
 }) => (
-  <div className="bg-white border border-gray-200 rounded-xl p-4 flex items-center justify-between">
-    <span className="text-sm text-gray-600">{label}</span>
+  <div className="bg-embed border border-embed-border rounded-xl p-4 flex items-center justify-between">
+    <span className="text-sm text-embed-foreground-muted">{label}</span>
     <div className="flex items-center gap-2">
       <button onClick={() => onChange(Math.max(min, value - 1))} disabled={value <= min}
-        className="w-8 h-8 rounded-full bg-gray-100 text-gray-700 font-medium flex items-center justify-center hover:bg-gray-200 disabled:opacity-20">−</button>
-      <span className="text-lg font-bold tabular-nums min-w-[4ch] text-center text-gray-900">{value}</span>
+        className="w-8 h-8 rounded-full bg-embed-surface text-embed-foreground font-medium flex items-center justify-center hover:bg-embed-border disabled:opacity-20">−</button>
+      <span className="text-lg font-bold tabular-nums min-w-[4ch] text-center text-embed-foreground-strong">{value}</span>
       <button onClick={() => onChange(Math.min(max, value + 1))} disabled={value >= max}
-        className="w-8 h-8 rounded-full bg-gray-100 text-gray-700 font-medium flex items-center justify-center hover:bg-gray-200 disabled:opacity-20">+</button>
+        className="w-8 h-8 rounded-full bg-embed-surface text-embed-foreground font-medium flex items-center justify-center hover:bg-embed-border disabled:opacity-20">+</button>
     </div>
   </div>
 );
@@ -216,7 +216,7 @@ const EmbedPage = () => {
   const stepVariants = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -15 } };
 
   return (
-    <div className="min-h-screen bg-white" style={{ "--embed-primary": primaryColor } as React.CSSProperties}>
+    <div className="min-h-screen bg-embed" style={{ "--embed-primary": primaryColor } as React.CSSProperties}>
       <PageHead title="Altersvorsorgedepot Rechner" description="" path="/embed" robots="noindex,nofollow" />
 
       <div className="max-w-[600px] mx-auto px-4 py-6">
@@ -224,21 +224,21 @@ const EmbedPage = () => {
           {/* STEP 1: Contribution */}
           {step === 1 && (
             <motion.div key="s1" variants={stepVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="text-center">
-              <h2 className="text-xl font-bold text-gray-900 mb-2" style={{ letterSpacing: "-0.01em" }}>
+              <h2 className="text-xl font-bold text-embed-foreground-strong mb-2" style={{ letterSpacing: "-0.01em" }}>
                 Wie viel möchten Sie monatlich investieren?
               </h2>
-              <p className="text-sm text-gray-500 mb-8">Monatlicher Beitrag für Ihre Altersvorsorge</p>
+              <p className="text-sm text-embed-foreground-muted mb-8">Monatlicher Beitrag für Ihre Altersvorsorge</p>
 
-              <p className="text-5xl font-bold text-gray-900 mb-6" style={{ letterSpacing: "-0.02em" }}>
+              <p className="text-5xl font-bold text-embed-foreground-strong mb-6" style={{ letterSpacing: "-0.02em" }}>
                 <AnimatedNumber value={inputs.monthlyContribution} suffix=" €" />
               </p>
 
               <div className="max-w-sm mx-auto mb-3">
                 <input type="range" min={10} max={600} step={10} value={inputs.monthlyContribution}
                   onChange={(e) => set("monthlyContribution", Number(e.target.value))}
-                  className="w-full h-1.5 bg-gray-200 rounded-full appearance-none cursor-pointer"
+                  className="w-full h-1.5 bg-embed-border rounded-full appearance-none cursor-pointer"
                   style={{ accentColor: primaryColor }} />
-                <div className="flex justify-between text-xs text-gray-600 mt-1"><span>10 €</span><span>600 €</span></div>
+                <div className="flex justify-between text-xs text-embed-foreground-muted mt-1"><span>10 €</span><span>600 €</span></div>
               </div>
 
               <button onClick={() => setStep(2)}
@@ -252,16 +252,16 @@ const EmbedPage = () => {
           {/* STEP 2: Income */}
           {step === 2 && (
             <motion.div key="s2" variants={stepVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="text-center">
-              <button onClick={() => setStep(1)} className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6">
+              <button onClick={() => setStep(1)} className="inline-flex items-center gap-1 text-sm text-embed-foreground-muted hover:text-embed-foreground mb-6">
                 <ChevronLeft className="w-4 h-4" /> Zurück
               </button>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Ihr Bruttojahreseinkommen?</h2>
-              <p className="text-sm text-gray-500 mb-8">Beeinflusst die geschätzten steuerlichen Vorteile</p>
+              <h2 className="text-xl font-bold text-embed-foreground-strong mb-2">Ihr Bruttojahreseinkommen?</h2>
+              <p className="text-sm text-embed-foreground-muted mb-8">Beeinflusst die geschätzten steuerlichen Vorteile</p>
               <div className="grid grid-cols-2 gap-2 max-w-sm mx-auto">
                 {INCOME_BANDS.map((band, i) => (
                   <button key={i} onClick={() => set("incomeBand", i)}
                     className={`rounded-xl p-4 text-center transition-all border text-sm font-medium ${
-                      inputs.incomeBand === i ? "border-2 bg-opacity-5" : "border-gray-200 bg-white hover:bg-gray-50 text-gray-700"
+                      inputs.incomeBand === i ? "border-2 bg-opacity-5" : "border-embed-border bg-embed hover:bg-embed-surface text-embed-foreground"
                     }`}
                     style={inputs.incomeBand === i ? { borderColor: primaryColor, color: primaryColor, background: `${primaryColor}0D` } : {}}>
                     {band.label}
@@ -279,10 +279,10 @@ const EmbedPage = () => {
           {/* STEP 3: Personal data + results */}
           {step === 3 && (
             <motion.div key="s3" variants={stepVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="text-center">
-              <button onClick={() => setStep(2)} className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6">
+              <button onClick={() => setStep(2)} className="inline-flex items-center gap-1 text-sm text-embed-foreground-muted hover:text-embed-foreground mb-6">
                 <ChevronLeft className="w-4 h-4" /> Zurück
               </button>
-              <h2 className="text-xl font-bold text-gray-900 mb-6">Persönliche Angaben</h2>
+              <h2 className="text-xl font-bold text-embed-foreground-strong mb-6">Persönliche Angaben</h2>
               <div className="space-y-3 max-w-sm mx-auto mb-8">
                 <StepperCard label="Geburtsjahr" value={inputs.birthYear} min={1955} max={CURRENT_YEAR - 18} onChange={(v) => set("birthYear", v)} primaryColor={primaryColor} />
                 <StepperCard label="Kinder" value={inputs.children} min={0} max={6} onChange={(v) => set("children", v)} primaryColor={primaryColor} />
@@ -317,51 +317,51 @@ const EmbedPage = () => {
           {/* STEP 4: Results */}
           {step === 4 && (
             <motion.div key="s4" variants={stepVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }} className="text-center">
-              <button onClick={() => setStep(3)} className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6">
+              <button onClick={() => setStep(3)} className="inline-flex items-center gap-1 text-sm text-embed-foreground-muted hover:text-embed-foreground mb-6">
                 <ChevronLeft className="w-4 h-4" /> Angaben ändern
               </button>
 
               {/* Primary result */}
               <p className="text-xs font-medium uppercase tracking-widest mb-3" style={{ color: primaryColor }}>Kapital zum Rentenbeginn</p>
-              <p className="text-4xl md:text-5xl font-bold text-gray-900 mb-2" style={{ letterSpacing: "-0.02em" }}>
+              <p className="text-4xl md:text-5xl font-bold text-embed-foreground-strong mb-2" style={{ letterSpacing: "-0.02em" }}>
                 <AnimatedNumber value={Math.round(r.capitalWithFunding)} suffix=" €" />
               </p>
-              <p className="text-sm text-gray-500 mb-6">bei {fmtEur(inputs.monthlyContribution)} monatlich über {r.yearsToRetirement} Jahre</p>
+              <p className="text-sm text-embed-foreground-muted mb-6">bei {fmtEur(inputs.monthlyContribution)} monatlich über {r.yearsToRetirement} Jahre</p>
 
-              <div className="inline-block bg-gray-50 rounded-xl px-6 py-4 mb-6">
-                <p className="text-2xl font-bold text-gray-900"><AnimatedNumber value={Math.round(r.monthlyPayout)} suffix=" €" /></p>
-                <p className="text-xs text-gray-500 mt-1">monatliche Auszahlung bis 85</p>
+              <div className="inline-block bg-embed-surface rounded-xl px-6 py-4 mb-6">
+                <p className="text-2xl font-bold text-embed-foreground-strong"><AnimatedNumber value={Math.round(r.monthlyPayout)} suffix=" €" /></p>
+                <p className="text-xs text-embed-foreground-muted mt-1">monatliche Auszahlung bis 85</p>
               </div>
 
               {/* Key figures */}
               <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <p className="text-xs text-gray-500 mb-1">Staatliche Förderung</p>
+                <div className="bg-embed-surface rounded-xl p-4">
+                  <p className="text-xs text-embed-foreground-muted mb-1">Staatliche Förderung</p>
                   <p className="text-lg font-bold" style={{ color: primaryColor }}>{fmtEur(Math.round(r.totalSubsidies))}</p>
-                  <p className="text-[10px] text-gray-600 mt-1 leading-snug">
+                  <p className="text-[10px] text-embed-foreground-muted mt-1 leading-snug">
                     Summe aller Grundzulagen über die Ansparzeit. Unabhängig vom Einkommen — direkt ins Depot.
                   </p>
                 </div>
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <p className="text-xs text-gray-500 mb-1">Eigenbeiträge gesamt</p>
-                  <p className="text-lg font-bold text-gray-900">{fmtEur(Math.round(r.totalContributions))}</p>
+                <div className="bg-embed-surface rounded-xl p-4">
+                  <p className="text-xs text-embed-foreground-muted mb-1">Eigenbeiträge gesamt</p>
+                  <p className="text-lg font-bold text-embed-foreground-strong">{fmtEur(Math.round(r.totalContributions))}</p>
                 </div>
               </div>
 
               {/* Mini chart */}
               <div id="embed-chart-capture" className="h-[180px] mb-6">
-                <Suspense fallback={<div className="w-full h-full bg-gray-50 rounded-lg animate-pulse" />}>
+                <Suspense fallback={<div className="w-full h-full bg-embed-surface rounded-lg animate-pulse" />}>
                   <EmbedMiniChart data={r.chartData} primaryColor={primaryColor} />
                 </Suspense>
               </div>
 
               {/* Email capture */}
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 text-center mb-6">
+              <div className="bg-embed-surface border border-embed-border rounded-xl p-5 text-center mb-6">
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <FileText className="w-4 h-4" style={{ color: primaryColor }} />
-                  <h3 className="text-base font-semibold text-gray-900">Deine PDF-Auswertung</h3>
+                  <h3 className="text-base font-semibold text-embed-foreground-strong">Deine PDF-Auswertung</h3>
                 </div>
-                <p className="text-xs text-gray-500 mb-4">Erhalte deine persönliche Auswertung als PDF — kostenlos.</p>
+                <p className="text-xs text-embed-foreground-muted mb-4">Erhalte deine persönliche Auswertung als PDF — kostenlos.</p>
 
                 {emailStatus === "sent" ? (
                   <p className="text-sm font-medium py-2" style={{ color: primaryColor }}>
@@ -371,7 +371,7 @@ const EmbedPage = () => {
                   <form onSubmit={handleEmailSubmit} className="space-y-3">
                     <div className="flex gap-2">
                       <input type="email" required placeholder="Deine E-Mail" value={email} onChange={(e) => setEmail(e.target.value)}
-                        className="flex-1 px-3 py-2.5 rounded-lg border border-gray-200 bg-white text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2" style={{ focusRingColor: primaryColor } as any} />
+                        className="flex-1 px-3 py-2.5 rounded-lg border border-embed-border bg-embed text-sm placeholder:text-embed-foreground-muted focus:outline-none focus:ring-2" style={{ focusRingColor: primaryColor } as any} />
                       <button type="submit" disabled={emailStatus === "sending" || !dsgvoAccepted}
                         className="px-4 py-2.5 rounded-lg text-white font-medium text-sm hover:opacity-90 disabled:opacity-50"
                         style={{ background: primaryColor }}>
@@ -382,7 +382,7 @@ const EmbedPage = () => {
                       <Checkbox id="dsgvo-embed" checked={dsgvoAccepted}
                         onCheckedChange={(v) => { setDsgvoAccepted(!!v); setDsgvoError(false); }}
                         className={`mt-0.5 ${dsgvoError ? "border-red-500 ring-1 ring-red-500" : ""}`} />
-                      <label htmlFor="dsgvo-embed" className="text-[10px] text-gray-500 leading-relaxed cursor-pointer">
+                      <label htmlFor="dsgvo-embed" className="text-[10px] text-embed-foreground-muted leading-relaxed cursor-pointer">
                         Ich stimme der Verarbeitung meiner E-Mail gemäß der{" "}
                         <a href="https://altersvorsorge-rechner.com/datenschutz" target="_blank" rel="noopener noreferrer" className="underline">Datenschutzerklärung</a>{" "}zu.
                       </label>
@@ -394,7 +394,7 @@ const EmbedPage = () => {
               </div>
 
               {/* Restart */}
-              <button onClick={() => setStep(1)} className="text-xs text-gray-600 hover:text-gray-800 underline underline-offset-4 mb-4">
+              <button onClick={() => setStep(1)} className="text-xs text-embed-foreground-muted hover:text-embed-foreground-strong underline underline-offset-4 mb-4">
                 Neue Berechnung
               </button>
             </motion.div>
@@ -402,13 +402,13 @@ const EmbedPage = () => {
         </AnimatePresence>
 
         {/* Disclaimer */}
-        <div className="mt-6 pt-4 border-t border-gray-100 space-y-1">
-          <p className="text-[9px] text-gray-600 leading-relaxed text-center">
+        <div className="mt-6 pt-4 border-t border-embed-border-subtle space-y-1">
+          <p className="text-[9px] text-embed-foreground-muted leading-relaxed text-center">
             Simulation auf Basis des Altersvorsorgereformgesetzes (27.03.2026). Keine Anlage-, Steuer- oder Rechtsberatung. Kapitalanlagen bergen Risiken. Angaben ohne Gewähr.
           </p>
           <p className="text-center">
             <a href="https://altersvorsorge-rechner.com?ref=embed" target="_blank" rel="noopener noreferrer"
-              className="text-[10px] text-gray-600 hover:text-gray-800 transition-colors">
+              className="text-[10px] text-embed-foreground-muted hover:text-embed-foreground-strong transition-colors">
               Powered by altersvorsorge-rechner.com
             </a>
           </p>

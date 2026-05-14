@@ -16,8 +16,8 @@ const StackedTooltip = ({ active, payload, label }: any) => {
   const point = payload[0]?.payload as EmbedChartDataPoint | undefined;
   if (!point) return null;
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-lg text-xs min-w-[180px]">
-      <p className="text-gray-500 mb-2 font-medium">Alter {label}</p>
+    <div className="bg-embed border border-embed-border rounded-xl p-3 shadow-lg text-xs min-w-[180px]">
+      <p className="text-embed-foreground-muted mb-2 font-medium">Alter {label}</p>
       {[
         { label: "Eigenbeiträge", value: point.contributions, color: "#9CA3AF" },
         { label: "Zulagen", value: point.subsidies, color: "#1B4FD8" },
@@ -26,14 +26,14 @@ const StackedTooltip = ({ active, payload, label }: any) => {
         <div key={row.label} className="flex items-center justify-between gap-3 mb-1">
           <div className="flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full" style={{ background: row.color }} />
-            <span className="text-gray-500">{row.label}</span>
+            <span className="text-embed-foreground-muted">{row.label}</span>
           </div>
-          <span className="font-semibold text-gray-900">{fmtEur(row.value)}</span>
+          <span className="font-semibold text-embed-foreground-strong">{fmtEur(row.value)}</span>
         </div>
       ))}
-      <div className="pt-2 mt-1 border-t border-gray-100 flex justify-between">
-        <span className="font-semibold text-gray-900">Gesamt</span>
-        <span className="font-bold text-gray-900">{fmtEur(point.total)}</span>
+      <div className="pt-2 mt-1 border-t border-embed-border-subtle flex justify-between">
+        <span className="font-semibold text-embed-foreground-strong">Gesamt</span>
+        <span className="font-bold text-embed-foreground-strong">{fmtEur(point.total)}</span>
       </div>
     </div>
   );
