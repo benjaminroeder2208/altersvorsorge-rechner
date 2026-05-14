@@ -100,7 +100,7 @@ const BlogRentenluecke = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Rentenlücke: Was sie ist, wie groß sie wirklich ist — und was du tun kannst"
         description="Die gesetzliche Rente reicht für die meisten nicht. Wir zeigen konkret, wie groß die Rentenlücke ist — und wie du sie mit dem Altersvorsorgedepot ab 2027 schließen kannst."
         path={PATH}

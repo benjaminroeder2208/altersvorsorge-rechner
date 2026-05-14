@@ -70,7 +70,7 @@ const BlogSteuernSparenAltersvorsorge = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Steuern sparen mit Altersvorsorge: So sparst du bis zu 3.000 Euro/Jahr"
         description="Mit Altersvorsorge Steuern sparen: Sonderausgabenabzug, Freibeträge, Rürup. Konkrete Euro-Beispiele für Angestellte und Selbstständige."
         path={PATH}

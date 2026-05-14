@@ -70,7 +70,7 @@ const BlogAltersvorsorgeFreiberufler = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorge für Freiberufler: Rürup, Depot & maximale Steuersparnis"
         description="Altersvorsorge für Freiberufler: Rürup vs. Depot vs. ETF. Welche Strategie maximiert Steuervorteil und Kapitalaufbau? Mit konkreten Beispielen."
         path={PATH}

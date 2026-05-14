@@ -105,7 +105,7 @@ const BlogPortfolio = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Wie sieht ein gutes Altersvorsorge-Portfolio aus? Drei Beispiele"
         description="ETF-Sparplan, Altersvorsorgedepot, bAV oder Rürup — was gehört in welchem Verhältnis in dein Portfolio? Drei konkrete Beispiele mit echten Zahlen."
         path={PATH}

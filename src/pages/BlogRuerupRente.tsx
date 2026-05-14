@@ -99,7 +99,7 @@ const BlogRuerupRente = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Rürup Rente: Für wen sie sich wirklich lohnt — und für wen nicht"
         description="Für Selbstständige und Gutverdiener das stärkste Steuersparinstrument. Für alle anderen oft eine teure Falle. Der Unterschied liegt im Einkommen."
         path={PATH}

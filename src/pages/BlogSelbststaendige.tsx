@@ -99,7 +99,7 @@ const BlogSelbststaendige = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorge für Selbstständige: Was wirklich funktioniert"
         description="Selbstständige haben keine gesetzliche Rente — oder nur eine sehr kleine. Wir zeigen, welche Optionen es gibt, was das Altersvorsorgedepot ab 2027 bringt und wie du die Rentenlücke schließt."
         path={PATH}

@@ -105,7 +105,7 @@ const BlogVsRiester = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorgedepot vs. Riester: Die wichtigsten Unterschiede"
         description="Riester war die Hoffnung — das Altersvorsorgedepot ist der Neustart. Wir zeigen die wichtigsten Unterschiede, was mit bestehenden Riester-Verträgen passiert und für wen sich was lohnt."
         path={PATH}

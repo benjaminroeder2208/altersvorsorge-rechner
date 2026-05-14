@@ -98,7 +98,7 @@ const BlogRentenpunkteKaufen = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Rentenpunkte kaufen: Lohnt es sich wirklich?"
         description="Wer freiwillig in die gesetzliche Rente einzahlt, kann seine Rente erhöhen. Aber die Rendite-Rechnung ist ernüchternd — wir zeigen die Zahlen ehrlich."
         path={PATH}

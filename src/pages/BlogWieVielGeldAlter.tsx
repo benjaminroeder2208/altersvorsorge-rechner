@@ -70,7 +70,7 @@ const BlogWieVielGeldAlter = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Wie viel Geld braucht man im Alter? Die ehrliche Rechnung"
         description="Wie viel Geld brauchst du im Alter wirklich? Deutsche Realität vs. 80%-Regel. 5 konkrete Lebensstil-Szenarien, regionale Unterschiede, ehrliche Zahlen."
         path={PATH}

@@ -99,7 +99,7 @@ const BlogEtfSteuern = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="ETF Sparplan Steuern: Was du wirklich zahlen musst — und wie du es optimierst"
         description="Steuern können einen erheblichen Teil der ETF-Rendite auffressen — wenn man sie nicht versteht. Wir erklären Abgeltungsteuer, Vorabpauschale und den Steuerstundungseffekt."
         path={PATH}

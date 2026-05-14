@@ -70,7 +70,7 @@ const BlogAltersvorsorgeAb40 = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorge ab 40: Ist es noch nicht zu spät?"
         description="Mit 40 Jahren Altersvorsorge anfangen? Konkrete Zahlen zeigen: Es ist nicht zu spät. 27 Jahre bis zur Rente, 200 Euro pro Monat reichen aus."
         path={PATH}

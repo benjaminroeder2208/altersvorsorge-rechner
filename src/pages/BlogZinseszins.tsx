@@ -95,7 +95,7 @@ const BlogZinseszins = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Früh starten oder spät starten? Der Zinseszins-Effekt in Zahlen"
         description="Was bringt es wirklich, früh mit der Altersvorsorge anzufangen? Wir zeigen den Zinseszins-Effekt an konkreten Zahlen — und warum 10 Jahre Unterschied über 100.000 € ausmachen können."
         path={PATH}

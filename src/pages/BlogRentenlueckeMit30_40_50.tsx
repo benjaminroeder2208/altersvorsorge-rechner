@@ -100,7 +100,7 @@ const BlogRentenlueckeMit30_40_50 = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Rentenlücke mit 30, 40 oder 50: Was du jetzt noch tun kannst"
         description="Zu spät für die Altersvorsorge? Drei konkrete Szenarien mit echten Zahlen zeigen, was mit 30, 40 und 50 Jahren noch möglich ist — und wie das Altersvorsorgedepot ab 2027 hilft."
         path={PATH}

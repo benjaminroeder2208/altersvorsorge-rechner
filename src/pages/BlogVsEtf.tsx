@@ -165,7 +165,7 @@ const BlogVsEtf = () => {
 
   return (
     <>
-      <PageHead
+      <PageHead ogType="article"
         title="Altersvorsorgedepot oder ETF-Sparplan? So triffst du die richtige Entscheidung"
         description="Beide investieren in ETFs — aber nur einer wird staatlich gefördert. Wir zeigen den konkreten Unterschied in Zahlen und helfen dir, die richtige Wahl zu treffen."
         path={PATH}
