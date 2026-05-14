@@ -19,6 +19,20 @@ const SNAPSHOT_DATE = "14. Mai 2026";
 
 type Intent = "broad" | "transactional" | "comparison" | "question" | "branded";
 
+type SerpType =
+  | "official"
+  | "wiki"
+  | "media"
+  | "bank"
+  | "fintech"
+  | "competitor"
+  | "comparison"
+  | "calculator"
+  | "video"
+  | "paa"
+  | "featured_snippet"
+  | "news";
+
 interface Kw {
   term: string;
   volume: number; // Monatliches Suchvolumen (DE)
@@ -32,6 +46,8 @@ interface Kw {
   relatedPages?: string[];
   /** Optionale individuelle Content-Gliederung (H2-Ebene). */
   outline?: string[];
+  /** Top-3–5 SERP-Ergebnistypen (Snapshot). Wenn leer, wird Standard nach Intent generiert. */
+  serp?: SerpType[];
 }
 
 const KEYWORDS: Kw[] = [
@@ -43,6 +59,7 @@ const KEYWORDS: Kw[] = [
     intent: "broad",
     covered: "/altersvorsorgedepot-vs-riester",
     relatedPages: ["/blog/riester-kuendigen", "/altersvorsorgedepot-vs-riester"],
+    serp: ["wiki", "official", "media", "fintech", "paa"],
     outline: [
       "Was ist die Riester-Rente? (Kurzdefinition + Status 2026)",
       "Wie funktioniert die Förderung: Grundzulage 175 € + Kinderzulage 300 €",
@@ -76,6 +93,7 @@ const KEYWORDS: Kw[] = [
     intent: "broad",
     covered: "/altersvorsorgedepot",
     relatedPages: ["/altersvorsorgedepot-foerderung", "/altersvorsorgedepot-vs-etf-sparplan", "/altersvorsorgedepot-gesetz"],
+    serp: ["media", "fintech", "competitor", "paa", "video"],
     outline: [
       "Was ist das Altersvorsorgedepot? (Definition nach Drs. 21/4996)",
       "Förderung 2027: 50 % Zulage bis 360 €, 25 % bis 1.800 €",
@@ -97,6 +115,7 @@ const KEYWORDS: Kw[] = [
     intent: "transactional",
     covered: "/",
     relatedPages: ["/altersvorsorgedepot-foerderung", "/altersvorsorgedepot-vs-riester"],
+    serp: ["official", "media", "fintech", "bank", "paa"],
     outline: [
       "Riester-Zulage 2026 in Zahlen: Grundzulage, Kinderzulage, Berufseinsteiger-Bonus",
       "Anspruchsvoraussetzungen + Mindesteigenbeitrag (4 %)",
@@ -227,6 +246,61 @@ function priorityScore(k: Kw): number {
   // Einfache Heuristik: Volumen / (KD + 10) * Intent-Gewicht
   const intentWeight = { transactional: 1.5, comparison: 1.4, question: 1.2, broad: 1.0, branded: 0.8 }[k.intent];
   return (k.volume / (k.kd + 10)) * intentWeight;
+}
+
+/** SERP-Typ-Metadaten für Badges. */
+const SERP_META: Record<SerpType, { label: string; tone: string; hint: string }> = {
+  official: { label: "Offiziell", tone: "bg-disclaimer text-disclaimer-foreground", hint: "BMF / Deutsche Rentenversicherung — sehr schwer zu schlagen" },
+  wiki: { label: "Wiki", tone: "bg-secondary text-foreground", hint: "Wikipedia — hohe Autorität, oft Top-3" },
+  media: { label: "Medien", tone: "bg-secondary text-foreground", hint: "Stiftung Warentest, FAZ, Handelsblatt etc." },
+  bank: { label: "Bank", tone: "bg-secondary text-foreground", hint: "Sparkasse, ING, DKB, Allianz" },
+  fintech: { label: "Fintech", tone: "bg-secondary text-foreground", hint: "Finanzfluss, Finanztip, Trade Republic, Scalable" },
+  competitor: { label: "Wettbewerb", tone: "bg-primary/10 text-primary", hint: "Direkter Themen-Wettbewerber" },
+  comparison: { label: "Vergleich", tone: "bg-secondary text-foreground", hint: "Check24, Verivox & Co." },
+  calculator: { label: "Rechner", tone: "bg-primary text-primary-foreground", hint: "Tool/Rechner-Ergebnis — direkter Wettbewerb für uns" },
+  video: { label: "Video", tone: "bg-secondary text-foreground", hint: "YouTube-Karussell — Lücke für eigenes Video" },
+  paa: { label: "People also ask", tone: "bg-secondary text-foreground", hint: "Frage-Box mit FAQ-Chance" },
+  featured_snippet: { label: "Featured Snippet", tone: "bg-disclaimer text-disclaimer-foreground", hint: "Position 0 — schwer, aber lohnenswert" },
+  news: { label: "News", tone: "bg-secondary text-foreground", hint: "Top-Stories-Karussell aktuell" },
+};
+
+/** Standard-SERP nach Intent, falls für ein Keyword keine individuelle Recherche vorhanden. */
+function defaultSerp(k: Kw): SerpType[] {
+  if (k.intent === "question") return ["paa", "media", "featured_snippet", "wiki"];
+  if (k.intent === "comparison") return ["fintech", "media", "comparison", "bank"];
+  if (k.intent === "transactional") return ["official", "media", "fintech", "bank"];
+  if (k.intent === "broad") return ["wiki", "official", "media", "fintech"];
+  return ["media", "fintech", "wiki"];
+}
+
+function serpFor(k: Kw): SerpType[] {
+  return k.serp && k.serp.length > 0 ? k.serp : defaultSerp(k);
+}
+
+/**
+ * Content-Score 0–100: geschätzte Realisierbarkeit eines Top-10-Rankings.
+ * Höher = einfacher zu ranken. Berücksichtigt KD, SERP-Konkurrenz, Intent und vorhandene Coverage.
+ */
+function contentScore(k: Kw): number {
+  let score = 100 - k.kd; // Basis: Inverse Difficulty
+  const serp = serpFor(k);
+  if (serp.includes("official")) score -= 12;
+  if (serp.includes("wiki")) score -= 6;
+  if (serp.includes("featured_snippet")) score -= 4;
+  if (serp.includes("paa")) score += 4;
+  if (serp.includes("video")) score += 3;
+  if (serp.includes("comparison")) score -= 4;
+  if (k.intent === "question") score += 6;
+  if (k.intent === "comparison") score += 3;
+  if (k.covered) score += 8; // Wir haben bereits einen Fuß in der Tür
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function scoreTone(s: number): { label: string; tone: string } {
+  if (s >= 70) return { label: "Leicht", tone: "bg-primary text-primary-foreground" };
+  if (s >= 50) return { label: "Machbar", tone: "bg-primary/15 text-primary" };
+  if (s >= 30) return { label: "Schwer", tone: "bg-disclaimer text-disclaimer-foreground" };
+  return { label: "Sehr schwer", tone: "bg-secondary text-foreground" };
 }
 
 const AdminKeywordsPage = () => {
@@ -363,9 +437,10 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority, onSelect }: 
               <th className="text-left py-2 px-2 font-medium">Keyword</th>
               <th className="text-right py-2 px-2 font-medium">Volumen</th>
               <th className="text-right py-2 px-2 font-medium">KD</th>
+              <th className="text-right py-2 px-2 font-medium">Content-Score</th>
               <th className="text-left py-2 px-2 font-medium">Intent</th>
               <th className="text-left py-2 px-2 font-medium">Status</th>
-              {showPriority && <th className="text-right py-2 px-2 font-medium">Score</th>}
+              {showPriority && <th className="text-right py-2 px-2 font-medium">Prio</th>}
               <th className="w-6" />
             </tr>
           </thead>
@@ -391,6 +466,18 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority, onSelect }: 
                     <span className={k.kd <= 25 ? "text-primary font-semibold" : "text-muted-foreground"}>
                       {k.kd}
                     </span>
+                  </td>
+                  <td className="py-2.5 px-2 text-right align-top">
+                    {(() => {
+                      const s = contentScore(k);
+                      const t = scoreTone(s);
+                      return (
+                        <span className={`inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded text-[10px] ${t.tone}`}>
+                          <span className="tabular-nums font-semibold">{s}</span>
+                          <span className="opacity-80">{t.label}</span>
+                        </span>
+                      );
+                    })()}
                   </td>
                   <td className="py-2.5 px-2 align-top">
                     <span className={`text-[10px] px-1.5 py-0.5 rounded ${meta.tone}`}>{meta.label}</span>
@@ -465,6 +552,10 @@ const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
     ])
   );
   const outline = kw.outline ?? defaultOutline(kw);
+  const serp = serpFor(kw);
+  const isSerpDefault = !kw.serp || kw.serp.length === 0;
+  const score = contentScore(kw);
+  const tone = scoreTone(score);
 
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
@@ -485,6 +576,48 @@ const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
         </SheetHeader>
 
         <div className="mt-6 space-y-6 text-sm">
+          {/* Content-Score */}
+          <section className="rounded-lg border border-border/60 p-3 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Content-Score</p>
+              <p className="text-xs text-muted-foreground">
+                Geschätzte Realisierbarkeit eines Top-10-Rankings.
+              </p>
+            </div>
+            <div className="text-right">
+              <div className="text-2xl font-bold tabular-nums leading-none">{score}</div>
+              <span className={`inline-block mt-1 text-[10px] px-1.5 py-0.5 rounded ${tone.tone}`}>{tone.label}</span>
+            </div>
+          </section>
+
+          {/* SERP-Preview */}
+          <section>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
+              <Search className="w-3.5 h-3.5" /> SERP-Preview (Top {serp.length})
+              {isSerpDefault && (
+                <span className="text-[10px] font-normal normal-case text-muted-foreground">
+                  (Standard nach Intent — manuelle Recherche empfohlen)
+                </span>
+              )}
+            </h3>
+            <ol className="space-y-1.5">
+              {serp.map((t, i) => {
+                const m = SERP_META[t];
+                return (
+                  <li key={`${t}-${i}`} className="flex items-start gap-2">
+                    <span className="text-[10px] tabular-nums text-muted-foreground w-4 text-right pt-0.5">
+                      {i + 1}.
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded ${m.tone}`}>{m.label}</span>
+                      <p className="text-xs text-muted-foreground mt-0.5">{m.hint}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+
           {/* Empfohlene Ziel-URL */}
           <section>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
