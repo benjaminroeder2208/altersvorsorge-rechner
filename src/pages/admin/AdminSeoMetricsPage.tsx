@@ -576,6 +576,7 @@ const AdminSeoMetricsPage = () => {
   const [onlyViolations, setOnlyViolations] = useState(false);
   const [activeTypes, setActiveTypes] = useState<Set<ViolationType>>(new Set());
   const [search, setSearch] = useState("");
+  const [activeSeverities, setActiveSeverities] = useState<Set<string>>(new Set());
 
   const toggleType = (t: ViolationType) =>
     setActiveTypes((prev) => {
@@ -585,21 +586,43 @@ const AdminSeoMetricsPage = () => {
       return next;
     });
 
+  const toggleSeverity = (label: string) =>
+    setActiveSeverities((prev) => {
+      const next = new Set(prev);
+      if (next.has(label)) next.delete(label);
+      else next.add(label);
+      return next;
+    });
+
+  // Counts per severity bucket (computed on full row set so disabling stays stable)
+  const severityCounts = useMemo(() => {
+    const counts: Record<string, number> = { OK: 0, Niedrig: 0, Mittel: 0, Hoch: 0 };
+    for (const r of rows) counts[severityBucket(r.severity).label] += 1;
+    return counts;
+  }, [rows]);
+
   const filteredRows = useMemo(() => {
     const q = search.trim().toLowerCase();
     return rows.filter((r) => {
       if (activeTypes.size > 0) {
         if (!r.violations.some((v) => activeTypes.has(v.type))) return false;
       } else if (onlyViolations && r.violations.length === 0) return false;
+      if (activeSeverities.size > 0) {
+        if (!activeSeverities.has(severityBucket(r.severity).label)) return false;
+      }
       if (q) {
         const hay = `${r.path} ${r.title} ${r.description}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [rows, onlyViolations, activeTypes, search]);
+  }, [rows, onlyViolations, activeTypes, activeSeverities, search]);
 
-  const filterActive = onlyViolations || activeTypes.size > 0 || search.trim().length > 0;
+  const filterActive =
+    onlyViolations ||
+    activeTypes.size > 0 ||
+    activeSeverities.size > 0 ||
+    search.trim().length > 0;
 
   return (
     <>
@@ -680,6 +703,47 @@ const AdminSeoMetricsPage = () => {
           )}
         </div>
 
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span className="text-[11px] uppercase tracking-wide text-muted-foreground mr-1">
+            Schweregrad
+          </span>
+          {(["Hoch", "Mittel", "Niedrig", "OK"] as const).map((label) => {
+            const active = activeSeverities.has(label);
+            const count = severityCounts[label] ?? 0;
+            const disabled = count === 0;
+            const bucketCls = severityBucket(
+              label === "Hoch" ? 99 : label === "Mittel" ? 4 : label === "Niedrig" ? 1 : 0,
+            ).cls;
+            return (
+              <button
+                key={label}
+                type="button"
+                onClick={() => toggleSeverity(label)}
+                disabled={disabled}
+                className={`text-xs px-2.5 py-1 rounded-md border transition-colors ${
+                  active
+                    ? `${bucketCls} border-current font-medium`
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                } ${disabled ? "opacity-40 cursor-not-allowed" : ""}`}
+              >
+                {label}
+                <span className={`ml-1 ${active ? "" : "text-muted-foreground"}`}>
+                  ({count})
+                </span>
+              </button>
+            );
+          })}
+          {activeSeverities.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setActiveSeverities(new Set())}
+              className="text-xs text-muted-foreground hover:text-foreground underline"
+            >
+              alle
+            </button>
+          )}
+        </div>
+
         <div className="mb-4 flex flex-wrap items-center gap-2">
           <button
             type="button"
@@ -721,6 +785,7 @@ const AdminSeoMetricsPage = () => {
               onClick={() => {
                 setOnlyViolations(false);
                 setActiveTypes(new Set());
+                setActiveSeverities(new Set());
                 setSearch("");
               }}
               className="text-xs px-2.5 py-1 rounded-md text-muted-foreground hover:text-foreground underline"
