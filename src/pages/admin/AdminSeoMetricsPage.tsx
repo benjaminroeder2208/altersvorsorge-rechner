@@ -257,6 +257,31 @@ const AdminSeoMetricsPage = () => {
       .sort((a, b) => b.severity - a.severity);
   }, [rows]);
 
+  // Filter state
+  const [onlyViolations, setOnlyViolations] = useState(false);
+  const [activeTypes, setActiveTypes] = useState<Set<ViolationType>>(new Set());
+
+  const toggleType = (t: ViolationType) =>
+    setActiveTypes((prev) => {
+      const next = new Set(prev);
+      if (next.has(t)) next.delete(t);
+      else next.add(t);
+      return next;
+    });
+
+  const filteredRows = useMemo(() => {
+    return rows.filter((r) => {
+      if (activeTypes.size > 0) {
+        if (!r.violations.some((v) => activeTypes.has(v.type))) return false;
+        return true; // type filter implies "with violations"
+      }
+      if (onlyViolations && r.violations.length === 0) return false;
+      return true;
+    });
+  }, [rows, onlyViolations, activeTypes]);
+
+  const filterActive = onlyViolations || activeTypes.size > 0;
+
   return (
     <>
       <Helmet>
