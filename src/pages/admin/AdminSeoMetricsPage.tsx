@@ -117,6 +117,7 @@ function buildRows(settings: ReturnType<typeof loadSeoSettings>): RowWithViolati
     description: r.description,
     ogType: r.ogType ?? "website",
     source: "SSOT",
+    sourceFile: "scripts/seo-routes.ts",
   }));
 
   const all = [...ssot, ...parseBlogSources()];
