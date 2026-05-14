@@ -550,6 +550,9 @@ interface DetailProps {
 
 const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
   const open = !!kw;
+  const [draft, setDraft] = useState<string>("");
+  const [generating, setGenerating] = useState(false);
+
   if (!kw) {
     return (
       <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
@@ -571,6 +574,43 @@ const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
   const isSerpDefault = !kw.serp || kw.serp.length === 0;
   const score = contentScore(kw);
   const tone = scoreTone(score);
+
+  const handleGenerate = async () => {
+    setGenerating(true);
+    setDraft("");
+    try {
+      const { data, error } = await supabase.functions.invoke("generate-seo-draft", {
+        body: {
+          keyword: kw.term,
+          intent: meta.label,
+          outline,
+          targetUrl: target,
+          coveredPages,
+        },
+      });
+      if (error) throw error;
+      const text = (data as { draft?: string; error?: string } | null)?.draft;
+      const apiError = (data as { error?: string } | null)?.error;
+      if (apiError) throw new Error(apiError);
+      if (!text) throw new Error("Leere Antwort vom Modell");
+      setDraft(text);
+      toast.success("Artikel-Entwurf erstellt");
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Generierung fehlgeschlagen";
+      toast.error(msg);
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(draft);
+      toast.success("Entwurf in die Zwischenablage kopiert");
+    } catch {
+      toast.error("Kopieren nicht möglich");
+    }
+  };
 
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
