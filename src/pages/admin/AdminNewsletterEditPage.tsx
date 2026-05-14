@@ -360,7 +360,7 @@ const AdminNewsletterEditPage = () => {
               </label>
               {showPreview ? (
                 <div
-                  className="min-h-[400px] p-4 bg-white border border-border rounded-md text-sm prose prose-sm max-w-none"
+                  className="min-h-[400px] p-4 bg-background border border-border rounded-md text-sm prose prose-sm max-w-none"
                   // Admin-only content; also escaped in actual email build
                   dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
