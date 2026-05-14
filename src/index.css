@@ -85,6 +85,9 @@ html {
     --primary-soft-border: 213 97% 87%;      /* #BFDBFE */
     --brand-amber: 38 92% 50%;               /* #F59E0B */
     --brand-amber-foreground: 0 0% 100%;
+    --warning: 45 93% 89%;                   /* amber-100 #FEF3C7 */
+    --warning-foreground: 26 85% 28%;        /* amber-800 #92400E */
+    --warning-border: 38 92% 50%;
     --brand-red: 0 84% 60%;                  /* #EF4444 */
     --brand-red-foreground: 0 0% 100%;
     --success: 160 84% 22%;                  /* emerald-600 ~ #059669 */
