@@ -3,7 +3,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const FoerderungPage = () => (
   <ContentPageLayout
-    title="Altersvorsorgedepot Förderung – Wie hoch ist die staatliche Förderung?"
+    title="Altersvorsorgedepot Förderung – Höhe & staatliche Zulagen"
     breadcrumbLabel="Förderung"
     path="/altersvorsorgedepot-foerderung"
     description="Wie hoch ist die Förderung beim Altersvorsorgedepot? Erfahren Sie, wie Grundzulage, Kinderzulage und steuerliche Vorteile im beschlossenen Gesetz vorgesehen sind."

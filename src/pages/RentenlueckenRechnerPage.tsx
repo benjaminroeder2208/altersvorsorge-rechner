@@ -35,7 +35,7 @@ const RentenlueckenRechnerPage = () =>
 <>
     <PageHead
     title="Rentenlückenrechner — Rentenlücke kostenlos berechnen"
-    description="Berechne deine persönliche Rentenlücke in 30 Sekunden. Wie viel fehlt dir monatlich im Ruhestand — und was musst du heute zurücklegen, um die Lücke zu schließen?"
+    description="Berechne deine Rentenlücke in 30 Sekunden: Wie viel fehlt dir monatlich im Ruhestand – und was musst du zurücklegen, um die Lücke zu schließen?"
     path={PATH}
     jsonLd={jsonLd} />
   

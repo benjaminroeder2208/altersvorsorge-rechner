@@ -3,7 +3,7 @@ import ContentPageLayout from "@/components/landing/ContentPageLayout";
 
 const AuszahlungPage = () => (
   <ContentPageLayout
-    title="Altersvorsorgedepot Auszahlung – So könnte die Auszahlungsphase funktionieren"
+    title="Altersvorsorgedepot Auszahlung – Rentenphase erklärt"
     breadcrumbLabel="Auszahlung"
     path="/altersvorsorgedepot-auszahlung"
     description="Wie funktioniert die Auszahlung beim Altersvorsorgedepot? Erfahren Sie mehr über Rentenbeginn, Auszahlungspläne und mögliche Kapitalentnahmen."
