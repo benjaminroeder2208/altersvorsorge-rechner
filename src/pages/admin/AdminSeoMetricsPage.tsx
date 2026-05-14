@@ -337,12 +337,24 @@ const AdminSeoMetricsPage = () => {
                       ok ? "" : "bg-destructive/5"
                     }`}
                   >
-                    <td className="px-3 py-2">
-                      {ok ? (
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                      ) : (
-                        <AlertTriangle className="w-4 h-4 text-destructive" />
-                      )}
+                    <td className="px-3 py-2 whitespace-nowrap">
+                      {(() => {
+                        const bucket = severityBucket(r.severity);
+                        return (
+                          <span
+                            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium ${bucket.cls}`}
+                            title={`Schweregrad-Score: ${r.severity}`}
+                          >
+                            {ok ? (
+                              <CheckCircle2 className="w-3 h-3" />
+                            ) : (
+                              <AlertTriangle className="w-3 h-3" />
+                            )}
+                            {bucket.label}
+                            {!ok && <span className="text-muted-foreground">· {r.severity}</span>}
+                          </span>
+                        );
+                      })()}
                     </td>
                     <td className="px-3 py-2">
                       <a
