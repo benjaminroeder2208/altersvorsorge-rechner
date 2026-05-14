@@ -1,13 +1,14 @@
 import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { CheckCircle2, AlertTriangle, ExternalLink, Search as SearchIcon, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { CheckCircle2, AlertTriangle, ExternalLink, Search as SearchIcon, X, Settings } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { ROUTES as SSOT_ROUTES } from "../../../scripts/seo-routes";
-
-// SEO limits (aligned with public seo_chat checks)
-const TITLE_MAX = 60;
-const DESC_MIN = 50;
-const DESC_MAX = 160;
+import {
+  loadSeoSettings,
+  getLimitsForRoute,
+  getExpectedOgType,
+} from "@/lib/seoSettings";
 
 interface MetricRow {
   path: string;
