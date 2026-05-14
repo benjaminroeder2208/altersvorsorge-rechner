@@ -341,9 +341,10 @@ interface GroupProps {
   subtitle: string;
   items: Kw[];
   showPriority?: boolean;
+  onSelect?: (k: Kw) => void;
 }
 
-const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps) => {
+const KeywordGroup = ({ icon, title, subtitle, items, showPriority, onSelect }: GroupProps) => {
   if (items.length === 0) return null;
   return (
     <Card className="p-5">
@@ -365,6 +366,7 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
               <th className="text-left py-2 px-2 font-medium">Intent</th>
               <th className="text-left py-2 px-2 font-medium">Status</th>
               {showPriority && <th className="text-right py-2 px-2 font-medium">Score</th>}
+              <th className="w-6" />
             </tr>
           </thead>
           <tbody>
@@ -372,7 +374,11 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
               const meta = INTENT_META[k.intent];
               const band = volumeBand(k.volume);
               return (
-                <tr key={k.term} className="border-t border-border/60">
+                <tr
+                  key={k.term}
+                  className="border-t border-border/60 cursor-pointer hover:bg-muted/40 transition-colors"
+                  onClick={() => onSelect?.(k)}
+                >
                   <td className="py-2.5 px-2 align-top">
                     <span className="font-medium break-words">{k.term}</span>
                   </td>
@@ -391,12 +397,27 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
                   </td>
                   <td className="py-2.5 px-2 align-top">
                     {k.covered ? (
-                      <a href={k.covered} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-xs">
+                      <a
+                        href={k.covered}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline text-xs"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         ✓ {k.covered}
                       </a>
                     ) : k.suggested ? (
                       <span className="text-xs text-muted-foreground">
-                        Lücke → <a href={k.suggested} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{k.suggested}</a>
+                        Lücke →{" "}
+                        <a
+                          href={k.suggested}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {k.suggested}
+                        </a>
                       </span>
                     ) : (
                       <Badge variant="secondary" className="text-[10px]">Lücke</Badge>
@@ -407,6 +428,9 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
                       {Math.round(priorityScore(k))}
                     </td>
                   )}
+                  <td className="py-2.5 px-1 align-top text-muted-foreground">
+                    <ChevronRight className="w-4 h-4" />
+                  </td>
                 </tr>
               );
             })}
@@ -414,6 +438,136 @@ const KeywordGroup = ({ icon, title, subtitle, items, showPriority }: GroupProps
         </table>
       </div>
     </Card>
+  );
+};
+
+interface DetailProps {
+  kw: Kw | null;
+  onClose: () => void;
+}
+
+const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
+  const open = !!kw;
+  if (!kw) {
+    return (
+      <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
+        <SheetContent />
+      </Sheet>
+    );
+  }
+
+  const meta = INTENT_META[kw.intent];
+  const target = kw.covered ?? kw.suggested;
+  const coveredPages = Array.from(
+    new Set([
+      ...(kw.covered ? [kw.covered] : []),
+      ...(kw.relatedPages ?? []),
+    ])
+  );
+  const outline = kw.outline ?? defaultOutline(kw);
+
+  return (
+    <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
+      <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
+        <SheetHeader className="text-left">
+          <div className="flex items-center gap-2 mb-1">
+            <span className={`text-[10px] px-1.5 py-0.5 rounded ${meta.tone}`}>{meta.label}</span>
+            <span className="text-xs text-muted-foreground tabular-nums">
+              {kw.volume.toLocaleString("de-DE")} / Monat · KD {kw.kd}
+            </span>
+          </div>
+          <SheetTitle className="text-xl break-words">{kw.term}</SheetTitle>
+          <SheetDescription>
+            {kw.covered
+              ? "Bereits durch eine eigene Seite abgedeckt — Detail-Optimierung möglich."
+              : "Lücke im Content — eigene Zielseite empfohlen."}
+          </SheetDescription>
+        </SheetHeader>
+
+        <div className="mt-6 space-y-6 text-sm">
+          {/* Empfohlene Ziel-URL */}
+          <section>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
+              <Target className="w-3.5 h-3.5" /> Empfohlene Ziel-URL
+            </h3>
+            {target ? (
+              <a
+                href={target}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-primary hover:underline font-medium break-all"
+              >
+                {target} <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
+              </a>
+            ) : (
+              <p className="text-muted-foreground">
+                Noch keine Ziel-URL definiert. Vorschlag: neue Detailseite anlegen.
+              </p>
+            )}
+            {!kw.covered && kw.suggested && (
+              <p className="text-xs text-muted-foreground mt-1">
+                Diese URL existiert noch nicht produktiv und sollte als nächstes erstellt werden.
+              </p>
+            )}
+          </section>
+
+          {/* Abgedeckte Seiten */}
+          <section>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
+              <Link2 className="w-3.5 h-3.5" /> Abgedeckte Seiten ({coveredPages.length})
+            </h3>
+            {coveredPages.length === 0 ? (
+              <p className="text-muted-foreground">
+                Aktuell deckt keine produktive Seite dieses Keyword ab.
+              </p>
+            ) : (
+              <ul className="space-y-1.5">
+                {coveredPages.map((p) => (
+                  <li key={p}>
+                    <a
+                      href={p}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-primary hover:underline break-all"
+                    >
+                      {p} <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          {/* Content-Gliederung */}
+          <section>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 inline-flex items-center gap-1.5">
+              <FileText className="w-3.5 h-3.5" /> Content-Gliederung
+              {!kw.outline && (
+                <span className="text-[10px] font-normal normal-case text-muted-foreground">
+                  (generischer Vorschlag)
+                </span>
+              )}
+            </h3>
+            <ol className="space-y-2 list-decimal list-inside marker:text-muted-foreground">
+              {outline.map((line, i) => (
+                <li key={i} className="leading-snug">{line}</li>
+              ))}
+            </ol>
+          </section>
+
+          {/* Priorisierung */}
+          <section className="bg-muted/50 rounded-lg p-3">
+            <p className="text-xs text-muted-foreground">
+              Priorisierungs-Score:{" "}
+              <span className="font-semibold tabular-nums text-foreground">
+                {Math.round(priorityScore(kw))}
+              </span>{" "}
+              · Heuristik: Volumen / (KD + 10) × Intent-Gewicht
+            </p>
+          </section>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 
