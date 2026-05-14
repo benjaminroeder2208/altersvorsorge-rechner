@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NoindexRedirect from "./components/seo/NoindexRedirect";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -106,10 +107,10 @@ const App = () => (
               <Route path="/altersvorsorgedepot-vs-etf-sparplan" element={<VsEtfPage />} />
               <Route path="/impressum" element={<ImpressumPage />} />
               <Route path="/datenschutz" element={<DatenschutzPage />} />
-              <Route path="/altersvorsorgedepot-rechner" element={<Navigate to="/" replace />} />
+              <Route path="/altersvorsorgedepot-rechner" element={<NoindexRedirect to="/" />} />
               <Route
                 path="/altersvorsorgedepot-gesetzesentwurf"
-                element={<Navigate to="/altersvorsorgedepot-gesetz" replace />}
+                element={<NoindexRedirect to="/altersvorsorgedepot-gesetz" />}
               />
               <Route path="/rentenluecken-rechner" element={<RentenlueckenRechnerPage />} />
               <Route path="/blog" element={<BlogIndexPage />} />
