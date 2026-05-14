@@ -104,7 +104,8 @@ function parseBlogSources(): MetricRow[] {
     const ogType = (extractAttr(head, "ogType") as "article" | "website" | null) ?? "website";
     const path = extractPathConstant(src) ?? file;
 
-    rows.push({ path, title, description, ogType, source: "Blog" });
+    const sourceFile = file.replace(/^\//, "");
+    rows.push({ path, title, description, ogType, source: "Blog", sourceFile });
   }
   return rows;
 }
