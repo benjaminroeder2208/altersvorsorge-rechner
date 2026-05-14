@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { BRAND } from "@/lib/brandColors";
 
 const navLinks = [
@@ -104,6 +104,15 @@ const Navbar = () => {
           </a>
         </div>
 
+        {/* Search icon (desktop) */}
+        <Link
+          to={`/suche${location.pathname === "/suche" && location.search ? location.search : ""}`}
+          aria-label="Suche öffnen"
+          className="hidden sm:inline-flex shrink-0 items-center justify-center w-9 h-9 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+        >
+          <Search className="w-4 h-4" />
+        </Link>
+
         {/* Sticky CTA */}
         <Link
           to="/"
@@ -120,7 +129,14 @@ const Navbar = () => {
           Berechnen →
         </Link>
 
-        {/* Mobile toggle */}
+        {/* Mobile: search + toggle */}
+        <Link
+          to={`/suche${location.pathname === "/suche" && location.search ? location.search : ""}`}
+          aria-label="Suche öffnen"
+          className="sm:hidden p-2 text-muted-foreground hover:text-foreground"
+        >
+          <Search className="w-5 h-5" />
+        </Link>
         <button
           className="sm:hidden p-2 text-muted-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
