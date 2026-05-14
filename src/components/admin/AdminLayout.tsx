@@ -55,6 +55,11 @@ const AdminLayout = ({ children, title }: Props) => {
                 <Search className="w-3.5 h-3.5" /> SEO
               </span>
             </NavLink>
+            <NavLink to="/internal/analytics-test" className={navLinkClass} target="_blank" rel="noopener noreferrer">
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                <Activity className="w-3.5 h-3.5" /> Analytics-Test
+              </span>
+            </NavLink>
           </nav>
         </div>
       </header>
