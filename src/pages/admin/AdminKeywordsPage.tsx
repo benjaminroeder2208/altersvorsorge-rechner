@@ -743,6 +743,53 @@ const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
             </ol>
           </section>
 
+          {/* SEO-Entwurf generieren */}
+          <section>
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" /> SEO-Artikel-Entwurf
+              </h3>
+              {draft && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleCopy}
+                  className="h-7 px-2 text-xs"
+                >
+                  <Copy className="w-3 h-3 mr-1" /> Kopieren
+                </Button>
+              )}
+            </div>
+
+            <Button
+              size="sm"
+              onClick={handleGenerate}
+              disabled={generating}
+              className="w-full"
+            >
+              {generating ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />
+                  Entwurf wird generiert…
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+                  {draft ? "Entwurf neu generieren" : "Entwurf aus Gliederung generieren"}
+                </>
+              )}
+            </Button>
+
+            {draft && (
+              <pre className="mt-3 p-3 rounded-lg bg-muted/50 text-xs leading-relaxed whitespace-pre-wrap break-words font-mono max-h-[400px] overflow-y-auto">
+                {draft}
+              </pre>
+            )}
+            <p className="text-[10px] text-muted-foreground mt-2">
+              KI-generierter Erstentwurf — vor Veröffentlichung redaktionell prüfen, Faktencheck und interne Links setzen.
+            </p>
+          </section>
+
           {/* Priorisierung */}
           <section className="bg-muted/50 rounded-lg p-3">
             <p className="text-xs text-muted-foreground">
