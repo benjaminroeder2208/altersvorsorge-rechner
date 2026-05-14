@@ -83,6 +83,11 @@ export default {
           DEFAULT: "hsl(var(--brand-amber))",
           foreground: "hsl(var(--brand-amber-foreground))",
         },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+          border: "hsl(var(--warning-border))",
+        },
         "brand-red": {
           DEFAULT: "hsl(var(--brand-red))",
           foreground: "hsl(var(--brand-red-foreground))",
