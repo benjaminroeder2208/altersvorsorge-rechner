@@ -972,6 +972,7 @@ const AdminSeoMetricsPage = () => {
                           path={r.path}
                           title={r.title}
                           description={r.description}
+                          device={serpDevice}
                         />
                         {(() => {
                           // Build deterministic SERP previews per distinct
