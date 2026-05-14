@@ -1,13 +1,14 @@
 import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { CheckCircle2, AlertTriangle, ExternalLink, Search as SearchIcon, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import { CheckCircle2, AlertTriangle, ExternalLink, Search as SearchIcon, X, Settings } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { ROUTES as SSOT_ROUTES } from "../../../scripts/seo-routes";
-
-// SEO limits (aligned with public seo_chat checks)
-const TITLE_MAX = 60;
-const DESC_MIN = 50;
-const DESC_MAX = 160;
+import {
+  loadSeoSettings,
+  getLimitsForRoute,
+  getExpectedOgType,
+} from "@/lib/seoSettings";
 
 interface MetricRow {
   path: string;
@@ -55,6 +56,7 @@ interface RowWithViolations extends MetricRow {
   suggestions: Suggestion[];
   blogOptimizations: Suggestion[];
   severity: number;
+  limits: { titleMin: number; titleMax: number; descMin: number; descMax: number };
 }
 
 const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
@@ -106,7 +108,7 @@ function parseBlogSources(): MetricRow[] {
   return rows;
 }
 
-function buildRows(): RowWithViolations[] {
+function buildRows(settings: ReturnType<typeof loadSeoSettings>): RowWithViolations[] {
   const ssot: MetricRow[] = SSOT_ROUTES.filter((r) => !r.noindex).map((r) => ({
     path: r.path,
     title: r.title,
@@ -122,6 +124,7 @@ function buildRows(): RowWithViolations[] {
 
   return Array.from(byPath.values())
     .map((r) => {
+      const limits = getLimitsForRoute(settings, r.path);
       const titleLen = r.title.length;
       const descLen = r.description.length;
       const violations: Violation[] = [];
@@ -129,53 +132,52 @@ function buildRows(): RowWithViolations[] {
 
       if (titleLen === 0) {
         violations.push({ type: "title-missing", message: "Titel fehlt", severity: 5 });
-      } else if (titleLen > TITLE_MAX) {
-        const sev = clamp(1 + Math.ceil((titleLen - TITLE_MAX) / 4), 1, 4);
+      } else if (titleLen > limits.titleMax) {
+        const sev = clamp(1 + Math.ceil((titleLen - limits.titleMax) / 4), 1, 4);
         violations.push({
           type: "title-too-long",
-          message: `Titel zu lang (${titleLen} > ${TITLE_MAX})`,
+          message: `Titel zu lang (${titleLen} > ${limits.titleMax})`,
           severity: sev,
         });
-        suggestions.push({ field: "title", value: shortenTitle(r.title, TITLE_MAX) });
+        suggestions.push({ field: "title", value: shortenTitle(r.title, limits.titleMax) });
       }
 
       if (descLen === 0) {
         violations.push({ type: "desc-missing", message: "Description fehlt", severity: 4 });
-      } else if (descLen < DESC_MIN) {
-        const sev = clamp(1 + Math.ceil((DESC_MIN - descLen) / 15), 1, 3);
+      } else if (descLen < limits.descMin) {
+        const sev = clamp(1 + Math.ceil((limits.descMin - descLen) / 15), 1, 3);
         violations.push({
           type: "desc-too-short",
-          message: `Description zu kurz (${descLen} < ${DESC_MIN})`,
+          message: `Description zu kurz (${descLen} < ${limits.descMin})`,
           severity: sev,
         });
         suggestions.push({
           field: "description",
           value: r.description,
-          note: `Um ≥ ${DESC_MIN - descLen} Zeichen erweitern – z. B. konkreten Nutzen, Förderhöhe oder CTA ergänzen.`,
+          note: `Um ≥ ${limits.descMin - descLen} Zeichen erweitern – z. B. konkreten Nutzen, Förderhöhe oder CTA ergänzen.`,
         });
-      } else if (descLen > DESC_MAX) {
-        const sev = clamp(1 + Math.ceil((descLen - DESC_MAX) / 15), 1, 3);
+      } else if (descLen > limits.descMax) {
+        const sev = clamp(1 + Math.ceil((descLen - limits.descMax) / 15), 1, 3);
         violations.push({
           type: "desc-too-long",
-          message: `Description zu lang (${descLen} > ${DESC_MAX})`,
+          message: `Description zu lang (${descLen} > ${limits.descMax})`,
           severity: sev,
         });
-        suggestions.push({ field: "description", value: shortenDescription(r.description, DESC_MAX) });
+        suggestions.push({ field: "description", value: shortenDescription(r.description, limits.descMax) });
       }
 
-      const isBlog = r.path.startsWith("/blog/");
-      if (isBlog && r.ogType !== "article") {
+      const expectedOg = getExpectedOgType(settings, r.path);
+      if (expectedOg === "article" && r.ogType !== "article") {
         violations.push({
           type: "ogtype-should-article",
           message: "ogType sollte 'article' sein",
           severity: 2,
         });
         suggestions.push({ field: "ogType", value: 'ogType="article"' });
-      }
-      if (!isBlog && r.ogType === "article" && r.path !== "/blog") {
+      } else if (expectedOg === "website" && r.ogType !== "website") {
         violations.push({
           type: "ogtype-should-website",
-          message: "ogType 'article' für Nicht-Blog-Route",
+          message: "ogType sollte 'website' sein",
           severity: 1,
         });
         suggestions.push({ field: "ogType", value: 'ogType="website"' });
@@ -184,9 +186,9 @@ function buildRows(): RowWithViolations[] {
       const severity = violations.reduce((sum, v) => sum + v.severity, 0);
       const isBlog2 = r.path.startsWith("/blog/");
       const blogOptimizations = isBlog2
-        ? buildBlogOptimizations(r.title, r.description)
+        ? buildBlogOptimizations(r.title, r.description, limits)
         : [];
-      return { ...r, titleLen, descLen, violations, suggestions, blogOptimizations, severity };
+      return { ...r, titleLen, descLen, violations, suggestions, blogOptimizations, severity, limits };
     })
     .sort((a, b) => {
       if (a.severity !== b.severity) return b.severity - a.severity;
@@ -239,7 +241,14 @@ function shortenDescription(desc: string, max: number): string {
  * Title und Meta-Description, die innerhalb der SEO-Limits bleiben und sich
  * vom aktuellen Wert unterscheiden. Sortiert nach erwartetem CTR-Impact.
  */
-function buildBlogOptimizations(title: string, description: string): Suggestion[] {
+function buildBlogOptimizations(
+  title: string,
+  description: string,
+  limits: { titleMax: number; descMin: number; descMax: number },
+): Suggestion[] {
+  const TITLE_MAX = limits.titleMax;
+  const DESC_MIN = limits.descMin;
+  const DESC_MAX = limits.descMax;
   const out: Suggestion[] = [];
   const CURRENT_YEAR = "2026";
   const TITLE_TARGET_MIN = 50;
@@ -402,9 +411,11 @@ const SuggestionList = ({
 };
 
 const AdminSeoMetricsPage = () => {
-  const rows = useMemo(buildRows, []);
+  const settings = useMemo(loadSeoSettings, []);
+  const rows = useMemo(() => buildRows(settings), [settings]);
   const violationCount = rows.filter((r) => r.violations.length > 0).length;
   const totalSeverity = rows.reduce((s, r) => s + r.severity, 0);
+  const { titleMax: defTitleMax, descMin: defDescMin, descMax: defDescMax } = settings.defaults;
 
   // Gruppierte Summary nach Verstoßtyp
   const summary = useMemo(() => {
@@ -462,7 +473,7 @@ const AdminSeoMetricsPage = () => {
           Übersicht über Title-Länge, Description-Länge und ogType pro Route. Quellen:
           {" "}
           <code>scripts/seo-routes.ts</code> (SSOT-Routen) und <code>src/pages/Blog*.tsx</code>{" "}
-          (PageHead-Props). Limits: Title ≤ {TITLE_MAX}, Description {DESC_MIN}–{DESC_MAX}.
+          (PageHead-Props). Default-Limits: Title ≤ {defTitleMax}, Description {defDescMin}–{defDescMax}. <Link to="/admin/seo/settings" className="text-primary hover:underline inline-flex items-center gap-1"><Settings className="w-3 h-3" /> anpassen</Link>.
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4 text-xs">
@@ -640,13 +651,13 @@ const AdminSeoMetricsPage = () => {
                     </td>
                     <td className="px-3 py-2">
                       <div className="line-clamp-2 text-foreground">{r.title || "—"}</div>
-                      <div className={`text-xs mt-1 ${lengthClass(r.titleLen, 1, TITLE_MAX)}`}>
+                      <div className={`text-xs mt-1 ${lengthClass(r.titleLen, 1, r.limits.titleMax)}`}>
                         {r.titleLen} Zeichen
                       </div>
                     </td>
                     <td className="px-3 py-2 max-w-md">
                       <div className="line-clamp-3 text-foreground">{r.description || "—"}</div>
-                      <div className={`text-xs mt-1 ${lengthClass(r.descLen, DESC_MIN, DESC_MAX)}`}>
+                      <div className={`text-xs mt-1 ${lengthClass(r.descLen, r.limits.descMin, r.limits.descMax)}`}>
                         {r.descLen} Zeichen
                       </div>
                     </td>
