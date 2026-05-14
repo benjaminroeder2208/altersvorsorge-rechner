@@ -73,19 +73,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
-  <!-- LEGAL PAGES -->
-  <url>
-    <loc>https://altersvorsorge-rechner.com/impressum</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://altersvorsorge-rechner.com/datenschutz</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <!-- LEGAL PAGES intentionally excluded: /impressum, /datenschutz are noindex -->
   <!-- BLOG INDEX -->
   <url>
     <loc>https://altersvorsorge-rechner.com/blog</loc>
