@@ -270,15 +270,49 @@ const AdminSeoMetricsPage = () => {
                         {r.ogType}
                       </span>
                     </td>
-                    <td className="px-3 py-2">
+                    <td className="px-3 py-2 max-w-sm">
                       {ok ? (
                         <span className="text-xs text-emerald-700">OK</span>
                       ) : (
-                        <ul className="text-xs text-destructive space-y-0.5">
-                          {r.violations.map((v) => (
-                            <li key={v}>• {v}</li>
-                          ))}
-                        </ul>
+                        <div className="space-y-2">
+                          <ul className="text-xs text-destructive space-y-0.5">
+                            {r.violations.map((v) => (
+                              <li key={v}>• {v}</li>
+                            ))}
+                          </ul>
+                          {r.suggestions.length > 0 && (
+                            <div className="space-y-1.5 pt-1.5 border-t border-border">
+                              <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                                Vorschlag
+                              </div>
+                              {r.suggestions.map((s, i) => (
+                                <div key={i} className="text-xs">
+                                  <div className="flex items-center justify-between gap-2 mb-0.5">
+                                    <span className="text-muted-foreground">
+                                      {s.field}
+                                      {s.field !== "ogType" && ` (${s.value.length} Z.)`}
+                                    </span>
+                                    <button
+                                      type="button"
+                                      onClick={() => navigator.clipboard?.writeText(s.value)}
+                                      className="text-primary hover:underline text-[11px]"
+                                    >
+                                      kopieren
+                                    </button>
+                                  </div>
+                                  <div className="rounded bg-muted/60 px-2 py-1 text-foreground break-words">
+                                    {s.value}
+                                  </div>
+                                  {s.note && (
+                                    <div className="text-[11px] text-muted-foreground mt-0.5">
+                                      {s.note}
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       )}
                     </td>
                   </tr>
