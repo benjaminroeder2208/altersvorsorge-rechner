@@ -257,6 +257,16 @@ export const ROUTES: SeoRoute[] = [
       },
     ],
   },
+  {
+    path: "/suche",
+    title: "Suche – altersvorsorge-rechner.com",
+    description:
+      "Durchsuche alle Ratgeber-Seiten und Blog-Artikel zu Altersvorsorgedepot, Förderung, Rente, ETF und Riester.",
+    h1: "Suche",
+    intro:
+      "Volltextsuche über alle öffentlichen Inhalte – finde Artikel zu Altersvorsorgedepot, Rentenlücke, ETFs und gesetzlicher Rente.",
+    noindex: true,
+  },
   // BLOG ARTIKEL
   ...blogArticles(),
 ];
