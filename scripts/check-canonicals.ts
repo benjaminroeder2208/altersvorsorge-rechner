@@ -83,13 +83,24 @@ for (const loc of locs) {
     errors.push(`Sitemap-loc ${loc} ↔ canonical ${unique[0]} stimmen nicht überein`);
     continue;
   }
+  // noindex-Prüfung: keine robots-Meta darf noindex/none enthalten
+  const robots = extractRobots(html);
+  const offending = robots.filter(isNoindex);
+  if (offending.length) {
+    errors.push(
+      `Sitemap-loc ${loc} – HTML enthält noindex (Widerspruch zur sitemap): "${offending.join('", "')}"`,
+    );
+    continue;
+  }
   checked++;
 }
 
 if (errors.length) {
-  console.error("❌ Canonical-Validierung fehlgeschlagen:");
+  console.error("❌ Sitemap ↔ noindex/canonical Validierung fehlgeschlagen:");
   for (const e of errors) console.error("  - " + e);
   process.exit(1);
 }
 
-console.log(`✅ Canonicals konsistent – ${checked}/${locs.length} sitemap-URLs validiert.`);
+console.log(
+  `✅ Sitemap ↔ noindex/canonical konsistent – ${checked}/${locs.length} sitemap-URLs validiert.`,
+);
