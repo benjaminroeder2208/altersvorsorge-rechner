@@ -552,6 +552,10 @@ const KeywordDetailSheet = ({ kw, onClose }: DetailProps) => {
     ])
   );
   const outline = kw.outline ?? defaultOutline(kw);
+  const serp = serpFor(kw);
+  const isSerpDefault = !kw.serp || kw.serp.length === 0;
+  const score = contentScore(kw);
+  const tone = scoreTone(score);
 
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
