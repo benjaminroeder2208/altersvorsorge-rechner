@@ -23,7 +23,7 @@ const STATUS_LABELS: Record<string, { label: string; tone: string; Icon: typeof 
   draft: { label: "Entwurf", tone: "bg-secondary text-foreground", Icon: FileText },
   scheduled: { label: "Geplant", tone: "bg-amber-100 text-amber-900", Icon: Clock },
   sending: { label: "Wird versendet", tone: "bg-blue-100 text-blue-900", Icon: Loader2 },
-  sent: { label: "Versendet", tone: "bg-emerald-100 text-emerald-900", Icon: CheckCircle2 },
+  sent: { label: "Versendet", tone: "bg-success/15 text-success", Icon: CheckCircle2 },
   failed: { label: "Fehlgeschlagen", tone: "bg-destructive/10 text-destructive", Icon: AlertCircle },
   cancelled: { label: "Abgebrochen", tone: "bg-muted text-muted-foreground", Icon: AlertCircle },
 };

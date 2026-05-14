@@ -51,7 +51,7 @@ const ConfirmPage = () => {
 
           {status === "confirmed" && (
             <div className="space-y-4">
-              <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto" />
+              <CheckCircle className="w-12 h-12 text-success mx-auto" />
               <h1 className="text-xl font-bold">E-Mail bestätigt!</h1>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Deine Auswertung wird gleich an deine E-Mail-Adresse gesendet.

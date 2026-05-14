@@ -234,8 +234,8 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                     icon={Target}
                     label="Ziel-Kapital"
                     value={fmtEur(Math.round(targetCapital))}
-                    bgClass="bg-emerald-50 dark:bg-emerald-950/30"
-                    textClass="text-emerald-600 dark:text-emerald-400"
+                    bgClass="bg-success/10 "
+                    textClass="text-success "
                   />
                   <MetricCard
                     icon={Clock}
@@ -264,7 +264,7 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                     description={`Bis zu ${MAX_GRUNDZULAGE} € Grundzulage + ${KINDERZULAGE_PRO_KIND} € je Kind/Jahr`}
                     subtitle="Beschlossenes Gesetz, 27. März 2026."
                     badge="Ab 2027"
-                    badgeClass="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                    badgeClass="bg-success/15 text-success  "
                   />
                   <ProductCard
                     emoji="🏢"
