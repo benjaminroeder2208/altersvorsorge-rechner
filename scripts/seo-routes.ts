@@ -40,7 +40,7 @@ const webPage = (title: string, description: string, path: string): Record<strin
 export const ROUTES: SeoRoute[] = [
   {
     path: "/",
-    title: "Altersvorsorgedepot Rechner – Altersvorsorge einfach berechnen",
+    title: "Altersvorsorgedepot Rechner",
     description:
       "Berechne mit dem kostenlosen Altersvorsorgedepot-Rechner deine staatliche Förderung, Endkapital und Steuervorteil nach dem Reformgesetz vom 27.03.2026.",
     h1: "Altersvorsorgedepot Rechner",
