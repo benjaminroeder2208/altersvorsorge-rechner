@@ -14,7 +14,7 @@ import {
   CartesianGrid,
   Legend,
 } from "recharts";
-import { Loader2, RefreshCw, MousePointerClick, Eye, Percent, Hash } from "lucide-react";
+import { Loader2, RefreshCw, MousePointerClick, Eye, Percent, Hash, AlertCircle, CheckCircle2, Info, Clock } from "lucide-react";
 
 type Row = { keys: string[]; clicks: number; impressions: number; ctr: number; position: number };
 type Dimension = "date" | "query" | "page" | "device" | "country";
@@ -36,18 +36,27 @@ const AdminGscDashboardPage = () => {
   const [meta, setMeta] = useState<{ startDate?: string; endDate?: string }>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errorDetails, setErrorDetails] = useState<string | null>(null);
+  const [lastFetched, setLastFetched] = useState<Date | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   const load = async () => {
     setLoading(true);
     setError(null);
+    setErrorDetails(null);
     try {
       const { data, error } = await supabase.functions.invoke("gsc-analytics", {
         body: { days, dimension, rowLimit: dimension === "date" ? 200 : 25 },
       });
       if (error) throw new Error(error.message);
-      if (data?.error) throw new Error(data.error);
+      if (data?.error) {
+        const detail = data.details ? JSON.stringify(data.details).slice(0, 300) : null;
+        setErrorDetails(detail);
+        throw new Error(data.error);
+      }
       setRows((data?.rows ?? []) as Row[]);
       setMeta({ startDate: data?.startDate, endDate: data?.endDate });
+      setLastFetched(new Date());
     } catch (e) {
       setError(e instanceof Error ? e.message : "Fehler beim Laden der GSC-Daten");
       setRows([]);
@@ -56,10 +65,18 @@ const AdminGscDashboardPage = () => {
     }
   };
 
+  const handleRetry = () => {
+    setRetryCount((c) => c + 1);
+    void load();
+  };
+
   useEffect(() => {
     void load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [days, dimension]);
+
+  const fmtTime = (d: Date) =>
+    d.toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" });
 
   const totals = useMemo(() => {
     const clicks = rows.reduce((s, r) => s + r.clicks, 0);
@@ -122,17 +139,85 @@ const AdminGscDashboardPage = () => {
           </Button>
         </Card>
 
-        {meta.startDate && (
-          <p className="text-xs text-muted-foreground">
-            altersvorsorge-rechner.com · {meta.startDate} – {meta.endDate}
-          </p>
-        )}
-
-        {error && (
-          <Card className="p-4 border-destructive bg-destructive/5 text-sm text-destructive">
-            {error}
-          </Card>
-        )}
+        {/* Verbindungs- & Datenstatus */}
+        <Card
+          className={`p-4 text-sm border ${
+            error
+              ? "border-destructive bg-destructive/5"
+              : rows.length === 0 && !loading
+              ? "border-amber-500/40 bg-amber-50 dark:bg-amber-950/20"
+              : "border-border bg-muted/30"
+          }`}
+        >
+          <div className="flex flex-wrap items-start gap-3">
+            <div className="mt-0.5">
+              {error ? (
+                <AlertCircle className="w-5 h-5 text-destructive" />
+              ) : loading ? (
+                <Loader2 className="w-5 h-5 animate-spin text-muted-foreground" />
+              ) : rows.length === 0 ? (
+                <Info className="w-5 h-5 text-amber-600" />
+              ) : (
+                <CheckCircle2 className="w-5 h-5 text-primary" />
+              )}
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="font-medium">
+                {error
+                  ? "Verbindung fehlgeschlagen"
+                  : loading
+                  ? "Lade Search-Console-Daten…"
+                  : rows.length === 0
+                  ? "Verbunden – noch keine Daten"
+                  : "Verbunden – Daten aktuell"}
+              </div>
+              <div className="mt-1 text-xs text-muted-foreground space-y-0.5">
+                <div>
+                  Property: <span className="font-mono">altersvorsorge-rechner.com</span>
+                </div>
+                {meta.startDate && (
+                  <div>
+                    Zeitraum: {meta.startDate} – {meta.endDate} (GSC liefert mit ~2 Tagen Verzug)
+                  </div>
+                )}
+                {lastFetched && (
+                  <div className="inline-flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    Letzter Abruf: {fmtTime(lastFetched)}
+                    {retryCount > 0 && ` · ${retryCount} Wiederholung${retryCount > 1 ? "en" : ""}`}
+                  </div>
+                )}
+                {!error && rows.length === 0 && !loading && (
+                  <div className="text-amber-700 dark:text-amber-400 mt-1">
+                    Hinweis: Nach Verifizierung einer Property dauert es typischerweise 2–4 Tage,
+                    bis Google die ersten Impressionen erfasst.
+                  </div>
+                )}
+                {error && (
+                  <>
+                    <div className="text-destructive mt-1">{error}</div>
+                    {errorDetails && (
+                      <details className="mt-1">
+                        <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
+                          Technische Details
+                        </summary>
+                        <pre className="mt-1 p-2 bg-muted rounded text-[10px] overflow-x-auto whitespace-pre-wrap break-all">
+                          {errorDetails}
+                        </pre>
+                      </details>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+            {error && (
+              <Button size="sm" variant="outline" onClick={handleRetry} disabled={loading}>
+                <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${loading ? "animate-spin" : ""}`} />
+                Erneut versuchen
+              </Button>
+            )}
+          </div>
+        </Card>
 
         {/* KPIs */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -220,12 +305,6 @@ const AdminGscDashboardPage = () => {
           </Card>
         )}
 
-        {!loading && rows.length === 0 && !error && (
-          <Card className="p-8 text-center text-muted-foreground text-sm">
-            Noch keine Daten. Google braucht typischerweise ein paar Tage nach der Verifizierung,
-            bis erste Impressionen erfasst werden.
-          </Card>
-        )}
       </div>
     </AdminLayout>
   );
