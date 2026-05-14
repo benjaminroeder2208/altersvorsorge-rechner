@@ -785,6 +785,35 @@ const AdminSeoMetricsPage = () => {
         </div>
 
         <div className="mb-4 flex flex-wrap items-center gap-2">
+          <span className="text-[11px] uppercase tracking-wide text-muted-foreground mr-1">
+            SERP-Vorschau
+          </span>
+          {(["desktop", "mobile"] as const).map((dev) => {
+            const active = serpDevice === dev;
+            const limits = SERP_LIMITS[dev];
+            return (
+              <button
+                key={dev}
+                type="button"
+                onClick={() => setSerpDevice(dev)}
+                aria-pressed={active}
+                title={`Title ≤ ${limits.title}, Description ≤ ${limits.description} Zeichen`}
+                className={`text-xs px-2.5 py-1 rounded-md border transition-colors ${
+                  active
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                }`}
+              >
+                {dev === "desktop" ? "Desktop" : "Mobile"}
+                <span className={`ml-1.5 text-[10px] ${active ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                  {limits.title}/{limits.description}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mb-4 flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => setOnlyViolations((v) => !v)}
