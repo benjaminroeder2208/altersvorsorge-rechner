@@ -83,22 +83,85 @@ function buildRows(): RowWithViolations[] {
       const titleLen = r.title.length;
       const descLen = r.description.length;
       const violations: string[] = [];
-      if (titleLen === 0) violations.push("Titel fehlt");
-      else if (titleLen > TITLE_MAX) violations.push(`Titel zu lang (${titleLen} > ${TITLE_MAX})`);
-      if (descLen === 0) violations.push("Description fehlt");
-      else if (descLen < DESC_MIN) violations.push(`Description zu kurz (${descLen} < ${DESC_MIN})`);
-      else if (descLen > DESC_MAX) violations.push(`Description zu lang (${descLen} > ${DESC_MAX})`);
-      // og:type heuristic: blog routes should be article, others website
+      const suggestions: { field: string; value: string; note?: string }[] = [];
+
+      if (titleLen === 0) {
+        violations.push("Titel fehlt");
+      } else if (titleLen > TITLE_MAX) {
+        violations.push(`Titel zu lang (${titleLen} > ${TITLE_MAX})`);
+        suggestions.push({ field: "title", value: shortenTitle(r.title, TITLE_MAX) });
+      }
+
+      if (descLen === 0) {
+        violations.push("Description fehlt");
+      } else if (descLen < DESC_MIN) {
+        violations.push(`Description zu kurz (${descLen} < ${DESC_MIN})`);
+        suggestions.push({
+          field: "description",
+          value: r.description,
+          note: `Um ≥ ${DESC_MIN - descLen} Zeichen erweitern – z. B. konkreten Nutzen, Förderhöhe oder CTA ergänzen.`,
+        });
+      } else if (descLen > DESC_MAX) {
+        violations.push(`Description zu lang (${descLen} > ${DESC_MAX})`);
+        suggestions.push({ field: "description", value: shortenDescription(r.description, DESC_MAX) });
+      }
+
       const isBlog = r.path.startsWith("/blog/");
-      if (isBlog && r.ogType !== "article") violations.push("ogType sollte 'article' sein");
-      if (!isBlog && r.ogType === "article" && r.path !== "/blog")
+      if (isBlog && r.ogType !== "article") {
+        violations.push("ogType sollte 'article' sein");
+        suggestions.push({ field: "ogType", value: 'ogType="article"' });
+      }
+      if (!isBlog && r.ogType === "article" && r.path !== "/blog") {
         violations.push("ogType 'article' für Nicht-Blog-Route");
-      return { ...r, titleLen, descLen, violations };
+        suggestions.push({ field: "ogType", value: 'ogType="website"' });
+      }
+
+      return { ...r, titleLen, descLen, violations, suggestions };
     })
     .sort((a, b) => {
       if (a.violations.length !== b.violations.length) return b.violations.length - a.violations.length;
       return a.path.localeCompare(b.path);
     });
+}
+
+/**
+ * Heuristik: Erst an Trennzeichen kürzen (–, —, -, :, |), dabei den
+ * Marken-/Brand-Teil bevorzugt entfernen. Falls weiterhin zu lang,
+ * an Wortgrenze hart kürzen und mit "…" terminieren.
+ */
+function shortenTitle(title: string, max: number): string {
+  if (title.length <= max) return title;
+  const seps = [" – ", " — ", " - ", ": ", " | "];
+  for (const sep of seps) {
+    const idx = title.lastIndexOf(sep);
+    if (idx > 0) {
+      const head = title.slice(0, idx).trim();
+      if (head.length <= max && head.length >= 20) return head;
+    }
+  }
+  // Hard cut an Wortgrenze
+  const cut = title.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 30 ? cut.slice(0, lastSpace) : cut).trimEnd() + "…";
+}
+
+/**
+ * Heuristik: Bevorzugt am letzten Satzende (., !, ?) vor `max` schneiden.
+ * Falls keines vorhanden ist, an Wortgrenze kürzen und mit "…" beenden.
+ */
+function shortenDescription(desc: string, max: number): string {
+  if (desc.length <= max) return desc;
+  const slice = desc.slice(0, max);
+  const sentenceEnds = [". ", "! ", "? "];
+  let bestEnd = -1;
+  for (const s of sentenceEnds) {
+    const i = slice.lastIndexOf(s);
+    if (i > bestEnd) bestEnd = i + 1; // include punctuation
+  }
+  if (bestEnd > 60) return desc.slice(0, bestEnd).trim();
+  const cut = desc.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 40 ? cut.slice(0, lastSpace) : cut).trimEnd() + "…";
 }
 
 function lengthClass(len: number, min: number, max: number): string {
