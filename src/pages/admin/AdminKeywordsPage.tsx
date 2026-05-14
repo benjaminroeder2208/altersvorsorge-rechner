@@ -93,6 +93,7 @@ const KEYWORDS: Kw[] = [
     intent: "broad",
     covered: "/altersvorsorgedepot",
     relatedPages: ["/altersvorsorgedepot-foerderung", "/altersvorsorgedepot-vs-etf-sparplan", "/altersvorsorgedepot-gesetz"],
+    serp: ["media", "fintech", "competitor", "paa", "video"],
     outline: [
       "Was ist das Altersvorsorgedepot? (Definition nach Drs. 21/4996)",
       "Förderung 2027: 50 % Zulage bis 360 €, 25 % bis 1.800 €",
