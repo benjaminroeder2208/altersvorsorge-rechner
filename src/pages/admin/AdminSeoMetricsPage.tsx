@@ -53,6 +53,7 @@ interface RowWithViolations extends MetricRow {
   descLen: number;
   violations: Violation[];
   suggestions: Suggestion[];
+  blogOptimizations: Suggestion[];
   severity: number;
 }
 
