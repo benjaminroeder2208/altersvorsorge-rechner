@@ -9,5 +9,11 @@ Disallow: /internal
 Disallow: /tmp
 Disallow: /thank-you
 Disallow: /success
+# Utility / legacy redirect routes — intentionally excluded from sitemap
+Disallow: /unsubscribe
+Disallow: /confirm
+Disallow: /embed
+Disallow: /altersvorsorgedepot-rechner
+Disallow: /altersvorsorgedepot-gesetzesentwurf
 
 Sitemap: https://altersvorsorge-rechner.com/sitemap.xml
