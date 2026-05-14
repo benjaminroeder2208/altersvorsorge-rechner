@@ -348,6 +348,59 @@ function lengthClass(len: number, min: number, max: number): string {
   return "text-muted-foreground";
 }
 
+const SuggestionList = ({
+  label,
+  items,
+  tone = "default",
+}: {
+  label: string;
+  items: Suggestion[];
+  tone?: "default" | "primary";
+}) => {
+  const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
+  const labelCls =
+    tone === "primary"
+      ? "text-[10px] uppercase tracking-wide text-primary font-medium"
+      : "text-[10px] uppercase tracking-wide text-muted-foreground";
+  const boxCls =
+    tone === "primary"
+      ? "rounded bg-primary/10 px-2 py-1 text-foreground break-words"
+      : "rounded bg-muted/60 px-2 py-1 text-foreground break-words";
+
+  const handleCopy = (text: string, idx: number) => {
+    navigator.clipboard?.writeText(text);
+    setCopiedIdx(idx);
+    window.setTimeout(() => setCopiedIdx((c) => (c === idx ? null : c)), 1500);
+  };
+
+  return (
+    <div className="space-y-1.5 pt-1.5 border-t border-border">
+      <div className={labelCls}>{label}</div>
+      {items.map((s, i) => (
+        <div key={i} className="text-xs">
+          <div className="flex items-center justify-between gap-2 mb-0.5">
+            <span className="text-muted-foreground">
+              {s.field}
+              {s.field !== "ogType" && ` (${s.value.length} Z.)`}
+            </span>
+            <button
+              type="button"
+              onClick={() => handleCopy(s.value, i)}
+              className="text-primary hover:underline text-[11px]"
+            >
+              {copiedIdx === i ? "kopiert ✓" : "kopieren"}
+            </button>
+          </div>
+          <div className={boxCls}>{s.value}</div>
+          {s.note && (
+            <div className="text-[11px] text-muted-foreground mt-0.5">{s.note}</div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const AdminSeoMetricsPage = () => {
   const rows = useMemo(buildRows, []);
   const violationCount = rows.filter((r) => r.violations.length > 0).length;
