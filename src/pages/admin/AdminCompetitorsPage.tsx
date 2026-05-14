@@ -177,13 +177,19 @@ const AdminCompetitorsPage = () => {
       </p>
 
       <div className="space-y-8">
-        {KEYWORDS.map((kw) => (
+        {KEYWORDS.map((kw) => {
+          const score = contentScore(kw);
+          const tone = scoreTone(score);
+          return (
           <Card key={kw.keyword} className="p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
               <h2 className="text-lg sm:text-xl font-bold">"{kw.keyword}"</h2>
               <div className="flex flex-wrap gap-2 text-xs">
                 <Badge variant="secondary">Volumen: {kw.volume}</Badge>
                 <Badge variant="secondary">KD: {kw.difficulty} ({kw.difficultyLabel})</Badge>
+                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded ${tone.tone}`}>
+                  <Gauge className="w-3 h-3" /> Content-Score {score}/100 · {tone.label}
+                </span>
               </div>
             </div>
 
@@ -226,7 +232,14 @@ const AdminCompetitorsPage = () => {
                   {kw.angles.map((a, i) => (
                     <li key={i} className="flex gap-2">
                       <span className="text-primary shrink-0">•</span>
-                      <span>{a}</span>
+                      <span>
+                        {isPriority(a) && (
+                          <Badge className="mr-2 align-middle bg-primary text-primary-foreground hover:bg-primary text-[10px]">
+                            Score-Treiber
+                          </Badge>
+                        )}
+                        {angleText(a)}
+                      </span>
                     </li>
                   ))}
                 </ul>
