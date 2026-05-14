@@ -28,6 +28,10 @@ interface Kw {
   covered?: string;
   /** Empfohlene Ziel-URL, falls nicht abgedeckt. */
   suggested?: string;
+  /** Weitere Seiten, die das Keyword unterstützend abdecken. */
+  relatedPages?: string[];
+  /** Optionale individuelle Content-Gliederung (H2-Ebene). */
+  outline?: string[];
 }
 
 const KEYWORDS: Kw[] = [
