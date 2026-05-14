@@ -1,13 +1,29 @@
 <!doctype html>
 <html lang="de">
   <head>
-    <!-- Cookiebot -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Self-hosted Inter (variable woff2). Preload latin BEFORE any 3rd-party
+         script so the font arrives in time for the first text paint (LCP).
+         fetchpriority=high tells the browser to prioritize this over chunked JS. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/inter-latin.woff2"
+      crossorigin
+      fetchpriority="high"
+    />
+
+    <!-- Cookiebot (async so it does not render-block the LCP) -->
     <script
       id="Cookiebot"
       src="https://consent.cookiebot.com/uc.js"
       data-cbid="71ee8ac9-9b38-4881-a659-b76fc90f100b"
       data-blockingmode="explicit"
       type="text/javascript"
+      async
     ></script>
     <!-- End Cookiebot -->
 
