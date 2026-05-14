@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { CheckCircle2, AlertTriangle, ExternalLink } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
@@ -257,6 +257,31 @@ const AdminSeoMetricsPage = () => {
       .sort((a, b) => b.severity - a.severity);
   }, [rows]);
 
+  // Filter state
+  const [onlyViolations, setOnlyViolations] = useState(false);
+  const [activeTypes, setActiveTypes] = useState<Set<ViolationType>>(new Set());
+
+  const toggleType = (t: ViolationType) =>
+    setActiveTypes((prev) => {
+      const next = new Set(prev);
+      if (next.has(t)) next.delete(t);
+      else next.add(t);
+      return next;
+    });
+
+  const filteredRows = useMemo(() => {
+    return rows.filter((r) => {
+      if (activeTypes.size > 0) {
+        if (!r.violations.some((v) => activeTypes.has(v.type))) return false;
+        return true; // type filter implies "with violations"
+      }
+      if (onlyViolations && r.violations.length === 0) return false;
+      return true;
+    });
+  }, [rows, onlyViolations, activeTypes]);
+
+  const filterActive = onlyViolations || activeTypes.size > 0;
+
   return (
     <>
       <Helmet>
@@ -315,6 +340,58 @@ const AdminSeoMetricsPage = () => {
           </div>
         )}
 
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setOnlyViolations((v) => !v)}
+            disabled={activeTypes.size > 0}
+            className={`text-xs px-2.5 py-1 rounded-md border transition-colors ${
+              onlyViolations || activeTypes.size > 0
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-background text-foreground border-border hover:bg-muted"
+            } ${activeTypes.size > 0 ? "opacity-60 cursor-not-allowed" : ""}`}
+            title={activeTypes.size > 0 ? "Aktiv durch Typ-Filter" : undefined}
+          >
+            Nur Verstöße
+          </button>
+          {(Object.keys(VIOLATION_LABELS) as ViolationType[]).map((t) => {
+            const active = activeTypes.has(t);
+            const count = summary.find((s) => s.type === t)?.count ?? 0;
+            const disabled = count === 0;
+            return (
+              <button
+                key={t}
+                type="button"
+                onClick={() => toggleType(t)}
+                disabled={disabled}
+                className={`text-xs px-2.5 py-1 rounded-md border transition-colors ${
+                  active
+                    ? "bg-destructive/10 text-destructive border-destructive/40"
+                    : "bg-background text-foreground border-border hover:bg-muted"
+                } ${disabled ? "opacity-40 cursor-not-allowed" : ""}`}
+              >
+                {VIOLATION_LABELS[t]}
+                <span className="ml-1 text-muted-foreground">({count})</span>
+              </button>
+            );
+          })}
+          {filterActive && (
+            <button
+              type="button"
+              onClick={() => {
+                setOnlyViolations(false);
+                setActiveTypes(new Set());
+              }}
+              className="text-xs px-2.5 py-1 rounded-md text-muted-foreground hover:text-foreground underline"
+            >
+              Filter zurücksetzen
+            </button>
+          )}
+          <span className="ml-auto text-xs text-muted-foreground">
+            {filteredRows.length} / {rows.length} sichtbar
+          </span>
+        </div>
+
         <div className="overflow-x-auto rounded-lg border border-border">
           <table className="w-full text-sm">
             <thead className="bg-muted/50">
@@ -328,7 +405,7 @@ const AdminSeoMetricsPage = () => {
               </tr>
             </thead>
             <tbody>
-              {rows.map((r) => {
+              {filteredRows.map((r) => {
                 const ok = r.violations.length === 0;
                 return (
                   <tr
@@ -444,6 +521,13 @@ const AdminSeoMetricsPage = () => {
                   </tr>
                 );
               })}
+              {filteredRows.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="px-3 py-6 text-center text-sm text-muted-foreground">
+                    Keine Routen entsprechen dem aktuellen Filter.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
