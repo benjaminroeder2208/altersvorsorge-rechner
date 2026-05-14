@@ -107,10 +107,10 @@ const App = () => (
               <Route path="/altersvorsorgedepot-vs-etf-sparplan" element={<VsEtfPage />} />
               <Route path="/impressum" element={<ImpressumPage />} />
               <Route path="/datenschutz" element={<DatenschutzPage />} />
-              <Route path="/altersvorsorgedepot-rechner" element={<Navigate to="/" replace />} />
+              <Route path="/altersvorsorgedepot-rechner" element={<NoindexRedirect to="/" />} />
               <Route
                 path="/altersvorsorgedepot-gesetzesentwurf"
-                element={<Navigate to="/altersvorsorgedepot-gesetz" replace />}
+                element={<NoindexRedirect to="/altersvorsorgedepot-gesetz" />}
               />
               <Route path="/rentenluecken-rechner" element={<RentenlueckenRechnerPage />} />
               <Route path="/blog" element={<BlogIndexPage />} />
