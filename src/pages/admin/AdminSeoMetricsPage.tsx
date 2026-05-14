@@ -234,6 +234,113 @@ function shortenDescription(desc: string, max: number): string {
   return (lastSpace > 40 ? cut.slice(0, lastSpace) : cut).trimEnd() + "…";
 }
 
+/**
+ * Blog-spezifische Optimierungsvorschläge: deterministische Varianten für
+ * Title und Meta-Description, die innerhalb der SEO-Limits bleiben und sich
+ * vom aktuellen Wert unterscheiden. Sortiert nach erwartetem CTR-Impact.
+ */
+function buildBlogOptimizations(title: string, description: string): Suggestion[] {
+  const out: Suggestion[] = [];
+  const CURRENT_YEAR = "2026";
+  const TITLE_TARGET_MIN = 50;
+  const DESC_TARGET_MIN = 140;
+
+  // ---------- Titel-Varianten ----------
+  const titleHasYear = /\b20\d{2}\b/.test(title);
+  const baseTitle = title.replace(/\s+\|\s+.*$/, "").trim();
+
+  // 1) Jahr-Suffix für Aktualitätssignal
+  if (!titleHasYear) {
+    const v = `${baseTitle} ${CURRENT_YEAR}`;
+    if (v.length <= TITLE_MAX && v !== title) {
+      out.push({
+        field: "title",
+        value: v,
+        note: "Aktualitäts-Signal: Jahreszahl steigert CTR in der SERP.",
+      });
+    } else {
+      const vp = `${baseTitle} (${CURRENT_YEAR})`;
+      if (vp.length <= TITLE_MAX && vp !== title) {
+        out.push({
+          field: "title",
+          value: vp,
+          note: "Aktualitäts-Signal: Jahreszahl in Klammern.",
+        });
+      }
+    }
+  }
+
+  // 2) Brand-/Ratgeber-Suffix für Kontext
+  if (!/\bRatgeber\b|\| /.test(title)) {
+    const v = `${baseTitle} | Ratgeber`;
+    if (v.length <= TITLE_MAX && v !== title && baseTitle.length < TITLE_MAX - 11) {
+      out.push({
+        field: "title",
+        value: v,
+        note: "Kontext-Signal: kennzeichnet die Seite als redaktionellen Ratgeber.",
+      });
+    }
+  }
+
+  // 3) Wenn Titel zu kurz ist, kombinierter Vorschlag mit Jahr + Ratgeber
+  if (title.length < TITLE_TARGET_MIN && !titleHasYear) {
+    const v = `${baseTitle} ${CURRENT_YEAR} – Ratgeber`;
+    if (v.length <= TITLE_MAX && v !== title) {
+      out.push({
+        field: "title",
+        value: v,
+        note: `Aktuell ${title.length} Zeichen – Ziel ${TITLE_TARGET_MIN}–${TITLE_MAX} für maximale SERP-Sichtbarkeit.`,
+      });
+    }
+  }
+
+  // ---------- Description-Varianten ----------
+  const desc = description.trim();
+  const descLen = desc.length;
+  const endsWithPunct = /[.!?]$/.test(desc);
+
+  // 1) CTA-Suffix
+  const cta = " Jetzt kostenlos im Ratgeber lesen.";
+  const candidate = (endsWithPunct ? desc : desc + ".") + cta;
+  if (candidate.length <= DESC_MAX && candidate.length >= DESC_MIN && candidate !== desc) {
+    if (descLen < DESC_TARGET_MIN || descLen < DESC_MIN + 20) {
+      out.push({
+        field: "description",
+        value: candidate,
+        note: "CTA-Suffix erhöht Klickrate und nutzt den verfügbaren Platz aus.",
+      });
+    }
+  }
+
+  // 2) Stand-Prefix für Aktualität
+  if (!/\b20\d{2}\b|Stand /.test(desc)) {
+    const prefix = `Stand ${CURRENT_YEAR}: `;
+    const v = prefix + (desc.charAt(0).toLowerCase() + desc.slice(1));
+    if (v.length <= DESC_MAX && v.length >= DESC_MIN) {
+      out.push({
+        field: "description",
+        value: v,
+        note: "Stand-Prefix signalisiert Aktualität nach der Reform vom 27.03.2026.",
+      });
+    }
+  }
+
+  // 3) Kombination: Stand + CTA falls Description deutlich zu kurz
+  if (descLen < DESC_TARGET_MIN && !/\b20\d{2}\b/.test(desc)) {
+    const base = (endsWithPunct ? desc : desc + ".");
+    const v = `Stand ${CURRENT_YEAR}: ${base.charAt(0).toLowerCase() + base.slice(1)}${cta}`;
+    if (v.length <= DESC_MAX && v.length >= DESC_TARGET_MIN && !out.some((s) => s.value === v)) {
+      out.push({
+        field: "description",
+        value: v,
+        note: `Maximale Nutzung des SERP-Snippets (${v.length}/${DESC_MAX}).`,
+      });
+    }
+  }
+
+  return out;
+}
+
 function lengthClass(len: number, min: number, max: number): string {
   if (len === 0) return "text-destructive font-medium";
   if (len > max) return "text-destructive font-medium";
