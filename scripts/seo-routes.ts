@@ -110,7 +110,7 @@ export const ROUTES: SeoRoute[] = [
     path: "/altersvorsorgedepot-gesetz",
     title: "Altersvorsorgedepot Gesetz – Reformgesetz vom 27.03.2026",
     description:
-      "Das Altersvorsorgereformgesetz (Drs. 21/4996) wurde am 27.03.2026 beschlossen. Was im Gesetz steht, ab wann es gilt und welche Eckpunkte für Sparer wichtig sind.",
+      "Das Altersvorsorgereformgesetz (Drs. 21/4996) wurde am 27.03.2026 beschlossen.",
     h1: "Altersvorsorgedepot Gesetz",
     intro:
       "Mit dem Altersvorsorgereformgesetz schafft der Gesetzgeber den Rahmen für das Altersvorsorgedepot. Hier findest du die Eckpunkte, den Zeitplan und die Quellen zum offiziellen Gesetz.",
