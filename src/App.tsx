@@ -74,6 +74,7 @@ const AdminNewsletterEditPage = lazy(() => import("./pages/admin/AdminNewsletter
 const AdminLeadsPage = lazy(() => import("./pages/admin/AdminLeadsPage"));
 const AdminNewsletterSubscribersPage = lazy(() => import("./pages/admin/AdminNewsletterSubscribersPage"));
 const AdminSeoMetricsPage = lazy(() => import("./pages/admin/AdminSeoMetricsPage"));
+const AdminSeoSettingsPage = lazy(() => import("./pages/admin/AdminSeoSettingsPage"));
 
 // Internal QA — not linked, noindex
 const AnalyticsTestPage = lazy(() => import("./pages/internal/AnalyticsTestPage"));
