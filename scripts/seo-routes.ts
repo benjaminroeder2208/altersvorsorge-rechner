@@ -10,6 +10,8 @@ export interface SeoRoute {
   ogType?: "website" | "article";
   ogImage?: string;
   jsonLd?: Record<string, unknown>[];
+  /** true = noindex,nofollow – Route wird prerendert, aber NICHT in sitemap erwartet. */
+  noindex?: boolean;
 }
 
 export const BASE_URL = "https://altersvorsorge-rechner.com";
@@ -223,6 +225,7 @@ export const ROUTES: SeoRoute[] = [
     h1: "Impressum",
     intro: "Anbieterkennzeichnung gemäß § 5 TMG.",
     jsonLd: webPage("Impressum", "Anbieterkennzeichnung nach § 5 TMG.", "/impressum"),
+    noindex: true,
   },
   {
     path: "/datenschutz",
@@ -236,6 +239,7 @@ export const ROUTES: SeoRoute[] = [
       "Datenschutzhinweise nach DSGVO.",
       "/datenschutz",
     ),
+    noindex: true,
   },
   {
     path: "/blog",
