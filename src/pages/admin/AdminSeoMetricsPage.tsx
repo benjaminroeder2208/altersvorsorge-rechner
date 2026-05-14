@@ -591,6 +591,7 @@ const AdminSeoMetricsPage = () => {
   const [activeTypes, setActiveTypes] = useState<Set<ViolationType>>(new Set());
   const [search, setSearch] = useState("");
   const [activeSeverities, setActiveSeverities] = useState<Set<string>>(new Set());
+  const [serpDevice, setSerpDevice] = useState<SerpDevice>("desktop");
 
   const toggleType = (t: ViolationType) =>
     setActiveTypes((prev) => {
