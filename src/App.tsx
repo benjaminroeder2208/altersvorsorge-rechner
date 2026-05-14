@@ -24,6 +24,7 @@ const VsRiesterPage = lazy(() => import("./pages/VsRiesterPage"));
 const VsEtfPage = lazy(() => import("./pages/VsEtfPage"));
 const ImpressumPage = lazy(() => import("./pages/ImpressumPage"));
 const DatenschutzPage = lazy(() => import("./pages/DatenschutzPage"));
+const SuchePage = lazy(() => import("./pages/SuchePage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const RentenlueckenRechnerPage = lazy(() => import("./pages/RentenlueckenRechnerPage"));
 const UnsubscribePage = lazy(() => import("./pages/UnsubscribePage"));
