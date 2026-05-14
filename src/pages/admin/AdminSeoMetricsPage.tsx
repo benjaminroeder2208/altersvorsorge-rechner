@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { CheckCircle2, AlertTriangle, ExternalLink } from "lucide-react";
+import { CheckCircle2, AlertTriangle, ExternalLink, Search as SearchIcon, X } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { ROUTES as SSOT_ROUTES } from "../../../scripts/seo-routes";
 
@@ -260,6 +260,7 @@ const AdminSeoMetricsPage = () => {
   // Filter state
   const [onlyViolations, setOnlyViolations] = useState(false);
   const [activeTypes, setActiveTypes] = useState<Set<ViolationType>>(new Set());
+  const [search, setSearch] = useState("");
 
   const toggleType = (t: ViolationType) =>
     setActiveTypes((prev) => {
@@ -270,17 +271,20 @@ const AdminSeoMetricsPage = () => {
     });
 
   const filteredRows = useMemo(() => {
+    const q = search.trim().toLowerCase();
     return rows.filter((r) => {
       if (activeTypes.size > 0) {
         if (!r.violations.some((v) => activeTypes.has(v.type))) return false;
-        return true; // type filter implies "with violations"
+      } else if (onlyViolations && r.violations.length === 0) return false;
+      if (q) {
+        const hay = `${r.path} ${r.title} ${r.description}`.toLowerCase();
+        if (!hay.includes(q)) return false;
       }
-      if (onlyViolations && r.violations.length === 0) return false;
       return true;
     });
-  }, [rows, onlyViolations, activeTypes]);
+  }, [rows, onlyViolations, activeTypes, search]);
 
-  const filterActive = onlyViolations || activeTypes.size > 0;
+  const filterActive = onlyViolations || activeTypes.size > 0 || search.trim().length > 0;
 
   return (
     <>
@@ -340,6 +344,27 @@ const AdminSeoMetricsPage = () => {
           </div>
         )}
 
+        <div className="mb-3 relative">
+          <SearchIcon className="absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Suche nach Pfad, Title oder Description …"
+            className="w-full pl-8 pr-9 py-2 text-sm rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+          />
+          {search && (
+            <button
+              type="button"
+              onClick={() => setSearch("")}
+              aria-label="Suche leeren"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded text-muted-foreground hover:text-foreground hover:bg-muted"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
+        </div>
+
         <div className="mb-4 flex flex-wrap items-center gap-2">
           <button
             type="button"
@@ -381,6 +406,7 @@ const AdminSeoMetricsPage = () => {
               onClick={() => {
                 setOnlyViolations(false);
                 setActiveTypes(new Set());
+                setSearch("");
               }}
               className="text-xs px-2.5 py-1 rounded-md text-muted-foreground hover:text-foreground underline"
             >
