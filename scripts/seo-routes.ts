@@ -10,7 +10,8 @@ export interface SeoRoute {
   ogType?: "website" | "article";
   ogImage?: string;
   jsonLd?: Record<string, unknown>[];
-}
+  /** true = noindex,nofollow – Route wird prerendert, aber NICHT in sitemap erwartet. */
+  noindex?: boolean;
 
 export const BASE_URL = "https://altersvorsorge-rechner.com";
 export const SITE_NAME = "altersvorsorge-rechner.com";
