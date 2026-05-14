@@ -521,6 +521,13 @@ const AdminSeoMetricsPage = () => {
                   </tr>
                 );
               })}
+              {filteredRows.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="px-3 py-6 text-center text-sm text-muted-foreground">
+                    Keine Routen entsprechen dem aktuellen Filter.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
