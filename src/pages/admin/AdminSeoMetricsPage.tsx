@@ -1001,6 +1001,7 @@ const AdminSeoMetricsPage = () => {
                               title={p.title}
                               description={p.description}
                               variant="suggested"
+                              device={serpDevice}
                             />
                           ));
                         })()}
