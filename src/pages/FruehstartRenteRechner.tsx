@@ -225,7 +225,7 @@ const FruehstartRenteRechner = () => {
     <>
       <PageHead
         title="Frühstart-Rente Rechner: Berechne das Vermögen deines Kindes"
-        description="Berechne, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut. Kostenlos und ohne Anmeldung."
+        description="Berechne, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut. Kostenlos und unverbindlich."
         path={PATH}
         jsonLd={jsonLd}
       />
