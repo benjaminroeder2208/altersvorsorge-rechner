@@ -67,6 +67,7 @@ const BlogPortfolio = lazy(() => import("./pages/BlogPortfolio"));
 const BlogWasDarfInsDepot = lazy(() => import("./pages/BlogWasDarfInsDepot"));
 const BlogKoalitionseinigung = lazy(() => import("./pages/BlogKoalitionseinigung"));
 const BlogBeschlossen = lazy(() => import("./pages/BlogBeschlossen"));
+const BlogFruehstartRente = lazy(() => import("./pages/BlogFruehstartRente"));
 
 // Admin routes
 const AdminLoginPage = lazy(() => import("./pages/admin/AdminLoginPage"));
