@@ -8,7 +8,8 @@ const sections = [
   links: [
   { to: "/", label: "Altersvorsorgedepot Rechner" },
   { to: "/rentenluecken-rechner", label: "Rentenlückenrechner" },
-  { to: "/fruehstart-rente-rechner", label: "Frühstartrentenrechner" }]
+  { to: "/fruehstart-rente-rechner", label: "Frühstartrentenrechner" },
+  { to: "/riester-vergleich-rechner", label: "Riestervergleich" }]
 
 },
 {

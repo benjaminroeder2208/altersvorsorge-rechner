@@ -8,6 +8,7 @@ const navLinks = [
   { to: "/", label: "Rechner" },
   { to: "/rentenluecken-rechner", label: "Rentenlücke" },
   { to: "/fruehstart-rente-rechner", label: "Frühstartrente" },
+  { to: "/riester-vergleich-rechner", label: "Riestervergleich" },
   { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot" },
   { to: "/blog", label: "Blog" },
 ];
@@ -96,12 +97,6 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <a
-            href={location.pathname === "/" ? "#faq" : "/#faq"}
-            className="px-3 py-1.5 rounded-full text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            FAQ
-          </a>
         </div>
 
         {/* Search icon (desktop) */}
@@ -166,12 +161,6 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <a
-            href="/#faq"
-            className="block px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            FAQ
-          </a>
         </motion.div>
       )}
     </motion.nav>
