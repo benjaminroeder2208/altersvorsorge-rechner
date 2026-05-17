@@ -70,6 +70,7 @@ const BlogKoalitionseinigung = lazy(() => import("./pages/BlogKoalitionseinigung
 const BlogBeschlossen = lazy(() => import("./pages/BlogBeschlossen"));
 const BlogFruehstartRente = lazy(() => import("./pages/BlogFruehstartRente"));
 const FruehstartRenteRechner = lazy(() => import("./pages/FruehstartRenteRechner"));
+const RiesterVergleichRechner = lazy(() => import("./pages/RiesterVergleichRechner"));
 
 // Admin routes
 const AdminLoginPage = lazy(() => import("./pages/admin/AdminLoginPage"));
