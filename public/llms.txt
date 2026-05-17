@@ -33,6 +33,10 @@ Die Seite richtet sich an Sparerinnen und Sparer in Deutschland und erklärt das
 - [Riester-Rente 2026](/blog/riester-rente): Funktionsweise, Förderung und Vergleich mit dem Altersvorsorgedepot.
 - [Blog Übersicht](/blog): Alle Artikel im Überblick.
 
+## Über
+
+- [Über Uns](/ueber-uns): Wer hinter altersvorsorge-rechner.com steht und welche Mission die Seite verfolgt.
+
 ## Rechtliches
 
 - [Impressum](/impressum)
