@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Cookie } from "lucide-react";
+import { Cookie, Linkedin, Instagram } from "lucide-react";
 import { openCookieSettings } from "@/lib/cookieConsent";
 
 const sections = [
