@@ -473,6 +473,28 @@ const UeberUnsPage = () => (
                 </Link>{" "}
                 — direkt in deinen Posteingang
               </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/altersvorsorge-rechner-com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline-offset-4 hover:underline inline-flex items-center gap-1"
+                >
+                  <Linkedin className="w-4 h-4" aria-hidden="true" />
+                  Unser LinkedIn-Profil
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/altersvorsorge.rechner/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline-offset-4 hover:underline inline-flex items-center gap-1"
+                >
+                  <InstagramIcon className="w-4 h-4" aria-hidden="true" />
+                  Unser Instagram-Profil
+                </a>
+              </li>
             </ul>
             <p>
               Ich antworte nicht immer sofort (ich habe auch einen Vollzeitjob), aber ich lese jedes
