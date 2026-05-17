@@ -164,6 +164,7 @@ const App = () => (
                 element={<BlogKoalitionseinigung />}
               />
               <Route path="/blog/altersvorsorgedepot-beschlossen" element={<BlogBeschlossen />} />
+              <Route path="/blog/fruehstart-rente" element={<BlogFruehstartRente />} />
               <Route path="/unsubscribe" element={<UnsubscribePage />} />
               <Route path="/confirm" element={<ConfirmPage />} />
               <Route path="/embed" element={<EmbedPage />} />
