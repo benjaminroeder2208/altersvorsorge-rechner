@@ -399,24 +399,6 @@ const FruehstartRenteRechner = () => {
                 zusätzliche Beiträge können über Jahrzehnte hinweg den Endbetrag deutlich erhöhen.
               </p>
             </div>
-
-            <div className="rounded-xl border border-border/60 bg-muted/30 p-4">
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Diese Berechnung basiert auf vereinfachten Annahmen (konstante Rendite, keine
-                Inflation, keine Kosten, keine Steuern). Tatsächliche Ergebnisse können erheblich
-                abweichen. Renditeannahme orientiert sich am historischen Durchschnitt breit
-                gestreuter Aktienindizes, siehe{" "}
-                <a
-                  href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  MSCI-World-Renditedreieck des Deutschen Aktieninstituts
-                </a>
-                .
-              </p>
-            </div>
           </section>
 
           {/* CTA Links */}
