@@ -17,31 +17,98 @@ import {
 const BASE = "https://altersvorsorge-rechner.com";
 const PATH = "/ueber-uns";
 
+const PERSON_ID = `${BASE}/#benjamin-roeder`;
+const ORG_ID = `${BASE}/#organization`;
+const WEBSITE_ID = `${BASE}/#website`;
+
 const jsonLd = [
   {
     "@type": "AboutPage",
-    name: "Über Benjamin Röder – Finanzbildung für alle",
+    "@id": `${BASE}${PATH}#aboutpage`,
+    name: "Über uns – Benjamin Röder & altersvorsorge-rechner.com",
     url: `${BASE}${PATH}`,
+    inLanguage: "de-DE",
     description:
-      "Erfahre, warum altersvorsorge-rechner.com gegründet wurde: Eine Mission für bessere Finanzbildung und private Altersvorsorge in Deutschland.",
-    isPartOf: { "@type": "WebSite", url: `${BASE}/` },
+      "Wer steckt hinter altersvorsorge-rechner.com? Benjamin Röder, 20+ Jahre Finanzbranche, erklärt die Mission: kostenlose, unabhängige Finanzbildung zur privaten Altersvorsorge in Deutschland.",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": PERSON_ID },
+    mainEntity: { "@id": PERSON_ID },
+    publisher: { "@id": ORG_ID },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: `${BASE}/og-image.jpg`,
+    },
+    datePublished: "2026-05-17",
+    dateModified: "2026-05-17",
+  },
+  {
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: "Benjamin Röder",
+    givenName: "Benjamin",
+    familyName: "Röder",
+    jobTitle: "Experte für private Altersvorsorge & Wertpapiere",
+    description:
+      "Benjamin Röder arbeitet seit über 20 Jahren in der Finanzbranche, ist seit 2016 auf Wertpapiere und Depots spezialisiert und Gründer von altersvorsorge-rechner.com.",
+    url: `${BASE}${PATH}`,
+    email: "mailto:benjamin@kontakt-2.de",
+    nationality: "DE",
+    knowsAbout: [
+      "Private Altersvorsorge",
+      "Altersvorsorgedepot",
+      "Riester-Rente",
+      "ETF-Sparpläne",
+      "Rentenlücke",
+      "Frühstart-Rente",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Mainkurstraße 16",
+      postalCode: "63075",
+      addressLocality: "Offenbach am Main",
+      addressCountry: "DE",
+    },
+    worksFor: { "@id": ORG_ID },
+    founderOf: { "@id": ORG_ID },
   },
   {
     "@type": "Organization",
-    name: "Altersvorsorge-Rechner",
+    "@id": ORG_ID,
+    name: "altersvorsorge-rechner.com",
+    alternateName: "Altersvorsorge-Rechner",
     url: BASE,
-    description:
-      "Kostenlose Rechner und Bildungsinhalte rund um private Altersvorsorge in Deutschland.",
-    founder: {
-      "@type": "Person",
-      name: "Benjamin Röder",
-      jobTitle: "Finanzbranchen-Experte",
+    logo: {
+      "@type": "ImageObject",
+      url: `${BASE}/favicon.svg`,
     },
+    image: `${BASE}/og-image.jpg`,
+    description:
+      "Unabhängige, kostenlose Rechner und Bildungsinhalte zur privaten Altersvorsorge in Deutschland – inkl. Altersvorsorgedepot, Rentenlücke und Frühstart-Rente.",
+    founder: { "@id": PERSON_ID },
+    foundingDate: "2025",
+    areaServed: { "@type": "Country", name: "Deutschland" },
+    knowsLanguage: "de",
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "Customer Service",
+      contactType: "Customer Support",
       email: "benjamin@kontakt-2.de",
+      availableLanguage: ["de"],
     },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Mainkurstraße 16",
+      postalCode: "63075",
+      addressLocality: "Offenbach am Main",
+      addressCountry: "DE",
+    },
+  },
+  {
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    url: `${BASE}/`,
+    name: "altersvorsorge-rechner.com",
+    inLanguage: "de-DE",
+    publisher: { "@id": ORG_ID },
   },
   {
     "@type": "BreadcrumbList",
