@@ -253,8 +253,8 @@ const FruehstartRenteRechner = () => {
               id="birthYear"
               label="Geburtsjahr des Kindes"
               helper="Kinder ab Jahrgang 2020 bekommen Förderung ab 2027 (phasenweise Einführung)."
-              min={2015}
-              max={2025}
+              min={2020}
+              max={2026}
               step={1}
               value={birthYear}
               onChange={setBirthYear}
