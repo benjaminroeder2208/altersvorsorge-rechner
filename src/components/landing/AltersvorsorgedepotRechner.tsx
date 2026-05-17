@@ -485,8 +485,7 @@ const AltersvorsorgedepotRechner = () => {
                   className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
                   style={{ letterSpacing: "-0.02em" }}
                 >
-                  Wie viel möchten Sie ab 2027 monatlich
-                  <br className="hidden md:block" /> ins neue Altersvorsorgedepot investieren?
+                  Wie viel möchten Sie ab 2027 monatlich in das neue Altersvorsorgedepot investieren?
                 </h2>
                 <p className="text-muted-foreground text-lg mb-16 max-w-xl mx-auto">
                   Je höher Ihr monatlicher Beitrag, desto stärker kann der langfristige Vermögensaufbau ausfallen.
