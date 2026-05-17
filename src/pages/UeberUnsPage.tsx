@@ -74,9 +74,11 @@ const Section = ({
 const UeberUnsPage = () => (
   <>
     <PageHead
-      title="Über Benjamin Röder – Finanzbildung für alle"
-      description="Erfahre, warum altersvorsorge-rechner.com gegründet wurde: Eine Mission für bessere Finanzbildung und private Altersvorsorge in Deutschland."
+      title="Über uns – Benjamin Röder & altersvorsorge-rechner.com"
+      description="Wer steckt hinter altersvorsorge-rechner.com? Benjamin Röder, 20+ Jahre Finanzbranche, erklärt die Mission: kostenlose, unabhängige Finanzbildung zur privaten Altersvorsorge in Deutschland."
       path={PATH}
+      ogTitle="Über uns – Die Mission von altersvorsorge-rechner.com"
+      ogDescription="Benjamin Röder über 20+ Jahre Finanzbranche, das neue Altersvorsorgedepot und warum kostenlose Finanzbildung in Deutschland überfällig ist."
       ogType="website"
       jsonLd={jsonLd}
     />
