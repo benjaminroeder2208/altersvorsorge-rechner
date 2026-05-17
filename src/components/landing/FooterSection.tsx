@@ -45,7 +45,11 @@ const FooterSection = () =>
       <div className="max-w-xl mx-auto mb-10 pb-8 border-b border-border text-center">
         <p className="font-semibold text-sm mb-4">Wer wir sind</p>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          altersvorsorge-rechner.com wurde von einem unabhängigen Team aus Finanz- und Technik-Enthusiasten entwickelt. Unser Ziel: Altersvorsorge verständlich machen — ohne Bankberater-Sprache. Alle Inhalte und Rechner sind kostenlos. 
+          altersvorsorge-rechner.com wurde von Benjamin Röder gegründet — mit über 20 Jahren Erfahrung in der Finanzbranche. Unser Ziel: Altersvorsorge verständlich machen — ohne Bankberater-Sprache. Alle Inhalte und Rechner sind kostenlos.{" "}
+          <Link to="/ueber-uns" className="text-foreground underline-offset-4 hover:underline font-medium">
+            Mehr über uns
+          </Link>
+          .
         </p>
       </div>
 
