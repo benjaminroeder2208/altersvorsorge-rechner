@@ -63,6 +63,26 @@ const FooterSection = () =>
           </Link>
           .
         </p>
+        <div className="flex items-center justify-center gap-5 mt-6">
+          <a
+            href="https://www.linkedin.com/company/altersvorsorge-rechner-com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            <LinkedInIcon className="h-7 w-7" />
+          </a>
+          <a
+            href="https://www.instagram.com/altersvorsorge.rechner/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            <InstagramIcon className="h-7 w-7" />
+          </a>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
@@ -115,26 +135,6 @@ const FooterSection = () =>
             <Cookie className="h-3.5 w-3.5" aria-hidden="true" />
             Cookie-Einstellungen
           </button>
-        </div>
-        <div className="flex items-center gap-3">
-          <a
-            href="https://www.linkedin.com/company/altersvorsorge-rechner-com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <LinkedInIcon className="h-5 w-5" />
-          </a>
-          <a
-            href="https://www.instagram.com/altersvorsorge.rechner/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <InstagramIcon className="h-5 w-5" />
-          </a>
         </div>
         <p>© {new Date().getFullYear()} altersvorsorge-rechner.com</p>
       </div>
