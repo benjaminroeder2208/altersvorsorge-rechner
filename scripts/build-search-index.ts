@@ -39,6 +39,49 @@ function getBlogComponentMap(): Map<string, string> {
   return map;
 }
 
+/** Remove `const|let|var NAME = ...;` declarations, tracking bracket depth. */
+function stripDeclarations(src: string): string {
+  const out: string[] = [];
+  let i = 0;
+  const n = src.length;
+  while (i < n) {
+    // Look for declaration keyword at start of line (allow leading whitespace)
+    const rest = src.slice(i);
+    const m = /^([ \t]*)(const|let|var)\b/.exec(rest);
+    const lineStart = i === 0 || src[i - 1] === "\n";
+    if (lineStart && m) {
+      // Skip until matching `;` at depth 0, ignoring strings/templates
+      let j = i + m[0].length;
+      let depth = 0;
+      while (j < n) {
+        const ch = src[j];
+        if (ch === '"' || ch === "'" || ch === "`") {
+          const quote = ch;
+          j++;
+          while (j < n && src[j] !== quote) {
+            if (src[j] === "\\") j += 2;
+            else j++;
+          }
+          j++;
+          continue;
+        }
+        if (ch === "{" || ch === "[" || ch === "(") depth++;
+        else if (ch === "}" || ch === "]" || ch === ")") depth--;
+        else if (ch === ";" && depth === 0) {
+          j++;
+          break;
+        }
+        j++;
+      }
+      i = j;
+      continue;
+    }
+    out.push(src[i]);
+    i++;
+  }
+  return out.join("");
+}
+
 /** Best-effort plain-text extraction from a TSX file. */
 function extractText(src: string): string {
   let out = src
@@ -48,8 +91,17 @@ function extractText(src: string): string {
     .replace(/\/\*[\s\S]*?\*\//g, " ")
     .replace(/^\s*\/\/.*$/gm, " ");
 
-  // strip {expression} blocks (two passes for shallow nesting)
-  for (let i = 0; i < 3; i++) out = out.replace(/\{[^{}]*\}/g, " ");
+  // strip top-level const/let/var declarations (data arrays, BASE constants, etc.)
+  out = stripDeclarations(out);
+
+  // strip remaining string literals outside JSX (attribute values etc.)
+  out = out
+    .replace(/"(?:[^"\\]|\\.)*"/g, " ")
+    .replace(/'(?:[^'\\]|\\.)*'/g, " ")
+    .replace(/`(?:[^`\\]|\\.)*`/g, " ");
+
+  // strip {expression} blocks (multiple passes for nesting)
+  for (let i = 0; i < 5; i++) out = out.replace(/\{[^{}]*\}/g, " ");
 
   // strip JSX/HTML tags
   out = out.replace(/<[^>]+>/g, " ");
