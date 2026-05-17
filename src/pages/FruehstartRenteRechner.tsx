@@ -249,7 +249,7 @@ const FruehstartRenteRechner = () => {
 
           <AnimatedSection>
             <Badge variant="secondary" className="mb-4 text-xs font-medium">
-              Kostenlos &amp; ohne Anmeldung
+              Kostenlos &amp; unverbindlich
             </Badge>
             <h1
               className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
