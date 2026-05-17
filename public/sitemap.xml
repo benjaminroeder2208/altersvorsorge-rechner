@@ -44,6 +44,18 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://altersvorsorge-rechner.com/fruehstart-rente-rechner</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/riester-vergleich-rechner</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://altersvorsorge-rechner.com/rentenluecken-rechner</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -74,6 +86,12 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://altersvorsorge-rechner.com/ueber-uns</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://altersvorsorge-rechner.com/blog</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -92,6 +110,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://altersvorsorge-rechner.com/blog/fruehstart-rente</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://altersvorsorge-rechner.com/blog/altersvorsorgedepot-koalitionseinigung</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -105,6 +129,12 @@
   </url>
   <url>
     <loc>https://altersvorsorge-rechner.com/blog/altersvorsorgedepot-vs-riester</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altersvorsorge-rechner.com/blog/riester-rente</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
