@@ -73,6 +73,7 @@ const jsonLd = [
     worksFor: { "@id": ORG_ID },
     founderOf: { "@id": ORG_ID },
     image: { "@id": PORTRAIT_ID },
+    sameAs: ["https://www.linkedin.com/in/ben-r-kontakt/"],
   },
   {
     "@type": "ImageObject",
