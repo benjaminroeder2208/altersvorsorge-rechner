@@ -42,7 +42,7 @@ const CopyButton = ({ text }: { text: string }) => {
 };
 
 const advantages = [
-  { icon: Zap, title: "Kostenlos & ohne Registrierung", desc: "Kein Account, kein Vertrag, kein Haken. Einfach Code kopieren und einbetten." },
+  { icon: Zap, title: "Kostenlos & unverbindlich", desc: "Kein Account, kein Vertrag, kein Haken. Einfach Code kopieren und einbetten." },
   { icon: Shield, title: "DSGVO-konform", desc: "Alle Datenschutzhinweise sind im Rechner integriert. Deine Nutzer sind geschützt." },
   { icon: BarChart3, title: "Immer aktuell", desc: "Der Rechner wird automatisch aktualisiert wenn sich das Altersvorsorgedepot-Gesetz ändert. Du musst nichts tun." },
 ];
