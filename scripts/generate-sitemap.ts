@@ -23,7 +23,7 @@ function defaultsFor(route: SeoRoute): Omit<SitemapEntry, "path"> {
   if (p === "/") return { lastmod: TODAY, changefreq: "weekly", priority: "1.0" };
   if (p === "/blog") return { lastmod: TODAY, changefreq: "weekly", priority: "0.8" };
   if (p.startsWith("/blog/")) return { lastmod: TODAY, changefreq: "monthly", priority: "0.8" };
-  if (p === "/rentenluecken-rechner" || p === "/altersvorsorgedepot")
+  if (p === "/rentenluecken-rechner" || p === "/altersvorsorgedepot" || p === "/fruehstart-rente-rechner")
     return { lastmod: TODAY, changefreq: "monthly", priority: "0.95" };
   if (p === "/einbetten") return { lastmod: TODAY, changefreq: "yearly", priority: "0.4" };
   if (p === "/newsletter") return { lastmod: TODAY, changefreq: "monthly", priority: "0.7" };
