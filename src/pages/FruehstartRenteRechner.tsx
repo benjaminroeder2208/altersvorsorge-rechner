@@ -242,12 +242,6 @@ const FruehstartRenteRechner = () => {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Tools</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
                 <BreadcrumbPage>Frühstart-Rente Rechner</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
