@@ -274,7 +274,7 @@ const RiesterVergleichRechner = () => {
                 label="Riester-Kosten p.a."
                 help="Typischer Bereich: 0,8 – 2 %. Deine Riester kann unterschiedlich sein."
                 min={0.5}
-                max={2}
+                max={3}
                 step={0.1}
                 value={kostenRiester}
                 suffix="%"
@@ -284,9 +284,9 @@ const RiesterVergleichRechner = () => {
               <InputRow
                 id="kostenDepot"
                 label="Altersvorsorgedepot-Kosten p.a."
-                help="z. B. ~0,25 % bei einem MSCI-World-ETF."
+                help="z. B. 1,0 % p.a. (max. Kostenquote für Standardprodukt)"
                 min={0.1}
-                max={1}
+                max={3}
                 step={0.1}
                 value={kostenDepot}
                 suffix="%"
