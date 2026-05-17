@@ -8,6 +8,7 @@ const navLinks = [
   { to: "/", label: "Rechner" },
   { to: "/rentenluecken-rechner", label: "Rentenlücke" },
   { to: "/fruehstart-rente-rechner", label: "Frühstartrente" },
+  { to: "/riester-vergleich-rechner", label: "Riestervergleich" },
   { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot" },
   { to: "/blog", label: "Blog" },
 ];
