@@ -130,7 +130,7 @@ const RiesterVergleichRechner = () => {
   const [kinder, setKinder] = useState(1);
   const [rendite, setRendite] = useState(7); // %
   const [kostenRiester, setKostenRiester] = useState(1.5); // %
-  const [kostenDepot, setKostenDepot] = useState(0.3); // %
+  const [kostenDepot, setKostenDepot] = useState(1.0); // %
 
   const result = useMemo(() => {
     const jahre = Math.max(0, RENTENALTER - alter);
