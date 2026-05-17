@@ -211,14 +211,14 @@ const UeberUnsPage = () => (
             <p>Mein Hintergrund gibt mir einige Vorteile bei diesem Projekt:</p>
             <div className="space-y-4">
               <div>
-                <p className="font-semibold text-foreground mb-1">Finanzbranche (seit 2000)</p>
+                <p className="font-semibold text-foreground mb-1">Finanzbranche seit 2000</p>
                 <p>
                   Ich spreche die Sprache der Banken und Versicherer, verstehe aber auch die Kritik
                   an zu hohen Kosten und undurchsichtigen Produkten.
                 </p>
               </div>
               <div>
-                <p className="font-semibold text-foreground mb-1">Wertpapier-Affinität (seit 2016)</p>
+                <p className="font-semibold text-foreground mb-1">Wertpapier-Affinität</p>
                 <p>
                   Ich lebe und arbeite täglich mit ETFs, Depots und Aktienmärkten. Das ist kein
                   theoretisches Wissen — das ist meine tägliche Realität.
