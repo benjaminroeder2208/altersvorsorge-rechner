@@ -112,11 +112,11 @@ const CtaBlock = ({ children }: { children: React.ReactNode }) => (
   <div className="my-10 p-6 md:p-8 bg-primary/5 border border-primary/10 rounded-2xl text-center">
     <p className="text-sm md:text-base text-foreground mb-4 font-medium">{children}</p>
     <Link
-      to="/"
+      to="/fruehstart-rente-rechner"
       className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
     >
       <Calculator className="w-4 h-4" />
-      Zum Altersvorsorge-Rechner
+      Zum Frühstart-Rente Rechner
     </Link>
   </div>
 );

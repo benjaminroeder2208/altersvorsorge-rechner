@@ -149,6 +149,20 @@ export const ROUTES: SeoRoute[] = [
     ),
   },
   {
+    path: "/fruehstart-rente-rechner",
+    title: "Frühstart-Rente Rechner: Berechne das Vermögen deines Kindes",
+    description:
+      "Kostenlos: Berechne, wie viel dein Kind mit der Frühstart-Rente bis zur Rente spart. Mit Staat-Förderung, Eltern-Zuzahlung und Rendite-Annahme.",
+    h1: "Frühstart-Rente Rechner",
+    intro:
+      "Berechne das Vermögen deines Kindes mit der neuen Frühstart-Rente ab 2027 – inklusive staatlicher Förderung und optionaler Eltern-Zuzahlung.",
+    jsonLd: webPage(
+      "Frühstart-Rente Rechner",
+      "Vermögen deines Kindes mit Frühstart-Rente ab 2027 berechnen.",
+      "/fruehstart-rente-rechner",
+    ),
+  },
+  {
     path: "/rentenluecken-rechner",
     title: "Rentenlückenrechner – Rentenlücke kostenlos berechnen",
     description:
