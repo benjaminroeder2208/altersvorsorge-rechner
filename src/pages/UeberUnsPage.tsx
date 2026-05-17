@@ -14,6 +14,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const BASE = "https://altersvorsorge-rechner.com";
 const PATH = "/ueber-uns";
@@ -183,14 +185,35 @@ const UeberUnsPage = () => (
         <div className="space-y-14">
           <Section id="intro" title="Hallo, ich bin Benjamin">
             <div className="flex flex-col sm:flex-row gap-6 items-start mb-2">
-              <img
-                src={benjaminPortrait}
-                alt="Benjamin Röder, Gründer von altersvorsorge-rechner.com"
-                width={160}
-                height={160}
-                loading="lazy"
-                className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover shadow-md shrink-0"
-              />
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button
+                    type="button"
+                    className="shrink-0 rounded-2xl overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-transform hover:scale-[1.02] cursor-zoom-in"
+                    aria-label="Portrait von Benjamin Röder vergrößern"
+                  >
+                    <img
+                      src={benjaminPortrait}
+                      alt="Benjamin Röder, Gründer von altersvorsorge-rechner.com"
+                      width={160}
+                      height={160}
+                      loading="lazy"
+                      className="w-32 h-32 sm:w-40 sm:h-40 object-cover shadow-md"
+                    />
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-3xl p-2 sm:p-3 bg-background">
+                  <VisuallyHidden>
+                    <DialogTitle>Portrait von Benjamin Röder</DialogTitle>
+                    <DialogDescription>Vergrößerte Ansicht des Portraits</DialogDescription>
+                  </VisuallyHidden>
+                  <img
+                    src={benjaminPortrait}
+                    alt="Benjamin Röder, Gründer von altersvorsorge-rechner.com – vergrößerte Ansicht"
+                    className="w-full h-auto rounded-xl object-contain"
+                  />
+                </DialogContent>
+              </Dialog>
               <p className="m-0">
                 Ich bin Benjamin Röder und ich habe diese Website aus einer persönlichen Mission heraus
                 gegründet: Finanzbildung und private Altersvorsorge sollten für{" "}
