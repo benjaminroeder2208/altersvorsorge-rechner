@@ -152,7 +152,7 @@ const UeberUnsPage = () => (
               <li className="flex gap-3">
                 <span className="text-primary font-semibold shrink-0">Heute:</span>
                 <span>
-                  Angestellt bei einem führenden Depotanbieter, wo ich täglich mit Kunden und deren
+                  Angestellt bei einem Depotanbieter, wo ich täglich mit Kunden und deren
                   Fragen zur privaten Altersvorsorge zu tun habe.
                 </span>
               </li>
