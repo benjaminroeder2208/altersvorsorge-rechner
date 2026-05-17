@@ -42,7 +42,7 @@ const CopyButton = ({ text }: { text: string }) => {
 };
 
 const advantages = [
-  { icon: Zap, title: "Kostenlos & ohne Registrierung", desc: "Kein Account, kein Vertrag, kein Haken. Einfach Code kopieren und einbetten." },
+  { icon: Zap, title: "Kostenlos & unverbindlich", desc: "Kein Account, kein Vertrag, kein Haken. Einfach Code kopieren und einbetten." },
   { icon: Shield, title: "DSGVO-konform", desc: "Alle Datenschutzhinweise sind im Rechner integriert. Deine Nutzer sind geschützt." },
   { icon: BarChart3, title: "Immer aktuell", desc: "Der Rechner wird automatisch aktualisiert wenn sich das Altersvorsorgedepot-Gesetz ändert. Du musst nichts tun." },
 ];
@@ -77,7 +77,7 @@ const EinbettenPage = () => (
               Den Altersvorsorge-Rechner kostenlos einbetten
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Biete deinen Lesern echten Mehrwert — ganz einfach indem du diesen Rechner direkt auf deiner Seite einbindest. Kostenlos, ohne Registrierung, in 2 Minuten eingebettet.
+              Biete deinen Lesern echten Mehrwert — ganz einfach indem du diesen Rechner direkt auf deiner Seite einbindest. Kostenlos, unverbindlich, in 2 Minuten eingebettet.
             </p>
           </div>
         </AnimatedSection>

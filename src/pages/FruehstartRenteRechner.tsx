@@ -46,7 +46,7 @@ const jsonLd = [
     name: "Frühstart-Rente Rechner",
     url: `${BASE}${PATH}`,
     description:
-      "Berechne kostenlos, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut – inklusive staatlicher Förderung (10 €/Monat) und optionaler Eltern-Zuzahlung.",
+      "Berechne kostenlos, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut – inklusive staatlicher Förderung (10 €/Monat) und optionaler Eltern-Zuzahlung. Kostenlos und unverbindlich.",
     applicationCategory: "FinanceApplication",
     applicationSubCategory: "RetirementCalculator",
     operatingSystem: "Web",
@@ -225,7 +225,7 @@ const FruehstartRenteRechner = () => {
     <>
       <PageHead
         title="Frühstart-Rente Rechner: Berechne das Vermögen deines Kindes"
-        description="Berechne, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut. Kostenlos und ohne Anmeldung."
+        description="Berechne, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut. Kostenlos und unverbindlich."
         path={PATH}
         jsonLd={jsonLd}
       />
@@ -249,7 +249,7 @@ const FruehstartRenteRechner = () => {
 
           <AnimatedSection>
             <Badge variant="secondary" className="mb-4 text-xs font-medium">
-              Kostenlos &amp; ohne Anmeldung
+              Kostenlos &amp; unverbindlich
             </Badge>
             <h1
               className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
