@@ -279,7 +279,7 @@ const BlogRiesterRente = () => {
               </p>
 
               {/* Vs Altersvorsorgedepot */}
-              <SectionH2 id="vs-altersvorsorgedepot">Riester vs. Altersvorsorgedepot</SectionH2>
+              <SectionH2 id="vs-altersvorsorgedepot">Riester vs. Altersvorsorgedepot: Was ist besser für dich?</SectionH2>
               <p className="text-base leading-relaxed text-muted-foreground mb-4">
                 Ab 2027 startet das <Link to="/altersvorsorgedepot" className="text-primary hover:underline">Altersvorsorgedepot</Link> als modernes Pendant. Die zentralen Unterschiede im Überblick:
               </p>
