@@ -293,51 +293,24 @@ const BlogRiesterRente = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    <TableRow>
-                      <TableCell className="font-medium">Grundzulage</TableCell>
-                      <TableCell>175 €/Jahr</TableCell>
-                      <TableCell>bis 540 €/Jahr</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Kinderzulage</TableCell>
-                      <TableCell>bis 300 €/Kind</TableCell>
-                      <TableCell>bis 300 €/Kind (100 %)</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Kosten p.a.</TableCell>
-                      <TableCell>typisch 0,8 – 2,0 %</TableCell>
-                      <TableCell>geplant 0,1 – 0,5 %</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Beitragsgarantie</TableCell>
-                      <TableCell>Ja (100 %)</TableCell>
-                      <TableCell>Nein</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Aktienquote</TableCell>
-                      <TableCell>begrenzt</TableCell>
-                      <TableCell>bis 100 % möglich</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Auszahlung</TableCell>
-                      <TableCell>ab 62/67, Rente + max. 30 % Einmal</TableCell>
-                      <TableCell>ab 65, monatliche Rente bis mind. 85</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Besteuerung</TableCell>
-                      <TableCell>nachgelagert</TableCell>
-                      <TableCell>nachgelagert</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Anbieterwechsel</TableCell>
-                      <TableCell>aufwändig, oft mit Gebühren</TableCell>
-                      <TableCell>jederzeit möglich</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-medium">Selbstständige</TableCell>
-                      <TableCell>nur eingeschränkt</TableCell>
-                      <TableCell>ausdrücklich einbezogen</TableCell>
-                    </TableRow>
+                    {[
+                      { label: "Beitragsgarantie", r: "100 % der eingezahlten Beiträge", d: "Keine — volle Aktien-/ETF-Quote möglich" },
+                      { label: "Grundzulage", r: "175 € / Jahr (fix)", d: "50 % bis 360 € + 25 % bis 1.800 € — max. 540 €" },
+                      { label: "Kinderzulage", r: "300 € pro Kind (ab 2008)", d: "100 % der Eigenbeiträge — max. 300 € pro Kind" },
+                      { label: "Berufseinsteiger-Bonus", r: "200 € einmalig (unter 25)", d: "200 € einmalig (unter 25)" },
+                      { label: "Anlageform", r: "Versicherung, Banksparplan, Fondssparplan, Wohn-Riester", d: "Wertpapier-Depot (ETFs, Fonds, Aktien)" },
+                      { label: "Kostendeckel", r: "Kein gesetzlicher Deckel", d: "Max. 1,0 % p.a. (nur Standardprodukt)" },
+                      { label: "Antrag", r: "Über Anbieter, jährlich", d: "Automatisch — kein Zulagenantrag nötig" },
+                      { label: "Auszahlung", r: "Lebenslange Rente, 30 % Einmalentnahme möglich", d: "Rente ab 65–70, bis 30 % als Einmalentnahme" },
+                      { label: "Besteuerung", r: "Voll nachgelagert", d: "Voll nachgelagert" },
+                      { label: "Neuabschluss", r: "Ab 2027 nicht mehr förderfähig", d: "Start: 1. Januar 2027" },
+                    ].map((row) => (
+                      <TableRow key={row.label}>
+                        <TableCell className="font-medium">{row.label}</TableCell>
+                        <TableCell>{row.r}</TableCell>
+                        <TableCell>{row.d}</TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
               </div>
