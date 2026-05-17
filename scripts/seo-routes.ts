@@ -248,15 +248,15 @@ export const ROUTES: SeoRoute[] = [
   },
   {
     path: "/ueber-uns",
-    title: "Über Benjamin Röder – Finanzbildung für alle",
+    title: "Über uns – Benjamin Röder & altersvorsorge-rechner.com",
     description:
-      "Erfahre, warum altersvorsorge-rechner.com gegründet wurde und wer dahinter steckt.",
+      "Wer steckt hinter altersvorsorge-rechner.com? Benjamin Röder, 20+ Jahre Finanzbranche, erklärt die Mission: kostenlose, unabhängige Finanzbildung zur privaten Altersvorsorge.",
     h1: "Über mich und diese Website",
     intro:
-      "Benjamin Röder und die Mission von altersvorsorge-rechner.com: Finanzbildung für alle.",
+      "Benjamin Röder und die Mission von altersvorsorge-rechner.com: kostenlose, unabhängige Finanzbildung zur privaten Altersvorsorge in Deutschland.",
     jsonLd: webPage(
-      "Über Benjamin Röder",
-      "Die Mission hinter altersvorsorge-rechner.com: kostenlose Finanzbildung für alle.",
+      "Über uns – Benjamin Röder",
+      "Die Mission hinter altersvorsorge-rechner.com: kostenlose, unabhängige Finanzbildung zur privaten Altersvorsorge in Deutschland.",
       "/ueber-uns",
     ),
   },
