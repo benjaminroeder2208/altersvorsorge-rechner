@@ -46,6 +46,7 @@ const tocItems = [
   { id: "probleme", label: "Warum Riester problematisch ist" },
   { id: "was-tun", label: "Was tun mit bestehender Riester?" },
   { id: "beispiele", label: "Rechenbeispiele" },
+  { id: "fazit", label: "Fazit" },
   { id: "faq", label: "Häufige Fragen" },
 ];
 
