@@ -46,7 +46,7 @@ const jsonLd = [
     name: "Frühstart-Rente Rechner",
     url: `${BASE}${PATH}`,
     description:
-      "Berechne kostenlos, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut – inklusive staatlicher Förderung (10 €/Monat) und optionaler Eltern-Zuzahlung.",
+      "Berechne kostenlos, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut – inklusive staatlicher Förderung (10 €/Monat) und optionaler Eltern-Zuzahlung. Kostenlos und unverbindlich.",
     applicationCategory: "FinanceApplication",
     applicationSubCategory: "RetirementCalculator",
     operatingSystem: "Web",
