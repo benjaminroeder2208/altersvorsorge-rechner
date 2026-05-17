@@ -70,6 +70,7 @@ const BlogKoalitionseinigung = lazy(() => import("./pages/BlogKoalitionseinigung
 const BlogBeschlossen = lazy(() => import("./pages/BlogBeschlossen"));
 const BlogFruehstartRente = lazy(() => import("./pages/BlogFruehstartRente"));
 const FruehstartRenteRechner = lazy(() => import("./pages/FruehstartRenteRechner"));
+const RiesterVergleichRechner = lazy(() => import("./pages/RiesterVergleichRechner"));
 
 // Admin routes
 const AdminLoginPage = lazy(() => import("./pages/admin/AdminLoginPage"));
@@ -169,6 +170,7 @@ const App = () => (
               <Route path="/blog/altersvorsorgedepot-beschlossen" element={<BlogBeschlossen />} />
               <Route path="/blog/fruehstart-rente" element={<BlogFruehstartRente />} />
               <Route path="/fruehstart-rente-rechner" element={<FruehstartRenteRechner />} />
+              <Route path="/riester-vergleich-rechner" element={<RiesterVergleichRechner />} />
               <Route path="/unsubscribe" element={<UnsubscribePage />} />
               <Route path="/confirm" element={<ConfirmPage />} />
               <Route path="/embed" element={<EmbedPage />} />

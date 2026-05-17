@@ -163,6 +163,20 @@ export const ROUTES: SeoRoute[] = [
     ),
   },
   {
+    path: "/riester-vergleich-rechner",
+    title: "Riester vs. Altersvorsorgedepot Rechner: Welcher ist besser?",
+    description:
+      "Vergleiche Riester-Rente vs. Altersvorsorgedepot: Berechne dein Vermögen nach 30 Jahren mit beiden Systemen.",
+    h1: "Riester vs. Altersvorsorgedepot: Welcher ist besser für dich?",
+    intro:
+      "Vergleiche Riester-Rente und Altersvorsorgedepot bei gleichem Eigenbeitrag – inklusive staatlicher Förderung, Kosten und Steuern bis zum Renteneintritt.",
+    jsonLd: webPage(
+      "Riester vs. Altersvorsorgedepot Rechner",
+      "Direkter Vergleich von Riester und Altersvorsorgedepot mit eigenen Annahmen.",
+      "/riester-vergleich-rechner",
+    ),
+  },
+  {
     path: "/rentenluecken-rechner",
     title: "Rentenlückenrechner – Rentenlücke kostenlos berechnen",
     description:
