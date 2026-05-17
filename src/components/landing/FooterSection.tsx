@@ -63,6 +63,26 @@ const FooterSection = () =>
           </Link>
           .
         </p>
+        <div className="flex items-center justify-center gap-5 mt-6">
+          <a
+            href="https://www.linkedin.com/company/altersvorsorge-rechner-com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            <LinkedInIcon className="h-7 w-7" />
+          </a>
+          <a
+            href="https://www.instagram.com/altersvorsorge.rechner/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="text-muted-foreground hover:text-primary transition-colors"
+          >
+            <InstagramIcon className="h-7 w-7" />
+          </a>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
