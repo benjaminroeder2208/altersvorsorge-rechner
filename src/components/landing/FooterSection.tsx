@@ -7,7 +7,8 @@ const sections = [
   title: "Rechner",
   links: [
   { to: "/", label: "Altersvorsorgedepot Rechner" },
-  { to: "/rentenluecken-rechner", label: "Rentenlückenrechner" }]
+  { to: "/rentenluecken-rechner", label: "Rentenlückenrechner" },
+  { to: "/fruehstart-rente-rechner", label: "Frühstartrentenrechner" }]
 
 },
 {
