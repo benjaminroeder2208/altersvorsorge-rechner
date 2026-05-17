@@ -7,8 +7,8 @@ import { BRAND } from "@/lib/brandColors";
 const navLinks = [
   { to: "/", label: "Rechner" },
   { to: "/rentenluecken-rechner", label: "Rentenlücke" },
+  { to: "/fruehstart-rente-rechner", label: "Frühstartrente" },
   { to: "/altersvorsorgedepot", label: "Altersvorsorgedepot" },
-  { to: "/altersvorsorgedepot-foerderung", label: "Förderung" },
   { to: "/blog", label: "Blog" },
 ];
 

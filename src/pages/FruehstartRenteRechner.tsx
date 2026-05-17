@@ -193,7 +193,7 @@ const NumberField = ({
 };
 
 const FruehstartRenteRechner = () => {
-  const [birthYear, setBirthYear] = useState(2020);
+  const [birthYear, setBirthYear] = useState(2026);
   const [eltern, setEltern] = useState(50);
   const [rendite, setRendite] = useState(7);
 
