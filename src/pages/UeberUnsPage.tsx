@@ -415,6 +415,11 @@ const UeberUnsPage = () => (
                   <Linkedin className="w-4 h-4" aria-hidden="true" />
                   Benjamin Röder auf LinkedIn
                 </a>
+                <span className="block text-sm mt-1">
+                  Vernetze dich mit mir auf LinkedIn — dort teile ich regelmäßig Einblicke zu
+                  Altersvorsorge, ETFs und der Rentenreform 2026 und freue mich über den Austausch
+                  mit Leserinnen und Lesern.
+                </span>
               </li>
               <li>
                 <Link to="/newsletter" className="text-primary underline-offset-4 hover:underline">
