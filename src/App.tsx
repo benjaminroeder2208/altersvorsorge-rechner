@@ -170,6 +170,7 @@ const App = () => (
               <Route path="/blog/altersvorsorgedepot-beschlossen" element={<BlogBeschlossen />} />
               <Route path="/blog/fruehstart-rente" element={<BlogFruehstartRente />} />
               <Route path="/fruehstart-rente-rechner" element={<FruehstartRenteRechner />} />
+              <Route path="/riester-vergleich-rechner" element={<RiesterVergleichRechner />} />
               <Route path="/unsubscribe" element={<UnsubscribePage />} />
               <Route path="/confirm" element={<ConfirmPage />} />
               <Route path="/embed" element={<EmbedPage />} />
