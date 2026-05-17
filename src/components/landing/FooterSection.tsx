@@ -136,26 +136,6 @@ const FooterSection = () =>
             Cookie-Einstellungen
           </button>
         </div>
-        <div className="flex items-center gap-3">
-          <a
-            href="https://www.linkedin.com/company/altersvorsorge-rechner-com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <LinkedInIcon className="h-5 w-5" />
-          </a>
-          <a
-            href="https://www.instagram.com/altersvorsorge.rechner/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <InstagramIcon className="h-5 w-5" />
-          </a>
-        </div>
         <p>© {new Date().getFullYear()} altersvorsorge-rechner.com</p>
       </div>
 
