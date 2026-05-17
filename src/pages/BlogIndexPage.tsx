@@ -19,6 +19,13 @@ import {
 
 const articles = [
   {
+    slug: "/blog/riester-rente",
+    title: "Riester-Rente 2026: Lohnt sich das noch? Alternativen und Fakten",
+    description: "Riester vs. Altersvorsorgedepot: Lohnt sich Riester noch? Wir vergleichen die Vor- und Nachteile.",
+    readingTime: "9 Min.",
+    tag: "Vergleiche",
+  },
+  {
     slug: "/blog/fruehstart-rente",
     title: "Frühstart-Rente 2026: Wie Eltern ihre Kinder früh fördern",
     description: "10€/Monat vom Staat für Kinder ab 2027 — Wie Eltern ihre Kinder früh fördern.",

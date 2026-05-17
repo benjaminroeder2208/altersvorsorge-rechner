@@ -346,6 +346,13 @@ function blogArticles(): SeoRoute[] {
       "Riester war komplex und renditeschwach. Wie das Altersvorsorgedepot es besser machen will – und wo es weiter Schwächen gibt.",
     ),
     a(
+      "riester-rente",
+      "Riester-Rente 2026: Lohnt sich das noch? Alternativen und Fakten",
+      "Riester-Rente: Wie sie funktioniert, für wen sie sinnvoll ist — und ob die Altersvorsorgedepot eine bessere Alternative ist.",
+      "Riester-Rente 2026: Noch zeitgemäß oder überholt?",
+      "Riester-Rente mit Förderung und Garantien — aber auch hohen Kosten. Wir vergleichen mit modernen Alternativen.",
+    ),
+    a(
       "was-darf-ins-altersvorsorgedepot",
       "Was darf ins Altersvorsorgedepot? – ETFs, Aktien, Fonds",
       "Welche Wertpapiere dürfen ins Altersvorsorgedepot? ETFs, Aktien, Fonds – wir erklären die Anlageregeln und Grenzen.",
