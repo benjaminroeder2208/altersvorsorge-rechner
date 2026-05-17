@@ -19,6 +19,8 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 const BASE = "https://altersvorsorge-rechner.com";
 const PATH = "/ueber-uns";
+const PORTRAIT_URL = `${BASE}/benjamin-roeder.jpg`;
+const PORTRAIT_ID = `${BASE}${PATH}#portrait`;
 
 const PERSON_ID = `${BASE}/#benjamin-roeder`;
 const ORG_ID = `${BASE}/#organization`;
@@ -37,10 +39,7 @@ const jsonLd = [
     about: { "@id": PERSON_ID },
     mainEntity: { "@id": PERSON_ID },
     publisher: { "@id": ORG_ID },
-    primaryImageOfPage: {
-      "@type": "ImageObject",
-      url: `${BASE}/og-image.jpg`,
-    },
+    primaryImageOfPage: { "@id": PORTRAIT_ID },
     datePublished: "2026-05-17",
     dateModified: "2026-05-17",
   },
@@ -73,6 +72,18 @@ const jsonLd = [
     },
     worksFor: { "@id": ORG_ID },
     founderOf: { "@id": ORG_ID },
+    image: { "@id": PORTRAIT_ID },
+  },
+  {
+    "@type": "ImageObject",
+    "@id": PORTRAIT_ID,
+    url: PORTRAIT_URL,
+    contentUrl: PORTRAIT_URL,
+    width: 1200,
+    height: 1200,
+    caption: "Portrait von Benjamin Röder, Gründer von altersvorsorge-rechner.com",
+    representativeOfPage: true,
+    about: { "@id": PERSON_ID },
   },
   {
     "@type": "Organization",
@@ -150,6 +161,7 @@ const UeberUnsPage = () => (
       ogTitle="Über uns – Die Mission von altersvorsorge-rechner.com"
       ogDescription="Benjamin Röder über 20+ Jahre Finanzbranche, das neue Altersvorsorgedepot und warum kostenlose Finanzbildung in Deutschland überfällig ist."
       ogType="website"
+      ogImage="/benjamin-roeder.jpg"
       jsonLd={jsonLd}
     />
     <Navbar />
@@ -194,10 +206,11 @@ const UeberUnsPage = () => (
                   >
                     <img
                       src={benjaminPortrait}
-                      alt="Benjamin Röder, Gründer von altersvorsorge-rechner.com"
-                      width={160}
-                      height={160}
+                      alt="Portrait von Benjamin Röder, Gründer von altersvorsorge-rechner.com und Experte für private Altersvorsorge"
+                      width={1200}
+                      height={1200}
                       loading="lazy"
+                      decoding="async"
                       className="w-32 h-32 sm:w-40 sm:h-40 object-cover shadow-md"
                     />
                   </button>
@@ -209,7 +222,10 @@ const UeberUnsPage = () => (
                   </VisuallyHidden>
                   <img
                     src={benjaminPortrait}
-                    alt="Benjamin Röder, Gründer von altersvorsorge-rechner.com – vergrößerte Ansicht"
+                    alt="Portrait von Benjamin Röder, Gründer von altersvorsorge-rechner.com – vergrößerte Ansicht"
+                    width={1200}
+                    height={1200}
+                    decoding="async"
                     className="w-full h-auto rounded-xl object-contain"
                   />
                 </DialogContent>
