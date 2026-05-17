@@ -60,6 +60,7 @@ const BlogAltersvorsorgeFragen = lazy(() => import("./pages/BlogAltersvorsorgeFr
 const BlogAltersvorsorgeFreiberufler = lazy(() => import("./pages/BlogAltersvorsorgeFreiberufler"));
 const BlogAltersvorsorgeBerechnen = lazy(() => import("./pages/BlogAltersvorsorgeBerechnen"));
 const BlogRiesterKuendigen = lazy(() => import("./pages/BlogRiesterKuendigen"));
+const BlogRiesterRente = lazy(() => import("./pages/BlogRiesterRente"));
 const BlogEtfSteuern = lazy(() => import("./pages/BlogEtfSteuern"));
 const BlogRentenpunkteKaufen = lazy(() => import("./pages/BlogRentenpunkteKaufen"));
 const BlogRuerupRente = lazy(() => import("./pages/BlogRuerupRente"));
@@ -155,6 +156,7 @@ const App = () => (
               <Route path="/blog/altersvorsorgedepot-vs-etf-sparplan" element={<BlogDepotVsEtf />} />
               <Route path="/blog/altersvorsorge-berufseinsteiger" element={<BlogBerufseinsteiger />} />
               <Route path="/blog/riester-kuendigen" element={<BlogRiesterKuendigen />} />
+              <Route path="/blog/riester-rente" element={<BlogRiesterRente />} />
               <Route path="/blog/etf-sparplan-steuern" element={<BlogEtfSteuern />} />
               <Route path="/blog/rentenpunkte-kaufen" element={<BlogRentenpunkteKaufen />} />
               <Route path="/blog/ruerup-rente" element={<BlogRuerupRente />} />
