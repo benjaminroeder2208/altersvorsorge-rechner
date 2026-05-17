@@ -304,6 +304,13 @@ function blogArticles(): SeoRoute[] {
       "Ab 2027 startet das Altersvorsorgedepot. Wir zeigen, was sich gegenüber Riester ändert und worauf du beim Start achten solltest.",
     ),
     a(
+      "fruehstart-rente",
+      "Frühstart-Rente 2026: Wie Eltern ihre Kinder früh fördern",
+      "Frühstart-Rente ab 2027: 10€/Monat vom Staat für Kinder 6-18 Jahre.",
+      "Frühstart-Rente 2026: Wie Eltern ihre Kinder früh fördern",
+      "Frühstart-Rente mit 10€/Monat vom Staat für Kinder 6-18 Jahren ab 2027.",
+    ),
+    a(
       "altersvorsorgedepot-koalitionseinigung",
       "Altersvorsorgedepot – Die Koalitionseinigung im Detail",
       "Die Koalitionseinigung zum Altersvorsorgedepot im Detail: Eckpunkte, Förderhöhen, Aktienquote und Auszahlungsregeln verständlich erklärt.",

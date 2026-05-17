@@ -19,6 +19,13 @@ import {
 
 const articles = [
   {
+    slug: "/blog/fruehstart-rente",
+    title: "Frühstart-Rente 2026: Wie Eltern ihre Kinder früh fördern",
+    description: "10€/Monat vom Staat für Kinder ab 2027 — Wie Eltern ihre Kinder früh fördern.",
+    readingTime: "7 Min.",
+    tag: "Altersvorsorgedepot",
+  },
+  {
     slug: "/blog/altersvorsorge-berechnen",
     title: "Altersvorsorge berechnen: Schritt-für-Schritt zur deiner Rentenlücke",
     description: "Altersvorsorge berechnen: So ermittelst du deine Rentenlücke. Mit Formel, Excel-Vorlage und unserem interaktiven Rechner. Konkrete Beispiele.",
