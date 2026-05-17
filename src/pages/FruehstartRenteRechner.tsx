@@ -42,22 +42,44 @@ const AUSZAHLUNG_JAHRE = 25;
 const jsonLd = [
   {
     "@type": "WebApplication",
+    "@id": `${BASE}${PATH}#webapp`,
     name: "Frühstart-Rente Rechner",
     url: `${BASE}${PATH}`,
     description:
-      "Berechne kostenlos, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut.",
+      "Berechne kostenlos, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut – inklusive staatlicher Förderung (10 €/Monat) und optionaler Eltern-Zuzahlung.",
     applicationCategory: "FinanceApplication",
+    applicationSubCategory: "RetirementCalculator",
     operatingSystem: "Web",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    inLanguage: "de-DE",
+    isAccessibleForFree: true,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+    },
+    featureList: [
+      "Geburtsjahr des Kindes (2020–2026)",
+      "Monatliche Eltern-Zuzahlung (0–500 €)",
+      "Erwartete Rendite p. a. (1–12 %)",
+      "Kapital mit 18 und 67 Jahren",
+      "Monatliche Zusatzrente über 25 Jahre",
+    ],
+    publisher: {
+      "@type": "Organization",
+      name: "altersvorsorge-rechner.com",
+      url: BASE,
+    },
   },
   {
     "@type": "BreadcrumbList",
+    "@id": `${BASE}${PATH}#breadcrumb`,
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` },
-      { "@type": "ListItem", position: 2, name: "Tools", item: `${BASE}/` },
       {
         "@type": "ListItem",
-        position: 3,
+        position: 2,
         name: "Frühstart-Rente Rechner",
         item: `${BASE}${PATH}`,
       },
