@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Calculator, BookOpen, Mail } from "lucide-react";
+import { ArrowRight, Calculator, BookOpen, Mail, Linkedin } from "lucide-react";
+import benjaminPortrait from "@/assets/benjamin-roeder.jpg";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
 import AnimatedSection from "@/components/landing/AnimatedSection";
@@ -181,12 +182,22 @@ const UeberUnsPage = () => (
 
         <div className="space-y-14">
           <Section id="intro" title="Hallo, ich bin Benjamin">
-            <p>
-              Ich bin Benjamin Röder und ich habe diese Website aus einer persönlichen Mission heraus
-              gegründet: Finanzbildung und private Altersvorsorge sollten für{" "}
-              <strong className="text-foreground">jeden</strong> zugänglich sein — nicht nur für die,
-              die sich Berater leisten können.
-            </p>
+            <div className="flex flex-col sm:flex-row gap-6 items-start mb-2">
+              <img
+                src={benjaminPortrait}
+                alt="Benjamin Röder, Gründer von altersvorsorge-rechner.com"
+                width={160}
+                height={160}
+                loading="lazy"
+                className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover shadow-md shrink-0"
+              />
+              <p className="m-0">
+                Ich bin Benjamin Röder und ich habe diese Website aus einer persönlichen Mission heraus
+                gegründet: Finanzbildung und private Altersvorsorge sollten für{" "}
+                <strong className="text-foreground">jeden</strong> zugänglich sein — nicht nur für die,
+                die sich Berater leisten können.
+              </p>
+            </div>
             <p>
               Seit über 20 Jahren arbeite ich in der Finanzbranche, und ich bin täglich mit den
               gleichen Fragen konfrontiert: Wie spare ich richtig für die Rente? Welche Förderungen
@@ -391,6 +402,18 @@ const UeberUnsPage = () => (
                   className="text-primary underline-offset-4 hover:underline"
                 >
                   benjamin@kontakt-2.de
+                </a>
+              </li>
+              <li>
+                LinkedIn:{" "}
+                <a
+                  href="https://www.linkedin.com/in/ben-r-kontakt/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline-offset-4 hover:underline inline-flex items-center gap-1"
+                >
+                  <Linkedin className="w-4 h-4" aria-hidden="true" />
+                  Benjamin Röder auf LinkedIn
                 </a>
               </li>
               <li>
