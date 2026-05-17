@@ -419,8 +419,6 @@ const FruehstartRenteRechner = () => {
             </div>
           </section>
 
-          <BlogDisclaimer mitRechnung />
-
           {/* CTA Links */}
           <section className="mt-12">
             <p className="text-sm font-semibold mb-4">Weiterführende Themen</p>
@@ -453,6 +451,7 @@ const FruehstartRenteRechner = () => {
           </section>
 
           <BlogNewsletterWidget />
+          <BlogDisclaimer mitRechnung />
         </div>
       </main>
 
