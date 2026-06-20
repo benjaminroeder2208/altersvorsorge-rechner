@@ -19,6 +19,34 @@ interface ChatItem {
 /* E-Mail-Erfassung übernimmt vollständig die eingebettete NewsletterCard
    (simulation_leads + send-confirmation-email). Keine eigene Regex-Erkennung mehr. */
 
+const CURRENT_YEAR = new Date().getFullYear();
+
+function buildCalculationSummary(trigger: CalculationTrigger) {
+  const inputs: Inputs = {
+    monthlyContribution: trigger.sparbetrag_monatlich,
+    incomeBand: 2,
+    birthYear: CURRENT_YEAR - trigger.alter,
+    children: trigger.kinder_anzahl,
+    retirementAge: trigger.renteneintrittsalter,
+    returnRate: trigger.rendite_prozent / 100,
+  };
+  const result = calculate(inputs);
+  return {
+    alter: trigger.alter,
+    sparbetrag_monatlich: trigger.sparbetrag_monatlich,
+    rendite_prozent: trigger.rendite_prozent,
+    renteneintrittsalter: trigger.renteneintrittsalter,
+    kinder_anzahl: trigger.kinder_anzahl,
+    jahre_bis_rente: result.yearsToRetirement,
+    endkapital_mit_foerderung: Math.round(result.capitalWithFunding),
+    endkapital_ohne_foerderung: Math.round(result.capitalWithout),
+    monatliche_auszahlung_mit_foerderung: Math.round(result.monthlyPayout),
+    gesamte_eigenbeitraege: Math.round(result.totalContributions),
+    gesamte_zulagen: Math.round(result.totalSubsidies),
+    gesamte_steuerersparnis: Math.round(result.totalTaxBenefit),
+  };
+}
+
 const DotBounce = () => (
   <div className="flex items-center gap-1 px-3 py-2">
     {[0, 1, 2].map((i) => (
