@@ -9,7 +9,7 @@ const ALLOWED_ORIGINS = [
   "https://altersvorsorge-rechner.lovable.app",
 ];
 
-function corsHeadersFor(origin: string | null): Record<string, string> {
+export function corsHeadersFor(origin: string | null): Record<string, string> {
   const isLovablePreview =
     !!origin &&
     /^https:\/\/[a-z0-9-]+\.(lovable\.app|lovableproject\.com|lovable\.dev)$/i.test(
