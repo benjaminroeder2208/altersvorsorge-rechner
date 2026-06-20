@@ -272,6 +272,7 @@ const App = () => (
                 }
               />
               <Route path="/internal/analytics-test" element={<AnalyticsTestPage />} />
+              <Route path="/ai-vorsorgeberater" element={<AIVorsorgeAssistantPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
