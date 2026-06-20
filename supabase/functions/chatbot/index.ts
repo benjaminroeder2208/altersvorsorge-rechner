@@ -110,13 +110,18 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Auth: verify anon key matches
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+    // Auth: verify public key matches
+    const allowedPublicKeys = new Set(
+      [Deno.env.get("SUPABASE_ANON_KEY"), Deno.env.get("SUPABASE_PUBLISHABLE_KEY")].filter(
+        (v): v is string => Boolean(v),
+      ),
+    );
     const apikey = req.headers.get("apikey");
     const auth = req.headers.get("Authorization");
+    const bearerToken = auth?.startsWith("Bearer ") ? auth.slice(7).trim() : null;
 
-    const validApiKey = apikey && anonKey && apikey === anonKey;
-    const validBearer = auth?.startsWith("Bearer ") && auth.length > 10;
+    const validApiKey = Boolean(apikey && allowedPublicKeys.has(apikey));
+    const validBearer = Boolean(bearerToken && allowedPublicKeys.has(bearerToken));
 
     if (!validApiKey && !validBearer) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
