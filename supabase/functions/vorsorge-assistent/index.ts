@@ -11,7 +11,10 @@ const ALLOWED_ORIGINS = [
 
 function corsHeadersFor(origin: string | null): Record<string, string> {
   const isLovablePreview =
-    !!origin && /^https:\/\/[a-z0-9-]+\.lovable\.app$/i.test(origin);
+    !!origin &&
+    /^https:\/\/[a-z0-9-]+\.(lovable\.app|lovableproject\.com|lovable\.dev)$/i.test(
+      origin,
+    );
   const isAllowed =
     !!origin && (ALLOWED_ORIGINS.includes(origin) || isLovablePreview);
   return {
