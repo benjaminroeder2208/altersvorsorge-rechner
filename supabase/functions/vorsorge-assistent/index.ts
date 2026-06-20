@@ -1,7 +1,8 @@
 // Edge Function: vorsorge-assistent
 // Geführter Lead-Flow für die Altersvorsorge-Berechnung (Anthropic Claude + tool_use)
 
-import { createClient } from "npm:@supabase/supabase-js@2";
+// (kein Supabase-Client mehr nötig — Lead-Erfassung läuft frontendseitig
+//  über die wiederverwendete NewsletterCard → simulation_leads.)
 
 const ALLOWED_ORIGINS = [
   "https://altersvorsorge-rechner.com",
