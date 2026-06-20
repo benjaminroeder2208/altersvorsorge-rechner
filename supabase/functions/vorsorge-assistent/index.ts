@@ -72,6 +72,19 @@ Standard-Referenzrendite auf der Seite: 7 % p.a. (MSCI World / DAI-Renditedreiec
 
 Riester-Bestandsverträge: immer "ruhen lassen" empfehlen, NIEMALS "kündigen" — bestehende Zulagen bleiben erhalten
 
+ANTWORTVORSCHLÄGE (suggestions)
+
+Bei folgenden 4 Fragen rufst du IMMER zusätzlich zur normalen Text-Antwort das Tool show_suggestions mit 2-4 kurzen Vorschlägen auf, die der Nutzer per Klick übernehmen kann. Freie Texteingabe bleibt für den Nutzer trotzdem jederzeit möglich.
+
+- Sparbetrag-Frage: ["100 €", "150 €", "200 €", "Eigener Betrag"]
+- Rendite-Frage: ["7 % übernehmen", "Eigenen Wert eingeben"]
+- Renteneintrittsalter-Frage: ["67", "Anderes Alter"]
+- Kinder-Frage: ["Ja", "Nein"]
+
+Bei allen anderen Fragen (Name, Alter) KEIN show_suggestions aufrufen — dort soll der Nutzer frei tippen.
+
+Wenn der Nutzer auf "Eigener Betrag", "Eigenen Wert eingeben" oder "Anderes Alter" klickt: stelle die gleiche Frage noch einmal in eigenen Worten, diesmal OHNE show_suggestions, damit der Nutzer frei eintippen kann.
+
 VERHALTENSREGELN
 
 Eine Frage pro Nachricht. Nie mehrere Fragen gleichzeitig stellen.
@@ -133,6 +146,23 @@ const TRIGGER_TOOL = {
   },
 };
 
+const SUGGESTIONS_TOOL = {
+  name: "show_suggestions",
+  description:
+    "Liefert 2-4 kurze Antwortvorschläge für die aktuelle Frage, die der Nutzer per Klick auswählen kann. Wird bei jeder der 4 vorgesehenen Fragen (Sparbetrag, Rendite, Renteneintrittsalter, Kinder) zusätzlich zur normalen Text-Antwort aufgerufen.",
+  input_schema: {
+    type: "object",
+    properties: {
+      suggestions: {
+        type: "array",
+        items: { type: "string" },
+        description: "2-4 kurze Antwortoptionen, z.B. ['150 €', '200 €', 'Eigener Betrag']",
+      },
+    },
+    required: ["suggestions"],
+  },
+};
+
 Deno.serve(async (req) => {
   const origin = req.headers.get("origin");
   const cors = corsHeadersFor(origin);
@@ -174,7 +204,7 @@ Deno.serve(async (req) => {
         model: "claude-sonnet-4-6",
         max_tokens: 500,
         system: SYSTEM_PROMPT,
-        tools: [TRIGGER_TOOL],
+        tools: [TRIGGER_TOOL, SUGGESTIONS_TOOL],
         messages: messages.map((m) => ({ role: m.role, content: m.content })),
       }),
     });
@@ -187,6 +217,7 @@ Deno.serve(async (req) => {
           reply:
             "Entschuldige, ich bin gerade kurz nicht erreichbar. Versuch es bitte gleich nochmal.",
           calculation_trigger: null,
+          suggestions: null,
           session_id: sessionId,
         },
         200,
@@ -198,12 +229,18 @@ Deno.serve(async (req) => {
 
     let replyText = "";
     let calculationTrigger: Record<string, unknown> | null = null;
+    let suggestions: string[] | null = null;
 
     for (const b of blocks) {
       if (b?.type === "text" && typeof b.text === "string") {
         replyText += b.text;
       } else if (b?.type === "tool_use" && b?.name === "trigger_calculation") {
         calculationTrigger = b.input ?? {};
+      } else if (b?.type === "tool_use" && b?.name === "show_suggestions") {
+        const s = b.input?.suggestions;
+        if (Array.isArray(s)) {
+          suggestions = s.filter((x: unknown): x is string => typeof x === "string");
+        }
       }
     }
 
@@ -233,6 +270,7 @@ Deno.serve(async (req) => {
     return json({
       reply: replyText,
       calculation_trigger: calculationTrigger,
+      suggestions,
       session_id: sessionId,
     });
   } catch (e) {
@@ -242,6 +280,7 @@ Deno.serve(async (req) => {
         reply:
           "Entschuldige, da ist gerade etwas schiefgelaufen. Versuch es bitte gleich nochmal.",
         calculation_trigger: null,
+        suggestions: null,
         session_id: sessionId,
       },
       200,
