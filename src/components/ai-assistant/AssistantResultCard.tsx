@@ -83,14 +83,17 @@ export default function AssistantResultCard({ trigger, sessionId }: Props) {
   const hauptSerie = kinder_anzahl > 0 ? mitKinder : mitFoerderung;
   const endKapital = hauptSerie.end;
 
-  // Lead-Update: ergebnis_kapital nachtragen (einmalig)
+  // Lead-Update: ergebnis_kapital nachtragen (einmalig, server-seitig)
   useEffect(() => {
     if (updated.current || !sessionId) return;
     updated.current = true;
-    supabase
-      .from("ai_assistant_leads")
-      .update({ ergebnis_kapital: Math.round(endKapital) })
-      .eq("session_id", sessionId)
+    supabase.functions
+      .invoke("update-ai-lead", {
+        body: {
+          session_id: sessionId,
+          ergebnis_kapital: Math.round(endKapital),
+        },
+      })
       .then(({ error }) => {
         if (error) console.error("Lead-Update fehlgeschlagen:", error);
       });
