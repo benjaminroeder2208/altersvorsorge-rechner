@@ -76,6 +76,85 @@ export default function AIVorsorgeAssistantPage() {
   const [calculationSummary, setCalculationSummary] =
     useState<Record<string, string | number> | null>(null);
 
+  /* ── Debug-Modus für iOS/Android Scroll-/Tastatur-Probleme ──
+     Aktivieren via ?vvdebug=1 (Query-Param) oder localStorage.vvdebug="1".
+     Loggt Focus-/Blur-, visualViewport- und Scroll-Events in die Konsole
+     und blendet ein Live-Overlay ein (Konsole am Handy oft nicht sichtbar). */
+  const debug = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    const q = new URLSearchParams(window.location.search);
+    return q.get("vvdebug") === "1" || window.localStorage.getItem("vvdebug") === "1";
+  }, []);
+  const [debugInfo, setDebugInfo] = useState<string>("");
+  const lastLogRef = useRef<number>(0);
+  const dlog = useCallback(
+    (event: string, extra?: Record<string, unknown>) => {
+      if (!debug) return;
+      const vv = window.visualViewport;
+      const payload = {
+        t: Math.round(performance.now()),
+        event,
+        scrollY: Math.round(window.scrollY),
+        scrollX: Math.round(window.scrollX),
+        innerH: window.innerHeight,
+        innerW: window.innerWidth,
+        vvHeight: vv ? Math.round(vv.height) : null,
+        vvWidth: vv ? Math.round(vv.width) : null,
+        vvOffsetTop: vv ? Math.round(vv.offsetTop) : null,
+        vvOffsetLeft: vv ? Math.round(vv.offsetLeft) : null,
+        vvScale: vv ? Number(vv.scale.toFixed(3)) : null,
+        kb: vv ? Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop)) : null,
+        activeEl: document.activeElement?.tagName ?? null,
+        ...extra,
+      };
+      // eslint-disable-next-line no-console
+      console.log("[vvdebug]", payload);
+      // Overlay throttlen
+      const now = performance.now();
+      if (now - lastLogRef.current > 80) {
+        lastLogRef.current = now;
+        setDebugInfo(
+          `${event}\n` +
+            `vv: ${payload.vvWidth}×${payload.vvHeight} @top=${payload.vvOffsetTop}\n` +
+            `inner: ${payload.innerW}×${payload.innerH}\n` +
+            `kb: ${payload.kb}px  scrollY: ${payload.scrollY}\n` +
+            `active: ${payload.activeEl}`,
+        );
+      }
+    },
+    [debug],
+  );
+
+  /* Globale Event-Listener für das Debugging */
+  useEffect(() => {
+    if (!debug) return;
+    dlog("mount");
+    const vv = window.visualViewport;
+    const onVvResize = () => dlog("vv:resize");
+    const onVvScroll = () => dlog("vv:scroll");
+    const onWinScroll = () => dlog("window:scroll");
+    const onWinResize = () => dlog("window:resize");
+    const onFocusIn = (e: FocusEvent) =>
+      dlog("focusin", { target: (e.target as HTMLElement | null)?.tagName });
+    const onFocusOut = (e: FocusEvent) =>
+      dlog("focusout", { target: (e.target as HTMLElement | null)?.tagName });
+    vv?.addEventListener("resize", onVvResize);
+    vv?.addEventListener("scroll", onVvScroll);
+    window.addEventListener("scroll", onWinScroll, { passive: true });
+    window.addEventListener("resize", onWinResize);
+    document.addEventListener("focusin", onFocusIn);
+    document.addEventListener("focusout", onFocusOut);
+    return () => {
+      vv?.removeEventListener("resize", onVvResize);
+      vv?.removeEventListener("scroll", onVvScroll);
+      window.removeEventListener("scroll", onWinScroll);
+      window.removeEventListener("resize", onWinResize);
+      document.removeEventListener("focusin", onFocusIn);
+      document.removeEventListener("focusout", onFocusOut);
+    };
+  }, [debug, dlog]);
+
+
   /* ── robustes Scrollen ans Ende (ohne Springen) ── */
   const scrollToBottom = useCallback((smooth = true) => {
     const el = scrollRef.current;
