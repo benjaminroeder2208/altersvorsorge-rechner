@@ -10,7 +10,7 @@ const ChatWidget = lazy(() =>
   })
 );
 
-const HIDDEN_ROUTES = ["/impressum", "/datenschutz", "/embed"];
+const HIDDEN_ROUTES = ["/impressum", "/datenschutz", "/embed", "/ai-vorsorgeassistent"];
 
 const ChatWidgetWrapper = () => {
   const { pathname } = useLocation();
