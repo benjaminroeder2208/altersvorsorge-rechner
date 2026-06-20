@@ -520,6 +520,15 @@ export default function AIVorsorgeAssistantPage() {
             Cookie-Einstellungen
           </button>
         </footer>
+
+        {debug && debugInfo && (
+          <pre
+            aria-hidden
+            className="pointer-events-none fixed top-16 left-2 z-[9999] max-w-[60vw] whitespace-pre-wrap rounded-md bg-black/80 px-2 py-1.5 font-mono text-[10px] leading-tight text-green-300 shadow-lg"
+          >
+            {debugInfo}
+          </pre>
+        )}
       </div>
     </>
   );
