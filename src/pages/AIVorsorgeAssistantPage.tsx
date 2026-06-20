@@ -221,6 +221,7 @@ export default function AIVorsorgeAssistantPage() {
                         sessionId={sessionIdRef.current}
                       />
                     )}
+                    {m.trigger && <AssistantDisclaimerCard />}
                   </div>
                 )}
               </div>
