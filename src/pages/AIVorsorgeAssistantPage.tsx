@@ -254,7 +254,7 @@ export default function AIVorsorgeAssistantPage() {
       body.style.width = prev.bodyWidth;
       body.style.height = prev.bodyHeight;
     };
-  }, [scrollToBottom]);
+  }, [scrollToBottom, dlog]);
 
   /* ── beim Fokus aufs Textfeld mehrfach ans Ende scrollen ──
      iOS blendet die Tastatur asynchron ein. */
