@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_assistant_leads: {
+        Row: {
+          alter: number | null
+          created_at: string
+          email: string | null
+          ergebnis_kapital: number | null
+          flow_completed: boolean | null
+          id: string
+          kinder_anzahl: number | null
+          newsletter_opt_in: boolean | null
+          rendite_prozent: number | null
+          renteneintrittsalter: number | null
+          session_id: string | null
+          sparbetrag_monatlich: number | null
+          vorname: string | null
+        }
+        Insert: {
+          alter?: number | null
+          created_at?: string
+          email?: string | null
+          ergebnis_kapital?: number | null
+          flow_completed?: boolean | null
+          id?: string
+          kinder_anzahl?: number | null
+          newsletter_opt_in?: boolean | null
+          rendite_prozent?: number | null
+          renteneintrittsalter?: number | null
+          session_id?: string | null
+          sparbetrag_monatlich?: number | null
+          vorname?: string | null
+        }
+        Update: {
+          alter?: number | null
+          created_at?: string
+          email?: string | null
+          ergebnis_kapital?: number | null
+          flow_completed?: boolean | null
+          id?: string
+          kinder_anzahl?: number | null
+          newsletter_opt_in?: boolean | null
+          rendite_prozent?: number | null
+          renteneintrittsalter?: number | null
+          session_id?: string | null
+          sparbetrag_monatlich?: number | null
+          vorname?: string | null
+        }
+        Relationships: []
+      }
       calculator_results: {
         Row: {
           birth_year: number
