@@ -1,0 +1,261 @@
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft, Send, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import PageHead from "@/components/seo/PageHead";
+import AssistantResultCard, {
+  type CalculationTrigger,
+} from "@/components/ai-assistant/AssistantResultCard";
+
+interface ChatItem {
+  role: "user" | "assistant";
+  content: string;
+  trigger?: CalculationTrigger | null;
+  suggestions?: string[];
+}
+
+const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
+const OPTIN_HINT = /\b(newsletter|ja|gerne|bitte|schick|sende|opt.?in)\b/i;
+
+const DotBounce = () => (
+  <div className="flex items-center gap-1 px-3 py-2">
+    {[0, 1, 2].map((i) => (
+      <span
+        key={i}
+        className="w-1.5 h-1.5 rounded-full bg-muted-foreground/60 animate-bounce"
+        style={{ animationDelay: `${i * 0.15}s` }}
+      />
+    ))}
+  </div>
+);
+
+export default function AIVorsorgeAssistantPage() {
+  const [messages, setMessages] = useState<ChatItem[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const sessionIdRef = useRef<string>(crypto.randomUUID());
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const bootstrapped = useRef(false);
+  const resultRenderedRef = useRef(false);
+
+  /* ── auto-scroll ── */
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
+
+  /* ── focus textarea ── */
+  useEffect(() => {
+    if (!loading) inputRef.current?.focus();
+  }, [loading]);
+
+  /* ── core send to edge function ── */
+  const callAssistant = useCallback(
+    async (nextMessages: ChatItem[]): Promise<ChatItem | null> => {
+      try {
+        const { data, error } = await supabase.functions.invoke(
+          "vorsorge-assistent",
+          {
+            body: {
+              messages: nextMessages.map((m) => ({
+                role: m.role,
+                content: m.content,
+              })),
+              session_id: sessionIdRef.current,
+            },
+          },
+        );
+        if (error) throw error;
+        if (data?.session_id) sessionIdRef.current = data.session_id;
+        const item: ChatItem = {
+          role: "assistant",
+          content: data?.reply ?? "",
+          trigger: data?.calculation_trigger ?? null,
+          suggestions: Array.isArray(data?.suggestions) ? data.suggestions : undefined,
+        };
+        if (item.trigger) resultRenderedRef.current = true;
+        return item;
+      } catch (e) {
+        console.error("Assistant error:", e);
+        return {
+          role: "assistant",
+          content:
+            "Entschuldige, da ist gerade etwas schiefgelaufen. Versuch es bitte gleich nochmal.",
+        };
+      }
+    },
+    [],
+  );
+
+  /* ── bootstrap: erste Begrüßung ── */
+  useEffect(() => {
+    if (bootstrapped.current) return;
+    bootstrapped.current = true;
+    (async () => {
+      setLoading(true);
+      // leeres initiales User-Signal, damit Claude den Flow startet
+      const seed: ChatItem[] = [
+        { role: "user", content: "Hallo, starte bitte den Vorsorge-Check." },
+      ];
+      const reply = await callAssistant(seed);
+      if (reply) setMessages([reply]); // wir zeigen nur die Assistant-Antwort
+      setLoading(false);
+    })();
+  }, [callAssistant]);
+
+  /* ── e-mail capture nach Ergebnis ── */
+  const persistEmailIfNeeded = useCallback(async (text: string) => {
+    if (!resultRenderedRef.current) return;
+    const match = text.match(EMAIL_RE);
+    if (!match) return;
+    const newsletter = OPTIN_HINT.test(text);
+    const { error } = await supabase
+      .from("ai_assistant_leads")
+      .update({ email: match[0], newsletter_opt_in: newsletter })
+      .eq("session_id", sessionIdRef.current);
+    if (error) console.error("E-Mail-Update fehlgeschlagen:", error);
+  }, []);
+
+  /* ── send user message ── */
+  const send = useCallback(
+    async (text: string) => {
+      const trimmed = text.trim();
+      if (!trimmed || loading) return;
+      const userMsg: ChatItem = { role: "user", content: trimmed };
+      const next = [...messages, userMsg];
+      setMessages(next);
+      setInput("");
+      setLoading(true);
+      persistEmailIfNeeded(trimmed);
+      const reply = await callAssistant(next);
+      if (reply) setMessages((prev) => [...prev, reply]);
+      setLoading(false);
+    },
+    [messages, loading, callAssistant, persistEmailIfNeeded],
+  );
+
+  const handleKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      send(input);
+    }
+  };
+
+  /* ── quick replies aus letzter Assistant-Nachricht ── */
+  const lastSuggestions = useMemo(() => {
+    for (let i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].role === "assistant") {
+        return messages[i].suggestions ?? [];
+      }
+    }
+    return [];
+  }, [messages]);
+
+  return (
+    <>
+      <PageHead
+        title="KI-Vorsorgeberater"
+        description="Interner Test des AI-Vorsorgeassistenten."
+        path="/ai-vorsorgeberater"
+        robots="noindex,nofollow"
+      />
+      <div className="flex flex-col h-[100dvh] bg-background">
+        {/* Header */}
+        <header className="flex items-center gap-3 px-4 h-14 border-b border-border bg-background shrink-0">
+          <Link
+            to="/"
+            aria-label="Zurück zur Startseite"
+            className="p-2 -ml-2 rounded-md hover:bg-muted transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Link>
+          <span className="text-sm font-semibold">Vorsorge-Assistent</span>
+        </header>
+
+        {/* Chat */}
+        <main className="flex-1 overflow-y-auto px-3 sm:px-4 py-4">
+          <div className="mx-auto max-w-xl space-y-3">
+            {messages.map((m, i) => (
+              <div key={i}>
+                {m.role === "user" ? (
+                  <div className="flex justify-end">
+                    <div className="max-w-[85%] px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap bg-primary text-primary-foreground rounded-[14px_14px_4px_14px]">
+                      {m.content}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {m.content && (
+                      <div className="flex justify-start">
+                        <div className="max-w-[90%] px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap bg-muted text-foreground rounded-[14px_14px_14px_4px]">
+                          {m.content}
+                        </div>
+                      </div>
+                    )}
+                    {m.trigger && (
+                      <AssistantResultCard
+                        trigger={m.trigger}
+                        sessionId={sessionIdRef.current}
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+            {loading && (
+              <div className="flex justify-start">
+                <div className="bg-muted rounded-[14px_14px_14px_4px]">
+                  <DotBounce />
+                </div>
+              </div>
+            )}
+            <div ref={bottomRef} />
+          </div>
+        </main>
+
+        {/* Input */}
+        <div className="border-t border-border bg-background px-3 sm:px-4 py-3 shrink-0 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+          <div className="mx-auto max-w-xl">
+            {lastSuggestions.length > 0 && !loading && (
+              <div className="flex flex-wrap gap-2 mb-2">
+                {lastSuggestions.map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => send(s)}
+                    className="text-xs px-3 py-1.5 rounded-full bg-muted hover:bg-muted/70 border border-border text-foreground transition-colors"
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
+            <div className="flex items-end gap-2">
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKey}
+                disabled={loading}
+                placeholder="Deine Antwort..."
+                rows={1}
+                className="flex-1 resize-none rounded-lg border border-input bg-background px-3 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 max-h-32"
+              />
+              <button
+                onClick={() => send(input)}
+                disabled={loading || !input.trim()}
+                aria-label="Senden"
+                className="shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-primary-foreground transition-opacity disabled:opacity-40"
+              >
+                {loading ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

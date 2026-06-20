@@ -88,6 +88,7 @@ const AdminGscDashboardPage = lazy(() => import("./pages/admin/AdminGscDashboard
 
 // Internal QA — not linked, noindex
 const AnalyticsTestPage = lazy(() => import("./pages/internal/AnalyticsTestPage"));
+const AIVorsorgeAssistantPage = lazy(() => import("./pages/AIVorsorgeAssistantPage"));
 
 const queryClient = new QueryClient();
 
@@ -271,6 +272,7 @@ const App = () => (
                 }
               />
               <Route path="/internal/analytics-test" element={<AnalyticsTestPage />} />
+              <Route path="/ai-vorsorgeberater" element={<AIVorsorgeAssistantPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
