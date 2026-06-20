@@ -204,7 +204,7 @@ Deno.serve(async (req) => {
         model: "claude-sonnet-4-6",
         max_tokens: 500,
         system: SYSTEM_PROMPT,
-        tools: [TRIGGER_TOOL],
+        tools: [TRIGGER_TOOL, SUGGESTIONS_TOOL],
         messages: messages.map((m) => ({ role: m.role, content: m.content })),
       }),
     });
@@ -217,6 +217,7 @@ Deno.serve(async (req) => {
           reply:
             "Entschuldige, ich bin gerade kurz nicht erreichbar. Versuch es bitte gleich nochmal.",
           calculation_trigger: null,
+          suggestions: null,
           session_id: sessionId,
         },
         200,
@@ -228,12 +229,18 @@ Deno.serve(async (req) => {
 
     let replyText = "";
     let calculationTrigger: Record<string, unknown> | null = null;
+    let suggestions: string[] | null = null;
 
     for (const b of blocks) {
       if (b?.type === "text" && typeof b.text === "string") {
         replyText += b.text;
       } else if (b?.type === "tool_use" && b?.name === "trigger_calculation") {
         calculationTrigger = b.input ?? {};
+      } else if (b?.type === "tool_use" && b?.name === "show_suggestions") {
+        const s = b.input?.suggestions;
+        if (Array.isArray(s)) {
+          suggestions = s.filter((x: unknown): x is string => typeof x === "string");
+        }
       }
     }
 
@@ -263,6 +270,7 @@ Deno.serve(async (req) => {
     return json({
       reply: replyText,
       calculation_trigger: calculationTrigger,
+      suggestions,
       session_id: sessionId,
     });
   } catch (e) {
@@ -272,6 +280,7 @@ Deno.serve(async (req) => {
         reply:
           "Entschuldige, da ist gerade etwas schiefgelaufen. Versuch es bitte gleich nochmal.",
         calculation_trigger: null,
+        suggestions: null,
         session_id: sessionId,
       },
       200,
