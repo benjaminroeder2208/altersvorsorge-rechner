@@ -222,14 +222,17 @@ export default function AIVorsorgeAssistantPage() {
     const apply = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
+        const scrollYBefore = window.scrollY;
         // Window-Scroll, den iOS beim Fokus auslöst, zurücksetzen
         if (window.scrollY !== 0 || window.scrollX !== 0) {
           window.scrollTo(0, 0);
+          dlog("apply:reset-window-scroll", { scrollYBefore });
         }
         const kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
         // Shell exakt auf sichtbare Viewport-Höhe setzen → kein Springen
         shell.style.height = `${vv.height}px`;
         shell.style.setProperty("--safe-bottom", kb > 0 ? "0px" : "env(safe-area-inset-bottom)");
+        dlog("apply", { kb, shellHeight: vv.height });
         scrollToBottom(false);
       });
     };
