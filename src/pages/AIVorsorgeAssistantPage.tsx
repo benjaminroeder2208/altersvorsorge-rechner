@@ -352,6 +352,7 @@ export default function AIVorsorgeAssistantPage() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKey}
+                onFocus={handleFocus}
                 disabled={loading}
                 placeholder="Deine Antwort..."
                 rows={1}
