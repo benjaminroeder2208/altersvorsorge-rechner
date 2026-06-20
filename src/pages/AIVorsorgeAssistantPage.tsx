@@ -94,6 +94,7 @@ export default function AIVorsorgeAssistantPage() {
                 content: m.content,
               })),
               session_id: sessionIdRef.current,
+              calculation_summary: calculationSummary ?? undefined,
             },
           },
         );
@@ -105,7 +106,10 @@ export default function AIVorsorgeAssistantPage() {
           trigger: data?.calculation_trigger ?? null,
           suggestions: Array.isArray(data?.suggestions) ? data.suggestions : undefined,
         };
-        if (item.trigger) resultRenderedRef.current = true;
+        if (item.trigger) {
+          resultRenderedRef.current = true;
+          setCalculationSummary(buildCalculationSummary(item.trigger));
+        }
         return item;
       } catch (e) {
         console.error("Assistant error:", e);
@@ -116,7 +120,7 @@ export default function AIVorsorgeAssistantPage() {
         };
       }
     },
-    [],
+    [calculationSummary],
   );
 
   /* ── bootstrap: erste Begrüßung ── */
