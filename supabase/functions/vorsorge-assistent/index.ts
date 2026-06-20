@@ -242,7 +242,7 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
         max_tokens: 500,
-        system: SYSTEM_PROMPT,
+        system: systemPrompt,
         tools: [TRIGGER_TOOL, SUGGESTIONS_TOOL],
         messages: messages.map((m) => ({ role: m.role, content: m.content })),
       }),
