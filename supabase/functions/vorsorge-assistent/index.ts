@@ -206,7 +206,11 @@ Deno.serve(async (req) => {
   const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
   if (!apiKey) return json({ error: "ANTHROPIC_API_KEY not configured" }, 500);
 
-  let body: { messages?: Array<{ role: string; content: string }>; session_id?: string };
+  let body: {
+    messages?: Array<{ role: string; content: string }>;
+    session_id?: string;
+    calculation_summary?: Record<string, string | number>;
+  };
   try {
     body = await req.json();
   } catch {
@@ -218,6 +222,14 @@ Deno.serve(async (req) => {
     return json({ error: "messages required" }, 400);
 
   const sessionId = body.session_id ?? crypto.randomUUID();
+
+  const systemPrompt = body.calculation_summary
+    ? `${SYSTEM_PROMPT}\n\nBERECHNETE ERGEBNISSE DES NUTZERS (nur für die Zusammenfassung in Phase 2 und das Nachgespräch verwenden; niemals als eigene Berechnung ausgeben, wenn sie nicht vorliegen):\n${JSON.stringify(
+        body.calculation_summary,
+        null,
+        2,
+      )}`
+    : SYSTEM_PROMPT;
 
   try {
     const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
