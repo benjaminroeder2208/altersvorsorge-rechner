@@ -67,21 +67,79 @@ export default function AIVorsorgeAssistantPage() {
   const [loading, setLoading] = useState(false);
   const sessionIdRef = useRef<string>(crypto.randomUUID());
   const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const shellRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const bootstrapped = useRef(false);
   const resultRenderedRef = useRef(false);
+  const hasInteractedRef = useRef(false);
   const [calculationSummary, setCalculationSummary] =
     useState<Record<string, string | number> | null>(null);
 
-  /* ── auto-scroll ── */
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, loading]);
+  /* ── robustes Scrollen ans Ende (ohne Springen) ── */
+  const scrollToBottom = useCallback((smooth = true) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    // Doppeltes rAF: nach Layout & Paint, vermeidet Sprünge bei
+    // gleichzeitigem Tastatur-Resize.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        el.scrollTo({
+          top: el.scrollHeight,
+          behavior: smooth ? "smooth" : "auto",
+        });
+      });
+    });
+  }, []);
 
-  /* ── focus textarea ── */
   useEffect(() => {
-    if (!loading) inputRef.current?.focus();
+    scrollToBottom(true);
+  }, [messages, loading, scrollToBottom]);
+
+  /* ── focus textarea NUR nach erster User-Interaktion ──
+     verhindert ungewolltes Tastatur-Aufpoppen beim Seitenaufruf. */
+  useEffect(() => {
+    if (!loading && hasInteractedRef.current) inputRef.current?.focus();
   }, [loading]);
+
+  /* ── Virtual-Keyboard-Handling via visualViewport ──
+     Setzt die Shell-Unterkante auf die Tastatur-Höhe, sodass
+     Input + Footer immer über der Tastatur kleben und der Verlauf
+     beim Tippen automatisch nachscrollt — ohne Layout-Sprünge. */
+  useEffect(() => {
+    const vv = window.visualViewport;
+    const shell = shellRef.current;
+    if (!vv || !shell) return;
+
+    let raf = 0;
+    const apply = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+        shell.style.bottom = `${kb}px`;
+        scrollToBottom(false);
+      });
+    };
+
+    apply();
+    vv.addEventListener("resize", apply);
+    vv.addEventListener("scroll", apply);
+    return () => {
+      cancelAnimationFrame(raf);
+      vv.removeEventListener("resize", apply);
+      vv.removeEventListener("scroll", apply);
+      shell.style.bottom = "";
+    };
+  }, [scrollToBottom]);
+
+  /* ── beim Fokus aufs Textfeld mehrfach ans Ende scrollen ──
+     iOS blendet die Tastatur asynchron ein. */
+  const handleFocus = useCallback(() => {
+    hasInteractedRef.current = true;
+    scrollToBottom(false);
+    window.setTimeout(() => scrollToBottom(false), 150);
+    window.setTimeout(() => scrollToBottom(true), 400);
+  }, [scrollToBottom]);
 
   /* ── hide Cookiebot floating widget on this page only ── */
   useEffect(() => {
@@ -172,6 +230,7 @@ export default function AIVorsorgeAssistantPage() {
     async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || loading) return;
+      hasInteractedRef.current = true;
       const userMsg: ChatItem = { role: "user", content: trimmed };
       const next = [...messages, userMsg];
       setMessages(next);
@@ -211,7 +270,10 @@ export default function AIVorsorgeAssistantPage() {
       />
       {/* Fixed full-viewport shell — verhindert Springen durch iOS-URL-Bar
           und klebt Input + Footer kompromisslos am unteren Rand. */}
-      <div className="fixed inset-0 flex flex-col bg-background overflow-hidden overscroll-none">
+      <div
+        ref={shellRef}
+        className="fixed inset-0 flex flex-col bg-background overflow-hidden overscroll-none"
+      >
         {/* Header */}
         <header className="flex items-center gap-3 px-4 h-14 border-b border-border bg-background shrink-0 w-full min-w-0">
           <Link
@@ -225,7 +287,10 @@ export default function AIVorsorgeAssistantPage() {
         </header>
 
         {/* Chat */}
-        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-3 sm:px-4 py-4 w-full">
+        <main
+          ref={scrollRef}
+          className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain px-3 sm:px-4 py-4 w-full [-webkit-overflow-scrolling:touch]"
+        >
           <div className="mx-auto w-full max-w-xl space-y-3 min-w-0">
             {messages.map((m, i) => (
               <div key={i} className="w-full min-w-0">
@@ -288,6 +353,7 @@ export default function AIVorsorgeAssistantPage() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKey}
+                onFocus={handleFocus}
                 disabled={loading}
                 placeholder="Deine Antwort..."
                 rows={1}
