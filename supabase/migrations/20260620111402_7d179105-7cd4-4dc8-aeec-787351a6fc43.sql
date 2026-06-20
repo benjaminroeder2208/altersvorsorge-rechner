@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Allow public update by session" ON public.ai_assistant_leads;
