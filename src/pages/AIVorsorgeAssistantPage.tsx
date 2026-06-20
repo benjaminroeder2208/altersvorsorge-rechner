@@ -178,7 +178,7 @@ export default function AIVorsorgeAssistantPage() {
       <PageHead
         title="KI-Vorsorgeberater"
         description="Interner Test des AI-Vorsorgeassistenten."
-        path="/ai-vorsorgeberater"
+        path="/ai-vorsorgeassistent"
         robots="noindex,nofollow"
       />
       <div className="flex flex-col h-[100dvh] bg-background">

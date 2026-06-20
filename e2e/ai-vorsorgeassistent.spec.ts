@@ -1,4 +1,4 @@
-// E2E: /ai-vorsorgeberater muss ohne "Failed to fetch" starten.
+// E2E: /ai-vorsorgeassistent muss ohne "Failed to fetch" starten.
 // Verifiziert, dass die initiale Edge-Function-Anfrage erfolgreich ist
 // und der Assistent eine erste Antwort rendert.
 
@@ -16,7 +16,7 @@ test.describe("AI-Vorsorgeberater Seite", () => {
       failedRequests.push(`${req.method()} ${req.url()} — ${req.failure()?.errorText}`);
     });
 
-    await page.goto("/ai-vorsorgeberater");
+    await page.goto("/ai-vorsorgeassistent");
 
     // Header sichtbar = Seite gerendert
     await expect(page.getByText("Vorsorge-Assistent")).toBeVisible();
