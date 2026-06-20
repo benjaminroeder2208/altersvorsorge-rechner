@@ -68,6 +68,8 @@ export default function AIVorsorgeAssistantPage() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const bootstrapped = useRef(false);
   const resultRenderedRef = useRef(false);
+  const [calculationSummary, setCalculationSummary] =
+    useState<Record<string, string | number> | null>(null);
 
   /* ── auto-scroll ── */
   useEffect(() => {
