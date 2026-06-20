@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import NoindexRedirect from "./components/seo/NoindexRedirect";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -98,18 +98,22 @@ const RouteFallback = () => (
   </div>
 );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToHash />
-          <ChatWidgetWrapper />
-          {/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
-          <UpdateBanner />
-          <Suspense fallback={<RouteFallback />}>
+const App = () => {
+  const { pathname } = useLocation();
+  const hideUpdateBanner = pathname === "/ai-vorsorgeassistent";
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToHash />
+            <ChatWidgetWrapper />
+            {/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
+            {!hideUpdateBanner && <UpdateBanner />}
+            <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<RechnerPage />} />
               <Route path="/altersvorsorgedepot" element={<HubPage />} />
