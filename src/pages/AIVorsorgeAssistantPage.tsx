@@ -269,7 +269,10 @@ export default function AIVorsorgeAssistantPage() {
       />
       {/* Fixed full-viewport shell — verhindert Springen durch iOS-URL-Bar
           und klebt Input + Footer kompromisslos am unteren Rand. */}
-      <div className="fixed inset-0 flex flex-col bg-background overflow-hidden overscroll-none">
+      <div
+        ref={shellRef}
+        className="fixed inset-0 flex flex-col bg-background overflow-hidden overscroll-none"
+      >
         {/* Header */}
         <header className="flex items-center gap-3 px-4 h-14 border-b border-border bg-background shrink-0 w-full min-w-0">
           <Link
@@ -283,7 +286,10 @@ export default function AIVorsorgeAssistantPage() {
         </header>
 
         {/* Chat */}
-        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-3 sm:px-4 py-4 w-full">
+        <main
+          ref={scrollRef}
+          className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain px-3 sm:px-4 py-4 w-full [-webkit-overflow-scrolling:touch]"
+        >
           <div className="mx-auto w-full max-w-xl space-y-3 min-w-0">
             {messages.map((m, i) => (
               <div key={i} className="w-full min-w-0">
