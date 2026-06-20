@@ -59,9 +59,7 @@ Schritt 5 — Kinder: Frage, ob der Nutzer Kinder hat (ja/nein, bei "ja" optiona
 
 Nach Schritt 5 — Berechnung triggern: Wenn alle 5 Antworten vorliegen, gib KEINE eigene Berechnung im Fließtext aus. Stattdessen rufst du die Funktion trigger_calculation mit den gesammelten Parametern auf. Das Frontend rendert daraufhin die volle Ergebniskomponente (Grafik, Szenarien, Kernzahl) direkt im Chat-Verlauf.
 
-Nach dem Funktionsaufruf: ein kurzer, warmer Begleittext (1-2 Sätze), der auf das Ergebnis hinweist, OHNE die Zahlen selbst zu nennen (die zeigt die Komponente). Beispiel: "Hier ist dein Ergebnis, [Name] — schau dir an, was aus deinen [X] €/Monat werden kann. 👇"
-
-Nach der Ergebniskomponente — Lead Capture: Frage NICHT selbst aktiv nach der E-Mail-Adresse und versuche NICHT, sie im Fließtext entgegenzunehmen. Direkt unterhalb deiner Ergebnis-Ankündigung zeigt das Frontend automatisch ein eigenes PDF-Anforderungs-Formular (inkl. DSGVO-Zustimmung) an — das übernimmt die Lead-Erfassung vollständig. Erwähne in deinem Begleittext kurz und einladend, dass darunter die Möglichkeit besteht, sich das Ergebnis als PDF zuschicken zu lassen, z. B.: "Hier ist dein Ergebnis! Wenn du magst, kannst du es dir unten als PDF zuschicken lassen." Frage danach NICHT erneut nach der E-Mail im Chat-Verlauf.
+Wenn du trigger_calculation aufrufst (Ende von Phase 1): Deine Text-Antwort in DIESER Nachricht muss mit einer kompakten Zusammenfassung der relevanten Werte beginnen, gefolgt von einem kurzen, warmen Begleittext. Reihenfolge: 1) Zusammenfassung (1-2 Sätze), 2) Begleittext (1-2 Sätze), 3) Funktionsaufruf trigger_calculation. Die Zusammenfassung muss, falls in BERECHNETE ERGEBNISSE vorhanden, das geschätzte Endkapital und die monatliche Auszahlung enthalten, sonst nur die Eingabewerte. Beispiel: "Deine Werte im Überblick: 35 Jahre, 150 €/Monat, 7 % Rendite, Renteneintritt mit 67, keine Kinder → geschätztes Kapital: ca. 312.000 €, monatliche Auszahlung: ca. 865 €. Ich rechne das jetzt für dich aus, Max — unten kannst du dir das Ergebnis auch als PDF zuschicken lassen." Nutze für die Werte die bekannten Eingaben und, falls vorhanden, die BERECHNETEN ERGEBNISSE.
 
 FESTE FAKTEN (für Kontext-Sätze, Erklärungen zwischendurch — niemals selbst nachrechnen)
 
@@ -208,7 +206,11 @@ Deno.serve(async (req) => {
   const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
   if (!apiKey) return json({ error: "ANTHROPIC_API_KEY not configured" }, 500);
 
-  let body: { messages?: Array<{ role: string; content: string }>; session_id?: string };
+  let body: {
+    messages?: Array<{ role: string; content: string }>;
+    session_id?: string;
+    calculation_summary?: Record<string, string | number>;
+  };
   try {
     body = await req.json();
   } catch {
@@ -221,6 +223,14 @@ Deno.serve(async (req) => {
 
   const sessionId = body.session_id ?? crypto.randomUUID();
 
+  const systemPrompt = body.calculation_summary
+    ? `${SYSTEM_PROMPT}\n\nBERECHNETE ERGEBNISSE DES NUTZERS (nur für die Zusammenfassung in Phase 2 und das Nachgespräch verwenden; niemals als eigene Berechnung ausgeben, wenn sie nicht vorliegen):\n${JSON.stringify(
+        body.calculation_summary,
+        null,
+        2,
+      )}`
+    : SYSTEM_PROMPT;
+
   try {
     const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -232,7 +242,7 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
         max_tokens: 500,
-        system: SYSTEM_PROMPT,
+        system: systemPrompt,
         tools: [TRIGGER_TOOL, SUGGESTIONS_TOOL],
         messages: messages.map((m) => ({ role: m.role, content: m.content })),
       }),

@@ -6,6 +6,8 @@ import PageHead from "@/components/seo/PageHead";
 import AssistantResultCard, {
   type CalculationTrigger,
 } from "@/components/ai-assistant/AssistantResultCard";
+import { calculate } from "@/components/landing/AltersvorsorgedepotRechner";
+import type { Inputs } from "@/components/landing/AltersvorsorgedepotRechner";
 
 interface ChatItem {
   role: "user" | "assistant";
@@ -16,6 +18,34 @@ interface ChatItem {
 
 /* E-Mail-Erfassung übernimmt vollständig die eingebettete NewsletterCard
    (simulation_leads + send-confirmation-email). Keine eigene Regex-Erkennung mehr. */
+
+const CURRENT_YEAR = new Date().getFullYear();
+
+function buildCalculationSummary(trigger: CalculationTrigger) {
+  const inputs: Inputs = {
+    monthlyContribution: trigger.sparbetrag_monatlich,
+    incomeBand: 2,
+    birthYear: CURRENT_YEAR - trigger.alter,
+    children: trigger.kinder_anzahl,
+    retirementAge: trigger.renteneintrittsalter,
+    returnRate: trigger.rendite_prozent / 100,
+  };
+  const result = calculate(inputs);
+  return {
+    alter: trigger.alter,
+    sparbetrag_monatlich: trigger.sparbetrag_monatlich,
+    rendite_prozent: trigger.rendite_prozent,
+    renteneintrittsalter: trigger.renteneintrittsalter,
+    kinder_anzahl: trigger.kinder_anzahl,
+    jahre_bis_rente: result.yearsToRetirement,
+    endkapital_mit_foerderung: Math.round(result.capitalWithFunding),
+    endkapital_ohne_foerderung: Math.round(result.capitalWithout),
+    monatliche_auszahlung_mit_foerderung: Math.round(result.monthlyPayout),
+    gesamte_eigenbeitraege: Math.round(result.totalContributions),
+    gesamte_zulagen: Math.round(result.totalSubsidies),
+    gesamte_steuerersparnis: Math.round(result.totalTaxBenefit),
+  };
+}
 
 const DotBounce = () => (
   <div className="flex items-center gap-1 px-3 py-2">
@@ -38,6 +68,8 @@ export default function AIVorsorgeAssistantPage() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const bootstrapped = useRef(false);
   const resultRenderedRef = useRef(false);
+  const [calculationSummary, setCalculationSummary] =
+    useState<Record<string, string | number> | null>(null);
 
   /* ── auto-scroll ── */
   useEffect(() => {
@@ -62,6 +94,7 @@ export default function AIVorsorgeAssistantPage() {
                 content: m.content,
               })),
               session_id: sessionIdRef.current,
+              calculation_summary: calculationSummary ?? undefined,
             },
           },
         );
@@ -73,7 +106,10 @@ export default function AIVorsorgeAssistantPage() {
           trigger: data?.calculation_trigger ?? null,
           suggestions: Array.isArray(data?.suggestions) ? data.suggestions : undefined,
         };
-        if (item.trigger) resultRenderedRef.current = true;
+        if (item.trigger) {
+          resultRenderedRef.current = true;
+          setCalculationSummary(buildCalculationSummary(item.trigger));
+        }
         return item;
       } catch (e) {
         console.error("Assistant error:", e);
@@ -84,7 +120,7 @@ export default function AIVorsorgeAssistantPage() {
         };
       }
     },
-    [],
+    [calculationSummary],
   );
 
   /* ── bootstrap: erste Begrüßung ── */
