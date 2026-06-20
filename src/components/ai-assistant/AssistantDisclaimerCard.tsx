@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import {
   GRUNDZULAGE_SATZ_AB_2027,
@@ -12,18 +12,8 @@ import {
 const fmt = (v: number) =>
   v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
-const MOBILE_BREAKPOINT = 640;
-
 const AssistantDisclaimerCard = () => {
   const [expanded, setExpanded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
 
   const footnotes = [
     <p key="1">
@@ -80,52 +70,53 @@ const AssistantDisclaimerCard = () => {
     </p>,
   ];
 
-  const visibleCount = isMobile && !expanded ? 2 : footnotes.length;
-  const showToggle = isMobile && visibleCount < footnotes.length;
-
   return (
-    <div className="w-full space-y-3 sm:space-y-4">
-      {/* Kurze Disclaimer-Box */}
-      <div className="p-3.5 sm:p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-          Hinweise & Haftungsausschluss
-        </p>
-        <p className="text-[13px] sm:text-sm text-muted-foreground leading-[1.7] sm:leading-relaxed break-words">
-          Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
-          Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt. Kapitalanlagen
-          bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die
-          Zukunft. Sie stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
-        </p>
-      </div>
+    <div className="w-full">
+      {expanded ? (
+        <div className="space-y-3 sm:space-y-4">
+          {/* Kurze Disclaimer-Box */}
+          <div className="p-3.5 sm:p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+              Hinweise & Haftungsausschluss
+            </p>
+            <p className="text-[13px] sm:text-sm text-muted-foreground leading-[1.7] sm:leading-relaxed break-words">
+              Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
+              Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt. Kapitalanlagen
+              bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die
+              Zukunft. Sie stellt keine Anlage-, Steuer- oder Rechtsberatung dar.
+            </p>
+          </div>
 
-      {/* Ausführliche Fußnoten */}
-      <div className="p-3.5 sm:p-5 bg-muted/30 border border-border/40 rounded-xl">
-        <div className="space-y-3.5 sm:space-y-4 text-[13px] sm:text-sm text-muted-foreground leading-[1.7] sm:leading-relaxed break-words">
-          {footnotes.slice(0, visibleCount)}
+          {/* Ausführliche Fußnoten */}
+          <div className="p-3.5 sm:p-5 bg-muted/30 border border-border/40 rounded-xl">
+            <div className="space-y-3.5 sm:space-y-4 text-[13px] sm:text-sm text-muted-foreground leading-[1.7] sm:leading-relaxed break-words">
+              {footnotes}
+            </div>
+            <button
+              type="button"
+              onClick={() => setExpanded(false)}
+              className="mt-3.5 w-full flex items-center justify-center gap-1.5 py-2 rounded-lg bg-muted text-primary text-[13px] font-medium transition-colors hover:bg-muted/80"
+              aria-expanded={true}
+            >
+              Weniger anzeigen
+              <ChevronUp className="w-4 h-4" />
+            </button>
+          </div>
         </div>
-        {showToggle && (
-          <button
-            type="button"
-            onClick={() => setExpanded((prev) => !prev)}
-            className="mt-3.5 w-full flex items-center justify-center gap-1.5 py-2 rounded-lg bg-muted text-primary text-[13px] font-medium transition-colors hover:bg-muted/80"
-            aria-expanded={expanded}
-          >
-            {expanded ? (
-              <>
-                Weniger anzeigen
-                <ChevronUp className="w-4 h-4" />
-              </>
-            ) : (
-              <>
-                Mehr anzeigen
-                <ChevronDown className="w-4 h-4" />
-              </>
-            )}
-          </button>
-        )}
-      </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-muted border border-border/50 text-primary text-[13px] font-medium transition-colors hover:bg-muted/80"
+          aria-expanded={false}
+        >
+          Hinweise & Haftungsausschluss anzeigen
+          <ChevronDown className="w-4 h-4" />
+        </button>
+      )}
     </div>
   );
 };
 
 export default AssistantDisclaimerCard;
+
