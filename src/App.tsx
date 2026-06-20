@@ -98,11 +98,13 @@ const RouteFallback = () => (
   </div>
 );
 
-const App = () => {
+const RouterAwareUpdateBanner = () => {
   const { pathname } = useLocation();
-  const hideUpdateBanner = pathname === "/ai-vorsorgeassistent";
+  if (pathname === "/ai-vorsorgeassistent") return null;
+  return <UpdateBanner />;
+};
 
-  return (
+const App = () => {
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <TooltipProvider>
