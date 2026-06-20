@@ -27,8 +27,8 @@ const AssistantDisclaimerCard = () => {
       </div>
 
       {/* Ausführliche Fußnoten */}
-      <div className="p-4 sm:p-5 bg-muted/30 border border-border/40 rounded-xl">
-        <div className="space-y-4 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+      <div className="p-3.5 sm:p-5 bg-muted/30 border border-border/40 rounded-xl">
+        <div className="space-y-3.5 sm:space-y-4 text-[13px] sm:text-sm text-muted-foreground leading-[1.7] sm:leading-relaxed break-words">
           <p>
             Die dargestellten Berechnungen basieren auf dem Altersvorsorgereformgesetz, das am 27.
             März 2026 vom Deutschen Bundestag beschlossen wurde. Die lektorierte Fassung des
@@ -42,7 +42,7 @@ const AssistantDisclaimerCard = () => {
               href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline"
+              className="underline break-words"
             >
               MSCI-World-Renditedreieck des Deutschen Aktieninstituts
             </a>
