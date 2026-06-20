@@ -107,7 +107,6 @@ export default function AIVorsorgeAssistantPage() {
         activeEl: document.activeElement?.tagName ?? null,
         ...extra,
       };
-      // eslint-disable-next-line no-console
       console.log("[vvdebug]", payload);
       // Overlay throttlen
       const now = performance.now();
