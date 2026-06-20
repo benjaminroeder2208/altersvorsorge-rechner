@@ -75,19 +75,8 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Auth check: accept apikey header OR Bearer token
-    const allowedPublicKeys = getAllowedPublicKeys();
-    const apikey = req.headers.get("apikey");
-    const auth = req.headers.get("Authorization");
-    const bearerToken = auth?.startsWith("Bearer ") ? auth.slice(7).trim() : null;
-    const validApiKey = Boolean(apikey && allowedPublicKeys.has(apikey));
-    const validBearer = Boolean(bearerToken && allowedPublicKeys.has(bearerToken));
-    if (!validApiKey && !validBearer) {
-      return new Response(JSON.stringify({ error: "Unauthorized" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
+    // Public endpoint: authorization is enforced via the confirmation_token
+    // lookup below (single-use token stored in simulation_leads).
 
     // Rate limit
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
