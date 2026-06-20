@@ -103,28 +103,53 @@ export default function AIVorsorgeAssistantPage() {
   }, [loading]);
 
   /* ── Virtual-Keyboard-Handling via visualViewport ──
-     Setzt die Shell-Unterkante auf die Tastatur-Höhe und ein CSS-Flag,
-     damit die Safe-Area-Padding der Footer-/Input-Zone bei offener
-     Tastatur kollabiert (sonst entsteht ein leerer Spalt über der Tastatur).
-     Fallback ohne visualViewport: env(safe-area-inset-bottom) per CSS. */
+     Sperrt zusätzlich das window-Scrolling (iOS scrollt sonst die
+     gesamte Seite, wenn das Eingabefeld fokussiert wird → „Springen").
+     Die Shell bekommt explizit Höhe = visualViewport.height, sodass
+     Input + Footer immer direkt über der Tastatur sitzen. */
   useEffect(() => {
     const shell = shellRef.current;
     if (!shell) return;
+
+    // Body-Scroll komplett unterbinden (iOS-Bounce + Auto-Scroll-on-Focus)
+    const html = document.documentElement;
+    const body = document.body;
+    const prev = {
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      bodyPosition: body.style.position,
+      bodyWidth: body.style.width,
+      bodyHeight: body.style.height,
+    };
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.width = "100%";
+    body.style.height = "100%";
+
     const vv = window.visualViewport;
     if (!vv) {
-      // Kein visualViewport (ältere Browser): nur Safe-Area greift.
-      shell.style.setProperty("--kb", "0px");
-      return;
+      shell.style.setProperty("--safe-bottom", "env(safe-area-inset-bottom)");
+      return () => {
+        html.style.overflow = prev.htmlOverflow;
+        body.style.overflow = prev.bodyOverflow;
+        body.style.position = prev.bodyPosition;
+        body.style.width = prev.bodyWidth;
+        body.style.height = prev.bodyHeight;
+      };
     }
 
     let raf = 0;
     const apply = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
+        // Window-Scroll, den iOS beim Fokus auslöst, zurücksetzen
+        if (window.scrollY !== 0 || window.scrollX !== 0) {
+          window.scrollTo(0, 0);
+        }
         const kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-        shell.style.bottom = `${kb}px`;
-        shell.style.setProperty("--kb", `${kb}px`);
-        // Wenn Tastatur offen, Safe-Area-Inset deaktivieren
+        // Shell exakt auf sichtbare Viewport-Höhe setzen → kein Springen
+        shell.style.height = `${vv.height}px`;
         shell.style.setProperty("--safe-bottom", kb > 0 ? "0px" : "env(safe-area-inset-bottom)");
         scrollToBottom(false);
       });
@@ -133,13 +158,19 @@ export default function AIVorsorgeAssistantPage() {
     apply();
     vv.addEventListener("resize", apply);
     vv.addEventListener("scroll", apply);
+    window.addEventListener("scroll", apply, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
       vv.removeEventListener("resize", apply);
       vv.removeEventListener("scroll", apply);
-      shell.style.bottom = "";
-      shell.style.removeProperty("--kb");
+      window.removeEventListener("scroll", apply);
+      shell.style.height = "";
       shell.style.removeProperty("--safe-bottom");
+      html.style.overflow = prev.htmlOverflow;
+      body.style.overflow = prev.bodyOverflow;
+      body.style.position = prev.bodyPosition;
+      body.style.width = prev.bodyWidth;
+      body.style.height = prev.bodyHeight;
     };
   }, [scrollToBottom]);
 
