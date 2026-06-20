@@ -249,28 +249,9 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Persist lead when calculation was triggered
-    if (calculationTrigger) {
-      try {
-        const supabase = createClient(
-          Deno.env.get("SUPABASE_URL")!,
-          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-        );
-        const t = calculationTrigger as Record<string, any>;
-        await supabase.from("ai_assistant_leads").insert({
-          session_id: sessionId,
-          vorname: t.vorname ?? null,
-          alter: t.alter ?? null,
-          sparbetrag_monatlich: t.sparbetrag_monatlich ?? null,
-          rendite_prozent: t.rendite_prozent ?? null,
-          renteneintrittsalter: t.renteneintrittsalter ?? null,
-          kinder_anzahl: t.kinder_anzahl ?? 0,
-          flow_completed: true,
-        });
-      } catch (e) {
-        console.error("Lead insert failed:", e);
-      }
-    }
+    // Lead-Persistenz erfolgt ab sofort frontendseitig über die
+    // wiederverwendete NewsletterCard (simulation_leads + send-confirmation-email).
+    // Es werden keine Daten mehr in ai_assistant_leads geschrieben.
 
     return json({
       reply: replyText,
