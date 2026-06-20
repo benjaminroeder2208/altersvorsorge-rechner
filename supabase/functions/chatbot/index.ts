@@ -192,26 +192,34 @@ Beziehe dich auf diese Zahlen wenn es passt.
       }),
     });
 
+    const FRIENDLY_FALLBACK =
+      "Entschuldige, der Assistent ist gerade nicht erreichbar. Bitte versuche es in einem Moment erneut. Dies ist keine Anlageberatung.";
+
     if (!response.ok) {
       const errBody = await response.text();
       console.error("Anthropic API error:", response.status, errBody);
-      return new Response(JSON.stringify({ error: "AI service error" }), {
-        status: 502,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ reply: FRIENDLY_FALLBACK, fallback: true, error: "ai_service_unavailable" }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
     }
 
     const data = await response.json();
-    const reply = data.content?.[0]?.text ?? "Entschuldigung, ich konnte keine Antwort generieren.";
+    const reply = data.content?.[0]?.text ?? FRIENDLY_FALLBACK;
 
     return new Response(JSON.stringify({ reply }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
     console.error("Chatbot error:", err);
-    return new Response(JSON.stringify({ error: "Internal error" }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({
+        reply:
+          "Entschuldige, es gab ein technisches Problem. Bitte versuche es gleich noch einmal. Dies ist keine Anlageberatung.",
+        fallback: true,
+        error: "internal_error",
+      }),
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
   }
 });
