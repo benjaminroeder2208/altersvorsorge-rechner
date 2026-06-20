@@ -98,97 +98,200 @@ const NewsletterCard = ({
       setStatus("sent");
     } catch (err: any) {
       const code = err?.message ?? "";
+      // Duplicate-E-Mail von Postgres: unique_violation (23505)
+      const isDuplicate =
+        code.includes("duplicate") ||
+        err?.code === "23505" ||
+        err?.details?.includes("already exists");
       if (code === "rate_limit") {
-        setErrorMsg("Zu viele Anfragen. Bitte warte einen Moment und versuche es erneut.");
+        setErrorMsg(
+          "Zu viele Anfragen in kurzer Zeit. Bitte warte einen Moment und versuche es erneut.",
+        );
       } else if (code === "mail_failed") {
-        setErrorMsg("Bestätigungsmail konnte nicht gesendet werden. Bitte prüfe deine E-Mail-Adresse.");
+        setErrorMsg(
+          "Wir konnten dir die Bestätigungsmail nicht zustellen. Bitte prüfe, ob deine E-Mail-Adresse korrekt geschrieben ist.",
+        );
+      } else if (isDuplicate) {
+        setErrorMsg(
+          "Für diese E-Mail-Adresse haben wir bereits eine Anfrage erhalten. Bitte schau in dein Postfach (auch Spam) nach der Bestätigungsmail.",
+        );
       } else {
-        setErrorMsg("Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.");
+        setErrorMsg(
+          "Etwas ist schiefgelaufen. Bitte versuche es in einem Moment erneut — wenn das Problem bleibt, schreib uns kurz.",
+        );
       }
       setStatus("error");
-      setTimeout(() => {
-        setStatus("idle");
-        setErrorMsg("");
-      }, 5000);
     }
+  };
+
+  const resetToForm = () => {
+    setStatus("idle");
+    setErrorMsg("");
   };
 
   return (
     <div className="max-w-lg mx-auto mb-20">
-      <div className="bg-background border border-border rounded-2xl p-8 shadow-sm text-center">
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <FileText className="w-4 h-4 text-primary" />
-          <h3 className="text-lg font-semibold">Deine persönliche PDF-Auswertung</h3>
-        </div>
-        <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
-          Gib deine E-Mail ein und erhalte deine persönliche Auswertung als PDF — mit deinen Kennzahlen,
-          Kapitalentwicklungs-Chart und Vergleich. Kostenlos. Optional: Erhalte auch wöchentliche Tipps zur Altersvorsorge.
-        </p>
-
+      <div className="bg-background border border-border rounded-2xl p-8 shadow-sm">
         {status === "sent" ? (
-          <div className="flex items-center justify-center gap-2 text-primary text-sm font-medium py-3">
-            <FileText className="w-4 h-4" /> Fast geschafft! Wir haben dir eine Bestätigungsmail gesendet. Nach der
-            Bestätigung erhältst du dein PDF sofort.
+          /* ── Erfolgsmeldung ───────────────────────── */
+          <div
+            role="status"
+            aria-live="polite"
+            className="text-center space-y-4"
+          >
+            <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <CheckCircle2 className="w-6 h-6 text-primary" aria-hidden />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-foreground">
+                Bestätigungsmail ist unterwegs
+              </h3>
+              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                Wir haben eine E-Mail an{" "}
+                <span className="font-medium text-foreground break-all">
+                  {email}
+                </span>{" "}
+                geschickt. Bestätige darin den Link — danach erhältst du dein
+                PDF direkt im Anschluss.
+              </p>
+            </div>
+            <div className="rounded-xl bg-muted/50 border border-border px-4 py-3 text-left space-y-1.5">
+              <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                <MailCheck className="w-3.5 h-3.5 mt-0.5 text-primary shrink-0" />
+                <span>Schau auch im Spam- oder Werbung-Ordner nach.</span>
+              </div>
+              <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                <MailCheck className="w-3.5 h-3.5 mt-0.5 text-primary shrink-0" />
+                <span>Die Mail kann ein bis zwei Minuten brauchen.</span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail("");
+                setDsgvoAccepted(false);
+                setStatus("idle");
+              }}
+              className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2"
+            >
+              Andere E-Mail-Adresse verwenden
+            </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                required
-                placeholder="Deine E-Mail-Adresse"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
-              />
-              <button
-                type="submit"
-                disabled={status === "sending" || !dsgvoAccepted}
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap"
-              >
-                {status === "sending" ? "..." : "PDF anfordern →"}
-              </button>
-            </div>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
-              <FileText className="w-3.5 h-3.5 text-primary shrink-0" />
-              <span>Enthält: Kennzahlen · Chart · Vergleich Depot vs. ETF vs. Sparkonto</span>
-            </div>
-            <div className="flex items-start gap-2 text-left">
-              <Checkbox
-                id="dsgvo-newsletter"
-                checked={dsgvoAccepted}
-                onCheckedChange={(v) => {
-                  setDsgvoAccepted(!!v);
-                  setDsgvoError(false);
-                }}
-                className={`mt-0.5 ${dsgvoError ? "border-destructive ring-1 ring-destructive" : ""}`}
-              />
-              <label
-                htmlFor="dsgvo-newsletter"
-                className="text-[11px] text-muted-foreground leading-relaxed cursor-pointer"
-              >
-                Ich stimme der Verarbeitung meiner E-Mail-Adresse gemäß der{" "}
-                <a
-                  href="/datenschutz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-foreground"
-                >
-                  Datenschutzerklärung
-                </a>{" "}
-                zu. Die Adresse wird ausschließlich zur Zusendung meiner Auswertung und gelegentlicher Updates
-                verwendet.
-              </label>
-            </div>
-            {dsgvoError && (
-              <p className="text-[11px] text-destructive text-left">Bitte stimme der Datenschutzerklärung zu.</p>
-            )}
-            {status === "error" && (
-              <p className="text-xs text-destructive">
-                {errorMsg || "Fehler beim Speichern. Bitte versuche es erneut."}
+          /* ── Formular ─────────────────────────────── */
+          <>
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <FileText className="w-4 h-4 text-primary" />
+                <h3 className="text-lg font-semibold">
+                  Deine persönliche PDF-Auswertung
+                </h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
+                Gib deine E-Mail ein und erhalte deine persönliche Auswertung
+                als PDF — mit deinen Kennzahlen, Kapitalentwicklungs-Chart und
+                Vergleich. Kostenlos. Optional: Erhalte auch wöchentliche Tipps
+                zur Altersvorsorge.
               </p>
+            </div>
+
+            {/* Fehler-Banner — sichtbar, persistent, dismissbar */}
+            {status === "error" && (
+              <div
+                role="alert"
+                aria-live="assertive"
+                className="mb-4 rounded-xl border border-destructive/30 bg-destructive/5 px-4 py-3 flex items-start gap-3 text-left"
+              >
+                <AlertCircle
+                  className="w-4 h-4 text-destructive mt-0.5 shrink-0"
+                  aria-hidden
+                />
+                <div className="flex-1 space-y-2">
+                  <p className="text-xs text-destructive leading-relaxed">
+                    {errorMsg}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={resetToForm}
+                    className="text-[11px] font-medium text-destructive underline underline-offset-2 hover:opacity-80"
+                  >
+                    Erneut versuchen
+                  </button>
+                </div>
+              </div>
             )}
-          </form>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="email"
+                  required
+                  placeholder="Deine E-Mail-Adresse"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={status === "sending"}
+                  className="flex-1 px-4 py-3 rounded-xl border border-border bg-secondary/50 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
+                />
+                <button
+                  type="submit"
+                  disabled={status === "sending" || !dsgvoAccepted}
+                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap inline-flex items-center justify-center gap-2"
+                >
+                  {status === "sending" ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
+                      Wird gesendet…
+                    </>
+                  ) : (
+                    "PDF anfordern →"
+                  )}
+                </button>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                <FileText className="w-3.5 h-3.5 text-primary shrink-0" />
+                <span>
+                  Enthält: Kennzahlen · Chart · Vergleich Depot vs. ETF vs.
+                  Sparkonto
+                </span>
+              </div>
+              <div className="flex items-start gap-2 text-left">
+                <Checkbox
+                  id="dsgvo-newsletter"
+                  checked={dsgvoAccepted}
+                  onCheckedChange={(v) => {
+                    setDsgvoAccepted(!!v);
+                    setDsgvoError(false);
+                  }}
+                  className={`mt-0.5 ${
+                    dsgvoError
+                      ? "border-destructive ring-1 ring-destructive"
+                      : ""
+                  }`}
+                />
+                <label
+                  htmlFor="dsgvo-newsletter"
+                  className="text-[11px] text-muted-foreground leading-relaxed cursor-pointer"
+                >
+                  Ich stimme der Verarbeitung meiner E-Mail-Adresse gemäß der{" "}
+                  <a
+                    href="/datenschutz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-foreground"
+                  >
+                    Datenschutzerklärung
+                  </a>{" "}
+                  zu. Die Adresse wird ausschließlich zur Zusendung meiner
+                  Auswertung und gelegentlicher Updates verwendet.
+                </label>
+              </div>
+              {dsgvoError && (
+                <p className="text-[11px] text-destructive text-left">
+                  Bitte stimme der Datenschutzerklärung zu, um fortzufahren.
+                </p>
+              )}
+            </form>
+          </>
         )}
       </div>
     </div>
