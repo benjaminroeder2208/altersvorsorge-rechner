@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Send, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { openCookieSettings } from "@/lib/cookieConsent";
 import PageHead from "@/components/seo/PageHead";
 import AssistantResultCard, {
   type CalculationTrigger,
@@ -81,6 +82,28 @@ export default function AIVorsorgeAssistantPage() {
   useEffect(() => {
     if (!loading) inputRef.current?.focus();
   }, [loading]);
+
+  /* ── hide Cookiebot floating widget on this page only ── */
+  useEffect(() => {
+    const styleId = "hide-cookiebot-widget";
+    if (document.getElementById(styleId)) return;
+
+    const style = document.createElement("style");
+    style.id = styleId;
+    style.textContent = `
+      #CookiebotWidget,
+      #CookiebotBadge,
+      .CookiebotButton {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      style.remove();
+    };
+  }, []);
 
   /* ── core send to edge function ── */
   const callAssistant = useCallback(
@@ -238,7 +261,7 @@ export default function AIVorsorgeAssistantPage() {
         </main>
 
         {/* Input */}
-        <div className="border-t border-border bg-background px-3 sm:px-4 py-3 shrink-0 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <div className="border-t border-border bg-background px-3 sm:px-4 py-3 shrink-0">
           <div className="mx-auto max-w-xl">
             {lastSuggestions.length > 0 && !loading && (
               <div className="flex flex-wrap gap-2 mb-2">
@@ -279,6 +302,21 @@ export default function AIVorsorgeAssistantPage() {
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <footer className="shrink-0 border-t border-border bg-background px-3 sm:px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-center text-xs text-muted-foreground">
+          <Link to="/impressum" className="hover:text-foreground hover:underline transition-colors">Impressum</Link>
+          <span className="mx-2">·</span>
+          <Link to="/datenschutz" className="hover:text-foreground hover:underline transition-colors">Datenschutz</Link>
+          <span className="mx-2">·</span>
+          <button
+            type="button"
+            onClick={openCookieSettings}
+            className="hover:text-foreground hover:underline transition-colors"
+          >
+            Cookie-Einstellungen
+          </button>
+        </footer>
       </div>
     </>
   );
