@@ -103,19 +103,6 @@ export default function AIVorsorgeAssistantPage() {
     })();
   }, [callAssistant]);
 
-  /* ── e-mail capture nach Ergebnis ── */
-  const persistEmailIfNeeded = useCallback(async (text: string) => {
-    if (!resultRenderedRef.current) return;
-    const match = text.match(EMAIL_RE);
-    if (!match) return;
-    const newsletter = OPTIN_HINT.test(text);
-    const { error } = await supabase
-      .from("ai_assistant_leads")
-      .update({ email: match[0], newsletter_opt_in: newsletter })
-      .eq("session_id", sessionIdRef.current);
-    if (error) console.error("E-Mail-Update fehlgeschlagen:", error);
-  }, []);
-
   /* ── send user message ── */
   const send = useCallback(
     async (text: string) => {
@@ -126,12 +113,11 @@ export default function AIVorsorgeAssistantPage() {
       setMessages(next);
       setInput("");
       setLoading(true);
-      persistEmailIfNeeded(trimmed);
       const reply = await callAssistant(next);
       if (reply) setMessages((prev) => [...prev, reply]);
       setLoading(false);
     },
-    [messages, loading, callAssistant, persistEmailIfNeeded],
+    [messages, loading, callAssistant],
   );
 
   const handleKey = (e: React.KeyboardEvent) => {
