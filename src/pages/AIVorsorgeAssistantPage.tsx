@@ -124,15 +124,19 @@ export default function AIVorsorgeAssistantPage() {
         );
         if (error) throw error;
         if (data?.session_id) sessionIdRef.current = data.session_id;
+        const incomingTrigger = data?.calculation_trigger ?? null;
+        // Ergebniskarte nur EINMAL anzeigen – nachfolgende Trigger ignorieren,
+        // damit das Ergebnis nicht bei jeder Antwort erneut gerendert wird.
+        const showTrigger = incomingTrigger && !resultRenderedRef.current;
         const item: ChatItem = {
           role: "assistant",
           content: data?.reply ?? "",
-          trigger: data?.calculation_trigger ?? null,
+          trigger: showTrigger ? incomingTrigger : null,
           suggestions: Array.isArray(data?.suggestions) ? data.suggestions : undefined,
         };
-        if (item.trigger) {
+        if (showTrigger) {
           resultRenderedRef.current = true;
-          setCalculationSummary(buildCalculationSummary(item.trigger));
+          setCalculationSummary(buildCalculationSummary(incomingTrigger));
         }
         return item;
       } catch (e) {
