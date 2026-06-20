@@ -6,6 +6,7 @@ import PageHead from "@/components/seo/PageHead";
 import AssistantResultCard, {
   type CalculationTrigger,
 } from "@/components/ai-assistant/AssistantResultCard";
+import AssistantDisclaimerCard from "@/components/ai-assistant/AssistantDisclaimerCard";
 import { calculate } from "@/components/landing/AltersvorsorgedepotRechner";
 import type { Inputs } from "@/components/landing/AltersvorsorgedepotRechner";
 
@@ -220,6 +221,7 @@ export default function AIVorsorgeAssistantPage() {
                         sessionId={sessionIdRef.current}
                       />
                     )}
+                    {m.trigger && <AssistantDisclaimerCard />}
                   </div>
                 )}
               </div>
