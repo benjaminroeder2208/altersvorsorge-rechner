@@ -1,3 +1,4 @@
+// chatbot edge function — v2 (graceful error handling)
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
 const corsHeaders = {
