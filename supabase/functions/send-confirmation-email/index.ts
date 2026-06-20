@@ -79,8 +79,9 @@ Deno.serve(async (req) => {
     const allowedPublicKeys = getAllowedPublicKeys();
     const apikey = req.headers.get("apikey");
     const auth = req.headers.get("Authorization");
+    const bearerToken = auth?.startsWith("Bearer ") ? auth.slice(7).trim() : null;
     const validApiKey = Boolean(apikey && allowedPublicKeys.has(apikey));
-    const validBearer = auth?.startsWith("Bearer ") && auth.length > 10;
+    const validBearer = Boolean(bearerToken && allowedPublicKeys.has(bearerToken));
     if (!validApiKey && !validBearer) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
