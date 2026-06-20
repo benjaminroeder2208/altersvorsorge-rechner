@@ -230,6 +230,7 @@ export default function AIVorsorgeAssistantPage() {
     async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || loading) return;
+      hasInteractedRef.current = true;
       const userMsg: ChatItem = { role: "user", content: trimmed };
       const next = [...messages, userMsg];
       setMessages(next);
