@@ -107,7 +107,6 @@ export default function AIVorsorgeAssistantPage() {
         activeEl: document.activeElement?.tagName ?? null,
         ...extra,
       };
-      // eslint-disable-next-line no-console
       console.log("[vvdebug]", payload);
       // Overlay throttlen
       const now = performance.now();
@@ -172,7 +171,8 @@ export default function AIVorsorgeAssistantPage() {
   }, []);
 
   useEffect(() => {
-    scrollToBottom(true);
+    const keyboardActive = document.activeElement === inputRef.current;
+    scrollToBottom(!keyboardActive);
   }, [messages, loading, scrollToBottom]);
 
   /* ── focus textarea NUR nach erster User-Interaktion ──
@@ -184,8 +184,9 @@ export default function AIVorsorgeAssistantPage() {
   /* ── Virtual-Keyboard-Handling via visualViewport ──
      Sperrt zusätzlich das window-Scrolling (iOS scrollt sonst die
      gesamte Seite, wenn das Eingabefeld fokussiert wird → „Springen").
-     Die Shell bekommt explizit Höhe = visualViewport.height, sodass
-     Input + Footer immer direkt über der Tastatur sitzen. */
+     Die Shell folgt dem visualViewport inklusive offsetTop/offsetLeft,
+     damit iOS/Safari die feste UI beim Fokus nicht aus dem sichtbaren
+     Bereich heraus pannt. */
   useEffect(() => {
     const shell = shellRef.current;
     if (!shell) return;
@@ -197,12 +198,16 @@ export default function AIVorsorgeAssistantPage() {
       htmlOverflow: html.style.overflow,
       bodyOverflow: body.style.overflow,
       bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyLeft: body.style.left,
       bodyWidth: body.style.width,
       bodyHeight: body.style.height,
     };
     html.style.overflow = "hidden";
     body.style.overflow = "hidden";
     body.style.position = "fixed";
+    body.style.top = "0";
+    body.style.left = "0";
     body.style.width = "100%";
     body.style.height = "100%";
 
@@ -213,6 +218,8 @@ export default function AIVorsorgeAssistantPage() {
         html.style.overflow = prev.htmlOverflow;
         body.style.overflow = prev.bodyOverflow;
         body.style.position = prev.bodyPosition;
+        body.style.top = prev.bodyTop;
+        body.style.left = prev.bodyLeft;
         body.style.width = prev.bodyWidth;
         body.style.height = prev.bodyHeight;
       };
@@ -222,17 +229,19 @@ export default function AIVorsorgeAssistantPage() {
     const apply = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        const scrollYBefore = window.scrollY;
-        // Window-Scroll, den iOS beim Fokus auslöst, zurücksetzen
-        if (window.scrollY !== 0 || window.scrollX !== 0) {
-          window.scrollTo(0, 0);
-          dlog("apply:reset-window-scroll", { scrollYBefore });
-        }
         const kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-        // Shell exakt auf sichtbare Viewport-Höhe setzen → kein Springen
+        // Shell exakt in den sichtbaren Viewport legen → kein Safari-Panning
+        shell.style.transform = `translate3d(${vv.offsetLeft}px, ${vv.offsetTop}px, 0)`;
+        shell.style.width = `${vv.width}px`;
         shell.style.height = `${vv.height}px`;
         shell.style.setProperty("--safe-bottom", kb > 0 ? "0px" : "env(safe-area-inset-bottom)");
-        dlog("apply", { kb, shellHeight: vv.height });
+        dlog("apply", {
+          kb,
+          shellHeight: vv.height,
+          shellWidth: vv.width,
+          shellOffsetTop: vv.offsetTop,
+          shellOffsetLeft: vv.offsetLeft,
+        });
         scrollToBottom(false);
       });
     };
@@ -247,10 +256,14 @@ export default function AIVorsorgeAssistantPage() {
       vv.removeEventListener("scroll", apply);
       window.removeEventListener("scroll", apply);
       shell.style.height = "";
+      shell.style.width = "";
+      shell.style.transform = "";
       shell.style.removeProperty("--safe-bottom");
       html.style.overflow = prev.htmlOverflow;
       body.style.overflow = prev.bodyOverflow;
       body.style.position = prev.bodyPosition;
+      body.style.top = prev.bodyTop;
+      body.style.left = prev.bodyLeft;
       body.style.width = prev.bodyWidth;
       body.style.height = prev.bodyHeight;
     };
@@ -268,7 +281,7 @@ export default function AIVorsorgeAssistantPage() {
     }, 150);
     window.setTimeout(() => {
       dlog("textarea:focus+400");
-      scrollToBottom(true);
+      scrollToBottom(false);
     }, 400);
   }, [scrollToBottom, dlog]);
 
@@ -488,7 +501,7 @@ export default function AIVorsorgeAssistantPage() {
                 disabled={loading}
                 placeholder="Deine Antwort..."
                 rows={1}
-                className="flex-1 min-w-0 resize-none rounded-lg border border-input bg-background px-3 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 max-h-32"
+                className="flex-1 min-w-0 resize-none rounded-lg border border-input bg-background px-3 py-2.5 text-base leading-6 sm:text-sm sm:leading-relaxed placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 max-h-32"
               />
               <button
                 onClick={() => send(input)}
