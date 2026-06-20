@@ -1,7 +1,6 @@
 import { useMemo } from "react";
-import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
-import { ArrowRight } from "lucide-react";
+import {
 import {
   berechneGrundzulage,
   berechneKinderzulage,
@@ -104,8 +103,6 @@ export default function AssistantResultCard({ trigger }: Props) {
     kapital: p.kapital,
   }));
 
-  const rechnerUrl = `/rentenluecken-rechner?alter=${alter}&sparbetrag=${sparbetrag_monatlich}&rendite=${rendite_prozent}&renteneintritt=${renteneintrittsalter}&kinder=${kinder_anzahl}`;
-
   return (
     <div className="w-full rounded-2xl border border-border bg-card text-card-foreground shadow-sm p-5 sm:p-6 space-y-5">
       {/* Kernzahl */}
@@ -175,13 +172,6 @@ export default function AssistantResultCard({ trigger }: Props) {
       <p className="text-[11px] text-muted-foreground leading-relaxed">
         Vereinfachte Modellrechnung, keine Anlageberatung.
       </p>
-
-      <Link
-        to={rechnerUrl}
-        className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity"
-      >
-        Vollen Rechner öffnen <ArrowRight className="w-4 h-4" />
-      </Link>
 
       {/* Wiederverwendeter Lead-Flow: simulation_leads + send-confirmation-email + PDF */}
       <div className="pt-2 [&>div]:mb-0 [&>div]:max-w-full [&_.p-8]:p-5">
