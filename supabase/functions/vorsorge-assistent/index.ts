@@ -224,7 +224,7 @@ Deno.serve(async (req) => {
   const sessionId = body.session_id ?? crypto.randomUUID();
 
   const systemPrompt = body.calculation_summary
-    ? `${SYSTEM_PROMPT}\n\nBERECHNETE ERGEBNISSE DES NUTZERS (nur für die Zusammenfassung in Phase 2 und das Nachgespräch verwenden; niemals als eigene Berechnung ausgeben, wenn sie nicht vorliegen):\n${JSON.stringify(
+    ? `${SYSTEM_PROMPT}\n\n=== WICHTIG: PHASE 2 IST AKTIV ===\nDie Berechnung wurde bereits durchgeführt und das Ergebnis dem Nutzer angezeigt. Du befindest dich JETZT im offenen Nachgespräch (Phase 2).\n\nREGELN FÜR DIESE NACHRICHT:\n- Rufe trigger_calculation NICHT erneut auf, außer der Nutzer bittet ausdrücklich um eine NEUE Berechnung mit GEÄNDERTEN Werten (z. B. "rechne nochmal mit 200 €").\n- Bei Rückfragen zum vorhandenen Ergebnis ("erkläre mir das", "was bedeutet das", "wie kommst du darauf"): antworte DIREKT und inhaltlich mit den Zahlen aus den BERECHNETEN ERGEBNISSEN unten. Keine Übergangssätze wie "Lass mich kurz rechnen".\n- Rufe show_suggestions NICHT mehr auf.\n- Halte dich an 2–4 Sätze, konkret, ohne Fachjargon.\n\nBERECHNETE ERGEBNISSE DES NUTZERS:\n${JSON.stringify(
         body.calculation_summary,
         null,
         2,
