@@ -32,7 +32,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 /* ─────────────── types ─────────────── */
 
-interface Inputs {
+export interface Inputs {
   monthlyContribution: number;
   incomeBand: number;
   birthYear: number;
@@ -40,6 +40,8 @@ interface Inputs {
   retirementAge: number;
   returnRate: number;
 }
+
+export type CalculationResult = ReturnType<typeof calculate>;
 
 const INCOME_BANDS = [
   { label: "bis 17.000 €", taxRate: 0, key: "bis_30k" },
