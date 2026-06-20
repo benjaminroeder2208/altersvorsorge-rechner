@@ -12,7 +12,7 @@ const fmt = (v: number) =>
 
 const AssistantDisclaimerCard = () => {
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-3 sm:space-y-4">
       {/* Kurze Disclaimer-Box */}
       <div className="p-4 sm:p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
