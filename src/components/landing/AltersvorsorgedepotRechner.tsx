@@ -6,6 +6,7 @@ import { ArrowRight, ChevronLeft, Check, Mail, Sparkles, FileText } from "lucide
 import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
+import NewsletterCard from "./NewsletterCard";
 import { trackEvent } from "@/lib/analytics";
 
 import {
