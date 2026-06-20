@@ -14,11 +14,11 @@ const AssistantDisclaimerCard = () => {
   return (
     <div className="w-full space-y-3 sm:space-y-4">
       {/* Kurze Disclaimer-Box */}
-      <div className="p-4 sm:p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
+      <div className="p-3.5 sm:p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
           Hinweise & Haftungsausschluss
         </p>
-        <p className="text-xs text-muted-foreground/80 leading-relaxed">
+        <p className="text-[13px] sm:text-sm text-muted-foreground leading-[1.7] sm:leading-relaxed break-words">
           Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
           Steuerliche Effekte und Produktausgestaltung sind vereinfacht dargestellt. Kapitalanlagen
           bergen Risiken. Frühere Wertentwicklungen sind kein verlässlicher Indikator für die
