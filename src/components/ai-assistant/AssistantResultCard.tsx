@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import {
-import {
   berechneGrundzulage,
   berechneKinderzulage,
 } from "@/lib/foerderung";
