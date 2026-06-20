@@ -260,10 +260,17 @@ export default function AIVorsorgeAssistantPage() {
      iOS blendet die Tastatur asynchron ein. */
   const handleFocus = useCallback(() => {
     hasInteractedRef.current = true;
+    dlog("textarea:focus");
     scrollToBottom(false);
-    window.setTimeout(() => scrollToBottom(false), 150);
-    window.setTimeout(() => scrollToBottom(true), 400);
-  }, [scrollToBottom]);
+    window.setTimeout(() => {
+      dlog("textarea:focus+150");
+      scrollToBottom(false);
+    }, 150);
+    window.setTimeout(() => {
+      dlog("textarea:focus+400");
+      scrollToBottom(true);
+    }, 400);
+  }, [scrollToBottom, dlog]);
 
   /* ── hide Cookiebot floating widget on this page only ── */
   useEffect(() => {
