@@ -66,7 +66,7 @@ interface ChartDataPoint {
   total: number;
 }
 
-function calculate(inputs: Inputs) {
+export function calculate(inputs: Inputs) {
   const { monthlyContribution, incomeBand, birthYear, children, retirementAge, returnRate } = inputs;
 
   const currentAge = CURRENT_YEAR - birthYear;
