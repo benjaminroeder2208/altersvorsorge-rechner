@@ -97,6 +97,7 @@ const RouteFallback = () => (
     <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" aria-label="Lädt…" />
   </div>
 );
+};
 
 const App = () => {
   const { pathname } = useLocation();
