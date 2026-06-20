@@ -98,9 +98,11 @@ const RouteFallback = () => (
   </div>
 );
 
+const HIDDEN_BANNER_ROUTES = ["/ai-vorsorgeassistent"];
+
 const RouterAwareUpdateBanner = () => {
   const { pathname } = useLocation();
-  if (pathname === "/ai-vorsorgeassistent") return null;
+  if (HIDDEN_BANNER_ROUTES.includes(pathname)) return null;
   return <UpdateBanner />;
 };
 
