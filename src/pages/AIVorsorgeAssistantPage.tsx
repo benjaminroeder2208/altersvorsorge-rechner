@@ -14,8 +14,8 @@ interface ChatItem {
   suggestions?: string[];
 }
 
-const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
-const OPTIN_HINT = /\b(newsletter|ja|gerne|bitte|schick|sende|opt.?in)\b/i;
+/* E-Mail-Erfassung übernimmt vollständig die eingebettete NewsletterCard
+   (simulation_leads + send-confirmation-email). Keine eigene Regex-Erkennung mehr. */
 
 const DotBounce = () => (
   <div className="flex items-center gap-1 px-3 py-2">
