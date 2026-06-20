@@ -387,7 +387,7 @@ export default function AIVorsorgeAssistantPage() {
         </div>
 
         {/* Footer */}
-        <footer className="shrink-0 w-full min-w-0 border-t border-border bg-background px-3 sm:px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-center text-xs text-muted-foreground">
+        <footer className="shrink-0 w-full min-w-0 border-t border-border bg-background px-3 sm:px-4 py-2 text-center text-xs text-muted-foreground" style={{ paddingBottom: "max(0.5rem, var(--safe-bottom, env(safe-area-inset-bottom)))" }}>
           <Link to="/impressum" className="hover:text-foreground hover:underline transition-colors">Impressum</Link>
           <span className="mx-2">·</span>
           <Link to="/datenschutz" className="hover:text-foreground hover:underline transition-colors">Datenschutz</Link>
