@@ -16,7 +16,7 @@ test.describe("AI-Vorsorgeberater Seite", () => {
       failedRequests.push(`${req.method()} ${req.url()} — ${req.failure()?.errorText}`);
     });
 
-    await page.goto("/ai-vorsorgeberater");
+    await page.goto("/ai-vorsorgeassistent");
 
     // Header sichtbar = Seite gerendert
     await expect(page.getByText("Vorsorge-Assistent")).toBeVisible();
