@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useRef } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { ArrowRight } from "lucide-react";
@@ -6,7 +6,9 @@ import {
   berechneGrundzulage,
   berechneKinderzulage,
 } from "@/lib/foerderung";
-import { supabase } from "@/integrations/supabase/client";
+import NewsletterCard from "@/components/landing/NewsletterCard";
+import type { Inputs } from "@/components/landing/AltersvorsorgedepotRechner";
+import { calculate } from "@/components/landing/AltersvorsorgedepotRechner";
 
 export interface CalculationTrigger {
   vorname?: string | null;
@@ -24,6 +26,8 @@ interface Props {
 
 const fmtEur = (v: number) =>
   `${Math.round(v).toLocaleString("de-DE")} €`;
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 /** Endkapital bei Renteneintritt mit jährlichem Beitrag + Zinseszins */
 function projektion(
@@ -43,9 +47,7 @@ function projektion(
   return { end: k, series };
 }
 
-export default function AssistantResultCard({ trigger, sessionId }: Props) {
-  const updated = useRef(false);
-
+export default function AssistantResultCard({ trigger }: Props) {
   const {
     alter,
     sparbetrag_monatlich,
@@ -83,21 +85,19 @@ export default function AssistantResultCard({ trigger, sessionId }: Props) {
   const hauptSerie = kinder_anzahl > 0 ? mitKinder : mitFoerderung;
   const endKapital = hauptSerie.end;
 
-  // Lead-Update: ergebnis_kapital nachtragen (einmalig, server-seitig)
-  useEffect(() => {
-    if (updated.current || !sessionId) return;
-    updated.current = true;
-    supabase.functions
-      .invoke("update-ai-lead", {
-        body: {
-          session_id: sessionId,
-          ergebnis_kapital: Math.round(endKapital),
-        },
-      })
-      .then(({ error }) => {
-        if (error) console.error("Lead-Update fehlgeschlagen:", error);
-      });
-  }, [sessionId, endKapital]);
+  // Inputs/Result für die wiederverwendete NewsletterCard (gleiche Logik wie Hauptrechner)
+  const newsletterInputs: Inputs = useMemo(
+    () => ({
+      monthlyContribution: sparbetrag_monatlich,
+      incomeBand: 2,
+      birthYear: CURRENT_YEAR - alter,
+      children: kinder_anzahl,
+      retirementAge: renteneintrittsalter,
+      returnRate: rendite_prozent / 100,
+    }),
+    [sparbetrag_monatlich, alter, kinder_anzahl, renteneintrittsalter, rendite_prozent],
+  );
+  const newsletterResult = useMemo(() => calculate(newsletterInputs), [newsletterInputs]);
 
   const chartData = hauptSerie.series.map((p) => ({
     jahr: alter + p.jahr,
@@ -119,8 +119,8 @@ export default function AssistantResultCard({ trigger, sessionId }: Props) {
         </p>
       </div>
 
-      {/* Chart */}
-      <div className="h-44 -mx-1">
+      {/* Chart — id ist Pflicht für captureChart() der NewsletterCard */}
+      <div id="pdf-chart-capture" className="h-44 -mx-1 bg-background">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" className="stroke-border" vertical={false} />
@@ -182,6 +182,11 @@ export default function AssistantResultCard({ trigger, sessionId }: Props) {
       >
         Vollen Rechner öffnen <ArrowRight className="w-4 h-4" />
       </Link>
+
+      {/* Wiederverwendeter Lead-Flow: simulation_leads + send-confirmation-email + PDF */}
+      <div className="pt-2 [&>div]:mb-0 [&>div]:max-w-full [&_.p-8]:p-5">
+        <NewsletterCard inputs={newsletterInputs} result={newsletterResult} />
+      </div>
     </div>
   );
 }
