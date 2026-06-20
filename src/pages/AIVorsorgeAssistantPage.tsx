@@ -209,35 +209,37 @@ export default function AIVorsorgeAssistantPage() {
         path="/ai-vorsorgeassistent"
         robots="noindex,nofollow"
       />
-      <div className="flex flex-col h-[100dvh] bg-background">
+      {/* Fixed full-viewport shell — verhindert Springen durch iOS-URL-Bar
+          und klebt Input + Footer kompromisslos am unteren Rand. */}
+      <div className="fixed inset-0 flex flex-col bg-background overflow-hidden overscroll-none">
         {/* Header */}
-        <header className="flex items-center gap-3 px-4 h-14 border-b border-border bg-background shrink-0">
+        <header className="flex items-center gap-3 px-4 h-14 border-b border-border bg-background shrink-0 w-full min-w-0">
           <Link
             to="/"
             aria-label="Zurück zur Startseite"
-            className="p-2 -ml-2 rounded-md hover:bg-muted transition-colors"
+            className="p-2 -ml-2 rounded-md hover:bg-muted transition-colors shrink-0"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
-          <span className="text-sm font-semibold">Vorsorge-Assistent</span>
+          <span className="text-sm font-semibold truncate">Vorsorge-Assistent</span>
         </header>
 
         {/* Chat */}
-        <main className="flex-1 overflow-y-auto px-3 sm:px-4 py-4">
-          <div className="mx-auto max-w-xl space-y-3">
+        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-3 sm:px-4 py-4 w-full">
+          <div className="mx-auto w-full max-w-xl space-y-3 min-w-0">
             {messages.map((m, i) => (
-              <div key={i}>
+              <div key={i} className="w-full min-w-0">
                 {m.role === "user" ? (
-                  <div className="flex justify-end">
-                    <div className="max-w-[85%] px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap bg-primary text-primary-foreground rounded-[14px_14px_4px_14px]">
+                  <div className="flex justify-end w-full min-w-0">
+                    <div className="max-w-[85%] px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap break-words [overflow-wrap:anywhere] bg-primary text-primary-foreground rounded-[14px_14px_4px_14px]">
                       {m.content}
                     </div>
                   </div>
                 ) : (
-                  <div className="space-y-2">
+                  <div className="space-y-2 w-full min-w-0">
                     {m.content && (
-                      <div className="flex justify-start">
-                        <div className="max-w-[90%] px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap bg-muted text-foreground rounded-[14px_14px_14px_4px]">
+                      <div className="flex justify-start w-full min-w-0">
+                        <div className="max-w-[90%] px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap break-words [overflow-wrap:anywhere] bg-muted text-foreground rounded-[14px_14px_14px_4px]">
                           {m.content}
                         </div>
                       </div>
@@ -265,8 +267,8 @@ export default function AIVorsorgeAssistantPage() {
         </main>
 
         {/* Input */}
-        <div className="border-t border-border bg-background px-3 sm:px-4 py-3 shrink-0">
-          <div className="mx-auto max-w-xl">
+        <div className="border-t border-border bg-background px-3 sm:px-4 py-3 shrink-0 w-full min-w-0">
+          <div className="mx-auto w-full max-w-xl min-w-0">
             {lastSuggestions.length > 0 && !loading && (
               <div className="flex flex-wrap gap-2 mb-2">
                 {lastSuggestions.map((s, i) => (
@@ -280,7 +282,7 @@ export default function AIVorsorgeAssistantPage() {
                 ))}
               </div>
             )}
-            <div className="flex items-end gap-2">
+            <div className="flex items-end gap-2 w-full min-w-0">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -289,7 +291,7 @@ export default function AIVorsorgeAssistantPage() {
                 disabled={loading}
                 placeholder="Deine Antwort..."
                 rows={1}
-                className="flex-1 resize-none rounded-lg border border-input bg-background px-3 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 max-h-32"
+                className="flex-1 min-w-0 resize-none rounded-lg border border-input bg-background px-3 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50 max-h-32"
               />
               <button
                 onClick={() => send(input)}
@@ -308,7 +310,7 @@ export default function AIVorsorgeAssistantPage() {
         </div>
 
         {/* Footer */}
-        <footer className="shrink-0 border-t border-border bg-background px-3 sm:px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-center text-xs text-muted-foreground">
+        <footer className="shrink-0 w-full min-w-0 border-t border-border bg-background px-3 sm:px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-center text-xs text-muted-foreground">
           <Link to="/impressum" className="hover:text-foreground hover:underline transition-colors">Impressum</Link>
           <span className="mx-2">·</span>
           <Link to="/datenschutz" className="hover:text-foreground hover:underline transition-colors">Datenschutz</Link>
