@@ -103,13 +103,19 @@ export default function AIVorsorgeAssistantPage() {
   }, [loading]);
 
   /* ── Virtual-Keyboard-Handling via visualViewport ──
-     Setzt die Shell-Unterkante auf die Tastatur-Höhe, sodass
-     Input + Footer immer über der Tastatur kleben und der Verlauf
-     beim Tippen automatisch nachscrollt — ohne Layout-Sprünge. */
+     Setzt die Shell-Unterkante auf die Tastatur-Höhe und ein CSS-Flag,
+     damit die Safe-Area-Padding der Footer-/Input-Zone bei offener
+     Tastatur kollabiert (sonst entsteht ein leerer Spalt über der Tastatur).
+     Fallback ohne visualViewport: env(safe-area-inset-bottom) per CSS. */
   useEffect(() => {
-    const vv = window.visualViewport;
     const shell = shellRef.current;
-    if (!vv || !shell) return;
+    if (!shell) return;
+    const vv = window.visualViewport;
+    if (!vv) {
+      // Kein visualViewport (ältere Browser): nur Safe-Area greift.
+      shell.style.setProperty("--kb", "0px");
+      return;
+    }
 
     let raf = 0;
     const apply = () => {
@@ -117,6 +123,9 @@ export default function AIVorsorgeAssistantPage() {
       raf = requestAnimationFrame(() => {
         const kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
         shell.style.bottom = `${kb}px`;
+        shell.style.setProperty("--kb", `${kb}px`);
+        // Wenn Tastatur offen, Safe-Area-Inset deaktivieren
+        shell.style.setProperty("--safe-bottom", kb > 0 ? "0px" : "env(safe-area-inset-bottom)");
         scrollToBottom(false);
       });
     };
@@ -129,6 +138,8 @@ export default function AIVorsorgeAssistantPage() {
       vv.removeEventListener("resize", apply);
       vv.removeEventListener("scroll", apply);
       shell.style.bottom = "";
+      shell.style.removeProperty("--kb");
+      shell.style.removeProperty("--safe-bottom");
     };
   }, [scrollToBottom]);
 
