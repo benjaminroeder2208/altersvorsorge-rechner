@@ -105,6 +105,7 @@ const RouterAwareUpdateBanner = () => {
 };
 
 const App = () => {
+  return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <TooltipProvider>
@@ -114,7 +115,7 @@ const App = () => {
             <ScrollToHash />
             <ChatWidgetWrapper />
             {/* TODO: Nach Beschluss am 26.03.2026 entfernen und foerderung.ts aktualisieren */}
-            {!hideUpdateBanner && <UpdateBanner />}
+            <RouterAwareUpdateBanner />
             <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<RechnerPage />} />
