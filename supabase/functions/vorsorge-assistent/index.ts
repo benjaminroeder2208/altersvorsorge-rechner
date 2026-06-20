@@ -146,6 +146,23 @@ const TRIGGER_TOOL = {
   },
 };
 
+const SUGGESTIONS_TOOL = {
+  name: "show_suggestions",
+  description:
+    "Liefert 2-4 kurze Antwortvorschläge für die aktuelle Frage, die der Nutzer per Klick auswählen kann. Wird bei jeder der 4 vorgesehenen Fragen (Sparbetrag, Rendite, Renteneintrittsalter, Kinder) zusätzlich zur normalen Text-Antwort aufgerufen.",
+  input_schema: {
+    type: "object",
+    properties: {
+      suggestions: {
+        type: "array",
+        items: { type: "string" },
+        description: "2-4 kurze Antwortoptionen, z.B. ['150 €', '200 €', 'Eigener Betrag']",
+      },
+    },
+    required: ["suggestions"],
+  },
+};
+
 Deno.serve(async (req) => {
   const origin = req.headers.get("origin");
   const cors = corsHeadersFor(origin);
