@@ -342,6 +342,11 @@ export default function AIVorsorgeAssistantPage() {
           content: data?.reply ?? "",
           trigger: showTrigger ? incomingTrigger : null,
           suggestions: Array.isArray(data?.suggestions) ? data.suggestions : undefined,
+          relatedContent: Array.isArray(data?.related_content) && data.related_content.length > 0
+            ? (data.related_content as RelatedContentItem[]).filter(
+                (r) => r && typeof r.url_path === "string" && typeof r.title === "string",
+              )
+            : undefined,
         };
         if (showTrigger) {
           resultRenderedRef.current = true;
