@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Send, Loader2 } from "lucide-react";
+import { ArrowLeft, Send, Loader2, ArrowUpRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { openCookieSettings } from "@/lib/cookieConsent";
 import PageHead from "@/components/seo/PageHead";
@@ -11,11 +11,18 @@ import AssistantDisclaimerCard from "@/components/ai-assistant/AssistantDisclaim
 import { calculate } from "@/components/landing/AltersvorsorgedepotRechner";
 import type { Inputs } from "@/components/landing/AltersvorsorgedepotRechner";
 
+interface RelatedContentItem {
+  url_path: string;
+  title: string;
+  summary: string;
+}
+
 interface ChatItem {
   role: "user" | "assistant";
   content: string;
   trigger?: CalculationTrigger | null;
   suggestions?: string[];
+  relatedContent?: RelatedContentItem[];
 }
 
 /* E-Mail-Erfassung übernimmt vollständig die eingebettete NewsletterCard
@@ -335,6 +342,11 @@ export default function AIVorsorgeAssistantPage() {
           content: data?.reply ?? "",
           trigger: showTrigger ? incomingTrigger : null,
           suggestions: Array.isArray(data?.suggestions) ? data.suggestions : undefined,
+          relatedContent: Array.isArray(data?.related_content) && data.related_content.length > 0
+            ? (data.related_content as RelatedContentItem[]).filter(
+                (r) => r && typeof r.url_path === "string" && typeof r.title === "string",
+              )
+            : undefined,
         };
         if (showTrigger) {
           resultRenderedRef.current = true;
@@ -460,6 +472,29 @@ export default function AIVorsorgeAssistantPage() {
                       />
                     )}
                     {m.trigger && <AssistantDisclaimerCard />}
+                    {m.relatedContent && m.relatedContent.length > 0 && (
+                      <div className="space-y-2 pt-1">
+                        {m.relatedContent.map((r) => (
+                          <a
+                            key={r.url_path}
+                            href={r.url_path}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-start gap-3 rounded-xl border border-border bg-card hover:bg-muted/60 transition-colors px-3.5 py-3 w-full min-w-0"
+                          >
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-semibold text-foreground truncate">
+                                {r.title}
+                              </div>
+                              <div className="text-xs text-muted-foreground line-clamp-2 mt-0.5 break-words [overflow-wrap:anywhere]">
+                                {r.summary}
+                              </div>
+                            </div>
+                            <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground shrink-0 mt-0.5" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

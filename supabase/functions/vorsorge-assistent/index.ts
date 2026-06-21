@@ -1,6 +1,8 @@
 // Edge Function: vorsorge-assistent
 // Geführter Lead-Flow für die Altersvorsorge-Berechnung (Anthropic Claude + tool_use)
 
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
 // (kein Supabase-Client mehr nötig — Lead-Erfassung läuft frontendseitig
 //  über die wiederverwendete NewsletterCard → simulation_leads.)
 
@@ -94,6 +96,14 @@ Halte Antworten kurz (2-4 Sätze), niemand will im Chat einen Roman lesen.
 Wenn eine Frage außerhalb deines Wissens liegt oder sehr spezifisch persönliche Finanz-/Steuerberatung verlangt: ehrlich sagen, dass das individuelle Beratung erfordert, keine Zahlen raten.
 
 Beende Antworten mit Finanzbezug weiterhin mit einem kurzen Hinweis, dass es sich nicht um Anlageberatung handelt — aber nicht stur nach jeder einzelnen Nachricht, sondern dort wo es inhaltlich passt (z. B. nicht nach einer reinen Verständnisfrage wie 'Was bedeutet Zulage?').
+
+CONTENT-VERLINKUNG IN PHASE 2
+
+Wenn du im Nachgespräch ein Thema erklärst, zu dem es vertiefenden Content geben könnte (z. B. bAV, ETF-Sparplan, Rentenlücke, Zinseszins, Riester, Rürup, Altersvorsorge nach Alter/Lebenssituation), rufe IMMER zuerst find_related_content mit passenden Suchbegriffen auf, BEVOR du deine Textantwort abschließt. Erwähne in deinem Text danach kurz und beiläufig, dass es dazu mehr zu lesen gibt (z. B. 'Falls du tiefer einsteigen willst, hab ich unten noch was für dich rausgesucht.') — nenne dabei NIE selbst einen Artikeltitel oder Link im Fließtext, das übernimmt die Vorschlagskarte im Frontend.
+
+Wenn find_related_content keine Treffer liefert: einfach normal antworten, ohne Content-Hinweis, nicht erwähnen dass nichts gefunden wurde.
+
+Nicht bei jeder einzelnen Nachricht Content suchen — nur wenn es inhaltlich wirklich zum gerade besprochenen Thema passt, sonst wirkt es aufdringlich.
 
 ANTWORTVORSCHLÄGE (suggestions)
 
@@ -190,6 +200,84 @@ const SUGGESTIONS_TOOL = {
   },
 };
 
+const FIND_CONTENT_TOOL = {
+  name: "find_related_content",
+  description:
+    "Durchsucht die echte Content-Datenbank nach passenden Artikeln, Hub-Seiten oder Rechnern zum aktuellen Gesprächsthema. Nutze dieses Tool IMMER, wenn du im Nachgespräch (Phase 2) ein Thema erklärst, zu dem ein vertiefender Artikel sinnvoll wäre — rate oder erfinde NIEMALS selbst einen Titel oder eine URL, frage stattdessen über dieses Tool ab.",
+  input_schema: {
+    type: "object",
+    properties: {
+      search_terms: {
+        type: "array",
+        items: { type: "string" },
+        description:
+          "1-3 Suchbegriffe/Topics auf Deutsch, die zum Gesprächsthema passen, z.B. ['zinseszins', 'frueh_starten']",
+      },
+    },
+    required: ["search_terms"],
+  },
+};
+
+type ContentHit = { url_path: string; title: string; summary: string };
+
+async function findRelatedContent(
+  supabaseUrl: string,
+  serviceKey: string,
+  terms: string[],
+): Promise<ContentHit[]> {
+  const client = createClient(supabaseUrl, serviceKey);
+  const clean = terms
+    .map((t) => String(t).trim().toLowerCase())
+    .filter((t) => t.length > 0)
+    .slice(0, 5);
+  if (clean.length === 0) return [];
+
+  // 1) Exakte Topic-Treffer (Array-Overlap)
+  const { data: topicHits } = await client
+    .from("content_pages")
+    .select("url_path,title,summary,topics")
+    .eq("active", true)
+    .overlaps("topics", clean)
+    .limit(10);
+
+  // 2) Fallback: ilike auf title/summary
+  const ilikeOr = clean
+    .map((t) => `title.ilike.%${t}%,summary.ilike.%${t}%`)
+    .join(",");
+  const { data: textHits } = await client
+    .from("content_pages")
+    .select("url_path,title,summary,topics")
+    .eq("active", true)
+    .or(ilikeOr)
+    .limit(10);
+
+  const score = (row: { topics?: string[] | null; title: string; summary: string }) => {
+    const t = (row.topics ?? []).map((x) => x.toLowerCase());
+    let s = 0;
+    for (const term of clean) {
+      if (t.includes(term)) s += 10;
+      if (row.title.toLowerCase().includes(term)) s += 3;
+      if (row.summary.toLowerCase().includes(term)) s += 1;
+    }
+    return s;
+  };
+
+  const merged = new Map<string, { row: any; score: number }>();
+  for (const row of [...(topicHits ?? []), ...(textHits ?? [])]) {
+    const prev = merged.get(row.url_path);
+    const sc = score(row);
+    if (!prev || sc > prev.score) merged.set(row.url_path, { row, score: sc });
+  }
+  return [...merged.values()]
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(({ row }) => ({
+      url_path: row.url_path,
+      title: row.title,
+      summary: row.summary,
+    }));
+}
+
 Deno.serve(async (req) => {
   const origin = req.headers.get("origin");
   const cors = corsHeadersFor(origin);
@@ -231,66 +319,109 @@ Deno.serve(async (req) => {
       )}`
     : SYSTEM_PROMPT;
 
+  const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+  const serviceKey =
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ??
+    Deno.env.get("SUPABASE_ANON_KEY") ??
+    "";
+
   try {
-    const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 800,
-        system: systemPrompt,
-        tools: [TRIGGER_TOOL, SUGGESTIONS_TOOL],
-        messages: messages.map((m) => ({ role: m.role, content: m.content })),
-      }),
-    });
-
-    if (!apiRes.ok) {
-      const errTxt = await apiRes.text();
-      console.error("Anthropic error:", apiRes.status, errTxt);
-      return json(
-        {
-          reply:
-            "Entschuldige, ich bin gerade kurz nicht erreichbar. Versuch es bitte gleich nochmal.",
-          calculation_trigger: null,
-          suggestions: null,
-          session_id: sessionId,
-        },
-        200,
-      );
-    }
-
-    const data = await apiRes.json();
-    const blocks: Array<any> = data?.content ?? [];
+    const convo: Array<{ role: string; content: any }> = messages.map((m) => ({
+      role: m.role,
+      content: m.content,
+    }));
 
     let replyText = "";
     let calculationTrigger: Record<string, unknown> | null = null;
     let suggestions: string[] | null = null;
+    let relatedContent: ContentHit[] | null = null;
 
-    for (const b of blocks) {
-      if (b?.type === "text" && typeof b.text === "string") {
-        replyText += b.text;
-      } else if (b?.type === "tool_use" && b?.name === "trigger_calculation") {
-        calculationTrigger = b.input ?? {};
-      } else if (b?.type === "tool_use" && b?.name === "show_suggestions") {
-        const s = b.input?.suggestions;
-        if (Array.isArray(s)) {
-          suggestions = s.filter((x: unknown): x is string => typeof x === "string");
+    // Tool-use Loop (max 3 Iterationen): bricht ab, sobald stop_reason !== "tool_use"
+    for (let iter = 0; iter < 3; iter++) {
+      const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01",
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 800,
+          system: systemPrompt,
+          tools: [TRIGGER_TOOL, SUGGESTIONS_TOOL, FIND_CONTENT_TOOL],
+          messages: convo,
+        }),
+      });
+
+      if (!apiRes.ok) {
+        const errTxt = await apiRes.text();
+        console.error("Anthropic error:", apiRes.status, errTxt);
+        return json(
+          {
+            reply:
+              "Entschuldige, ich bin gerade kurz nicht erreichbar. Versuch es bitte gleich nochmal.",
+            calculation_trigger: null,
+            suggestions: null,
+            related_content: null,
+            session_id: sessionId,
+          },
+          200,
+        );
+      }
+
+      const data = await apiRes.json();
+      const blocks: Array<any> = data?.content ?? [];
+
+      const toolUses: Array<{ id: string; name: string; input: any }> = [];
+      for (const b of blocks) {
+        if (b?.type === "text" && typeof b.text === "string") {
+          replyText += b.text;
+        } else if (b?.type === "tool_use" && b?.name === "trigger_calculation") {
+          calculationTrigger = b.input ?? {};
+        } else if (b?.type === "tool_use" && b?.name === "show_suggestions") {
+          const s = b.input?.suggestions;
+          if (Array.isArray(s)) {
+            suggestions = s.filter((x: unknown): x is string => typeof x === "string");
+          }
+        } else if (b?.type === "tool_use" && b?.name === "find_related_content") {
+          toolUses.push({ id: b.id, name: b.name, input: b.input ?? {} });
         }
       }
-    }
 
-    // Lead-Persistenz erfolgt ab sofort frontendseitig über die
-    // wiederverwendete NewsletterCard (simulation_leads + send-confirmation-email).
-    // Es werden keine Daten mehr in ai_assistant_leads geschrieben.
+      // Wenn find_related_content aufgerufen wurde → Tool-Result zurückschicken
+      if (data?.stop_reason === "tool_use" && toolUses.length > 0) {
+        convo.push({ role: "assistant", content: blocks });
+        const toolResults: any[] = [];
+        for (const tu of toolUses) {
+          const terms = Array.isArray(tu.input?.search_terms)
+            ? tu.input.search_terms.filter((x: unknown) => typeof x === "string")
+            : [];
+          const hits = await findRelatedContent(supabaseUrl, serviceKey, terms);
+          if (hits.length > 0) {
+            relatedContent = hits;
+          }
+          toolResults.push({
+            type: "tool_result",
+            tool_use_id: tu.id,
+            content: JSON.stringify({ results: hits }),
+          });
+        }
+        convo.push({ role: "user", content: toolResults });
+        // Reset replyText: der finale Text kommt aus der nächsten Iteration
+        replyText = "";
+        continue;
+      }
+
+      // stop_reason !== "tool_use" oder kein find_related_content → fertig
+      break;
+    }
 
     return json({
       reply: replyText,
       calculation_trigger: calculationTrigger,
       suggestions,
+      related_content: relatedContent,
       session_id: sessionId,
     });
   } catch (e) {
@@ -301,6 +432,7 @@ Deno.serve(async (req) => {
           "Entschuldige, da ist gerade etwas schiefgelaufen. Versuch es bitte gleich nochmal.",
         calculation_trigger: null,
         suggestions: null,
+        related_content: null,
         session_id: sessionId,
       },
       200,
