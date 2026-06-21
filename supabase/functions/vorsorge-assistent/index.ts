@@ -200,6 +200,84 @@ const SUGGESTIONS_TOOL = {
   },
 };
 
+const FIND_CONTENT_TOOL = {
+  name: "find_related_content",
+  description:
+    "Durchsucht die echte Content-Datenbank nach passenden Artikeln, Hub-Seiten oder Rechnern zum aktuellen Gesprächsthema. Nutze dieses Tool IMMER, wenn du im Nachgespräch (Phase 2) ein Thema erklärst, zu dem ein vertiefender Artikel sinnvoll wäre — rate oder erfinde NIEMALS selbst einen Titel oder eine URL, frage stattdessen über dieses Tool ab.",
+  input_schema: {
+    type: "object",
+    properties: {
+      search_terms: {
+        type: "array",
+        items: { type: "string" },
+        description:
+          "1-3 Suchbegriffe/Topics auf Deutsch, die zum Gesprächsthema passen, z.B. ['zinseszins', 'frueh_starten']",
+      },
+    },
+    required: ["search_terms"],
+  },
+};
+
+type ContentHit = { url_path: string; title: string; summary: string };
+
+async function findRelatedContent(
+  supabaseUrl: string,
+  serviceKey: string,
+  terms: string[],
+): Promise<ContentHit[]> {
+  const client = createClient(supabaseUrl, serviceKey);
+  const clean = terms
+    .map((t) => String(t).trim().toLowerCase())
+    .filter((t) => t.length > 0)
+    .slice(0, 5);
+  if (clean.length === 0) return [];
+
+  // 1) Exakte Topic-Treffer (Array-Overlap)
+  const { data: topicHits } = await client
+    .from("content_pages")
+    .select("url_path,title,summary,topics")
+    .eq("active", true)
+    .overlaps("topics", clean)
+    .limit(10);
+
+  // 2) Fallback: ilike auf title/summary
+  const ilikeOr = clean
+    .map((t) => `title.ilike.%${t}%,summary.ilike.%${t}%`)
+    .join(",");
+  const { data: textHits } = await client
+    .from("content_pages")
+    .select("url_path,title,summary,topics")
+    .eq("active", true)
+    .or(ilikeOr)
+    .limit(10);
+
+  const score = (row: { topics?: string[] | null; title: string; summary: string }) => {
+    const t = (row.topics ?? []).map((x) => x.toLowerCase());
+    let s = 0;
+    for (const term of clean) {
+      if (t.includes(term)) s += 10;
+      if (row.title.toLowerCase().includes(term)) s += 3;
+      if (row.summary.toLowerCase().includes(term)) s += 1;
+    }
+    return s;
+  };
+
+  const merged = new Map<string, { row: any; score: number }>();
+  for (const row of [...(topicHits ?? []), ...(textHits ?? [])]) {
+    const prev = merged.get(row.url_path);
+    const sc = score(row);
+    if (!prev || sc > prev.score) merged.set(row.url_path, { row, score: sc });
+  }
+  return [...merged.values()]
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(({ row }) => ({
+      url_path: row.url_path,
+      title: row.title,
+      summary: row.summary,
+    }));
+}
+
 Deno.serve(async (req) => {
   const origin = req.headers.get("origin");
   const cors = corsHeadersFor(origin);
