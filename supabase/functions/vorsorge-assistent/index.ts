@@ -319,66 +319,109 @@ Deno.serve(async (req) => {
       )}`
     : SYSTEM_PROMPT;
 
+  const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+  const serviceKey =
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ??
+    Deno.env.get("SUPABASE_ANON_KEY") ??
+    "";
+
   try {
-    const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 800,
-        system: systemPrompt,
-        tools: [TRIGGER_TOOL, SUGGESTIONS_TOOL],
-        messages: messages.map((m) => ({ role: m.role, content: m.content })),
-      }),
-    });
-
-    if (!apiRes.ok) {
-      const errTxt = await apiRes.text();
-      console.error("Anthropic error:", apiRes.status, errTxt);
-      return json(
-        {
-          reply:
-            "Entschuldige, ich bin gerade kurz nicht erreichbar. Versuch es bitte gleich nochmal.",
-          calculation_trigger: null,
-          suggestions: null,
-          session_id: sessionId,
-        },
-        200,
-      );
-    }
-
-    const data = await apiRes.json();
-    const blocks: Array<any> = data?.content ?? [];
+    const convo: Array<{ role: string; content: any }> = messages.map((m) => ({
+      role: m.role,
+      content: m.content,
+    }));
 
     let replyText = "";
     let calculationTrigger: Record<string, unknown> | null = null;
     let suggestions: string[] | null = null;
+    let relatedContent: ContentHit[] | null = null;
 
-    for (const b of blocks) {
-      if (b?.type === "text" && typeof b.text === "string") {
-        replyText += b.text;
-      } else if (b?.type === "tool_use" && b?.name === "trigger_calculation") {
-        calculationTrigger = b.input ?? {};
-      } else if (b?.type === "tool_use" && b?.name === "show_suggestions") {
-        const s = b.input?.suggestions;
-        if (Array.isArray(s)) {
-          suggestions = s.filter((x: unknown): x is string => typeof x === "string");
+    // Tool-use Loop (max 3 Iterationen): bricht ab, sobald stop_reason !== "tool_use"
+    for (let iter = 0; iter < 3; iter++) {
+      const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01",
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 800,
+          system: systemPrompt,
+          tools: [TRIGGER_TOOL, SUGGESTIONS_TOOL, FIND_CONTENT_TOOL],
+          messages: convo,
+        }),
+      });
+
+      if (!apiRes.ok) {
+        const errTxt = await apiRes.text();
+        console.error("Anthropic error:", apiRes.status, errTxt);
+        return json(
+          {
+            reply:
+              "Entschuldige, ich bin gerade kurz nicht erreichbar. Versuch es bitte gleich nochmal.",
+            calculation_trigger: null,
+            suggestions: null,
+            related_content: null,
+            session_id: sessionId,
+          },
+          200,
+        );
+      }
+
+      const data = await apiRes.json();
+      const blocks: Array<any> = data?.content ?? [];
+
+      const toolUses: Array<{ id: string; name: string; input: any }> = [];
+      for (const b of blocks) {
+        if (b?.type === "text" && typeof b.text === "string") {
+          replyText += b.text;
+        } else if (b?.type === "tool_use" && b?.name === "trigger_calculation") {
+          calculationTrigger = b.input ?? {};
+        } else if (b?.type === "tool_use" && b?.name === "show_suggestions") {
+          const s = b.input?.suggestions;
+          if (Array.isArray(s)) {
+            suggestions = s.filter((x: unknown): x is string => typeof x === "string");
+          }
+        } else if (b?.type === "tool_use" && b?.name === "find_related_content") {
+          toolUses.push({ id: b.id, name: b.name, input: b.input ?? {} });
         }
       }
-    }
 
-    // Lead-Persistenz erfolgt ab sofort frontendseitig über die
-    // wiederverwendete NewsletterCard (simulation_leads + send-confirmation-email).
-    // Es werden keine Daten mehr in ai_assistant_leads geschrieben.
+      // Wenn find_related_content aufgerufen wurde → Tool-Result zurückschicken
+      if (data?.stop_reason === "tool_use" && toolUses.length > 0) {
+        convo.push({ role: "assistant", content: blocks });
+        const toolResults: any[] = [];
+        for (const tu of toolUses) {
+          const terms = Array.isArray(tu.input?.search_terms)
+            ? tu.input.search_terms.filter((x: unknown) => typeof x === "string")
+            : [];
+          const hits = await findRelatedContent(supabaseUrl, serviceKey, terms);
+          if (hits.length > 0) {
+            relatedContent = hits;
+          }
+          toolResults.push({
+            type: "tool_result",
+            tool_use_id: tu.id,
+            content: JSON.stringify({ results: hits }),
+          });
+        }
+        convo.push({ role: "user", content: toolResults });
+        // Reset replyText: der finale Text kommt aus der nächsten Iteration
+        replyText = "";
+        continue;
+      }
+
+      // stop_reason !== "tool_use" oder kein find_related_content → fertig
+      break;
+    }
 
     return json({
       reply: replyText,
       calculation_trigger: calculationTrigger,
       suggestions,
+      related_content: relatedContent,
       session_id: sessionId,
     });
   } catch (e) {
@@ -389,6 +432,7 @@ Deno.serve(async (req) => {
           "Entschuldige, da ist gerade etwas schiefgelaufen. Versuch es bitte gleich nochmal.",
         calculation_trigger: null,
         suggestions: null,
+        related_content: null,
         session_id: sessionId,
       },
       200,
