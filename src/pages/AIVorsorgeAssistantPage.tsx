@@ -11,11 +11,18 @@ import AssistantDisclaimerCard from "@/components/ai-assistant/AssistantDisclaim
 import { calculate } from "@/components/landing/AltersvorsorgedepotRechner";
 import type { Inputs } from "@/components/landing/AltersvorsorgedepotRechner";
 
+interface RelatedContentItem {
+  url_path: string;
+  title: string;
+  summary: string;
+}
+
 interface ChatItem {
   role: "user" | "assistant";
   content: string;
   trigger?: CalculationTrigger | null;
   suggestions?: string[];
+  relatedContent?: RelatedContentItem[];
 }
 
 /* E-Mail-Erfassung übernimmt vollständig die eingebettete NewsletterCard
