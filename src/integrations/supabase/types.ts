@@ -116,6 +116,39 @@ export type Database = {
         }
         Relationships: []
       }
+      content_pages: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          page_type: string
+          summary: string
+          title: string
+          topics: string[]
+          url_path: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          page_type: string
+          summary: string
+          title: string
+          topics?: string[]
+          url_path: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          page_type?: string
+          summary?: string
+          title?: string
+          topics?: string[]
+          url_path?: string
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
