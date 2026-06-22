@@ -281,6 +281,14 @@ const App = () => {
                   </ProtectedAdminRoute>
                 }
               />
+              <Route
+                path="/admin/content-pages"
+                element={
+                  <ProtectedAdminRoute>
+                    <AdminContentPagesPage />
+                  </ProtectedAdminRoute>
+                }
+              />
               <Route path="/internal/analytics-test" element={<AnalyticsTestPage />} />
               <Route path="/ai-vorsorgeassistent" element={<AIVorsorgeAssistantPage />} />
               <Route path="*" element={<NotFound />} />
