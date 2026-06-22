@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { LogOut, Newspaper, Users, Mail, Search, Activity, Settings, Trophy, Target, History, BarChart3 } from "lucide-react";
+import { LogOut, Newspaper, Users, Mail, Search, Activity, Settings, Trophy, Target, History, BarChart3, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
