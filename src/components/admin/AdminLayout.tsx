@@ -80,6 +80,11 @@ const AdminLayout = ({ children, title }: Props) => {
                 <BarChart3 className="w-3.5 h-3.5" /> GSC
               </span>
             </NavLink>
+            <NavLink to="/admin/content-pages" className={navLinkClass}>
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                <FileText className="w-3.5 h-3.5" /> Content-Seiten
+              </span>
+            </NavLink>
             <NavLink to="/internal/analytics-test" className={navLinkClass} target="_blank" rel="noopener noreferrer">
               <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                 <Activity className="w-3.5 h-3.5" /> Analytics-Test
