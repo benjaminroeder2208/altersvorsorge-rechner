@@ -1,0 +1,1 @@
+CREATE POLICY "Admins can read all content pages" ON public.content_pages FOR SELECT USING (has_role(auth.uid(), 'admin'::app_role));
