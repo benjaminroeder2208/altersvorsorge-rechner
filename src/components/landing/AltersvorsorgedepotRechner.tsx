@@ -72,7 +72,9 @@ export function calculate(inputs: Inputs) {
   const { monthlyContribution, incomeBand, birthYear, children, retirementAge, returnRate } = inputs;
 
   const currentAge = CURRENT_YEAR - birthYear;
-  const yearsToRetirement = Math.max(retirementAge - currentAge, 0);
+  const startYear = Math.max(CURRENT_YEAR + 1, 2027); // Startjahr der Förderung (frühestens 2027)
+  const ageAtStart = startYear - birthYear; // Alter zu Beginn der Ansparphase
+  const yearsToRetirement = Math.max(retirementAge - ageAtStart, 0);
   const annualOwn = monthlyContribution * 12;
 
   // Tax benefit
@@ -94,8 +96,7 @@ export function calculate(inputs: Inputs) {
   let totalSubsidies = 0;
 
   for (let y = 0; y < yearsToRetirement; y++) {
-    const age = currentAge + y + 1;
-    const startYear = Math.max(CURRENT_YEAR, 2027);
+    const age = ageAtStart + y + 1;
     const calendarYear = startYear + y;
     const yearSubsidy =
       berechneGesamtfoerderung(annualOwn, children, calendarYear) +
