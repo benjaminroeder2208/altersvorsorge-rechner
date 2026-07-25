@@ -180,9 +180,22 @@ const TRIGGER_TOOL = {
         type: "number",
         description: "Gewünschtes Renteneintrittsalter",
       },
-      kinder_anzahl: {
-        type: "number",
-        description: "Anzahl Kinder, 0 falls keine",
+      kinder: {
+        type: "array",
+        description:
+          "Liste der Kinder mit Geburtsjahr und Kindergeld-Berechtigung. Leeres Array falls keine Kinder.",
+        items: {
+          type: "object",
+          properties: {
+            birthYear: { type: "number", description: "Geburtsjahr des Kindes" },
+            kindergeldBis: {
+              type: "number",
+              enum: [18, 25],
+              description: "18 = Grundfall, 25 = Ausbildung/Studium",
+            },
+          },
+          required: ["birthYear", "kindergeldBis"],
+        },
       },
     },
     required: [
@@ -190,7 +203,7 @@ const TRIGGER_TOOL = {
       "sparbetrag_monatlich",
       "rendite_prozent",
       "renteneintrittsalter",
-      "kinder_anzahl",
+      "kinder",
     ],
   },
 };
