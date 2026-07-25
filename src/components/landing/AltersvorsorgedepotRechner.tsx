@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
 import NewsletterCard from "./NewsletterCard";
+import FoerderTimeline from "./FoerderTimeline";
 import { trackEvent } from "@/lib/analytics";
 
 import {
