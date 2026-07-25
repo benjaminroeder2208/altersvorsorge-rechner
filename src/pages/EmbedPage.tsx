@@ -73,8 +73,7 @@ function calculate(inputs: Inputs) {
   for (let y = 0; y < yearsToRetirement; y++) {
     const age = currentAge + y + 1;
     const calendarYear = 2027 + y;
-    const kinderList = Array.from({ length: children }, () => ({ birthYear: calendarYear, kindergeldBis: 25 as const }));
-    const yearSubsidy = berechneGesamtfoerderung(annualOwn, kinderList, calendarYear) + (y === 0 && berufseinsteiger ? 200 : 0);
+    const yearSubsidy = berechneGesamtfoerderung(annualOwn, children, calendarYear) + (y === 0 && berufseinsteiger ? 200 : 0);
     totalContributions += annualOwn;
     totalSubsidies += yearSubsidy;
     capital = (capital + annualOwn + yearSubsidy) * (1 + returnRate);
