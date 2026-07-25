@@ -69,32 +69,38 @@ export function berechneGrundzulage(
 
 export function berechneKinderzulage(
   eigenanteilJaehrlich: number,
-  anzahlKinder: number
+  kinder: Child[],
+  calendarYear: number
 ): number {
-  if (
-    eigenanteilJaehrlich < MINDESTEIGENBEITRAG
-    || anzahlKinder === 0
-  ) {
+  if (eigenanteilJaehrlich < MINDESTEIGENBEITRAG || kinder.length === 0) {
     return 0;
   }
+
+  // Pro Kind prüfen, ob es im calendarYear noch kindergeldberechtigt ist.
+  // Ein Kind ist berechtigt solange:
+  // calendarYear <= child.birthYear + child.kindergeldBis
+  const berechtigteKinder = kinder.filter(
+    (child) => calendarYear <= child.birthYear + child.kindergeldBis
+  );
+  if (berechtigteKinder.length === 0) return 0;
+
+  // Zulage pro berechtigtem Kind: 100% des Eigenbeitrags, max. 300€
+  // Volle 300€ bereits ab 300€/Jahr Eigenbeitrag (25€/Monat)
   const zulageProKind = Math.min(
     eigenanteilJaehrlich * KINDERZULAGE_SATZ,
     KINDERZULAGE_PRO_KIND
   );
-  return zulageProKind * anzahlKinder;
+  return zulageProKind * berechtigteKinder.length;
 }
 
 export function berechneGesamtfoerderung(
   eigenanteilJaehrlich: number,
-  anzahlKinder: number = 0,
+  kinder: Child[] = [],
   jahr: number = 2027
 ): number {
   return (
     berechneGrundzulage(eigenanteilJaehrlich) +
-    berechneKinderzulage(
-      eigenanteilJaehrlich,
-      anzahlKinder
-    )
+    berechneKinderzulage(eigenanteilJaehrlich, kinder, jahr)
   );
 }
 
