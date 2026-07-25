@@ -454,13 +454,110 @@ const AltersvorsorgedepotRechner = () => {
                     max={CURRENT_YEAR - 18}
                     onChange={(v) => set("birthYear", v)}
                   />
-                  <StepperCard
-                    label="Kinder"
-                    value={inputs.children}
-                    min={0}
-                    max={6}
-                    onChange={(v) => set("children", v)}
-                  />
+                  <div className="bg-background border border-border rounded-2xl p-6 text-left">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-base text-muted-foreground">Kinder</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (inputs.children.length >= 6) return;
+                          set("children", [
+                            ...inputs.children,
+                            { birthYear: CURRENT_YEAR - 5, kindergeldBis: 18 as const },
+                          ]);
+                        }}
+                        disabled={inputs.children.length >= 6}
+                        className="text-sm font-medium text-primary hover:opacity-80 disabled:opacity-30 transition-opacity"
+                      >
+                        + Kind hinzufügen
+                      </button>
+                    </div>
+
+                    {inputs.children.length === 0 && (
+                      <p className="text-sm text-muted-foreground/70">Keine Kinder hinzugefügt.</p>
+                    )}
+
+                    <div className="space-y-3">
+                      {inputs.children.map((child, idx) => (
+                        <div
+                          key={idx}
+                          className="flex flex-wrap items-center gap-3 p-3 rounded-xl bg-secondary/60"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs text-muted-foreground">Geburtsjahr</span>
+                            <div className="flex items-center gap-1">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const next = [...inputs.children];
+                                  next[idx] = { ...child, birthYear: Math.max(1990, child.birthYear - 1) };
+                                  set("children", next);
+                                }}
+                                disabled={child.birthYear <= 1990}
+                                className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                              >
+                                −
+                              </button>
+                              <span className="text-sm font-semibold tabular-nums min-w-[4ch] text-center">
+                                {child.birthYear}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const next = [...inputs.children];
+                                  next[idx] = {
+                                    ...child,
+                                    birthYear: Math.min(CURRENT_YEAR, child.birthYear + 1),
+                                  };
+                                  set("children", next);
+                                }}
+                                disabled={child.birthYear >= CURRENT_YEAR}
+                                className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-1 ml-auto">
+                            {[18, 25].map((v) => (
+                              <button
+                                key={v}
+                                type="button"
+                                onClick={() => {
+                                  const next = [...inputs.children];
+                                  next[idx] = { ...child, kindergeldBis: v as 18 | 25 };
+                                  set("children", next);
+                                }}
+                                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                                  child.kindergeldBis === v
+                                    ? "bg-primary text-primary-foreground"
+                                    : "bg-background text-muted-foreground hover:text-foreground"
+                                }`}
+                              >
+                                bis {v}
+                              </button>
+                            ))}
+                            <button
+                              type="button"
+                              aria-label="Kind entfernen"
+                              onClick={() => {
+                                const next = inputs.children.filter((_, i) => i !== idx);
+                                set("children", next);
+                              }}
+                              className="ml-1 w-7 h-7 rounded-full bg-background text-muted-foreground hover:text-foreground flex items-center justify-center"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <p className="text-[11px] text-muted-foreground/70 mt-4 leading-snug">
+                      „Bis 18" gilt im Grundfall. „Bis 25" wenn das Kind voraussichtlich in Ausbildung oder Studium ist.
+                    </p>
+                  </div>
                   <StepperCard
                     label="Renteneintritt"
                     value={inputs.retirementAge}
