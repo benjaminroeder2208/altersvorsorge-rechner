@@ -27,6 +27,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Child, berechneKinderzulage } from "@/lib/foerderung";
 
 const BASE = "https://altersvorsorge-rechner.com";
 const PATH = "/riester-vergleich-rechner";
@@ -127,7 +128,9 @@ const InputRow = ({ id, label, help, min, max, step, value, suffix, onChange, de
 const RiesterVergleichRechner = () => {
   const [alter, setAlter] = useState(35);
   const [monatlich, setMonatlich] = useState(150);
-  const [kinder, setKinder] = useState(1);
+  const [kinder, setKinder] = useState<Child[]>([
+    { birthYear: new Date().getFullYear() - 5, kindergeldBis: 18 },
+  ]);
   const [rendite, setRendite] = useState(7); // %
   const [kostenRiester, setKostenRiester] = useState(1.5); // %
   const [kostenDepot, setKostenDepot] = useState(1.0); // %
@@ -136,24 +139,44 @@ const RiesterVergleichRechner = () => {
     const jahre = Math.max(0, RENTENALTER - alter);
     const eigenJahr = monatlich * 12;
 
-    // Riester
+    const CURRENT_YEAR = new Date().getFullYear();
+    const startYear = Math.max(CURRENT_YEAR, 2027);
+
     const riesterGrundzulage = 175;
-    const kinderzulage = kinder * 300;
-    const riesterJahresbeitrag = eigenJahr + riesterGrundzulage + kinderzulage;
+    const depotGrundzulage = 540;
+
     const riesterEffRendite = (rendite - kostenRiester) / 100;
-    const riesterEnd = futureValueAnnual(riesterJahresbeitrag, riesterEffRendite, jahre);
+    const depotEffRendite = (rendite - kostenDepot) / 100;
+
+    // Riester: Jahr-für-Jahr mit zeitabhängiger Kinderzulage
+    let riesterEnd = 0;
+    let riesterTotalKinderzulage = 0;
+    for (let y = 0; y < jahre; y++) {
+      const calendarYear = startYear + y;
+      const yearKinderzulage = berechneKinderzulage(eigenJahr, kinder, calendarYear);
+      riesterTotalKinderzulage += yearKinderzulage;
+      const yearBeitrag = eigenJahr + riesterGrundzulage + yearKinderzulage;
+      riesterEnd = (riesterEnd + yearBeitrag) * (1 + riesterEffRendite);
+    }
+
+    // Altersvorsorgedepot: Jahr-für-Jahr mit zeitabhängiger Kinderzulage
+    let depotEnd = 0;
+    let depotTotalKinderzulage = 0;
+    for (let y = 0; y < jahre; y++) {
+      const calendarYear = startYear + y;
+      const yearKinderzulage = berechneKinderzulage(eigenJahr, kinder, calendarYear);
+      depotTotalKinderzulage += yearKinderzulage;
+      const yearBeitrag = eigenJahr + depotGrundzulage + yearKinderzulage;
+      depotEnd = (depotEnd + yearBeitrag) * (1 + depotEffRendite);
+    }
+
+    const avgRiesterKinderzulage = jahre > 0 ? riesterTotalKinderzulage / jahre : 0;
+    const avgDepotKinderzulage = jahre > 0 ? depotTotalKinderzulage / jahre : 0;
+
     const riesterMonatlich = riesterEnd / (AUSZAHLUNGSJAHRE * 12);
-    // 80% steuerpflichtig (vereinfacht), Grenzsteuersatz im Ruhestand
     const riesterNetto = riesterMonatlich * (1 - 0.8 * STEUER_RENTNER);
 
-    // Altersvorsorgedepot
-    const depotGrundzulage = 540;
-    const depotJahresbeitrag = eigenJahr + depotGrundzulage + kinderzulage;
-    const depotEffRendite = (rendite - kostenDepot) / 100;
-    const depotEnd = futureValueAnnual(depotJahresbeitrag, depotEffRendite, jahre);
     const depotMonatlich = depotEnd / (AUSZAHLUNGSJAHRE * 12);
-    // Nachgelagerte Besteuerung ähnlich, hier vereinfacht steuerfrei für brutto-Vergleich;
-    // Hinweistext erklärt den Vergleich.
     const depotNetto = depotMonatlich;
 
     return {
@@ -161,8 +184,8 @@ const RiesterVergleichRechner = () => {
       riester: {
         eigenJahr,
         grundzulage: riesterGrundzulage,
-        kinderzulage,
-        jahresbeitrag: riesterJahresbeitrag,
+        kinderzulage: avgRiesterKinderzulage,
+        jahresbeitrag: eigenJahr + riesterGrundzulage + avgRiesterKinderzulage,
         effRendite: riesterEffRendite * 100,
         endkapital: riesterEnd,
         monatlich: riesterMonatlich,
@@ -171,8 +194,8 @@ const RiesterVergleichRechner = () => {
       depot: {
         eigenJahr,
         grundzulage: depotGrundzulage,
-        kinderzulage,
-        jahresbeitrag: depotJahresbeitrag,
+        kinderzulage: avgDepotKinderzulage,
+        jahresbeitrag: eigenJahr + depotGrundzulage + avgDepotKinderzulage,
         effRendite: depotEffRendite * 100,
         endkapital: depotEnd,
         monatlich: depotMonatlich,
@@ -247,16 +270,105 @@ const RiesterVergleichRechner = () => {
                 suffix="€"
                 onChange={setMonatlich}
               />
-              <InputRow
-                id="kinder"
-                label="Anzahl Kinder"
-                help="Beeinflusst die Kinderzulagen (300 €/Kind/Jahr) bei beiden Systemen."
-                min={0}
-                max={5}
-                step={1}
-                value={kinder}
-                onChange={setKinder}
-              />
+              <div className="md:col-span-2 space-y-3">
+                <div className="flex items-baseline justify-between gap-3">
+                  <Label className="text-sm font-medium text-foreground">Kinder</Label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (kinder.length >= 6) return;
+                      setKinder([
+                        ...kinder,
+                        { birthYear: new Date().getFullYear() - 5, kindergeldBis: 18 },
+                      ]);
+                    }}
+                    disabled={kinder.length >= 6}
+                    className="text-sm font-medium text-primary hover:opacity-80 disabled:opacity-30 transition-opacity"
+                  >
+                    + Kind hinzufügen
+                  </button>
+                </div>
+
+                {kinder.length === 0 && (
+                  <p className="text-sm text-muted-foreground/70">Keine Kinder hinzugefügt.</p>
+                )}
+
+                <div className="space-y-2">
+                  {kinder.map((child, idx) => (
+                    <div
+                      key={idx}
+                      className="flex flex-wrap items-center gap-3 p-3 rounded-xl bg-secondary/60"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-muted-foreground">Geburtsjahr</span>
+                        <div className="flex items-center gap-1">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const next = [...kinder];
+                              next[idx] = { ...child, birthYear: Math.max(1990, child.birthYear - 1) };
+                              setKinder(next);
+                            }}
+                            disabled={child.birthYear <= 1990}
+                            className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                          >
+                            −
+                          </button>
+                          <span className="text-sm font-semibold tabular-nums min-w-[4ch] text-center">
+                            {child.birthYear}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const next = [...kinder];
+                              const CY = new Date().getFullYear();
+                              next[idx] = { ...child, birthYear: Math.min(CY, child.birthYear + 1) };
+                              setKinder(next);
+                            }}
+                            disabled={child.birthYear >= new Date().getFullYear()}
+                            className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1 ml-auto">
+                        {[18, 25].map((v) => (
+                          <button
+                            key={v}
+                            type="button"
+                            onClick={() => {
+                              const next = [...kinder];
+                              next[idx] = { ...child, kindergeldBis: v as 18 | 25 };
+                              setKinder(next);
+                            }}
+                            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                              child.kindergeldBis === v
+                                ? "bg-primary text-primary-foreground"
+                                : "bg-background text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            bis {v}
+                          </button>
+                        ))}
+                        <button
+                          type="button"
+                          aria-label="Kind entfernen"
+                          onClick={() => setKinder(kinder.filter((_, i) => i !== idx))}
+                          className="ml-1 w-7 h-7 rounded-full bg-background text-muted-foreground hover:text-foreground flex items-center justify-center"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-xs text-muted-foreground">
+                  „Bis 25" wenn Kind voraussichtlich in Ausbildung oder Studium ist. Die Kinderzulage gilt nur solange Kindergeldanspruch besteht.
+                </p>
+              </div>
               <InputRow
                 id="rendite"
                 label="Erwartete Rendite p.a."
@@ -388,7 +500,9 @@ const RiesterVergleichRechner = () => {
                     <TableCell className="text-right tabular-nums">{fmtEur(result.depot.grundzulage)}</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Kinderzulagen p.a. ({kinder} × 300 €)</TableCell>
+                    <TableCell>
+                      Kinderzulagen p.a. (Ø, {kinder.length} {kinder.length === 1 ? "Kind" : "Kinder"})
+                    </TableCell>
                     <TableCell className="text-right tabular-nums">{fmtEur(result.riester.kinderzulage)}</TableCell>
                     <TableCell className="text-right tabular-nums">{fmtEur(result.depot.kinderzulage)}</TableCell>
                   </TableRow>
@@ -435,6 +549,9 @@ const RiesterVergleichRechner = () => {
                 </TableBody>
               </Table>
             </div>
+            <p className="text-xs text-muted-foreground mt-3">
+              Die Kinderzulage wird zeitabhängig berechnet — nur für Jahre, in denen Kindergeldanspruch besteht. Der angezeigte Wert ist der Durchschnitt über die gesamte Laufzeit.
+            </p>
           </section>
 
           {/* Info Cards */}
