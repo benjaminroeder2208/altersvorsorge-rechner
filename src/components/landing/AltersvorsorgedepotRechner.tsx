@@ -697,7 +697,7 @@ const AltersvorsorgedepotRechner = () => {
                     tax_benefits: Math.round(r.totalTaxBenefit),
                     retirement_age: inputs.retirementAge,
                     return_assumption: inputs.returnRate * 100,
-                    children: inputs.children,
+                    children: inputs.children.length,
                     income_bracket: INCOME_BANDS[inputs.incomeBand].label,
                   }}
                 />
