@@ -27,6 +27,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Child, berechneKinderzulage } from "@/lib/foerderung";
 
 const BASE = "https://altersvorsorge-rechner.com";
 const PATH = "/riester-vergleich-rechner";
