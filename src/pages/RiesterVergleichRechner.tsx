@@ -270,16 +270,105 @@ const RiesterVergleichRechner = () => {
                 suffix="€"
                 onChange={setMonatlich}
               />
-              <InputRow
-                id="kinder"
-                label="Anzahl Kinder"
-                help="Beeinflusst die Kinderzulagen (300 €/Kind/Jahr) bei beiden Systemen."
-                min={0}
-                max={5}
-                step={1}
-                value={kinder}
-                onChange={setKinder}
-              />
+              <div className="md:col-span-2 space-y-3">
+                <div className="flex items-baseline justify-between gap-3">
+                  <Label className="text-sm font-medium text-foreground">Kinder</Label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (kinder.length >= 6) return;
+                      setKinder([
+                        ...kinder,
+                        { birthYear: new Date().getFullYear() - 5, kindergeldBis: 18 },
+                      ]);
+                    }}
+                    disabled={kinder.length >= 6}
+                    className="text-sm font-medium text-primary hover:opacity-80 disabled:opacity-30 transition-opacity"
+                  >
+                    + Kind hinzufügen
+                  </button>
+                </div>
+
+                {kinder.length === 0 && (
+                  <p className="text-sm text-muted-foreground/70">Keine Kinder hinzugefügt.</p>
+                )}
+
+                <div className="space-y-2">
+                  {kinder.map((child, idx) => (
+                    <div
+                      key={idx}
+                      className="flex flex-wrap items-center gap-3 p-3 rounded-xl bg-secondary/60"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-muted-foreground">Geburtsjahr</span>
+                        <div className="flex items-center gap-1">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const next = [...kinder];
+                              next[idx] = { ...child, birthYear: Math.max(1990, child.birthYear - 1) };
+                              setKinder(next);
+                            }}
+                            disabled={child.birthYear <= 1990}
+                            className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                          >
+                            −
+                          </button>
+                          <span className="text-sm font-semibold tabular-nums min-w-[4ch] text-center">
+                            {child.birthYear}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const next = [...kinder];
+                              const CY = new Date().getFullYear();
+                              next[idx] = { ...child, birthYear: Math.min(CY, child.birthYear + 1) };
+                              setKinder(next);
+                            }}
+                            disabled={child.birthYear >= new Date().getFullYear()}
+                            className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1 ml-auto">
+                        {[18, 25].map((v) => (
+                          <button
+                            key={v}
+                            type="button"
+                            onClick={() => {
+                              const next = [...kinder];
+                              next[idx] = { ...child, kindergeldBis: v as 18 | 25 };
+                              setKinder(next);
+                            }}
+                            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                              child.kindergeldBis === v
+                                ? "bg-primary text-primary-foreground"
+                                : "bg-background text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            bis {v}
+                          </button>
+                        ))}
+                        <button
+                          type="button"
+                          aria-label="Kind entfernen"
+                          onClick={() => setKinder(kinder.filter((_, i) => i !== idx))}
+                          className="ml-1 w-7 h-7 rounded-full bg-background text-muted-foreground hover:text-foreground flex items-center justify-center"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-xs text-muted-foreground">
+                  „Bis 25" wenn Kind voraussichtlich in Ausbildung oder Studium ist. Die Kinderzulage gilt nur solange Kindergeldanspruch besteht.
+                </p>
+              </div>
               <InputRow
                 id="rendite"
                 label="Erwartete Rendite p.a."
