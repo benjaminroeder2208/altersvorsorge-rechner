@@ -500,7 +500,9 @@ const RiesterVergleichRechner = () => {
                     <TableCell className="text-right tabular-nums">{fmtEur(result.depot.grundzulage)}</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Kinderzulagen p.a. ({kinder} × 300 €)</TableCell>
+                    <TableCell>
+                      Kinderzulagen p.a. (Ø, {kinder.length} {kinder.length === 1 ? "Kind" : "Kinder"})
+                    </TableCell>
                     <TableCell className="text-right tabular-nums">{fmtEur(result.riester.kinderzulage)}</TableCell>
                     <TableCell className="text-right tabular-nums">{fmtEur(result.depot.kinderzulage)}</TableCell>
                   </TableRow>
