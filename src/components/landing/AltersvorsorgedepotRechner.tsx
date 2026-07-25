@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import KiAuswertungModal from "./KiAuswertungModal";
 import NewsletterCard from "./NewsletterCard";
+import FoerderTimeline from "./FoerderTimeline";
 import { trackEvent } from "@/lib/analytics";
 
 import {
@@ -849,6 +850,17 @@ const AltersvorsorgedepotRechner = () => {
                     </InfoText>
                   </div>
                 </div>
+
+                {inputs.children.length > 0 && (
+                  <div className="mb-20">
+                    <FoerderTimeline
+                      children={inputs.children}
+                      retirementAge={inputs.retirementAge}
+                      birthYear={inputs.birthYear}
+                    />
+                  </div>
+                )}
+
 
                 {/* Comparison cards */}
                 <div className="mb-20">
