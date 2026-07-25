@@ -20,6 +20,7 @@ import {
   ZUSATZZULAGE_BASIS_MAX,
   GRUNDZULAGE_SATZ_AB_2029,
   BERUFSEINSTEIGER_BONUS,
+  Child,
 } from "@/lib/foerderung";
 
 /* ─────────────── helpers ─────────────── */
