@@ -140,7 +140,7 @@ const EmbedPage = () => {
   const { color: primaryColor, utmSource } = useEmbedParams();
   const [step, setStep] = useState(1);
   const [inputs, setInputs] = useState<Inputs>({
-    monthlyContribution: 150, incomeBand: 2, birthYear: 1990, children: 0, retirementAge: 67, returnRate: 0.07,
+    monthlyContribution: 150, incomeBand: 2, birthYear: 1990, children: [], retirementAge: 67, returnRate: 0.07,
   });
   const set = useCallback(<K extends keyof Inputs>(key: K, value: Inputs[K]) => setInputs((p) => ({ ...p, [key]: value })), []);
   const r = useMemo(() => calculate(inputs), [inputs]);
