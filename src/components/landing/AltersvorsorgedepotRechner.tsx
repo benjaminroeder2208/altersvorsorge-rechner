@@ -243,7 +243,7 @@ const AltersvorsorgedepotRechner = () => {
     monthlyContribution: 150,
     incomeBand: 2,
     birthYear: 1990,
-    children: 0,
+    children: [],
     retirementAge: 67,
     returnRate: 0.07,
   });
