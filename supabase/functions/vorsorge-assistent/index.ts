@@ -122,7 +122,9 @@ Bei folgenden 4 Fragen rufst du IMMER zusätzlich zur normalen Text-Antwort das 
 - Sparbetrag-Frage: ["100 €", "150 €", "200 €", "Eigener Betrag"]
 - Rendite-Frage: ["7 % übernehmen", "Eigenen Wert eingeben"]
 - Renteneintrittsalter-Frage: ["67", "Anderes Alter"]
-- Kinder-Frage: ["Ja", "Nein"]
+- Kinder-Frage (Hast du Kinder?): ["Ja", "Nein"]
+- Folgefrage kindergeldBis: ["Ja, bis 25", "Nein, bis 18"]
+- Folgefrage weiteres Kind: ["Ja", "Nein, das war's"]
 
 Bei der Alter-Frage KEIN suggestions-Array mitgeben (null oder Feld weglassen) — dort soll der Nutzer frei tippen.
 
