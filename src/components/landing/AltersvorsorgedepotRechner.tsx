@@ -580,7 +580,7 @@ const AltersvorsorgedepotRechner = () => {
                       monthly_payout: Math.round(r.monthlyPayout),
                       retirement_age: inputs.retirementAge,
                       birth_year: inputs.birthYear,
-                      children: inputs.children,
+                      children: inputs.children.length,
                       subsidies: Math.round(r.totalSubsidies),
                     };
                     // Anonymous tracking
