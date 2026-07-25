@@ -549,6 +549,9 @@ const RiesterVergleichRechner = () => {
                 </TableBody>
               </Table>
             </div>
+            <p className="text-xs text-muted-foreground mt-3">
+              Die Kinderzulage wird zeitabhängig berechnet — nur für Jahre, in denen Kindergeldanspruch besteht. Der angezeigte Wert ist der Durchschnitt über die gesamte Laufzeit.
+            </p>
           </section>
 
           {/* Info Cards */}
