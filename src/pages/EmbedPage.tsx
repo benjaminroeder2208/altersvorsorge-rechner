@@ -12,6 +12,7 @@ import {
   berechneGesamtfoerderung,
   MINDESTEIGENBEITRAG,
   KINDERZULAGE_PRO_KIND,
+  Child,
 } from "@/lib/foerderung";
 
 /* ─── helpers ─── */
