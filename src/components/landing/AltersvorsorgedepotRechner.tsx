@@ -37,7 +37,7 @@ export interface Inputs {
   monthlyContribution: number;
   incomeBand: number;
   birthYear: number;
-  children: number;
+  children: Child[];
   retirementAge: number;
   returnRate: number;
 }
