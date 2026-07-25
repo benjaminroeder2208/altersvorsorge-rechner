@@ -128,7 +128,9 @@ const InputRow = ({ id, label, help, min, max, step, value, suffix, onChange, de
 const RiesterVergleichRechner = () => {
   const [alter, setAlter] = useState(35);
   const [monatlich, setMonatlich] = useState(150);
-  const [kinder, setKinder] = useState(1);
+  const [kinder, setKinder] = useState<Child[]>([
+    { birthYear: new Date().getFullYear() - 5, kindergeldBis: 18 },
+  ]);
   const [rendite, setRendite] = useState(7); // %
   const [kostenRiester, setKostenRiester] = useState(1.5); // %
   const [kostenDepot, setKostenDepot] = useState(1.0); // %
