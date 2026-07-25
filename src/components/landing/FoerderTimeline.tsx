@@ -80,7 +80,7 @@ export default function FoerderTimeline({ children, retirementAge, birthYear }: 
               </span>
               <div className="relative flex-1 h-7 bg-muted/30 rounded-full overflow-visible">
                 <div
-                  className={`absolute left-0 top-0 h-full rounded-full border ${b.bar ? "" : ""} ${b.colors.bar} ${b.colors.border}`}
+                  className={`absolute left-0 top-0 h-full rounded-full border ${b.colors.bar} ${b.colors.border}`}
                   style={{ width: `${b.width}%` }}
                 />
                 <span
