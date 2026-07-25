@@ -287,7 +287,81 @@ const EmbedPage = () => {
               <h2 className="text-xl font-bold text-embed-foreground-strong mb-6">Persönliche Angaben</h2>
               <div className="space-y-3 max-w-sm mx-auto mb-8">
                 <StepperCard label="Geburtsjahr" value={inputs.birthYear} min={1955} max={CURRENT_YEAR - 18} onChange={(v) => set("birthYear", v)} primaryColor={primaryColor} />
-                <StepperCard label="Kinder" value={inputs.children} min={0} max={6} onChange={(v) => set("children", v)} primaryColor={primaryColor} />
+                <div className="bg-embed border border-embed-border rounded-xl p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-embed-foreground-muted">Kinder</span>
+                    {inputs.children.length < 6 && (
+                      <button
+                        type="button"
+                        onClick={() => set("children", [...inputs.children, { birthYear: CURRENT_YEAR - 5, kindergeldBis: 18 as const }])}
+                        className="text-xs font-medium hover:opacity-80"
+                        style={{ color: primaryColor }}
+                      >
+                        + Kind hinzufügen
+                      </button>
+                    )}
+                  </div>
+                  {inputs.children.length === 0 ? (
+                    <p className="text-xs text-embed-foreground-muted text-left">Keine Kinder</p>
+                  ) : (
+                    <div className="space-y-2">
+                      {inputs.children.map((child, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-sm">
+                          <div className="flex items-center gap-1">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const next = [...inputs.children];
+                                next[idx] = { ...child, birthYear: Math.max(1990, child.birthYear - 1) };
+                                set("children", next);
+                              }}
+                              className="w-6 h-6 rounded bg-embed-surface text-embed-foreground hover:bg-embed-border"
+                            >−</button>
+                            <span className="tabular-nums text-embed-foreground-strong min-w-[3.5ch] text-center">{child.birthYear}</span>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const next = [...inputs.children];
+                                next[idx] = { ...child, birthYear: Math.min(CURRENT_YEAR, child.birthYear + 1) };
+                                set("children", next);
+                              }}
+                              className="w-6 h-6 rounded bg-embed-surface text-embed-foreground hover:bg-embed-border"
+                            >+</button>
+                          </div>
+                          <div className="flex gap-1 ml-auto">
+                            {[18, 25].map((bis) => {
+                              const active = child.kindergeldBis === bis;
+                              return (
+                                <button
+                                  key={bis}
+                                  type="button"
+                                  onClick={() => {
+                                    const next = [...inputs.children];
+                                    next[idx] = { ...child, kindergeldBis: bis as 18 | 25 };
+                                    set("children", next);
+                                  }}
+                                  className={`px-2 py-1 rounded text-xs border ${active ? "border-transparent" : "border-embed-border text-embed-foreground-muted"}`}
+                                  style={active ? { background: primaryColor, color: "#fff" } : {}}
+                                >
+                                  bis {bis}
+                                </button>
+                              );
+                            })}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => set("children", inputs.children.filter((_, i) => i !== idx))}
+                            className="text-embed-foreground-muted hover:text-embed-foreground text-lg leading-none px-1"
+                            aria-label="Kind entfernen"
+                          >×</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <p className="text-[10px] text-embed-foreground-muted mt-2 italic text-left">
+                    'Bis 25' wenn Kind voraussichtlich in Ausbildung oder Studium.
+                  </p>
+                </div>
                 <StepperCard label="Renteneintritt" value={inputs.retirementAge} min={65} max={70} onChange={(v) => set("retirementAge", v)} primaryColor={primaryColor} />
               </div>
               <button onClick={() => {
