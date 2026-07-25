@@ -81,7 +81,7 @@ export function calculate(inputs: Inputs) {
   const berufseinsteiger = currentAge < 25;
 
   // Derived values for display
-  const grundzulage = berechneGesamtfoerderung(annualOwn, 0, 2027);
+  const grundzulage = berechneGesamtfoerderung(annualOwn, [], 2027);
   const totalKinderzulage = berechneGesamtfoerderung(annualOwn, children, 2027) - grundzulage;
 
   // Growth simulation
