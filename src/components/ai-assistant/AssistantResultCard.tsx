@@ -3,6 +3,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianG
 import {
   berechneGrundzulage,
   berechneKinderzulage,
+  type Child,
 } from "@/lib/foerderung";
 import NewsletterCard from "@/components/landing/NewsletterCard";
 import type { Inputs } from "@/components/landing/AltersvorsorgedepotRechner";
@@ -14,7 +15,7 @@ export interface CalculationTrigger {
   sparbetrag_monatlich: number;
   rendite_prozent: number;
   renteneintrittsalter: number;
-  kinder_anzahl: number;
+  kinder: { birthYear: number; kindergeldBis: 18 | 25 }[];
 }
 
 interface Props {
