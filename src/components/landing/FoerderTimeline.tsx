@@ -27,10 +27,11 @@ export default function FoerderTimeline({ children, retirementAge, birthYear }: 
   const kinderBars = children
     .map((child, i) => {
       const rawEnd = child.birthYear + child.kindergeldBis;
-      if (rawEnd <= startYear) return null;
+      if (rawEnd < startYear) return null;
       const clampedEnd = Math.min(rawEnd, endYear);
-      const width = clamp(((clampedEnd - startYear) / totalYears) * 100, 0, 100);
-      const endLabel = rawEnd > endYear ? "bis Rente" : String(clampedEnd);
+      const rawDuration = clampedEnd - startYear;
+      const width = clamp((rawDuration / totalYears) * 100, 3, 100);
+      const endLabel = rawDuration < 1 ? "< 1 Jahr" : rawEnd > endYear ? "bis Rente" : String(clampedEnd);
       const colors = CHILD_COLORS[i % 3];
       return {
         key: `child-${i}`,
