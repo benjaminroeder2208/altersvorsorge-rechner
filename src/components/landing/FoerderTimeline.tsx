@@ -1,12 +1,20 @@
-import type { Child } from "@/lib/foerderung";
+import {
+  Child,
+  berechneKinderzulage,
+  berechneGrundzulage,
+} from "@/lib/foerderung";
 
 interface FoerderTimelineProps {
   children: Child[];
   retirementAge: number;
   birthYear: number;
+  monthlyContribution?: number;
 }
 
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
+
+const fmt = (v: number) =>
+  v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
 const CHILD_COLORS = [
   { bar: "bg-emerald-500/20", border: "border-emerald-500/50", text: "text-emerald-700" },
@@ -14,13 +22,43 @@ const CHILD_COLORS = [
   { bar: "bg-violet-500/20", border: "border-violet-500/50", text: "text-violet-700" },
 ];
 
-export default function FoerderTimeline({ children, retirementAge, birthYear }: FoerderTimelineProps) {
+function berechneKindBetraege(
+  child: Child,
+  eigenanteilJaehrlich: number,
+  startYear: number,
+  endYear: number,
+): { jaehrlich: number; gesamt: number; berechtigteJahre: number } {
+  const foerderEnde = Math.min(child.birthYear + child.kindergeldBis, endYear);
+  let gesamt = 0;
+  let berechtigteJahre = 0;
+  for (let year = startYear; year <= foerderEnde; year++) {
+    const yearZulage = berechneKinderzulage(eigenanteilJaehrlich, [child], year);
+    if (yearZulage > 0) {
+      gesamt += yearZulage;
+      berechtigteJahre++;
+    }
+  }
+  const jaehrlich = berechtigteJahre > 0 ? gesamt / berechtigteJahre : 0;
+  return { jaehrlich, gesamt, berechtigteJahre };
+}
+
+export default function FoerderTimeline({
+  children,
+  retirementAge,
+  birthYear,
+  monthlyContribution,
+}: FoerderTimelineProps) {
   const currentYear = new Date().getFullYear();
   const startYear = Math.max(currentYear, 2027);
   const endYear = birthYear + retirementAge;
   const totalYears = endYear - startYear;
 
   if (totalYears <= 0) return null;
+
+  const eigenanteilJaehrlich = (monthlyContribution ?? 150) * 12;
+
+  const grundzulageJaehrlich = berechneGrundzulage(eigenanteilJaehrlich);
+  const grundzulageGesamt = grundzulageJaehrlich * totalYears;
 
   const grundzulageWidth = 100;
 
@@ -33,15 +71,20 @@ export default function FoerderTimeline({ children, retirementAge, birthYear }: 
       const width = clamp((rawDuration / totalYears) * 100, 3, 100);
       const endLabel = rawDuration < 1 ? "< 1 Jahr" : rawEnd > endYear ? "bis Rente" : String(clampedEnd);
       const colors = CHILD_COLORS[i % 3];
+      const betraege = berechneKindBetraege(child, eigenanteilJaehrlich, startYear, endYear);
       return {
         key: `child-${i}`,
         label: `Kind ${i + 1} · Jg. ${child.birthYear} · bis ${child.kindergeldBis}`,
         width,
         endLabel,
         colors,
+        betraege,
       };
     })
     .filter((b): b is NonNullable<typeof b> => b !== null);
+
+  const kinderGesamt = kinderBars.reduce((sum, b) => sum + b.betraege.gesamt, 0);
+  const zulagenGesamt = grundzulageGesamt + kinderGesamt;
 
   const midYear1 = Math.round(startYear + totalYears / 3);
   const midYear2 = Math.round(startYear + (2 * totalYears) / 3);
@@ -59,6 +102,9 @@ export default function FoerderTimeline({ children, retirementAge, birthYear }: 
           <span className="w-32 sm:w-48 shrink-0 text-[10px] sm:text-xs text-primary">
             <span className="font-semibold block">Grundzulage</span>
             <span className="text-muted-foreground">bis zu 540 €/Jahr</span>
+            <span className="block text-muted-foreground mt-0.5">
+              Ø {fmt(grundzulageJaehrlich)} €/Jahr · {fmt(grundzulageGesamt)} € gesamt
+            </span>
           </span>
           <div className="relative flex-1 h-7 bg-muted/30 rounded-full overflow-visible">
             <div
@@ -77,7 +123,10 @@ export default function FoerderTimeline({ children, retirementAge, birthYear }: 
           return (
             <div key={b.key} className="flex items-center gap-3">
               <span className={`w-32 sm:w-48 shrink-0 text-[10px] sm:text-xs ${b.colors.text}`}>
-                {b.label}
+                <span className="block">{b.label}</span>
+                <span className="block text-muted-foreground mt-0.5">
+                  Ø {fmt(b.betraege.jaehrlich)} €/Jahr · {fmt(b.betraege.gesamt)} € gesamt
+                </span>
               </span>
               <div className="relative flex-1 h-7 bg-muted/30 rounded-full overflow-visible">
                 <div
@@ -97,6 +146,15 @@ export default function FoerderTimeline({ children, retirementAge, birthYear }: 
           );
         })}
       </div>
+
+      {/* Summenzeile */}
+      <div className="border-t border-border pt-3 mt-3 text-sm font-medium text-foreground text-right">
+        Staatliche Zulagen gesamt: {fmt(zulagenGesamt)} €
+      </div>
+      <p className="text-[10px] sm:text-xs text-muted-foreground text-right mt-1">
+        Kann geringfügig von der Gesamtanzeige oben abweichen, da dort Rendite und
+        Förderstufen jahresgenau berechnet werden.
+      </p>
 
       {/* Zeitachse */}
       <div className="mt-6 ml-32 sm:ml-48 pl-3">
