@@ -7,6 +7,11 @@
  * Bei Gesetzesänderungen NUR HIER anpassen.
  */
 
+export interface Child {
+  birthYear: number; // Geburtsjahr des Kindes
+  kindergeldBis: 18 | 25; // 18 = Grundfall, 25 = Ausbildung/Studium
+}
+
 // ── Grundzulage ──────────────────────────────
 // § 84 neue Fassung (Beschlussempfehlung)
 // Tranche 1: 50% auf Eigenbeiträge bis 360€/Jahr
