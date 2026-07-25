@@ -58,7 +58,9 @@ interface ChartDataPoint {
 function calculate(inputs: Inputs) {
   const { monthlyContribution, incomeBand, birthYear, children, retirementAge, returnRate } = inputs;
   const currentAge = CURRENT_YEAR - birthYear;
-  const yearsToRetirement = Math.max(retirementAge - currentAge, 0);
+  const startYear = Math.max(CURRENT_YEAR + 1, 2027);
+  const ageAtStart = startYear - birthYear;
+  const yearsToRetirement = Math.max(retirementAge - ageAtStart, 0);
   const annualOwn = monthlyContribution * 12;
 
   const berufseinsteiger = currentAge < 25;
@@ -71,8 +73,8 @@ function calculate(inputs: Inputs) {
   let totalSubsidies = 0;
 
   for (let y = 0; y < yearsToRetirement; y++) {
-    const age = currentAge + y + 1;
-    const calendarYear = 2027 + y;
+    const age = ageAtStart + y + 1;
+    const calendarYear = startYear + y;
     const yearSubsidy = berechneGesamtfoerderung(annualOwn, children, calendarYear) + (y === 0 && berufseinsteiger ? 200 : 0);
     totalContributions += annualOwn;
     totalSubsidies += yearSubsidy;
