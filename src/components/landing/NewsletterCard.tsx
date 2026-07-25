@@ -58,7 +58,7 @@ const NewsletterCard = ({
         email,
         monthly_contribution: inputs.monthlyContribution,
         birth_year: inputs.birthYear,
-        children: inputs.children,
+        children: inputs.children.length,
         retirement_age: inputs.retirementAge,
         return_assumption: inputs.returnRate * 100,
         calculated_capital: Math.round(result.capitalWithFunding),
