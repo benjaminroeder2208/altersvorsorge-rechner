@@ -851,6 +851,17 @@ const AltersvorsorgedepotRechner = () => {
                   </div>
                 </div>
 
+                {inputs.children.length > 0 && (
+                  <div className="mb-20">
+                    <FoerderTimeline
+                      children={inputs.children}
+                      retirementAge={inputs.retirementAge}
+                      birthYear={inputs.birthYear}
+                    />
+                  </div>
+                )}
+
+
                 {/* Comparison cards */}
                 <div className="mb-20">
                   <h3 className="text-xl font-bold mb-8">Vergleich</h3>
