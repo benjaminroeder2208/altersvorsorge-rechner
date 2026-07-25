@@ -379,7 +379,7 @@ const EmbedPage = () => {
                     own_contributions: Math.round(r.totalContributions),
                     retirement_age: inputs.retirementAge,
                     return_assumption: inputs.returnRate * 100,
-                    children: inputs.children,
+                    children: inputs.children.length,
                     income_bracket: INCOME_BANDS[inputs.incomeBand].key,
                   }).then(({ error }) => { if (error) console.warn("Tracking insert failed:", error.message); });
                 }}
