@@ -139,24 +139,44 @@ const RiesterVergleichRechner = () => {
     const jahre = Math.max(0, RENTENALTER - alter);
     const eigenJahr = monatlich * 12;
 
-    // Riester
+    const CURRENT_YEAR = new Date().getFullYear();
+    const startYear = Math.max(CURRENT_YEAR, 2027);
+
     const riesterGrundzulage = 175;
-    const kinderzulage = kinder * 300;
-    const riesterJahresbeitrag = eigenJahr + riesterGrundzulage + kinderzulage;
+    const depotGrundzulage = 540;
+
     const riesterEffRendite = (rendite - kostenRiester) / 100;
-    const riesterEnd = futureValueAnnual(riesterJahresbeitrag, riesterEffRendite, jahre);
+    const depotEffRendite = (rendite - kostenDepot) / 100;
+
+    // Riester: Jahr-für-Jahr mit zeitabhängiger Kinderzulage
+    let riesterEnd = 0;
+    let riesterTotalKinderzulage = 0;
+    for (let y = 0; y < jahre; y++) {
+      const calendarYear = startYear + y;
+      const yearKinderzulage = berechneKinderzulage(eigenJahr, kinder, calendarYear);
+      riesterTotalKinderzulage += yearKinderzulage;
+      const yearBeitrag = eigenJahr + riesterGrundzulage + yearKinderzulage;
+      riesterEnd = (riesterEnd + yearBeitrag) * (1 + riesterEffRendite);
+    }
+
+    // Altersvorsorgedepot: Jahr-für-Jahr mit zeitabhängiger Kinderzulage
+    let depotEnd = 0;
+    let depotTotalKinderzulage = 0;
+    for (let y = 0; y < jahre; y++) {
+      const calendarYear = startYear + y;
+      const yearKinderzulage = berechneKinderzulage(eigenJahr, kinder, calendarYear);
+      depotTotalKinderzulage += yearKinderzulage;
+      const yearBeitrag = eigenJahr + depotGrundzulage + yearKinderzulage;
+      depotEnd = (depotEnd + yearBeitrag) * (1 + depotEffRendite);
+    }
+
+    const avgRiesterKinderzulage = jahre > 0 ? riesterTotalKinderzulage / jahre : 0;
+    const avgDepotKinderzulage = jahre > 0 ? depotTotalKinderzulage / jahre : 0;
+
     const riesterMonatlich = riesterEnd / (AUSZAHLUNGSJAHRE * 12);
-    // 80% steuerpflichtig (vereinfacht), Grenzsteuersatz im Ruhestand
     const riesterNetto = riesterMonatlich * (1 - 0.8 * STEUER_RENTNER);
 
-    // Altersvorsorgedepot
-    const depotGrundzulage = 540;
-    const depotJahresbeitrag = eigenJahr + depotGrundzulage + kinderzulage;
-    const depotEffRendite = (rendite - kostenDepot) / 100;
-    const depotEnd = futureValueAnnual(depotJahresbeitrag, depotEffRendite, jahre);
     const depotMonatlich = depotEnd / (AUSZAHLUNGSJAHRE * 12);
-    // Nachgelagerte Besteuerung ähnlich, hier vereinfacht steuerfrei für brutto-Vergleich;
-    // Hinweistext erklärt den Vergleich.
     const depotNetto = depotMonatlich;
 
     return {
@@ -164,8 +184,8 @@ const RiesterVergleichRechner = () => {
       riester: {
         eigenJahr,
         grundzulage: riesterGrundzulage,
-        kinderzulage,
-        jahresbeitrag: riesterJahresbeitrag,
+        kinderzulage: avgRiesterKinderzulage,
+        jahresbeitrag: eigenJahr + riesterGrundzulage + avgRiesterKinderzulage,
         effRendite: riesterEffRendite * 100,
         endkapital: riesterEnd,
         monatlich: riesterMonatlich,
@@ -174,8 +194,8 @@ const RiesterVergleichRechner = () => {
       depot: {
         eigenJahr,
         grundzulage: depotGrundzulage,
-        kinderzulage,
-        jahresbeitrag: depotJahresbeitrag,
+        kinderzulage: avgDepotKinderzulage,
+        jahresbeitrag: eigenJahr + depotGrundzulage + avgDepotKinderzulage,
         effRendite: depotEffRendite * 100,
         endkapital: depotEnd,
         monatlich: depotMonatlich,
