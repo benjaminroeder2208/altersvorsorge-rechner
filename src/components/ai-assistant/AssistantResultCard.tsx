@@ -3,6 +3,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianG
 import {
   berechneGrundzulage,
   berechneKinderzulage,
+  type Child,
 } from "@/lib/foerderung";
 import NewsletterCard from "@/components/landing/NewsletterCard";
 import type { Inputs } from "@/components/landing/AltersvorsorgedepotRechner";
@@ -14,7 +15,7 @@ export interface CalculationTrigger {
   sparbetrag_monatlich: number;
   rendite_prozent: number;
   renteneintrittsalter: number;
-  kinder_anzahl: number;
+  kinder: { birthYear: number; kindergeldBis: 18 | 25 }[];
 }
 
 interface Props {
@@ -51,15 +52,25 @@ export default function AssistantResultCard({ trigger }: Props) {
     sparbetrag_monatlich,
     rendite_prozent,
     renteneintrittsalter,
-    kinder_anzahl,
+    kinder,
     vorname,
   } = trigger;
+
+  const kinderList: Child[] = useMemo(
+    () =>
+      (kinder ?? []).map((k) => ({
+        birthYear: k.birthYear,
+        kindergeldBis: k.kindergeldBis,
+      })),
+    [kinder],
+  );
+  const kinder_anzahl = kinderList.length;
 
   const jahre = Math.max(renteneintrittsalter - alter, 1);
   const eigenanteilJaehrlich = sparbetrag_monatlich * 12;
 
   const grundzulage = berechneGrundzulage(eigenanteilJaehrlich);
-  const kinderzulage = berechneKinderzulage(eigenanteilJaehrlich, kinder_anzahl);
+  const kinderzulage = berechneKinderzulage(eigenanteilJaehrlich, kinderList, CURRENT_YEAR);
 
   const ohne = useMemo(
     () => projektion(sparbetrag_monatlich, jahre, rendite_prozent, 0),
@@ -89,11 +100,11 @@ export default function AssistantResultCard({ trigger }: Props) {
       monthlyContribution: sparbetrag_monatlich,
       incomeBand: 2,
       birthYear: CURRENT_YEAR - alter,
-      children: kinder_anzahl,
+      children: kinderList,
       retirementAge: renteneintrittsalter,
       returnRate: rendite_prozent / 100,
     }),
-    [sparbetrag_monatlich, alter, kinder_anzahl, renteneintrittsalter, rendite_prozent],
+    [sparbetrag_monatlich, alter, kinderList, renteneintrittsalter, rendite_prozent],
   );
   const newsletterResult = useMemo(() => calculate(newsletterInputs), [newsletterInputs]);
 

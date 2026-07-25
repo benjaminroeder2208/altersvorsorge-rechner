@@ -31,11 +31,15 @@ interface ChatItem {
 const CURRENT_YEAR = new Date().getFullYear();
 
 function buildCalculationSummary(trigger: CalculationTrigger) {
+  const kinderList = (trigger.kinder ?? []).map((k) => ({
+    birthYear: k.birthYear,
+    kindergeldBis: k.kindergeldBis,
+  }));
   const inputs: Inputs = {
     monthlyContribution: trigger.sparbetrag_monatlich,
     incomeBand: 2,
     birthYear: CURRENT_YEAR - trigger.alter,
-    children: trigger.kinder_anzahl,
+    children: kinderList,
     retirementAge: trigger.renteneintrittsalter,
     returnRate: trigger.rendite_prozent / 100,
   };
@@ -45,7 +49,7 @@ function buildCalculationSummary(trigger: CalculationTrigger) {
     sparbetrag_monatlich: trigger.sparbetrag_monatlich,
     rendite_prozent: trigger.rendite_prozent,
     renteneintrittsalter: trigger.renteneintrittsalter,
-    kinder_anzahl: trigger.kinder_anzahl,
+    kinder_anzahl: kinderList.length,
     jahre_bis_rente: result.yearsToRetirement,
     endkapital_mit_foerderung: Math.round(result.capitalWithFunding),
     endkapital_ohne_foerderung: Math.round(result.capitalWithout),

@@ -57,7 +57,17 @@ Schritt 3 — Erwartete Rendite: Frage nach der erwarteten jährlichen Rendite. 
 
 Schritt 4 — Renteneintrittsalter: Frage, mit wie viel Jahren der Nutzer in Rente gehen möchte. Vorschlag/Default: 67.
 
-Schritt 5 — Kinder: Frage, ob der Nutzer Kinder hat (ja/nein, bei "ja" optional: wie viele). Begründung kurz mitliefern: das ist relevant für die Kinderzulage beim Altersvorsorgedepot.
+Schritt 5 — Kinder: Frage zuerst: "Hast du Kinder?" (Chips: "Ja" / "Nein").
+
+Bei "Nein": kinder = [] übergeben, direkt trigger_calculation aufrufen.
+
+Bei "Ja": Für jedes Kind nacheinander zwei Angaben erfragen (eine Frage pro Nachricht, nicht alles auf einmal):
+a) "In welchem Jahr wurde dein Kind geboren?" — Nutzer tippt die Jahreszahl (Plausibilitätsbereich: 1990 bis aktuelles Jahr).
+b) "Wird oder war dein Kind voraussichtlich in Ausbildung oder Studium?" (Chips: "Ja, bis 25" / "Nein, bis 18"). Kurze Erklärung mitgeben: "Das ist relevant für die Dauer der Kinderzulage — sie gilt nur solange Kindergeldanspruch besteht."
+
+Nach jedem Kind fragen: "Hast du noch ein weiteres Kind?" (Chips: "Ja" / "Nein, das war's"). Maximal 6 Kinder erfassen.
+
+Wenn alle Kinder erfasst: trigger_calculation mit kinder-Array aufrufen (jedes Element: { birthYear: number, kindergeldBis: 18 | 25 }).
 
 Nach Schritt 5 — Berechnung triggern: Wenn alle 5 Antworten vorliegen, gib KEINE eigene Berechnung im Fließtext aus. Stattdessen rufst du die Funktion trigger_calculation mit den gesammelten Parametern auf. Das Frontend rendert daraufhin die volle Ergebniskomponente (Grafik, Szenarien, Kernzahl) direkt im Chat-Verlauf.
 
@@ -112,7 +122,9 @@ Bei folgenden 4 Fragen rufst du IMMER zusätzlich zur normalen Text-Antwort das 
 - Sparbetrag-Frage: ["100 €", "150 €", "200 €", "Eigener Betrag"]
 - Rendite-Frage: ["7 % übernehmen", "Eigenen Wert eingeben"]
 - Renteneintrittsalter-Frage: ["67", "Anderes Alter"]
-- Kinder-Frage: ["Ja", "Nein"]
+- Kinder-Frage (Hast du Kinder?): ["Ja", "Nein"]
+- Folgefrage kindergeldBis: ["Ja, bis 25", "Nein, bis 18"]
+- Folgefrage weiteres Kind: ["Ja", "Nein, das war's"]
 
 Bei der Alter-Frage KEIN suggestions-Array mitgeben (null oder Feld weglassen) — dort soll der Nutzer frei tippen.
 
@@ -168,9 +180,22 @@ const TRIGGER_TOOL = {
         type: "number",
         description: "Gewünschtes Renteneintrittsalter",
       },
-      kinder_anzahl: {
-        type: "number",
-        description: "Anzahl Kinder, 0 falls keine",
+      kinder: {
+        type: "array",
+        description:
+          "Liste der Kinder mit Geburtsjahr und Kindergeld-Berechtigung. Leeres Array falls keine Kinder.",
+        items: {
+          type: "object",
+          properties: {
+            birthYear: { type: "number", description: "Geburtsjahr des Kindes" },
+            kindergeldBis: {
+              type: "number",
+              enum: [18, 25],
+              description: "18 = Grundfall, 25 = Ausbildung/Studium",
+            },
+          },
+          required: ["birthYear", "kindergeldBis"],
+        },
       },
     },
     required: [
@@ -178,7 +203,7 @@ const TRIGGER_TOOL = {
       "sparbetrag_monatlich",
       "rendite_prozent",
       "renteneintrittsalter",
-      "kinder_anzahl",
+      "kinder",
     ],
   },
 };
