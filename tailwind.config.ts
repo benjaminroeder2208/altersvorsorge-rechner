@@ -104,6 +104,10 @@ export default {
         },
         "coral-soft": "hsl(var(--coral-soft))",
         "teal-soft": "hsl(var(--teal-soft))",
+        ghost: "hsl(var(--ghost))",
+        "trust-ghost": "hsl(var(--trust-ghost))",
+        "trust-muted": "hsl(var(--trust-muted))",
+        "trust-line": "hsl(var(--trust-line))",
       },
       boxShadow: {
         header: "var(--header-shadow)",
