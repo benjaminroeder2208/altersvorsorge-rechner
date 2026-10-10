@@ -11,6 +11,7 @@ import { ArrowRight } from "lucide-react";
 import { HeroPersonaProvider } from "@/components/landing/heroPersonas";
 import TrustSection from "@/components/landing/TrustSection";
 import EditorialSections from "@/components/landing/EditorialSections";
+import ChapterHeading from "@/components/landing/ChapterHeading";
 
 const homepageJsonLd = [
   {
@@ -136,13 +137,15 @@ const RechnerPage = () => (
       {/* SEO: Altersvorsorgedepot — Riester vs. Depot Vergleich */}
       <section id="riester-vs-depot" className="section-padding">
         <div className="container max-w-4xl mx-auto px-6">
-          <AnimatedSection className="mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold ">
-              Altersvorsorgedepot vs. Riester — der direkte Vergleich
-            </h2>
-            <p className="text-muted-foreground mt-2">
-              Was das neue Altersvorsorgedepot ab 2027 anders macht — und für wen sich der Wechsel lohnen kann.
-            </p>
+          <AnimatedSection>
+            <ChapterHeading number="04" label="Der direkte Vergleich">
+              <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">
+                Altersvorsorgedepot vs. Riester.
+              </h2>
+              <p className="mt-4 max-w-xl text-muted-foreground md:text-lg">
+                Was das neue Altersvorsorgedepot ab 2027 anders macht — und für wen sich der Wechsel lohnen kann.
+              </p>
+            </ChapterHeading>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
