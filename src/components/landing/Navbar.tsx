@@ -77,7 +77,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-            <Button asChild variant="ghost" size="icon" className="h-9 w-9 rounded-lg text-muted-foreground" title="Suche öffnen">
+            <Button asChild variant="ghost" size="icon" className="h-9 w-9 rounded-lg text-muted-foreground max-[360px]:hidden" title="Suche öffnen">
               <Link to={searchLink} aria-label="Suche öffnen"><Search /></Link>
             </Button>
             {showCta && (
@@ -99,6 +99,9 @@ const Navbar = () => {
 
         {mobileOpen && (
           <div id="site-mobile-navigation" className="grid max-h-[70dvh] grid-cols-1 gap-1 overflow-y-auto border-t border-border px-3 py-3 sm:grid-cols-2 xl:hidden">
+            <Button asChild variant="ghost" className="hidden justify-start max-[360px]:flex">
+              <Link to={searchLink}><Search />Suche öffnen</Link>
+            </Button>
             {navLinks.map((link, index) => (
               <Link key={link.to} to={link.to} aria-current={location.pathname === link.to ? "page" : undefined}
                 className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors ${location.pathname === link.to ? "bg-primary-soft text-primary-soft-foreground font-semibold" : "text-foreground hover:bg-muted"}`}>
