@@ -1,7 +1,7 @@
 # Design refresh
 
-- [ ] Refine remaining landing sections: editorial grid, guides and topic compass in the approved design; leave the calculator unchanged.
-- [ ] Verify remaining sections and topic links on desktop and narrow layouts.
+- [x] Refine remaining landing sections: editorial grid, guides and topic compass in the approved design; leave the calculator unchanged.
+- [x] Verify remaining sections and topic links on desktop and 375/320 layouts; 51 tests pass and no browser errors.
 
 - [x] Step 1: Visual foundation and floating header; retain calculator logic, page content, routes, and neutral secondary surfaces. Verified local fonts, mobile menu navigation, calculator anchor, and 43 regression tests.
 - [x] Step 2: Interactive persona hero, capital curve and header status; use actual full-calculator projections rather than the reference's unverified 280,813 EUR.

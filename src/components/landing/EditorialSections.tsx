@@ -20,7 +20,7 @@ export default function EditorialSections() {
         <AnimatedSection>
           <ChapterHeading number="04" label="Wissen, das weiterbringt">
             <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-              <h2 id="editorial-title" className="max-w-xl text-3xl font-semibold leading-tight md:text-5xl">Mehr zum<br className="hidden sm:block" /> Altersvorsorgedepot</h2>
+              <h2 id="editorial-title" className="max-w-xl break-words text-2xl font-semibold leading-tight sm:text-3xl md:text-5xl">Mehr zum<br className="hidden sm:block" /> Altersvorsorgedepot</h2>
               <p className="max-w-sm text-base leading-relaxed text-muted-foreground lg:pb-1">Vertiefe dein Wissen rund um das beschlossene Altersvorsorgedepot.</p>
             </div>
           </ChapterHeading>
@@ -53,7 +53,7 @@ export default function EditorialSections() {
         <div className="grid gap-x-12 lg:grid-cols-[1.2fr_1fr]">
           <Link to="/blog/altersvorsorgedepot-2027" className="group relative flex flex-col border-y border-border py-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:py-10">
             <p className="mb-5 flex items-center gap-2 text-xs font-medium uppercase text-primary"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Im Fokus · Reform 2027</p>
-            <h3 className="max-w-md text-3xl font-semibold leading-tight transition-colors group-hover:text-primary md:text-4xl">Altersvorsorgedepot<br className="hidden sm:block" /> 2027 erklärt</h3>
+            <h3 className="max-w-md break-words text-2xl font-semibold leading-tight transition-colors group-hover:text-primary sm:text-3xl md:text-4xl">Altersvorsorgedepot<br className="hidden sm:block" /> 2027 erklärt</h3>
             <p className="mb-8 mt-5 max-w-sm text-base leading-relaxed text-muted-foreground">Alles zum neuen Altersvorsorgedepot: Förderung, Funktionsweise, Start 2027.</p>
             <span className="mt-auto flex items-center gap-3 text-sm font-medium text-primary">Artikel lesen <ArrowUpRight aria-hidden="true" className="h-5 w-5 transition-transform motion-safe:group-hover:translate-x-1" /></span>
           </Link>
