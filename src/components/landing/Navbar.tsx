@@ -3,6 +3,7 @@ import { motion, useScroll, useReducedMotion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Search, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { formatHeroEuro, getHeroExample, HERO_PERSONAS, useHeroPersona } from "./heroPersonas";
 
 const navLinks = [
   { to: "/", label: "Rechner" },
@@ -28,6 +29,8 @@ const Navbar = () => {
   const [showCta, setShowCta] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const hero = useHeroPersona();
+  const persona = HERO_PERSONAS[hero.index];
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
 
@@ -77,6 +80,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+            {location.pathname === "/" && hero.visible && <span className="hidden items-center gap-2 rounded-full border border-border bg-teal-soft px-3 py-1.5 text-[10px] font-medium text-trust lg:flex xl:hidden 2xl:flex"><span className="h-1 w-1 rounded-full bg-trust" />{persona.name} · {formatHeroEuro(getHeroExample(persona.age).capitalWithFunding)} €</span>}
             <Button asChild variant="ghost" size="icon" className="h-9 w-9 rounded-lg text-muted-foreground max-[360px]:hidden" title="Suche öffnen">
               <Link to={searchLink} aria-label="Suche öffnen"><Search /></Link>
             </Button>
