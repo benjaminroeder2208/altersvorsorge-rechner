@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useReducedMotion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Search } from "lucide-react";
-import { BRAND } from "@/lib/brandColors";
+import { Menu, X, Search, ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { to: "/", label: "Rechner" },
@@ -14,17 +14,13 @@ const navLinks = [
 ];
 
 const LogoIcon = () => (
-  <svg width="26" height="24" viewBox="0 0 26 24" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
-    <path d="M2,22 C5,17 9,12 15,7 L15,22 Z" fill={BRAND.primary} fillOpacity="0.08" />
-    <path d="M2,22 C5,17 9,12 15,7" fill="none" stroke={BRAND.primary} strokeWidth="1.8" strokeLinecap="round" />
-    <path d="M15,7 C18,4 20,3 23,1" fill="none" stroke={BRAND.amber} strokeWidth="1.6" strokeLinecap="round" strokeDasharray="2,1.8" />
-    <circle cx="2" cy="22" r="1.4" fill={BRAND.primary} fillOpacity="0.3" />
-    <circle cx="9" cy="14" r="1.7" fill={BRAND.primary} fillOpacity="0.65" />
-    <circle cx="15" cy="7" r="2.2" fill={BRAND.primary} />
-    <circle cx="23" cy="1" r="3.5" fill={BRAND.amber} fillOpacity="0.2" />
-    <circle cx="23" cy="1" r="2.2" fill={BRAND.amber} />
-    <line x1="2" y1="22" x2="26" y2="22" stroke={BRAND.primary} strokeWidth="1" strokeLinecap="round" strokeOpacity="0.2" />
-  </svg>
+  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-trust">
+    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <path d="M6 29H30" className="stroke-trust-foreground" strokeOpacity="0.3" strokeWidth="1" />
+      <path d="M7 26C17 26 22 22 28 8" className="stroke-primary" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="28" cy="8" r="2.5" className="fill-primary" />
+    </svg>
+  </span>
 );
 
 const Navbar = () => {
@@ -32,138 +28,93 @@ const Navbar = () => {
   const [showCta, setShowCta] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const reducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handler = () => {
       setScrolled(window.scrollY > 20);
       setShowCta(window.scrollY > 300);
     };
+    handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  useEffect(() => setMobileOpen(false), [location.pathname]);
+  useEffect(() => setMobileOpen(false), [location.pathname, location.hash]);
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [mobileOpen]);
 
-  const isActive = (to: string) => {
-    if (to === "/") return location.pathname === "/";
-    return location.pathname === to;
-  };
+  const calculatorLink = location.pathname === "/" ? "#rechner" : "/#rechner";
+  const searchLink = `/suche${location.pathname === "/suche" ? location.search : ""}`;
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-xl ${
-        scrolled ? "shadow-sm border-b border-border/50" : ""
-      }`}
-    >
-      <div className="container max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-3">
-        {/* Logo */}
-        <Link
-          to="/"
-          className="shrink-0 flex items-center gap-2"
-          aria-label="altersvorsorge-rechner.com"
-        >
-          <LogoIcon />
-          <div className="flex flex-col leading-none">
-            <span
-              className="text-[13px] font-medium text-foreground"
-              style={{ letterSpacing: "-0.3px" }}
-            >
-              altersvorsorge
+    <nav aria-label="Hauptnavigation" className="sticky top-0 z-50 w-full px-3 py-3 sm:px-6">
+      <div className={`relative mx-auto max-w-7xl rounded-2xl border border-border/70 backdrop-blur-xl transition-colors duration-300 ${scrolled ? "bg-background/95 shadow-header" : "bg-background/80"}`}>
+        <div className="flex h-16 items-center justify-between gap-2 px-3 sm:gap-4 sm:px-5">
+          <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="altersvorsorge-rechner.com">
+            <LogoIcon />
+            <span className="flex flex-col font-display leading-tight sm:block">
+              <span className="text-[13px] font-bold text-foreground sm:text-sm">altersvorsorge<span className="hidden text-primary sm:inline">—</span></span>
+              <span className="text-[11px] font-medium text-foreground sm:text-sm">rechner<span className="text-muted-foreground">.com</span></span>
             </span>
-            <span
-              className="text-[9.5px] font-normal text-muted-foreground mt-0.5"
-              style={{ letterSpacing: "0.2px" }}
-            >
-              rechner.com
-            </span>
-          </div>
-        </Link>
+          </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden sm:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-                isActive(link.to)
-                  ? "bg-primary text-primary-foreground font-medium"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <div className="hidden items-center gap-0.5 xl:flex">
+            {navLinks.map((link, index) => (
+              <Link key={link.to} to={link.to} aria-current={location.pathname === link.to ? "page" : undefined}
+                className={`group relative rounded-lg px-2.5 py-2 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${location.pathname === link.to ? "bg-primary-soft text-primary-soft-foreground" : "text-muted-foreground hover:text-foreground"}`}>
+                <span aria-hidden="true" className="pointer-events-none absolute -top-1.5 left-2.5 translate-y-1 text-[9px] font-display text-primary opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:opacity-100">{String(index + 1).padStart(2, "0")}</span>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+            <Button asChild variant="ghost" size="icon" className="h-9 w-9 rounded-lg text-muted-foreground max-[360px]:hidden" title="Suche öffnen">
+              <Link to={searchLink} aria-label="Suche öffnen"><Search /></Link>
+            </Button>
+            {showCta && (
+              <Button asChild size="sm" className="h-9 rounded-lg px-3 text-xs sm:text-sm">
+                <Link to={calculatorLink} onClick={(event) => {
+                  if (location.pathname === "/") {
+                    event.preventDefault();
+                    setMobileOpen(false);
+                    document.getElementById("rechner")?.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth", block: "start" });
+                  }
+                }}>Berechnen<ArrowUpRight className="hidden sm:block" /></Link>
+              </Button>
+            )}
+            <Button variant="ghost" size="icon" className="h-9 w-9 rounded-lg text-foreground xl:hidden" onClick={() => setMobileOpen((open) => !open)} aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"} aria-expanded={mobileOpen} aria-controls="site-mobile-navigation">
+              {mobileOpen ? <X /> : <Menu />}
+            </Button>
+          </div>
         </div>
 
-        {/* Search icon (desktop) */}
-        <Link
-          to={`/suche${location.pathname === "/suche" && location.search ? location.search : ""}`}
-          aria-label="Suche öffnen"
-          className="hidden sm:inline-flex shrink-0 items-center justify-center w-9 h-9 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-        >
-          <Search className="w-4 h-4" />
-        </Link>
-
-        {/* Sticky CTA */}
-        <Link
-          to="/"
-          onClick={(e) => {
-            if (location.pathname === "/") {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
-          className={`shrink-0 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-opacity duration-200 hover:opacity-90 active:scale-[0.97] ${
-            showCta ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          Berechnen →
-        </Link>
-
-        {/* Mobile: search + toggle */}
-        <Link
-          to={`/suche${location.pathname === "/suche" && location.search ? location.search : ""}`}
-          aria-label="Suche öffnen"
-          className="sm:hidden p-2 text-muted-foreground hover:text-foreground"
-        >
-          <Search className="w-5 h-5" />
-        </Link>
-        <button
-          className="sm:hidden p-2 text-muted-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menü"
-        >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {mobileOpen && (
+          <div id="site-mobile-navigation" className="grid max-h-[70dvh] grid-cols-1 gap-1 overflow-y-auto border-t border-border px-3 py-3 sm:grid-cols-2 xl:hidden">
+            <Button asChild variant="ghost" className="hidden justify-start max-[360px]:flex">
+              <Link to={searchLink}><Search />Suche öffnen</Link>
+            </Button>
+            {navLinks.map((link, index) => (
+              <Link key={link.to} to={link.to} aria-current={location.pathname === link.to ? "page" : undefined}
+                className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors ${location.pathname === link.to ? "bg-primary-soft text-primary-soft-foreground font-semibold" : "text-foreground hover:bg-muted"}`}>
+                <span className="font-display text-[10px] text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>{link.label}
+              </Link>
+            ))}
+          </div>
+        )}
+        <div className="pointer-events-none absolute inset-x-4 bottom-0 h-px overflow-hidden" aria-hidden="true">
+          <motion.div className="h-full origin-left bg-primary" style={{ scaleX: scrollYProgress }} />
+        </div>
       </div>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="sm:hidden bg-background border-b border-border px-6 pb-4 space-y-1"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
-                isActive(link.to)
-                  ? "bg-primary text-primary-foreground font-medium"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </motion.div>
-      )}
-    </motion.nav>
+    </nav>
   );
 };
 

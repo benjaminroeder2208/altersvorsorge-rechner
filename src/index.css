@@ -1,4 +1,20 @@
-/* Self-hosted Inter (variable woff2). Latin is preloaded from index.html. */
+/* Self-hosted fonts: no third-party requests at runtime. */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("/fonts/manrope-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("/fonts/dm-sans-variable.woff2") format("woff2");
+}
+
+/* Retained for existing consumers. */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -37,33 +53,43 @@ html {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 11%;
+    /* Reference OKLCH palette converted to HSL for Tailwind v3 opacity support. */
+    --background: 40.29 62.94% 97.39%;
+    --foreground: 191.63 66.39% 6.31%;
+    --font-display: "Manrope", system-ui, sans-serif;
+    --font-sans: "DM Sans", system-ui, sans-serif;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 11%;
+    --card-foreground: 191.63 66.39% 6.31%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 11%;
+    --popover-foreground: 191.63 66.39% 6.31%;
 
-    --primary: 216 100% 34%;
+    --primary: 4.06 68.51% 50.36%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5% 97%;
-    --secondary-foreground: 0 0% 11%;
+    /* Secondary remains neutral; trust is a separate role during staged rollout. */
+    --secondary: 40 24% 93%;
+    --secondary-foreground: 191.63 66.39% 6.31%;
 
-    --muted: 240 5% 97%;
-    --muted-foreground: 240 1% 44%;
+    --muted: 40 24% 94%;
+    --muted-foreground: 190 10% 36%;
 
-    --accent: 240 5% 97%;
-    --accent-foreground: 0 0% 11%;
+    --accent: 160.79 76.29% 78.47%;
+    --accent-foreground: 191.63 66.39% 6.31%;
+    --trust: 181.28 100% 10.55%;
+    --trust-foreground: 40.29 62.94% 97.39%;
+    --coral-soft: 11.95 100% 89.47%;
+    --teal-soft: 170.31 69.53% 83.65%;
+    --header-shadow: 0 8px 32px -16px hsl(var(--trust) / 0.22);
+    --grain-opacity: 0.038;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 216 100% 34%;
+    --border: 40.95 18.18% 80.43%;
+    --input: 40.95 18.18% 80.43%;
+    --ring: 4.06 68.51% 50.36%;
 
     --radius: 0.75rem;
 
@@ -77,9 +103,9 @@ html {
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Disclaimer / fine-print tokens — guaranteed >= 4.5:1 on bg-muted/50 and bg-background */
-    --disclaimer-foreground: 240 4% 35%;
-    --disclaimer-background: 240 5% 97%;
-    --disclaimer-border: 220 13% 88%;
+    --disclaimer-foreground: 190 10% 32%;
+    --disclaimer-background: 40 24% 94%;
+    --disclaimer-border: 40.95 18.18% 80.43%;
 
     /* Embed widget tokens — fixed light theme, AA-contrast guaranteed */
     --embed-background: 0 0% 100%;
@@ -91,9 +117,9 @@ html {
     --embed-border-subtle: 220 13% 94%;
 
     /* Brand-extension tokens (mapped from legacy hex constants) */
-    --primary-soft: 219 100% 96%;            /* #EEF3FF */
-    --primary-soft-foreground: 216 100% 34%; /* same as --primary */
-    --primary-soft-border: 213 97% 87%;      /* #BFDBFE */
+    --primary-soft: 12 75% 96%;
+    --primary-soft-foreground: 4 69% 40%;
+    --primary-soft-border: 12 70% 85%;
     --brand-amber: 38 92% 50%;               /* #F59E0B */
     --brand-amber-foreground: 0 0% 100%;
     --warning: 45 93% 89%;                   /* amber-100 #FEF3C7 */
@@ -104,6 +130,32 @@ html {
     --success: 160 84% 22%;                  /* emerald-600 ~ #059669 */
     --success-foreground: 0 0% 100%;
     --overlay: 0 0% 0%;                      /* modal scrim, used with /60 etc. */
+  }
+
+  .dark {
+    --background: 192 25% 9%;
+    --foreground: 40 25% 94%;
+    --card: 192 20% 12%;
+    --card-foreground: 40 25% 94%;
+    --popover: 192 20% 12%;
+    --popover-foreground: 40 25% 94%;
+    --primary: 8 85% 70%;
+    --primary-foreground: 192 25% 9%;
+    --secondary: 192 15% 18%;
+    --secondary-foreground: 40 25% 94%;
+    --muted: 192 15% 15%;
+    --muted-foreground: 185 10% 73%;
+    --accent: 165 35% 23%;
+    --accent-foreground: 160 70% 85%;
+    --border: 190 12% 28%;
+    --input: 190 12% 28%;
+    --ring: 8 85% 70%;
+    --primary-soft: 8 25% 18%;
+    --primary-soft-foreground: 8 85% 78%;
+    --primary-soft-border: 8 25% 36%;
+    --disclaimer-background: 192 15% 15%;
+    --disclaimer-foreground: 185 10% 78%;
+    --disclaimer-border: 190 12% 28%;
   }
 }
 
@@ -119,6 +171,29 @@ html {
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  #rechner {
+    scroll-margin-top: 6rem;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='none' d='M0 0h180v180H0z'/%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.65'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
 }
 
 @layer utilities {
@@ -127,13 +202,13 @@ html {
   }
 
   .heading-hero {
-    @apply text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05];
-    letter-spacing: -0.03em;
+    @apply text-4xl md:text-5xl lg:text-7xl font-bold font-display leading-[1.05];
+    letter-spacing: 0;
   }
 
   .heading-section {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1];
-    letter-spacing: -0.02em;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold font-display leading-[1.1];
+    letter-spacing: 0;
   }
 
   .text-body {
@@ -141,6 +216,16 @@ html {
   }
 
   .glass-card {
-    @apply bg-white/70 backdrop-blur-xl border border-border rounded-2xl shadow-sm;
+    @apply bg-card/70 backdrop-blur-xl border border-border rounded-2xl shadow-sm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
