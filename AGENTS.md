@@ -6,4 +6,4 @@
 - Implement shared site navigation in Navbar, retaining existing routes and explicit calculator-anchor scrolling; share the homepage persona status through a page-scoped context so other pages remain independent.
 - Derive hero persona projections from the existing calculator engine rather than maintaining separate financial formulas, so illustrated totals and the full calculator cannot diverge.
 - Keep topic-compass suggestions as local editorial matching and link personal AI discussion to the existing assistant, so a visual redesign adds no new backend or AI processing.
-- Keep the homepage knowledge grid and guides in EditorialSections, separate from calculator components, so editorial presentation changes cannot alter financial logic.
+- Keep homepage editorial modules in EditorialSections, separate from calculator components, so editorial presentation changes cannot alter financial logic.
