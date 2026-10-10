@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Slider } from "@/components/ui/slider";
 import { formatHeroEuro, getHeroExample, HERO_PERSONAS, useHeroPersona } from "./heroPersonas";
 
 export default function HeroIllustration() {
@@ -31,7 +30,9 @@ export default function HeroIllustration() {
 
   return <div className="relative min-w-0" onPointerLeave={() => setScrubbing(false)}>
     <div className="mb-3 flex flex-wrap items-center justify-between gap-3 text-[11px] text-muted-foreground"><span>Kapitalentwicklung bis zum 67. Lebensjahr</span><div className="flex gap-4"><span className="flex items-center gap-2"><span className="h-2 w-2 bg-trust" />Eigenbeiträge</span><span className="flex items-center gap-2"><span className="h-2 w-2 bg-primary" />Mit Förderung & Rendite*</span></div></div>
-    <svg viewBox="0 0 1000 300" className="h-[180px] w-full touch-pan-y sm:h-[240px] md:h-[270px]" role="img" aria-label={`Kapitalentwicklung für ${persona.name}: ${formatHeroEuro(example.capitalWithFunding)} Euro mit 67 Jahren`} onPointerMove={(event) => {
+    <div className="relative">
+    {scrubbing && <div className="pointer-events-none absolute top-0 z-10 rounded-lg border border-border bg-card/95 px-3 py-2 text-[11px] shadow-header backdrop-blur-sm" style={{ left: `${Math.min(70, Math.max(0, position * 80))}%` }}><p className="text-muted-foreground">{selectedYear} · Alter {active.age}</p><p className="font-semibold text-foreground">{formatHeroEuro(active.total)} € gesamt</p><p className="text-muted-foreground">{formatHeroEuro(active.contributions)} € Eigenbeiträge</p></div>}
+    <svg viewBox="0 0 1000 300" preserveAspectRatio="none" className="h-[180px] w-full touch-pan-y sm:h-[240px] md:h-[270px]" role="img" aria-label={`Kapitalentwicklung für ${persona.name}: ${formatHeroEuro(example.capitalWithFunding)} Euro mit 67 Jahren`} onPointerMove={(event) => {
       const rect = event.currentTarget.getBoundingClientRect();
       setPosition(Math.max(0, Math.min(1, ((event.clientX - rect.left) / rect.width * 1000 - 30) / 940)));
       setScrubbing(true);
@@ -45,9 +46,10 @@ export default function HeroIllustration() {
       <circle cx="970" cy={y(example.capitalWithFunding)} r="5" className="fill-primary stroke-background" strokeWidth="2" />
       {scrubbing && <g><line x1={x(activeIndex)} x2={x(activeIndex)} y1="20" y2="265" className="stroke-muted-foreground" strokeDasharray="4 4" /><circle cx={x(activeIndex)} cy={y(active.total)} r="5" className="fill-primary stroke-background" strokeWidth="2" /><circle cx={x(activeIndex)} cy={y(active.contributions)} r="4" className="fill-trust stroke-background" strokeWidth="2" /></g>}
     </svg>
+    </div>
     <div className="flex justify-between text-[11px] text-muted-foreground"><span>Start {Math.max(new Date().getFullYear() + 1, 2027)} · {persona.age + 1} Jahre</span><span>Mit 67 Jahren</span></div>
     <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
-      <Slider aria-label="Jahr der Kapitalentwicklung" value={[Math.round(position * 100)]} max={100} step={1} onValueChange={([value]) => { setPosition(value / 100); setScrubbing(true); }} onFocus={() => setScrubbing(true)} className="py-3" />
+      <input type="range" aria-label="Jahr der Kapitalentwicklung" min={0} max={100} step={1} value={Math.round(position * 100)} onChange={(event) => { setPosition(Number(event.target.value) / 100); setScrubbing(true); }} onFocus={() => setScrubbing(true)} className="h-5 w-full cursor-pointer accent-primary" />
       <p aria-live="polite" className="min-h-9 text-xs text-muted-foreground sm:min-w-[290px] sm:text-right">{scrubbing ? <>{selectedYear} · Alter {active.age}<br /><span className="font-semibold text-foreground">{formatHeroEuro(active.total)} €</span> gesamt · {formatHeroEuro(active.contributions)} € eingezahlt</> : <>{example.yearsToRetirement} Jahre Ansparzeit · 150 € monatlich</>}</p>
     </div>
   </div>;

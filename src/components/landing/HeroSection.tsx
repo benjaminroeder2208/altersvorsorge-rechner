@@ -6,11 +6,12 @@ import HeroIllustration from "./HeroIllustration";
 import { formatHeroEuro, getHeroExample, HERO_PERSONAS, useHeroPersona } from "./heroPersonas";
 
 export default function HeroSection() {
-  const { index, setIndex, setVisible } = useHeroPersona();
+  const { index, setIndex, visible, setVisible } = useHeroPersona();
   const persona = HERO_PERSONAS[index];
   const example = useMemo(() => getHeroExample(persona.age), [persona.age]);
   const reducedMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
+  const counted = useRef(false);
   const [display, setDisplay] = useState(Math.round(example.capitalWithFunding));
   useEffect(() => {
     const element = ref.current;
@@ -20,7 +21,9 @@ export default function HeroSection() {
     return () => { observer.disconnect(); setVisible(false); };
   }, [setVisible]);
   useEffect(() => {
+    if (!visible && !counted.current) return;
     if (reducedMotion) { setDisplay(Math.round(example.capitalWithFunding)); return; }
+    counted.current = true;
     let frame = 0;
     const start = performance.now();
     const tick = (now: number) => {
@@ -30,15 +33,15 @@ export default function HeroSection() {
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [example.capitalWithFunding, reducedMotion]);
+  }, [example.capitalWithFunding, reducedMotion, visible]);
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth", block: "start" });
 
   return <section className="relative overflow-hidden bg-background pb-10 pt-8 md:pb-12 md:pt-12">
     <div className="container max-w-6xl px-6">
       <div className="mb-6 flex flex-wrap items-center gap-3 text-[11px] font-medium text-muted-foreground"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Das neue Altersvorsorgedepot<span className="text-primary">Ab 2027</span></div>
-      <h1 className="max-w-4xl font-display text-4xl font-semibold leading-[1.06] md:text-6xl lg:text-7xl">Altersvorsorge.<br />Mit Zukunft gerechnet.</h1>
-      <div className="mt-6 flex flex-col justify-between gap-6 md:flex-row md:items-end"><p className="max-w-xl text-base leading-relaxed text-muted-foreground">Was können 150 € im Monat für deine Zukunft bewegen? Entdecke das neue Altersvorsorgedepot — mit staatlicher Förderung und einem Plan, der zu dir passt.</p><Button onClick={() => scrollTo("rechner")} size="lg" className="h-12 self-start rounded-lg px-6 md:shrink-0">Persönliche Altersvorsorge berechnen<ArrowUpRight /></Button></div>
-      <div ref={ref} id="rechenbeispiel" className="hero-example relative mt-10 border-t border-border pt-6 md:mt-12">
+      <h1 className="max-w-4xl font-display text-4xl font-semibold leading-[1.06] max-[360px]:text-3xl md:text-6xl lg:text-7xl">Altersvorsorge.<br />Mit Zukunft gerechnet.</h1>
+      <div className="mt-6 flex flex-col justify-between gap-6 md:flex-row md:items-end"><p className="max-w-xl text-base leading-relaxed text-muted-foreground">Was können 150 € im Monat für deine Zukunft bewegen? Entdecke das neue Altersvorsorgedepot — mit staatlicher Förderung und einem Plan, der zu dir passt.</p><Button onClick={() => scrollTo("rechner")} size="lg" className="h-auto min-h-12 max-w-full self-start whitespace-normal rounded-lg px-4 text-left md:shrink-0 md:px-6">Persönliche Altersvorsorge berechnen<ArrowUpRight /></Button></div>
+      <div ref={ref} id="rechenbeispiel" onPointerMove={(event) => { const rect = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty("--edge-position", `${(event.clientX - rect.left) / rect.width * 100}%`); }} className="hero-example relative mt-10 border-t border-border pt-6 md:mt-12">
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div><p className="mb-2 text-[11px] font-medium uppercase text-muted-foreground">{persona.name}s mögliches Kapital mit 67*</p><p className="flex items-baseline gap-2 font-display text-5xl font-semibold leading-none tabular-nums text-trust md:text-7xl lg:text-8xl"><span>{formatHeroEuro(display)}</span><span className="text-3xl font-normal text-muted-foreground md:text-5xl">€</span></p></div>
           <div><div role="group" aria-label="Rechenbeispiel auswählen" className="flex gap-1 border-b border-border">{HERO_PERSONAS.map((person, i) => <Button key={person.name} variant="ghost" aria-pressed={i === index} onClick={() => setIndex(i)} className={`h-11 rounded-none border-b-2 px-3 text-xs sm:px-4 ${i === index ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>{person.name}<span className="font-normal">{person.age}</span></Button>)}</div><p className="mt-2 text-[11px] text-muted-foreground">Beispielpersonen · 150 €/Monat · ohne Kinder</p></div>
