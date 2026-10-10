@@ -11,35 +11,7 @@ import { ArrowRight } from "lucide-react";
 import { HeroPersonaProvider } from "@/components/landing/heroPersonas";
 import ChapterHeading from "@/components/landing/ChapterHeading";
 import TrustSection from "@/components/landing/TrustSection";
-import TopicCompass from "@/components/landing/TopicCompass";
-
-const topicLinks = [
-  {
-    to: "/altersvorsorgedepot",
-    label: "Was ist das Altersvorsorgedepot?",
-    desc: "Grundlagen und Funktionsweise des beschlossenen Altersvorsorgedepots.",
-  },
-  {
-    to: "/altersvorsorgedepot-foerderung",
-    label: "Staatliche Förderung",
-    desc: "Grundzulage, Kinderzulage und Steuervorteile im Überblick.",
-  },
-  {
-    to: "/altersvorsorgedepot-auszahlung",
-    label: "Auszahlung im Alter",
-    desc: "Wie die Entnahme im Ruhestand funktionieren soll.",
-  },
-  {
-    to: "/altersvorsorgedepot-vs-etf-sparplan",
-    label: "Vergleich mit ETF-Sparplan",
-    desc: "Förderung vs. Flexibilität — was passt besser?",
-  },
-  {
-    to: "/altersvorsorgedepot-vs-riester",
-    label: "Vergleich mit Riester",
-    desc: "Die wichtigsten Unterschiede zum bisherigen Riester-Modell.",
-  },
-];
+import EditorialSections from "@/components/landing/EditorialSections";
 
 const homepageJsonLd = [
   {
@@ -385,98 +357,7 @@ const RechnerPage = () => (
         </div>
       </section>
 
-      <section id="mehr" className="pt-16 md:pt-24">
-        <div className="container max-w-4xl mx-auto px-6">
-          <AnimatedSection className="mb-10">
-            <ChapterHeading number="04" label="Wissen, das weiterbringt"><h2 className="text-3xl md:text-5xl font-semibold">Mehr zum Altersvorsorgedepot</h2></ChapterHeading>
-            <p className="text-muted-foreground mt-2">
-              Vertiefen Sie Ihr Wissen rund um das beschlossene Altersvorsorgedepot.
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.1}>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
-              {topicLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
-                >
-                  <div>
-                    <p className="font-semibold text-sm mb-1">{link.label}</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{link.desc}</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
-                </Link>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Unsere Ratgeber */}
-      <section className="pb-16 pt-12 md:pb-24">
-        <div className="container max-w-4xl mx-auto px-6">
-          <AnimatedSection className="mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold ">Unsere Ratgeber</h2>
-            <p className="text-muted-foreground mt-2">Fundierte Artikel rund um Altersvorsorge und Rente.</p>
-          </AnimatedSection>
-          <AnimatedSection delay={0.1}>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
-              <Link
-                to="/blog/altersvorsorgedepot-2027"
-                className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
-              >
-                <div>
-                  <p className="font-semibold text-sm mb-1">Altersvorsorgedepot 2027 erklärt</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    Alles zum neuen Altersvorsorgedepot: Förderung, Funktionsweise, Start 2027.
-                  </p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
-              </Link>
-              <Link
-                to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst"
-                className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
-              >
-                <div>
-                  <p className="font-semibold text-sm mb-1">Was ist die Rentenlücke?</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    Wie groß die Lücke wirklich ist — und was du dagegen tun kannst.
-                  </p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
-              </Link>
-              <Link
-                to="/rentenluecken-rechner"
-                className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
-              >
-                <div>
-                  <p className="font-semibold text-sm mb-1">Rentenlückenrechner</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    Berechne deine persönliche Rentenlücke in 30 Sekunden.
-                  </p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
-              </Link>
-              <Link
-                to="/blog"
-                className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
-              >
-                <div>
-                  <p className="font-semibold text-sm mb-1">Alle Ratgeber →</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    Alle Artikel zu Altersvorsorge, Rente und Förderung.
-                  </p>
-                </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
-              </Link>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      <div className="container max-w-4xl px-6"><TopicCompass /></div>
+      <EditorialSections />
       <FaqSection />
       <FooterSection />
     </main>
