@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Cookie } from "lucide-react";
 import { openCookieSettings } from "@/lib/cookieConsent";
+import { Button } from "@/components/ui/button";
 
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -85,7 +86,7 @@ const FooterSection = () =>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div className="grid grid-cols-1 min-[360px]:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
         {sections.map((section) =>
       <div key={section.title}>
             <p className="font-semibold text-sm mb-4">{section.title}</p>
@@ -120,26 +121,26 @@ const FooterSection = () =>
             altersvorsorge-rechner.com
           </Link>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
           <Link to="/suche" className="hover:text-foreground transition-colors">Suche</Link>
           <Link to="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
           <Link to="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
-          <button
+          <Button variant="link"
             type="button"
             onClick={openCookieSettings}
             aria-haspopup="dialog"
             aria-label="Cookie-Einstellungen öffnen"
             title="Cookie-Einstellungen öffnen"
-            className="inline-flex items-center gap-1.5 underline-offset-4 hover:text-foreground hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+            className="h-auto gap-1.5 p-0 text-sm font-normal text-muted-foreground hover:text-foreground"
           >
             <Cookie className="h-3.5 w-3.5" aria-hidden="true" />
             Cookie-Einstellungen
-          </button>
+          </Button>
         </div>
         <p>© {new Date().getFullYear()} altersvorsorge-rechner.com</p>
       </div>
 
-      <div className="mt-6 text-xs text-muted-foreground/60 text-center max-w-2xl mx-auto leading-relaxed">
+      <div className="mt-6 text-xs text-disclaimer-foreground text-center max-w-2xl mx-auto leading-relaxed">
         Alle Inhalte und Berechnungen dienen ausschließlich der allgemeinen Information und stellen keine Anlage-, Steuer- oder Rechtsberatung dar. Angaben zum Altersvorsorgedepot basieren auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026).
       </div>
     </div>

@@ -11,7 +11,7 @@ export default function HeroSection() {
   const example = useMemo(() => getHeroExample(persona.age), [persona.age]);
   const reducedMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const counted = useRef(false);
+  const counted = useRef<number | null>(null);
   const [display, setDisplay] = useState(Math.round(example.capitalWithFunding));
   useEffect(() => {
     const element = ref.current;
@@ -21,9 +21,10 @@ export default function HeroSection() {
     return () => { observer.disconnect(); setVisible(false); };
   }, [setVisible]);
   useEffect(() => {
-    if (!visible && !counted.current) return;
+    if (!visible && counted.current === null) return;
     if (reducedMotion) { setDisplay(Math.round(example.capitalWithFunding)); return; }
-    counted.current = true;
+    if (counted.current === example.capitalWithFunding) { setDisplay(Math.round(example.capitalWithFunding)); return; }
+    counted.current = example.capitalWithFunding;
     let frame = 0;
     const start = performance.now();
     const tick = (now: number) => {
@@ -43,13 +44,13 @@ export default function HeroSection() {
       <div className="mt-6 flex flex-col justify-between gap-6 md:flex-row md:items-end"><p className="max-w-xl text-base leading-relaxed text-muted-foreground">Was können 150 € im Monat für deine Zukunft bewegen? Entdecke das neue Altersvorsorgedepot — mit staatlicher Förderung und einem Plan, der zu dir passt.</p><Button onClick={() => scrollTo("rechner")} size="lg" className="h-auto min-h-12 max-w-full self-start whitespace-normal rounded-lg px-4 text-left md:shrink-0 md:px-6">Persönliche Altersvorsorge berechnen<ArrowUpRight /></Button></div>
       <div ref={ref} id="rechenbeispiel" onPointerMove={(event) => { const rect = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty("--edge-position", `${(event.clientX - rect.left) / rect.width * 100}%`); }} className="hero-example relative mt-10 border-t border-border pt-6 md:mt-12">
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-          <div><p className="mb-2 text-[11px] font-medium uppercase text-muted-foreground">{persona.name}s mögliches Kapital mit 67*</p><p className="flex items-baseline gap-2 font-display text-5xl font-semibold leading-none tabular-nums text-trust md:text-7xl lg:text-8xl"><span>{formatHeroEuro(display)}</span><span className="text-3xl font-normal text-muted-foreground md:text-5xl">€</span></p></div>
+          <div><p className="mb-2 text-[11px] font-medium uppercase text-muted-foreground">{persona.name}{persona.name === "Lukas" ? "’" : "s"} mögliches Kapital mit 67*</p><p className="flex items-baseline gap-2 font-display text-5xl font-semibold leading-none tabular-nums text-trust md:text-7xl lg:text-8xl"><span>{formatHeroEuro(display)}</span><span className="text-3xl font-normal text-muted-foreground md:text-5xl">€</span></p></div>
           <div><div role="group" aria-label="Rechenbeispiel auswählen" className="flex gap-1 border-b border-border">{HERO_PERSONAS.map((person, i) => <Button key={person.name} variant="ghost" aria-pressed={i === index} onClick={() => setIndex(i)} className={`h-11 rounded-none border-b-2 px-3 text-xs sm:px-4 ${i === index ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>{person.name}<span className="font-normal">{person.age}</span></Button>)}</div><p className="mt-2 text-[11px] text-muted-foreground">Beispielpersonen · 150 €/Monat · ohne Kinder</p></div>
         </div>
         <div className="mt-7"><HeroIllustration /></div>
       </div>
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4"><div className="flex flex-wrap gap-5 text-[11px] text-muted-foreground">{["Kostenlos", "Unabhängig", "Ohne Anmeldung"].map((text) => <span key={text} className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-trust" />{text}</span>)}</div><Button variant="ghost" size="sm" onClick={() => scrollTo("vergleich")} className="text-xs text-muted-foreground">Früh starten lohnt sich<ArrowDown /></Button></div>
-      <p className="mt-4 max-w-4xl text-[11px] leading-relaxed text-disclaimer-foreground">*Modellrechnung ab {Math.max(new Date().getFullYear() + 1, 2027)}: 150 € monatlich, {example.grundzulage} € Grundzulage jährlich, 7 % p.a. angenommene Rendite, jährliche Verzinsung. Ohne Kosten, Steuern und Inflation. Keine Garantie, keine Anlageberatung. Kapitalverluste sind möglich. Renditeannahme: <a className="underline underline-offset-2" href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer">Deutsches Aktieninstitut</a>. Gesetzesstand: 27.03.2026.</p>
+      <div className="mt-4 rounded-lg border border-border/60 bg-muted/50 p-3"><p className="mb-1 text-[10px] font-semibold uppercase text-disclaimer-foreground">*Hinweise & Haftungsausschluss</p><p className="max-w-4xl text-[11px] leading-relaxed text-disclaimer-foreground">Modellrechnung ab {Math.max(new Date().getFullYear() + 1, 2027)}: 150 € monatlich, {example.grundzulage} € Grundzulage jährlich, 7 % p.a. angenommene Rendite, jährliche Verzinsung. Ohne Kosten, Steuern und Inflation. Keine Garantie, keine Anlageberatung. Kapitalverluste sind möglich. Renditeannahme: <a className="underline underline-offset-2" href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer">Deutsches Aktieninstitut</a>. Gesetzesstand: 27.03.2026.</p></div>
     </div>
   </section>;
 }

@@ -233,7 +233,7 @@ html {
 .calculator-refresh #rechner h2,
 .calculator-refresh #rechner p { letter-spacing: 0 !important; }
 .calculator-refresh #rechner .rounded-2xl { border-radius: 8px; }
-.calculator-refresh #rechner .rounded-full:not(input):not(span) { border-radius: 8px; }
+.calculator-refresh #rechner button.rounded-full { border-radius: 8px; }
 .hero-example::before {
   content: "";
   position: absolute;
@@ -242,6 +242,7 @@ html {
   right: 0;
   height: 1px;
   background: var(--hero-edge);
+  mask-image: radial-gradient(ellipse 25% 100% at var(--edge-position, 50%) 50%, hsl(var(--overlay)), transparent);
   opacity: 0;
   transition: opacity 300ms;
 }
