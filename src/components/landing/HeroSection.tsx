@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { ArrowUpRight, ArrowDown, Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeroIllustration from "./HeroIllustration";
 import { formatHeroEuro, getHeroExample, HERO_PERSONAS, useHeroPersona } from "./heroPersonas";
@@ -56,7 +56,7 @@ export default function HeroSection() {
         </div>
         <div className="mt-7"><HeroIllustration /></div>
       </div>
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4"><div className="flex flex-wrap gap-5 text-[11px] text-muted-foreground">{["Kostenlos", "Unabhängig", "Ohne Anmeldung"].map((text) => <span key={text} className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-trust" />{text}</span>)}</div><Button variant="ghost" size="sm" onClick={() => scrollTo("vergleich")} className="text-xs text-muted-foreground">Früh starten lohnt sich<ArrowDown /></Button></div>
+      <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-border pt-4"><div className="flex flex-wrap gap-5 text-[11px] text-muted-foreground">{["Kostenlos", "Unabhängig", "Ohne Anmeldung"].map((text) => <span key={text} className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-trust" />{text}</span>)}</div></div>
       <div className="mt-4 rounded-lg border border-border/60 bg-muted/50 p-3"><p className="mb-1 text-[10px] font-semibold uppercase text-disclaimer-foreground">*Hinweise & Haftungsausschluss</p><p className="max-w-4xl text-[11px] leading-relaxed text-disclaimer-foreground">Modellrechnung ab {Math.max(new Date().getFullYear() + 1, 2027)}: 150 € monatlich, {example.grundzulage} € Grundzulage jährlich, 7 % p.a. angenommene Rendite, jährliche Verzinsung. Ohne Kosten, Steuern und Inflation. Keine Garantie, keine Anlageberatung. Kapitalverluste sind möglich. Renditeannahme: <a className="underline underline-offset-2" href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer">Deutsches Aktieninstitut</a>. Gesetzesstand: 27.03.2026.</p></div>
     </div>
   </section>;
