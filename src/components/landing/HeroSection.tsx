@@ -1,89 +1,63 @@
-import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
+import { ArrowUpRight, ArrowDown, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import HeroIllustration from "./HeroIllustration";
+import { formatHeroEuro, getHeroExample, HERO_PERSONAS, useHeroPersona } from "./heroPersonas";
 
-const ease = [0.25, 0.1, 0.25, 1] as const;
+export default function HeroSection() {
+  const { index, setIndex, visible, setVisible } = useHeroPersona();
+  const persona = HERO_PERSONAS[index];
+  const example = useMemo(() => getHeroExample(persona.age), [persona.age]);
+  const reducedMotion = useReducedMotion();
+  const [systemReducedMotion, setSystemReducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setSystemReducedMotion(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  const ref = useRef<HTMLDivElement>(null);
+  const counted = useRef<number | null>(null);
+  const [display, setDisplay] = useState(Math.round(example.capitalWithFunding));
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 });
+    observer.observe(element);
+    return () => { observer.disconnect(); setVisible(false); };
+  }, [setVisible]);
+  useEffect(() => {
+    if (reducedMotion || systemReducedMotion) { setDisplay(Math.round(example.capitalWithFunding)); return; }
+    if (!visible && counted.current === null) return;
+    if (counted.current === example.capitalWithFunding) { setDisplay(Math.round(example.capitalWithFunding)); return; }
+    counted.current = example.capitalWithFunding;
+    let frame = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / 1400, 1);
+      setDisplay(Math.round(example.capitalWithFunding * (1 - Math.pow(1 - progress, 3))));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [example.capitalWithFunding, reducedMotion, systemReducedMotion, visible]);
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth", block: "start" });
 
-const anim = (delay: number) => ({
-  initial: { opacity: 0, y: 20 } as const,
-  animate: { opacity: 1, y: 0 } as const,
-  transition: { duration: 0.6, delay, ease },
-});
-
-const HeroSection = () => (
-  <section className="relative min-h-[auto] md:min-h-[90vh] flex items-center overflow-hidden bg-background">
-    {/* Right blue tint — desktop only */}
-    <div className="absolute top-0 right-0 bottom-0 w-1/2 hidden md:block bg-primary-soft" />
-
-    <div className="container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center py-20 md:py-0 px-6">
-      {/* Left column — Text */}
-      <div className="flex flex-col items-start">
-        {/* Badge */}
-        <motion.div {...anim(0.1)} className="mb-6">
-          <span
-            className="inline-block px-4 py-1.5 rounded-full text-[11px] font-medium uppercase tracking-widest bg-primary-soft border border-primary-soft-border text-primary-soft-foreground"
-            style={{ letterSpacing: "0.05em" }}
-          >
-            ✦ Mit KI-Auswertung & PDF-Auswertung
-          </span>
-        </motion.div>
-
-        {/* H1 — rendered without animation so it paints immediately (LCP candidate) */}
-        <h1
-          className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6"
-          style={{ letterSpacing: "-0.02em" }}
-        >
-          <span className="text-foreground">150 € im Monat.</span>
-          <br />
-          <span className="font-bold text-primary">
-            212.000 € im Alter.
-          </span>
-        </h1>
-
-        {/* Subtitle */}
-        <motion.p {...anim(0.5)} className="text-base text-muted-foreground mb-10 max-w-lg" style={{ lineHeight: 1.7 }}>
-          So viel Kapital könnte ein 35-Jähriger mit 150 € monatlich und 7 % p.a.* in 32 Jahren aufbauen — plus mögliche
-          Zulagen ab 01.01.2027 im neuen Altersvorsorgedepot. Jetzt persönliche Altersvorsorge berechnen: mit KI-Analyse
-          und individueller Auswertung als PDF. Kostenlos und unabhängig.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          {...anim(0.7)}
-          className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10"
-        >
-          <a
-            href="#rechner"
-            className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium text-base transition-opacity hover:opacity-90"
-          >
-            Jetzt berechnen
-          </a>
-          <a
-            href="#vergleich"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-base transition-colors text-primary"
-          >
-            Mehr erfahren
-            <ArrowDown className="w-4 h-4" />
-          </a>
-        </motion.div>
-
-        {/* Disclaimer */}
-        <motion.p
-          className="text-xs text-muted-foreground"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-        >
-          Stand: beschlossenes Gesetz, 27. März 2026.
-        </motion.p>
+  return <section className="relative overflow-hidden bg-background pb-10 pt-8 md:pb-12 md:pt-12">
+    <div className="container max-w-6xl px-6">
+      <div className="mb-6 flex flex-wrap items-center gap-3 text-[11px] font-medium text-muted-foreground"><span className="h-1.5 w-1.5 rounded-full bg-primary" />Das neue Altersvorsorgedepot<span className="text-primary">Ab 2027</span></div>
+      <h1 className="max-w-4xl font-display text-4xl font-semibold leading-[1.06] max-[360px]:text-3xl md:text-6xl lg:text-7xl">Altersvorsorge.<br />Mit Zukunft gerechnet.</h1>
+      <div className="mt-6 flex flex-col justify-between gap-6 md:flex-row md:items-end"><p className="max-w-xl text-base leading-relaxed text-muted-foreground">Was können 150 € im Monat für deine Zukunft bewegen? Entdecke das neue Altersvorsorgedepot — mit staatlicher Förderung und einem Plan, der zu dir passt.</p><Button onClick={() => scrollTo("rechner")} size="lg" className="h-auto min-h-12 max-w-full self-start whitespace-normal rounded-lg px-4 text-left md:shrink-0 md:px-6">Persönliche Altersvorsorge berechnen<ArrowUpRight /></Button></div>
+      <div ref={ref} id="rechenbeispiel" onPointerMove={(event) => { const rect = event.currentTarget.getBoundingClientRect(); event.currentTarget.style.setProperty("--edge-position", `${(event.clientX - rect.left) / rect.width * 100}%`); }} className="hero-example relative mt-10 border-t border-border pt-6 md:mt-12">
+        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div><p className="mb-2 text-[11px] font-medium uppercase text-muted-foreground">{persona.name}{persona.name === "Lukas" ? "’" : "s"} mögliches Kapital mit 67*</p><p className="flex items-baseline gap-2 font-display text-5xl font-semibold leading-none tabular-nums text-trust md:text-7xl lg:text-8xl"><span>{formatHeroEuro(reducedMotion ? example.capitalWithFunding : display)}</span><span className="text-3xl font-normal text-muted-foreground md:text-5xl">€</span></p></div>
+          <div><div role="group" aria-label="Rechenbeispiel auswählen" className="flex gap-1 border-b border-border">{HERO_PERSONAS.map((person, i) => <Button key={person.name} variant="ghost" aria-pressed={i === index} onClick={() => setIndex(i)} className={`h-11 rounded-none border-b-2 px-3 text-xs sm:px-4 ${i === index ? "border-primary text-foreground" : "border-transparent text-muted-foreground"}`}>{person.name}<span className="font-normal">{person.age}</span></Button>)}</div><p className="mt-2 text-[11px] text-muted-foreground">Beispielpersonen · 150 €/Monat · ohne Kinder</p></div>
+        </div>
+        <div className="mt-7"><HeroIllustration /></div>
       </div>
-
-      {/* Right column — Illustration */}
-      <div className="relative h-[280px] md:h-[480px]">
-        <HeroIllustration />
-      </div>
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4"><div className="flex flex-wrap gap-5 text-[11px] text-muted-foreground">{["Kostenlos", "Unabhängig", "Ohne Anmeldung"].map((text) => <span key={text} className="flex items-center gap-1.5"><Check className="h-3.5 w-3.5 text-trust" />{text}</span>)}</div><Button variant="ghost" size="sm" onClick={() => scrollTo("vergleich")} className="text-xs text-muted-foreground">Früh starten lohnt sich<ArrowDown /></Button></div>
+      <div className="mt-4 rounded-lg border border-border/60 bg-muted/50 p-3"><p className="mb-1 text-[10px] font-semibold uppercase text-disclaimer-foreground">*Hinweise & Haftungsausschluss</p><p className="max-w-4xl text-[11px] leading-relaxed text-disclaimer-foreground">Modellrechnung ab {Math.max(new Date().getFullYear() + 1, 2027)}: 150 € monatlich, {example.grundzulage} € Grundzulage jährlich, 7 % p.a. angenommene Rendite, jährliche Verzinsung. Ohne Kosten, Steuern und Inflation. Keine Garantie, keine Anlageberatung. Kapitalverluste sind möglich. Renditeannahme: <a className="underline underline-offset-2" href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer">Deutsches Aktieninstitut</a>. Gesetzesstand: 27.03.2026.</p></div>
     </div>
-  </section>
-);
-
-export default HeroSection;
+  </section>;
+}

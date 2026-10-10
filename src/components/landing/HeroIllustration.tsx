@@ -1,154 +1,56 @@
-import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { formatHeroEuro, getHeroExample, HERO_PERSONAS, useHeroPersona } from "./heroPersonas";
 
-const ease = [0.25, 0.1, 0.25, 1] as const;
+export default function HeroIllustration() {
+  const { index } = useHeroPersona();
+  const persona = HERO_PERSONAS[index];
+  const example = useMemo(() => getHeroExample(persona.age), [persona.age]);
+  const reducedMotion = useReducedMotion();
+  const [position, setPosition] = useState(1);
+  const [scrubbing, setScrubbing] = useState(false);
+  const points = [{ age: persona.age + 1, contributions: 0, total: 0 }, ...example.chartData];
+  const maximum = example.capitalWithFunding * 1.12;
+  const x = (step: number) => 30 + step / (points.length - 1) * 940;
+  const y = (value: number) => 265 - value / maximum * 235;
+  // Fixed sample count keeps all persona paths compatible for smooth morphing.
+  const sampled = Array.from({ length: 61 }, (_, sample) => {
+    const fraction = sample / 60 * (points.length - 1);
+    const left = points[Math.floor(fraction)];
+    const right = points[Math.min(Math.ceil(fraction), points.length - 1)];
+    const weight = fraction % 1;
+    return { x: 30 + sample / 60 * 940, total: left.total + (right.total - left.total) * weight, contributions: left.contributions + (right.contributions - left.contributions) * weight };
+  });
+  const totalPath = sampled.map((p, i) => `${i ? "L" : "M"}${p.x},${y(p.total)}`).join(" ");
+  const ownPath = sampled.map((p, i) => `${i ? "L" : "M"}${p.x},${y(p.contributions)}`).join(" ");
+  const activeIndex = Math.round(position * (points.length - 1));
+  const active = points[activeIndex];
+  const selectedYear = Math.max(new Date().getFullYear() + 1, 2027) + activeIndex;
+  const transition = { duration: reducedMotion ? 0 : 0.7 };
 
-const curvePath = "M 40 280 C 80 260, 120 220, 160 200 S 220 150, 240 140";
-const areaPath = `${curvePath} L 240 300 L 40 300 Z`;
-
-const HeroIllustration = () => (
-  <svg viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-    {/* Background circles */}
-    <motion.circle
-      cx="210"
-      cy="160"
-      r="155"
-      fill="#1B4FD8"
-      opacity="0.06"
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 0.06 }}
-      transition={{ duration: 0.8, delay: 0.2, ease }}
-    />
-    <motion.circle
-      cx="210"
-      cy="160"
-      r="115"
-      fill="#1B4FD8"
-      opacity="0.06"
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 0.06 }}
-      transition={{ duration: 0.8, delay: 0.3, ease }}
-    />
-
-    {/* Filled area under curve */}
-    <motion.path
-      d={areaPath}
-      fill="#1B4FD8"
-      opacity="0.06"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 0.06 }}
-      transition={{ duration: 1, delay: 0.6 }}
-    />
-
-    {/* Animated curve */}
-    <motion.path
-      d={curvePath}
-      stroke="#1B4FD8"
-      strokeWidth="3"
-      strokeLinecap="round"
-      fill="none"
-      initial={{ pathLength: 0 }}
-      animate={{ pathLength: 1 }}
-      transition={{ duration: 1.5, delay: 0.5, ease }}
-    />
-
-    {/* Amber projection line */}
-    <motion.path
-      d="M 240 140 C 280 100, 320 65, 360 40"
-      stroke="#F59E0B"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeDasharray="5,3"
-      fill="none"
-      initial={{ pathLength: 0, opacity: 0 }}
-      animate={{ pathLength: 1, opacity: 1 }}
-      transition={{ duration: 1, delay: 1.4, ease }}
-    />
-
-    {/* Amber accent dots on curve */}
-    <motion.circle
-      cx="120"
-      cy="230"
-      r="5"
-      fill="#F59E0B"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.2, duration: 0.4 }}
-    />
-    <motion.circle
-      cx="240"
-      cy="140"
-      r="8"
-      fill="#F59E0B"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.4, duration: 0.4 }}
-    />
-    <motion.circle
-      cx="360"
-      cy="40"
-      r="5"
-      fill="#F59E0B"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.6, duration: 0.4 }}
-    />
-
-    {/* Data card 1 — bottom left */}
-    <motion.g
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: [0, -4, 4, -4, 0] }}
-      transition={{
-        opacity: { duration: 0.5, delay: 0.9 },
-        y: { duration: 3, delay: 1.4, repeat: Infinity, ease: "easeInOut" },
-      }}
-    >
-      <rect x="20" y="210" width="150" height="72" rx="12" fill="white" stroke="#E5E7EB" strokeWidth="1" />
-      <rect x="20" y="210" width="4" height="72" rx="2" fill="#1B4FD8" />
-      <text x="36" y="230" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">
-        KAPITAL MIT 67
-      </text>
-      <text x="36" y="252" fontSize="14" fontWeight="700" fill="#1B4FD8" fontFamily="system-ui">
-        212.000 €
-      </text>
-      <text x="36" y="270" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">
-        150 € / Monat, 7 % p.a.*
-      </text>
-    </motion.g>
-
-    {/* Data card 2 — mid right */}
-    <motion.g
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: [0, 4, -4, 4, 0] }}
-      transition={{
-        opacity: { duration: 0.5, delay: 1.1 },
-        y: { duration: 3.5, delay: 1.6, repeat: Infinity, ease: "easeInOut" },
-      }}
-    >
-      <rect x="260" y="100" width="155" height="72" rx="12" fill="white" stroke="#E5E7EB" strokeWidth="1" />
-      <rect x="260" y="100" width="4" height="72" rx="2" fill="#F59E0B" />
-      <text x="276" y="120" fontSize="10" fill="#9CA3AF" fontFamily="system-ui" letterSpacing="0.05em">
-        MÖGLICHE GRUNDZULAGE
-      </text>
-      <text x="276" y="142" fontSize="14" fontWeight="700" fill="#F59E0B" fontFamily="system-ui">
-        +17.280 €
-      </text>
-      <text x="276" y="160" fontSize="11" fill="#9CA3AF" fontFamily="system-ui">
-        kumuliert über 32 Jahre
-      </text>
-    </motion.g>
-
-    {/* Mini bar chart — bottom right */}
-    <motion.g
-      initial={{ scaleY: 0 }}
-      animate={{ scaleY: 1 }}
-      transition={{ duration: 0.6, delay: 1.3, ease }}
-      style={{ transformOrigin: "bottom" }}
-    >
-      <rect x="340" y="260" width="16" height="24" rx="3" fill="#1B4FD8" opacity="0.15" />
-      <rect x="362" y="245" width="16" height="39" rx="3" fill="#1B4FD8" opacity="0.25" />
-      <rect x="384" y="225" width="16" height="59" rx="3" fill="#1B4FD8" opacity="0.4" />
-    </motion.g>
-  </svg>
-);
-
-export default HeroIllustration;
+  return <div className="relative min-w-0" onPointerLeave={() => setScrubbing(false)}>
+    <div className="mb-3 flex flex-wrap items-center justify-between gap-3 text-[11px] text-muted-foreground"><span>Kapitalentwicklung bis zum 67. Lebensjahr</span><div className="flex gap-4"><span className="flex items-center gap-2"><span className="h-2 w-2 bg-trust" />Eigenbeiträge</span><span className="flex items-center gap-2"><span className="h-2 w-2 bg-primary" />Mit Förderung & Rendite*</span></div></div>
+    <div className="relative">
+    {scrubbing && <div className="pointer-events-none absolute top-0 z-10 rounded-lg border border-border bg-card/95 px-3 py-2 text-[11px] shadow-header backdrop-blur-sm" style={{ left: `${Math.min(70, Math.max(0, position * 80))}%` }}><p className="text-muted-foreground">{selectedYear} · Alter {active.age}</p><p className="font-semibold text-foreground">{formatHeroEuro(active.total)} € gesamt</p><p className="text-muted-foreground">{formatHeroEuro(active.contributions)} € Eigenbeiträge</p></div>}
+    <svg viewBox="0 0 1000 300" preserveAspectRatio="none" className="h-[180px] w-full touch-pan-y sm:h-[240px] md:h-[270px]" role="img" aria-label={`Kapitalentwicklung für ${persona.name}: ${formatHeroEuro(example.capitalWithFunding)} Euro mit 67 Jahren`} onPointerMove={(event) => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      setPosition(Math.max(0, Math.min(1, ((event.clientX - rect.left) / rect.width * 1000 - 30) / 940)));
+      setScrubbing(true);
+    }}>
+      <defs><linearGradient id="hero-capital-area" x1="0" y1="0" x2="1" y2="0"><stop offset="0" className="[stop-color:hsl(var(--teal-soft))]" /><stop offset="1" className="[stop-color:hsl(var(--coral-soft))]" /></linearGradient></defs>
+      {[70, 135, 200, 265].map((line) => <line key={line} x1="30" x2="970" y1={line} y2={line} className="stroke-border" strokeWidth="1" strokeDasharray="3 7" />)}
+      <motion.path animate={{ d: `${totalPath} L970,265 L30,265 Z` }} transition={transition} fill="url(#hero-capital-area)" />
+      <motion.path animate={{ d: `${ownPath} L970,265 L30,265 Z` }} transition={transition} className="fill-trust" fillOpacity="0.16" />
+      <motion.path animate={{ d: ownPath }} transition={transition} className="stroke-trust" strokeWidth="2" fill="none" />
+      <motion.path animate={{ d: totalPath }} transition={transition} className="stroke-primary" strokeWidth="3" fill="none" />
+      <circle cx="970" cy={y(example.capitalWithFunding)} r="5" className="fill-primary stroke-background" strokeWidth="2" />
+      {scrubbing && <g><line x1={x(activeIndex)} x2={x(activeIndex)} y1="20" y2="265" className="stroke-muted-foreground" strokeDasharray="4 4" /><circle cx={x(activeIndex)} cy={y(active.total)} r="5" className="fill-primary stroke-background" strokeWidth="2" /><circle cx={x(activeIndex)} cy={y(active.contributions)} r="4" className="fill-trust stroke-background" strokeWidth="2" /></g>}
+    </svg>
+    </div>
+    <div className="flex justify-between text-[11px] text-muted-foreground"><span>Start {Math.max(new Date().getFullYear() + 1, 2027)} · {persona.age + 1} Jahre</span><span>Mit 67 Jahren</span></div>
+    <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+      <input type="range" aria-label="Jahr der Kapitalentwicklung" min={0} max={100} step={1} value={Math.round(position * 100)} onChange={(event) => { setPosition(Number(event.target.value) / 100); setScrubbing(true); }} onFocus={() => setScrubbing(true)} className="h-5 w-full cursor-pointer accent-primary" />
+      <p aria-live="polite" className="min-h-9 text-xs text-muted-foreground sm:min-w-[290px] sm:text-right">{scrubbing ? <>{selectedYear} · Alter {active.age}<br /><span className="font-semibold text-foreground">{formatHeroEuro(active.total)} €</span> gesamt · {formatHeroEuro(active.contributions)} € eingezahlt</> : <>{example.yearsToRetirement} Jahre Ansparzeit · 150 € monatlich</>}</p>
+    </div>
+  </div>;
+}

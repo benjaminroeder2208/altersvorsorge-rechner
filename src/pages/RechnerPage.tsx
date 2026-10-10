@@ -8,6 +8,10 @@ import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { HeroPersonaProvider } from "@/components/landing/heroPersonas";
+import ChapterHeading from "@/components/landing/ChapterHeading";
+import TrustSection from "@/components/landing/TrustSection";
+import TopicCompass from "@/components/landing/TopicCompass";
 
 const topicLinks = [
   {
@@ -141,7 +145,7 @@ const homepageJsonLd = [
 ];
 
 const RechnerPage = () => (
-  <>
+  <HeroPersonaProvider>
     <PageHead
       title="Altersvorsorgedepot Rechner – Altersvorsorge einfach berechnen"
       description="Berechnen Sie mit dem Altersvorsorgedepot Rechner, wie sich Beiträge, Förderung und Rendite langfristig entwickeln – nach dem neuen Reformgesetz."
@@ -151,16 +155,17 @@ const RechnerPage = () => (
       jsonLd={homepageJsonLd}
     />
     <Navbar />
-    <main>
+    <main className="overflow-x-clip">
       <HeroSection />
       <KeyFiguresSection />
       <CalculatorPreview />
+      <TrustSection />
 
       {/* Comparison table */}
-      <section id="vergleich" className="section-padding bg-secondary">
+      <section id="vergleich" className="section-padding bg-background border-b border-border">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Früh starten lohnt sich — in Zahlen</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold">Früh starten lohnt sich — in Zahlen</h2>
             <p className="text-muted-foreground mt-2">Was 10 Jahre Unterschied wirklich bedeuten</p>
           </AnimatedSection>
 
@@ -173,7 +178,7 @@ const RechnerPage = () => (
                     <th className="py-3 px-4 font-semibold text-muted-foreground text-center">Mit 25 starten</th>
                     <th
                       className="py-3 px-4 font-semibold text-center relative bg-primary text-primary-foreground"
-                      style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+                      style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
                     >
                       <span className="inline-block px-3 py-0.5 rounded-full text-xs font-medium mb-1 bg-primary-foreground/20 text-primary-foreground">
                         Das Beispiel
@@ -221,11 +226,11 @@ const RechnerPage = () => (
               </Link>
             </div>
 
-            <div className="mt-8 p-5 bg-muted/50 border border-border/60 rounded-xl max-w-2xl mx-auto text-center">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+            <div className="mt-8 p-5 bg-muted/50 border border-border/60 rounded-lg max-w-2xl mx-auto text-center">
+              <p className="text-xs font-semibold text-muted-foreground uppercase  mb-2">
                 *Hinweise & Haftungsausschluss
               </p>
-              <p className="text-xs text-muted-foreground/70 leading-relaxed">
+              <p className="text-xs text-disclaimer-foreground leading-relaxed">
                 Alle Beispielrechnungen verwenden vereinfachte Annahmen: angenommene Rendite von 7 % p.a. (historischer
                 Durchschnitt breit gestreuter Aktienindizes — siehe z.{"\u00A0"}B.{" "}
                 <a
@@ -250,7 +255,7 @@ const RechnerPage = () => (
       <section id="riester-zulage" className="section-padding bg-secondary">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Riester Zulage — wie sie heute funktioniert</h2>
+            <h2 className="text-2xl md:text-3xl font-bold ">Riester Zulage — wie sie heute funktioniert</h2>
             <p className="text-muted-foreground mt-2">
               Die staatliche Förderung der Riester-Rente im Überblick — und was sich mit dem neuen Altersvorsorgedepot ab 2027 ändert.
             </p>
@@ -258,18 +263,18 @@ const RechnerPage = () => (
 
           <AnimatedSection delay={0.1}>
             <div className="grid sm:grid-cols-3 gap-4 mb-6">
-              <div className="p-5 rounded-2xl bg-background">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Grundzulage Riester</p>
+              <div className="p-5 rounded-lg bg-background">
+                <p className="text-xs text-muted-foreground uppercase  mb-1">Grundzulage Riester</p>
                 <p className="text-2xl font-bold">175 €</p>
                 <p className="text-xs text-muted-foreground mt-1">pro Jahr, fix</p>
               </div>
-              <div className="p-5 rounded-2xl bg-background">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Kinderzulage Riester</p>
+              <div className="p-5 rounded-lg bg-background">
+                <p className="text-xs text-muted-foreground uppercase  mb-1">Kinderzulage Riester</p>
                 <p className="text-2xl font-bold">300 €</p>
                 <p className="text-xs text-muted-foreground mt-1">pro Kind ab 2008 / 185 € davor</p>
               </div>
-              <div className="p-5 rounded-2xl bg-background">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Mindesteigenbeitrag</p>
+              <div className="p-5 rounded-lg bg-background">
+                <p className="text-xs text-muted-foreground uppercase  mb-1">Mindesteigenbeitrag</p>
                 <p className="text-2xl font-bold">4 %</p>
                 <p className="text-xs text-muted-foreground mt-1">des Vorjahresbruttos, abzgl. Zulagen</p>
               </div>
@@ -308,7 +313,7 @@ const RechnerPage = () => (
       <section id="riester-vs-depot" className="section-padding">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-bold ">
               Altersvorsorgedepot vs. Riester — der direkte Vergleich
             </h2>
             <p className="text-muted-foreground mt-2">
@@ -325,7 +330,7 @@ const RechnerPage = () => (
                     <th className="py-3 px-4 font-semibold text-center text-muted-foreground">Riester-Rente</th>
                     <th
                       className="py-3 px-4 font-semibold text-center bg-primary text-primary-foreground"
-                      style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+                      style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }}
                     >
                       Altersvorsorgedepot
                       <br />
@@ -371,8 +376,8 @@ const RechnerPage = () => (
               </Link>
             </div>
 
-            <div className="mt-6 p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
-              <p className="text-xs text-muted-foreground/70 leading-relaxed">
+            <div className="mt-6 p-5 bg-muted/50 border border-border/60 rounded-lg text-center">
+              <p className="text-xs text-disclaimer-foreground leading-relaxed">
                 Quelle: Altersvorsorgereformgesetz, Beschlussempfehlung Drs. 21/4996 (beschlossen 27.03.2026), §§ 84, 85 EStG (neue Fassung). Bestehende Riester-Verträge laufen unverändert weiter — eine voreilige Kündigung ist meist nicht sinnvoll. Keine Anlage-, Steuer- oder Rechtsberatung.
               </p>
             </div>
@@ -380,28 +385,28 @@ const RechnerPage = () => (
         </div>
       </section>
 
-      <section id="mehr" className="section-padding">
+      <section id="mehr" className="pt-16 md:pt-24">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Mehr zum Altersvorsorgedepot</h2>
+            <ChapterHeading number="04" label="Wissen, das weiterbringt"><h2 className="text-3xl md:text-5xl font-semibold">Mehr zum Altersvorsorgedepot</h2></ChapterHeading>
             <p className="text-muted-foreground mt-2">
               Vertiefen Sie Ihr Wissen rund um das beschlossene Altersvorsorgedepot.
             </p>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
               {topicLinks.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+                  className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
                 >
                   <div>
                     <p className="font-semibold text-sm mb-1">{link.label}</p>
                     <p className="text-xs text-muted-foreground leading-relaxed">{link.desc}</p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
                 </Link>
               ))}
             </div>
@@ -410,17 +415,17 @@ const RechnerPage = () => (
       </section>
 
       {/* Unsere Ratgeber */}
-      <section className="section-padding">
+      <section className="pb-16 pt-12 md:pb-24">
         <div className="container max-w-4xl mx-auto px-6">
           <AnimatedSection className="mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Unsere Ratgeber</h2>
+            <h2 className="text-2xl md:text-3xl font-bold ">Unsere Ratgeber</h2>
             <p className="text-muted-foreground mt-2">Fundierte Artikel rund um Altersvorsorge und Rente.</p>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
               <Link
                 to="/blog/altersvorsorgedepot-2027"
-                className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+                className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
               >
                 <div>
                   <p className="font-semibold text-sm mb-1">Altersvorsorgedepot 2027 erklärt</p>
@@ -428,11 +433,11 @@ const RechnerPage = () => (
                     Alles zum neuen Altersvorsorgedepot: Förderung, Funktionsweise, Start 2027.
                   </p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
               </Link>
               <Link
                 to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst"
-                className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+                className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
               >
                 <div>
                   <p className="font-semibold text-sm mb-1">Was ist die Rentenlücke?</p>
@@ -440,11 +445,11 @@ const RechnerPage = () => (
                     Wie groß die Lücke wirklich ist — und was du dagegen tun kannst.
                   </p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
               </Link>
               <Link
                 to="/rentenluecken-rechner"
-                className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+                className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
               >
                 <div>
                   <p className="font-semibold text-sm mb-1">Rentenlückenrechner</p>
@@ -452,11 +457,11 @@ const RechnerPage = () => (
                     Berechne deine persönliche Rentenlücke in 30 Sekunden.
                   </p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
               </Link>
               <Link
                 to="/blog"
-                className="group flex items-start justify-between gap-4 p-5 rounded-2xl bg-secondary hover:bg-secondary/70 transition-colors"
+                className="group flex items-start justify-between gap-4 border-t border-border py-6 transition-colors"
               >
                 <div>
                   <p className="font-semibold text-sm mb-1">Alle Ratgeber →</p>
@@ -464,17 +469,18 @@ const RechnerPage = () => (
                     Alle Artikel zu Altersvorsorge, Rente und Förderung.
                   </p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0 mt-0.5" />
+                <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
               </Link>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
+      <div className="container max-w-4xl px-6"><TopicCompass /></div>
       <FaqSection />
       <FooterSection />
     </main>
-  </>
+  </HeroPersonaProvider>
 );
 
 export default RechnerPage;
