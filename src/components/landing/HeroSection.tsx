@@ -10,6 +10,13 @@ export default function HeroSection() {
   const persona = HERO_PERSONAS[index];
   const example = useMemo(() => getHeroExample(persona.age), [persona.age]);
   const reducedMotion = useReducedMotion();
+  const [systemReducedMotion, setSystemReducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setSystemReducedMotion(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   const ref = useRef<HTMLDivElement>(null);
   const counted = useRef<number | null>(null);
   const [display, setDisplay] = useState(Math.round(example.capitalWithFunding));
@@ -21,7 +28,7 @@ export default function HeroSection() {
     return () => { observer.disconnect(); setVisible(false); };
   }, [setVisible]);
   useEffect(() => {
-    if (reducedMotion) { setDisplay(Math.round(example.capitalWithFunding)); return; }
+    if (reducedMotion || systemReducedMotion) { setDisplay(Math.round(example.capitalWithFunding)); return; }
     if (!visible && counted.current === null) return;
     if (counted.current === example.capitalWithFunding) { setDisplay(Math.round(example.capitalWithFunding)); return; }
     counted.current = example.capitalWithFunding;
@@ -34,7 +41,7 @@ export default function HeroSection() {
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [example.capitalWithFunding, reducedMotion, visible]);
+  }, [example.capitalWithFunding, reducedMotion, systemReducedMotion, visible]);
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: reducedMotion ? "instant" : "smooth", block: "start" });
 
   return <section className="relative overflow-hidden bg-background pb-10 pt-8 md:pb-12 md:pt-12">

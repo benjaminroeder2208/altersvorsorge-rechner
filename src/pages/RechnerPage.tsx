@@ -155,7 +155,7 @@ const RechnerPage = () => (
       jsonLd={homepageJsonLd}
     />
     <Navbar />
-    <main>
+    <main className="overflow-x-clip">
       <HeroSection />
       <KeyFiguresSection />
       <CalculatorPreview />
