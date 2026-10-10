@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "Inter Fallback", "system-ui", "sans-serif"],
+        sans: ["DM Sans", "system-ui", "sans-serif"],
+        display: ["Manrope", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -97,6 +98,15 @@ export default {
           foreground: "hsl(var(--success-foreground))",
         },
         overlay: "hsl(var(--overlay))",
+        trust: {
+          DEFAULT: "hsl(var(--trust))",
+          foreground: "hsl(var(--trust-foreground))",
+        },
+        "coral-soft": "hsl(var(--coral-soft))",
+        "teal-soft": "hsl(var(--teal-soft))",
+      },
+      boxShadow: {
+        header: "var(--header-shadow)",
       },
       borderRadius: {
         lg: "var(--radius)",
