@@ -52,9 +52,11 @@ describe("Legacy redirects", () => {
       });
       // Inspect the actual error-page heading, not arbitrary digits in finance
       // figures or the decorative chapter labels (which can concatenate to 404).
-      const headings = [...container.querySelectorAll("h1")];
-      expect(headings.length).toBeGreaterThan(0);
-      expect(headings.some((heading) => heading.textContent?.trim() === "404")).toBe(false);
+      await waitFor(() => {
+        const headings = [...container.querySelectorAll("h1")];
+        expect(headings.length).toBeGreaterThan(0);
+        expect(headings.some((heading) => heading.textContent?.trim() === "404")).toBe(false);
+      });
     });
   }
 });
