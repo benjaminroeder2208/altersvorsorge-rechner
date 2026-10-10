@@ -9,7 +9,6 @@ import PageHead from "@/components/seo/PageHead";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { HeroPersonaProvider } from "@/components/landing/heroPersonas";
-import ChapterHeading from "@/components/landing/ChapterHeading";
 import TrustSection from "@/components/landing/TrustSection";
 import EditorialSections from "@/components/landing/EditorialSections";
 
