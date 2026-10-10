@@ -1,4 +1,4 @@
-import { test, expect } from "../playwright-fixture";
+import { test, expect } from "@playwright/test";
 
 test.describe("Interactive landing examples", () => {
   test("switches personas, supports keyboard scrubbing and matches editorial topics", async ({ page }) => {

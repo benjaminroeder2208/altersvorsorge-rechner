@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, waitFor } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
-import { MemoryRouter } from "react-router-dom";
 import App from "../App";
 
 /**
@@ -12,8 +11,6 @@ const LEGACY_REDIRECTS: Array<{ from: string; to: string }> = [
   { from: "/altersvorsorgedepot-rechner", to: "/" },
   { from: "/altersvorsorgedepot-gesetzesentwurf", to: "/altersvorsorgedepot-gesetz" },
 ];
-
-const NOT_FOUND_MARKER = /404|nicht gefunden|not found/i;
 
 function renderAt(path: string) {
   // Wrap App without its own BrowserRouter — App uses BrowserRouter, so we
@@ -53,7 +50,11 @@ describe("Legacy redirects", () => {
       await waitFor(() => {
         expect(window.location.pathname).toBe(to);
       });
-      expect(container.textContent ?? "").not.toMatch(NOT_FOUND_MARKER);
+      // Inspect the actual error-page heading, not arbitrary digits in finance
+      // figures or the decorative chapter labels (which can concatenate to 404).
+      const headings = [...container.querySelectorAll("h1")];
+      expect(headings.length).toBeGreaterThan(0);
+      expect(headings.some((heading) => heading.textContent?.trim() === "404")).toBe(false);
     });
   }
 });
