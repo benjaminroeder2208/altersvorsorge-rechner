@@ -1,7 +1,7 @@
 # Design refresh
 
-- [ ] Restyle the remaining topic compass and FAQ with chapter headings and editorial rows; keep removed editorial/blog sections absent and calculator unchanged.
-- [ ] Verify question suggestions, FAQ interaction and narrow layouts.
+- [x] Restyle the remaining topic compass and FAQ with chapter headings and editorial rows; keep removed editorial/blog sections absent and calculator unchanged.
+- [x] Verify question suggestions, FAQ interaction and 320/375px layouts; no browser errors or horizontal overflow, build OK and all 51 tests pass.
 
 - [x] Refine remaining landing sections: editorial grid, guides and topic compass in the approved design; leave the calculator unchanged.
 - [x] Verify remaining sections and topic links on desktop and 375/320 layouts; 51 tests pass and no browser errors.
