@@ -247,6 +247,19 @@ html {
   --chart-subsidies: 12 65% 64%;
   --chart-gains: 172 42% 42%;
 }
+/* Calculator subpages share editorial rhythm without affecting other tools. */
+.calculator-subpage { letter-spacing: 0; }
+.calculator-subpage .rounded-2xl,
+.calculator-subpage .rounded-xl { border-radius: 8px; }
+.calculator-subpage table { background: hsl(var(--card) / 0.45); }
+.calculator-subpage th { color: hsl(var(--muted-foreground)); }
+.calculator-subpage tbody tr:nth-child(even) { background: hsl(var(--muted) / 0.5); }
+.calculator-subpage td { padding-top: 1rem; padding-bottom: 1rem; }
+.calculator-subpage [role="slider"] { width: 24px; height: 24px; }
+.calculator-subpage input[type="number"] { appearance: textfield; }
+.calculator-subpage input[type="number"]::-webkit-inner-spin-button,
+.calculator-subpage input[type="number"]::-webkit-outer-spin-button { appearance: none; margin: 0; }
+.calculator-subpage h1, .calculator-subpage h2, .calculator-subpage h3 { letter-spacing: 0; }
 .calculator-range::-webkit-slider-thumb {
   appearance: none;
   width: 24px;
