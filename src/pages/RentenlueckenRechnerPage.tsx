@@ -46,9 +46,7 @@ const RentenlueckenRechnerPage = () =>
 
         {/* Bottom text section */}
         <div className="mt-20 border-t border-border pt-12 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold ">
-            Was bedeutet das für dich?
-          </h2>
+          <ChapterHeading number="04" label="Einordnung"><h2 className="heading-section">Was bedeutet das für dich?</h2></ChapterHeading>
           <p className="text-base leading-relaxed text-muted-foreground">
             Die Rentenlücke ist für die meisten Berufstätigen in Deutschland real — sie liegt häufig zwischen 800 und 1.600 € pro Monat. Ab 2027 bietet das neue Altersvorsorgedepot eine staatlich geförderte Möglichkeit, diese Lücke gezielt zu schließen. Wer früh anfängt, braucht weniger monatlichen Eigenbeitrag — der Zinseszins und die Förderung arbeiten für dich.
           </p>

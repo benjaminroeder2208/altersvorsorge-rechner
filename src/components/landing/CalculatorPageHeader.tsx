@@ -20,7 +20,7 @@ export default function CalculatorPageHeader({ title, breadcrumb, description }:
     </Breadcrumb>
     <AnimatedSection>
       <ChapterHeading number="01" label="Kostenlos & unverbindlich">
-        <h1 className="max-w-4xl font-display text-4xl font-bold leading-[1.12] md:text-5xl lg:text-6xl">{title}</h1>
+        <h1 className="max-w-4xl break-words font-display text-4xl font-bold leading-[1.12] md:text-5xl lg:text-6xl">{title}</h1>
       </ChapterHeading>
       <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{description}</p>
     </AnimatedSection>
