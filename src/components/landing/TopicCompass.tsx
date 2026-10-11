@@ -38,10 +38,10 @@ export default function TopicCompass() {
         </div>
       </div>
       <div className="min-h-56 border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0" aria-live="polite" aria-atomic="true">
-         <p className="mb-2 text-xs font-medium uppercase text-muted-foreground">{submitted !== null ? "Passend zu deiner Frage" : "Deine Themen im Überblick"}</p><ol>{results.map((topic, index) => <li key={topic.to}><Link to={topic.to} className="group flex min-h-16 items-center gap-4 border-b border-border py-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><span aria-hidden="true" className="font-display text-primary">0{index + 1}</span><span className="flex-1 font-medium transition-colors group-hover:text-primary">{topic.title}</span><ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0 text-primary transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" /></Link></li>)}</ol>
+         <p className="mb-2 text-xs font-medium uppercase text-muted-foreground">{submitted !== null ? "Passend zu deiner Frage" : "Themen & Antworten"}</p><ol>{results.map((topic, index) => <li key={topic.to}><Link to={topic.to} className="group flex min-h-16 items-center gap-4 border-b border-border py-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><span aria-hidden="true" className="font-display text-primary">0{index + 1}</span><span className="flex-1 font-medium transition-colors group-hover:text-primary">{topic.title}</span><ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0 text-primary transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" /></Link></li>)}</ol>
+         <FaqSection query={submitted} />
       </div>
       </AnimatedSection>
-       <FaqSection />
     </div>
   </section>;
 }

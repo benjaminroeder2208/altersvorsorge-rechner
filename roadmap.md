@@ -6,6 +6,8 @@
 
 # Design refresh
 
+- [x] Integrate FAQ directly into compass results and local question matching, without a separate FAQ heading; verified accordion answers, topic links and 1280/375/320px layouts without overflow or browser errors; build OK.
+
 - [x] Merge homepage compass and FAQ into chapter 05, remove the duplicate assistant entry; verified topic links, accordion interactions and 1280/375/320px layouts without browser or build errors.
 
 - [x] Align Rentenlücke, Frühstart and Riester comparison calculator pages with the approved editorial design, preserving all formulas and functionality.

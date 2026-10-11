@@ -1,6 +1,5 @@
-import AnimatedSection from "./AnimatedSection";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, GRUNDZULAGE_SATZ_AB_2027 } from "@/lib/foerderung";
+import { MAX_GRUNDZULAGE_AB_2027 } from "@/lib/foerderung";
 
 const faqs = [
   {
@@ -29,26 +28,25 @@ const faqs = [
   },
 ];
 
-const FaqSection = () => (
-  <div id="faq" role="region" aria-labelledby="faq-title" className="mt-14 scroll-mt-28 border-t border-border pt-10 md:mt-20 md:pt-14">
-      <AnimatedSection delay={0.1} className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
-        <div>
-          <p className="mb-4 text-xs font-medium uppercase text-muted-foreground">Fragen & Antworten</p>
-          <h3 id="faq-title" className="max-w-xs font-display text-2xl font-semibold leading-snug md:text-3xl">Häufig gestellte Fragen</h3>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">Das Wichtigste zu Förderung, Voraussetzungen und Risiken.</p>
-        </div>
-        <Accordion type="single" collapsible className="min-w-0 border-t border-border">
-          {faqs.map((faq, i) => (
-            <AccordionItem key={i} value={`faq-${i}`} className="border-border transition-colors data-[state=open]:bg-teal-soft/20">
-              <AccordionTrigger className="gap-4 px-3 py-6 text-left font-display font-semibold hover:no-underline hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-5 [&>svg]:text-primary">
-                <span className="flex min-w-0 items-start gap-4 sm:gap-6"><span aria-hidden="true" className="pt-0.5 font-sans text-xs font-medium text-muted-foreground">0{i + 1}</span><span className="min-w-0 leading-relaxed">{faq.q}</span></span>
+const FaqSection = ({ query }: { query: string | null }) => {
+  const terms = query?.toLocaleLowerCase("de-DE").split(/\s+/).filter((term) => term.length > 2) ?? [];
+  const matches = (faq: typeof faqs[number]) => terms.some((term) => `${faq.q} ${faq.a}`.toLocaleLowerCase("de-DE").includes(term));
+  const answers = terms.length ? [...faqs.filter(matches), ...faqs.filter((faq) => !matches(faq))] : faqs;
+
+  return (
+  <div id="faq" role="region" aria-label="Antworten zur Altersvorsorge" className="scroll-mt-28">
+        <Accordion key={query ?? "all"} type="single" collapsible className="min-w-0">
+          {answers.map((faq) => (
+            <AccordionItem key={faq.q} value={faq.q} className="border-border transition-colors data-[state=open]:bg-teal-soft/20">
+              <AccordionTrigger className="gap-4 py-5 text-left text-sm font-medium hover:no-underline hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring [&>svg]:text-primary">
+                <span className="min-w-0 leading-relaxed">{faq.q}</span>
               </AccordionTrigger>
-              <AccordionContent className="pl-11 pr-5 pb-6 text-sm text-muted-foreground leading-relaxed sm:pl-[4.25rem]">{faq.a}</AccordionContent>
+              <AccordionContent className="pr-6 pb-5 text-sm text-muted-foreground leading-relaxed">{faq.a}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
-      </AnimatedSection>
   </div>
-);
+  );
+};
 
 export default FaqSection;
