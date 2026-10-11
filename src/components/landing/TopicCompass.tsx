@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, ArrowRight, Compass } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ChapterHeading from "./ChapterHeading";
 import AnimatedSection from "./AnimatedSection";
+import FaqSection from "./FaqSection";
 
 const topics = [
   { title: "Staatliche Förderung verstehen", to: "/altersvorsorgedepot-foerderung", keywords: /förder|zulage|kind|staat|steuer/i },
@@ -17,7 +18,7 @@ const topics = [
 export default function TopicCompass() {
   const [question, setQuestion] = useState("");
   const [submitted, setSubmitted] = useState<string | null>(null);
-  const results = submitted === null ? [] : [...topics.filter((topic) => topic.keywords.test(submitted)), ...topics.filter((topic) => !topic.keywords.test(submitted))].slice(0, 3);
+  const results = submitted === null ? topics : [...topics.filter((topic) => topic.keywords.test(submitted)), ...topics.filter((topic) => !topic.keywords.test(submitted))].slice(0, 3);
   return <section aria-labelledby="compass-title" className="border-y border-border bg-teal-soft/30 section-padding">
     <div className="container mx-auto max-w-6xl px-6">
       <AnimatedSection>
@@ -27,6 +28,7 @@ export default function TopicCompass() {
       </AnimatedSection>
       <AnimatedSection delay={0.1} className="grid gap-10 lg:grid-cols-2 lg:gap-20">
       <div>
+        <p className="mb-6 max-w-md text-sm leading-relaxed text-muted-foreground">Förderung, Rentenlücke oder Riester: Finde das passende Thema und Antworten auf die häufigsten Fragen.</p>
         <form className="flex gap-2" onSubmit={(event) => { event.preventDefault(); if (question.trim()) setSubmitted(question.trim()); }}>
           <Input aria-label="Deine Frage zur Altersvorsorge" placeholder="Was möchtest du wissen?" value={question} onChange={(event) => setQuestion(event.target.value)} maxLength={300} required className="h-14 min-w-0 rounded-md bg-background text-base" />
           <Button type="submit" size="icon" className="h-14 w-14 shrink-0 rounded-md" aria-label="Passende Themen finden"><ArrowRight aria-hidden="true" /></Button>
@@ -36,9 +38,10 @@ export default function TopicCompass() {
         </div>
       </div>
       <div className="min-h-56 border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0" aria-live="polite" aria-atomic="true">
-        {submitted !== null ? <><p className="mb-2 text-xs font-medium uppercase text-muted-foreground">Passend zu deiner Frage</p><ol>{results.map((topic, index) => <li key={topic.to}><Link to={topic.to} className="group flex min-h-16 items-center gap-4 border-b border-border py-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><span aria-hidden="true" className="font-display text-primary">0{index + 1}</span><span className="flex-1 font-medium transition-colors group-hover:text-primary">{topic.title}</span><ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0 text-primary transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" /></Link></li>)}</ol></> : <div className="flex h-full flex-col justify-center"><Compass aria-hidden="true" className="mb-5 h-8 w-8 text-primary" /><p className="max-w-xs text-xl font-semibold leading-snug">Dein nächster Schritt beginnt mit einer Frage.</p><p className="mt-3 text-sm leading-relaxed text-muted-foreground">Du möchtest deine persönliche Situation besprechen?</p><Button asChild variant="link" className="mt-3 h-auto justify-start whitespace-normal px-0 text-left"><Link to="/ai-vorsorgeassistent">Zum KI-Vorsorgeassistenten<ArrowUpRight aria-hidden="true" className="shrink-0" /></Link></Button></div>}
+         <p className="mb-2 text-xs font-medium uppercase text-muted-foreground">{submitted !== null ? "Passend zu deiner Frage" : "Deine Themen im Überblick"}</p><ol>{results.map((topic, index) => <li key={topic.to}><Link to={topic.to} className="group flex min-h-16 items-center gap-4 border-b border-border py-4 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><span aria-hidden="true" className="font-display text-primary">0{index + 1}</span><span className="flex-1 font-medium transition-colors group-hover:text-primary">{topic.title}</span><ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0 text-primary transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" /></Link></li>)}</ol>
       </div>
       </AnimatedSection>
+       <FaqSection />
     </div>
   </section>;
 }
