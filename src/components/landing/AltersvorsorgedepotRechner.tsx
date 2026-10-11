@@ -217,7 +217,7 @@ const StepperCard = ({
 }) => (
   <div className="border-b border-border py-5 flex flex-wrap gap-3 items-center justify-between">
     <span className="text-base text-muted-foreground">{label}</span>
-    <div className="flex items-center gap-3">
+    <div className="grid grid-cols-[40px_60px_40px] items-center gap-2 ml-auto">
       <Button variant="ghost"
         onClick={() => onChange(Math.max(min, value - 1))}
         disabled={value <= min}
