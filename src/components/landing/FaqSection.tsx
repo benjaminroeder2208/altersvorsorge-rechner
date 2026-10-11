@@ -1,5 +1,4 @@
 import AnimatedSection from "./AnimatedSection";
-import ChapterHeading from "./ChapterHeading";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { MAX_GRUNDZULAGE_AB_2027, MAX_GRUNDZULAGE_AB_2029, GRUNDZULAGE_SATZ_AB_2027 } from "@/lib/foerderung";
 
@@ -31,19 +30,12 @@ const faqs = [
 ];
 
 const FaqSection = () => (
-  <section id="faq" aria-labelledby="faq-title" className="section-padding bg-background">
-    <div className="container max-w-6xl mx-auto px-6">
-      <AnimatedSection>
-        <ChapterHeading number="06" label="Fragen & Antworten">
-          <h2 id="faq-title" className="heading-section max-w-2xl">Häufig gestellte Fragen</h2>
-        </ChapterHeading>
-      </AnimatedSection>
-
+  <div id="faq" role="region" aria-labelledby="faq-title" className="mt-14 scroll-mt-28 border-t border-border pt-10 md:mt-20 md:pt-14">
       <AnimatedSection delay={0.1} className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
-        <div className="border-t border-border pt-6">
-          <span aria-hidden="true" className="mb-5 block h-1 w-10 bg-primary" />
-          <p className="max-w-xs font-display text-xl font-semibold leading-snug">Das Wichtigste zum Altersvorsorgedepot.</p>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">Förderung, Voraussetzungen und Risiken auf einen Blick.</p>
+        <div>
+          <p className="mb-4 text-xs font-medium uppercase text-muted-foreground">Fragen & Antworten</p>
+          <h3 id="faq-title" className="max-w-xs font-display text-2xl font-semibold leading-snug md:text-3xl">Häufig gestellte Fragen</h3>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">Das Wichtigste zu Förderung, Voraussetzungen und Risiken.</p>
         </div>
         <Accordion type="single" collapsible className="min-w-0 border-t border-border">
           {faqs.map((faq, i) => (
@@ -56,8 +48,7 @@ const FaqSection = () => (
           ))}
         </Accordion>
       </AnimatedSection>
-    </div>
-  </section>
+  </div>
 );
 
 export default FaqSection;
