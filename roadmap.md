@@ -1,5 +1,5 @@
-- [ ] Add an interactive homepage introduction linking to the existing AI assistant with a selected example question.
-- [ ] Verify example selection, assistant handoff and narrow layouts without changing model calls or calculator logic.
+- [x] Add an interactive homepage introduction linking to the existing AI assistant with a selected example question.
+- [x] Verify example selection and unsent draft handoff at 1280/375/320px with mocked assistant responses: no overflow or browser errors, 51 regression tests pass. Existing model calls and calculator logic unchanged.
 
 - [x] Refine main calculator inputs, progress and results in the approved design; preserve formulas, tracking and email flow.
 - [x] Verify complete calculator flow and scenario selection at 1280/375/320px: no overflow or browser errors, 51 regression tests pass; calculation engine unchanged. Added reusable E2E spec.
