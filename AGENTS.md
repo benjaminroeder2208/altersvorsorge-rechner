@@ -8,3 +8,4 @@
 - Keep topic-compass suggestions as local editorial matching and link personal AI discussion to the existing assistant, so a visual redesign adds no new backend or AI processing.
 - Keep homepage editorial modules in EditorialSections, separate from calculator components, so editorial presentation changes cannot alter financial logic.
 - Scope the homepage calculator chart palette through its calculator-editorial wrapper while shared chart colors use semantic HSL tokens, so other calculator contexts retain their independent palettes.
+- Pass homepage assistant questions as unsent navigation-state drafts to the existing assistant, never in URLs or automatic extra AI requests, so users confirm their question and the guided conversation remains intact.

@@ -12,6 +12,7 @@ import { HeroPersonaProvider } from "@/components/landing/heroPersonas";
 import TrustSection from "@/components/landing/TrustSection";
 import EditorialSections from "@/components/landing/EditorialSections";
 import ChapterHeading from "@/components/landing/ChapterHeading";
+import AssistantTeaser from "@/components/landing/AssistantTeaser";
 
 const homepageJsonLd = [
   {
@@ -132,6 +133,7 @@ const RechnerPage = () => (
       <KeyFiguresSection />
       <CalculatorPreview />
       <TrustSection />
+      <AssistantTeaser />
 
 
       {/* SEO: Altersvorsorgedepot — Riester vs. Depot Vergleich */}

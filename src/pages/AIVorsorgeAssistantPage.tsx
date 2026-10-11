@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft, Send, Loader2, ArrowUpRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { openCookieSettings } from "@/lib/cookieConsent";
@@ -73,8 +73,12 @@ const DotBounce = () => (
 );
 
 export default function AIVorsorgeAssistantPage() {
+  const location = useLocation();
   const [messages, setMessages] = useState<ChatItem[]>([]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(() => {
+    const draft = location.state?.initialQuestion;
+    return typeof draft === "string" ? draft.trim().slice(0, 500) : "";
+  });
   const [loading, setLoading] = useState(false);
   const sessionIdRef = useRef<string>(crypto.randomUUID());
   const bottomRef = useRef<HTMLDivElement>(null);
