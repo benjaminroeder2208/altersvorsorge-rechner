@@ -1,15 +1,16 @@
+import { Button } from "@/components/ui/button";
+import CalculatorNumberControl from "@/components/landing/CalculatorNumberControl";
+import CalculatorPageHeader from "@/components/landing/CalculatorPageHeader";
+import ChapterHeading from "@/components/landing/ChapterHeading";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, TrendingUp, Shield } from "lucide-react";
+import { ArrowRight, TrendingUp, Shield, Plus, Minus, X } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
-import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
-import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Table,
@@ -19,14 +20,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Child, berechneKinderzulage } from "@/lib/foerderung";
 
 const BASE = "https://altersvorsorge-rechner.com";
@@ -91,27 +84,12 @@ interface InputRowProps {
 
 const InputRow = ({ id, label, help, min, max, step, value, suffix, onChange, decimals = 0 }: InputRowProps) => (
   <div className="space-y-2">
-    <div className="flex items-baseline justify-between gap-3">
+    <div className="flex flex-wrap items-center justify-between gap-3">
       <Label htmlFor={id} className="text-sm font-medium text-foreground">
         {label}
       </Label>
       <div className="flex items-center gap-1">
-        <Input
-          id={id}
-          type="number"
-          inputMode="decimal"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          onChange={(e) => {
-            const v = Number(e.target.value);
-            if (!Number.isFinite(v)) return;
-            onChange(Math.min(max, Math.max(min, v)));
-          }}
-          className="h-9 w-24 text-right text-sm tabular-nums"
-        />
-        {suffix && <span className="text-sm text-muted-foreground">{suffix}</span>}
+<CalculatorNumberControl id={id} label={label} value={value} min={min} max={max} step={step} unit={suffix} onChange={onChange} />
       </div>
     </div>
     <Slider
@@ -218,35 +196,13 @@ const RiesterVergleichRechner = () => {
       />
       <Navbar />
 
-      <main className="pt-24 pb-20">
-        <div className="container max-w-4xl mx-auto px-6">
-          <Breadcrumb className="mb-8">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild><Link to="/">Home</Link></BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Riester Vergleich</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-
-          <AnimatedSection>
-            <Badge variant="secondary" className="mb-4 text-xs font-medium">
-              Kostenlos &amp; unverbindlich
-            </Badge>
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
-              Riester vs. Altersvorsorgedepot: Welcher ist besser für dich?
-            </h1>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10">
-              Vergleiche bei gleichem Eigenbeitrag, was Riester-Rente und das neue Altersvorsorgedepot bis zum Renteneintritt aus deinem Geld machen — inklusive staatlicher Förderung, Kosten und Steuern.
-            </p>
-          </AnimatedSection>
+      <main className="calculator-subpage overflow-x-clip pt-28 pb-20 md:pt-36">
+        <div className="container max-w-6xl mx-auto px-5 md:px-8">
+          <CalculatorPageHeader title="Altersvorsorgedepot vs. Riester." breadcrumb="Riester Vergleich" description="Vergleiche bei gleichem Eigenbeitrag, was Riester-Rente und das neue Altersvorsorgedepot bis zum Renteneintritt aus deinem Geld machen — inklusive staatlicher Förderung, Kosten und Steuern." />
 
           {/* Inputs */}
-          <section className="rounded-2xl border border-border bg-card p-6 md:p-8 mb-10 space-y-6">
-            <h2 className="text-lg font-semibold text-foreground">Deine Annahmen</h2>
+          <section className="border-b border-border pb-12 mb-16 space-y-8">
+            <ChapterHeading number="02" label="Deine Annahmen"><h2 className="heading-section">Gleicher Beitrag. Zwei Wege.</h2></ChapterHeading>
             <div className="grid md:grid-cols-2 gap-6">
               <InputRow
                 id="alter"
@@ -271,9 +227,9 @@ const RiesterVergleichRechner = () => {
                 onChange={setMonatlich}
               />
               <div className="md:col-span-2 space-y-3">
-                <div className="flex items-baseline justify-between gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <Label className="text-sm font-medium text-foreground">Kinder</Label>
-                  <button
+                  <Button
                     type="button"
                     onClick={() => {
                       if (kinder.length >= 6) return;
@@ -283,41 +239,41 @@ const RiesterVergleichRechner = () => {
                       ]);
                     }}
                     disabled={kinder.length >= 6}
-                    className="text-sm font-medium text-primary hover:opacity-80 disabled:opacity-30 transition-opacity"
+                    variant="ghost" size="sm" className="text-primary"
                   >
-                    + Kind hinzufügen
-                  </button>
+                    <Plus className="mr-2 h-4 w-4" /> Kind hinzufügen
+                  </Button>
                 </div>
 
                 {kinder.length === 0 && (
-                  <p className="text-sm text-muted-foreground/70">Keine Kinder hinzugefügt.</p>
+                  <p className="text-sm text-disclaimer-foreground">Keine Kinder hinzugefügt.</p>
                 )}
 
                 <div className="space-y-2">
                   {kinder.map((child, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-wrap items-center gap-3 p-3 rounded-xl bg-secondary/60"
+                      className="flex flex-wrap items-center gap-3 p-3 rounded-lg bg-secondary/60"
                     >
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-muted-foreground">Geburtsjahr</span>
                         <div className="flex items-center gap-1">
-                          <button
+                          <Button
                             type="button"
                             onClick={() => {
                               const next = [...kinder];
                               next[idx] = { ...child, birthYear: Math.max(1990, child.birthYear - 1) };
                               setKinder(next);
                             }}
-                            disabled={child.birthYear <= 1990}
-                            className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                            aria-label={`Geburtsjahr Kind ${idx + 1} verringern`} title="Geburtsjahr verringern" disabled={child.birthYear <= 1990}
+                            variant="ghost" size="icon" className="h-8 w-8"
                           >
                             −
-                          </button>
+                          </Button>
                           <span className="text-sm font-semibold tabular-nums min-w-[4ch] text-center">
                             {child.birthYear}
                           </span>
-                          <button
+                          <Button
                             type="button"
                             onClick={() => {
                               const next = [...kinder];
@@ -325,17 +281,17 @@ const RiesterVergleichRechner = () => {
                               next[idx] = { ...child, birthYear: Math.min(CY, child.birthYear + 1) };
                               setKinder(next);
                             }}
-                            disabled={child.birthYear >= new Date().getFullYear()}
-                            className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                            aria-label={`Geburtsjahr Kind ${idx + 1} erhöhen`} title="Geburtsjahr erhöhen" disabled={child.birthYear >= new Date().getFullYear()}
+                            variant="ghost" size="icon" className="h-8 w-8"
                           >
                             +
-                          </button>
+                          </Button>
                         </div>
                       </div>
 
                       <div className="flex items-center gap-1 ml-auto">
                         {[18, 25].map((v) => (
-                          <button
+                          <Button
                             key={v}
                             type="button"
                             onClick={() => {
@@ -343,23 +299,23 @@ const RiesterVergleichRechner = () => {
                               next[idx] = { ...child, kindergeldBis: v as 18 | 25 };
                               setKinder(next);
                             }}
-                            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                            size="sm" variant="ghost" aria-pressed={child.kindergeldBis === v} className={`h-8 rounded-md px-3 text-xs font-medium ${
                               child.kindergeldBis === v
                                 ? "bg-primary text-primary-foreground"
                                 : "bg-background text-muted-foreground hover:text-foreground"
                             }`}
                           >
                             bis {v}
-                          </button>
+                          </Button>
                         ))}
-                        <button
+                        <Button
                           type="button"
                           aria-label="Kind entfernen"
                           onClick={() => setKinder(kinder.filter((_, i) => i !== idx))}
-                          className="ml-1 w-7 h-7 rounded-full bg-background text-muted-foreground hover:text-foreground flex items-center justify-center"
+                          title="Kind entfernen" variant="ghost" size="icon" className="ml-1 h-8 w-8 text-muted-foreground"
                         >
                           ×
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   ))}
@@ -408,49 +364,50 @@ const RiesterVergleichRechner = () => {
             </div>
           </section>
 
+          <ChapterHeading number="03" label="Dein Ergebnis"><h2 className="heading-section">Der direkte Vergleich.</h2></ChapterHeading>
           {/* Side-by-Side Results */}
           <section className="grid md:grid-cols-2 gap-4 mb-6">
             {/* Riester */}
-            <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
+            <div className="rounded-lg border border-border bg-card p-6 md:p-8">
               <div className="flex items-center gap-2 mb-2">
                 <Shield className="w-4 h-4 text-muted-foreground" />
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                <h3 className="text-sm font-semibold uppercase  text-muted-foreground">
                   Riester-Rente
                 </h3>
               </div>
-              <p className="text-3xl md:text-4xl font-bold text-foreground tabular-nums">
+              <p className="text-3xl lg:text-4xl font-display font-bold text-capital tabular-nums">
                 {fmtEur(result.riester.endkapital)}
               </p>
               <p className="text-sm text-muted-foreground mb-4">Vermögen zum Renteneintritt ({RENTENALTER})</p>
               <div className="space-y-1.5 text-sm">
-                <div className="flex justify-between"><span className="text-muted-foreground">Monatliche Auszahlung (25 J.)</span><span className="font-semibold tabular-nums">{fmtEur(result.riester.monatlich)}</span></div>
-                <div className="flex justify-between"><span className="text-muted-foreground">Nach Steuern (≈)</span><span className="font-semibold tabular-nums">{fmtEur(result.riester.netto)}</span></div>
+                <div className="flex flex-wrap justify-between gap-x-4 gap-y-1"><span className="text-muted-foreground">Monatliche Auszahlung (25 J.)</span><span className="font-semibold tabular-nums">{fmtEur(result.riester.monatlich)}</span></div>
+                <div className="flex flex-wrap justify-between gap-x-4 gap-y-1"><span className="text-muted-foreground">Nach Steuern (≈)</span><span className="font-semibold tabular-nums">{fmtEur(result.riester.netto)}</span></div>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">80 % der Auszahlung steuerpflichtig (vereinfacht, Grenzsteuersatz {Math.round(STEUER_RENTNER * 100)} %).</p>
             </div>
 
             {/* Depot */}
-            <div className={`rounded-2xl border p-6 md:p-8 ${depotBesser ? "border-primary/40 bg-primary/5" : "border-border bg-card"}`}>
+            <div className={`rounded-lg border p-6 md:p-8 ${depotBesser ? "border-border bg-teal-soft/30" : "border-border bg-card"}`}>
               <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className="w-4 h-4 text-primary" />
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">
+                <TrendingUp className="w-4 h-4 text-capital" />
+                <h3 className="text-sm font-semibold uppercase text-capital">
                   Altersvorsorgedepot
                 </h3>
               </div>
-              <p className="text-3xl md:text-4xl font-bold text-foreground tabular-nums">
+              <p className="text-3xl lg:text-4xl font-display font-bold text-capital tabular-nums">
                 {fmtEur(result.depot.endkapital)}
               </p>
               <p className="text-sm text-muted-foreground mb-4">Vermögen zum Renteneintritt ({RENTENALTER})</p>
               <div className="space-y-1.5 text-sm">
-                <div className="flex justify-between"><span className="text-muted-foreground">Monatliche Auszahlung (25 J.)</span><span className="font-semibold tabular-nums">{fmtEur(result.depot.monatlich)}</span></div>
-                <div className="flex justify-between"><span className="text-muted-foreground">Nach Steuern (≈)</span><span className="font-semibold tabular-nums">{fmtEur(result.depot.netto)}</span></div>
+                <div className="flex flex-wrap justify-between gap-x-4 gap-y-1"><span className="text-muted-foreground">Monatliche Auszahlung (25 J.)</span><span className="font-semibold tabular-nums">{fmtEur(result.depot.monatlich)}</span></div>
+                <div className="flex flex-wrap justify-between gap-x-4 gap-y-1"><span className="text-muted-foreground">Nach Steuern (≈)</span><span className="font-semibold tabular-nums">{fmtEur(result.depot.netto)}</span></div>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">Auch beim Altersvorsorgedepot ist die Auszahlung nachgelagert besteuert. Vereinfachte Darstellung ohne Steuerabzug — siehe Hinweise unten.</p>
             </div>
           </section>
 
           {/* Differenz-Highlight */}
-          <div className="rounded-2xl border border-border bg-secondary p-5 md:p-6 mb-12 text-center">
+          <div className="border-y border-border bg-teal-soft/30 p-5 md:p-8 mb-16 text-center">
             {depotBesser ? (
               <>
                 <p className="text-sm text-muted-foreground mb-1">Das Altersvorsorgedepot bringt dir in dieser Rechnung</p>
@@ -476,7 +433,7 @@ const RiesterVergleichRechner = () => {
 
           {/* Detailed comparison */}
           <section className="mb-12">
-            <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
+            <h2 className="text-xl md:text-2xl font-bold  mb-4">
               Detaillierter Vergleich
             </h2>
             <div className="overflow-x-auto -mx-6 px-6">
@@ -526,10 +483,10 @@ const RiesterVergleichRechner = () => {
                     <TableCell className="text-right tabular-nums">{fmtPct(result.riester.effRendite)}</TableCell>
                     <TableCell className="text-right tabular-nums">{fmtPct(result.depot.effRendite)}</TableCell>
                   </TableRow>
-                  <TableRow className="bg-primary/5">
+                  <TableRow className="bg-teal-soft/30">
                     <TableCell className="font-semibold">Vermögen mit {RENTENALTER}</TableCell>
                     <TableCell className="text-right font-bold text-foreground tabular-nums">{fmtEur(result.riester.endkapital)}</TableCell>
-                    <TableCell className="text-right font-bold text-primary tabular-nums">{fmtEur(result.depot.endkapital)}</TableCell>
+                    <TableCell className="text-right font-bold text-capital tabular-nums">{fmtEur(result.depot.endkapital)}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Monatliche Auszahlung (25 Jahre)</TableCell>
@@ -556,7 +513,7 @@ const RiesterVergleichRechner = () => {
 
           {/* Info Cards */}
           <section className="grid md:grid-cols-2 gap-4 mb-12">
-            <div className="rounded-2xl border border-border bg-card p-5 space-y-2">
+            <div className="border-t border-border pt-6 space-y-2">
               <h3 className="text-sm font-semibold text-foreground">Für Riester spricht</h3>
               <ul className="text-sm text-muted-foreground space-y-1.5 list-disc pl-5">
                 <li>Staatliche Grundzulage (175 €) + Kinderzulagen automatisch.</li>
@@ -565,7 +522,7 @@ const RiesterVergleichRechner = () => {
               </ul>
               <p className="text-xs text-muted-foreground pt-1">Nachteile: höhere Kosten und geringere Renditechance durch Garantie.</p>
             </div>
-            <div className="rounded-2xl border border-border bg-card p-5 space-y-2">
+            <div className="border-t border-border pt-6 space-y-2">
               <h3 className="text-sm font-semibold text-foreground">Für das Altersvorsorgedepot spricht</h3>
               <ul className="text-sm text-muted-foreground space-y-1.5 list-disc pl-5">
                 <li>Höhere Grundzulage (bis 540 €) + gleiche Kinderzulagen.</li>
@@ -580,15 +537,15 @@ const RiesterVergleichRechner = () => {
           <div className="mb-12">
             <p className="text-sm font-semibold mb-4">Weiterlesen</p>
             <div className="space-y-2">
-              <Link to="/blog/riester-rente" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+              <Link to="/blog/riester-rente" className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:text-primary text-sm">
                 <span>Riester-Rente 2026: Lohnt sich das noch?</span>
                 <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
               </Link>
-              <Link to="/blog/altersvorsorgedepot-2027" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+              <Link to="/blog/altersvorsorgedepot-2027" className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:text-primary text-sm">
                 <span>Altersvorsorgedepot 2027: Alles, was du wissen musst</span>
                 <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
               </Link>
-              <Link to="/fruehstart-rente-rechner" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+              <Link to="/fruehstart-rente-rechner" className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:text-primary text-sm">
                 <span>Frühstart-Rente für Kinder berechnen</span>
                 <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
               </Link>
@@ -598,8 +555,8 @@ const RiesterVergleichRechner = () => {
           <BlogNewsletterWidget />
 
           {/* Hinweis zu Annahmen */}
-          <div className="mt-8 p-5 bg-muted/50 border border-border/60 rounded-xl space-y-3 text-sm text-muted-foreground">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Annahmen dieser Berechnung</p>
+          <div className="mt-8 p-5 bg-muted/50 border border-border/60 rounded-lg space-y-3 text-sm text-muted-foreground">
+            <p className="text-xs font-semibold uppercase  text-muted-foreground">Annahmen dieser Berechnung</p>
             <p>
               Vereinfachte Modellrechnung mit konstanter Rendite und konstanten Kosten, ohne Inflation. Beiträge inkl. Zulagen werden jeweils einmal pro Jahr verzinst. Die Auszahlung verteilt das Endkapital linear auf 25 Jahre (Renteneintritt {RENTENALTER}, Bezugsdauer bis 92) ohne weitere Verzinsung in der Entnahmephase. Die Renditeannahme orientiert sich am historischen Durchschnitt breit gestreuter Aktienindizes (siehe{" "}
               <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline">MSCI-World-Renditedreieck des Deutschen Aktieninstituts</a>) und ist keine Prognose.

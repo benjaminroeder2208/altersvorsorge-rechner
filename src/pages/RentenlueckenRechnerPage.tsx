@@ -1,14 +1,11 @@
+import CalculatorPageHeader from "@/components/landing/CalculatorPageHeader";
+import ChapterHeading from "@/components/landing/ChapterHeading";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
-import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import RentenlueckenRechner from "@/components/landing/RentenlueckenRechner";
-import { Badge } from "@/components/ui/badge";
-import {
-  Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from
-"@/components/ui/breadcrumb";
 
 const BASE = "https://altersvorsorge-rechner.com";
 const PATH = "/rentenluecken-rechner";
@@ -41,33 +38,15 @@ const RentenlueckenRechnerPage = () =>
   
     <Navbar />
 
-    <main className="pt-24 pb-20">
-      <div className="container max-w-2xl mx-auto px-6">
-        <Breadcrumb className="mb-8">
-          <BreadcrumbList>
-            <BreadcrumbItem><BreadcrumbLink asChild><Link to="/">Home</Link></BreadcrumbLink></BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem><BreadcrumbPage>Rentenlückenrechner</BreadcrumbPage></BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-
-        <AnimatedSection>
-          <Badge variant="secondary" className="mb-4 text-xs font-medium">
-            Kostenlos &amp; unverbindlich
-          </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4" style={{ letterSpacing: "-0.02em" }}>
-            Rentenlückenrechner
-          </h1>
-          <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-12">
-            Berechne in 30 Sekunden, wie groß deine persönliche Rentenlücke ist — und was du monatlich brauchst, um sie zu schließen.
-          </p>
-        </AnimatedSection>
+    <main className="calculator-subpage overflow-x-clip pt-28 pb-20 md:pt-36">
+      <div className="container max-w-6xl mx-auto px-5 md:px-8">
+          <CalculatorPageHeader title="Rentenlückenrechner." breadcrumb="Rentenlückenrechner" description="Berechne in 30 Sekunden, wie groß deine persönliche Rentenlücke ist — und was du monatlich brauchst, um sie zu schließen." />
 
         <RentenlueckenRechner />
 
         {/* Bottom text section */}
-        <div className="mt-16 space-y-4">
-          <h2 className="text-xl md:text-2xl font-bold tracking-tight" style={{ letterSpacing: "-0.02em" }}>
+        <div className="mt-20 border-t border-border pt-12 space-y-4">
+          <h2 className="text-xl md:text-2xl font-bold ">
             Was bedeutet das für dich?
           </h2>
           <p className="text-base leading-relaxed text-muted-foreground">
@@ -85,11 +64,11 @@ const RentenlueckenRechnerPage = () =>
         <div className="mt-12">
           <p className="text-sm font-semibold mb-4">Weiterführende Artikel</p>
           <div className="space-y-2">
-            <Link to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+            <Link to="/blog/rentenlucke-was-sie-ist-und-was-du-tun-kannst" className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:text-primary text-sm">
               <span>Was ist die Rentenlücke? Ratgeber</span>
               <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
             </Link>
-            <Link to="/blog/rentenlucke-mit-30-40-50" className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm">
+            <Link to="/blog/rentenlucke-mit-30-40-50" className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:text-primary text-sm">
               <span>Rentenlücke mit 30, 40 oder 50</span>
               <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
             </Link>
@@ -103,10 +82,10 @@ const RentenlueckenRechnerPage = () =>
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-16 p-5 bg-muted/50 border border-border/60 rounded-xl space-y-4">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Hinweise & Haftungsausschluss</p>
+        <div className="mt-16 p-5 bg-muted/50 border border-border/60 rounded-lg space-y-4">
+          <p className="text-xs font-semibold text-muted-foreground uppercase  mb-2">Hinweise & Haftungsausschluss</p>
 
-          <div className="space-y-3 text-[0.8rem] text-muted-foreground/70 leading-relaxed">
+          <div className="space-y-3 text-[0.8rem] text-disclaimer-foreground leading-relaxed">
             <div>
               <p className="not-italic font-medium text-muted-foreground mb-1">Grundlage und Aktualität</p>
               <p>Diese Berechnung basiert auf dem Altersvorsorgereformgesetz, das am 27. März 2026 vom Bundestag beschlossen wurde. Das Altersvorsorgedepot startet am 1. Januar 2027.</p>

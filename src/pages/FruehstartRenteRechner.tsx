@@ -1,24 +1,16 @@
+import CalculatorNumberControl from "@/components/landing/CalculatorNumberControl";
+import CalculatorPageHeader from "@/components/landing/CalculatorPageHeader";
+import ChapterHeading from "@/components/landing/ChapterHeading";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calculator, Info } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import FooterSection from "@/components/landing/FooterSection";
-import AnimatedSection from "@/components/landing/AnimatedSection";
 import PageHead from "@/components/seo/PageHead";
 import BlogDisclaimer from "@/components/blog/BlogDisclaimer";
 import BlogNewsletterWidget from "@/components/blog/BlogNewsletterWidget";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import {
   Table,
   TableBody,
@@ -177,27 +169,13 @@ const NumberField = ({
   const clamp = (n: number) => Math.min(max, Math.max(min, n));
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <Label htmlFor={id} className="text-sm font-medium text-foreground">
           {label}
         </Label>
         <div className="flex items-center gap-2">
-          <Input
-            id={id}
-            type="number"
-            inputMode="numeric"
-            value={value}
-            min={min}
-            max={max}
-            step={step}
-            onChange={(e) => {
-              const n = Number(e.target.value);
-              if (!Number.isNaN(n)) onChange(clamp(n));
-            }}
-            className="w-28 h-9 text-right text-sm"
-          />
-          {unit && <span className="text-sm text-muted-foreground">{unit}</span>}
-        </div>
+<CalculatorNumberControl id={id} label={label} value={value} min={min} max={max} step={step} unit={unit} onChange={onChange} />
+      </div>
       </div>
       <Slider
         value={[value]}
@@ -231,40 +209,13 @@ const FruehstartRenteRechner = () => {
       />
       <Navbar />
 
-      <main className="pt-24 pb-20">
-        <div className="container max-w-3xl mx-auto px-6">
-          <Breadcrumb className="mb-8">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link to="/">Home</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Frühstart-Rente Rechner</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+      <main className="calculator-subpage overflow-x-clip pt-28 pb-20 md:pt-36">
+        <div className="container max-w-6xl mx-auto px-5 md:px-8">
+          <CalculatorPageHeader title="Frühstart-Rente Rechner." breadcrumb="Frühstart-Rente Rechner" description="Berechne, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut. Der Staat zahlt 10 € pro Monat – du kannst zusätzlich einzahlen." />
 
-          <AnimatedSection>
-            <Badge variant="secondary" className="mb-4 text-xs font-medium">
-              Kostenlos &amp; unverbindlich
-            </Badge>
-            <h1
-              className="text-3xl md:text-4xl font-bold tracking-tight mb-4"
-              style={{ letterSpacing: "-0.02em" }}
-            >
-              Frühstart-Rente Rechner: Wie viel spart dein Kind bis zur Rente?
-            </h1>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10">
-              Berechne, wie viel Vermögen dein Kind mit der Frühstart-Rente bis zur Rente aufbaut.
-              Der Staat zahlt 10&nbsp;€ pro Monat – du kannst zusätzlich einzahlen.
-            </p>
-          </AnimatedSection>
-
+          <ChapterHeading number="02" label="Deine Annahmen"><h2 className="heading-section">Ein kleiner Anfang.</h2></ChapterHeading>
           {/* Inputs */}
-          <section className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-8">
+          <section className="border-b border-border pb-12 space-y-8">
             <NumberField
               id="birthYear"
               label="Geburtsjahr des Kindes"
@@ -300,43 +251,38 @@ const FruehstartRenteRechner = () => {
           </section>
 
           {/* Ergebnis */}
-          <section className="mt-10 space-y-6">
-            <h2
-              className="text-2xl md:text-3xl font-bold tracking-tight"
-              style={{ letterSpacing: "-0.02em" }}
-            >
-              Dein Ergebnis
-            </h2>
+          <section className="mt-20 space-y-6" aria-live="polite">
+            <ChapterHeading number="03" label="Dein Ergebnis"><h2 className="heading-section">Zeit wird zu Vermögen.</h2></ChapterHeading>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="rounded-2xl border border-border bg-card p-5">
-                <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <div className="rounded-lg border border-border bg-card p-5">
+                <p className="text-xs uppercase  text-muted-foreground font-semibold mb-2">
                   Kapital mit 18 Jahren
                 </p>
-                <p className="text-2xl md:text-3xl font-bold text-foreground transition-all">
+                <p className="text-3xl font-display font-bold tabular-nums text-foreground transition-all">
                   {fmtEur(result.kapital18)}
                 </p>
               </div>
-              <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5">
-                <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">
+              <div className="rounded-lg border border-border bg-teal-soft/30 p-5">
+                <p className="text-xs uppercase  text-muted-foreground font-semibold mb-2">
                   Kapital mit 67 (Renteneintritt)
                 </p>
-                <p className="text-2xl md:text-3xl font-bold text-primary transition-all">
+                <p className="text-3xl font-display font-bold tabular-nums text-capital transition-all">
                   {fmtEur(result.kapital67)}
                 </p>
               </div>
-              <div className="rounded-2xl border border-border bg-card p-5">
-                <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2">
+              <div className="rounded-lg border border-border bg-card p-5">
+                <p className="text-xs uppercase  text-muted-foreground font-semibold mb-2">
                   Monatliche Rente (25&nbsp;J.)
                 </p>
-                <p className="text-2xl md:text-3xl font-bold text-foreground transition-all">
+                <p className="text-3xl font-display font-bold tabular-nums text-foreground transition-all">
                   {fmtEur(result.monatlicheRente)}
                 </p>
               </div>
             </div>
 
             {/* Breakdown-Tabelle */}
-            <div className="rounded-2xl border border-border bg-card p-5 md:p-6">
+            <div className="border-t border-border pt-8">
               <p className="text-sm font-semibold text-foreground mb-4">Aufschlüsselung</p>
               <div className="overflow-x-auto -mx-5 md:-mx-6 px-5 md:px-6">
                 <Table>
@@ -371,7 +317,7 @@ const FruehstartRenteRechner = () => {
                       <TableCell>Rendite bis 67 (ohne neue Einzahlungen)</TableCell>
                       <TableCell className="text-right">{fmtEur(result.renditeBis67)}</TableCell>
                     </TableRow>
-                    <TableRow className="bg-primary/5">
+                    <TableRow className="bg-teal-soft/30">
                       <TableCell className="font-bold">Gesamt zum Renteneintritt (67)</TableCell>
                       <TableCell className="text-right font-bold text-primary">
                         {fmtEur(result.kapital67)}
@@ -392,7 +338,7 @@ const FruehstartRenteRechner = () => {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-muted/50 border border-border/60 p-5">
+            <div className="rounded-lg bg-muted/50 border border-border/60 p-5">
               <p className="text-sm text-muted-foreground leading-relaxed">
                 <strong className="text-foreground">💡 Tipp:</strong> Je früher du anfängst, desto
                 mehr Zeit hat das Geld, um über den Zinseszinseffekt zu wachsen. Schon kleine
@@ -407,7 +353,7 @@ const FruehstartRenteRechner = () => {
             <div className="space-y-2">
               <Link
                 to="/blog/fruehstart-rente"
-                className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm"
+                className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:text-primary text-sm"
               >
                 <span className="flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-muted-foreground" />
@@ -417,14 +363,14 @@ const FruehstartRenteRechner = () => {
               </Link>
               <Link
                 to="/blog/altersvorsorgedepot-2027"
-                className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm"
+                className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:text-primary text-sm"
               >
                 <span>Altersvorsorgedepot für Erwachsene ab 2027</span>
                 <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
               </Link>
               <Link
                 to="/"
-                className="flex items-center justify-between p-4 rounded-xl bg-secondary hover:bg-secondary/70 transition-colors text-sm"
+                className="group flex items-center justify-between gap-4 border-b border-border py-5 transition-colors hover:text-primary text-sm"
               >
                 <span>Altersvorsorge-Rechner für Erwachsene</span>
                 <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
