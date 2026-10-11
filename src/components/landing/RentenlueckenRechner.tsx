@@ -4,6 +4,9 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import CalculatorNumberControl from "@/components/landing/CalculatorNumberControl";
+import ChapterHeading from "@/components/landing/ChapterHeading";
 import { trackEvent } from "@/lib/analytics";
 
 const fmt = (n: number) =>
@@ -67,27 +70,28 @@ const RentenlueckenRechner = () => {
 
   const deckungColor =
     result.deckung >= 75
-      ? "bg-green-500"
+      ? "bg-success"
       : result.deckung >= 50
-      ? "bg-yellow-500"
-      : "bg-red-500";
+      ? "bg-brand-amber"
+      : "bg-destructive";
 
   const deckungTextColor =
     result.deckung >= 75
-      ? "text-green-700"
+      ? "text-success"
       : result.deckung >= 50
-      ? "text-yellow-700"
-      : "text-red-700";
+      ? "text-warning-foreground"
+      : "text-destructive";
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-12">
+      <ChapterHeading number="02" label="Deine Annahmen"><h2 className="heading-section">Heute verstehen. Morgen planen.</h2></ChapterHeading>
       {/* Inputs */}
-      <div className="space-y-8">
+      <div className="grid gap-x-12 gap-y-8 md:grid-cols-2 border-b border-border pb-12">
         {/* GRUPPE 1 — Alter */}
         <div>
-          <div className="flex justify-between items-baseline mb-3">
-            <label className="text-sm font-medium text-foreground">Dein aktuelles Alter</label>
-            <span className="text-2xl font-bold text-foreground">{alter} Jahre</span>
+          <div className="flex flex-wrap justify-between items-center gap-3 mb-4">
+            <label htmlFor="gap-alter" className="text-sm font-medium text-foreground">Dein aktuelles Alter</label>
+            <CalculatorNumberControl id="gap-alter" label="Dein aktuelles Alter" value={alter} min={20} max={60} step={1} unit="J." onChange={setAlter} />
           </div>
           <Slider
             value={[alter]}
@@ -103,17 +107,17 @@ const RentenlueckenRechner = () => {
         </div>
 
         {/* Separator — Einkommen */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 md:col-span-2">
           <div className="h-px flex-1 bg-border" />
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Einkommen</span>
+          <span className="text-xs font-medium text-muted-foreground uppercase ">Einkommen</span>
           <div className="h-px flex-1 bg-border" />
         </div>
 
         {/* GRUPPE 2 — Bruttogehalt */}
         <div>
-          <div className="flex justify-between items-baseline mb-3">
-            <label className="text-sm font-medium text-foreground">Bruttogehalt pro Monat</label>
-            <span className="text-2xl font-bold text-foreground">{fmt(brutto)} €</span>
+          <div className="flex flex-wrap justify-between items-center gap-3 mb-4">
+            <label htmlFor="gap-brutto" className="text-sm font-medium text-foreground">Bruttogehalt pro Monat</label>
+            <CalculatorNumberControl id="gap-brutto" label="Bruttogehalt pro Monat" value={brutto} min={1500} max={15000} step={100} unit="€" onChange={(v) => { setBrutto(v); if (netto > v - 100) setNetto(Math.max(v - 100, 1000)); }} />
           </div>
           <Slider
             value={[brutto]}
@@ -133,9 +137,9 @@ const RentenlueckenRechner = () => {
 
         {/* Nettogehalt */}
         <div>
-          <div className="flex justify-between items-baseline mb-3">
-            <label className="text-sm font-medium text-foreground">Nettogehalt pro Monat</label>
-            <span className="text-2xl font-bold text-foreground">{fmt(clampedNetto)} €</span>
+          <div className="flex flex-wrap justify-between items-center gap-3 mb-4">
+            <label htmlFor="gap-netto" className="text-sm font-medium text-foreground">Nettogehalt pro Monat</label>
+            <CalculatorNumberControl id="gap-netto" label="Nettogehalt pro Monat" value={clampedNetto} min={1000} max={nettoMax} step={100} unit="€" onChange={setNetto} />
           </div>
           <Slider
             value={[clampedNetto]}
@@ -148,7 +152,7 @@ const RentenlueckenRechner = () => {
             <span>1.000 €</span><span>{fmt(nettoMax)} €</span>
           </div>
           <p className="text-xs text-muted-foreground mt-2">tatsächlich auf dem Konto</p>
-          <div className="mt-3 p-3 rounded-lg border border-primary/20 bg-primary/5">
+          <div className="mt-3 p-3 rounded-lg border border-border bg-teal-soft/30">
             <p className="text-xs text-muted-foreground leading-relaxed">
               💡 Du findest dein Nettoeinkommen auf deiner Gehaltsabrechnung unter „Auszahlungsbetrag".
             </p>
@@ -156,17 +160,17 @@ const RentenlueckenRechner = () => {
         </div>
 
         {/* Separator — Bedarf im Alter */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 md:col-span-2">
           <div className="h-px flex-1 bg-border" />
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Bedarf im Alter</span>
+          <span className="text-xs font-medium text-muted-foreground uppercase ">Bedarf im Alter</span>
           <div className="h-px flex-1 bg-border" />
         </div>
 
         {/* GRUPPE 3 — Bedarf */}
         <div>
-          <div className="flex justify-between items-baseline mb-3">
-            <label className="text-sm font-medium text-foreground">Gewünschter Rentenbedarf</label>
-            <span className="text-2xl font-bold text-foreground">{bedarf} %</span>
+          <div className="flex flex-wrap justify-between items-center gap-3 mb-4">
+            <label htmlFor="gap-bedarf" className="text-sm font-medium text-foreground">Gewünschter Rentenbedarf</label>
+            <CalculatorNumberControl id="gap-bedarf" label="Gewünschter Rentenbedarf" value={bedarf} min={50} max={100} step={5} unit="%" onChange={setBedarf} />
           </div>
           <Slider
             value={[bedarf]}
@@ -182,33 +186,34 @@ const RentenlueckenRechner = () => {
         </div>
       </div>
 
+      <ChapterHeading number="03" label="Dein Ergebnis"><h2 className="heading-section">Was im Ruhestand fehlt.</h2></ChapterHeading>
       {/* Result cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <Card className="border-border">
-          <CardContent className="p-4 text-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card className="rounded-lg border-border shadow-none">
+          <CardContent className="p-5 text-left">
             <p className="text-xs text-muted-foreground mb-1">Geschätzte gesetzliche Rente</p>
             <p className="text-2xl font-bold text-foreground">{fmt(result.renteMonatNetto)} €</p>
             <p className="text-xs text-muted-foreground">monatlich netto ab 67</p>
           </CardContent>
         </Card>
-        <Card className="border-border">
-          <CardContent className="p-4 text-center">
+        <Card className="rounded-lg border-border shadow-none">
+          <CardContent className="p-5 text-left">
             <p className="text-xs text-muted-foreground mb-1">Dein monatlicher Bedarf</p>
             <p className="text-2xl font-bold text-foreground">{fmt(result.bedarfMonat)} €</p>
             <p className="text-xs text-muted-foreground">{bedarf} % des Nettos</p>
           </CardContent>
         </Card>
-        <Card className={`border-2 ${result.luecke > 0 ? "border-red-300 bg-red-50/50" : "border-green-300 bg-green-50/50"}`}>
-          <CardContent className="p-4 text-center">
+        <Card className={`rounded-lg shadow-none border ${result.luecke > 0 ? "border-border bg-coral-soft/30" : "border-border bg-teal-soft/30"}`}>
+          <CardContent className="p-5 text-left">
             <p className="text-xs text-muted-foreground mb-1">Deine Rentenlücke</p>
-            <p className={`text-2xl font-bold ${result.luecke > 0 ? "text-red-600" : "text-green-600"}`}>
+            <p className={`text-2xl font-bold ${result.luecke > 0 ? "text-destructive" : "text-success"}`}>
               {result.luecke > 0 ? `${fmt(result.luecke)} €` : "0 €"}
             </p>
             <p className="text-xs text-muted-foreground">pro Monat</p>
           </CardContent>
         </Card>
-        <Card className="border-border">
-          <CardContent className="p-4 text-center">
+        <Card className="rounded-lg border-border shadow-none">
+          <CardContent className="p-5 text-left">
             <p className="text-xs text-muted-foreground mb-1">Deine Nettoquote</p>
             <p className="text-2xl font-bold text-foreground">{result.nettoquote} %</p>
             <p className="text-xs text-muted-foreground">Netto vom Brutto — {fmt(brutto - clampedNetto)} €/Monat Abzüge</p>
@@ -233,7 +238,7 @@ const RentenlueckenRechner = () => {
       {result.luecke > 0 ? (
         <div className="space-y-6">
           <div>
-            <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-2" style={{ letterSpacing: "-0.02em" }}>
+            <h2 className="text-xl md:text-2xl font-bold  mb-2">
               So schließt du deine Lücke
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -244,17 +249,17 @@ const RentenlueckenRechner = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <Card className="border-2 border-primary bg-primary/5">
+            <Card className="rounded-lg border-border bg-teal-soft/30 shadow-none">
               <CardContent className="p-5">
-                <Badge className="mb-3 bg-primary/10 text-primary border-0 text-xs">
+                <Badge className="mb-3 bg-teal-soft text-capital border-0 text-xs">
                   inkl. staatliche Förderung
                 </Badge>
                 <p className="text-xs text-muted-foreground mb-1">Mit Altersvorsorgedepot</p>
-                <p className="text-3xl font-bold text-primary">{fmt(result.sparMitFoerderung)} €</p>
+                <p className="text-3xl font-display font-bold text-capital">{fmt(result.sparMitFoerderung)} €</p>
                 <p className="text-xs text-muted-foreground">pro Monat</p>
               </CardContent>
             </Card>
-            <Card className="border-border">
+            <Card className="rounded-lg border-border shadow-none">
               <CardContent className="p-5">
                 <p className="text-xs text-muted-foreground mb-1 mt-7">Ohne Förderung</p>
                 <p className="text-3xl font-bold text-foreground">{fmt(result.sparOhneFoerderung)} €</p>
@@ -263,24 +268,20 @@ const RentenlueckenRechner = () => {
             </Card>
           </div>
 
-          <div className="p-4 bg-primary/5 border border-primary/10 rounded-xl">
+          <div className="py-5 border-y border-border">
             <p className="text-sm text-foreground">
               Durch die staatliche Förderung sparst du monatlich{" "}
               <strong>{fmt(result.sparOhneFoerderung - result.sparMitFoerderung)} €</strong> Eigenbeitrag — für dasselbe Ziel.
             </p>
           </div>
 
-          <Link
-            to="/"
-            className="flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
-          >
-            Altersvorsorgedepot detailliert berechnen
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <Button asChild size="lg" className="w-full h-auto min-h-12 whitespace-normal py-3 text-center">
+            <Link to="/">Altersvorsorgedepot detailliert berechnen <ArrowRight className="w-4 h-4 shrink-0" /></Link>
+          </Button>
         </div>
       ) : (
-        <div className="p-6 bg-green-50 border border-green-200 rounded-2xl text-center">
-          <CheckCircle className="w-8 h-8 text-green-600 mx-auto mb-3" />
+        <div className="p-6 bg-teal-soft/30 border border-border rounded-lg text-center">
+          <CheckCircle className="w-8 h-8 text-success mx-auto mb-3" />
           <p className="font-semibold text-foreground mb-1">Keine Rentenlücke bei diesen Werten</p>
           <p className="text-sm text-muted-foreground">
             Mit einem niedrigeren Bedarf deckt die gesetzliche Rente deine Ausgaben.
