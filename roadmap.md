@@ -1,3 +1,6 @@
+- [x] Refine main calculator inputs, progress and results in the approved design; preserve formulas, tracking and email flow.
+- [x] Verify complete calculator flow and scenario selection at 1280/375/320px: no overflow or browser errors, 51 regression tests pass; calculation engine unchanged. Added reusable E2E spec.
+
 # Design refresh
 
 - [x] Restyle the remaining topic compass and FAQ with chapter headings and editorial rows; keep removed editorial/blog sections absent and calculator unchanged.

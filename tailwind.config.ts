@@ -105,6 +105,12 @@ export default {
         "coral-soft": "hsl(var(--coral-soft))",
         "teal-soft": "hsl(var(--teal-soft))",
         ghost: "hsl(var(--ghost))",
+        capital: "hsl(var(--capital))",
+        chart: {
+          contributions: "hsl(var(--chart-contributions))",
+          subsidies: "hsl(var(--chart-subsidies))",
+          gains: "hsl(var(--chart-gains))",
+        },
         "trust-ghost": "hsl(var(--trust-ghost))",
         "trust-muted": "hsl(var(--trust-muted))",
         "trust-line": "hsl(var(--trust-line))",

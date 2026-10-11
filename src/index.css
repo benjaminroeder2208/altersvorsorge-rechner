@@ -88,6 +88,10 @@ html {
     --trust-muted: 170 22% 79%;
     --trust-line: 181 28% 26%;
     --hero-edge: linear-gradient(90deg, hsl(var(--teal-soft)), hsl(var(--primary)), hsl(var(--coral-soft)));
+    --capital: 181.28 100% 10.55%;
+    --chart-contributions: 240 1% 44%;
+    --chart-subsidies: 216 100% 34%;
+    --chart-gains: 174 60% 45%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -164,6 +168,10 @@ html {
     --ghost: 192 15% 18%;
     --teal-soft: 172 32% 20%;
     --coral-soft: 10 30% 24%;
+    --capital: 160 70% 85%;
+    --chart-contributions: 185 10% 60%;
+    --chart-subsidies: 210 65% 70%;
+    --chart-gains: 165 55% 65%;
   }
 }
 
@@ -234,6 +242,27 @@ html {
 .calculator-refresh #rechner p { letter-spacing: 0 !important; }
 .calculator-refresh #rechner .rounded-2xl { border-radius: 8px; }
 .calculator-refresh #rechner button.rounded-full { border-radius: 8px; }
+.calculator-editorial {
+  --chart-contributions: 190 10% 55%;
+  --chart-subsidies: 12 65% 64%;
+  --chart-gains: 172 42% 42%;
+}
+.calculator-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  border: 3px solid hsl(var(--card));
+  box-shadow: 0 0 0 1px hsl(var(--primary));
+}
+.calculator-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  border: 3px solid hsl(var(--card));
+}
 .hero-example::before {
   content: "";
   position: absolute;

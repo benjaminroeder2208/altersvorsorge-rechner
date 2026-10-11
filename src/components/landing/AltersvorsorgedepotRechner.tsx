@@ -2,9 +2,9 @@ import { useState, useMemo, useCallback, useEffect, useRef, lazy, Suspense } fro
 import { motion, AnimatePresence } from "framer-motion";
 
 const StackedAreaChart = lazy(() => import("./StackedAreaChart"));
-import { ArrowRight, ChevronLeft, Check, Mail, Sparkles, FileText } from "lucide-react";
+import { ArrowRight, ChevronLeft, Check, Sparkles, Plus, Minus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 import KiAuswertungModal from "./KiAuswertungModal";
 import NewsletterCard from "./NewsletterCard";
 import FoerderTimeline from "./FoerderTimeline";
@@ -157,6 +157,10 @@ const AnimatedNumber = ({ value, suffix = "" }: { value: number; suffix?: string
   const ref = useRef<number | null>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setDisplay(value);
+      return;
+    }
     const start = display;
     const diff = value - start;
     if (Math.abs(diff) < 1) {
@@ -190,7 +194,7 @@ const AnimatedNumber = ({ value, suffix = "" }: { value: number; suffix?: string
 /* ─────────────── helper text component ─────────────── */
 
 const InfoText = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <p className={`text-xs text-muted-foreground/70 leading-relaxed ${className}`}>{children}</p>
+  <p className={`text-xs text-muted-foreground leading-relaxed ${className}`}>{children}</p>
 );
 
 
@@ -211,24 +215,24 @@ const StepperCard = ({
   onChange: (v: number) => void;
   format?: (v: number) => string;
 }) => (
-  <div className="bg-background border border-border rounded-2xl p-6 flex items-center justify-between">
+  <div className="border-b border-border py-5 flex flex-wrap gap-3 items-center justify-between">
     <span className="text-base text-muted-foreground">{label}</span>
-    <div className="flex items-center gap-3">
-      <button
+    <div className="grid grid-cols-[40px_60px_40px] items-center gap-2 ml-auto">
+      <Button variant="ghost"
         onClick={() => onChange(Math.max(min, value - 1))}
         disabled={value <= min}
-        className="w-9 h-9 rounded-full bg-secondary text-foreground font-medium text-lg flex items-center justify-center hover:bg-border transition-colors disabled:opacity-20"
+        aria-label={`${label} verringern`} title={`${label} verringern`} className="w-10 h-10 shrink-0 p-0 rounded-full bg-secondary text-foreground font-medium text-lg flex items-center justify-center hover:bg-border transition-colors disabled:opacity-20"
       >
-        −
-      </button>
+        <Minus aria-hidden />
+      </Button>
       <span className="text-xl font-bold tabular-nums min-w-[4ch] text-center">{format ? format(value) : value}</span>
-      <button
+      <Button variant="ghost"
         onClick={() => onChange(Math.min(max, value + 1))}
         disabled={value >= max}
-        className="w-9 h-9 rounded-full bg-secondary text-foreground font-medium text-lg flex items-center justify-center hover:bg-border transition-colors disabled:opacity-20"
+        aria-label={`${label} erhöhen`} title={`${label} erhöhen`} className="w-10 h-10 shrink-0 p-0 rounded-full bg-secondary text-foreground font-medium text-lg flex items-center justify-center hover:bg-border transition-colors disabled:opacity-20"
       >
-        +
-      </button>
+        <Plus aria-hidden />
+      </Button>
     </div>
   </div>
 );
@@ -278,19 +282,24 @@ const AltersvorsorgedepotRechner = () => {
 
   return (
     <>
-      <section id="rechner" className="section-padding">
-        <div className="container max-w-3xl mx-auto px-6">
-          {/* Step indicator */}
-          <div className="flex items-center justify-center gap-2 mb-16">
-            {[1, 2, 3].map((s) => (
-              <div
-                key={s}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  s === step ? "w-10 bg-primary" : s < step ? "w-6 bg-primary/40" : "w-6 bg-border"
-                }`}
-              />
-            ))}
-          </div>
+      <section id="rechner" className="calculator-editorial pb-16 md:pb-24">
+        <div className="container max-w-4xl mx-auto px-6">
+          <ol aria-label="Berechnungsschritte" className="grid grid-cols-4 gap-2 sm:gap-5 mb-10 md:mb-14 border-b border-border pb-6">
+            {["Beitrag", "Einkommen", "Situation", "Ergebnis"].map((label, i) => {
+              const number = i + 1;
+              return (
+                <li key={label} aria-current={step === number ? "step" : undefined} className="min-w-0">
+                  <div className={`h-0.5 mb-3 transition-colors ${number <= step ? "bg-primary" : "bg-border"}`} />
+                  <div className={`flex items-center gap-2 text-xs sm:text-sm ${step === number ? "text-foreground font-semibold" : "text-muted-foreground"}`}>
+                    <span className={`hidden sm:flex size-6 shrink-0 items-center justify-center rounded-full text-xs ${number < step ? "bg-trust text-trust-foreground" : "bg-muted"}`}>
+                      {number < step ? <Check className="size-3" aria-hidden /> : `0${number}`}
+                    </span>
+                    {label}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
 
           <AnimatePresence mode="wait">
             {/* ── STEP 1: Contribution ── */}
@@ -302,36 +311,34 @@ const AltersvorsorgedepotRechner = () => {
                 animate="animate"
                 exit="exit"
                 transition={{ duration: 0.4 }}
-                className="text-center"
+                className="text-center min-w-0"
               >
                 <h2
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
-                  style={{ letterSpacing: "-0.02em" }}
+                  className="max-w-2xl mx-auto text-2xl md:text-4xl font-semibold leading-tight mb-4"
+                  
                 >
-                  Wie viel möchten Sie ab 2027 monatlich in das neue Altersvorsorgedepot investieren?
+                  Wie viel möchten Sie monatlich investieren?
                 </h2>
-                <p className="text-muted-foreground text-lg mb-16 max-w-xl mx-auto">
-                  Je höher Ihr monatlicher Beitrag, desto stärker kann der langfristige Vermögensaufbau ausfallen.
+                <p className="text-muted-foreground text-base md:text-lg mb-10 max-w-xl mx-auto">
+                  Ihr Beitrag für das Altersvorsorgedepot ab 2027 — die Grundlage Ihrer persönlichen Rechnung.
                 </p>
 
                 {/* Large value display */}
-                <p className="text-6xl md:text-8xl font-bold tracking-tight mb-10" style={{ letterSpacing: "-0.03em" }}>
+                <p className="font-display text-6xl md:text-7xl font-semibold text-capital tabular-nums mb-8" >
                   <AnimatedNumber value={inputs.monthlyContribution} suffix=" €" />
                 </p>
 
                 {/* Slider */}
                 <div className="max-w-lg mx-auto mb-4">
                   <input
+                    aria-label="Monatlicher Beitrag"
                     type="range"
                     min={10}
                     max={600}
                     step={10}
                     value={inputs.monthlyContribution}
                     onChange={(e) => set("monthlyContribution", Number(e.target.value))}
-                    className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer accent-primary
-                      [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6
-                      [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary
-                      [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer"
+                    className="calculator-range w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
                   />
                   <div className="flex justify-between text-xs text-muted-foreground mt-2">
                     <span>10 €</span>
@@ -348,13 +355,13 @@ const AltersvorsorgedepotRechner = () => {
                   Dieser Wert ergibt sich aus Ihrem monatlichen Beitrag hochgerechnet auf ein Jahr.
                 </InfoText>
 
-                <button
+                <Button variant="ghost"
                   onClick={() => setStep(2)}
-                  className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
+                  className="mt-8 h-12 w-full sm:w-auto inline-flex items-center gap-2 px-8 rounded-lg bg-primary text-primary-foreground font-medium text-base hover:bg-primary/90 transition-colors"
                 >
                   Weiter
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Button>
               </motion.div>
             )}
 
@@ -367,33 +374,34 @@ const AltersvorsorgedepotRechner = () => {
                 animate="animate"
                 exit="exit"
                 transition={{ duration: 0.4 }}
-                className="text-center"
+                className="text-center min-w-0"
               >
-                <button
+                <Button variant="ghost"
                   onClick={() => setStep(1)}
                   className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Zurück
-                </button>
+                </Button>
 
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
+                <h2 className="text-2xl md:text-4xl font-semibold leading-tight mb-3" >
                   Wie hoch ist Ihr Bruttojahreseinkommen?
                 </h2>
-                <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
+                <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-xl mx-auto">
                   Wir nutzen Ihr Einkommen ausschließlich zur Schätzung Ihrer Steuerersparnis durch den
                   Sonderausgabenabzug — nicht zur Berechnung der Zulagen. Zulagen erhält jede förderberechtigte Person
                   unabhängig vom Einkommen.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 max-w-xl mx-auto">
+                <div className="grid grid-cols-1 min-[400px]:grid-cols-2 gap-3 max-w-xl mx-auto">
                   {INCOME_BANDS.map((band, i) => (
-                    <button
+                    <Button variant="ghost"
                       key={i}
+                      aria-pressed={inputs.incomeBand === i}
                       onClick={() => set("incomeBand", i)}
-                      className={`rounded-2xl p-5 text-center transition-all border ${
+                      className={`h-auto rounded-lg py-6 px-4 whitespace-normal text-center transition-all border ${
                         inputs.incomeBand === i
-                          ? "border-primary bg-primary/5 ring-1 ring-primary/20"
+                          ? "border-primary bg-primary-soft ring-1 ring-primary"
                           : "border-border bg-background hover:bg-secondary"
                       }`}
                     >
@@ -402,7 +410,7 @@ const AltersvorsorgedepotRechner = () => {
                       >
                         {band.label}
                       </span>
-                    </button>
+                    </Button>
                   ))}
                 </div>
 
@@ -412,13 +420,13 @@ const AltersvorsorgedepotRechner = () => {
                   Steuerersparnis — diese ist jedoch immer eine Schätzung und individuell verschieden.
                 </InfoText>
 
-                <button
+                <Button variant="ghost"
                   onClick={() => setStep(3)}
-                  className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
+                  className="mt-8 h-12 w-full sm:w-auto inline-flex items-center gap-2 px-8 rounded-lg bg-primary text-primary-foreground font-medium text-base hover:bg-primary/90 transition-colors"
                 >
                   Weiter
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Button>
               </motion.div>
             )}
 
@@ -431,20 +439,20 @@ const AltersvorsorgedepotRechner = () => {
                 animate="animate"
                 exit="exit"
                 transition={{ duration: 0.4 }}
-                className="text-center"
+                className="text-center min-w-0"
               >
-                <button
+                <Button variant="ghost"
                   onClick={() => setStep(2)}
                   className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Zurück
-                </button>
+                </Button>
 
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3" style={{ letterSpacing: "-0.02em" }}>
+                <h2 className="text-2xl md:text-4xl font-semibold leading-tight mb-3" >
                   Ein paar Angaben zu Ihrer Situation
                 </h2>
-                <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
+                <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-xl mx-auto">
                   Ihre Angaben bestimmen die Ansparphase bis zum Rentenbeginn.
                 </p>
 
@@ -456,10 +464,10 @@ const AltersvorsorgedepotRechner = () => {
                     max={CURRENT_YEAR - 18}
                     onChange={(v) => set("birthYear", v)}
                   />
-                  <div className="bg-background border border-border rounded-2xl p-6 text-left">
-                    <div className="flex items-center justify-between mb-4">
+                  <div className="border-y border-border py-5 text-left">
+                    <div className="flex flex-wrap gap-2 items-center justify-between mb-4">
                       <span className="text-base text-muted-foreground">Kinder</span>
-                      <button
+                      <Button variant="ghost"
                         type="button"
                         onClick={() => {
                           if (inputs.children.length >= 6) return;
@@ -469,14 +477,14 @@ const AltersvorsorgedepotRechner = () => {
                           ]);
                         }}
                         disabled={inputs.children.length >= 6}
-                        className="text-sm font-medium text-primary hover:opacity-80 disabled:opacity-30 transition-opacity"
+                        className="text-sm font-medium text-primary whitespace-normal h-auto px-2 hover:bg-primary-soft disabled:opacity-30"
                       >
                         + Kind hinzufügen
-                      </button>
+                      </Button>
                     </div>
 
                     {inputs.children.length === 0 && (
-                      <p className="text-sm text-muted-foreground/70">Keine Kinder hinzugefügt.</p>
+                      <p className="text-sm text-muted-foreground">Keine Kinder hinzugefügt.</p>
                     )}
 
                     <div className="space-y-3">
@@ -488,23 +496,25 @@ const AltersvorsorgedepotRechner = () => {
                           <div className="flex items-center gap-2">
                             <span className="text-xs text-muted-foreground">Geburtsjahr</span>
                             <div className="flex items-center gap-1">
-                              <button
+                              <Button variant="ghost"
                                 type="button"
+                                aria-label={`Geburtsjahr von Kind ${idx + 1} verringern`}
                                 onClick={() => {
                                   const next = [...inputs.children];
                                   next[idx] = { ...child, birthYear: Math.max(1990, child.birthYear - 1) };
                                   set("children", next);
                                 }}
                                 disabled={child.birthYear <= 1990}
-                                className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                                className="w-9 h-9 shrink-0 p-0 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
                               >
-                                −
-                              </button>
+                                <Minus aria-hidden />
+                              </Button>
                               <span className="text-sm font-semibold tabular-nums min-w-[4ch] text-center">
                                 {child.birthYear}
                               </span>
-                              <button
+                              <Button variant="ghost"
                                 type="button"
+                                aria-label={`Geburtsjahr von Kind ${idx + 1} erhöhen`}
                                 onClick={() => {
                                   const next = [...inputs.children];
                                   next[idx] = {
@@ -514,17 +524,18 @@ const AltersvorsorgedepotRechner = () => {
                                   set("children", next);
                                 }}
                                 disabled={child.birthYear >= CURRENT_YEAR}
-                                className="w-7 h-7 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
+                                className="w-9 h-9 shrink-0 p-0 rounded-full bg-background text-foreground text-base flex items-center justify-center hover:bg-border disabled:opacity-20"
                               >
-                                +
-                              </button>
+                                <Plus aria-hidden />
+                              </Button>
                             </div>
                           </div>
 
                           <div className="flex items-center gap-1 ml-auto">
                             {[18, 25].map((v) => (
-                              <button
+                              <Button variant="ghost"
                                 key={v}
+                                aria-pressed={child.kindergeldBis === v}
                                 type="button"
                                 onClick={() => {
                                   const next = [...inputs.children];
@@ -538,25 +549,25 @@ const AltersvorsorgedepotRechner = () => {
                                 }`}
                               >
                                 bis {v}
-                              </button>
+                              </Button>
                             ))}
-                            <button
+                            <Button variant="ghost"
                               type="button"
                               aria-label="Kind entfernen"
                               onClick={() => {
                                 const next = inputs.children.filter((_, i) => i !== idx);
                                 set("children", next);
                               }}
-                              className="ml-1 w-7 h-7 rounded-full bg-background text-muted-foreground hover:text-foreground flex items-center justify-center"
+                              className="ml-1 w-9 h-9 shrink-0 p-0 rounded-full bg-background text-muted-foreground hover:text-foreground flex items-center justify-center"
                             >
                               ×
-                            </button>
+                            </Button>
                           </div>
                         </div>
                       ))}
                     </div>
 
-                    <p className="text-[11px] text-muted-foreground/70 mt-4 leading-snug">
+                    <p className="text-[11px] text-muted-foreground mt-4 leading-snug">
                       „Bis 18" gilt im Grundfall. „Bis 25" wenn das Kind voraussichtlich in Ausbildung oder Studium ist.
                     </p>
                   </div>
@@ -573,7 +584,7 @@ const AltersvorsorgedepotRechner = () => {
                   Kinder können in dieser Simulation zusätzliche Zulagen beeinflussen.
                 </InfoText>
 
-                <button
+                <Button variant="ghost"
                   onClick={() => {
                     setStep(4);
                     window.__calculatorContext = {
@@ -606,11 +617,11 @@ const AltersvorsorgedepotRechner = () => {
                         if (error) console.warn("Tracking insert failed:", error.message);
                       });
                   }}
-                  className="mt-12 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity"
+                  className="mt-8 h-12 w-full sm:w-auto inline-flex items-center gap-2 px-8 rounded-lg bg-primary text-primary-foreground font-medium text-base hover:bg-primary/90 transition-colors"
                 >
                   Ergebnis anzeigen
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </Button>
               </motion.div>
             )}
 
@@ -623,46 +634,38 @@ const AltersvorsorgedepotRechner = () => {
                 animate="animate"
                 exit="exit"
                 transition={{ duration: 0.5 }}
-                className="text-center"
+                className="text-center min-w-0"
               >
-                <button
+                <Button variant="ghost"
                   onClick={() => setStep(3)}
                   className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Angaben ändern
-                </button>
+                </Button>
 
                 {/* Primary results */}
-                <div className="mb-12">
-                  <p className="text-sm font-medium text-primary uppercase tracking-widest mb-6">
-                    Kapital zum Rentenbeginn
-                  </p>
-                  <p
-                    className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-3"
-                    style={{ letterSpacing: "-0.03em" }}
-                  >
-                    <AnimatedNumber value={Math.round(r.capitalWithFunding)} suffix=" €" />
-                  </p>
-                  <p className="text-muted-foreground text-lg mb-8">
-                    bei {fmtEur(inputs.monthlyContribution)} monatlich über {r.yearsToRetirement} Jahre
-                  </p>
-
-                  <div className="inline-block bg-secondary rounded-2xl px-8 py-5">
-                    <p className="text-3xl md:text-4xl font-bold tabular-nums">
+                <div className="grid md:grid-cols-[1.5fr_1fr] gap-8 text-left border-y border-border py-8 md:py-10 mb-8">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-muted-foreground mb-4">Simuliertes Kapital zum Rentenbeginn</p>
+                    <p className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold text-capital tabular-nums mb-3">
+                      <AnimatedNumber value={Math.round(r.capitalWithFunding)} suffix=" €" />
+                    </p>
+                    <p className="text-muted-foreground text-sm">
+                      {fmtEur(inputs.monthlyContribution)} monatlich · {r.yearsToRetirement} Jahre Ansparzeit
+                    </p>
+                  </div>
+                  <div className="min-w-0 border-t md:border-t-0 md:border-l border-border pt-6 md:pt-0 md:pl-8">
+                    <p className="text-sm text-muted-foreground mb-4">Mögliche monatliche Auszahlung</p>
+                    <p className="font-display text-3xl md:text-4xl font-semibold text-capital tabular-nums">
                       <AnimatedNumber value={Math.round(r.monthlyPayout)} suffix=" €" />
                     </p>
-                    <p className="text-sm text-muted-foreground mt-1">monatliche Auszahlung bis 85</p>
+                    <p className="text-sm text-muted-foreground mt-3">Vereinfacht bis zum Alter von 85 Jahren.</p>
                   </div>
                 </div>
 
-                <InfoText className="max-w-md mx-auto mb-16">
-                  Die monatliche Auszahlung wird in dieser Simulation vereinfacht bis zum Alter von 85 Jahren
-                  dargestellt.
-                </InfoText>
-
                 {/* Result interpretation */}
-                <div className="max-w-xl mx-auto mb-20 p-6 bg-secondary/50 rounded-2xl">
+                <div className="max-w-2xl mx-auto mb-10 text-left">
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     Wenn Sie monatlich{" "}
                     <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution)}</span>{" "}
@@ -675,57 +678,26 @@ const AltersvorsorgedepotRechner = () => {
                   </p>
                 </div>
 
-                {/* KI-Auswertung button */}
-                <div className="max-w-lg mx-auto mb-12">
-                  <button
-                    onClick={() => setKiModalOpen(true)}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-opacity shadow-lg"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    KI-Auswertung ansehen
-                  </button>
-                </div>
-
-                {/* KI-Auswertung Modal */}
-                <KiAuswertungModal
-                  open={kiModalOpen}
-                  onClose={() => setKiModalOpen(false)}
-                  data={{
-                    birth_year: inputs.birthYear,
-                    monthly_contribution: inputs.monthlyContribution,
-                    monthly_payout: Math.round(r.monthlyPayout),
-                    total_capital: Math.round(r.capitalWithFunding),
-                    subsidies: Math.round(r.totalSubsidies),
-                    tax_benefits: Math.round(r.totalTaxBenefit),
-                    retirement_age: inputs.retirementAge,
-                    return_assumption: inputs.returnRate * 100,
-                    children: inputs.children.length,
-                    income_bracket: INCOME_BANDS[inputs.incomeBand].label,
-                  }}
-                />
-
-                {/* Newsletter signup */}
-                <NewsletterCard inputs={inputs} result={r} />
-
                 {/* Return assumption selector */}
                 <div className="mb-12">
                   <p className="text-sm font-medium text-muted-foreground mb-2">Renditeannahme</p>
                   <InfoText className="mb-4 max-w-sm mx-auto">
                     Die Renditeannahme ist eine vereinfachte Szenario-Auswahl und keine Prognose.
                   </InfoText>
-                  <div className="inline-flex bg-secondary rounded-full p-1">
+                  <div className="inline-flex bg-muted border border-border rounded-lg p-1">
                     {RETURN_OPTIONS.map((opt) => (
-                      <button
+                      <Button variant="ghost"
                         key={opt.value}
+                        aria-pressed={inputs.returnRate === opt.value}
                         onClick={() => set("returnRate", opt.value)}
                         className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
                           inputs.returnRate === opt.value
-                            ? "bg-primary text-primary-foreground shadow-sm"
+                            ? "bg-trust text-trust-foreground shadow-sm"
                             : "text-muted-foreground hover:text-foreground"
                         }`}
                       >
                         {opt.label}
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </div>
@@ -744,11 +716,11 @@ const AltersvorsorgedepotRechner = () => {
                   </div>
 
                   {/* Chart legend */}
-                  <div className="flex items-center justify-center gap-6 mt-4">
+                  <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-4">
                     {[
-                      { label: "Eigenbeiträge", color: "bg-muted-foreground/30" },
-                      { label: "Zulagen", color: "bg-primary/60" },
-                      { label: "Kapitalerträge", color: "bg-[hsl(174,60%,45%)]" },
+                      { label: "Eigenbeiträge", color: "bg-chart-contributions" },
+                      { label: "Zulagen", color: "bg-chart-subsidies" },
+                      { label: "Kapitalerträge", color: "bg-chart-gains" },
                     ].map((item) => (
                       <div key={item.label} className="flex items-center gap-2">
                         <div className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
@@ -767,19 +739,19 @@ const AltersvorsorgedepotRechner = () => {
                       { label: "Staatliche Zulagen", value: r.totalSubsidies, color: "text-primary" },
                       { label: "Steuervorteile", value: r.totalTaxBenefit, color: "text-primary" },
                     ].map((item) => (
-                      <div key={item.label} className="bg-secondary rounded-2xl p-6">
+                      <div key={item.label} className="border-t border-border py-5 text-left">
                         <p className="text-sm text-muted-foreground mb-3">{item.label}</p>
-                        <p className={`text-2xl font-bold tabular-nums ${item.color}`}>
+                        <p className={`text-2xl font-semibold font-display tabular-nums ${item.color}`}>
                           <AnimatedNumber value={Math.round(item.value)} suffix=" €" />
                         </p>
                         {item.label === "Staatliche Zulagen" && (
-                          <p className="text-[11px] text-muted-foreground/60 mt-2 leading-snug">
+                          <p className="text-[11px] text-muted-foreground mt-2 leading-snug">
                             Summe aller staatlichen Grundzulagen (und ggf. Kinderzulagen) über die gesamte Ansparzeit —
                             direkt in Ihr Depot eingezahlt, unabhängig von Ihrem Einkommen.
                           </p>
                         )}
                         {item.label === "Steuervorteile" && (
-                          <p className="text-[11px] text-muted-foreground/60 mt-2 leading-snug">
+                          <p className="text-[11px] text-muted-foreground mt-2 leading-snug">
                             Geschätzter kumulierter Steuervorteil durch den Sonderausgabenabzug, basierend auf Ihrer
                             Einkommensklasse. Individuelle Abweichungen sind möglich.
                           </p>
@@ -788,37 +760,37 @@ const AltersvorsorgedepotRechner = () => {
                     ))}
                   </div>
 
-                  <div className="mt-6 bg-background border border-border rounded-2xl p-6 max-w-2xl mx-auto text-left">
+                  <div className="mt-6 border-y border-border py-6 max-w-2xl mx-auto text-left">
                     <div className="flex items-center justify-between flex-wrap gap-4">
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Eingezahltes Kapital gesamt</p>
                         <p className="text-xl font-bold tabular-nums">
                           <AnimatedNumber value={Math.round(r.totalContributions + r.totalSubsidies)} suffix=" €" />
                         </p>
-                        <p className="text-[11px] text-muted-foreground/60 mt-1 leading-snug">
+                        <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
                           Eigenbeiträge + Staatliche Zulagen
                         </p>
                       </div>
                       <div className="text-muted-foreground text-2xl font-light">+</div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Wertentwicklung (Kapitalerträge)</p>
-                        <p className="text-xl font-bold tabular-nums text-[hsl(174,60%,38%)]">
+                        <p className="text-xl font-bold tabular-nums text-capital">
                           <AnimatedNumber
                             value={Math.round(r.capitalWithFunding - r.totalContributions - r.totalSubsidies)}
                             suffix=" €"
                           />
                         </p>
-                        <p className="text-[11px] text-muted-foreground/60 mt-1 leading-snug">
+                        <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
                           Simulierte Erträge bei {Math.round(inputs.returnRate * 100)} % p.a.
                         </p>
                       </div>
                       <div className="text-muted-foreground text-2xl font-light">=</div>
                       <div>
                         <p className="text-sm text-muted-foreground mb-1">Kapital zum Rentenbeginn</p>
-                        <p className="text-xl font-bold tabular-nums text-primary">
+                        <p className="text-xl font-bold tabular-nums text-capital">
                           <AnimatedNumber value={Math.round(r.capitalWithFunding)} suffix=" €" />
                         </p>
-                        <p className="text-[11px] text-muted-foreground/60 mt-1 leading-snug">
+                        <p className="text-[11px] text-muted-foreground mt-1 leading-snug">
                           Entspricht dem oben angezeigten Gesamtkapital
                         </p>
                       </div>
@@ -838,7 +810,7 @@ const AltersvorsorgedepotRechner = () => {
                   {/* Funding advantage */}
                   <div className="mt-8">
                     <p className="text-sm text-muted-foreground">Ihr Vorteil durch Förderung</p>
-                    <p className="text-3xl font-bold text-primary tabular-nums mt-1">
+                    <p className="text-3xl font-semibold font-display text-capital tabular-nums mt-1">
                       +<AnimatedNumber value={Math.round(r.capitalWithFunding - r.capitalWithout)} suffix=" €" />
                     </p>
                     <InfoText className="mt-2 max-w-md mx-auto">
@@ -889,16 +861,16 @@ const AltersvorsorgedepotRechner = () => {
                     ].map((c) => (
                       <div
                         key={c.title}
-                        className={`rounded-2xl p-6 transition-shadow ${
-                          c.highlight ? "bg-primary/5 ring-1 ring-primary/15" : "bg-secondary"
+                        className={`rounded-lg p-5 text-left border transition-shadow ${
+                          c.highlight ? "bg-teal-soft/30 border-trust" : "bg-card border-border"
                         }`}
                       >
                         <p
-                          className={`text-sm font-medium mb-5 ${c.highlight ? "text-primary" : "text-muted-foreground"}`}
+                          className={`text-sm font-medium mb-5 ${c.highlight ? "text-capital" : "text-muted-foreground"}`}
                         >
                           {c.title}
                         </p>
-                        <p className="text-2xl font-bold tabular-nums mb-0.5">
+                        <p className="text-2xl font-semibold font-display tabular-nums mb-0.5">
                           <AnimatedNumber value={Math.round(c.capital)} suffix=" €" />
                         </p>
                         <p className="text-xs text-muted-foreground">Kapital zum Rentenbeginn</p>
@@ -917,27 +889,60 @@ const AltersvorsorgedepotRechner = () => {
                   </InfoText>
                 </div>
 
+                {/* KI-Auswertung button */}
+                <div className="max-w-lg mx-auto mb-12">
+                  <Button variant="ghost"
+                    onClick={() => setKiModalOpen(true)}
+                    className="w-full h-auto whitespace-normal flex items-center justify-center gap-2 px-6 py-4 rounded-lg border border-primary text-primary font-medium text-base hover:bg-primary-soft transition-colors"
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    KI-Auswertung ansehen
+                  </Button>
+                </div>
+
+                {/* KI-Auswertung Modal */}
+                <KiAuswertungModal
+                  open={kiModalOpen}
+                  onClose={() => setKiModalOpen(false)}
+                  data={{
+                    birth_year: inputs.birthYear,
+                    monthly_contribution: inputs.monthlyContribution,
+                    monthly_payout: Math.round(r.monthlyPayout),
+                    total_capital: Math.round(r.capitalWithFunding),
+                    subsidies: Math.round(r.totalSubsidies),
+                    tax_benefits: Math.round(r.totalTaxBenefit),
+                    retirement_age: inputs.retirementAge,
+                    return_assumption: inputs.returnRate * 100,
+                    children: inputs.children.length,
+                    income_bracket: INCOME_BANDS[inputs.incomeBand].label,
+                  }}
+                />
+
+                {/* Newsletter signup */}
+                <NewsletterCard inputs={inputs} result={r} />
+
                 {/* Disclaimer */}
                 <div className="max-w-xl mx-auto p-5 bg-muted/50 border border-border/60 rounded-xl text-center">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                  <p className="text-xs font-semibold text-disclaimer-foreground uppercase  mb-2">
                     Hinweise & Haftungsausschluss
                   </p>
-                  <p className="text-xs text-muted-foreground/70 leading-relaxed">
+                  <p className="text-xs text-disclaimer-foreground leading-relaxed">
                     Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026). Steuerliche
                     Effekte und Produktausgestaltung sind vereinfacht dargestellt. Kapitalanlagen bergen Risiken.
                     Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Sie stellt keine
-                    Anlage-, Steuer- oder Rechtsberatung dar.
+                    Anlage-, Steuer- oder Rechtsberatung dar. Rendite-Referenz: {" "}
+                    <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">MSCI-World-Renditedreieck des DAI</a>.
                   </p>
                 </div>
 
                 {/* Restart */}
                 <div className="mt-12">
-                  <button
+                  <Button variant="ghost"
                     onClick={() => setStep(1)}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+                    className="h-auto whitespace-normal text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
                   >
                     Neue Berechnung starten
-                  </button>
+                  </Button>
                 </div>
               </motion.div>
             )}
