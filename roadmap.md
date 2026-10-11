@@ -6,6 +6,9 @@
 
 # Design refresh
 
+- [ ] Align Rentenlücke, Frühstart and Riester comparison calculator pages with the approved editorial design, preserving all formulas and functionality.
+- [ ] Verify unchanged calculator results, controls, narrow layouts and regression tests.
+
 - [x] Restyle the remaining topic compass and FAQ with chapter headings and editorial rows; keep removed editorial/blog sections absent and calculator unchanged.
 - [x] Verify question suggestions, FAQ interaction and 320/375px layouts; no browser errors or horizontal overflow, build OK and all 51 tests pass.
 
