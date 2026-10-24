@@ -52,59 +52,6 @@ const homepageJsonLd = [
     },
   },
   {
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Was ist das Altersvorsorgedepot?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Das Altersvorsorgedepot ist ein vom Bundestag am 27. März 2026 beschlossenes Modell für die private Altersvorsorge. Es ermöglicht renditeorientierte Investitionen in Fonds oder ETFs — ohne die bisher bei Riester-Produkten übliche Beitragsgarantie. Die Beiträge werden staatlich gefördert.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Ist das Gesetz bereits beschlossen?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Ja. Der Bundestag hat das Altersvorsorgereformgesetz am 27. März 2026 beschlossen. Das Altersvorsorgedepot startet am 1. Januar 2027.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Was unterscheidet das Altersvorsorgedepot von Riester?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Der wichtigste Unterschied: Beim Altersvorsorgedepot entfällt die verpflichtende Beitragsgarantie. Dadurch können die Beiträge vollständig am Kapitalmarkt angelegt werden, was langfristig höhere Renditechancen ermöglicht. Zudem soll die Förderstruktur vereinfacht und die Kosten durch einen Effektivkostendeckel begrenzt werden.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Wer kann geförderte Beiträge leisten?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Der Förderkreis umfasst rentenversicherungspflichtig Beschäftigte, Beamte sowie Selbstständige und Freiberufler. Der Bundestag hat den Förderkreis ausdrücklich auf Personen mit Einkünften aus selbstständiger oder freiberuflicher Tätigkeit ausgeweitet.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Wie hoch ist die maximale Förderung?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Die Grundzulage beträgt 50 % auf Eigenbeiträge bis 360 € und 25 % auf Beiträge zwischen 360 € und 1.800 € — maximal 540 € pro Jahr, bereits ab 2027. Für jedes Kind gibt es zusätzlich bis zu 300 € pro Jahr. Dazu kommt ein möglicher Steuervorteil durch den Sonderausgabenabzug.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Was passiert mit dem Geld bei schlechter Marktentwicklung?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Da keine Beitragsgarantie vorgesehen ist, kann der Depotwert zwischenzeitlich auch unter die Summe der eingezahlten Beiträge fallen. Bei langfristiger Anlage über 20 oder mehr Jahre haben breit gestreute Aktienportfolios historisch betrachtet positive Renditen erzielt — eine Garantie dafür gibt es allerdings nicht.",
-        },
-      },
-    ],
-  },
-  {
     "@type": "Organization",
     name: "altersvorsorge-rechner.com",
     url: "https://altersvorsorge-rechner.com",
