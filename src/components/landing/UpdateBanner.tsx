@@ -11,8 +11,9 @@ const UpdateBanner = () => {
       <div className="container max-w-4xl mx-auto flex items-center justify-center gap-2">
         <Info className="w-4 h-4 shrink-0 text-warning-foreground" />
         <p className="text-sm text-warning-foreground">
-          <span className="font-medium">Wichtige Information:</span> Der Bundestag hat die Reform der Altersvorsorge
-          inklusive dem Altersvorsorgedepot beschlossen.
+          <span className="font-medium">Reform beschlossen:</span> Der Bundestag hat die Reform der privaten
+          Altersvorsorge beschlossen, der Bundesrat hat zugestimmt. Neue Altersvorsorgeprodukte können ab dem
+          1. Januar 2027 angeboten werden.
         </p>
       </div>
       <button

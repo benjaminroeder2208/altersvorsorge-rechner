@@ -317,10 +317,10 @@ const AltersvorsorgedepotRechner = () => {
                   className="max-w-2xl mx-auto text-2xl md:text-4xl font-semibold leading-tight mb-4"
                   
                 >
-                  Wie viel möchten Sie monatlich investieren?
+                  Wie viel möchtest du monatlich investieren?
                 </h2>
                 <p className="text-muted-foreground text-base md:text-lg mb-10 max-w-xl mx-auto">
-                  Ihr Beitrag für das Altersvorsorgedepot ab 2027 — die Grundlage Ihrer persönlichen Rechnung.
+                  Dein Beitrag für das Altersvorsorgedepot ab 2027 — die Grundlage deiner persönlichen Rechnung.
                 </p>
 
                 {/* Large value display */}
@@ -352,7 +352,7 @@ const AltersvorsorgedepotRechner = () => {
                   <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution * 12)}</span>
                 </p>
                 <InfoText className="mt-2 max-w-sm mx-auto">
-                  Dieser Wert ergibt sich aus Ihrem monatlichen Beitrag hochgerechnet auf ein Jahr.
+                  Dieser Wert ergibt sich aus deinem monatlichen Beitrag hochgerechnet auf ein Jahr.
                 </InfoText>
 
                 <Button variant="ghost"
@@ -385,10 +385,10 @@ const AltersvorsorgedepotRechner = () => {
                 </Button>
 
                 <h2 className="text-2xl md:text-4xl font-semibold leading-tight mb-3" >
-                  Wie hoch ist Ihr Bruttojahreseinkommen?
+                  Wie hoch ist dein Bruttojahreseinkommen?
                 </h2>
                 <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-xl mx-auto">
-                  Wir nutzen Ihr Einkommen ausschließlich zur Schätzung Ihrer Steuerersparnis durch den
+                  Wir nutzen dein Einkommen ausschließlich zur Schätzung deiner Steuerersparnis durch den
                   Sonderausgabenabzug — nicht zur Berechnung der Zulagen. Zulagen erhält jede förderberechtigte Person
                   unabhängig vom Einkommen.
                 </p>
@@ -416,7 +416,7 @@ const AltersvorsorgedepotRechner = () => {
 
                 <InfoText className="mt-6 max-w-md mx-auto">
                   Der Sonderausgabenabzug ermöglicht es, Eigenbeiträge und Zulagen bis zu 1.800 €/Jahr in der
-                  Steuererklärung geltend zu machen. Je höher Ihr Grenzsteuersatz, desto größer die zusätzliche
+                  Steuererklärung geltend zu machen. Je höher dein Grenzsteuersatz, desto größer die zusätzliche
                   Steuerersparnis — diese ist jedoch immer eine Schätzung und individuell verschieden.
                 </InfoText>
 
@@ -450,10 +450,10 @@ const AltersvorsorgedepotRechner = () => {
                 </Button>
 
                 <h2 className="text-2xl md:text-4xl font-semibold leading-tight mb-3" >
-                  Ein paar Angaben zu Ihrer Situation
+                  Ein paar Angaben zu deiner Situation
                 </h2>
                 <p className="text-muted-foreground text-base md:text-lg mb-8 max-w-xl mx-auto">
-                  Ihre Angaben bestimmen die Ansparphase bis zum Rentenbeginn.
+                  Deine Angaben bestimmen die Ansparphase bis zum Rentenbeginn.
                 </p>
 
                 <div className="space-y-4 max-w-xl mx-auto">
@@ -667,9 +667,9 @@ const AltersvorsorgedepotRechner = () => {
                 {/* Result interpretation */}
                 <div className="max-w-2xl mx-auto mb-10 text-left">
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Wenn Sie monatlich{" "}
+                    Wenn du monatlich{" "}
                     <span className="font-semibold text-foreground">{fmtEur(inputs.monthlyContribution)}</span>{" "}
-                    investieren, könnte Ihr Altersvorsorgedepot bis zum Rentenbeginn mit{" "}
+                    investierst, könnte dein Altersvorsorgedepot bis zum Rentenbeginn mit{" "}
                     <span className="font-semibold text-foreground">{inputs.retirementAge}</span> auf etwa{" "}
                     <span className="font-semibold text-foreground">{fmtEur(Math.round(r.capitalWithFunding))}</span>{" "}
                     anwachsen. Das entspricht einer möglichen monatlichen Auszahlung von etwa{" "}
@@ -706,7 +706,7 @@ const AltersvorsorgedepotRechner = () => {
                 <div className="mb-20">
                   <h3 className="text-xl font-bold mb-1">Kapitalentwicklung bis zum Rentenbeginn</h3>
                   <InfoText className="mb-8 max-w-md mx-auto">
-                    Die Darstellung zeigt die simulierte Entwicklung bis zum Rentenbeginn auf Basis Ihrer Angaben.
+                    Die Darstellung zeigt die simulierte Entwicklung bis zum Rentenbeginn auf Basis deiner Angaben.
                   </InfoText>
 
                   <div id="pdf-chart-capture" className="h-[300px] md:h-[360px]">
@@ -732,7 +732,7 @@ const AltersvorsorgedepotRechner = () => {
 
                 {/* Contribution breakdown */}
                 <div className="mb-20">
-                  <h3 className="text-xl font-bold mb-8">Zusammensetzung Ihres Kapitals</h3>
+                  <h3 className="text-xl font-bold mb-8">Zusammensetzung deines Kapitals</h3>
                   <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
                     {[
                       { label: "Eigenbeiträge", value: r.totalContributions, color: "text-foreground" },
@@ -747,12 +747,12 @@ const AltersvorsorgedepotRechner = () => {
                         {item.label === "Staatliche Zulagen" && (
                           <p className="text-[11px] text-muted-foreground mt-2 leading-snug">
                             Summe aller staatlichen Grundzulagen (und ggf. Kinderzulagen) über die gesamte Ansparzeit —
-                            direkt in Ihr Depot eingezahlt, unabhängig von Ihrem Einkommen.
+                            direkt in dein Depot eingezahlt, unabhängig von deinem Einkommen.
                           </p>
                         )}
                         {item.label === "Steuervorteile" && (
                           <p className="text-[11px] text-muted-foreground mt-2 leading-snug">
-                            Geschätzter kumulierter Steuervorteil durch den Sonderausgabenabzug, basierend auf Ihrer
+                            Geschätzter kumulierter Steuervorteil durch den Sonderausgabenabzug, basierend auf deiner
                             Einkommensklasse. Individuelle Abweichungen sind möglich.
                           </p>
                         )}
@@ -809,7 +809,7 @@ const AltersvorsorgedepotRechner = () => {
 
                   {/* Funding advantage */}
                   <div className="mt-8">
-                    <p className="text-sm text-muted-foreground">Ihr Vorteil durch Förderung</p>
+                    <p className="text-sm text-muted-foreground">Dein Vorteil durch Förderung</p>
                     <p className="text-3xl font-semibold font-display text-capital tabular-nums mt-1">
                       +<AnimatedNumber value={Math.round(r.capitalWithFunding - r.capitalWithout)} suffix=" €" />
                     </p>
@@ -929,8 +929,8 @@ const AltersvorsorgedepotRechner = () => {
                   <p className="text-xs text-disclaimer-foreground leading-relaxed">
                     Diese Simulation basiert auf dem Altersvorsorgereformgesetz (beschlossen 27.03.2026). Steuerliche
                     Effekte und Produktausgestaltung sind vereinfacht dargestellt. Kapitalanlagen bergen Risiken.
-                    Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Sie stellt keine
-                    Anlage-, Steuer- oder Rechtsberatung dar. Rendite-Referenz: {" "}
+                    Frühere Wertentwicklungen sind kein verlässlicher Indikator für die Zukunft. Die Inhalte stellen
+                    keine Anlage-, Steuer- oder Rechtsberatung dar. Rendite-Referenz: {" "}
                     <a href="https://www.dai.de/detail/msci-world-rendite-dreieck-fuer-die-monatliche-geldanlage-1" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">MSCI-World-Renditedreieck des DAI</a>.
                   </p>
                 </div>

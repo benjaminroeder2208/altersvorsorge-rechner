@@ -255,7 +255,7 @@ export default function KiAuswertungModal({ open, onClose, data }: KiAuswertungM
                     emoji="📈"
                     title="ETF-Sparplan (Weltportfolio)"
                     description="Flexibel, kostengünstig, langfristig stark"
-                    badge="Empfohlen"
+                    badge="Basis-Baustein"
                     badgeClass="bg-primary/10 text-primary"
                   />
                   <ProductCard
