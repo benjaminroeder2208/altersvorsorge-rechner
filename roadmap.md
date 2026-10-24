@@ -1,4 +1,4 @@
-- [ ] Apply approved homepage copy review: consistent du/dein, precise payout and legal sources, neutral AI badge, aligned newsletter consent and disclaimer; preserve calculations and verify the calculator flow.
+- [x] Apply approved homepage copy review: consistent du/dein, precise payout and legal sources (48% through 2031, not 2039), neutral AI badge, aligned newsletter consent and disclaimer; calculations unchanged, 42 regression tests pass, complete browser flow verified, build OK.
 - [x] Add an interactive homepage introduction linking to the existing AI assistant with a selected example question.
 - [x] Verify example selection and unsent draft handoff at 1280/375/320px with mocked assistant responses: no overflow or browser errors, 51 regression tests pass. Existing model calls and calculator logic unchanged.
 
