@@ -190,8 +190,8 @@ const NewsletterCard = ({
               <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto leading-relaxed">
                 Gib deine E-Mail ein und erhalte deine persönliche Auswertung
                 als PDF — mit deinen Kennzahlen, Kapitalentwicklungs-Chart und
-                Vergleich. Kostenlos. Optional: Erhalte auch wöchentliche Tipps
-                zur Altersvorsorge.
+                Vergleich. Kostenlos. Dazu erhältst du gelegentliche Updates
+                zum Start des Altersvorsorgedepots.
               </p>
             </div>
 
@@ -282,7 +282,8 @@ const NewsletterCard = ({
                     Datenschutzerklärung
                   </a>{" "}
                   zu. Die Adresse wird ausschließlich zur Zusendung meiner
-                  Auswertung und gelegentlicher Updates verwendet.
+                  Auswertung und gelegentlicher Updates zum Start des
+                  Altersvorsorgedepots verwendet. Ich kann mich jederzeit abmelden.
                 </label>
               </div>
               {dsgvoError && (

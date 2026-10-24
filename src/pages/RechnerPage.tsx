@@ -67,7 +67,7 @@ const RechnerPage = () => (
   <HeroPersonaProvider>
     <PageHead
       title="Altersvorsorgedepot Rechner – Altersvorsorge einfach berechnen"
-      description="Berechnen Sie mit dem Altersvorsorgedepot Rechner, wie sich Beiträge, Förderung und Rendite langfristig entwickeln – nach dem neuen Reformgesetz."
+      description="Berechne mit dem Altersvorsorgedepot Rechner, wie sich deine Beiträge, Förderung und Rendite langfristig entwickeln – nach dem neuen Reformgesetz."
       path="/"
       ogTitle="Altersvorsorgedepot Rechner – Altersvorsorge einfach berechnen"
       ogDescription="Interaktiver Rechner zur Simulation eines Altersvorsorgedepots auf Basis des beschlossenen Altersvorsorgereformgesetzes."
@@ -122,7 +122,7 @@ const RechnerPage = () => (
                     { label: "Anlageform", r: "Versicherung, Banksparplan, Fondssparplan, Wohn-Riester", d: "Wertpapier-Depot (ETFs, Fonds, Aktien)" },
                     { label: "Kostendeckel", r: "Kein gesetzlicher Deckel", d: "Max. 1,0 % p.a. (nur Standardprodukt)" },
                     { label: "Antrag", r: "Über Anbieter, jährlich", d: "Automatisch — kein Zulagenantrag nötig" },
-                    { label: "Auszahlung", r: "Lebenslange Rente, 30 % Einmalentnahme möglich", d: "Rente ab 65–70, bis 30 % als Einmalentnahme" },
+                     { label: "Auszahlung", r: "Lebenslange Rente, 30 % Einmalentnahme möglich", d: "Auszahlungsplan (mindestens bis 85) oder lebenslange Rente; bis 30 % Einmalentnahme" },
                     { label: "Besteuerung", r: "Voll nachgelagert", d: "Voll nachgelagert" },
                     { label: "Neuabschluss", r: "Ab 2027 nicht mehr förderfähig", d: "Start: 1. Januar 2027" },
                   ].map((row, i) => (
