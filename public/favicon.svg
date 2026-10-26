@@ -1,10 +1,6 @@
 <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-  <!-- Signet: Waldgrün-Fläche mit Korall-Kurve (identisch zum Header-Logo) -->
-  <rect width="36" height="36" rx="8" fill="#003536"/>
-  <!-- Basis-Linie -->
-  <path d="M6 29H30" stroke="#FDFAF4" stroke-opacity="0.3" stroke-width="1"/>
-  <!-- Wachstums-Kurve -->
-  <path d="M7 26C17 26 22 22 28 8" fill="none" stroke="#D7352A" stroke-width="2.6" stroke-linecap="round"/>
-  <!-- Endpunkt -->
-  <circle cx="28" cy="8" r="2.8" fill="#D7352A"/>
+  <!-- Signet: Waldgrün-Fläche mit Korall-Kurve (reduzierte Form des Header-Logos) -->
+  <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="7.5" fill="#003536" stroke="#FDFAF4" stroke-opacity="0.22" stroke-width="1.5"/>
+  <path d="M7 26C17 26 22 22 28 8" fill="none" stroke="#D7352A" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="28" cy="8" r="3.4" fill="#D7352A"/>
 </svg>
