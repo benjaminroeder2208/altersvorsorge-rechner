@@ -1,24 +1,28 @@
 /**
- * Single source of truth for brand colors used in non-CSS contexts:
- * SVG `fill`/`stroke`, `<canvas>`, react-pdf, recharts series, and
- * email-template HTML strings. Keep these in sync with the HSL
- * tokens declared in `src/index.css`.
- *
- * For React/Tailwind components, ALWAYS prefer the semantic token
- * classes (`bg-primary`, `text-primary`, `text-brand-amber`, …)
- * instead of importing these hex constants.
+ * Brand colors for non-CSS contexts (SVG, canvas, react-pdf, email HTML).
+ * Keep in sync with the HSL tokens in `src/index.css`.
+ * In React/Tailwind components ALWAYS use semantic token classes instead.
  */
 export const BRAND = {
-  primary: "#1B4FD8",          // --primary
-  primarySoft: "#EEF3FF",      // --primary-soft
-  primarySoftBorder: "#BFDBFE",// --primary-soft-border
-  amber: "#F59E0B",            // --brand-amber
-  red: "#EF4444",              // --brand-red
-  success: "#059669",          // --success
-  warningBg: "#FEF3C7",        // --warning
-  warningFg: "#92400E",        // --warning-foreground
-  // Chart series (recharts / canvas)
-  chartGray: "#9CA3AF",
-  chartBlue: "#1B4FD8",
-  chartTeal: "#2DD4A8",
+  primary: "#D7352A",          // --primary (Koralle)
+  primaryDark: "#B42A20",      // Koralle für Textlinks (Kontrast)
+  coralSoft: "#FFE9E3",        // --coral-soft (aufgehellt)
+  trust: "#003536",            // --trust (Waldgrün)
+  trustSoft: "#E3EFEC",
+  background: "#FDFAF4",       // --background (Off-White)
+  sand: "#F1EFE9",             // --secondary
+  foreground: "#05171B",       // --foreground (Anthrazit)
+  muted: "#536265",            // --muted-foreground
+  border: "#D6D0C4",           // --border
+  // Legacy keys kept for existing consumers
+  primarySoft: "#E3EFEC",
+  primarySoftBorder: "#D6D0C4",
+  amber: "#D7352A",
+  red: "#EF4444",
+  success: "#059669",
+  warningBg: "#FFE9E3",
+  warningFg: "#7A1F18",
+  chartGray: "#6E6E72",
+  chartBlue: "#003536",
+  chartTeal: "#2DB8A8",
 } as const;

@@ -187,9 +187,9 @@ Deno.serve(async (req) => {
 
     const html = `<!DOCTYPE html>
 <html lang="de"><head><meta charset="utf-8"></head>
-<body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a2e;">
+<body style="margin:0;padding:0;background:#FDFAF4;font-family:Arial,Helvetica,sans-serif;color:#05171B;">
   <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
-    <h1 style="font-size:22px;font-weight:bold;color:#1B4FD8;margin:0 0 24px;">
+    <h1 style="font-size:22px;font-weight:bold;color:#003536;margin:0 0 24px;">
       Bitte bestätige deine E-Mail-Adresse
     </h1>
     <p style="font-size:15px;line-height:1.6;color:#333;margin:0 0 16px;">
@@ -199,7 +199,7 @@ Deno.serve(async (req) => {
       Bitte bestätige kurz deine E-Mail-Adresse. Direkt danach erhältst du die
       kostenlose Checkliste mit 3 Szenarien als PDF${subscribedToNewsletter ? " und ab nächster Woche unsere Newsletter-Tipps zur Altersvorsorge" : ""}.
     </p>
-    <a href="${confirmUrl}" style="display:inline-block;background:#1B4FD8;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;margin:0 0 24px;">
+    <a href="${confirmUrl}" style="display:inline-block;background:#D7352A;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;margin:0 0 24px;">
       Jetzt bestätigen →
     </a>
     <p style="font-size:13px;line-height:1.6;color:#666;margin:16px 0 0;">
@@ -208,14 +208,14 @@ Deno.serve(async (req) => {
     <p style="font-size:13px;line-height:1.6;color:#999;margin:8px 0 0;">
       Falls du dich nicht angemeldet hast, kannst du diese Mail ignorieren.
     </p>
-    <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
-    <p style="font-size:12px;color:#6B7280;margin:0 0 8px;text-align:center;">
-      <a href="${appBaseUrl}" style="color:#6B7280;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
-      &nbsp;·&nbsp;<a href="${appBaseUrl}/impressum" style="color:#6B7280;text-decoration:none;">Impressum</a>
-      &nbsp;·&nbsp;<a href="${appBaseUrl}/datenschutz" style="color:#6B7280;text-decoration:none;">Datenschutz</a>
+    <hr style="border:none;border-top:1px solid #D6D0C4;margin:32px 0 16px;">
+    <p style="font-size:12px;color:#536265;margin:0 0 8px;text-align:center;">
+      <a href="${appBaseUrl}" style="color:#536265;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
+      &nbsp;·&nbsp;<a href="${appBaseUrl}/impressum" style="color:#536265;text-decoration:none;">Impressum</a>
+      &nbsp;·&nbsp;<a href="${appBaseUrl}/datenschutz" style="color:#536265;text-decoration:none;">Datenschutz</a>
     </p>
-    <p style="font-size:11px;color:#9CA3AF;margin:0 0 8px;text-align:center;">
-      <a href="${unsubUrl}" style="color:#9CA3AF;text-decoration:underline;">Von diesem Newsletter abmelden</a>
+    <p style="font-size:11px;color:#7A8587;margin:0 0 8px;text-align:center;">
+      <a href="${unsubUrl}" style="color:#7A8587;text-decoration:underline;">Von diesem Newsletter abmelden</a>
     </p>
   </div>
 </body></html>`;

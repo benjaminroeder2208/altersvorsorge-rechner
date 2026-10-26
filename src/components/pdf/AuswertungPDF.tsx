@@ -7,11 +7,12 @@ Font.register({
   fonts: [{ src: "Helvetica" }, { src: "Helvetica-Bold", fontWeight: "bold" }],
 });
 
-const PRIMARY = "#1B4FD8";
-const MUTED = "#6B7280";
-const LIGHT_BG = "#F4F6FA";
-const BORDER = "#E5E7EB";
-const INFO_BG = "#EEF3FF";
+const PRIMARY = "#003536";
+const CORAL = "#D7352A";
+const MUTED = "#536265";
+const LIGHT_BG = "#F1EFE9";
+const BORDER = "#D6D0C4";
+const INFO_BG = "#E3EFEC";
 
 const fmt = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
@@ -34,7 +35,7 @@ const s = StyleSheet.create({
   page: {
     fontFamily: "Helvetica",
     fontSize: 10,
-    color: "#1a1a2e",
+    color: "#05171B",
     padding: 0,
   },
   header: {
@@ -48,7 +49,7 @@ const s = StyleSheet.create({
   headerTitle: { fontSize: 18, fontWeight: "bold", color: "#ffffff", marginBottom: 4 },
   headerDate: { fontSize: 8, color: "rgba(255,255,255,0.6)" },
   body: { padding: 30 },
-  sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#1a1a2e", marginBottom: 8, marginTop: 6 },
+  sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#05171B", marginBottom: 8, marginTop: 6 },
   grid: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 8 },
   card: { width: "48%", backgroundColor: LIGHT_BG, borderRadius: 8, padding: 10, minHeight: 50 },
   cardHighlight: {
@@ -61,21 +62,21 @@ const s = StyleSheet.create({
     borderColor: PRIMARY,
   },
   cardLabel: { fontSize: 8, color: MUTED, marginBottom: 3 },
-  cardValue: { fontSize: 18, fontWeight: "bold", color: "#1a1a2e" },
+  cardValue: { fontSize: 18, fontWeight: "bold", color: "#05171B" },
   cardValueBlue: { fontSize: 18, fontWeight: "bold", color: PRIMARY },
   explanationBox: { backgroundColor: LIGHT_BG, borderRadius: 8, padding: 8, marginBottom: 8 },
   explanationText: { fontSize: 10, color: "#333", lineHeight: 1.6 },
   chartImage: { width: "100%", height: 130, marginBottom: 8, borderRadius: 6 },
   table: { marginBottom: 8 },
   tableRow: { flexDirection: "row", borderBottomWidth: 1, borderBottomColor: BORDER, paddingVertical: 6 },
-  tableHeader: { flexDirection: "row", borderBottomWidth: 2, borderBottomColor: PRIMARY, paddingVertical: 6 },
+  tableHeader: { flexDirection: "row", borderBottomWidth: 2, borderBottomColor: CORAL, paddingVertical: 6 },
   tableCell: { width: "25%", fontSize: 9, color: "#333" },
-  tableCellHeader: { width: "25%", fontSize: 9, fontWeight: "bold", color: "#1a1a2e" },
+  tableCellHeader: { width: "25%", fontSize: 9, fontWeight: "bold", color: "#05171B" },
   tableCellHighlight: { width: "25%", fontSize: 9, fontWeight: "bold", color: PRIMARY },
   productRow: { flexDirection: "row", paddingVertical: 5, borderBottomWidth: 1, borderBottomColor: BORDER },
-  productName: { fontSize: 9, fontWeight: "bold", color: "#1a1a2e", width: "40%" },
+  productName: { fontSize: 9, fontWeight: "bold", color: "#05171B", width: "40%" },
   productDesc: { fontSize: 9, color: MUTED, width: "60%" },
-  footerText: { fontSize: 8, color: "#9CA3AF", textAlign: "center" },
+  footerText: { fontSize: 8, color: "#7A8587", textAlign: "center" },
   // Page 2 styles
   p2SectionTitle: { fontSize: 13, fontWeight: "bold", color: "#111", marginBottom: 6 },
   p2SectionTitleBlue: { fontSize: 13, fontWeight: "bold", color: PRIMARY, marginBottom: 6 },
@@ -185,7 +186,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
               <Text style={s.productDesc}>Steuerersparnis durch Entgeltumwandlung</Text>
             </View>
           </View>
-          <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#E5E7EB" }}>
+          <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#D6D0C4" }}>
             <Text style={s.footerText}>altersvorsorge-rechner.com · Seite 1/2 · Rechtliche Hinweise siehe Seite 2</Text>
           </View>
         </View>
@@ -245,7 +246,7 @@ export const AuswertungPDF = ({ data }: { data: AuswertungData }) => {
               E-Mail: info@altersvorsorge-rechner.com | Impressum: altersvorsorge-rechner.com/impressum
             </Text>
           </View>
-          <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#E5E7EB" }}>
+          <View style={{ marginTop: 24, paddingTop: 8, borderTopWidth: 0.5, borderTopColor: "#D6D0C4" }}>
             <Text style={s.footerText}>altersvorsorge-rechner.com · Seite 2/2</Text>
           </View>
         </View>
