@@ -30,7 +30,7 @@ function buildEmailHtml(opts: {
   const { subject, preheader, bodyHtml, unsubUrl, appBaseUrl } = opts;
   return `<!DOCTYPE html>
 <html lang="de"><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
-<body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#05171B;">
+<body style="margin:0;padding:0;background:#FDFAF4;font-family:Arial,Helvetica,sans-serif;color:#05171B;">
   ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;">${escapeHtml(preheader)}</div>` : ""}
   <div style="max-width:600px;margin:0 auto;padding:32px 24px;">
     <div style="font-size:15px;line-height:1.6;color:#05171B;">

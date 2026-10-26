@@ -14,6 +14,7 @@ Font.register({
 });
 
 const PRIMARY = "#003536";
+const CORAL = "#D7352A";
 const MUTED = "#536265";
 const LIGHT_BG = "#F1EFE9";
 const BORDER = "#D6D0C4";
@@ -73,11 +74,11 @@ const s = StyleSheet.create({
     padding: 14,
     marginBottom: 12,
     borderLeftWidth: 4,
-    borderLeftColor: PRIMARY,
+    borderLeftColor: CORAL,
   },
   scenarioHeader: { flexDirection: "row", justifyContent: "space-between", marginBottom: 10 },
   scenarioTitle: { fontSize: 13, fontWeight: "bold", color: "#05171B" },
-  scenarioBadge: { fontSize: 8, color: PRIMARY, fontWeight: "bold" },
+  scenarioBadge: { fontSize: 8, color: CORAL, fontWeight: "bold" },
   row: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
   metric: { width: "48%", marginBottom: 6 },
   metricLabel: { fontSize: 8, color: MUTED, marginBottom: 2 },
@@ -106,7 +107,7 @@ const s = StyleSheet.create({
 
   sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#05171B", marginBottom: 6, marginTop: 4 },
   bodyText: { fontSize: 9, color: "#444", lineHeight: 1.55, marginBottom: 8 },
-  link: { color: PRIMARY, textDecoration: "underline" },
+  link: { color: "#B42A20", textDecoration: "underline" },
 
   footerBar: {
     marginTop: 20,

@@ -8,6 +8,7 @@ Font.register({
 });
 
 const PRIMARY = "#003536";
+const CORAL = "#D7352A";
 const MUTED = "#536265";
 const LIGHT_BG = "#F1EFE9";
 const BORDER = "#D6D0C4";
@@ -68,7 +69,7 @@ const s = StyleSheet.create({
   chartImage: { width: "100%", height: 130, marginBottom: 8, borderRadius: 6 },
   table: { marginBottom: 8 },
   tableRow: { flexDirection: "row", borderBottomWidth: 1, borderBottomColor: BORDER, paddingVertical: 6 },
-  tableHeader: { flexDirection: "row", borderBottomWidth: 2, borderBottomColor: PRIMARY, paddingVertical: 6 },
+  tableHeader: { flexDirection: "row", borderBottomWidth: 2, borderBottomColor: CORAL, paddingVertical: 6 },
   tableCell: { width: "25%", fontSize: 9, color: "#333" },
   tableCellHeader: { width: "25%", fontSize: 9, fontWeight: "bold", color: "#05171B" },
   tableCellHighlight: { width: "25%", fontSize: 9, fontWeight: "bold", color: PRIMARY },
