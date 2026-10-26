@@ -84,7 +84,7 @@ function mail1Html(unsubToken: string) {
       </tr>
     </table>
 
-    <div style="background:#E3EFEC;border-radius:12px;padding:20px;margin:0 0 24px;">
+    <div style="background:#F5F7F5;border:1px solid #E2E8E4;border-radius:12px;padding:20px 22px;margin:0 0 24px;">
       <p style="font-size:15px;line-height:1.6;margin:0;color:#333;">
         <strong>Der Unterschied: 283.000&nbsp;€</strong> — nur weil Anna 10 Jahre früher angefangen hat.
         Der Zinseszins-Effekt belohnt vor allem eines: <strong>früh anfangen</strong>.
@@ -130,7 +130,7 @@ function mail2Html(unsubToken: string) {
       </p>
     </div>
 
-    <div style="background:#E3EFEC;border-radius:12px;padding:20px;margin:0 0 24px;">
+    <div style="background:#F5F7F5;border:1px solid #E2E8E4;border-radius:12px;padding:20px 22px;margin:0 0 24px;">
       <p style="font-size:14px;line-height:1.6;margin:0;color:#333;">
          <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot startet am 1. Januar 2027 und bietet bis zu ${MAX_GRUNDZULAGE}&nbsp;€ Grundzulage
          plus bis zu ${KINDERZULAGE}&nbsp;€ je Kind pro Jahr. Das Gesetz wurde am 27. März 2026 vom Bundestag beschlossen.
