@@ -1,19 +1,10 @@
-<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <!-- Hintergrund -->
-  <rect width="32" height="32" rx="7" fill="#1B4FD8"/>
-  <!-- Fläche unter der Kurve -->
-  <path d="M5,26 C9,20 13,14 20,9 L20,26 Z" fill="white" opacity="0.1"/>
-  <!-- Hauptkurve weiß (Gegenwart) -->
-  <path d="M5,26 C9,20 13,14 20,9" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-  <!-- Gestrichelte Projektion amber (Zukunft) -->
-  <path d="M20,9 C23,6 25,4 28,2" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-dasharray="2.5,2"/>
-  <!-- Datenpunkte -->
-  <circle cx="5" cy="26" r="1.8" fill="white" opacity="0.4"/>
-  <circle cx="13" cy="17" r="2.2" fill="white" opacity="0.7"/>
-  <circle cx="20" cy="9" r="2.5" fill="white"/>
-  <!-- Amber Zukunftspunkt mit Glow -->
-  <circle cx="28" cy="2" r="4.5" fill="#F59E0B" opacity="0.25"/>
-  <circle cx="28" cy="2" r="2.8" fill="#F59E0B"/>
+<svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+  <!-- Signet: Waldgrün-Fläche mit Korall-Kurve (identisch zum Header-Logo) -->
+  <rect width="36" height="36" rx="8" fill="#003536"/>
   <!-- Basis-Linie -->
-  <line x1="5" y1="26" x2="29" y2="26" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.2"/>
+  <path d="M6 29H30" stroke="#FDFAF4" stroke-opacity="0.3" stroke-width="1"/>
+  <!-- Wachstums-Kurve -->
+  <path d="M7 26C17 26 22 22 28 8" fill="none" stroke="#D7352A" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- Endpunkt -->
+  <circle cx="28" cy="8" r="2.8" fill="#D7352A"/>
 </svg>
