@@ -17,21 +17,21 @@ const BASE = "https://altersvorsorge-rechner.com";
 function footerHtml(unsubToken: string) {
   const unsub = `${BASE}/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
   return `
-    <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
+    <hr style="border:none;border-top:1px solid #D6D0C4;margin:32px 0 16px;">
     <table style="width:100%;text-align:center;">
       <tr>
         <td>
-          <p style="font-size:12px;color:#6B7280;margin:0 0 8px;">
-            <a href="${BASE}" style="color:#6B7280;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
+          <p style="font-size:12px;color:#536265;margin:0 0 8px;">
+            <a href="${BASE}" style="color:#536265;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
             &nbsp;·&nbsp;
-            <a href="${BASE}/impressum" style="color:#6B7280;text-decoration:none;">Impressum</a>
+            <a href="${BASE}/impressum" style="color:#536265;text-decoration:none;">Impressum</a>
             &nbsp;·&nbsp;
-            <a href="${BASE}/datenschutz" style="color:#6B7280;text-decoration:none;">Datenschutz</a>
+            <a href="${BASE}/datenschutz" style="color:#536265;text-decoration:none;">Datenschutz</a>
           </p>
-          <p style="font-size:11px;color:#9CA3AF;margin:0 0 8px;">
-            <a href="${unsub}" style="color:#9CA3AF;text-decoration:underline;">Von diesem Newsletter abmelden</a>
+          <p style="font-size:11px;color:#7A8587;margin:0 0 8px;">
+            <a href="${unsub}" style="color:#7A8587;text-decoration:underline;">Von diesem Newsletter abmelden</a>
           </p>
-          <p style="font-size:10px;color:#D1D5DB;margin:0;">
+          <p style="font-size:10px;color:#D6D0C4;margin:0;">
             Angaben basieren auf dem Altersvorsorgereformgesetz (27.03.2026). Keine Anlageberatung.
           </p>
         </td>
@@ -43,7 +43,7 @@ function wrapHtml(body: string, unsubToken: string) {
   return `<!DOCTYPE html>
 <html lang="de">
 <head><meta charset="utf-8"></head>
-<body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a2e;">
+<body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#05171B;">
   <div style="max-width:560px;margin:0 auto;padding:40px 24px;">
     ${body}
     ${footerHtml(unsubToken)}
@@ -54,7 +54,7 @@ function wrapHtml(body: string, unsubToken: string) {
 
 function mail1Html(unsubToken: string) {
   return wrapHtml(`
-    <h1 style="font-size:22px;font-weight:bold;color:#1B4FD8;margin:0 0 24px;">
+    <h1 style="font-size:22px;font-weight:bold;color:#003536;margin:0 0 24px;">
       Der häufigste Fehler bei der Altersvorsorge
     </h1>
     <p style="font-size:15px;line-height:1.6;color:#333;margin:0 0 16px;">
@@ -63,9 +63,9 @@ function mail1Html(unsubToken: string) {
 
     <table style="width:100%;border-collapse:collapse;margin:0 0 24px;">
       <tr>
-        <td style="padding:12px 16px;background:#1B4FD8;color:#fff;font-weight:bold;border-radius:8px 0 0 0;">Szenario</td>
-        <td style="padding:12px 16px;background:#1B4FD8;color:#fff;font-weight:bold;text-align:center;">Anna (25&nbsp;J.)</td>
-        <td style="padding:12px 16px;background:#1B4FD8;color:#fff;font-weight:bold;text-align:center;border-radius:0 8px 0 0;">Ben (35&nbsp;J.)</td>
+        <td style="padding:12px 16px;background:#003536;color:#FDFAF4;font-weight:bold;border-radius:8px 0 0 0;">Szenario</td>
+        <td style="padding:12px 16px;background:#003536;color:#FDFAF4;font-weight:bold;text-align:center;">Anna (25&nbsp;J.)</td>
+        <td style="padding:12px 16px;background:#003536;color:#FDFAF4;font-weight:bold;text-align:center;border-radius:0 8px 0 0;">Ben (35&nbsp;J.)</td>
       </tr>
       <tr>
         <td style="padding:12px 16px;font-size:14px;color:#666;">Monatlicher Beitrag</td>
@@ -73,25 +73,25 @@ function mail1Html(unsubToken: string) {
         <td style="padding:12px 16px;font-size:14px;text-align:center;">150&nbsp;€</td>
       </tr>
       <tr>
-        <td style="padding:12px 16px;background:#f4f6fa;font-size:14px;color:#666;">Ansparzeit</td>
-        <td style="padding:12px 16px;background:#f4f6fa;font-size:14px;text-align:center;">42 Jahre</td>
-        <td style="padding:12px 16px;background:#f4f6fa;font-size:14px;text-align:center;">32 Jahre</td>
+        <td style="padding:12px 16px;background:#F1EFE9;font-size:14px;color:#666;">Ansparzeit</td>
+        <td style="padding:12px 16px;background:#F1EFE9;font-size:14px;text-align:center;">42 Jahre</td>
+        <td style="padding:12px 16px;background:#F1EFE9;font-size:14px;text-align:center;">32 Jahre</td>
       </tr>
       <tr>
         <td style="padding:12px 16px;font-size:14px;color:#666;font-weight:bold;">Kapital mit 67</td>
-        <td style="padding:12px 16px;font-size:16px;font-weight:bold;text-align:center;color:#1B4FD8;">~538.000&nbsp;€</td>
+        <td style="padding:12px 16px;font-size:16px;font-weight:bold;text-align:center;color:#003536;">~538.000&nbsp;€</td>
         <td style="padding:12px 16px;font-size:16px;font-weight:bold;text-align:center;">~255.000&nbsp;€</td>
       </tr>
     </table>
 
-    <div style="background:#eef2ff;border-radius:12px;padding:20px;margin:0 0 24px;">
+    <div style="background:#E3EFEC;border-radius:12px;padding:20px;margin:0 0 24px;">
       <p style="font-size:15px;line-height:1.6;margin:0;color:#333;">
         <strong>Der Unterschied: 283.000&nbsp;€</strong> — nur weil Anna 10 Jahre früher angefangen hat.
         Der Zinseszins-Effekt belohnt vor allem eines: <strong>früh anfangen</strong>.
       </p>
     </div>
 
-    <a href="${BASE}/rechner" style="display:inline-block;background:#1B4FD8;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;">
+    <a href="${BASE}/rechner" style="display:inline-block;background:#D7352A;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;">
       Jetzt berechnen →
     </a>
   `, unsubToken);
@@ -99,7 +99,7 @@ function mail1Html(unsubToken: string) {
 
 function mail2Html(unsubToken: string) {
   return wrapHtml(`
-    <h1 style="font-size:22px;font-weight:bold;color:#1B4FD8;margin:0 0 24px;">
+    <h1 style="font-size:22px;font-weight:bold;color:#003536;margin:0 0 24px;">
       Altersvorsorgedepot 2027 — was du jetzt tun solltest
     </h1>
     <p style="font-size:15px;line-height:1.6;color:#333;margin:0 0 24px;">
@@ -111,7 +111,7 @@ function mail2Html(unsubToken: string) {
       <p style="font-size:15px;line-height:1.6;color:#333;margin:0 0 12px;">
         <strong>1. Rentenlücke berechnen</strong><br>
         Finde heraus, wie viel dir im Alter fehlt. Unser
-        <a href="${BASE}/rentenluecken-rechner" style="color:#1B4FD8;text-decoration:underline;">Rentenlückenrechner</a>
+        <a href="${BASE}/rentenluecken-rechner" style="color:#B42A20;text-decoration:underline;">Rentenlückenrechner</a>
         zeigt es dir in 2 Minuten.
       </p>
       <p style="font-size:15px;line-height:1.6;color:#333;margin:0 0 12px;">
@@ -125,19 +125,19 @@ function mail2Html(unsubToken: string) {
       <p style="font-size:15px;line-height:1.6;color:#333;margin:0 0 12px;">
         <strong>4. Informiert bleiben</strong><br>
         Das Gesetzgebungsverfahren läuft noch. In unserem
-        <a href="${BASE}/blog/altersvorsorgedepot-2027" style="color:#1B4FD8;text-decoration:underline;">Ratgeber zum Altersvorsorgedepot 2027</a>
+        <a href="${BASE}/blog/altersvorsorgedepot-2027" style="color:#B42A20;text-decoration:underline;">Ratgeber zum Altersvorsorgedepot 2027</a>
         findest du alle aktuellen Infos.
       </p>
     </div>
 
-    <div style="background:#eef2ff;border-radius:12px;padding:20px;margin:0 0 24px;">
+    <div style="background:#E3EFEC;border-radius:12px;padding:20px;margin:0 0 24px;">
       <p style="font-size:14px;line-height:1.6;margin:0;color:#333;">
          <strong>Gut zu wissen:</strong> Das Altersvorsorgedepot startet am 1. Januar 2027 und bietet bis zu ${MAX_GRUNDZULAGE}&nbsp;€ Grundzulage
          plus bis zu ${KINDERZULAGE}&nbsp;€ je Kind pro Jahr. Das Gesetz wurde am 27. März 2026 vom Bundestag beschlossen.
       </p>
     </div>
 
-    <a href="${BASE}/rechner" style="display:inline-block;background:#1B4FD8;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;">
+    <a href="${BASE}/rechner" style="display:inline-block;background:#D7352A;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;">
       Jetzt berechnen →
     </a>
   `, unsubToken);

@@ -13,12 +13,12 @@ Font.register({
   fonts: [{ src: "Helvetica" }, { src: "Helvetica-Bold", fontWeight: "bold" }],
 });
 
-const PRIMARY = "#1B4FD8";
-const MUTED = "#6B7280";
-const LIGHT_BG = "#F4F6FA";
-const BORDER = "#E5E7EB";
-const INFO_BG = "#EEF3FF";
-const AMBER = "#F59E0B";
+const PRIMARY = "#003536";
+const MUTED = "#536265";
+const LIGHT_BG = "#F1EFE9";
+const BORDER = "#D6D0C4";
+const INFO_BG = "#E3EFEC";
+const AMBER = "#D7352A";
 
 const fmt = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 0 });
 
@@ -52,7 +52,7 @@ function buildScenario(startAge: number) {
 const SCENARIOS = [buildScenario(25), buildScenario(35), buildScenario(45)];
 
 const s = StyleSheet.create({
-  page: { fontFamily: "Helvetica", fontSize: 10, color: "#1a1a2e", padding: 0 },
+  page: { fontFamily: "Helvetica", fontSize: 10, color: "#05171B", padding: 0 },
   header: {
     backgroundColor: PRIMARY,
     paddingTop: 18,
@@ -76,12 +76,12 @@ const s = StyleSheet.create({
     borderLeftColor: PRIMARY,
   },
   scenarioHeader: { flexDirection: "row", justifyContent: "space-between", marginBottom: 10 },
-  scenarioTitle: { fontSize: 13, fontWeight: "bold", color: "#1a1a2e" },
+  scenarioTitle: { fontSize: 13, fontWeight: "bold", color: "#05171B" },
   scenarioBadge: { fontSize: 8, color: PRIMARY, fontWeight: "bold" },
   row: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
   metric: { width: "48%", marginBottom: 6 },
   metricLabel: { fontSize: 8, color: MUTED, marginBottom: 2 },
-  metricValue: { fontSize: 14, fontWeight: "bold", color: "#1a1a2e" },
+  metricValue: { fontSize: 14, fontWeight: "bold", color: "#05171B" },
   metricValueBlue: { fontSize: 14, fontWeight: "bold", color: PRIMARY },
 
   takeawaysBox: {
@@ -95,16 +95,16 @@ const s = StyleSheet.create({
   takeawayItem: { fontSize: 9.5, color: "#333", lineHeight: 1.5, marginBottom: 4 },
 
   noteBox: {
-    backgroundColor: "#FEF3C7",
+    backgroundColor: "#FFE9E3",
     borderRadius: 6,
     padding: 10,
     marginBottom: 14,
     borderLeftWidth: 3,
     borderLeftColor: AMBER,
   },
-  noteText: { fontSize: 9, color: "#7C2D12", lineHeight: 1.5 },
+  noteText: { fontSize: 9, color: "#7A1F18", lineHeight: 1.5 },
 
-  sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#1a1a2e", marginBottom: 6, marginTop: 4 },
+  sectionTitle: { fontSize: 12, fontWeight: "bold", color: "#05171B", marginBottom: 6, marginTop: 4 },
   bodyText: { fontSize: 9, color: "#444", lineHeight: 1.55, marginBottom: 8 },
   link: { color: PRIMARY, textDecoration: "underline" },
 
@@ -114,7 +114,7 @@ const s = StyleSheet.create({
     borderTopWidth: 0.5,
     borderTopColor: BORDER,
   },
-  footerText: { fontSize: 8, color: "#9CA3AF", textAlign: "center" },
+  footerText: { fontSize: 8, color: "#7A8587", textAlign: "center" },
 });
 
 const Scenario = ({

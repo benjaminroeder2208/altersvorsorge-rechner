@@ -18,7 +18,7 @@ const EMBED_CODE_BASIC = `<iframe
 </iframe>`;
 
 const EMBED_CODE_CUSTOM = `<iframe
-  src="${BASE}/embed?color=%231B4FD8&utm_source=DEINBLOGNAME"
+  src="${BASE}/embed?color=%23D7352A&utm_source=DEINBLOGNAME"
   width="100%"
   height="600"
   frameborder="0"

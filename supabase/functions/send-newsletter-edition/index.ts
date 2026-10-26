@@ -30,20 +30,20 @@ function buildEmailHtml(opts: {
   const { subject, preheader, bodyHtml, unsubUrl, appBaseUrl } = opts;
   return `<!DOCTYPE html>
 <html lang="de"><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
-<body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#1a1a2e;">
+<body style="margin:0;padding:0;background:#ffffff;font-family:Arial,Helvetica,sans-serif;color:#05171B;">
   ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;">${escapeHtml(preheader)}</div>` : ""}
   <div style="max-width:600px;margin:0 auto;padding:32px 24px;">
-    <div style="font-size:15px;line-height:1.6;color:#1a1a2e;">
+    <div style="font-size:15px;line-height:1.6;color:#05171B;">
       ${bodyHtml}
     </div>
-    <hr style="border:none;border-top:1px solid #e5e7eb;margin:32px 0 16px;">
-    <p style="font-size:12px;color:#6B7280;margin:0 0 8px;text-align:center;">
-      <a href="${appBaseUrl}" style="color:#6B7280;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
-      &nbsp;·&nbsp;<a href="${appBaseUrl}/impressum" style="color:#6B7280;text-decoration:none;">Impressum</a>
-      &nbsp;·&nbsp;<a href="${appBaseUrl}/datenschutz" style="color:#6B7280;text-decoration:none;">Datenschutz</a>
+    <hr style="border:none;border-top:1px solid #D6D0C4;margin:32px 0 16px;">
+    <p style="font-size:12px;color:#536265;margin:0 0 8px;text-align:center;">
+      <a href="${appBaseUrl}" style="color:#536265;text-decoration:none;font-weight:500;">altersvorsorge-rechner.com</a>
+      &nbsp;·&nbsp;<a href="${appBaseUrl}/impressum" style="color:#536265;text-decoration:none;">Impressum</a>
+      &nbsp;·&nbsp;<a href="${appBaseUrl}/datenschutz" style="color:#536265;text-decoration:none;">Datenschutz</a>
     </p>
-    <p style="font-size:11px;color:#9CA3AF;margin:0 0 8px;text-align:center;">
-      <a href="${unsubUrl}" style="color:#9CA3AF;text-decoration:underline;">Newsletter abbestellen</a>
+    <p style="font-size:11px;color:#7A8587;margin:0 0 8px;text-align:center;">
+      <a href="${unsubUrl}" style="color:#7A8587;text-decoration:underline;">Newsletter abbestellen</a>
     </p>
   </div>
 </body></html>`;
